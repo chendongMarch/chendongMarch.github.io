@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API，希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时候遇到的坑，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十分钟接入微信微博QQ原生登录分享">
+<meta property="og:url" content="http://chendongmarch.github.io/2016/12/08/Android开发/十分钟接入微信微博QQ原生登录分享/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API，希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时候遇到的坑，">
+<meta property="og:updated_time" content="2017-02-22T15:52:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="十分钟接入微信微博QQ原生登录分享">
+<meta name="twitter:description" content="第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API，希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时候遇到的坑，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/2016/12/08/Android开发/十分钟接入微信微博QQ原生登录分享/"/>
+
+
+  <title> 十分钟接入微信微博QQ原生登录分享 | 三月 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                十分钟接入微信微博QQ原生登录分享
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-08T00:00:00+08:00" content="2016-12-08">
+              2016-12-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o">本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，<br>比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API，<br>希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时候遇到的坑，分享一下。</p>
+<p>目前支持微信、微博、QQ，SDK已经集成在Lib里面，下载之后直接依赖module即可<br><a href="https://github.com/chendongMarch/Reaper_Android/tree/platform_test/lib-platform" target="_blank" rel="external">GitHub,是在platform_test分支下的代码,要切到platform_test分支才能看到</a></p>
+<a id="more"></a>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><ul>
+<li>首先你应该去每个平台申请appId或者appKey,这个是免不了的，每个平台不一样这里统称AppId</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">String qqAppId = <span class="string">"110x571x60"</span>;</div><div class="line">String wxAppId = <span class="string">"wx8xfa4edccxbb3e84"</span>;</div><div class="line">String wbAppId = <span class="string">"36x93x0615"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 初始化每个平台</span></div><div class="line">Platform.newInst(<span class="keyword">this</span>);</div><div class="line">Platform.getInst().initWx(<span class="keyword">this</span>, wxAppId);</div><div class="line">Platform.getInst().initQQ(<span class="keyword">this</span>, qqAppId);</div><div class="line">Platform.getInst().initWb(<span class="keyword">this</span>, wbAppId);</div><div class="line"></div><div class="line"><span class="comment">// or 一次初始化三个平台</span></div><div class="line">Platform.getInst().init(<span class="keyword">this</span>, qqAppId,wxAppId,wbAppId);</div><div class="line"></div><div class="line"><span class="comment">// 获取各个平台的API</span></div><div class="line">mWxPlatform = Platform.getInst().wx();</div><div class="line">mWbPlatform = Platform.getInst().wb();</div><div class="line">mQqPlatform = Platform.getInst().qq();</div></pre></td></tr></table></figure>
+<h2 id="微信快速接入"><a href="#微信快速接入" class="headerlink" title="微信快速接入"></a>微信快速接入</h2><h3 id="微信接入前准备"><a href="#微信接入前准备" class="headerlink" title="微信接入前准备"></a>微信接入前准备</h3><ul>
+<li>微信接入前需要准备一些工作，按照微信官方的文档来说，你需要在你的app的包下建立一个wxapi的包并创建<code>WxEntryActivity.class</code>，比如你的工程包名是<code>com.test.package</code>,那就是在<code>com.test.package.wxapi</code>包下面建立<code>WxEntryActivity.class</code>，并在<code>AndroidManifest.xml</code>,注册该Activity,它将作为微信分享的回调页。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 微信专用Activity --&gt;</div><div class="line">&lt;activity</div><div class="line">     android:name=<span class="string">".wxapi.WXEntryActivity"</span></div><div class="line">     android:exported=<span class="string">"true"</span></div><div class="line">     android:label=<span class="string">"@string/app_name"</span> /&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>为了简化开发，我已经写好一个<code>AbsWxEntryActivity</code>,你可以采用最简单的方式直接继承这个Activity，如下，当然你可能需要所有的Activity都实现你自己写好的的基类，那可以拷贝<code>AbsWXEntryActivity</code>里面的内容到你创建的类中即可。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.march.reaper.wxapi;</div><div class="line"><span class="keyword">import</span> com.march.lib.platform.wx.AbsWXEntryActivity;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WXEntryActivity</span> <span class="keyword">extends</span> <span class="title">AbsWXEntryActivity</span> </span>&#123;</div><div class="line">    <span class="comment">// 啥都不用写</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="微信分享"><a href="#微信分享" class="headerlink" title="微信分享"></a>微信分享</h3><ul>
+<li><p>在类库中已经写好常用的分享方法，目前支持文本|Bitmap|本地图片文件|GIF动图(emoji)|网络视频|网络音频|网页</p>
+</li>
+<li><p>说明一下几个需要注意的地方</p>
+<ul>
+<li>视频音频之类的可以在聊天列表中之间点击播放，但是不能分享本地音视频资源，不然能分享成功，点击之后也是无效的</li>
+<li>网络图片需要分享的话需要先进行下载之后再分享</li>
+</ul>
+</li>
+<li><p>实现分享回调监听,监测分享的结果</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">mWxPlatform.setWxShareListener(<span class="keyword">new</span> OnWxShareListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享成功"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(PlatformException e)</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享失败"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">()</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享取消"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>分享类型。微信分享支持分享到好友，群，朋友圈，收藏,使用常量来表示</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">WxPlatform.ZONE 朋友圈</div><div class="line">WxPlatform.CHAT 好友和群</div><div class="line">WxPlatform.FAVORITE 收藏</div></pre></td></tr></table></figure>
+<ul>
+<li>直接用代码罗列一下API</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 分享文本</span></div><div class="line">mWxPlatform.shareText(<span class="string">"测试"</span>,  WxPlatform.CHAT);</div><div class="line"><span class="comment">// 分享bitmap,网络图片请先下载</span></div><div class="line">mWxPlatform.shareImage(testBit, WxPlatform.CHAT);</div><div class="line"><span class="comment">// 本地图片，本质还是bitmap，封装了一下</span></div><div class="line">mWxPlatform.shareImage(localImagePath,  WxPlatform.CHAT);</div><div class="line"><span class="comment">// 分享Gif或emoji表情</span></div><div class="line">mWxPlatform.shareGif(localGifPath,  WxPlatform.CHAT);</div><div class="line"><span class="comment">// 分享视频</span></div><div class="line">mWxPlatform.shareVideo(netVideoPath, <span class="string">"video title"</span>, <span class="string">"video desc"</span>, thumbBit, WxPlatform.CHAT);</div><div class="line"><span class="comment">// 分享音乐</span></div><div class="line">mWxPlatform.shareMusic(netMusicPath, <span class="string">"music title"</span>, <span class="string">"music desc"</span>, thumbBit, WxPlatform.CHAT);</div><div class="line"><span class="comment">// 分享网页</span></div><div class="line">mWxPlatform.shareWebPage(testWebUrl, <span class="string">"web title"</span>, <span class="string">"web desc"</span>, thumbBit, WxPlatform.CHAT);</div></pre></td></tr></table></figure>
+<h3 id="微信登录"><a href="#微信登录" class="headerlink" title="微信登录"></a>微信登录</h3><ul>
+<li>微信登录需要请求access_token,获取token,刷新token,token持久化存储等相关功能已经封装在Libs里面</li>
+<li>登录功能需要secretKey，另外现在微信登录居然要开发者认证，¥300。。不过我还是测试过啦。。。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">mWxPlatform.login(mContext, secretKey, <span class="keyword">new</span> OnWxLoginListener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSucceed</span><span class="params">(WxUserInfo info)</span> </span>&#123;</div><div class="line">                    	<span class="comment">// 获取到结果</span></div><div class="line">                        mInfoTv.setText(info.toString());</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onException</span><span class="params">(PlatformException e)</span> </span>&#123;</div><div class="line">                        log(e.getMessage());</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div></pre></td></tr></table></figure>
+<h2 id="QQ快速接入"><a href="#QQ快速接入" class="headerlink" title="QQ快速接入"></a>QQ快速接入</h2><h3 id="QQ接入前准备"><a href="#QQ接入前准备" class="headerlink" title="QQ接入前准备"></a>QQ接入前准备</h3><ul>
+<li>接入QQ之前的准备工作,在<code>AndroidMenifest.xml</code>中注册相关Activity,在<code>&lt;data android:scheme=&quot;tencent11x5x71460&quot; /&gt;</code>要加入tencent(AppId), 注意</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;!-- QQ专用Activity --&gt;</div><div class="line">&lt;activity</div><div class="line">    android:name="com.tencent.tauth.AuthActivity"</div><div class="line">    android:launchMode="singleTask"</div><div class="line">    android:noHistory="true"&gt;</div><div class="line">    &lt;intent-filter&gt;</div><div class="line">        &lt;action android:name="android.intent.action.V</div><div class="line">        &lt;category android:name="android.intent.category.DEFAULT" /&gt;</div><div class="line">        &lt;category android:name="android.intent.category.BROWSA</div><div class="line">        &lt;data android:scheme="tencent11x5x71460" /&gt;</div><div class="line">    &lt;/intent-filter&gt;</div><div class="line">&lt;/activity&gt;</div><div class="line">&lt;activity</div><div class="line">    android:name="com.tencent.connect.common.AssistActivity"</div><div class="line">    android:configChanges="orientation|keyboardHidden|screenSize"</div><div class="line">    android:theme="@android:style/Theme.Translucent.NoTitleBar" /&gt;</div></pre></td></tr></table></figure>
+<h3 id="QQ分享"><a href="#QQ分享" class="headerlink" title="QQ分享"></a>QQ分享</h3><ul>
+<li>在<code>onActivityResult()</code>中接受数据进行处理</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">    mQqPlatform.onActivityResult(requestCode, resultCode, data);</div><div class="line">    <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>目前支持分享到群，好友，空间</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">QQPlatform.ZONE qq空间</div><div class="line">QQPlatform.CHAT 好友和群</div></pre></td></tr></table></figure>
+<ul>
+<li>设置分享的监听事件</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">mQqPlatform.setOnQQShareListener(<span class="keyword">new</span> OnQQShareListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享成功"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(PlatformException e)</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享失败 "</span> + e.getQQError().errorDetail);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">()</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享取消"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>列举一下支持的分享类型</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 分享本地图片</span></div><div class="line">mQqPlatform.shareLocalImage(mActivity, localImagePath, QQPlatform.CHAT);</div><div class="line"><span class="comment">// 分享图文</span></div><div class="line">mQqPlatform.shareImageText(mActivity, <span class="string">"title"</span>, <span class="string">"summary"</span>, testWebUrl, localImagePath, QQPlatform.CHAT);</div><div class="line"><span class="comment">// 分享app,会打开app在应用宝的下载地址</span></div><div class="line">mQqPlatform.shareApp(mActivity, <span class="string">"title"</span>, <span class="string">"summary"</span>, testWebUrl, localImagePath, QQPlatform.CHAT);</div><div class="line"><span class="comment">// 分享音乐</span></div><div class="line">mQqPlatform.shareAudio(mActivity, <span class="string">"title"</span>, <span class="string">"summary"</span>, testWebUrl, localImagePath, netMusicPath, QQPlatform.CHAT);</div></pre></td></tr></table></figure>
+<h3 id="QQ登录"><a href="#QQ登录" class="headerlink" title="QQ登录"></a>QQ登录</h3><ul>
+<li>一行代码接入</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">mQqPlatform.login(mActivity, <span class="keyword">new</span> OnQQLoginListener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onException</span><span class="params">(PlatformException e)</span> </span>&#123;</div><div class="line">                        log(e.getQQError().errorMessage + <span class="string">"  "</span> + e.getQQError().errorDetail);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSucceed</span><span class="params">(QQUserInfo userInfo)</span> </span>&#123;</div><div class="line">                        log(userInfo);</div><div class="line"></div><div class="line">                    &#125;</div><div class="line">                &#125;);</div></pre></td></tr></table></figure>
+<h2 id="微博快速接入"><a href="#微博快速接入" class="headerlink" title="微博快速接入"></a>微博快速接入</h2><h3 id="微博接入前准备"><a href="#微博接入前准备" class="headerlink" title="微博接入前准备"></a>微博接入前准备</h3><ul>
+<li>微博接入比较麻烦，需要配置的地方很多，坑也特别多。</li>
+<li>需要注意的地方是有个回调的url,会在微博管理台那里配置，请使用默认的那个url</li>
+</ul>
+<h3 id="微博分享"><a href="#微博分享" class="headerlink" title="微博分享"></a>微博分享</h3><ul>
+<li>1.首先在<code>AndroidManifest.xml</code>中配置你的发起分享的Activity，如下,不然没办法接收到成功或者失败的回调</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;activity</div><div class="line">    android:name=".TestPlatformActivity"</div><div class="line">    android:configChanges="keyboardHidden|orientation"</div><div class="line">    android:screenOrientation="portrait"&gt;</div><div class="line">    &lt;intent-filter&gt;</div><div class="line">        &lt;action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" /&gt;</div><div class="line">        &lt;category android:name="android.intent.category.DEFAULT" /&gt;</div><div class="line">    &lt;/intent-filter&gt;</div><div class="line">&lt;/activity&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>2.设置监听</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">mWbPlatform.setWbShareListener(<span class="keyword">new</span> OnWbShareListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享成功"</span>);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(PlatformException e)</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享失败"</span>);</div><div class="line">                e.getWbError().printStackTrace();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">()</span> </span>&#123;</div><div class="line">                toast(<span class="string">"分享取消"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>3.微博分享需要发起分享的Activity实现<code>IWeiboHandler.Response</code>接口，这里要说一下为什么没有把这个监听拿到类库里面，因为必须是Activity实现这个监听，不然没办法获取到分享的结果，真的很坑，所以只能拿出来自己实现啦，不过处理的方法我已经写在类库里面只要调用一下就好了，代码如下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPlatformActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">IWeiboHandler</span>.<span class="title">Response</span> </span>&#123;</div><div class="line">	... 此处省略若干代码</div><div class="line">	<span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(BaseResponse baseResponse)</span> </span>&#123;</div><div class="line">        mWbPlatform.handleWbResponse(baseResponse);</div><div class="line">    &#125;</div><div class="line">	... 此处省略若干代码</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>4.然后需要在<code>onCreate()</code>和<code>onNewIntent()</code>方法中实现如下代码接受数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_test_platform);</div><div class="line"></div><div class="line">    <span class="comment">// 在这里实现是在Activity被销毁时接受数据，这里的this参数接受的是类型是IWeiboHandler.Response</span></div><div class="line">    mWbPlatform.onCreate(mActivity, savedInstanceState, <span class="keyword">this</span>);</div><div class="line">    ... 此处省略若干代码</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onNewIntent</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onNewIntent(intent);</div><div class="line">    <span class="comment">// Activity返回时被调用，这里的this参数接受的是类型是IWeiboHandler.Response</span></div><div class="line">    mWbPlatform.onNewIntent(intent, <span class="keyword">this</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>5.分享的API，这里分享有两种方式，一种是不需要登录的，也就是下面介绍的这几种方式，另外一种使用openApi来分享，需要用户授权，为什么要引入这种方式呢，因为微博分享图片大小有限制，不能大于32kb,就有点鸡肋啦，32kb的图片根本不够看。在下面的分享中很多字段分享到微博是看不到效果的，都是文字+网页链接，真的挺难看的，因为title,desc，bitmap这些字段都是显示在LinkCard上的，就是显示为卡片的样式，但是想能这样显示需要进行商业合作才可以,另外在textContent参数中的内容如果有网页链接，会自动隐藏替换为<code>网页链接</code>四个字是不会显示url的</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 分享文字</span></div><div class="line">mWbPlatform.shareText(mActivity, <span class="string">"test"</span>);</div><div class="line"><span class="comment">// 分享网页</span></div><div class="line">mWbPlatform.shareWebpage(mActivity, <span class="string">"textContent"</span>, <span class="string">"title"</span>, <span class="string">"desc"</span>, bitmap, testWebUrl);</div><div class="line"><span class="comment">// 分享音乐</span></div><div class="line">mWbPlatform.shareMusic(mActivity, <span class="string">"textContent"</span>, <span class="string">"title"</span>, <span class="string">"desc"</span>, bitmap, netMusicPath, netMusicPath, <span class="number">10</span>);</div><div class="line"><span class="comment">// 分享视频</span></div><div class="line">mWbPlatform.shareVideo(mActivity, <span class="string">"textContent"</span>, <span class="string">"title"</span>, <span class="string">"desc"</span>, bitmap, netVideoPath, netVideoPath, <span class="number">10</span>);</div><div class="line"><span class="comment">// 分享声音</span></div><div class="line">mWbPlatform.shareVoice(mActivity, <span class="string">"textContent"</span>, <span class="string">"title"</span>, <span class="string">"desc"</span>, bitmap, netMusicPath, netMusicPath, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<h3 id="微博-openApi-分享"><a href="#微博-openApi-分享" class="headerlink" title="微博 openApi 分享"></a>微博 openApi 分享</h3><ul>
+<li>使用openApi分享需要先进行授权，也就是会弹起微博客户端授权界面点击登陆之后获得授权，当然，也已经封装好啦，只要调用分享的代码就可以啦。就直接贴代码啦</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 分享图片bitmap</span></div><div class="line">mWbPlatform.shareImage(mActivity, <span class="string">"text"</span>, bitmapThumb);</div><div class="line"><span class="comment">// 分享网络图片，这里是高级接口需要在微博后台申请的</span></div><div class="line">mWbPlatform.shareNetImage(mActivity, <span class="string">"text"</span>, netImagePath);</div><div class="line"><span class="comment">// 分享GIF，这个分享出来是会有预览效果的</span></div><div class="line">mWbPlatform.shareGif(mActivity, <span class="string">"text"</span>, localGifPath);</div></pre></td></tr></table></figure>
+<h3 id="微博登录"><a href="#微博登录" class="headerlink" title="微博登录"></a>微博登录</h3><ul>
+<li>微博登录授权需要在<code>onActivityResult()</code>接受授权的结果，，比起微信和QQ配置的地方太多啦，主要原因还是微信和QQ是有自己的Activity注册上啦，回头可以模仿微信和QQ的方式写个Activity接受数据，再返回给调用的Activity就不需要做如此多的配置啦。一行代码登录</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">    mWbPlatform.onActivityResult(requestCode, resultCode, data);</div><div class="line">    <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">mWbPlatform.login(mActivity, <span class="keyword">new</span> OnWbLoginListener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSucceed</span><span class="params">(WbUserInfo info)</span> </span>&#123;</div><div class="line">                        log(info.toString());</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">()</span> </span>&#123;</div><div class="line">                        toast(<span class="string">"取消"</span>);</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onException</span><span class="params">(PlatformException e)</span> </span>&#123;</div><div class="line">                        e.getWbError().printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div></pre></td></tr></table></figure>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>就这么多内容，这三个平台是目前接入最多的吧，提取这个Lib出来以后再做第三方登录分享就简单多啦，还有很多地方不足，API也不够简单，配置的地方太多，继续完善吧，加油</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/05/Android开发/快速实现Fragment切换功能/" rel="next" title="快速实现Fragment切换功能">
+                <i class="fa fa-chevron-left"></i> 快速实现Fragment切换功能
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="chendong" />
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">这里是描述。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信快速接入"><span class="nav-number">2.</span> <span class="nav-text">微信快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信接入前准备"><span class="nav-number">2.1.</span> <span class="nav-text">微信接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信分享"><span class="nav-number">2.2.</span> <span class="nav-text">微信分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信登录"><span class="nav-number">2.3.</span> <span class="nav-text">微信登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QQ快速接入"><span class="nav-number">3.</span> <span class="nav-text">QQ快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ接入前准备"><span class="nav-number">3.1.</span> <span class="nav-text">QQ接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ分享"><span class="nav-number">3.2.</span> <span class="nav-text">QQ分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ登录"><span class="nav-number">3.3.</span> <span class="nav-text">QQ登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微博快速接入"><span class="nav-number">4.</span> <span class="nav-text">微博快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微博接入前准备"><span class="nav-number">4.1.</span> <span class="nav-text">微博接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博分享"><span class="nav-number">4.2.</span> <span class="nav-text">微博分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博-openApi-分享"><span class="nav-number">4.3.</span> <span class="nav-text">微博 openApi 分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博登录"><span class="nav-number">4.4.</span> <span class="nav-text">微博登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-number">5.</span> <span class="nav-text">结束</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

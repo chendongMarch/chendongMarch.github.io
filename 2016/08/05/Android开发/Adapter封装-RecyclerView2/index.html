@@ -1,0 +1,954 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,开源库,Adapter,RecyclerView," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="QuickRvAdapter快速适配器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QuickRvAdapter快速适配器">
+<meta property="og:url" content="http://chendongmarch.github.io/2016/08/05/Android开发/Adapter封装-RecyclerView2/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="QuickRvAdapter快速适配器">
+<meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/toc.png">
+<meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/item_header_small.png">
+<meta property="og:updated_time" content="2016-11-10T06:35:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QuickRvAdapter快速适配器">
+<meta name="twitter:description" content="QuickRvAdapter快速适配器">
+<meta name="twitter:image" content="http://7xtjec.com1.z0.glb.clouddn.com/toc.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/2016/08/05/Android开发/Adapter封装-RecyclerView2/"/>
+
+
+  <title> QuickRvAdapter快速适配器 | 三月 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                QuickRvAdapter快速适配器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-05T00:00:00+08:00" content="2016-08-05">
+              2016-08-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o">本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="RecyclerView-Adapter"><a href="#RecyclerView-Adapter" class="headerlink" title="RecyclerView Adapter"></a>RecyclerView Adapter</h1><ol>
+<li><p>为RecyclerView提供更简单的适配器实现方式，不断更新完善中。</p>
+</li>
+<li><p><a href="http://7xtjec.com1.z0.glb.clouddn.com/ittleQ.mp4" target="_blank" rel="external">Demo视频演示</a></p>
+</li>
+<li><p><a href="https://github.com/chendongMarch/CommonLib/lib-adapter" target="_blank" rel="external">GitHub地址</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/chendong_/article/details/50897581" target="_blank" rel="external">博客</a></p>
+</li>
+</ol>
+<p><img src="http://7xtjec.com1.z0.glb.clouddn.com/toc.png" alt=""></p>
+<ul>
+<li><a href="#使用">使用</a></li>
+<li><a href="#baseviewholder-的使用">BaseViewHolder 的使用</a></li>
+<li><a href="#通用适配器">通用适配器</a><ul>
+<li><a href="#单类型数据适配">单类型数据适配</a></li>
+<li><a href="#多类型数据适配">多类型数据适配</a><ul>
+<li><a href="#使用-isectionrule-配置数据">使用 ISectionRule 配置数据</a></li>
+<li><a href="#使用-hashmap-配置数据">使用 HashMap 配置数据</a></li>
+</ul>
+</li>
+<li><a href="#九宫格模式适配">九宫格模式适配</a></li>
+</ul>
+</li>
+<li><a href="#监听事件">监听事件</a><ul>
+<li><a href="#三种事件">三种事件</a></li>
+<li><a href="#实现需要的事件">实现需要的事件</a></li>
+<li><a href="#sectionrvadapter-事件">SectionRvAdapter 事件</a></li>
+</ul>
+</li>
+<li><a href="#数据更新">数据更新</a><ul>
+<li><a href="#内置更新方法">内置更新方法</a></li>
+<li><a href="#分页更新方法">分页更新方法</a></li>
+<li><a href="#sectionrvadapter-追加更新">SectionRvAdapter 追加更新</a></li>
+</ul>
+</li>
+<li><a href="#module">Module</a><ul>
+<li><a href="#添加-header-和-footer">添加 Header 和 Footer</a></li>
+<li><a href="#预加载更多">预加载更多</a></li>
+</ul>
+</li>
+<li><a href="#其他">其他</a><ul>
+<li><a href="#adapterid-区分">adapterId 区分</a></li>
+<li><a href="#sample">Sample</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>类库还在开发中，暂时没有发布到Jcenter,所以需要在<code>yourProject.gradle</code>文件中添加如下代码进行依赖</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">	   repositories &#123;</div><div class="line"> 	       maven &#123; url &apos;https://dl.bintray.com/chendongmarch/maven&apos; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在<code>yourApp.gradle</code>文件中添加依赖</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.march.lib-adapter:lib-adapter:1.0.0&apos;</div></pre></td></tr></table></figure>
+<h2 id="BaseViewHolder-的使用"><a href="#BaseViewHolder-的使用" class="headerlink" title="BaseViewHolder 的使用"></a>BaseViewHolder 的使用</h2><ul>
+<li>通用ViewHolder，内部使用<code>SparseArray</code>实现View的缓存。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//BaseViewHolder</span></div><div class="line"></div><div class="line"><span class="comment">//获取控件</span></div><div class="line"><span class="keyword">public</span> &lt;T extends View&gt; <span class="function">T <span class="title">getView</span><span class="params">(<span class="keyword">int</span> resId)</span></span></div><div class="line"><span class="keyword">public</span> &lt;T extends View&gt; T <span class="title">getView</span><span class="params">(String resId)</span></div><div class="line"><span class="comment">//设置可见</span></div><div class="line"><span class="keyword">public</span> RvViewHolder <span class="title">setVisibility</span><span class="params">(<span class="keyword">int</span> resId, <span class="keyword">int</span> v)</span></div><div class="line"><span class="comment">//文字</span></div><div class="line"><span class="keyword">public</span> RvViewHolder <span class="title">setText</span><span class="params">(<span class="keyword">int</span> resId, String txt)</span></div><div class="line"><span class="comment">//图片</span></div><div class="line"><span class="keyword">public</span> RvViewHolder <span class="title">setImg</span><span class="params">(<span class="keyword">int</span> resId, <span class="keyword">int</span> imgResId)</span></div><div class="line"><span class="comment">//监听</span></div><div class="line"><span class="keyword">public</span> RvViewHolder <span class="title">setClickLis</span><span class="params">(<span class="keyword">int</span> resId, View.OnClickListener listener)</span></div></pre></td></tr></table></figure>
+<h2 id="通用适配器"><a href="#通用适配器" class="headerlink" title="通用适配器"></a>通用适配器</h2><h3 id="单类型数据适配"><a href="#单类型数据适配" class="headerlink" title="单类型数据适配"></a>单类型数据适配</h3><ul>
+<li>SimpleRvAdapter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//一个简单的实现,实体类不需要再去实现RvQuickInterface接口</span></div><div class="line">SimpleRvAdapter simpleAdapter =</div><div class="line"><span class="keyword">new</span> SimpleRvAdapter&lt;Demo&gt;(self, demos, R.layout.rvquick_item_a) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(RvViewHolder holder, Demo data, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">                holder.setText(R.id.item_a_tv, data.title);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div></pre></td></tr></table></figure>
+<h3 id="多类型数据适配"><a href="#多类型数据适配" class="headerlink" title="多类型数据适配"></a>多类型数据适配</h3><ul>
+<li>TypeRvAdapter</li>
+</ul>
+<ol>
+<li><p>多类型数据适配时需要接受<code>ITypeAdapterModel(接口)</code>类型的的数据，因此进行多类型数据适配时，你的Model需要实现<code>ITypeAdapterModel</code>告知Adapter数据的type</p>
+</li>
+<li><p><code>addType(int type,int res)</code>方法用来给每种类型的数据添加不同的布局文件，达到多类型适配的目的。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Demo类必须实现 ITypeAdapterModel 接口</span></div><div class="line">TypeRvAdapter&lt;Demo&gt; typeAdapter =</div><div class="line"><span class="keyword">new</span> TypeRvAdapter&lt;Demo&gt;(context, data) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(RvViewHolder holder, Demo data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">                <span class="comment">//根据类型绑定数据</span></div><div class="line">                <span class="keyword">switch</span> (type) &#123;</div><div class="line">                    <span class="keyword">case</span> Demo.CODE_DETAIL:</div><div class="line">                        holder.setText(R.id.item_quickadapter_type_title, data.getmDemoTitle()).setText(R.id.item_quickadapter_desc, data.getmDescStr());</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    <span class="keyword">case</span> Demo.JUST_TEST:</div><div class="line">                        holder.setText(R.id.item_quickadapter_title, data.getmDemoTitle());</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;;</div><div class="line">typeAdapter.addType(Demo.CODE_DETAIL, R.layout.item_layout_a)</div><div class="line">           .addType(Demo.JUST_TEST, R.layout.item_layout_b);</div></pre></td></tr></table></figure>
+<h3 id="九宫格模式适配"><a href="#九宫格模式适配" class="headerlink" title="九宫格模式适配"></a>九宫格模式适配</h3><ul>
+<li>SectionRvAdapter</li>
+</ul>
+<ol>
+<li>每个Header下面由多个item。类似微信九宫格照片展示,SectionRvAdapter实际上是多类型适配(TypeRvAdapter)的一种特殊形式，内置了SectionHeader类型的数据，用来更简单的实现九宫格模式的数据适配，因为多类型数据适配的特点他都可以使用，也就是说你可以定义多种类型的数据展示。</li>
+<li><p><img src="http://7xtjec.com1.z0.glb.clouddn.com/item_header_small.png" alt=""></p>
+</li>
+<li><p>作为ItemHeader的数据类型需要继承<code>AbsSectionHeader(抽象类)</code></p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItemHeader</span> <span class="keyword">extends</span> <span class="title">AbsSectionHeader</span> </span>&#123;</div><div class="line">        String itemHeaderTitle;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>作为每个Section内容的数据类型，如果他是单类型的不需要做其他操作，如果有多种类型的内容需要实现ITypeAdapterModel，详细参照多类型数据适配<a href="#多类型数据适配">多类型数据适配</a></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Content</span> </span>&#123;</div><div class="line">		 <span class="keyword">int</span> contentIndex</div><div class="line">        String contentTitle;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="使用-ISectionRule-配置数据"><a href="#使用-ISectionRule-配置数据" class="headerlink" title="使用 ISectionRule 配置数据"></a>使用 ISectionRule 配置数据</h4><ol>
+<li><p><code>ISectionRule接口</code>,进行九宫格模式适配使用 ISectionRule 配置数据时，需要添加<code>ISectionRule</code>,这是一种规则，adapter会根据你提供的规则自动生成Header</p>
+</li>
+<li><p>提供了两种构造方法</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 直接配置 item header 和 content 的 layout 资源</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">SectionRvAdapter</span><span class="params">(Context context,List&lt;ID&gt; originDatas,</span></span></div><div class="line">                        <span class="keyword">int</span> headerLayoutId, <span class="keyword">int</span> contentLayoutId)</div><div class="line"><span class="comment">// 只添加 header 的 layout 资源，content的资源可以使用addType方法添加                        </span></div><div class="line"><span class="keyword">public</span> <span class="title">SectionRvAdapter</span><span class="params">(Context context, List&lt;ID&gt; originDatas,</span></div><div class="line">                        <span class="keyword">int</span> headerLayoutId)</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ItemHeader表示header的数据类型，Content表示内部数据的数据类型</span></div><div class="line"><span class="comment">// 初始化，添加header 和 content的布局文件</span></div><div class="line">adapter = <span class="keyword">new</span> SectionRvAdapter&lt;ItemHeader, Content&gt;(</div><div class="line">                <span class="keyword">this</span>,</div><div class="line">                contents,</div><div class="line">                R.layout.item_header_header,</div><div class="line">                R.layout.item_header_content) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onBindItemHeader</span><span class="params">(BaseViewHolder holder, ItemHeader data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">                holder.setText(R.id.info1, data.getItemHeaderTitle());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onBindContent</span><span class="params">(BaseViewHolder holder, Content data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">                holder.setText(R.id.tv, String.valueOf(data.contentIndex));</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">		</div><div class="line">		 <span class="comment">// 添加ISectionRule</span></div><div class="line">        adapter.addItemHeaderRule(<span class="keyword">new</span> ISectionRule&lt;ItemHeader, Content&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> ItemHeader <span class="title">buildItemHeader</span><span class="params">(<span class="keyword">int</span> currentPos, Content preData, Content currentData, Content nextData)</span> </span>&#123;</div><div class="line">            		<span class="comment">// 生成header数据</span></div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ItemHeader(<span class="string">"create new header "</span> + currentData.contentIndex);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNeedItemHeader</span><span class="params">(<span class="keyword">int</span> currentPos, Content preData, Content currentData, Content nextData)</span> </span>&#123;</div><div class="line">					<span class="comment">// 什么时候创建header(当是第一个数据或者index是7的倍数时，插入一个header)</span></div><div class="line">                <span class="keyword">return</span> currentPos == <span class="number">0</span> || currentData.contentIndex % <span class="number">7</span> == <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">mRv.setAdapter(adapter);</div></pre></td></tr></table></figure>
+<h4 id="使用-HashMap-配置数据"><a href="#使用-HashMap-配置数据" class="headerlink" title="使用 HashMap 配置数据"></a>使用 HashMap 配置数据</h4><ol>
+<li><p>一个 ItemHeader 下有多个 Content，类似<code>Map&lt;ItemHeader,Content&gt;</code>的数据结构,可以选择在外面构造好数据来进行数据适配</p>
+</li>
+<li><p>HashMap是无序的，为了保证数据的有序性，使用<code>LinkedHashMap</code></p>
+</li>
+<li><p>同样的也提供了两种构造方法</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 直接配置 item header 和 content 的 layout 资源</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">SectionRvAdapter</span><span class="params">(Context context,</span></span></div><div class="line">                            LinkedHashMap&lt;IH, List&lt;ID&gt;&gt; originDatas,</div><div class="line">                            <span class="keyword">int</span> headerLayoutId, <span class="keyword">int</span> contentLayoutId)</div><div class="line"></div><div class="line"><span class="comment">// 只添加 header 的 layout 资源，content的资源可以使用addType方法添加 </span></div><div class="line"><span class="keyword">public</span> <span class="title">SectionRvAdapter</span><span class="params">(Context context,</span></div><div class="line">                            LinkedHashMap&lt;IH, List&lt;ID&gt;&gt; originDatas,</div><div class="line">                            <span class="keyword">int</span> headerLayoutId)</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> LinkedHashMap&lt;ItemHeader, List&lt;Content&gt;&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</div><div class="line">adapter = <span class="keyword">new</span> SectionRvAdapter&lt;ItemHeader, Content&gt;(<span class="keyword">this</span>, map,</div><div class="line">                R.layout.item_header_header,</div><div class="line">                R.layout.item_header_content) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onBindItemHeader</span><span class="params">(BaseViewHolder holder, ItemHeader data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">                holder.setText(R.id.info1, data.getItemHeaderTitle());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onBindContent</span><span class="params">(BaseViewHolder holder, Content data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">                TextView tv = (TextView) holder.getView(R.id.tv);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div></pre></td></tr></table></figure>
+<h2 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h2><p>支持单击、双击和长按事件</p>
+<h3 id="三种事件"><a href="#三种事件" class="headerlink" title="三种事件"></a>三种事件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnItemListener</span>&lt;<span class="title">D</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">// 单击事件</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, D data)</span></span>;</div><div class="line">    <span class="comment">// 长按事件</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, D data)</span></span>;</div><div class="line">    <span class="comment">// 双击事件</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onDoubleClick</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, D data)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="实现需要的事件"><a href="#实现需要的事件" class="headerlink" title="实现需要的事件"></a>实现需要的事件</h3><p>抽象类的实现，可以选择性的实现需要的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleItemListener</span>&lt;<span class="title">D</span>&gt; <span class="keyword">implements</span> <span class="title">OnItemListener</span>&lt;<span class="title">D</span>&gt; </span>&#123;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, D data)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, D data)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDoubleClick</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, D data)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">			adapter.setItemListener(<span class="keyword">new</span> SimpleItemListener &lt;GuideData&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, GuideData data)</span> </span>&#123;</div><div class="line">                 Toast.makeText(mContext, <span class="string">"单击事件"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, GuideData data)</span> </span>&#123;</div><div class="line">                Toast.makeText(mContext, <span class="string">"长按事件"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDoubleClick</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, GuideData data)</span> </span>&#123;</div><div class="line">                Toast.makeText(mContext,<span class="string">"双击事件"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<h3 id="SectionRvAdapter-事件"><a href="#SectionRvAdapter-事件" class="headerlink" title="SectionRvAdapter 事件"></a>SectionRvAdapter 事件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">adapter.setItemListener(<span class="keyword">new</span> SimpleItemListener&lt;ItemModel&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(<span class="keyword">int</span> pos, BaseViewHolder holder, ItemModel data)</span> </span>&#123;</div><div class="line">            			<span class="comment">//  当是Content数据类型</span></div><div class="line">                <span class="keyword">if</span> (data.getRvType() == AbsAdapter.TYPE_ITEM_DEFAULT) &#123;</div><div class="line">                    Content content = (Content) data.get();</div><div class="line">                    Toast.makeText(SectionAdapterTest.<span class="keyword">this</span>, content.contentTitle, Toast.LENGTH_SHORT).show();</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                		<span class="comment">// 当是ItemHeader数据类型</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<h2 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h2><p>为了简化数据更新的方法，内置了数据更新的部分方法</p>
+<h3 id="内置更新方法"><a href="#内置更新方法" class="headerlink" title="内置更新方法"></a>内置更新方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 插入一条数据</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> pos, D data)</span> </span></div><div class="line"><span class="comment">// 更新数据，isUpdate为false时只会添加数据不会更新显示</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyDataSetChanged</span><span class="params">(List&lt;D&gt; data, <span class="keyword">boolean</span> isUpdate)</span></div></pre></td></tr></table></figure>
+<h3 id="分页更新方法"><a href="#分页更新方法" class="headerlink" title="分页更新方法"></a>分页更新方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 简化分页加载的更新，调用该方法实现增量更新，不会全部刷新，isAllData为true时表示data是全部数据，为false时表示是追加的数据</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">appendTailRangeData</span><span class="params">(List&lt;D&gt; data, <span class="keyword">boolean</span> isAllData)</span></span></div></pre></td></tr></table></figure>
+<h3 id="SectionRvAdapter-追加更新"><a href="#SectionRvAdapter-追加更新" class="headerlink" title="SectionRvAdapter 追加更新"></a>SectionRvAdapter 追加更新</h3><p>// SectionRvAdapter比较特别，需要使用单独的更新方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用SectionRule配置数据时，使用此方法更新</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateDataAndItemHeader</span><span class="params">(List&lt;ID&gt; data)</span></span></div><div class="line"><span class="comment">// 使用Map配置数据时，使用此方法更新</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateDataAndItemHeader</span><span class="params">(Map&lt;IH, List&lt;ID&gt;&gt; map)</span></div><div class="line"><span class="comment">// 分页加载更新数据时调用，仅支持使用SectionRule配置数据</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">appendSectionTailRangeData</span><span class="params">(List&lt;ID&gt; data)</span></div></pre></td></tr></table></figure></p>
+<h2 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h2><p>使用Module配置附加功能，目前有HFModule(添加Header和Footer)、LoadMoreModule(预加载更多)</p>
+<h3 id="添加-Header-和-Footer"><a href="#添加-Header-和-Footer" class="headerlink" title="添加 Header 和 Footer"></a>添加 Header 和 Footer</h3><ul>
+<li>HFModule</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 生成和添加module</span></div><div class="line">HFModule hfModule = <span class="keyword">new</span> HFModule(mContext,</div><div class="line">                R.layout.header_footer_headerly,</div><div class="line">                R.layout.header_footer_footerly, mRv);</div><div class="line">adapter.addHFModule(hfModule);</div><div class="line"><span class="comment">// 更改Header 和 Footer的数据,类似数据的配置,你可以在实现的方法里绑定数据和监听事件</span></div><div class="line">adapter = <span class="keyword">new</span> SimpleRvAdapter&lt;HFModel&gt;(mContext, hfModels, R.layout.header_footer_item) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindHeader</span><span class="params">(BaseViewHolder header)</span> </span>&#123;</div><div class="line">                <span class="keyword">super</span>.onBindHeader(header);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindFooter</span><span class="params">(BaseViewHolder footer)</span> </span>&#123;</div><div class="line">                <span class="keyword">super</span>.onBindFooter(footer);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"><span class="comment">// 当只想添加Header或Footer时，使用常亮HFModule.NO_RES表示没有资源</span></div><div class="line">HFModule hfModule = <span class="keyword">new</span> HFModule(mContext,HFModule.NO_RES,</div><div class="line">                HFModule.NO_RES, mRv);</div><div class="line">                </div><div class="line"><span class="comment">//  隐藏Header 和 Footer</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFooterEnable</span><span class="params">(<span class="keyword">boolean</span> footerEnable)</span></span></div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHeaderEnable</span><span class="params">(<span class="keyword">boolean</span> headerEnable)</span></div></pre></td></tr></table></figure>
+<h3 id="预加载更多"><a href="#预加载更多" class="headerlink" title="预加载更多"></a>预加载更多</h3><ul>
+<li>LoadMoreModule</li>
+</ul>
+<p><code>new LoadMoreModule(int preLoadNum, OnLoadMoreListener lis)</code>,preLoadNum表示提前几个Item进行预加载，preLoadNum越大预加载的越提前<br>加载数据完成之后需要调用<code>mLoadMoreModule.finishLoad();</code>结束本次加载，保证下次加载可以生效</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 触发之后1500秒后加载数据</span></div><div class="line">LoadMoreModule loadMoreM = <span class="keyword">new</span> LoadMoreModule(<span class="number">4</span>, <span class="keyword">new</span> OnLoadMoreListener() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadMore</span><span class="params">(<span class="keyword">final</span> LoadMoreModule mLoadMoreModule)</span> </span>&#123;</div><div class="line">              <span class="keyword">new</span> Handler().postDelayed(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                  <span class="meta">@Override</span></div><div class="line">                  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                      List&lt;LoadMoreModel&gt; tempData = <span class="keyword">new</span> ArrayList&lt;LoadMoreModel&gt;();</div><div class="line">                      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++) &#123;</div><div class="line">                          tempData.add(<span class="keyword">new</span> LoadMoreModel(<span class="string">"new is "</span> + i));</div><div class="line">                      &#125;</div><div class="line">                      adapter.appendTailRangeData(tempData, <span class="keyword">false</span>);</div><div class="line">                      mLoadMoreModule.finishLoad();</div><div class="line">                  &#125;</div><div class="line">              &#125;, <span class="number">1500</span>);</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">      adapter.addLoadMoreModule(loadMoreM);</div></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="adapterId-区分"><a href="#adapterId-区分" class="headerlink" title="adapterId 区分"></a>adapterId 区分</h3><p>为了区分不同的适配器，生成了adapterId,用来检测当前RecyclerView使用的是不是这个adapter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isThisAdapter</span><span class="params">(RecyclerView rv)</span></span></div></pre></td></tr></table></figure>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//内部类实现</span></div><div class="line">quickAdapter = <span class="keyword">new</span> TypeRvAdapter&lt;Demo&gt;(self, demos) &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(RvViewHolder holder, Demo data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">               <span class="comment">// 给控件绑定数据,必须实现</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindHeader</span><span class="params">(RvViewHolder header)</span> </span>&#123;</div><div class="line">               <span class="comment">//给Header绑定数据和事件,不需要可以不实现</span></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindFooter</span><span class="params">(RvViewHolder footer)</span> </span>&#123;</div><div class="line">               <span class="comment">//给footer绑定数据和事件,不需要可以不实现</span></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//继承实现</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">TypeRvAdapter</span>&lt;<span class="title">Demo</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyAdapter</span><span class="params">(Context context, List&lt;Demo&gt; data)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, data);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(RvViewHolder holder, Demo data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">       <span class="comment">// 给控件绑定数据,必须实现</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindHeader</span><span class="params">(RvViewHolder header)</span> </span>&#123;</div><div class="line">       <span class="comment">//给Header绑定数据和事件,不需要可以不实现</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindFooter</span><span class="params">(RvViewHolder footer)</span> </span>&#123;</div><div class="line">       <span class="comment">//给footer绑定数据和事件,不需要可以不实现</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/开源库/" rel="tag">#开源库</a>
+          
+            <a href="/tags/Adapter/" rel="tag">#Adapter</a>
+          
+            <a href="/tags/RecyclerView/" rel="tag">#RecyclerView</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/29/Android开发/Android添加快捷方式/" rel="next" title="Android添加快捷方式">
+                <i class="fa fa-chevron-left"></i> Android添加快捷方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/11/学习/python单例/" rel="prev" title="Python实现单例">
+                Python实现单例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="chendong" />
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">这里是描述。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RecyclerView-Adapter"><span class="nav-number">1.</span> <span class="nav-text">RecyclerView Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BaseViewHolder-的使用"><span class="nav-number">1.2.</span> <span class="nav-text">BaseViewHolder 的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用适配器"><span class="nav-number">1.3.</span> <span class="nav-text">通用适配器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单类型数据适配"><span class="nav-number">1.3.1.</span> <span class="nav-text">单类型数据适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多类型数据适配"><span class="nav-number">1.3.2.</span> <span class="nav-text">多类型数据适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九宫格模式适配"><span class="nav-number">1.3.3.</span> <span class="nav-text">九宫格模式适配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-ISectionRule-配置数据"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">使用 ISectionRule 配置数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-HashMap-配置数据"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">使用 HashMap 配置数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听事件"><span class="nav-number">1.4.</span> <span class="nav-text">监听事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种事件"><span class="nav-number">1.4.1.</span> <span class="nav-text">三种事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现需要的事件"><span class="nav-number">1.4.2.</span> <span class="nav-text">实现需要的事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SectionRvAdapter-事件"><span class="nav-number">1.4.3.</span> <span class="nav-text">SectionRvAdapter 事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据更新"><span class="nav-number">1.5.</span> <span class="nav-text">数据更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内置更新方法"><span class="nav-number">1.5.1.</span> <span class="nav-text">内置更新方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页更新方法"><span class="nav-number">1.5.2.</span> <span class="nav-text">分页更新方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SectionRvAdapter-追加更新"><span class="nav-number">1.5.3.</span> <span class="nav-text">SectionRvAdapter 追加更新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module"><span class="nav-number">1.6.</span> <span class="nav-text">Module</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-Header-和-Footer"><span class="nav-number">1.6.1.</span> <span class="nav-text">添加 Header 和 Footer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预加载更多"><span class="nav-number">1.6.2.</span> <span class="nav-text">预加载更多</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.7.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#adapterId-区分"><span class="nav-number">1.7.1.</span> <span class="nav-text">adapterId 区分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample"><span class="nav-number">1.7.2.</span> <span class="nav-text">Sample</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

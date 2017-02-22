@@ -1,0 +1,855 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Adapter," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Android单类型抽象适配器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android单类型抽象适配器">
+<meta property="og:url" content="http://chendongmarch.github.io/2015/11/14/Android开发/Adapter封装1-ListView单类型适配/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="Android单类型抽象适配器">
+<meta property="og:image" content="http://img.blog.csdn.net/20150929220700791">
+<meta property="og:updated_time" content="2016-08-18T09:51:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android单类型抽象适配器">
+<meta name="twitter:description" content="Android单类型抽象适配器">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150929220700791">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/2015/11/14/Android开发/Adapter封装1-ListView单类型适配/"/>
+
+
+  <title> Android单类型抽象适配器 | 三月 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android单类型抽象适配器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-14T00:00:00+08:00" content="2015-11-14">
+              2015-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o">本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>介绍一下适配器的抽象，在我们做项目的时候会有很多很多地方使用ListView，也就意味着需要写很多很多的适配器，当我们写的项目很大时就会很烦很烦，每次都要写同样的代码片实现类似的功能，所以我们就有必要对传统的适配器抽象一下。</li>
+</ul>
+<h2 id="传统适配器的优化写法"><a href="#传统适配器的优化写法" class="headerlink" title="传统适配器的优化写法"></a>传统适配器的优化写法</h2><ul>
+<li>核心代码就是getVIew()方法，在里面我们进行Item的复用，而相对于其他方法就会显得很多余，因为每个适配器都在重复相同的代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">public class FirstpageGridAdapter extends BaseAdapter &#123;</div><div class="line">	/* gridview数据 */</div><div class="line">	private String[] choices = new String[] &#123; &quot;新房&quot;, &quot;二手房&quot;, &quot;租房&quot;, &quot;资讯&quot;, &quot;打折优惠&quot;,</div><div class="line">			&quot;最新开盘&quot;, &quot;房贷计算&quot;, &quot;更多&quot; &#125;;</div><div class="line">	private int[] images = new int[] &#123; R.drawable.selector_xinfang,</div><div class="line">			R.drawable.selector_ershou, R.drawable.selector_zufang,</div><div class="line">			R.drawable.selector_zixun, R.drawable.selector_youhui,</div><div class="line">			R.drawable.selector_kaipan, R.drawable.selector_calculator,</div><div class="line">			R.drawable.selector_more &#125;;</div><div class="line">	private LayoutInflater layoutInflater;</div><div class="line">	private onClickChildIbListener listener;</div><div class="line"></div><div class="line">	public FirstpageGridAdapter(Context context, onClickChildIbListener listener) &#123;</div><div class="line">		super();</div><div class="line">		this.layoutInflater = LayoutInflater.from(context);</div><div class="line">		this.listener = listener;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public interface onClickChildIbListener &#123;</div><div class="line">		public void clickChild(int pos,View view);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getCount() &#123;</div><div class="line">		return choices.length;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public Object getItem(int position) &#123;</div><div class="line">		return choices[position];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public long getItemId(int position) &#123;</div><div class="line">		return position;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public View getView(int position, View convertView, ViewGroup parent) &#123;</div><div class="line">		ViewHolder holder = null;</div><div class="line">		if (convertView == null) &#123;</div><div class="line">			holder = new ViewHolder();</div><div class="line">			convertView = layoutInflater.inflate(R.layout.item_main_grid,</div><div class="line">					parent, false);</div><div class="line">			holder.ib = (ImageButton) convertView</div><div class="line">					.findViewById(R.id.item_main_grid_ib);</div><div class="line">			holder.tv = (TextView) convertView</div><div class="line">					.findViewById(R.id.item_main_grid_tv);</div><div class="line">			convertView.setTag(holder);</div><div class="line">		&#125; else &#123;</div><div class="line">			holder = (ViewHolder) convertView.getTag();</div><div class="line">		&#125;</div><div class="line">		holder.ib.setBackgroundResource(images[position]);</div><div class="line">		holder.tv.setText(choices[position]);</div><div class="line">		final int pos = position;</div><div class="line">		holder.ib.setOnClickListener(new OnClickListener() &#123;</div><div class="line">			public void onClick(View v) &#123;</div><div class="line">				listener.clickChild(pos,v);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">		return convertView;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private class ViewHolder &#123;</div><div class="line">		ImageButton ib;</div><div class="line">		TextView tv;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="抽象ViewHolder"><a href="#抽象ViewHolder" class="headerlink" title="抽象ViewHolder"></a>抽象ViewHolder</h3><ul>
+<li>我们可以分析一下ViewHolder类，它维护一个Item的一组UI组件，如果我们要使用使用通用的ViewHolder就会遇到一个问题，你不知道不同的布局有什么组件在里面，如何维护一组UI呢，数组？链表？或者Map?当查找View时我们使用id来进行查找，那么想在ViewHolder中查找View就需要使用id作为键，我们选择使用SparseArray，也就是稀疏数组，什么是稀疏数组，使用id（大整数）作为键值存储数据会造成大多数的未被使用，如果使用一般的表存储会造成很大的浪费，稀疏数组对数组进行了压缩，节约了很大空间，详见<a href="http://blog.csdn.net/dzweather/article/details/8057834" target="_blank" rel="external">这里</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">private SparseArray&lt;View&gt; cacheViews;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用稀疏数组存储UI控件以后我们需要一个获取UI控件的方法，方法很清晰的，itemView是传递进来的父控件，就是convertView从中根据id获取控件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">		public View getView(int resId) &#123;</div><div class="line">			View v = cacheViews.get(resId);</div><div class="line">			if (v == null) &#123;</div><div class="line">				v = itemView.findViewById(resId);</div><div class="line">				if (v != null) &#123;</div><div class="line">					cacheViews.put(resId, v);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			return v;</div><div class="line">		&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>ViewHolder完整代码，这里传入了一个viewCount,为什么呢？就像ArrayList一样，不定义空间大小时初始容量16，超出空间大小时每次增加25，但就是初始容量的16对于我们来说已经是浪费了，一个Item不可能有16个控件那么多。指定大小提高内存使用。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">	 * </div><div class="line">	 * @author chendong</div><div class="line">	 * 用来实现复用加载的单类型ViewHolder</div><div class="line">	 *</div><div class="line">	 */</div><div class="line">	public static class SingleViewHolder&#123;</div><div class="line">		/**</div><div class="line">		 * 使用SparseArray</div><div class="line">		 */</div><div class="line">		private SparseArray&lt;View&gt; cacheViews;</div><div class="line">		private View itemView;</div><div class="line"></div><div class="line">		public SingleViewHolder(View itemView, int viewCount) &#123;</div><div class="line">			super();</div><div class="line">			this.itemView = itemView;</div><div class="line">			cacheViews = new SparseArray&lt;View&gt;(viewCount);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		@Override</div><div class="line">		public View getView(int resId) &#123;</div><div class="line">			View v = cacheViews.get(resId);</div><div class="line">			if (v == null) &#123;</div><div class="line">				v = itemView.findViewById(resId);</div><div class="line">				if (v != null) &#123;</div><div class="line">					cacheViews.put(resId, v);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			return v;</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="抽象适配器"><a href="#抽象适配器" class="headerlink" title="抽象适配器"></a>抽象适配器</h2><ul>
+<li>传统的适配器有太多的重复代码需要编写，我们可以把重复的代码在父类中编写好，使得子类可以直接复用，！使用抽象父类</li>
+<li>父类的getView()方法中使用了一个抽象方法，使用了一个设计模式模板方法模式，将方法的实现推迟到了子类中</li>
+<li>泛型，传递的数据类型是不确定的，使用泛型可以解决这个问题，泛型的使用不了解的建议搜一下，后面深入的介绍会使用更复杂的泛型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> 1. 抽象适配器，使用了模板方法模式，将设置item显示内容的部分抽象到了类外 这是单类型的抽象适配</div><div class="line"> 2. </div><div class="line"> 3. @author chendong</div><div class="line"> 4. </div><div class="line"> 5. @param &lt;T&gt;</div><div class="line"> 6.            泛型</div><div class="line"> */</div><div class="line">public abstract class SingleEasyAdapter&lt;T&gt; extends BaseAdapter &#123;</div><div class="line">	private LayoutInflater layoutInflater;</div><div class="line">	private int resId;</div><div class="line">	private List&lt;T&gt; datas;</div><div class="line">	private int viewCount = 5;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * @param context</div><div class="line">	 *            上下文对象，建议使用getApplicationContext();</div><div class="line">	 * @param resId</div><div class="line">	 *            item布局id</div><div class="line">	 * @param datas</div><div class="line">	 *            数据集</div><div class="line">	 * @param viewCount</div><div class="line">	 *            item中的view个数，用来优化SparseArray&lt;View&gt;</div><div class="line">	 */</div><div class="line">	public SingleEasyAdapter(Context context, int resId, List&lt;T&gt; datas,</div><div class="line">			int viewCount) &#123;</div><div class="line">		super();</div><div class="line">		this.layoutInflater = LayoutInflater.from(context);</div><div class="line">		this.resId = resId;</div><div class="line">		this.datas = datas;</div><div class="line">		this.viewCount = viewCount;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getCount() &#123;</div><div class="line">		return datas.size();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public Object getItem(int position) &#123;</div><div class="line">		return datas.get(position);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public long getItemId(int position) &#123;</div><div class="line">		return position;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public View getView(int position, View convertView, ViewGroup parent) &#123;</div><div class="line">        ViewHolder holder = null;</div><div class="line">        if (convertView == null) &#123;</div><div class="line">            convertView = layoutInflater.inflate(resId, parent, false);</div><div class="line">            holder = new ViewHolder(convertView, viewCount);</div><div class="line">            convertView.setTag(holder);</div><div class="line">            //在这里绑定监听，避免重复绑定。</div><div class="line">            bindListener4View(holder, datas.get(position), position);</div><div class="line">        &#125; else &#123;</div><div class="line">            holder = (ViewHolder) convertView.getTag();</div><div class="line">        &#125;</div><div class="line">        bindData4View(holder, datas.get(position), position);</div><div class="line">        return convertView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 绑定数据</div><div class="line">     *</div><div class="line">     * @param holder</div><div class="line">     * @param data</div><div class="line">     */</div><div class="line">    public abstract void bindData4View(ViewHolder holder, T data, int pos);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 绑定监听</div><div class="line">     *</div><div class="line">     * @param holder</div><div class="line">     * @param pos</div><div class="line">     */</div><div class="line">    public abstract void bindListener4View(ViewHolder holder, T data, int pos);</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"> * 抽象适配器，使用了模板方法模式，将设置item显示内容的部分抽象到了类外 这是单类型的抽象适配</div><div class="line"> *</div><div class="line"> * @param &lt;T&gt; 泛型</div><div class="line"> * @author chendong</div><div class="line"> */</div><div class="line">public abstract class SingleEasyAdapter&lt;T&gt; extends BaseAdapter &#123;</div><div class="line">    private LayoutInflater layoutInflater;</div><div class="line">    private int resId;</div><div class="line">    private List&lt;T&gt; datas;</div><div class="line">    private int viewCount = 5;</div><div class="line">    private Context context;</div><div class="line"></div><div class="line"></div><div class="line">    /**</div><div class="line">     * @param context   上下文对象，建议使用getApplicationContext();</div><div class="line">     * @param resId     item布局id</div><div class="line">     * @param datas     数据集</div><div class="line">     * @param viewCount item中的view个数，用来优化SparseArray&lt;View&gt;</div><div class="line">     */</div><div class="line">    public SingleEasyAdapter(Context context, int resId, List&lt;T&gt; datas,</div><div class="line">                             int viewCount) &#123;</div><div class="line">        super();</div><div class="line">        this.layoutInflater = LayoutInflater.from(context);</div><div class="line">        this.resId = resId;</div><div class="line">        this.datas = datas;</div><div class="line">        this.viewCount = viewCount;</div><div class="line">        this.context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Context getContext() &#123;</div><div class="line">        return this.context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public List&lt;T&gt; getData() &#123;</div><div class="line">        return datas;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void swapData(List&lt;T&gt; datas) &#123;</div><div class="line">        this.datas = datas;</div><div class="line">        notifyDataSetChanged();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getCount() &#123;</div><div class="line">        return datas.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Object getItem(int position) &#123;</div><div class="line">        return datas.get(position);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getItemId(int position) &#123;</div><div class="line">        return position;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public View getView(int position, View convertView, ViewGroup parent) &#123;</div><div class="line">        ViewHolder holder = null;</div><div class="line">        if (convertView == null) &#123;</div><div class="line">            convertView = layoutInflater.inflate(resId, parent, false);</div><div class="line">            holder = new ViewHolder(convertView, viewCount);</div><div class="line">            convertView.setTag(holder);</div><div class="line">            //在这里绑定监听</div><div class="line">            bindListener4View(holder, datas.get(position), position);</div><div class="line">        &#125; else &#123;</div><div class="line">            holder = (ViewHolder) convertView.getTag();</div><div class="line">        &#125;</div><div class="line">        bindData4View(holder, datas.get(position), position);</div><div class="line">        return convertView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 绑定数据</div><div class="line">     *</div><div class="line">     * @param holder</div><div class="line">     * @param data</div><div class="line">     */</div><div class="line">    public abstract void bindData4View(ViewHolder holder, T data, int pos);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 绑定监听</div><div class="line">     *</div><div class="line">     * @param holder</div><div class="line">     * @param pos</div><div class="line">     */</div><div class="line">    public abstract void bindListener4View(ViewHolder holder, T data, int pos);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">listview = (ListView) findViewById(R.id.listview);</div><div class="line">		list = new ArrayList&lt;Student&gt;();</div><div class="line">		for (int i = 0; i &lt; 20; i++) &#123;</div><div class="line">			if (i % 5 == 0)</div><div class="line">				list.add(new Student(&quot;name&quot; + i, &quot;age&quot; + i, &quot;sex&quot;, 3));</div><div class="line">			else</div><div class="line">				list.add(new Student(&quot;name&quot; + i, &quot;age&quot; + i, &quot;sex&quot;,</div><div class="line">						i % 2 == 0 ? 1 : 2));</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		listview.setAdapter(new SingleEasyAdapter&lt;Student&gt;(</div><div class="line">				getApplicationContext(), R.layout.item_type1, list, 4) &#123;</div><div class="line"></div><div class="line">			@Override</div><div class="line">			public void bindData4View(SingleViewHolder holder, Student data，int pos) &#123;</div><div class="line">				((TextView)holder.getView(R.id.tv_name)).setText(data.getName());</div><div class="line">				//此处省略若干代码</div><div class="line">			&#125;</div><div class="line">@Override</div><div class="line">			public void bindListener4View(SingleViewHolder holder, Student data，int pos) &#123;</div><div class="line">				//此处省略若干代码</div><div class="line">			&#125;</div><div class="line"></div><div class="line">		&#125;);</div></pre></td></tr></table></figure>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><ul>
+<li>可以看到我们只用了很少的代码就完成了功能，而且很清晰，简单地适配不需要创建适配器类了，使用匿名的也很快就可以实现。演示有点丑，基本都实现了。<br><img src="http://img.blog.csdn.net/20150929220700791" alt="这里写图片描述"></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>将适配器抽象出来作为一个类库，再使用的时候就会简单很多很多，当然如果你的适配器数据很复杂，那么也可以继承抽象父类生成自己的类。!</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Adapter/" rel="tag">#Adapter</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/14/Android开发/Adapter封装2-ListView多类型适配/" rel="next" title="Android分类适配">
+                <i class="fa fa-chevron-left"></i> Android分类适配
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/15/Android开发/Adapter封装3-ListView多类型抽象适配/" rel="prev" title="Android多类型抽象适配">
+                Android多类型抽象适配 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="chendong" />
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">这里是描述。。。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">72</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统适配器的优化写法"><span class="nav-number">2.</span> <span class="nav-text">传统适配器的优化写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象ViewHolder"><span class="nav-number">2.1.</span> <span class="nav-text">抽象ViewHolder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象适配器"><span class="nav-number">3.</span> <span class="nav-text">抽象适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整代码"><span class="nav-number">4.</span> <span class="nav-text">完整代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">6.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user">本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye">本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
