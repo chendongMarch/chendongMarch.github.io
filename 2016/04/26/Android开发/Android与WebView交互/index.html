@@ -104,7 +104,7 @@
 		
 		<h2 id="定义关联的对象"><a href="#定义关联的对象" class="headerlink" title="定义关联的对象"></a>定义关联的对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bridge2Js</span> </span>&#123;</div><div class="line">   <span class="keyword">private</span> Activity activity;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bridge2Js</span><span class="params">(Activity activity)</span></span>&#123;</div><div class="line">		<span class="keyword">this</span>.activity = activity;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//4.2之后需要加注解否则报错</span></div><div class="line">  <span class="meta">@JavascriptInterface</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startPage</span><span class="params">(<span class="keyword">int</span> pageSign, String json)</span></span>&#123;</div><div class="line">        activity....</div><div class="line">   &#125;</div><div class="line">   </div><div class="line">   <span class="meta">@JavaInterface</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clickOnAndroid</span><span class="params">()</span></span>&#123;</div><div class="line">   </div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="设置关联类"><a href="#设置关联类" class="headerlink" title="设置关联类"></a>设置关联类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">WebSettings mWebSettings = mProgressWebView.getSettings();</div><div class="line"><span class="comment">//允许js交互</span></div><div class="line">mProgressWebView.addJavascriptInterface(<span class="keyword">new</span> Bridge2Js(<span class="keyword">this</span>), <span class="string">"bridge"</span>);</div></pre></td></tr></table></figure>
-<h2 id="在JS代码中调用Android代码"><a href="#在JS代码中调用Android代码" class="headerlink" title="在JS代码中调用Android代码"></a>在JS代码中调用Android代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//button</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span>  <span class="attr">value</span>=<span class="string">"click me"</span>  <span class="attr">onclick</span>=<span class="string">"window.bridge.startPage(0,'asd')"</span>/&gt;</span></div><div class="line"></div><div class="line">//标准html</div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>   </div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line">        /在Android代码中可以调用下面js函数/</div><div class="line">        function wave() &#123;</div><div class="line">            alert("1");</div><div class="line">            document.getElementById("droid").src="android_waving.png";</div><div class="line">            alert("2");</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 在这里调用Andriod函数 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">onClick</span>=<span class="string">"window.bridge.clickOnAndroid()"</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="在JS代码中调用Android代码"><a href="#在JS代码中调用Android代码" class="headerlink" title="在JS代码中调用Android代码"></a>在JS代码中调用Android代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//button</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span>  <span class="attr">value</span>=<span class="string">"click me"</span>  <span class="attr">onclick</span>=<span class="string">"window.bridge.startPage(0,'asd')"</span>/&gt;</span></div><div class="line"></div><div class="line">//标准html</div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>   </div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        /在Android代码中可以调用下面js函数/</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">wave</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            alert(<span class="string">"1"</span>);</div><div class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"droid"</span>).src=<span class="string">"android_waving.png"</span>;</div><div class="line">            alert(<span class="string">"2"</span>);</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 在这里调用Andriod函数 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">onClick</span>=<span class="string">"window.bridge.clickOnAndroid()"</span>&gt;</span>Click me!<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="在Android中调用JS代码"><a href="#在Android中调用JS代码" class="headerlink" title="在Android中调用JS代码"></a>在Android中调用JS代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webview.loadUrl(<span class="string">"javascript:wave()"</span>);</div></pre></td></tr></table></figure>
   
 	</div>
@@ -236,11 +236,11 @@
 			
 		
 			
-				<li><a href="/tags/开源库/" title="开源库">开源库<sup>7</sup></a></li>
+				<li><a href="/tags/未必知道/" title="未必知道">未必知道<sup>7</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/未必知道/" title="未必知道">未必知道<sup>7</sup></a></li>
+				<li><a href="/tags/开源库/" title="开源库">开源库<sup>7</sup></a></li>
 			
 		
 			
@@ -260,18 +260,6 @@
 			
 		
 			
-				<li><a href="/tags/RecyclerView/" title="RecyclerView">RecyclerView<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AS/" title="AS">AS<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Swift/" title="Swift">Swift<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/BBPP/" title="BBPP">BBPP<sup>2</sup></a></li>
 			
 		
@@ -280,15 +268,19 @@
 			
 		
 			
+				<li><a href="/tags/Swift/" title="Swift">Swift<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AS/" title="AS">AS<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/问题/" title="问题">问题<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Camera/" title="Camera">Camera<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/三方框架/" title="三方框架">三方框架<sup>1</sup></a></li>
+				<li><a href="/tags/RecyclerView/" title="RecyclerView">RecyclerView<sup>2</sup></a></li>
 			
 		
 			
@@ -296,7 +288,15 @@
 			
 		
 			
-				<li><a href="/tags/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+				<li><a href="/tags/配置/" title="配置">配置<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三方框架/" title="三方框架">三方框架<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SQL-NoSQL/" title="SQL/NoSQL">SQL/NoSQL<sup>1</sup></a></li>
 			
 		
 		</ul>
