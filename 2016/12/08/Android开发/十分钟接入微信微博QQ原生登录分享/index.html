@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Android,三方," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="十分钟接入微信微博QQ原生登录分享">
+<meta name="description" content="1. 前言第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API， 希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="十分钟接入微信微博QQ原生登录分享">
+<meta property="og:title" content="快速接入微信微博QQ原生登录分享">
 <meta property="og:url" content="http://chendongmarch.github.io/2016/12/08/Android开发/十分钟接入微信微博QQ原生登录分享/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="十分钟接入微信微博QQ原生登录分享">
-<meta property="og:updated_time" content="2017-02-22T16:55:58.000Z">
+<meta property="og:description" content="1. 前言第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API， 希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时">
+<meta property="og:updated_time" content="2017-02-23T09:09:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十分钟接入微信微博QQ原生登录分享">
-<meta name="twitter:description" content="十分钟接入微信微博QQ原生登录分享">
+<meta name="twitter:title" content="快速接入微信微博QQ原生登录分享">
+<meta name="twitter:description" content="1. 前言第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API， 希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时">
 
 
 
@@ -117,7 +117,7 @@
   <link rel="canonical" href="http://chendongmarch.github.io/2016/12/08/Android开发/十分钟接入微信微博QQ原生登录分享/"/>
 
 
-  <title> 十分钟接入微信微博QQ原生登录分享 | 三月 </title>
+  <title> 快速接入微信微博QQ原生登录分享 | 三月 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
@@ -151,6 +151,14 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
@@ -292,7 +300,7 @@
             
             
               
-                十分钟接入微信微博QQ原生登录分享
+                快速接入微信微博QQ原生登录分享
               
             
           </h1>
@@ -363,9 +371,10 @@
       
 
       
-        <p>第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，<br>比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API，<br>希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时候遇到的坑，分享一下。</p>
-<p>目前支持微信、微博、QQ，SDK已经集成在Lib里面，下载之后直接依赖module即可<br><a href="https://github.com/chendongMarch/Reaper_Android/tree/platform_test/lib-platform" target="_blank" rel="external">GitHub,是在platform_test分支下的代码,要切到platform_test分支才能看到</a></p>
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>第三方登录和分享，一般每个app都会接入这个功能，来简化用户注册登录的流程，现在也有很多集成的平台，比如umeng,shareSdk等等，极大的降低了了开发者接入的成本，不过也同样存在一些问题，相信大家也都遇到过。 所以我使用原生的SDK封装了一个Library，实现了登录和分享的相关功能，并尽可能的简化了调用API， 希望能简化三方接入的流程的同时实现高度的自定义，当然也有一些接入的时候遇到的坑，分享一下。</p>
+<p>目前支持微信、微博、QQ，SDK已经集成在Lib里面，下载之后直接依赖module即可</p>
 <a id="more"></a>
+<p><a href="https://github.com/chendongMarch/Reaper_Android/tree/platform_test/lib-platform" target="_blank" rel="external">GitHub,是在platform_test分支下的代码,要切到platform_test分支才能看到</a></p>
 <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><ul>
 <li>首先你应该去每个平台申请appId或者appKey,这个是免不了的，每个平台不一样这里统称AppId</li>
 </ul>
@@ -485,6 +494,8 @@
           
             <a href="/tags/Android/" rel="tag">#Android</a>
           
+            <a href="/tags/三方/" rel="tag">#三方</a>
+          
         </div>
       
 
@@ -548,7 +559,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/12/08/Android开发/十分钟接入微信微博QQ原生登录分享/"
-           data-title="十分钟接入微信微博QQ原生登录分享" data-url="http://chendongmarch.github.io/2016/12/08/Android开发/十分钟接入微信微博QQ原生登录分享/">
+           data-title="快速接入微信微博QQ原生登录分享" data-url="http://chendongmarch.github.io/2016/12/08/Android开发/十分钟接入微信微博QQ原生登录分享/">
       </div>
     
   </div>
@@ -610,7 +621,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -639,7 +650,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信快速接入"><span class="nav-number">2.</span> <span class="nav-text">微信快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信接入前准备"><span class="nav-number">2.1.</span> <span class="nav-text">微信接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信分享"><span class="nav-number">2.2.</span> <span class="nav-text">微信分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信登录"><span class="nav-number">2.3.</span> <span class="nav-text">微信登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QQ快速接入"><span class="nav-number">3.</span> <span class="nav-text">QQ快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ接入前准备"><span class="nav-number">3.1.</span> <span class="nav-text">QQ接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ分享"><span class="nav-number">3.2.</span> <span class="nav-text">QQ分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ登录"><span class="nav-number">3.3.</span> <span class="nav-text">QQ登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微博快速接入"><span class="nav-number">4.</span> <span class="nav-text">微博快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微博接入前准备"><span class="nav-number">4.1.</span> <span class="nav-text">微博接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博分享"><span class="nav-number">4.2.</span> <span class="nav-text">微博分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博-openApi-分享"><span class="nav-number">4.3.</span> <span class="nav-text">微博 openApi 分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博登录"><span class="nav-number">4.4.</span> <span class="nav-text">微博登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-number">5.</span> <span class="nav-text">结束</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信快速接入"><span class="nav-text">微信快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信接入前准备"><span class="nav-text">微信接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信分享"><span class="nav-text">微信分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信登录"><span class="nav-text">微信登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QQ快速接入"><span class="nav-text">QQ快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ接入前准备"><span class="nav-text">QQ接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ分享"><span class="nav-text">QQ分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ登录"><span class="nav-text">QQ登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微博快速接入"><span class="nav-text">微博快速接入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微博接入前准备"><span class="nav-text">微博接入前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博分享"><span class="nav-text">微博分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博-openApi-分享"><span class="nav-text">微博 openApi 分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博登录"><span class="nav-text">微博登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-text">结束</span></a></li></ol></div>
             
           </div>
         </section>
