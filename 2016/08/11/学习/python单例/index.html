@@ -11,6 +11,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -237,6 +247,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -406,16 +426,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/11/学习/python三种方法类型/" rel="next" title="Python普通方法、静态方法、类方法">
-                <i class="fa fa-chevron-left"></i> Python普通方法、静态方法、类方法
+              <a href="/2016/08/05/Android开发/Adapter封装-RecyclerView2/" rel="next" title="QuickRvAdapter快速适配器">
+                <i class="fa fa-chevron-left"></i> QuickRvAdapter快速适配器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/16/Android开发/AndroidM动态权限申请/" rel="prev" title="Android 6.0权限动态申请">
-                Android 6.0权限动态申请 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/11/学习/python三种方法类型/" rel="prev" title="Python普通方法、静态方法、类方法">
+                Python普通方法、静态方法、类方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -511,7 +531,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -528,7 +548,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
