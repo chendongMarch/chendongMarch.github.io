@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SQL/NoSQL," />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -94,16 +94,22 @@
 
 
 
-<meta name="description" content="Mac安装Mongdb">
+<meta name="description" content="配置NDK环境打开~/.bash_profile文件，添加ndk的环境变量，最后别忘了source .bash_profile更新配置
+12345678910#androidexport ANDROID_HOME=/Users/march/AndroidRes/sdk# sdkexport PATH=$ANDROID_HOME/platform-tools:$PATHexport PATH=$AN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac安装Mongdb">
-<meta property="og:url" content="http://chendongmarch.github.io/2016/05/18/学习/安装Mongo/index.html">
+<meta property="og:title" content="编译FFmpeg">
+<meta property="og:url" content="http://chendongmarch.github.io/2017/05/25/Android开发/编译ffmpeg/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="Mac安装Mongdb">
-<meta property="og:updated_time" content="2016-08-21T06:49:45.000Z">
+<meta property="og:description" content="配置NDK环境打开~/.bash_profile文件，添加ndk的环境变量，最后别忘了source .bash_profile更新配置
+12345678910#androidexport ANDROID_HOME=/Users/march/AndroidRes/sdk# sdkexport PATH=$ANDROID_HOME/platform-tools:$PATHexport PATH=$AN">
+<meta property="og:image" content="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/ffmpeg_finder_dir.jpeg">
+<meta property="og:image" content="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/ffmpeg_as_dir.jpeg">
+<meta property="og:updated_time" content="2017-05-26T04:02:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac安装Mongdb">
-<meta name="twitter:description" content="Mac安装Mongdb">
+<meta name="twitter:title" content="编译FFmpeg">
+<meta name="twitter:description" content="配置NDK环境打开~/.bash_profile文件，添加ndk的环境变量，最后别忘了source .bash_profile更新配置
+12345678910#androidexport ANDROID_HOME=/Users/march/AndroidRes/sdk# sdkexport PATH=$ANDROID_HOME/platform-tools:$PATHexport PATH=$AN">
+<meta name="twitter:image" content="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/ffmpeg_finder_dir.jpeg">
 
 
 
@@ -124,10 +130,10 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/2016/05/18/学习/安装Mongo/"/>
+  <link rel="canonical" href="http://chendongmarch.github.io/2017/05/25/Android开发/编译ffmpeg/"/>
 
 
-  <title> Mac安装Mongdb | 三月 </title>
+  <title> 编译FFmpeg | 三月 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
@@ -320,7 +326,7 @@
             
             
               
-                Mac安装Mongdb
+                编译FFmpeg
               
             
           </h1>
@@ -332,8 +338,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T00:00:00+08:00" content="2016-05-18">
-              2016-05-18
+            <time itemprop="dateCreated" datetime="2017-05-25T00:00:00+08:00" content="2017-05-25">
+              2017-05-25
             </time>
           </span>
 
@@ -346,8 +352,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -362,8 +368,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/18/学习/安装Mongo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/学习/安装Mongo/" itemprop="commentsCount"></span>
+                <a href="/2017/05/25/Android开发/编译ffmpeg/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/25/Android开发/编译ffmpeg/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -391,39 +397,24 @@
       
 
       
-        <h2 id="NoSQL-amp-MongoDB"><a href="#NoSQL-amp-MongoDB" class="headerlink" title="NoSQL&amp;MongoDB"></a>NoSQL&amp;MongoDB</h2><ol>
-<li><p>NoSQL(NoSQL = Not Only SQL )，意即”不仅仅是SQL”。</p>
-</li>
-<li><p>MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。</p>
-</li>
-<li><p>在高负载的情况下，添加更多的节点，可以保证服务器性能。MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
-</li>
-</ol>
-<ol>
-<li>MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。</li>
-</ol>
-<h2 id="安装MongoDb"><a href="#安装MongoDb" class="headerlink" title="安装MongoDb"></a>安装MongoDb</h2><ul>
-<li>这里用到了brew管理工具，<a href="http://blog.csdn.net/chendong_/article/details/51441020" target="_blank" rel="external">brew的安装</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install mongodb</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><ul>
-<li>Mac下打开配置文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ open .bash_profile </div><div class="line"><span class="comment"># 写入以下路径</span></div><div class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/Cellar/mongodb/3.0.7/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
-<h2 id="配置自启动"><a href="#配置自启动" class="headerlink" title="配置自启动"></a>配置自启动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ln -sfv /usr/<span class="built_in">local</span>/opt/mongodb/*.plist ~/Library/LaunchAgents  </div><div class="line">$ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist</div></pre></td></tr></table></figure>
-<h2 id="根据配置启动mongodb"><a href="#根据配置启动mongodb" class="headerlink" title="根据配置启动mongodb"></a>根据配置启动mongodb</h2><ul>
-<li><p>使用该命令将会使用mongod.conf文件的相关配置来启动mongodb</p>
-</li>
-<li><p>文件的路径在 <code>/usr/local/etc/mongod.conf</code>（Mac）</p>
-</li>
-<li><p>从配置文件可以看到数据库的路径以及log的路径等。</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ mongod --config /usr/<span class="built_in">local</span>/etc/mongod.conf</div><div class="line"></div><div class="line"><span class="comment"># 文件内容</span></div><div class="line">systemLog:</div><div class="line">  destination: file</div><div class="line">  path: /usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/mongodb/mongo.log</div><div class="line">  <span class="built_in">log</span>Append: <span class="literal">true</span></div><div class="line">storage:</div><div class="line">  dbPath: /usr/<span class="built_in">local</span>/var/mongodb</div><div class="line">net:</div><div class="line">  <span class="built_in">bind</span>Ip: 127.0.0.1</div></pre></td></tr></table></figure>
-<h2 id="直接启动"><a href="#直接启动" class="headerlink" title="直接启动"></a>直接启动</h2><ul>
-<li>直接启动快捷简单，数据将会存储在/data/db下,其中/data路径与/usr路径是同级的。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">数据会存放在/data/db 目录下，需要首先创建目录</div><div class="line">$ mkdir -p /data/db  </div><div class="line">$ chown `id -u` /data/db </div><div class="line"></div><div class="line">启动</div><div class="line">$ mongod</div></pre></td></tr></table></figure>
+        <h2 id="配置NDK环境"><a href="#配置NDK环境" class="headerlink" title="配置NDK环境"></a>配置NDK环境</h2><p>打开<code>~/.bash_profile</code>文件，添加<code>ndk</code>的环境变量，最后别忘了<code>source .bash_profile</code>更新配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#android</span></div><div class="line"><span class="built_in">export</span> ANDROID_HOME=/Users/march/AndroidRes/sdk</div><div class="line"></div><div class="line"><span class="comment"># sdk</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$ANDROID_HOME</span>/platform-tools:<span class="variable">$PATH</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$ANDROID_HOME</span>/tools:<span class="variable">$PATH</span></div><div class="line"></div><div class="line"><span class="comment"># ndk  </span></div><div class="line"><span class="built_in">export</span> NDK_HOME=<span class="variable">$ANDROID_HOME</span>/ndk-bundle                </div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$NDK_ROOT</span>:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
+<h2 id="修改ffmpeg-3-3-1-configure"><a href="#修改ffmpeg-3-3-1-configure" class="headerlink" title="修改ffmpeg-3.3.1/configure"></a>修改<code>ffmpeg-3.3.1/configure</code></h2><p>这个主要是生成的lib包的包名规范成以libxxx.so的形式。 否则生成的so文件在android下是无法加载的，替换过程一定要谨慎，需要全部替换掉。这里我提供一个<a href="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/configure" target="_blank" rel="external">替换好的configure文件</a>供参考:thumbsup:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 找到下面几行替换一下</span></div><div class="line">SLIBNAME_WITH_MAJOR=<span class="string">'$(SLIBNAME).$(LIBMAJOR)'</span>  </div><div class="line">LIB_INSTALL_EXTRA_CMD=<span class="string">'$$(RANLIB)"$(LIBDIR)/$(LIBNAME)"'</span>  </div><div class="line">SLIB_INSTALL_NAME=<span class="string">'$(SLIBNAME_WITH_VERSION)'</span>  </div><div class="line">SLIB_INSTALL_LINKS=<span class="string">'$(SLIBNAME_WITH_MAJOR)$(SLIBNAME)'</span></div><div class="line"></div><div class="line"><span class="comment"># 替换后的结果</span></div><div class="line">SLIBNAME_WITH_MAJOR=<span class="string">'$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'</span>  </div><div class="line">LIB_INSTALL_EXTRA_CMD=<span class="string">'$$(RANLIB)"$(LIBDIR)/$(LIBNAME)"'</span>  </div><div class="line">SLIB_INSTALL_NAME=<span class="string">'$(SLIBNAME_WITH_MAJOR)'</span>  </div><div class="line">SLIB_INSTALL_LINKS=<span class="string">'$(SLIBNAME)'</span></div></pre></td></tr></table></figure>
+<h2 id="新增ffmpeg-3-3-1-build-android-sh脚本"><a href="#新增ffmpeg-3-3-1-build-android-sh脚本" class="headerlink" title="新增ffmpeg-3.3.1/build_android.sh脚本"></a>新增<code>ffmpeg-3.3.1/build_android.sh</code>脚本</h2><p>注意,NDK后面的路径换成自己的路径，可以参考<a href="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/build_android.sh" target="_blank" rel="external">编写好的文件</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line">NDK=/Users/march/AndroidRes/sdk/ndk-bundle</div><div class="line">SYSROOT=<span class="variable">$NDK</span>/platforms/android-23/arch-arm</div><div class="line">TOOLCHAIN=<span class="variable">$NDK</span>/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64</div><div class="line"><span class="keyword">function</span> build_one</div><div class="line">&#123;</div><div class="line">./configure \</div><div class="line">--prefix=<span class="variable">$PREFIX</span> \</div><div class="line">--enable-shared \</div><div class="line">--disable-static \</div><div class="line">--disable-doc \</div><div class="line">--disable-ffmpeg \</div><div class="line">--disable-ffplay \</div><div class="line">--disable-ffprobe \</div><div class="line">--disable-ffserver \</div><div class="line">--disable-avdevice \</div><div class="line">--disable-doc \</div><div class="line">--disable-symver \</div><div class="line">--cross-prefix=<span class="variable">$TOOLCHAIN</span>/bin/arm-linux-androideabi- \</div><div class="line">--target-os=linux \</div><div class="line">--arch=arm \</div><div class="line">--enable-cross-compile \</div><div class="line">--sysroot=<span class="variable">$SYSROOT</span> \</div><div class="line">--extra-cflags=<span class="string">"-Os -fpic <span class="variable">$ADDI_CFLAGS</span>"</span> \</div><div class="line">--extra-ldflags=<span class="string">"<span class="variable">$ADDI_LDFLAGS</span>"</span> \</div><div class="line"><span class="variable">$ADDITIONAL_CONFIGURE_FLAG</span></div><div class="line">make clean</div><div class="line">make</div><div class="line">make install</div><div class="line">&#125;</div><div class="line">CPU=arm</div><div class="line">PREFIX=$(<span class="built_in">pwd</span>)/android/<span class="variable">$CPU</span></div><div class="line">ADDI_CFLAGS=<span class="string">"-marm"</span></div><div class="line">build_one</div></pre></td></tr></table></figure>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>执行<code>build_android.sh</code>脚本，如果没有权限可以使用<code>chomd +x</code>增加执行权限。<br>然后等一段时间，你会发现在FFmpeg中出现了一个名为android的文件夹。<br>目录如下<br><img src="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/ffmpeg_finder_dir.jpeg" alt=""></p>
+<h2 id="将编译生成的文件copy到AS中"><a href="#将编译生成的文件copy到AS中" class="headerlink" title="将编译生成的文件copy到AS中"></a>将编译生成的文件copy到AS中</h2><p>目录如下<br><img src="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/ffmpeg_as_dir.jpeg" alt=""></p>
+<h2 id="编写Android-mk"><a href="#编写Android-mk" class="headerlink" title="编写Android.mk"></a>编写<code>Android.mk</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH :=$(call my-dir)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := avcodec</div><div class="line">LOCAL_SRC_FILES := libavcodec-57.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := avfilter</div><div class="line">LOCAL_SRC_FILES := libavfilter-6.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := avformat</div><div class="line">LOCAL_SRC_FILES := libavformat-57.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := avutil</div><div class="line">LOCAL_SRC_FILES := libavutil-55.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := swresample</div><div class="line">LOCAL_SRC_FILES := libswresample-2.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := swscale</div><div class="line">LOCAL_SRC_FILES := libswscale-4.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line"><span class="comment">#Program</span></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE :=sffhelloworld</div><div class="line">LOCAL_SRC_FILES := simplest_ffmpeg_helloworld.c</div><div class="line">LOCAL_C_INCLUDES += $(LOCAL_PATH)/include</div><div class="line">LOCAL_LDLIBS := -llog -lz</div><div class="line">LOCAL_SHARED_LIBRARIES := avcodec avfilter avformat avutil swresample swscale</div><div class="line">include $(BUILD_SHARED_LIBRARY)</div></pre></td></tr></table></figure>
+<h2 id="编写Application-mk"><a href="#编写Application-mk" class="headerlink" title="编写Application.mk"></a>编写<code>Application.mk</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">APP_ABI := armeabi armeabi-v7a</div></pre></td></tr></table></figure>
+<h2 id="编译生成so"><a href="#编译生成so" class="headerlink" title="编译生成so"></a>编译生成so</h2><p>local.properties 配置ndk目录,通常是默认配置好的。<br>然后进入到terminal，cd到jni目录，执行ndk-build,(一般情况下ndk的目录应该在local.properties由系统自动创建了) </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ndk.dir=/Users/march/AndroidRes/sdk/ndk-bundle</div><div class="line">sdk.dir=/Users/march/AndroidRes/sdk</div></pre></td></tr></table></figure>
+<h2 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h2><p>编辑<code>app/build.gradle</code>配置好so加载路径，将so文件拷贝进jniLibs目录，当然你如果喜欢放在libs目录里面也是可以的，一定要记得<code>armeabi/xxx.so</code>，abi目录不要忘记，不然会提示找不到，不要问我为什么特别提醒 :smile:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sourceSets &#123;</div><div class="line">        //定义编译时编译文件的路径</div><div class="line">        main &#123;</div><div class="line">            res.srcDirs = [&apos;src/main/res&apos;]</div><div class="line">            jniLibs.srcDirs = [&apos;src/main/jniLibs&apos;]</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>点击运行，出现了以下错误：   </p>
+<p><font color="red">Your project contains C++ files but<br>it is not using a supported native build system。</font><br>解决这个问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 在gradle.properties添加</div><div class="line">Android.useDeprecatedNdk=true</div><div class="line"></div><div class="line">// 在app/build.gradle 添加jni.srcDirs = []这一行</div><div class="line">sourceSets &#123;</div><div class="line">        //定义编译时编译文件的路径</div><div class="line">        main &#123;</div><div class="line">            res.srcDirs = [&apos;src/main/res&apos;]</div><div class="line">            jniLibs.srcDirs = [&apos;src/main/jniLibs&apos;]</div><div class="line">            jni.srcDirs = []</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -445,7 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SQL-NoSQL/" rel="tag">#SQL/NoSQL</a>
+            <a href="/tags/Android/" rel="tag">#Android</a>
           
         </div>
       
@@ -454,17 +445,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/14/学习/python框架Django1/" rel="next" title="Python Django服务器搭建初体验">
-                <i class="fa fa-chevron-left"></i> Python Django服务器搭建初体验
+              <a href="/2017/05/23/学习/Kotlin/" rel="next" title="Kotlin">
+                <i class="fa fa-chevron-left"></i> Kotlin
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/12/Android开发/Android-ORM框架GreenDao/" rel="prev" title="ORM框架－GreenDao">
-                ORM框架－GreenDao <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,8 +500,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/18/学习/安装Mongo/"
-           data-title="Mac安装Mongdb" data-url="http://chendongmarch.github.io/2016/05/18/学习/安装Mongo/">
+      <div class="ds-thread" data-thread-key="2017/05/25/Android开发/编译ffmpeg/"
+           data-title="编译FFmpeg" data-url="http://chendongmarch.github.io/2017/05/25/Android开发/编译ffmpeg/">
       </div>
     
   </div>
@@ -623,7 +610,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL-amp-MongoDB"><span class="nav-text">NoSQL&MongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装MongoDb"><span class="nav-text">安装MongoDb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境变量"><span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置自启动"><span class="nav-text">配置自启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据配置启动mongodb"><span class="nav-text">根据配置启动mongodb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接启动"><span class="nav-text">直接启动</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置NDK环境"><span class="nav-text">配置NDK环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改ffmpeg-3-3-1-configure"><span class="nav-text">修改ffmpeg-3.3.1/configure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增ffmpeg-3-3-1-build-android-sh脚本"><span class="nav-text">新增ffmpeg-3.3.1/build_android.sh脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-text">编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将编译生成的文件copy到AS中"><span class="nav-text">将编译生成的文件copy到AS中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写Android-mk"><span class="nav-text">编写Android.mk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写Application-mk"><span class="nav-text">编写Application.mk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译生成so"><span class="nav-text">编译生成so</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行项目"><span class="nav-text">运行项目</span></a></li></ol></div>
             
           </div>
         </section>
