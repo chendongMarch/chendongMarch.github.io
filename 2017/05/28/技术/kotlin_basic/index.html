@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="语言,kotlin," />
+  <meta name="keywords" content="kotlin," />
 
 
 
@@ -94,31 +94,19 @@
 
 
 
-<meta name="description" content="相关文章
-微信文章-你为什么需要kotlin
-segmentfault上腾讯bugly的一篇文章，介绍了kotlin的基本特性
-kotlin官网文档 ／ http://kotlinlang.org 
-kotlin官网文档中文版 ／ https://hltj.gitbooks.io
-《kotlin for andriod developers》中文翻译版 ／ https://wangjiegulu.">
+<meta name="description" content="基本语法静态变量、静态方法kotlin中没有静态的概念，也没有static关键字，静态变量和静态方法需要使用companion object声明
+12345678companion object &amp;#123;        // 静态变量        private val BASE_URL = &quot;http://www.baidu.com/&quot;        // 静态方法        fun">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin">
-<meta property="og:url" content="http://chendongmarch.github.io/2017/05/23/学习/Kotlin/index.html">
+<meta property="og:title" content="Kotlin-基础篇">
+<meta property="og:url" content="http://chendongmarch.github.io/2017/05/28/技术/kotlin_basic/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="相关文章
-微信文章-你为什么需要kotlin
-segmentfault上腾讯bugly的一篇文章，介绍了kotlin的基本特性
-kotlin官网文档 ／ http://kotlinlang.org 
-kotlin官网文档中文版 ／ https://hltj.gitbooks.io
-《kotlin for andriod developers》中文翻译版 ／ https://wangjiegulu.">
-<meta property="og:updated_time" content="2017-05-23T04:40:30.000Z">
+<meta property="og:description" content="基本语法静态变量、静态方法kotlin中没有静态的概念，也没有static关键字，静态变量和静态方法需要使用companion object声明
+12345678companion object &amp;#123;        // 静态变量        private val BASE_URL = &quot;http://www.baidu.com/&quot;        // 静态方法        fun">
+<meta property="og:updated_time" content="2017-05-28T07:48:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kotlin">
-<meta name="twitter:description" content="相关文章
-微信文章-你为什么需要kotlin
-segmentfault上腾讯bugly的一篇文章，介绍了kotlin的基本特性
-kotlin官网文档 ／ http://kotlinlang.org 
-kotlin官网文档中文版 ／ https://hltj.gitbooks.io
-《kotlin for andriod developers》中文翻译版 ／ https://wangjiegulu.">
+<meta name="twitter:title" content="Kotlin-基础篇">
+<meta name="twitter:description" content="基本语法静态变量、静态方法kotlin中没有静态的概念，也没有static关键字，静态变量和静态方法需要使用companion object声明
+12345678companion object &amp;#123;        // 静态变量        private val BASE_URL = &quot;http://www.baidu.com/&quot;        // 静态方法        fun">
 
 
 
@@ -139,10 +127,10 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/2017/05/23/学习/Kotlin/"/>
+  <link rel="canonical" href="http://chendongmarch.github.io/2017/05/28/技术/kotlin_basic/"/>
 
 
-  <title> Kotlin | 三月 </title>
+  <title> Kotlin-基础篇 | 三月 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
@@ -185,7 +173,7 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
     <!--- add Fork me on Github -->   
     
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
+      <div class="header-inner"><div class="site-meta custom-logo">
   
 
   <div class="custom-logo-site-title">
@@ -335,7 +323,7 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
             
             
               
-                Kotlin
+                Kotlin-基础篇
               
             
           </h1>
@@ -347,8 +335,8 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-23T00:00:00+08:00" content="2017-05-23">
-              2017-05-23
+            <time itemprop="dateCreated" datetime="2017-05-28T00:00:00+08:00" content="2017-05-28">
+              2017-05-28
             </time>
           </span>
 
@@ -361,8 +349,8 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学习/" itemprop="url" rel="index">
-                    <span itemprop="name">学习</span>
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
                   </a>
                 </span>
 
@@ -377,8 +365,8 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/05/23/学习/Kotlin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/23/学习/Kotlin/" itemprop="commentsCount"></span>
+                <a href="/2017/05/28/技术/kotlin_basic/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/28/技术/kotlin_basic/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -406,29 +394,7 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
       
 
       
-        <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&amp;mid=2653578489&amp;idx=1&amp;sn=17d6e657d81c0daa345489271d305b36" target="_blank" rel="external">微信文章-你为什么需要kotlin</a></li>
-<li><a href="https://segmentfault.com/a/1190000004494727" target="_blank" rel="external">segmentfault上腾讯bugly的一篇文章，介绍了kotlin的基本特性</a></li>
-<li><a href="http://kotlinlang.org/docs/reference/classes.html" target="_blank" rel="external">kotlin官网文档 ／ http://kotlinlang.org </a></li>
-<li><a href="https://hltj.gitbooks.io/kotlin-reference-chinese/" target="_blank" rel="external">kotlin官网文档中文版 ／ https://hltj.gitbooks.io</a></li>
-<li><a href="https://wangjiegulu.gitbooks.io/kotlin-for-android-developers-zh/content/" target="_blank" rel="external">《kotlin for andriod developers》中文翻译版 ／ https://wangjiegulu.gitbooks.io</a></li>
-<li><a href="https://huanglizhuo.gitbooks.io/kotlin-in-chinese/content/" target="_blank" rel="external">https://huanglizhuo.gitbooks.io</a></li>
-<li><a href="http://www.liying-cn.net/kotlin/docs/reference/" target="_blank" rel="external">Kotlin官方文档中文翻译版本 ／ http://www.liying-cn.net/kotlin/</a></li>
-</ul>
-<a id="more"></a>
-<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>打开Setting -&gt; plugin下载插件，重启AS，创建项目 -&gt; new File -&gt; Kotlin Activity，会提示配置相关信息，点击配置即可，插件会在工程中作下面的相关配置，以上可以使用IDE很快完成，整体项目没有很大变化。   </p>
-<p>另外<code>Android Studio</code>提供了直接将java代码转换为kotlin代码的方式 ：<br><code>顶部菜单栏 -&gt; code -&gt; covert java File to Kotlin File</code></p>
-<p>gradle文件一览</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// project/build.gradle</span></div><div class="line"><span class="keyword">buildscript</span> &#123;</div><div class="line">    ext.kotlin_version = <span class="string">'1.0.6'</span></div><div class="line">    <span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// module/build.gradle</span></div><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line">apply plugin: <span class="string">'kotlin-android'</span></div><div class="line"><span class="comment">// 基于Android的扩展</span></div><div class="line">apply plugin: <span class="string">'kotlin-android-extensions'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">25</span></div><div class="line">    buildToolsVersion <span class="string">"25.0.1"</span></div><div class="line">    defaultConfig &#123;</div><div class="line">       ...</div><div class="line">    &#125;</div><div class="line">    buildTypes &#123;</div><div class="line">       ...</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 资源路径</span></div><div class="line">    <span class="keyword">sourceSets</span> &#123;</div><div class="line">        main.java.srcDirs += <span class="string">'src/main/kotlin'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    <span class="comment">// kotlin</span></div><div class="line">    <span class="keyword">compile</span> <span class="string">"org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 需要加入这个</span></div><div class="line"><span class="keyword">repositories</span> &#123;</div><div class="line">    mavenCentral()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><h3 id="直接引用xml中的控件"><a href="#直接引用xml中的控件" class="headerlink" title="直接引用xml中的控件"></a>直接引用xml中的控件</h3><p>再也不用<code>findViewById()</code>也不用<code>ButterKnife</code>注解啦。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--在xml定义，id为 mMsgTv --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/mMsgTv"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:gravity</span>=<span class="string">"center"</span></div><div class="line">        <span class="attr">android:textColor</span>=<span class="string">"@color/black"</span></div><div class="line">        <span class="attr">android:textSize</span>=<span class="string">"30sp"</span>/&gt;</div><div class="line">        </div><div class="line">        </div><div class="line">// 需要 kotlin-android-extensions 支持</div><div class="line">// Android 插件</div><div class="line">apply plugin: 'kotlin-android-extensions'</div><div class="line"></div><div class="line"></div><div class="line">// 在 Activity 中直接使用 id 引用控件</div><div class="line">// 此时会又如下包倒入 </div><div class="line">import kotlinx.android.synthetic.main.(你的xml文件名).*</div><div class="line">eg: import kotlinx.android.synthetic.main.activity_kt_test.*</div><div class="line">// 设置属性</div><div class="line">mMsgTv.text = "测试kotlin"</div></pre></td></tr></table></figure>
-<h3 id="扩展方法"><a href="#扩展方法" class="headerlink" title="扩展方法"></a>扩展方法</h3><p>可以扩展已有类的方法。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">KtTestActivity</span> : <span class="type">BaseActivity</span></span>() &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 扩展Activity增加显示Toast的方法</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> Activity.<span class="title">showMsg</span><span class="params">(msg: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        Toaster.<span class="keyword">get</span>().show(mContext, msg)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?, persistentState: <span class="type">PersistableBundle</span>?)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState, persistentState)</div><div class="line">        setContentView(R.layout.activity_kt_test)</div><div class="line">        showMsg(<span class="string">"测试Toast"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="支持lambda表达式"><a href="#支持lambda表达式" class="headerlink" title="支持lambda表达式"></a>支持lambda表达式</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mMsgTv.setOnClickListener &#123;</div><div class="line">            view -&gt;</div><div class="line">            run &#123;</div><div class="line">                Logger.e(<span class="string">"chendong"</span>, <span class="string">"click view"</span>)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">mMsgTv.setOnClickListener &#123;</div><div class="line">            view -&gt;</div><div class="line">            doSomeThing()</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h3 id="数据类"><a href="#数据类" class="headerlink" title="数据类"></a>数据类</h3><p>在java中定义数据结构类需要重复实现大量的<code>getter/setter</code>方法，kotlin为数据类提供新的创建方式，使用关键字<code>data</code>定义一个数据类，可以极大的简化数据类的定义</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 有两个属性 name属性具有默认值</span></div><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String = <span class="string">"defaultValue"</span>, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</div><div class="line"></div><div class="line"><span class="comment">// 在数据类中定义方法</span></div><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String = <span class="string">"defaultValue"</span>, <span class="keyword">val</span> age: <span class="built_in">Int</span>)&#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">speak</span><span class="params">()</span></span> &#123;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = Person(<span class="string">"chendong"</span>,<span class="number">12</span>)</div></pre></td></tr></table></figure>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><code>companion object</code>，伴生对象</p>
-<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="静态变量、静态方法"><a href="#静态变量、静态方法" class="headerlink" title="静态变量、静态方法"></a>静态变量、静态方法</h3><p><code>kotlin</code>中没有静态的概念，也没有<code>static</code>关键字，静态变量和静态方法需要使用<code>companion object</code>声明</p>
+        <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="静态变量、静态方法"><a href="#静态变量、静态方法" class="headerlink" title="静态变量、静态方法"></a>静态变量、静态方法</h3><p><code>kotlin</code>中没有静态的概念，也没有<code>static</code>关键字，静态变量和静态方法需要使用<code>companion object</code>声明</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">companion</span> <span class="keyword">object</span> &#123;</div><div class="line">        <span class="comment">// 静态变量</span></div><div class="line">        <span class="keyword">private</span> <span class="keyword">val</span> BASE_URL = <span class="string">"http://www.baidu.com/"</span></div><div class="line">        <span class="comment">// 静态方法</span></div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">startTestActivity</span><span class="params">(activity: <span class="type">Activity</span>)</span></span>&#123;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <h3 id="lateinit、lazy、属性代理"><a href="#lateinit、lazy、属性代理" class="headerlink" title="lateinit、lazy、属性代理"></a>lateinit、lazy、属性代理</h3><ol>
 <li><p>lateinit<br><code>lateinit</code>延迟初始化变量，<code>lateinit</code>的使用还是有很多限制的，比如只能在不可<code>null</code>的对象上使用，比须为<code>var</code>，不能为primitives（<code>Int</code>、<code>Float</code>之类）等等，不过这样逼迫你一定要初始化这个变量的做法，确实能减少我们在开发中的遗漏，从而提高开发效率。</p>
@@ -468,8 +434,6 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
       
         <div class="post-tags">
           
-            <a href="/tags/语言/" rel="tag">#语言</a>
-          
             <a href="/tags/kotlin/" rel="tag">#kotlin</a>
           
         </div>
@@ -479,17 +443,13 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/13/代码之外/SQL/" rel="next" title="SQL">
-                <i class="fa fa-chevron-left"></i> SQL
+              <a href="/2017/05/26/android/as_gradle_231_exception/" rel="next" title="AS升级gradle到2.3.1异常">
+                <i class="fa fa-chevron-left"></i> AS升级gradle到2.3.1异常
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/25/android/编译ffmpeg/" rel="prev" title="编译FFmpeg">
-                编译FFmpeg <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -538,8 +498,8 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/05/23/学习/Kotlin/"
-           data-title="Kotlin" data-url="http://chendongmarch.github.io/2017/05/23/学习/Kotlin/">
+      <div class="ds-thread" data-thread-key="2017/05/28/技术/kotlin_basic/"
+           data-title="Kotlin-基础篇" data-url="http://chendongmarch.github.io/2017/05/28/技术/kotlin_basic/">
       </div>
     
   </div>
@@ -579,12 +539,12 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
                src="/uploads/avatar.jpg"
                alt="chendong" />
           <p class="site-author-name" itemprop="name">chendong</p>
-          <p class="site-description motion-element" itemprop="description">这里是描述。。。</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">79</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -592,7 +552,7 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -601,7 +561,7 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -648,7 +608,7 @@ kotlin官网文档中文版 ／ https://hltj.gitbooks.io
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关文章"><span class="nav-text">相关文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本配置"><span class="nav-text">基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新特性"><span class="nav-text">新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接引用xml中的控件"><span class="nav-text">直接引用xml中的控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展方法"><span class="nav-text">扩展方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持lambda表达式"><span class="nav-text">支持lambda表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类"><span class="nav-text">数据类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法"><span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态变量、静态方法"><span class="nav-text">静态变量、静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lateinit、lazy、属性代理"><span class="nav-text">lateinit、lazy、属性代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类与对象"><span class="nav-text">类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部类"><span class="nav-text">内部类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-开发"><span class="nav-text">Android 开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-Parcelable-接口"><span class="nav-text">实现 Parcelable 接口</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法"><span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态变量、静态方法"><span class="nav-text">静态变量、静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lateinit、lazy、属性代理"><span class="nav-text">lateinit、lazy、属性代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类与对象"><span class="nav-text">类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部类"><span class="nav-text">内部类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-开发"><span class="nav-text">Android 开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-Parcelable-接口"><span class="nav-text">实现 Parcelable 接口</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

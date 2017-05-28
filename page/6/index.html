@@ -94,15 +94,15 @@
 
 
 
-<meta name="description" content="这里是描述。。。">
+<meta name="description" content="生命不息，奋斗不止。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="三月">
 <meta property="og:url" content="http://chendongmarch.github.io/page/6/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="这里是描述。。。">
+<meta property="og:description" content="生命不息，奋斗不止。">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三月">
-<meta name="twitter:description" content="这里是描述。。。">
+<meta name="twitter:description" content="生命不息，奋斗不止。">
 
 
 
@@ -171,7 +171,7 @@
     <!--- add Fork me on Github -->   
     
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
+      <div class="header-inner"><div class="site-meta custom-logo">
   
 
   <div class="custom-logo-site-title">
@@ -322,6 +322,136 @@
             
               
                 
+                <a class="post-title-link" href="/2015/11/17/技术/android_handler/" itemprop="url">
+                  Handler源码分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-17T00:00:00+08:00" content="2015-11-17">
+              2015-11-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/17/技术/android_handler/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/17/技术/android_handler/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
+<li>Handler意思是处理者，它是android特有的用来消息处理的一个类。使用它可以解决很多android中常见的问题.</li>
+</ol>
+<ol>
+<li>Handler体现的是一种消息的发送与处理异步进行的机制，消息发送时即刻返回，将消息加入队列中，另一端looper负责循环取出消息进行操作。</li>
+</ol>
+<ol>
+<li>需要注意的是Handler可以发送Message也可以发送Runnable对象。但是消息处理必定是在Handler所在的线程中，也就是说UI线程中的Handler发送的消息也是在UI线程中执行，所以同样不能执行耗时操作。</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/17/技术/android_handler/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/11/15/android/Adapter封装3-ListView多类型抽象适配/" itemprop="url">
                   Android多类型抽象适配
                 </a>
@@ -444,7 +574,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/11/15/学习/Java_ArrayList源码分析/" itemprop="url">
+                <a class="post-title-link" href="/2015/11/15/技术/Java_ArrayList/" itemprop="url">
                   ArrayList源码分析(Java&Android)
                 </a>
               
@@ -488,8 +618,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/15/学习/Java_ArrayList源码分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/15/学习/Java_ArrayList源码分析/" itemprop="commentsCount"></span>
+                <a href="/2015/11/15/技术/Java_ArrayList/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/15/技术/Java_ArrayList/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -513,9 +643,10 @@
 
       
         
-          ArrayList源码分析（Java&Android）
+          <p>开始看源代码了才知道android和java的源代码有好多出入，我把java和android源码比较了一下，相似的还是多的。我是以android源码为主，因为感觉android比较繁琐，不同的地方会贴java的代码对比。</p>
+<p>java真的设计的很好，很多类内部实现差别很大，但是在外部看起来是一样的，比如LinkedList和ArrayList,设计良好的API使我们不需要去关注内部的实现，举个例子说，我们需要一个绳子，他可以是真丝制成的，那么它比较坚固，也可以是牛皮制成的，那么它可以不怕水，但是对使用绳子的人来说，他声明自己需要的绳子需要具有什么样的特性，但是他却不知道真丝的需要什么工艺，牛皮的又需要什么工艺。我们程序员就是使用绳子的人，各种各样的List就是绳子，虽然内部实现大相径庭，但是都对外开放了一条绳子的外表，使得我们可以极为方便的使用它，这体现了面向对象的编程思想，也可以使java程序员更加专注的实现功能而不尽量少的关心逻辑和算法。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/15/学习/Java_ArrayList源码分析/">
+            <a class="btn" href="/2015/11/15/技术/Java_ArrayList/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -566,129 +697,7 @@
             
               
                 
-                <a class="post-title-link" href="/2015/11/14/android/Adapter封装1-ListView单类型适配/" itemprop="url">
-                  Android单类型抽象适配器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-14T00:00:00+08:00" content="2015-11-14">
-              2015-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/14/android/Adapter封装1-ListView单类型适配/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/14/android/Adapter封装1-ListView单类型适配/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          Android单类型抽象适配器
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/14/android/Adapter封装1-ListView单类型适配/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/14/学习/Java_HashMap源码分析/" itemprop="url">
+                <a class="post-title-link" href="/2015/11/14/技术/Java_HashMap/" itemprop="url">
                   HashMap源码分析（Android&Java）
                 </a>
               
@@ -732,8 +741,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/14/学习/Java_HashMap源码分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/14/学习/Java_HashMap源码分析/" itemprop="commentsCount"></span>
+                <a href="/2015/11/14/技术/Java_HashMap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/14/技术/Java_HashMap/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -757,9 +766,9 @@
 
       
         
-          HashMap源码分析（Android&Java）
+          <p>对HashMap源码的简单分析</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/14/学习/Java_HashMap源码分析/">
+            <a class="btn" href="/2015/11/14/技术/Java_HashMap/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -882,6 +891,128 @@
           Android分类适配
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/11/14/android/Adapter封装2-ListView多类型适配/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/14/android/Adapter封装1-ListView单类型适配/" itemprop="url">
+                  Android单类型抽象适配器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-14T00:00:00+08:00" content="2015-11-14">
+              2015-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/14/android/Adapter封装1-ListView单类型适配/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/14/android/Adapter封装1-ListView单类型适配/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          Android单类型抽象适配器
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/14/android/Adapter封装1-ListView单类型适配/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1399,128 +1530,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/07/代码之外/ADB命令大全/" itemprop="url">
-                  ADB命令大全
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-07T00:00:00+08:00" content="2015-09-07">
-              2015-09-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/代码之外/" itemprop="url" rel="index">
-                    <span itemprop="name">代码之外</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/07/代码之外/ADB命令大全/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/07/代码之外/ADB命令大全/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          ADB命令大全
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/07/代码之外/ADB命令大全/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1561,12 +1570,12 @@
                src="/uploads/avatar.jpg"
                alt="chendong" />
           <p class="site-author-name" itemprop="name">chendong</p>
-          <p class="site-description motion-element" itemprop="description">这里是描述。。。</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">79</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1574,7 +1583,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1583,7 +1592,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
