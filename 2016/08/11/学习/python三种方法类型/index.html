@@ -399,7 +399,7 @@
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
 <li>普通方法不能通过类名调用，但是静态方法和类方法是可以的</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># error普通方法必须通过实例调用</div><div class="line"># Tst.normalMethod(&apos;name&apos;)</div><div class="line">Tst.classMethod(&apos;name&apos;)</div><div class="line">Tst.staticMethod(&apos;name&apos;)</div><div class="line"></div><div class="line">#结果</div><div class="line">this is data name</div><div class="line">name</div></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># error普通方法必须通过实例调用</span></div><div class="line"><span class="meta"># Tst.normalMethod('name')</span></div><div class="line">Tst.classMethod(<span class="string">'name'</span>)</div><div class="line">Tst.staticMethod(<span class="string">'name'</span>)</div><div class="line"></div><div class="line"><span class="meta">#结果</span></div><div class="line"><span class="keyword">this</span> is data name</div><div class="line">name</div></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>普通方法,可以通过self访问实例属性</li>
 </ul>
@@ -442,16 +442,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/05/android/Adapter封装-RecyclerView2/" rel="next" title="QuickRvAdapter快速适配器">
-                <i class="fa fa-chevron-left"></i> QuickRvAdapter快速适配器
+              <a href="/2016/08/11/学习/python使用json解析/" rel="next" title="Python Json相关">
+                <i class="fa fa-chevron-left"></i> Python Json相关
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/11/学习/python使用json解析/" rel="prev" title="Python Json相关">
-                Python Json相关 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/11/学习/python单例/" rel="prev" title="Python实现单例">
+                Python实现单例 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +564,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

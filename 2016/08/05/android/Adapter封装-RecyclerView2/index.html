@@ -444,11 +444,11 @@
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
 <li>类库还在开发中，暂时没有发布到Jcenter,所以需要在<code>yourProject.gradle</code>文件中添加如下代码进行依赖</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">	   repositories &#123;</div><div class="line"> 	       maven &#123; url &apos;https://dl.bintray.com/chendongmarch/maven&apos; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="section">allprojects</span> &#123;</div><div class="line">	   <span class="section">repositories</span> &#123;</div><div class="line"> 	       <span class="section">maven</span> &#123; <span class="attribute">url</span> <span class="string">'https://dl.bintray.com/chendongmarch/maven'</span> &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>在<code>yourApp.gradle</code>文件中添加依赖</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.march.lib-adapter:lib-adapter:1.0.0&apos;</div></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">compile</span> 'com.march.<span class="keyword">lib</span>-adapter:<span class="keyword">lib</span>-adapter:<span class="number">1.0</span><span class="number">.0</span>'</div></pre></td></tr></table></figure>
 <h2 id="BaseViewHolder-的使用"><a href="#BaseViewHolder-的使用" class="headerlink" title="BaseViewHolder 的使用"></a>BaseViewHolder 的使用</h2><ul>
 <li>通用ViewHolder，内部使用<code>SparseArray</code>实现View的缓存。</li>
 </ul>
@@ -566,8 +566,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/11/学习/python三种方法类型/" rel="prev" title="Python普通方法、静态方法、类方法">
-                Python普通方法、静态方法、类方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/11/学习/python使用json解析/" rel="prev" title="Python Json相关">
+                Python Json相关 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -680,7 +680,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
