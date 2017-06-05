@@ -1,0 +1,915 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Android,Java,算法,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="汉字转换拼音">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汉字转换拼音">
+<meta property="og:url" content="http://chendongmarch.github.io/blog/代码之外/汉字转换拼音.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="汉字转换拼音">
+<meta property="og:updated_time" content="2016-08-18T07:28:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="汉字转换拼音">
+<meta name="twitter:description" content="汉字转换拼音">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/blog/代码之外/汉字转换拼音.html">
+
+
+  <title> 汉字转换拼音 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                汉字转换拼音
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-28T00:00:00+08:00" content="2016-03-28">
+              2016-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/代码之外/汉字转换拼音.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/代码之外/汉字转换拼音.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么要用？"><a href="#为什么要用？" class="headerlink" title="为什么要用？"></a>为什么要用？</h2><p>进行汉字的字符串拼配,比较,排序的时候使用汉字很不方便,转换成拼音就可以进行首字母匹配搜索等工作了。</p>
+<hr>
+<h2 id="Api调用"><a href="#Api调用" class="headerlink" title="Api调用"></a>Api调用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">PinyinHelper.get().getPinYin(<span class="string">"你好"</span>));</div><div class="line"></div><div class="line">PinyinHelper.get().getPinYin(<span class="string">"你bSfb"</span>);</div><div class="line"></div><div class="line">PinyinHelper.get().getPinYin(<span class="string">"JHHihubbb"</span>);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//核心方法</span></div><div class="line">	<span class="comment">/**</span></div><div class="line">     * 唯一公开的方法</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> input 输入的文字</div><div class="line">     * <span class="doctag">@return</span> 返回的汉字将会转化为大写英文, 如果是英文将会原样返回</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPinYin</span><span class="params">(String input)</span> </span>&#123;</div><div class="line">        ArrayList&lt;Token&gt; tokens = get(input);</div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">if</span> (tokens != <span class="keyword">null</span> &amp;&amp; tokens.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (Token token : tokens) &#123;</div><div class="line">                <span class="keyword">if</span> (Token.PINYIN == token.type) &#123;</div><div class="line">                    sb.append(token.target);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    sb.append(token.source);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sb.toString();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="附源码一份"><a href="#附源码一份" class="headerlink" title="附源码一份"></a>附源码一份</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div><div class="line">515</div><div class="line">516</div><div class="line">517</div><div class="line">518</div><div class="line">519</div><div class="line">520</div><div class="line">521</div><div class="line">522</div><div class="line">523</div><div class="line">524</div><div class="line">525</div><div class="line">526</div><div class="line">527</div><div class="line">528</div><div class="line">529</div><div class="line">530</div><div class="line">531</div><div class="line">532</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.march.libs.helper;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * CdLibsTest     com.march.libs.helper</div><div class="line"> * Created by 陈栋 on 16/3/28.</div><div class="line"> * 功能:</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.text.TextUtils;</div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.text.Collator;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Locale;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PinyinHelper</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"HanziToPinyin"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> DEBUG = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span>[] UNIHANS = &#123;</div><div class="line">            <span class="string">'\u963f'</span>, <span class="string">'\u54ce'</span>, <span class="string">'\u5b89'</span>, <span class="string">'\u80ae'</span>, <span class="string">'\u51f9'</span>, <span class="string">'\u516b'</span>,</div><div class="line">            <span class="string">'\u6300'</span>, <span class="string">'\u6273'</span>, <span class="string">'\u90a6'</span>, <span class="string">'\u52f9'</span>, <span class="string">'\u9642'</span>, <span class="string">'\u5954'</span>,</div><div class="line">            <span class="string">'\u4f3b'</span>, <span class="string">'\u5c44'</span>, <span class="string">'\u8fb9'</span>, <span class="string">'\u706c'</span>, <span class="string">'\u618b'</span>, <span class="string">'\u6c43'</span>,</div><div class="line">            <span class="string">'\u51ab'</span>, <span class="string">'\u7676'</span>, <span class="string">'\u5cec'</span>, <span class="string">'\u5693'</span>, <span class="string">'\u5072'</span>, <span class="string">'\u53c2'</span>,</div><div class="line">            <span class="string">'\u4ed3'</span>, <span class="string">'\u64a1'</span>, <span class="string">'\u518a'</span>, <span class="string">'\u5d7e'</span>, <span class="string">'\u66fd'</span>, <span class="string">'\u66fe'</span>,</div><div class="line">            <span class="string">'\u5c64'</span>, <span class="string">'\u53c9'</span>, <span class="string">'\u8286'</span>, <span class="string">'\u8fbf'</span>, <span class="string">'\u4f25'</span>, <span class="string">'\u6284'</span>,</div><div class="line">            <span class="string">'\u8f66'</span>, <span class="string">'\u62bb'</span>, <span class="string">'\u6c88'</span>, <span class="string">'\u6c89'</span>, <span class="string">'\u9637'</span>, <span class="string">'\u5403'</span>,</div><div class="line">            <span class="string">'\u5145'</span>, <span class="string">'\u62bd'</span>, <span class="string">'\u51fa'</span>, <span class="string">'\u6b3b'</span>, <span class="string">'\u63e3'</span>, <span class="string">'\u5ddb'</span>,</div><div class="line">            <span class="string">'\u5205'</span>, <span class="string">'\u5439'</span>, <span class="string">'\u65fe'</span>, <span class="string">'\u9034'</span>, <span class="string">'\u5472'</span>, <span class="string">'\u5306'</span>,</div><div class="line">            <span class="string">'\u51d1'</span>, <span class="string">'\u7c97'</span>, <span class="string">'\u6c46'</span>, <span class="string">'\u5d14'</span>, <span class="string">'\u90a8'</span>, <span class="string">'\u6413'</span>,</div><div class="line">            <span class="string">'\u5491'</span>, <span class="string">'\u5446'</span>, <span class="string">'\u4e39'</span>, <span class="string">'\u5f53'</span>, <span class="string">'\u5200'</span>, <span class="string">'\u561a'</span>,</div><div class="line">            <span class="string">'\u6265'</span>, <span class="string">'\u706f'</span>, <span class="string">'\u6c10'</span>, <span class="string">'\u55f2'</span>, <span class="string">'\u7538'</span>, <span class="string">'\u5201'</span>,</div><div class="line">            <span class="string">'\u7239'</span>, <span class="string">'\u4e01'</span>, <span class="string">'\u4e1f'</span>, <span class="string">'\u4e1c'</span>, <span class="string">'\u543a'</span>, <span class="string">'\u53be'</span>,</div><div class="line">            <span class="string">'\u8011'</span>, <span class="string">'\u8968'</span>, <span class="string">'\u5428'</span>, <span class="string">'\u591a'</span>, <span class="string">'\u59b8'</span>, <span class="string">'\u8bf6'</span>,</div><div class="line">            <span class="string">'\u5940'</span>, <span class="string">'\u97a5'</span>, <span class="string">'\u513f'</span>, <span class="string">'\u53d1'</span>, <span class="string">'\u5e06'</span>, <span class="string">'\u531a'</span>,</div><div class="line">            <span class="string">'\u98de'</span>, <span class="string">'\u5206'</span>, <span class="string">'\u4e30'</span>, <span class="string">'\u8985'</span>, <span class="string">'\u4ecf'</span>, <span class="string">'\u7d11'</span>,</div><div class="line">            <span class="string">'\u4f15'</span>, <span class="string">'\u65ee'</span>, <span class="string">'\u4f85'</span>, <span class="string">'\u7518'</span>, <span class="string">'\u5188'</span>, <span class="string">'\u768b'</span>,</div><div class="line">            <span class="string">'\u6208'</span>, <span class="string">'\u7ed9'</span>, <span class="string">'\u6839'</span>, <span class="string">'\u522f'</span>, <span class="string">'\u5de5'</span>, <span class="string">'\u52fe'</span>,</div><div class="line">            <span class="string">'\u4f30'</span>, <span class="string">'\u74dc'</span>, <span class="string">'\u4e56'</span>, <span class="string">'\u5173'</span>, <span class="string">'\u5149'</span>, <span class="string">'\u5f52'</span>,</div><div class="line">            <span class="string">'\u4e28'</span>, <span class="string">'\u5459'</span>, <span class="string">'\u54c8'</span>, <span class="string">'\u548d'</span>, <span class="string">'\u4f44'</span>, <span class="string">'\u592f'</span>,</div><div class="line">            <span class="string">'\u8320'</span>, <span class="string">'\u8bc3'</span>, <span class="string">'\u9ed2'</span>, <span class="string">'\u62eb'</span>, <span class="string">'\u4ea8'</span>, <span class="string">'\u5677'</span>,</div><div class="line">            <span class="string">'\u53ff'</span>, <span class="string">'\u9f41'</span>, <span class="string">'\u4e6f'</span>, <span class="string">'\u82b1'</span>, <span class="string">'\u6000'</span>, <span class="string">'\u72bf'</span>,</div><div class="line">            <span class="string">'\u5ddf'</span>, <span class="string">'\u7070'</span>, <span class="string">'\u660f'</span>, <span class="string">'\u5419'</span>, <span class="string">'\u4e0c'</span>, <span class="string">'\u52a0'</span>,</div><div class="line">            <span class="string">'\u620b'</span>, <span class="string">'\u6c5f'</span>, <span class="string">'\u827d'</span>, <span class="string">'\u9636'</span>, <span class="string">'\u5dfe'</span>, <span class="string">'\u5755'</span>,</div><div class="line">            <span class="string">'\u5182'</span>, <span class="string">'\u4e29'</span>, <span class="string">'\u51e5'</span>, <span class="string">'\u59e2'</span>, <span class="string">'\u5658'</span>, <span class="string">'\u519b'</span>,</div><div class="line">            <span class="string">'\u5494'</span>, <span class="string">'\u5f00'</span>, <span class="string">'\u520a'</span>, <span class="string">'\u5ffc'</span>, <span class="string">'\u5c3b'</span>, <span class="string">'\u533c'</span>,</div><div class="line">            <span class="string">'\u808e'</span>, <span class="string">'\u52a5'</span>, <span class="string">'\u7a7a'</span>, <span class="string">'\u62a0'</span>, <span class="string">'\u625d'</span>, <span class="string">'\u5938'</span>,</div><div class="line">            <span class="string">'\u84af'</span>, <span class="string">'\u5bbd'</span>, <span class="string">'\u5321'</span>, <span class="string">'\u4e8f'</span>, <span class="string">'\u5764'</span>, <span class="string">'\u6269'</span>,</div><div class="line">            <span class="string">'\u5783'</span>, <span class="string">'\u6765'</span>, <span class="string">'\u5170'</span>, <span class="string">'\u5577'</span>, <span class="string">'\u635e'</span>, <span class="string">'\u808b'</span>,</div><div class="line">            <span class="string">'\u52d2'</span>, <span class="string">'\u5d1a'</span>, <span class="string">'\u5215'</span>, <span class="string">'\u4fe9'</span>, <span class="string">'\u5941'</span>, <span class="string">'\u826f'</span>,</div><div class="line">            <span class="string">'\u64a9'</span>, <span class="string">'\u5217'</span>, <span class="string">'\u62ce'</span>, <span class="string">'\u5222'</span>, <span class="string">'\u6e9c'</span>, <span class="string">'\u56d6'</span>,</div><div class="line">            <span class="string">'\u9f99'</span>, <span class="string">'\u779c'</span>, <span class="string">'\u565c'</span>, <span class="string">'\u5a08'</span>, <span class="string">'\u7567'</span>, <span class="string">'\u62a1'</span>,</div><div class="line">            <span class="string">'\u7f57'</span>, <span class="string">'\u5463'</span>, <span class="string">'\u5988'</span>, <span class="string">'\u57cb'</span>, <span class="string">'\u5ada'</span>, <span class="string">'\u7264'</span>,</div><div class="line">            <span class="string">'\u732b'</span>, <span class="string">'\u4e48'</span>, <span class="string">'\u5445'</span>, <span class="string">'\u95e8'</span>, <span class="string">'\u753f'</span>, <span class="string">'\u54aa'</span>,</div><div class="line">            <span class="string">'\u5b80'</span>, <span class="string">'\u55b5'</span>, <span class="string">'\u4e5c'</span>, <span class="string">'\u6c11'</span>, <span class="string">'\u540d'</span>, <span class="string">'\u8c2c'</span>,</div><div class="line">            <span class="string">'\u6478'</span>, <span class="string">'\u54de'</span>, <span class="string">'\u6bea'</span>, <span class="string">'\u55ef'</span>, <span class="string">'\u62cf'</span>, <span class="string">'\u8149'</span>,</div><div class="line">            <span class="string">'\u56e1'</span>, <span class="string">'\u56d4'</span>, <span class="string">'\u5b6c'</span>, <span class="string">'\u7592'</span>, <span class="string">'\u5a1e'</span>, <span class="string">'\u6041'</span>,</div><div class="line">            <span class="string">'\u80fd'</span>, <span class="string">'\u59ae'</span>, <span class="string">'\u62c8'</span>, <span class="string">'\u5b22'</span>, <span class="string">'\u9e1f'</span>, <span class="string">'\u634f'</span>,</div><div class="line">            <span class="string">'\u56dc'</span>, <span class="string">'\u5b81'</span>, <span class="string">'\u599e'</span>, <span class="string">'\u519c'</span>, <span class="string">'\u7fba'</span>, <span class="string">'\u5974'</span>,</div><div class="line">            <span class="string">'\u597b'</span>, <span class="string">'\u759f'</span>, <span class="string">'\u9ec1'</span>, <span class="string">'\u90cd'</span>, <span class="string">'\u5594'</span>, <span class="string">'\u8bb4'</span>,</div><div class="line">            <span class="string">'\u5991'</span>, <span class="string">'\u62cd'</span>, <span class="string">'\u7705'</span>, <span class="string">'\u4e53'</span>, <span class="string">'\u629b'</span>, <span class="string">'\u5478'</span>,</div><div class="line">            <span class="string">'\u55b7'</span>, <span class="string">'\u5309'</span>, <span class="string">'\u4e15'</span>, <span class="string">'\u56e8'</span>, <span class="string">'\u527d'</span>, <span class="string">'\u6c15'</span>,</div><div class="line">            <span class="string">'\u59d8'</span>, <span class="string">'\u4e52'</span>, <span class="string">'\u948b'</span>, <span class="string">'\u5256'</span>, <span class="string">'\u4ec6'</span>, <span class="string">'\u4e03'</span>,</div><div class="line">            <span class="string">'\u6390'</span>, <span class="string">'\u5343'</span>, <span class="string">'\u545b'</span>, <span class="string">'\u6084'</span>, <span class="string">'\u767f'</span>, <span class="string">'\u4eb2'</span>,</div><div class="line">            <span class="string">'\u72c5'</span>, <span class="string">'\u828e'</span>, <span class="string">'\u4e18'</span>, <span class="string">'\u533a'</span>, <span class="string">'\u5cd1'</span>, <span class="string">'\u7f3a'</span>,</div><div class="line">            <span class="string">'\u590b'</span>, <span class="string">'\u5465'</span>, <span class="string">'\u7a63'</span>, <span class="string">'\u5a06'</span>, <span class="string">'\u60f9'</span>, <span class="string">'\u4eba'</span>,</div><div class="line">            <span class="string">'\u6254'</span>, <span class="string">'\u65e5'</span>, <span class="string">'\u8338'</span>, <span class="string">'\u53b9'</span>, <span class="string">'\u909a'</span>, <span class="string">'\u633c'</span>,</div><div class="line">            <span class="string">'\u5827'</span>, <span class="string">'\u5a51'</span>, <span class="string">'\u77a4'</span>, <span class="string">'\u637c'</span>, <span class="string">'\u4ee8'</span>, <span class="string">'\u6be2'</span>,</div><div class="line">            <span class="string">'\u4e09'</span>, <span class="string">'\u6852'</span>, <span class="string">'\u63bb'</span>, <span class="string">'\u95aa'</span>, <span class="string">'\u68ee'</span>, <span class="string">'\u50e7'</span>,</div><div class="line">            <span class="string">'\u6740'</span>, <span class="string">'\u7b5b'</span>, <span class="string">'\u5c71'</span>, <span class="string">'\u4f24'</span>, <span class="string">'\u5f30'</span>, <span class="string">'\u5962'</span>,</div><div class="line">            <span class="string">'\u7533'</span>, <span class="string">'\u8398'</span>, <span class="string">'\u6552'</span>, <span class="string">'\u5347'</span>, <span class="string">'\u5c38'</span>, <span class="string">'\u53ce'</span>,</div><div class="line">            <span class="string">'\u4e66'</span>, <span class="string">'\u5237'</span>, <span class="string">'\u8870'</span>, <span class="string">'\u95e9'</span>, <span class="string">'\u53cc'</span>, <span class="string">'\u8c01'</span>,</div><div class="line">            <span class="string">'\u542e'</span>, <span class="string">'\u8bf4'</span>, <span class="string">'\u53b6'</span>, <span class="string">'\u5fea'</span>, <span class="string">'\u635c'</span>, <span class="string">'\u82cf'</span>,</div><div class="line">            <span class="string">'\u72fb'</span>, <span class="string">'\u590a'</span>, <span class="string">'\u5b59'</span>, <span class="string">'\u5506'</span>, <span class="string">'\u4ed6'</span>, <span class="string">'\u56fc'</span>,</div><div class="line">            <span class="string">'\u574d'</span>, <span class="string">'\u6c64'</span>, <span class="string">'\u5932'</span>, <span class="string">'\u5fd1'</span>, <span class="string">'\u71a5'</span>, <span class="string">'\u5254'</span>,</div><div class="line">            <span class="string">'\u5929'</span>, <span class="string">'\u65eb'</span>, <span class="string">'\u5e16'</span>, <span class="string">'\u5385'</span>, <span class="string">'\u56f2'</span>, <span class="string">'\u5077'</span>,</div><div class="line">            <span class="string">'\u51f8'</span>, <span class="string">'\u6e4d'</span>, <span class="string">'\u63a8'</span>, <span class="string">'\u541e'</span>, <span class="string">'\u4e47'</span>, <span class="string">'\u7a75'</span>,</div><div class="line">            <span class="string">'\u6b6a'</span>, <span class="string">'\u5f2f'</span>, <span class="string">'\u5c23'</span>, <span class="string">'\u5371'</span>, <span class="string">'\u6637'</span>, <span class="string">'\u7fc1'</span>,</div><div class="line">            <span class="string">'\u631d'</span>, <span class="string">'\u4e4c'</span>, <span class="string">'\u5915'</span>, <span class="string">'\u8672'</span>, <span class="string">'\u4eda'</span>, <span class="string">'\u4e61'</span>,</div><div class="line">            <span class="string">'\u7071'</span>, <span class="string">'\u4e9b'</span>, <span class="string">'\u5fc3'</span>, <span class="string">'\u661f'</span>, <span class="string">'\u51f6'</span>, <span class="string">'\u4f11'</span>,</div><div class="line">            <span class="string">'\u5401'</span>, <span class="string">'\u5405'</span>, <span class="string">'\u524a'</span>, <span class="string">'\u5743'</span>, <span class="string">'\u4e2b'</span>, <span class="string">'\u6079'</span>,</div><div class="line">            <span class="string">'\u592e'</span>, <span class="string">'\u5e7a'</span>, <span class="string">'\u503b'</span>, <span class="string">'\u4e00'</span>, <span class="string">'\u56d9'</span>, <span class="string">'\u5e94'</span>,</div><div class="line">            <span class="string">'\u54df'</span>, <span class="string">'\u4f63'</span>, <span class="string">'\u4f18'</span>, <span class="string">'\u625c'</span>, <span class="string">'\u56e6'</span>, <span class="string">'\u66f0'</span>,</div><div class="line">            <span class="string">'\u6655'</span>, <span class="string">'\u7b60'</span>, <span class="string">'\u7b7c'</span>, <span class="string">'\u5e00'</span>, <span class="string">'\u707d'</span>, <span class="string">'\u5142'</span>,</div><div class="line">            <span class="string">'\u5328'</span>, <span class="string">'\u50ae'</span>, <span class="string">'\u5219'</span>, <span class="string">'\u8d3c'</span>, <span class="string">'\u600e'</span>, <span class="string">'\u5897'</span>,</div><div class="line">            <span class="string">'\u624e'</span>, <span class="string">'\u635a'</span>, <span class="string">'\u6cbe'</span>, <span class="string">'\u5f20'</span>, <span class="string">'\u957f'</span>, <span class="string">'\u9577'</span>,</div><div class="line">            <span class="string">'\u4f4b'</span>, <span class="string">'\u8707'</span>, <span class="string">'\u8d1e'</span>, <span class="string">'\u4e89'</span>, <span class="string">'\u4e4b'</span>, <span class="string">'\u5cd9'</span>,</div><div class="line">            <span class="string">'\u5ea2'</span>, <span class="string">'\u4e2d'</span>, <span class="string">'\u5dde'</span>, <span class="string">'\u6731'</span>, <span class="string">'\u6293'</span>, <span class="string">'\u62fd'</span>,</div><div class="line">            <span class="string">'\u4e13'</span>, <span class="string">'\u5986'</span>, <span class="string">'\u96b9'</span>, <span class="string">'\u5b92'</span>, <span class="string">'\u5353'</span>, <span class="string">'\u4e72'</span>,</div><div class="line">            <span class="string">'\u5b97'</span>, <span class="string">'\u90b9'</span>, <span class="string">'\u79df'</span>, <span class="string">'\u94bb'</span>, <span class="string">'\u539c'</span>, <span class="string">'\u5c0a'</span>,</div><div class="line">            <span class="string">'\u6628'</span>, <span class="string">'\u5159'</span>, <span class="string">'\u9fc3'</span>, <span class="string">'\u9fc4'</span>,&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">byte</span>[][] PINYINS = &#123;</div><div class="line">            &#123;<span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">66</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">66</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">67</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">73</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">68</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">68</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">69</span>, <span class="number">82</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">70</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">70</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">70</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">70</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">70</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">70</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">70</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">70</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">70</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">70</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">71</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">77</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">72</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">73</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">74</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">74</span>, <span class="number">85</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">75</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">73</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">85</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">76</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">76</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">73</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">77</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">77</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">73</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">85</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">78</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">78</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">80</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">80</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">81</span>, <span class="number">73</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">81</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">81</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">81</span>, <span class="number">85</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">81</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">82</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">82</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">82</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">82</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">82</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">82</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">82</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">82</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">84</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">84</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">87</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">87</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">87</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">87</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">87</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">87</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">87</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">87</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">87</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">73</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">88</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">88</span>, <span class="number">85</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">88</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">89</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">89</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">89</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">89</span>, <span class="number">73</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">89</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">89</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">89</span>, <span class="number">85</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">74</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">89</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">69</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">67</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">69</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">73</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">71</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">72</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">79</span>, <span class="number">78</span>, <span class="number">71</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">79</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">85</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">85</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">85</span>, <span class="number">73</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">90</span>, <span class="number">85</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">90</span>, <span class="number">85</span>, <span class="number">79</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</div><div class="line">            &#123;<span class="number">83</span>, <span class="number">72</span>, <span class="number">65</span>, <span class="number">78</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,&#125;;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * First and last Chinese character with known Pinyin according to zh collation</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FIRST_PINYIN_UNIHAN = <span class="string">"\u963F"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LAST_PINYIN_UNIHAN = <span class="string">"\u9FFF"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Collator COLLATOR = Collator.getInstance(Locale.CHINA);</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> PinyinHelper sInstance;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">boolean</span> mHasChinaCollator;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Token</span> </span>&#123;</div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Separator between target string for each source char</div><div class="line">         */</div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String SEPARATOR = <span class="string">" "</span>;</div><div class="line"></div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> LATIN = <span class="number">1</span>;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PINYIN = <span class="number">2</span>;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNKNOWN = <span class="number">3</span>;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Token</span><span class="params">()</span> </span>&#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Token</span><span class="params">(<span class="keyword">int</span> type, String source, String target)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.type = type;</div><div class="line">            <span class="keyword">this</span>.source = source;</div><div class="line">            <span class="keyword">this</span>.target = target;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Type of this token, ASCII, PINYIN or UNKNOWN.</div><div class="line">         */</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> type;</div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Original string before translation.</div><div class="line">         */</div><div class="line">        <span class="keyword">public</span> String source;</div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Translated string of source. For Han, target is corresponding Pinyin. Otherwise target is</div><div class="line">         * original string in source.</div><div class="line">         */</div><div class="line">        <span class="keyword">public</span> String target;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">PinyinHelper</span><span class="params">(<span class="keyword">boolean</span> hasChinaCollator)</span> </span>&#123;</div><div class="line">        mHasChinaCollator = hasChinaCollator;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PinyinHelper <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span> (PinyinHelper.class) &#123;</div><div class="line">            <span class="keyword">if</span> (sInstance != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">return</span> sInstance;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">final</span> Locale locale[] = Collator.getAvailableLocales();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; locale.length; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (locale[i].equals(Locale.CHINA)) &#123;</div><div class="line">                    <span class="comment">// Do self validation just once.</span></div><div class="line">                    <span class="keyword">if</span> (DEBUG) &#123;</div><div class="line">                        Log.d(TAG, <span class="string">"Self validation. Result: "</span> + doSelfValidation());</div><div class="line">                    &#125;</div><div class="line">                    sInstance = <span class="keyword">new</span> PinyinHelper(<span class="keyword">true</span>);</div><div class="line">                    <span class="keyword">return</span> sInstance;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            sInstance = <span class="keyword">new</span> PinyinHelper(<span class="keyword">true</span>);</div><div class="line">            <span class="keyword">return</span> sInstance;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">doSelfValidation</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">char</span> lastChar = UNIHANS[<span class="number">0</span>];</div><div class="line">        String lastString = Character.toString(lastChar);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : UNIHANS) &#123;</div><div class="line">            <span class="keyword">if</span> (lastChar == c) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">final</span> String curString = Character.toString(c);</div><div class="line">            <span class="keyword">int</span> cmp = COLLATOR.compare(lastString, curString);</div><div class="line">            <span class="keyword">if</span> (cmp &gt;= <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            lastString = curString;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> Token <span class="title">getToken</span><span class="params">(<span class="keyword">char</span> character)</span> </span>&#123;</div><div class="line">        Token token = <span class="keyword">new</span> Token();</div><div class="line">        <span class="keyword">final</span> String letter = Character.toString(character);</div><div class="line">        token.source = letter;</div><div class="line">        <span class="keyword">int</span> offset = -<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> cmp;</div><div class="line">        <span class="keyword">if</span> (character &lt; <span class="number">256</span>) &#123;</div><div class="line">            token.type = Token.LATIN;</div><div class="line">            token.target = letter;</div><div class="line">            <span class="keyword">return</span> token;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            cmp = COLLATOR.compare(letter, FIRST_PINYIN_UNIHAN);</div><div class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) &#123;</div><div class="line">                token.type = Token.UNKNOWN;</div><div class="line">                token.target = letter;</div><div class="line">                <span class="keyword">return</span> token;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cmp == <span class="number">0</span>) &#123;</div><div class="line">                token.type = Token.PINYIN;</div><div class="line">                offset = <span class="number">0</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                cmp = COLLATOR.compare(letter, LAST_PINYIN_UNIHAN);</div><div class="line">                <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) &#123;</div><div class="line">                    token.type = Token.UNKNOWN;</div><div class="line">                    token.target = letter;</div><div class="line">                    <span class="keyword">return</span> token;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cmp == <span class="number">0</span>) &#123;</div><div class="line">                    token.type = Token.PINYIN;</div><div class="line">                    offset = UNIHANS.length - <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        token.type = Token.PINYIN;</div><div class="line">        <span class="keyword">if</span> (offset &lt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">int</span> begin = <span class="number">0</span>;</div><div class="line">            <span class="keyword">int</span> end = UNIHANS.length - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span> (begin &lt;= end) &#123;</div><div class="line">                offset = (begin + end) / <span class="number">2</span>;</div><div class="line">                <span class="keyword">final</span> String unihan = Character.toString(UNIHANS[offset]);</div><div class="line">                cmp = COLLATOR.compare(letter, unihan);</div><div class="line">                <span class="keyword">if</span> (cmp == <span class="number">0</span>) &#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) &#123;</div><div class="line">                    begin = offset + <span class="number">1</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    end = offset - <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) &#123;</div><div class="line">            offset--;</div><div class="line">        &#125;</div><div class="line">        StringBuilder pinyin = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; PINYINS[offset].length &amp;&amp; PINYINS[offset][j] != <span class="number">0</span>; j++) &#123;</div><div class="line">            pinyin.append((<span class="keyword">char</span>) PINYINS[offset][j]);</div><div class="line">        &#125;</div><div class="line">        token.target = pinyin.toString();</div><div class="line">        <span class="keyword">if</span> (TextUtils.isEmpty(token.target)) &#123;</div><div class="line">            token.type = Token.UNKNOWN;</div><div class="line">            token.target = token.source;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> token;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> ArrayList&lt;Token&gt; <span class="title">get</span><span class="params">(<span class="keyword">final</span> String input)</span> </span>&#123;</div><div class="line">        ArrayList&lt;Token&gt; tokens = <span class="keyword">new</span> ArrayList&lt;Token&gt;();</div><div class="line">        <span class="keyword">if</span> (!mHasChinaCollator || TextUtils.isEmpty(input)) &#123;</div><div class="line">            <span class="comment">// return empty tokens.</span></div><div class="line">            <span class="keyword">return</span> tokens;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> inputLength = input.length();</div><div class="line">        <span class="keyword">final</span> StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">int</span> tokenType = Token.LATIN;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; inputLength; i++) &#123;</div><div class="line">            <span class="keyword">final</span> <span class="keyword">char</span> character = input.charAt(i);</div><div class="line">            <span class="keyword">if</span> (character == <span class="string">' '</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (sb.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">                    addToken(sb, tokens, tokenType);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (character &lt; <span class="number">256</span>) &#123;</div><div class="line">                <span class="keyword">if</span> (tokenType != Token.LATIN &amp;&amp; sb.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">                    addToken(sb, tokens, tokenType);</div><div class="line">                &#125;</div><div class="line">                tokenType = Token.LATIN;</div><div class="line">                sb.append(character);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                Token t = getToken(character);</div><div class="line">                <span class="keyword">if</span> (t.type == Token.PINYIN) &#123;</div><div class="line">                    <span class="keyword">if</span> (sb.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">                        addToken(sb, tokens, tokenType);</div><div class="line">                    &#125;</div><div class="line">                    tokens.add(t);</div><div class="line">                    tokenType = Token.PINYIN;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span> (tokenType != t.type &amp;&amp; sb.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">                        addToken(sb, tokens, tokenType);</div><div class="line">                    &#125;</div><div class="line">                    tokenType = t.type;</div><div class="line">                    sb.append(character);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (sb.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">            addToken(sb, tokens, tokenType);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> tokens;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addToken</span><span class="params">(</span></span></div><div class="line">            <span class="keyword">final</span> StringBuilder sb, <span class="keyword">final</span> ArrayList&lt;Token&gt; tokens, <span class="keyword">final</span> <span class="keyword">int</span> tokenType) &#123;</div><div class="line">        String str = sb.toString();</div><div class="line">        tokens.add(<span class="keyword">new</span> Token(tokenType, str, str));</div><div class="line">        sb.setLength(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 唯一公开的方法</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> input 输入的文字</div><div class="line">     * <span class="doctag">@return</span> 返回的汉字将会转化为大写英文, 如果是英文将会原样返回</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPinYin</span><span class="params">(String input)</span> </span>&#123;</div><div class="line">        ArrayList&lt;Token&gt; tokens = get(input);</div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">if</span> (tokens != <span class="keyword">null</span> &amp;&amp; tokens.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (Token token : tokens) &#123;</div><div class="line">                <span class="keyword">if</span> (Token.PINYIN == token.type) &#123;</div><div class="line">                    sb.append(token.target);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    sb.append(token.source);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sb.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##以上</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/android/Android系统分享的注册和调起.html" rel="next" title="Android系统分享的注册和调起">
+                <i class="fa fa-chevron-left"></i> Android系统分享的注册和调起
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/android/RecyclerView添加Header和Footer.html" rel="prev" title="RecyclerView添加Header和Footer的基本原理">
+                RecyclerView添加Header和Footer的基本原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="blog/代码之外/汉字转换拼音.html" data-title="汉字转换拼音" data-url="http://chendongmarch.github.io/blog/代码之外/汉字转换拼音.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用？"><span class="nav-text">为什么要用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Api调用"><span class="nav-text">Api调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心方法"><span class="nav-text">核心方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附源码一份"><span class="nav-text">附源码一份</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1049 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Android,Android5.+,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="Android 6.0权限动态申请">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 6.0权限动态申请">
+<meta property="og:url" content="http://chendongmarch.github.io/blog/android/AndroidM动态权限申请.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="Android 6.0权限动态申请">
+<meta property="og:updated_time" content="2016-08-28T06:12:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 6.0权限动态申请">
+<meta name="twitter:description" content="Android 6.0权限动态申请">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/blog/android/AndroidM动态权限申请.html">
+
+
+  <title> Android 6.0权限动态申请 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 6.0权限动态申请
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T00:00:00+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/android/AndroidM动态权限申请.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/android/AndroidM动态权限申请.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="minSdkVersion"><a href="#minSdkVersion" class="headerlink" title="minSdkVersion"></a>minSdkVersion</h2><ul>
+<li>minSdkVersion指的是你的应用可以兼容到的最低版本，比如你只使用了2.X的API，那minSdkVersion就可以尽量小，以适配更多机型，小于minSdkVersion的机型将无法安装。</li>
+</ul>
+<h2 id="maxSdkVersion"><a href="#maxSdkVersion" class="headerlink" title="maxSdkVersion"></a>maxSdkVersion</h2><ul>
+<li>maxSdkVersion指的是你的应用可以支持到的最高版本，高于这个版本的机型将不能安装应用，但是这个不需要我们自己去写，Android系统默认向下兼容的。</li>
+</ul>
+<h2 id="targetSdkVersion"><a href="#targetSdkVersion" class="headerlink" title="targetSdkVersion"></a>targetSdkVersion</h2><ul>
+<li>targetSdkVersion如果设置了此属性，那么在程序执行时，如果目标设备的API版本正好等于此数值，他会告诉Android平台：此程序在此版本已经经过充分测，没有问题。不必为此程序开启兼容性检查判断的工作了。</li>
+</ul>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li><p>由于Android M对隐私权限必须动态申请，当你的targetSdkVersion&gt;=23时就需要进行权限申请了，否则将获得不了权限。不过当targetSdkVersion&lt;23时，由于Android版本向下兼容性，你的应用将运行在&lt;23的环境中，不会出现问题。</p>
+</li>
+<li><p>Git上已经有很多开源库供大家使用了，确实方便简单，<a href="https://github.com/lovedise/PermissionGen" rel="external nofollow noopener noreferrer" target="_blank">PermissionGen</a>这个库好评率还是蛮高的，使用注解简化了很多操作，网上很多博客都推荐它，不过，我觉得不能遇到啥问题就引个别人的库进来， 一方面如果库的定制性不高，自定义起来也是麻烦，另一方面，像这种比较简单的问题，还是自己写比较好，可以了解一下是如何实现的，对自己的学习也有好处。别人封装的再好也不是自己的，以后只能说我会使用XX,XXX…类库.那就尴尬了。扯远了～</p>
+</li>
+</ul>
+<h2 id="Android权限"><a href="#Android权限" class="headerlink" title="Android权限"></a>Android权限</h2><ul>
+<li>Android M之后将权限分为了两类，Normal和Dangerous Permission,Dangerous Permission大都是跟用户隐私相关的权限，如下表，更详细见<a href="https://developer.android.com/guide/topics/security/permissions.html" rel="external nofollow noopener noreferrer" target="_blank">Android文档－Permissions</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Permission Group</th>
+<th style="text-align:left">Permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CALENDAR</td>
+<td style="text-align:left">READ _ CALENDAR</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">WRITE _ CALENDAR</td>
+</tr>
+<tr>
+<td>CAMERA</td>
+<td style="text-align:left">CAMERA</td>
+</tr>
+<tr>
+<td>CONTACTS</td>
+<td style="text-align:left">READ _ CONTACTS</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">WRITE _ CONTACTS</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">GET _ ACCOUNTS</td>
+</tr>
+<tr>
+<td>LOCATION</td>
+<td style="text-align:left">ACCESS <em> FINE </em> LOCATION</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">ACCESS <em> COARSE </em> LOCATION</td>
+</tr>
+<tr>
+<td>MICROPHONE</td>
+<td style="text-align:left">RECORD _ AUDIO</td>
+</tr>
+<tr>
+<td>PHONE</td>
+<td style="text-align:left">READ <em> PHONE </em> STATE</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">CALL _ PHONE</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">READ <em>CALL </em> LOG</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">WRITE <em> CALL </em> LOG</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">ADD _ VOICEMAIL</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">USE _ SIP</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">PROCESS <em> OUTGOING </em> CALLS</td>
+</tr>
+<tr>
+<td>SENSORS</td>
+<td style="text-align:left">BODY _ SENSORS</td>
+</tr>
+<tr>
+<td>SMS</td>
+<td style="text-align:left">SEND _ SMS</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">RECEIVE _ SMS</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">READ _ SMS</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">RECEIVE <em> WAP </em> PUSH</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">RECEIVE _ MMS</td>
+</tr>
+<tr>
+<td>STORAGE</td>
+<td style="text-align:left">READ <em> EXTERNAL </em> STORAGE</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">WRITE <em> EXTERNAL </em> STORAGE</td>
+</tr>
+</tbody>
+</table>
+<h2 id="思路和API"><a href="#思路和API" class="headerlink" title="思路和API"></a>思路和API</h2><ul>
+<li>涉及到的核心方法<code>context.requestPermissions(String[] permissions,int reqCode);</code>该方法必须在Android M以上可以使用。大体的思路就是：</li>
+</ul>
+<ol>
+<li>当前手机版本是不是大于Android M ？</li>
+<li>是否有私有权限需要申请？</li>
+<li>该权限是不是已经同意了 </li>
+<li>弹个dialog告诉用户我们将要申请哪些权限，现在市面上app大都是这么做的</li>
+<li>开始申请 </li>
+<li>处理申请结果</li>
+</ol>
+<h2 id="PermissionHelper"><a href="#PermissionHelper" class="headerlink" title="PermissionHelper"></a>PermissionHelper</h2><ul>
+<li>为了方便操作，我将部分核心方法抽象出来了，调用<code>checkPermission()</code>申请权限，返回值会告诉你是不是需要申请，调用<code>onRequestPermissionsResult()</code>会格式化处理返回的数据。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * com.march.baselib.helper</div><div class="line"> * CommonLib</div><div class="line"> * Created by chendong on 16/8/17.</div><div class="line"> * Copyright © 2016年 chendong. All rights reserved.</div><div class="line"> * Desc :</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PermissionHelper</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> REQ_PERMISSION_CODE = <span class="number">0x12</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 动态申请权限</div><div class="line">     * <span class="doctag">@param</span> context 上下文</div><div class="line">     * <span class="doctag">@param</span> permissions 需要申请的权限</div><div class="line">     * <span class="doctag">@return</span> 是不是需要申请</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkPermission</span><span class="params">(Activity context, String[] permissions)</span> </span>&#123;</div><div class="line">        <span class="comment">//6.0以上</span></div><div class="line">        <span class="keyword">if</span> (AppHelper.isOverMarshmallow()) &#123;</div><div class="line">            <span class="comment">//没有权限需要申请时</span></div><div class="line">            <span class="keyword">if</span> (permissions == <span class="keyword">null</span> || permissions.length &lt;= <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="comment">//检查权限是不是已经授予</span></div><div class="line">            List&lt;String&gt; noOkPermissions = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">            <span class="keyword">for</span> (String permission : permissions) &#123;</div><div class="line">                <span class="keyword">if</span> (context.checkSelfPermission(permission) == PackageManager.PERMISSION_DENIED) &#123;</div><div class="line">                    noOkPermissions.add(permission);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//该权限已经授予，不再申请</span></div><div class="line">            <span class="keyword">if</span> (noOkPermissions.size() &lt;= <span class="number">0</span>)</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="comment">//6.0以上需要申请权限</span></div><div class="line">            context.requestPermissions(noOkPermissions.toArray(<span class="keyword">new</span> String[noOkPermissions.size()]), REQ_PERMISSION_CODE);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//6.0以下下不需要申请</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 处理权限申请的结果，返回结构化的数据</div><div class="line">     * <span class="doctag">@param</span> requestCode 请求码</div><div class="line">     * <span class="doctag">@param</span> permissions 被请求的权限</div><div class="line">     * <span class="doctag">@param</span> grantResults 请求结果</div><div class="line">     * <span class="doctag">@param</span> listener 监听</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode,</span></span></div><div class="line">                                                  @NonNull String[] permissions,</div><div class="line">                                                  @NonNull <span class="keyword">int</span>[] grantResults,</div><div class="line">                                                  OnPermissionHandleOverListener listener) &#123;</div><div class="line">        <span class="keyword">if</span> (requestCode != REQ_PERMISSION_CODE)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        Map&lt;String, Integer&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        <span class="keyword">boolean</span> isHavePermissionNotOk = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Math.min(permissions.length, grantResults.length); i++) &#123;</div><div class="line">            result.put(permissions[i], grantResults[i]);</div><div class="line">            <span class="comment">//有权限没有同意</span></div><div class="line">            <span class="keyword">if</span> (grantResults[i] == PackageManager.PERMISSION_DENIED) &#123;</div><div class="line">                isHavePermissionNotOk = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//如果权限全部同意，继续执行</span></div><div class="line">        <span class="keyword">if</span> (listener != <span class="keyword">null</span>)</div><div class="line">            listener.onHandleOver(!isHavePermissionNotOk, result);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnPermissionHandleOverListener</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onHandleOver</span><span class="params">(<span class="keyword">boolean</span> isOkExactly, Map&lt;String, Integer&gt; result)</span></span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="BaseActivity"><a href="#BaseActivity" class="headerlink" title="BaseActivity"></a>BaseActivity</h2><ul>
+<li>一般权限监测是在Activity进行，在基类中监测要简单方便</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        mSaveBundle = savedInstanceState;</div><div class="line">        mActivity = <span class="keyword">this</span>;</div><div class="line">        mContext = getApplicationContext();</div><div class="line">        createViewShow();</div><div class="line">        <span class="comment">//如果不需要监测，会立刻执行invokeCommonMethod()开始Activity操作，如果需要就会发起申请</span></div><div class="line">        <span class="keyword">if</span> (PermissionHelper.checkPermission(mActivity, getPermission2Check()))</div><div class="line">            invokeCommonMethod(mSaveBundle);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="comment">//抽象方法，由子类来决定哪些权限需要申请</span></div><div class="line"><span class="keyword">protected</span> <span class="keyword">abstract</span> String[] getPermission2Check();</div><div class="line"></div><div class="line"><span class="comment">//子类实现决定处理结果</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">handlePermissionResult</span><span class="params">(Map&lt;String, Integer&gt; resultNotOk)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//处理返回结果</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</div><div class="line">        PermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults, <span class="keyword">new</span> PermissionHelper.OnPermissionHandleOverListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onHandleOver</span><span class="params">(<span class="keyword">boolean</span> isOkExactly, Map&lt;String, Integer&gt; result)</span> </span>&#123;</div><div class="line">                <span class="comment">//权限ok或者子类要求直接执行</span></div><div class="line">                <span class="keyword">if</span> (isOkExactly || handlePermissionResult(result))</div><div class="line">                    invokeCommonMethod(mSaveBundle);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//哪些权限需要申请</span></div><div class="line"><span class="meta">@TargetApi</span>(Build.VERSION_CODES.JELLY_BEAN)</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> String[] getPermission2Check() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[]&#123;Manifest.permission.READ_EXTERNAL_STORAGE&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//如果权限没有获得如何处理</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">handlePermissionResult</span><span class="params">(Map&lt;String, Integer&gt; resultNoOk)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (resultNoOk.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) &#123;</div><div class="line">            Toaster.get().show(<span class="string">"您没有允许读取存储卡，不能继续操作"</span>);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="以上"><a href="#以上" class="headerlink" title="以上"></a>以上</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android5/" rel="tag">#Android5.+</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/技术/python_singleton.html" rel="next" title="Python实现单例">
+                <i class="fa fa-chevron-left"></i> Python实现单例
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/android/NestedScrolling机制_NestedScrollingParent.html" rel="prev" title="NestedScrollingParent分析">
+                NestedScrollingParent分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="blog/android/AndroidM动态权限申请.html" data-title="Android 6.0权限动态申请" data-url="http://chendongmarch.github.io/blog/android/AndroidM动态权限申请.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minSdkVersion"><span class="nav-text">minSdkVersion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maxSdkVersion"><span class="nav-text">maxSdkVersion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#targetSdkVersion"><span class="nav-text">targetSdkVersion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android权限"><span class="nav-text">Android权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路和API"><span class="nav-text">思路和API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PermissionHelper"><span class="nav-text">PermissionHelper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BaseActivity"><span class="nav-text">BaseActivity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子类"><span class="nav-text">子类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以上"><span class="nav-text">以上</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

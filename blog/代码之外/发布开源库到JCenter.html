@@ -1,0 +1,954 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Android,开源库,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="1. 前言
+
+我们使用gradle开发，可以通过compile命令将别人的library下载到本地使用，使用这种方式简单快速，而且当需要版本升级时改一下版本号就可以了，简直比使用jar包好了几百倍。  
+我们之所以可以使用别人的library，是因为别人将自己的library发布到了JCenter,我们可以通过compile命令将aar文件文档等内容下载下来使用，也就是说只要我们将自己的libra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将自己写的库发布到Jcenter">
+<meta property="og:url" content="http://chendongmarch.github.io/blog/代码之外/发布开源库到JCenter.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="1. 前言
+
+我们使用gradle开发，可以通过compile命令将别人的library下载到本地使用，使用这种方式简单快速，而且当需要版本升级时改一下版本号就可以了，简直比使用jar包好了几百倍。  
+我们之所以可以使用别人的library，是因为别人将自己的library发布到了JCenter,我们可以通过compile命令将aar文件文档等内容下载下来使用，也就是说只要我们将自己的libra">
+<meta property="og:updated_time" content="2017-02-25T09:10:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="将自己写的库发布到Jcenter">
+<meta name="twitter:description" content="1. 前言
+
+我们使用gradle开发，可以通过compile命令将别人的library下载到本地使用，使用这种方式简单快速，而且当需要版本升级时改一下版本号就可以了，简直比使用jar包好了几百倍。  
+我们之所以可以使用别人的library，是因为别人将自己的library发布到了JCenter,我们可以通过compile命令将aar文件文档等内容下载下来使用，也就是说只要我们将自己的libra">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/blog/代码之外/发布开源库到JCenter.html">
+
+
+  <title> 将自己写的库发布到Jcenter | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                将自己写的库发布到Jcenter
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-12T00:00:00+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码之外/" itemprop="url" rel="index">
+                    <span itemprop="name">代码之外</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/代码之外/发布开源库到JCenter.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/代码之外/发布开源库到JCenter.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><blockquote>
+<ol>
+<li>我们使用gradle开发，可以通过compile命令将别人的library下载到本地使用，使用这种方式简单快速，而且当需要版本升级时改一下版本号就可以了，简直比使用jar包好了几百倍。  </li>
+<li>我们之所以可以使用别人的library，是因为别人将自己的library发布到了JCenter,我们可以通过compile命令将aar文件文档等内容下载下来使用，也就是说只要我们将自己的library发布到JCenter,那么自己和别人就都可以使用了。  </li>
+<li>网上有很多资料，介绍了各家各户的服务器，但是JCenter目前是library最多的服务器，AndroidStudio现在新建项目都是默认依赖 <code>repositories {jcenter()}</code>但是看着容易做着难，走了很多弯路，现在把我的经验分享出来，希望可以帮到别人。  </li>
+</ol>
+</blockquote>
+<a id="more"></a>
+<h2 id="2-推荐阅读"><a href="#2-推荐阅读" class="headerlink" title="2. 推荐阅读"></a>2. 推荐阅读</h2><ul>
+<li><a href="http://www.jianshu.com/p/c721f9297b2f?utm_campaign=hugo&amp;utm_medium=reader_share&amp;utm_content=note" rel="external nofollow noopener noreferrer" target="_blank">推荐这篇文章</a></li>
+</ul>
+<h2 id="3-踩过的坑"><a href="#3-踩过的坑" class="headerlink" title="3. 踩过的坑"></a>3. 踩过的坑</h2><ol>
+<li><p>删除gradle.properties里面会有 systemProp.http.proxyHost=127.0.0.1 systemProp.http.proxyPort=1080 字段，使用代理可能会导致无法上传发布。</p>
+</li>
+<li><p>打包javadoc时会出问题，因为他会将你所有的注释打包进去，如果注释写的不规范就会报错，不过这个是有提示的，按照提示改掉就好了，注释要符合要求。</p>
+</li>
+<li><p>如果出现了gradle commond not found,说明你的gradle路径没有配置，<a href="http://blog.csdn.net/chendong_/article/details/50865767" rel="external nofollow noopener noreferrer" target="_blank">mac可以参考这篇文章，windows的话自己查一下如何配置</a></p>
+</li>
+<li><p>你的library中的manifest文件有allowback属性最好删掉， 当别人或者你的别的工程引用这个库时，需要进行manifest的merge操作，如果某些属性冲突了会导致合并失败，因此库文件的manifest文件只保留必要的属性，即可。</p>
+</li>
+</ol>
+<h2 id="4-注册账号"><a href="#4-注册账号" class="headerlink" title="4. 注册账号"></a>4. 注册账号</h2><p>我们要发布自己的库到JCenter,首先要将代码发布到maven库，<a href="https://bintray.com/" rel="external nofollow noopener noreferrer" target="_blank">官方网站www.bintray.com</a> ，进去网站注册登录就好了，注册之后可以拿到你的用户名和apikey。</p>
+<p>apiKey的获取方法 －&gt; 右上角点击头像 －&gt; your profile -&gt; 头像下面edit -&gt; 最下面的APIkey 就可以获取了，后面有用.</p>
+<h2 id="5-构建项目"><a href="#5-构建项目" class="headerlink" title="5. 构建项目"></a>5. 构建项目</h2><p>使用As开发你的项目应该是有多个module的，通常你的项目至少应该有app这个module，创建一个library类型的module（点击file - &gt; new moudle -&gt; library,就可以建立一个library moudle)，因为我们要发布到maven 的是你的library，所以这个moudle需要有。然后你应该把这个项目发布到github上去，后续需要填写项目的地址，当然这不是必选的。</p>
+<h2 id="6-配置-重要"><a href="#6-配置-重要" class="headerlink" title="6. 配置(重要)"></a>6. 配置(重要)</h2><h3 id="6-1-首先是-projectName-gradle"><a href="#6-1-首先是-projectName-gradle" class="headerlink" title="6.1 首先是 projectName.gradle"></a>6.1 首先是 projectName.gradle</h3><p>配置这个文件主要是依赖一些必要的插件来完成后续的打包上传操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//最后写完应该是这样的</span></div><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath <span class="string">'com.android.tools.build:gradle:2.2.3'</span></div><div class="line">        <span class="comment">//主要是下面的两行</span></div><div class="line">        classpath <span class="string">'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'</span></div><div class="line">        classpath <span class="string">'com.github.dcendents:android-maven-gradle-plugin:1.4.1'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="6-2-配置local-properties"><a href="#6-2-配置local-properties" class="headerlink" title="6.2 配置local.properties"></a>6.2 配置local.properties</h3><p><code>local.properties</code>不会被上传到git上面，因此一些个人用户的信息需要配置在这里面，避免泄漏</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这里是你在bintray的id同下面bintray.user</span></div><div class="line">developer.id=chendongmarch</div><div class="line"><span class="comment">// 开发者的名字，随意</span></div><div class="line">developer.name=chendong</div><div class="line"><span class="comment">// 开发者邮箱</span></div><div class="line">developer.email=helloworld4x<span class="meta">@gmail</span>.com</div><div class="line"></div><div class="line"><span class="comment">// bintrayId </span></div><div class="line">bintray.user=chendongmarch</div><div class="line"><span class="comment">// bintrayApiKey</span></div><div class="line">bintray.apikey=f452fcdf8...xxxx...<span class="number">4</span>b1a925331</div></pre></td></tr></table></figure>
+<h3 id="6-3-配置Library"><a href="#6-3-配置Library" class="headerlink" title="6.3 配置Library"></a>6.3 配置Library</h3><p>在你新创建的lib module下面的project.propertie文件，如果没有就新建一个  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">groupId artifactId version决定了最后你的类库的依赖的地址</div><div class="line">例如我下面的配置最后的地址就是</div><div class="line">compile <span class="string">'groupId:artifactId:version'</span></div><div class="line">compile <span class="string">'com.march.lib-dev:lib-dev:0.0.1-beta6'</span></div><div class="line"></div><div class="line"><span class="comment">// 项目的名称</span></div><div class="line">project.name=lib-dev</div><div class="line"><span class="comment">// groupId</span></div><div class="line">project.groupId=com.march.lib-dev</div><div class="line"><span class="comment">// artifactId</span></div><div class="line">project.artifactId=lib-dev</div><div class="line"><span class="comment">// version</span></div><div class="line">project.versionName=<span class="number">0.0</span>.1-beta6</div><div class="line"><span class="comment">// 打包类型</span></div><div class="line">project.packaging=aar</div><div class="line"><span class="comment">// 类库的主页</span></div><div class="line">project.siteUrl=git<span class="meta">@github</span>.com:chendongMarch/CommonLib</div><div class="line"><span class="comment">// 类库的git地址</span></div><div class="line">project.gitUrl=git<span class="meta">@github</span>.com:chendongMarch/CommonLib.git</div><div class="line"></div><div class="line">javadoc.name=lib-dev</div></pre></td></tr></table></figure>
+<h3 id="6-4-打包上传的脚本"><a href="#6-4-打包上传的脚本" class="headerlink" title="6.4 打包上传的脚本"></a>6.4 打包上传的脚本</h3><p>上面配置那么多，其实都在这个脚本中将这些数据读出来，作为打包上传时候使用，将下面的脚本放到project根目录下面即可，命名为<code>bintrayUpload.gradle</code>，拷贝下面的脚本到项目根目录就可以使用了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.github.dcendents.android-maven'</span></div><div class="line">apply plugin: <span class="string">'com.jfrog.bintray'</span></div><div class="line"></div><div class="line"><span class="comment">// load properties</span></div><div class="line">Properties properties = <span class="keyword">new</span> Properties()</div><div class="line"></div><div class="line">File projectPropertiesFile = project.file(<span class="string">"project.properties"</span>);</div><div class="line"><span class="keyword">if</span> (projectPropertiesFile.exists()) &#123;</div><div class="line">    properties.load(projectPropertiesFile.newDataInputStream())</div><div class="line">&#125;</div><div class="line"><span class="comment">// read properties</span></div><div class="line">def projectName = properties.getProperty(<span class="string">"project.name"</span>)</div><div class="line">def projectGroupId = properties.getProperty(<span class="string">"project.groupId"</span>)</div><div class="line">def projectArtifactId = properties.getProperty(<span class="string">"project.artifactId"</span>)</div><div class="line">def projectVersionName =  properties.getProperty(<span class="string">"project.versionName"</span>)</div><div class="line">def projectPackaging = properties.getProperty(<span class="string">"project.packaging"</span>)</div><div class="line">def projectSiteUrl = properties.getProperty(<span class="string">"project.siteUrl"</span>)</div><div class="line">def projectGitUrl = properties.getProperty(<span class="string">"project.gitUrl"</span>)</div><div class="line"></div><div class="line">File localPropertiesFile = project.file(<span class="string">"../local.properties"</span>);</div><div class="line"><span class="keyword">if</span> (localPropertiesFile.exists()) &#123;</div><div class="line">    properties.load(localPropertiesFile.newDataInputStream())</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">def developerId = properties.getProperty(<span class="string">"developer.id"</span>)</div><div class="line">def developerName = properties.getProperty(<span class="string">"developer.name"</span>)</div><div class="line">def developerEmail = properties.getProperty(<span class="string">"developer.email"</span>)</div><div class="line"></div><div class="line">def bintrayUser = properties.getProperty(<span class="string">"bintray.user"</span>)</div><div class="line">def bintrayApikey = properties.getProperty(<span class="string">"bintray.apikey"</span>)</div><div class="line"></div><div class="line">def javadocName = properties.getProperty(<span class="string">"javadoc.name"</span>)</div><div class="line"></div><div class="line">group = projectGroupId</div><div class="line"></div><div class="line"><span class="comment">// This generates POM.xml with proper parameters</span></div><div class="line">install &#123;</div><div class="line">    repositories.mavenInstaller &#123;</div><div class="line">        pom &#123;</div><div class="line">            project &#123;</div><div class="line">                name projectName</div><div class="line">                groupId projectGroupId</div><div class="line">                artifactId projectArtifactId</div><div class="line">                version projectVersionName</div><div class="line">                packaging projectPackaging</div><div class="line">                url projectSiteUrl</div><div class="line">                licenses &#123;</div><div class="line">                    license &#123;</div><div class="line">                        name <span class="string">'The Apache Software License, Version 2.0'</span></div><div class="line">                        url <span class="string">'http://www.apache.org/licenses/LICENSE-2.0.txt'</span></div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                developers &#123;</div><div class="line">                    developer &#123;</div><div class="line">                        id developerId</div><div class="line">                        name developerName</div><div class="line">                        email developerEmail</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                scm &#123;</div><div class="line">                    connection projectGitUrl</div><div class="line">                    developerConnection projectGitUrl</div><div class="line">                    url projectSiteUrl</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// This generates sources.jar</span></div><div class="line"><span class="function">task <span class="title">sourcesJar</span><span class="params">(type: Jar)</span> </span>&#123;</div><div class="line">    from android.sourceSets.main.java.srcDirs</div><div class="line">    classifier = <span class="string">'sources'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">task <span class="title">javadoc</span><span class="params">(type: Javadoc)</span> </span>&#123;</div><div class="line">    source = android.sourceSets.main.java.srcDirs</div><div class="line">    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// This generates javadoc.jar</span></div><div class="line"><span class="function">task <span class="title">javadocJar</span><span class="params">(type: Jar, dependsOn: javadoc)</span> </span>&#123;</div><div class="line">    classifier = <span class="string">'javadoc'</span></div><div class="line">    from javadoc.destinationDir</div><div class="line">&#125;</div><div class="line"></div><div class="line">artifacts &#123;</div><div class="line"><span class="comment">//    archives javadocJar</span></div><div class="line">    archives sourcesJar</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//javadoc configuration</span></div><div class="line">javadoc &#123;</div><div class="line">    options &#123;</div><div class="line">        encoding <span class="string">"UTF-8"</span></div><div class="line">        charSet <span class="string">'UTF-8'</span></div><div class="line">        author <span class="keyword">true</span></div><div class="line">        version projectVersionName</div><div class="line">        links <span class="string">"http://docs.oracle.com/javase/7/docs/api"</span></div><div class="line">        title javadocName</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">////打包doc,避免注解报错</span></div><div class="line">android.libraryVariants.all &#123; variant -&gt;</div><div class="line">    println variant.javaCompile.classpath.<span class="function">files</span></div><div class="line">    <span class="title">if</span> <span class="params">(variant.name == <span class="string">'release'</span>)</span> &#123; <span class="comment">//我们只需 release 的 javadoc</span></div><div class="line">        task(<span class="string">"generate$&#123;variant.name.capitalize()&#125;Javadoc"</span>, type: Javadoc) &#123;</div><div class="line">            <span class="comment">// title = ''</span></div><div class="line">            <span class="comment">// description = ''</span></div><div class="line">            source = variant.javaCompile.source</div><div class="line">            classpath = files(variant.javaCompile.classpath.files, project.android.getBootClasspath())</div><div class="line">            options &#123;</div><div class="line">                encoding <span class="string">"utf-8"</span></div><div class="line">                links <span class="string">"http://docs.oracle.com/javase/7/docs/api/"</span></div><div class="line">                linksOffline <span class="string">"http://d.android.com/reference"</span>, <span class="string">"$&#123;android.sdkDirectory&#125;/docs/reference"</span></div><div class="line">            &#125;</div><div class="line">            exclude <span class="string">'**/BuildConfig.java'</span></div><div class="line">            exclude <span class="string">'**/R.java'</span></div><div class="line">        &#125;</div><div class="line">        task(<span class="string">"javadoc$&#123;variant.name.capitalize()&#125;Jar"</span>, type: Jar, dependsOn: <span class="string">"generate$&#123;variant.name.capitalize()&#125;Javadoc"</span>) &#123;</div><div class="line">            classifier = <span class="string">'javadoc'</span></div><div class="line">            from tasks.getByName(<span class="string">"generate$&#123;variant.name.capitalize()&#125;Javadoc"</span>).destinationDir</div><div class="line">        &#125;</div><div class="line">        artifacts &#123;</div><div class="line">            archives tasks.getByName(<span class="string">"javadoc$&#123;variant.name.capitalize()&#125;Jar"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// bintray configuration</span></div><div class="line">bintray &#123;</div><div class="line">    user = bintrayUser</div><div class="line">    key = bintrayApikey</div><div class="line">    configurations = [<span class="string">'archives'</span>]</div><div class="line">    pkg &#123;</div><div class="line">        repo = <span class="string">"maven"</span></div><div class="line">        name = projectName</div><div class="line">        websiteUrl = projectSiteUrl</div><div class="line">        vcsUrl = projectGitUrl</div><div class="line">        licenses = [<span class="string">"Apache-2.0"</span>]</div><div class="line">        publish = <span class="keyword">true</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="7-打包发布"><a href="#7-打包发布" class="headerlink" title="7. 打包发布"></a>7. 打包发布</h2><h3 id="7-1-执行脚本"><a href="#7-1-执行脚本" class="headerlink" title="7.1 执行脚本"></a>7.1 执行脚本</h3><p>在需要打包上传的lib module的<code>build.gradle</code>文件中如下代码就可以执行上面的脚本啦</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apply <span class="keyword">from</span>: <span class="string">'../bintrayUpload.gradle'</span></div></pre></td></tr></table></figure>
+<p>打开terminal，进入lib module目录下面执行如下命令开始打包上传，第一次可能需要下载一些以来文件会慢一些。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">../gradlew bintrayUpload</div></pre></td></tr></table></figure>
+<h3 id="7-2-去网站查看"><a href="#7-2-去网站查看" class="headerlink" title="7.2 去网站查看"></a>7.2 去网站查看</h3><p>打开<a href="https://bintray.com" rel="external nofollow noopener noreferrer" target="_blank">bintray.com</a>打开所在的项目，注意右上角有个链接，类似<code>https://dl.bintray.com/chendongmarch/maven</code>，这是你maven库的链接。注意左下角有三个很小的选项maven、gradle、lvy,点击gradle可以看到类似这样的<code>compile &#39;com.march.lib-dev:lib-dev:0.0.1-beta6&#39;</code>一个依赖地址，这是compile的地址，就算大功告成啦。</p>
+<h3 id="7-3-使用库"><a href="#7-3-使用库" class="headerlink" title="7.3 使用库"></a>7.3 使用库</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在项目名称.gradle文件中添加你bintray的链接</span></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">        <span class="comment">// 现在之所以添加这一句是因为你的类库只是发布到了maven</span></div><div class="line">        <span class="comment">// 但是没有发布到JCenter</span></div><div class="line">        <span class="comment">// 因此需要单独依赖你的bintray的地址。</span></div><div class="line">        maven &#123;url <span class="string">'https://dl.bintray.com/chendongmarch/maven'</span>&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//在app.gradle文件中添加</span></div><div class="line">compile <span class="string">'com.march.lib-dev:lib-dev:0.0.1-beta6'</span></div></pre></td></tr></table></figure>
+<h3 id="7-4-发布到JCenter"><a href="#7-4-发布到JCenter" class="headerlink" title="7.4 发布到JCenter"></a>7.4 发布到JCenter</h3><p>在网站打开你的项目右下角可以看到Add to jcenter点击之后可以很简单的添加你的库到JCenter,但是审核需要时间，第一次会慢一点。等到审核通过，就可以将maven{url=””}这一块去掉，直接compile</p>
+<h3 id="7-5-发布本地库"><a href="#7-5-发布本地库" class="headerlink" title="7.5 发布本地库"></a>7.5 发布本地库</h3><p>不用上传到 jcenter 单单运行 <code>./gradlew  install</code> 任务， gradle 会在 maven 的本地仓库中生成工件（artifact），只需将 mavenLocal 添加到 repositories，我们可以像发布到 JCenter 一样引用自己的库，方便打包那些多个项目共享又不想发布的私有库, 在project/build.gradle文件添加下面的依赖，可以使用本地库<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenLocal()</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="8-一些理解"><a href="#8-一些理解" class="headerlink" title="8. 一些理解"></a>8. 一些理解</h2><p>总体来说，最最重要的是打包上传的脚本，他负责打包源文件，生成aar，生成doc然后上传到bintray，我之前采用过别的方式打包类库，本文介绍的方法有个很大的优点就是把这个任务独立出来，写在<code>bintrayUpload.gradle</code>文件中，需要打包上传的library只需要配置一下类库相关信息，引用这个脚本就可以上传，不需要进行复杂的配置，而且可以将一个项目中的多个类库同时上传，每个类库只要在它的build.gradle文件中引用一下该脚本就可以啦。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/开源库/" rel="tag">#开源库</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/android/Android轻松集成Camera拍照.html" rel="next" title="Android轻松集成Camera拍照">
+                <i class="fa fa-chevron-left"></i> Android轻松集成Camera拍照
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/技术/Swift_basic_1.html" rel="prev" title="Swift基础语法1">
+                Swift基础语法1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="blog/代码之外/发布开源库到JCenter.html" data-title="将自己写的库发布到Jcenter" data-url="http://chendongmarch.github.io/blog/代码之外/发布开源库到JCenter.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-推荐阅读"><span class="nav-text">2. 推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-踩过的坑"><span class="nav-text">3. 踩过的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-注册账号"><span class="nav-text">4. 注册账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-构建项目"><span class="nav-text">5. 构建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-配置-重要"><span class="nav-text">6. 配置(重要)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-首先是-projectName-gradle"><span class="nav-text">6.1 首先是 projectName.gradle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-配置local-properties"><span class="nav-text">6.2 配置local.properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-配置Library"><span class="nav-text">6.3 配置Library</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-打包上传的脚本"><span class="nav-text">6.4 打包上传的脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-打包发布"><span class="nav-text">7. 打包发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-执行脚本"><span class="nav-text">7.1 执行脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-去网站查看"><span class="nav-text">7.2 去网站查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-使用库"><span class="nav-text">7.3 使用库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-发布到JCenter"><span class="nav-text">7.4 发布到JCenter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-发布本地库"><span class="nav-text">7.5 发布本地库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-一些理解"><span class="nav-text">8. 一些理解</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
