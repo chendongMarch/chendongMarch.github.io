@@ -7,9 +7,9 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <script>
     (function(){
@@ -23,8 +23,8 @@
 </script>
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -39,7 +39,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -73,21 +73,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,源码" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Android,源码">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
 
 
 
@@ -144,13 +144,13 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/2015/11/17/技术/android_handler/"/>
+  <link rel="canonical" href="http://chendongmarch.github.io/2015/11/17/技术/android_handler/">
 
 
   <title> Handler源码分析 | 三月 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
 
   
 
@@ -183,18 +183,18 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
   <!--- add Fork me on Github  -->
     
-    <a href="https://github.com/chendongmarch">
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
       <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
     </a>
     
     <!--- add Fork me on Github -->   
     
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta custom-logo">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">三月</span>
       <span class="logo-line-after"><i></i></span>
@@ -221,7 +221,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -231,7 +231,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -241,7 +241,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -251,7 +251,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -261,7 +261,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -271,7 +271,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         <li class="menu-item menu-item-guestbook">
           <a href="/guestbook" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
             
             留言
           </a>
@@ -284,7 +284,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -329,7 +329,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -358,14 +358,14 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/学习/" itemprop="url" rel="index">
                     <span itemprop="name">学习</span>
                   </a>
@@ -397,7 +397,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
           
               &nbsp; | &nbsp;
               <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
               </span>
           
         </div>
@@ -438,7 +438,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 <li>Looper类负责在消息队列的另一端取出消息进行处理，Handler采用消息的先进先出原则。</li>
 </ul>
 <h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><ul>
-<li>Looper中的成员变量ThreadLocal，提供线程内部的局部变量，在本线程内随时随地可取，隔离其他线程。查了很多资料，<a href="http://qifuguang.me/2015/09/02/%5BJava%E5%B9%B6%E5%8F%91%E5%8C%85%E5%AD%A6%E4%B9%A0%E4%B8%83%5D%E8%A7%A3%E5%AF%86ThreadLocal/" target="_blank" rel="external">这里有很好的的解释</a>，大家可以去膜拜一下。</li>
+<li>Looper中的成员变量ThreadLocal，提供线程内部的局部变量，在本线程内随时随地可取，隔离其他线程。查了很多资料，<a href="http://qifuguang.me/2015/09/02/%5BJava%E5%B9%B6%E5%8F%91%E5%8C%85%E5%AD%A6%E4%B9%A0%E4%B8%83%5D%E8%A7%A3%E5%AF%86ThreadLocal/" target="_blank" rel="external nofollow noopener noreferrer">这里有很好的的解释</a>，大家可以去膜拜一下。</li>
 </ul>
 <ul>
 <li>Looper类中，首先ThreadLocal变量是private static的，每个线程只能有一个Looper对象，在我看来，使用ThreadLocal是为了对每个线程的Looper进行管理。使用ThreadLocal存储Looper就可以很方便的隔离其他线程随时存取本线程的Looper对象，结合后面的代码，发现创建Looper时会使用当前线程为键，新创建的Looper为值存放到ThreadLocal中，prepare()又会进行判断是否已经创建了该线程的Looper,这么说可能有些抽象，建议看完后面的代码，再回来看这段也许会更加清晰一点。</li>
@@ -519,7 +519,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 <li>之前在Looper.loop()方法中看到有这么一段代码,结合MessageQueue的出队方法，可以发现这是一个循环轮询消息队列的操作。在死循环中调用了<code>Message msg =     queue.next(); // might block</code>方法，当返回msg==null，循环体结束，什么时候会结束，看next()方法中返回null的只有一种情况就是线程结束时，返回null，线程结束，他的Looper自然应该结束。</li>
 </ol>
 <ol>
-<li>死循环实际是发生在MessageQueue中的，我在注释中写了说明。关于MessageQueue的很多本地方法的介绍，大家可以参考<a href="http://blog.csdn.net/android_panda/article/details/8161501" target="_blank" rel="external">这里</a></li>
+<li>死循环实际是发生在MessageQueue中的，我在注释中写了说明。关于MessageQueue的很多本地方法的介绍，大家可以参考<a href="http://blog.csdn.net/android_panda/article/details/8161501" target="_blank" rel="external nofollow noopener noreferrer">这里</a></li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Message msg = 	queue.next(); <span class="comment">// might block</span></div><div class="line"><span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</div><div class="line"><span class="comment">// No message indicates that the message queue is quitting.</span></div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"><span class="function">Message <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Return here if the message loop has already quit and been disposed.</span></div><div class="line"><span class="comment">// This can happen if the application tries to restart a looper after quit</span></div><div class="line"><span class="comment">// which is not supported.</span></div><div class="line"><span class="keyword">final</span> <span class="keyword">long</span> ptr = mPtr;</div><div class="line"><span class="keyword">if</span> (ptr == <span class="number">0</span>) &#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> pendingIdleHandlerCount = -<span class="number">1</span>; <span class="comment">// -1 only during first iteration</span></div><div class="line"><span class="comment">//超时时间</span></div><div class="line"><span class="keyword">int</span> nextPollTimeoutMillis = <span class="number">0</span>;</div><div class="line"><span class="comment">//开始循环取出消息</span></div><div class="line"><span class="keyword">for</span> (;;) &#123;</div><div class="line">    <span class="keyword">if</span> (nextPollTimeoutMillis != <span class="number">0</span>) &#123;</div><div class="line">        Binder.flushPendingCommands();</div><div class="line">&#125;</div><div class="line">nativePollOnce(ptr, nextPollTimeoutMillis);</div><div class="line"><span class="comment">//接下来进行锁定，开始取出消息</span></div><div class="line"><span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">	</div><div class="line">     <span class="comment">// Try to retrieve the next message.  Return if found.</span></div><div class="line">     <span class="keyword">final</span> <span class="keyword">long</span> now = SystemClock.uptimeMillis();</div><div class="line">     Message prevMsg = <span class="keyword">null</span>;</div><div class="line">     Message msg = mMessages;</div><div class="line">     <span class="comment">//取到消息是空，然后进行一个循环查找下一个可用消息</span></div><div class="line">     <span class="keyword">if</span> (msg != <span class="keyword">null</span> &amp;&amp; msg.target == <span class="keyword">null</span>) &#123;</div><div class="line">     <span class="comment">// Stalled by a barrier.  Find the next asynchronous message in the queue.</span></div><div class="line">     do &#123;</div><div class="line">      prevMsg = msg;</div><div class="line">      msg = msg.next;</div><div class="line">     &#125; <span class="keyword">while</span> (msg != <span class="keyword">null</span> &amp;&amp; !msg.isAsynchronous());</div><div class="line"> &#125;</div><div class="line"><span class="keyword">if</span> (msg != <span class="keyword">null</span>) &#123;</div><div class="line">   <span class="keyword">if</span> (now &lt; msg.when) &#123;</div><div class="line"><span class="comment">// Next message is not ready.  Set a timeout to wake up when it is ready.</span></div><div class="line"><span class="comment">//当前时间没有达到执行这个消息的时间。将会进行超时等待</span></div><div class="line">    nextPollTimeoutMillis = (<span class="keyword">int</span>) Math.min(msg.when - now, Integer.MAX_VALUE);</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">   <span class="comment">//取出头部的消息返回</span></div><div class="line">   <span class="comment">// Got a message.</span></div><div class="line">   mBlocked = <span class="keyword">false</span>;</div><div class="line">   <span class="keyword">if</span> (prevMsg != <span class="keyword">null</span>) &#123;</div><div class="line">      prevMsg.next = msg.next;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">      mMessages = msg.next;</div><div class="line">   &#125;</div><div class="line">   msg.next = <span class="keyword">null</span>;</div><div class="line">   <span class="keyword">return</span> msg;</div><div class="line">&#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">// No more messages.</span></div><div class="line">  nextPollTimeoutMillis = -<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// Process the quit message now that all pending messages have been handled.</span></div><div class="line"><span class="comment">//线程不存在时返回null，loop()也会随之结束</span></div><div class="line"><span class="keyword">if</span> (mQuitting) &#123;</div><div class="line">       dispose();</div><div class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// If first time idle, then get the number of idlers to run.</span></div><div class="line"><span class="comment">// Idle handles only run if the queue is empty or if the first message</span></div><div class="line"><span class="comment">// in the queue (possibly a barrier) is due to be handled in the future.</span></div><div class="line"><span class="keyword">if</span> (pendingIdleHandlerCount &lt; <span class="number">0</span>&amp;&amp; (mMessages == <span class="keyword">null</span> || now &lt; mMessages.when)) &#123;</div><div class="line">      pendingIdleHandlerCount = mIdleHandlers.size();</div><div class="line">&#125;</div><div class="line"><span class="comment">//死循环发生在这里，具体还没有很明白，需要再去研究</span></div><div class="line"><span class="keyword">if</span> (pendingIdleHandlerCount &lt;= <span class="number">0</span>) &#123;</div><div class="line"><span class="comment">// No idle handlers to run.  Loop and wait some more.</span></div><div class="line"> mBlocked = <span class="keyword">true</span>;</div><div class="line"><span class="keyword">continue</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (mPendingIdleHandlers == <span class="keyword">null</span>) &#123;</div><div class="line">mPendingIdleHandlers = <span class="keyword">new</span> IdleHandler[Math.max(pendingIdleHandlerCount, <span class="number">4</span>)];</div><div class="line">&#125;</div><div class="line">mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);</div><div class="line">&#125;</div><div class="line"><span class="comment">// Run the idle handlers.</span></div><div class="line"><span class="comment">// We only ever reach this code block during the first iteration.</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pendingIdleHandlerCount; i++) &#123;</div><div class="line">    <span class="keyword">final</span> IdleHandler idler = mPendingIdleHandlers[i];</div><div class="line">    mPendingIdleHandlers[i] = <span class="keyword">null</span>; <span class="comment">// release the reference to the handler</span></div><div class="line"><span class="keyword">boolean</span> keep = <span class="keyword">false</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    keep = idler.queueIdle();</div><div class="line">&#125; <span class="keyword">catch</span> (Throwable t) &#123;</div><div class="line">Log.wtf(<span class="string">"MessageQueue"</span>, <span class="string">"IdleHandler threw exception"</span>, t);</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (!keep) &#123;</div><div class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">      mIdleHandlers.remove(idler);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// Reset the idle handler count to 0 so we do not run them again.</span></div><div class="line">pendingIdleHandlerCount = <span class="number">0</span>;</div><div class="line"><span class="comment">// While calling an idle handler, a new message could have been delivered</span></div><div class="line"><span class="comment">// so go back and look again for a pending message without waiting.</span></div><div class="line">nextPollTimeoutMillis = <span class="number">0</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -580,8 +580,8 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/15/android/Adapter封装3-ListView多类型抽象适配/" rel="next" title="Android多类型抽象适配">
-                <i class="fa fa-chevron-left"></i> Android多类型抽象适配
+              <a href="/2015/11/15/技术/Java_ArrayList/" rel="next" title="ArrayList源码分析(Java&Android)">
+                <i class="fa fa-chevron-left"></i> ArrayList源码分析(Java&Android)
               </a>
             
           </div>
@@ -616,10 +616,10 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
   <a class="jiathis_button_qzone"></a>
   <a class="jiathis_button_kaixin001"></a>
   <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -639,8 +639,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/11/17/技术/android_handler/"
-           data-title="Handler源码分析" data-url="http://chendongmarch.github.io/2015/11/17/技术/android_handler/">
+      <div class="ds-thread" data-thread-key="2015/11/17/技术/android_handler/" data-title="Handler源码分析" data-url="http://chendongmarch.github.io/2015/11/17/技术/android_handler/">
       </div>
     
   </div>
@@ -665,7 +664,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -675,10 +674,8 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="chendong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
           <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
         </div>
@@ -702,7 +699,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -729,11 +726,11 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank">GitHub</a>
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank">CSDN</a>
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
                 </li>
               
             </ul>
@@ -765,7 +762,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2017</span>
@@ -776,12 +773,12 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
     NexT.Mist
   </a>
 </div>

@@ -7,9 +7,9 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <script>
     (function(){
@@ -23,8 +23,8 @@
 </script>
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -39,7 +39,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -73,21 +73,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,RecyclerView" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Android,RecyclerView">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/2016/04/11/android/RecyclerView添加Header和Footer/"/>
+  <link rel="canonical" href="http://chendongmarch.github.io/2016/04/11/android/RecyclerView添加Header和Footer/">
 
 
   <title> RecyclerView添加Header和Footer的基本原理 | 三月 </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-CN">
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
 
   
 
@@ -163,18 +163,18 @@
 
   <!--- add Fork me on Github  -->
     
-    <a href="https://github.com/chendongmarch">
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
       <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
     </a>
     
     <!--- add Fork me on Github -->   
     
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta custom-logo">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">三月</span>
       <span class="logo-line-after"><i></i></span>
@@ -201,7 +201,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -211,7 +211,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -221,7 +221,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -231,7 +231,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -241,7 +241,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -251,7 +251,7 @@
         <li class="menu-item menu-item-guestbook">
           <a href="/guestbook" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
             
             留言
           </a>
@@ -264,7 +264,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -309,7 +309,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -338,14 +338,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Android/" itemprop="url" rel="index">
                     <span itemprop="name">Android</span>
                   </a>
@@ -377,7 +377,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
               </span>
           
         </div>
@@ -392,7 +392,7 @@
 
       
         <h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><ul>
-<li><a href="https://github.com/chendongMarch/QuickRv" target="_blank" rel="external">GitHub</a></li>
+<li><a href="https://github.com/chendongMarch/QuickRv" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a></li>
 </ul>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
 <li><p>采用的基本原理就是Header和Footer作为RecyclerView的一个Item，只是显示的方式特别一点，ListView实际也是这么做的所以添加了Header之后，数据的位置会错乱。</p>
@@ -418,7 +418,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> RvViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        RvViewHolder holder;</div><div class="line">        <span class="keyword">if</span> (isHasFooter() &amp;&amp; viewType == TYPE_FOOTER) &#123;</div><div class="line">            holder = <span class="keyword">new</span> RvFooterHolder(mFooterView);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isHasHeader() &amp;&amp; viewType == TYPE_HEADER) &#123;</div><div class="line">            holder = <span class="keyword">new</span> RvHeaderHolder(mHeaderView);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            holder = <span class="keyword">new</span> RvViewHolder(getInflateView(Res4Type.get(viewType).getResId(), parent));</div><div class="line">            <span class="keyword">if</span> (clickListener != <span class="keyword">null</span>) &#123;</div><div class="line">                holder.setOnItemClickListener(clickListener);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (longClickListenter != <span class="keyword">null</span>) &#123;</div><div class="line">                holder.setOnItemLongClickListener(longClickListenter);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">		 <span class="comment">//关键代码</span></div><div class="line">        <span class="keyword">if</span> (isStaggeredGridLayoutManager &amp;&amp; (holder <span class="keyword">instanceof</span> RvHeaderHolder || holder <span class="keyword">instanceof</span> RvFooterHolder)) &#123;</div><div class="line">            Log.e(<span class="string">"chendong"</span>,<span class="string">"瀑布流设置满行"</span>);</div><div class="line">            StaggeredGridLayoutManager.LayoutParams layoutParams = <span class="keyword">new</span> StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);</div><div class="line">            layoutParams.setFullSpan(<span class="keyword">true</span>);</div><div class="line">            holder.getParentView().setLayoutParams(layoutParams);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        bindListener4View(holder, viewType);</div><div class="line">        <span class="keyword">return</span> holder;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="QuickAdapter"><a href="#QuickAdapter" class="headerlink" title="QuickAdapter"></a>QuickAdapter</h2><ul>
-<li>最后贴一下整个QuickAdapter的源代码，涉及相关具体的类可以去<a href="http://blog.csdn.net/chendong_/article/details/50897581" target="_blank" rel="external">这里查看</a></li>
+<li>最后贴一下整个QuickAdapter的源代码，涉及相关具体的类可以去<a href="http://blog.csdn.net/chendong_/article/details/50897581" target="_blank" rel="external nofollow noopener noreferrer">这里查看</a></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.march.quickrvlibs;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"><span class="keyword">import</span> android.support.v7.widget.GridLayoutManager;</div><div class="line"><span class="keyword">import</span> android.support.v7.widget.RecyclerView;</div><div class="line"><span class="keyword">import</span> android.support.v7.widget.StaggeredGridLayoutManager;</div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"><span class="keyword">import</span> android.util.SparseArray;</div><div class="line"><span class="keyword">import</span> android.view.LayoutInflater;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.view.ViewGroup;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.march.quickrvlibs.inter.OnRecyclerItemClickListener;</div><div class="line"><span class="keyword">import</span> com.march.quickrvlibs.inter.OnRecyclerItemLongClickListener;</div><div class="line"><span class="keyword">import</span> com.march.quickrvlibs.inter.RvQuickInterface;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Collections;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by 陈栋 on 15/12/28.</div><div class="line"> * 功能:</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">RvQuickAdapter</span>&lt;<span class="title">D</span> <span class="keyword">extends</span> <span class="title">RvQuickInterface</span>&gt; <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">RvViewHolder</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> List&lt;D&gt; datas;</div><div class="line">    <span class="keyword">protected</span> LayoutInflater mLayoutInflater;</div><div class="line">    <span class="keyword">protected</span> Context context;</div><div class="line">    <span class="keyword">protected</span> SparseArray&lt;RvAdapterConfig&gt; Res4Type;</div><div class="line">    <span class="keyword">private</span> OnRecyclerItemClickListener&lt;RvViewHolder&gt; clickListener;</div><div class="line">    <span class="keyword">private</span> OnRecyclerItemLongClickListener&lt;RvViewHolder&gt; longClickListenter;</div><div class="line">    <span class="keyword">private</span> View mHeaderView;</div><div class="line">    <span class="keyword">private</span> View mFooterView;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> TYPE_HEADER = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> TYPE_FOOTER = -<span class="number">2</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> adapterId;<span class="comment">//使用此标志来判断当前adapter的类型</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isStaggeredGridLayoutManager   = <span class="keyword">false</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAdapterId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> adapterId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置adapterId标示</div><div class="line">     * <span class="doctag">@param</span> adapterId adapter标示</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAdapterId</span><span class="params">(<span class="keyword">int</span> adapterId)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.adapterId = adapterId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 使用标记判断,是否是该adaper</div><div class="line">     * <span class="doctag">@param</span> adapter adapter</div><div class="line">     * <span class="doctag">@return</span> boolean</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isThisAdapter</span><span class="params">(RvQuickAdapter adapter)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (adapter == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (adapter.getAdapterId() == adapterId) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 多类型适配,需要调用addType()方法配置参数</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> context context</div><div class="line">     * <span class="doctag">@param</span> datas   数据源</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RvQuickAdapter</span><span class="params">(Context context, List&lt;D&gt; datas)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.datas = datas;</div><div class="line">        <span class="keyword">this</span>.mLayoutInflater = LayoutInflater.from(context);</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RvQuickAdapter</span><span class="params">(Context context, D[] ds)</span> </span>&#123;</div><div class="line">        Collections.addAll(datas, ds);</div><div class="line">        <span class="keyword">this</span>.mLayoutInflater = LayoutInflater.from(context);</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 单类型适配</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> context context</div><div class="line">     * <span class="doctag">@param</span> datas   数据源</div><div class="line">     * <span class="doctag">@param</span> res     layout资源</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RvQuickAdapter</span><span class="params">(Context context, List&lt;D&gt; datas, <span class="keyword">int</span> res)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.datas = datas;</div><div class="line">        <span class="keyword">this</span>.mLayoutInflater = LayoutInflater.from(context);</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">        <span class="keyword">this</span>.Res4Type = <span class="keyword">new</span> SparseArray&lt;&gt;();</div><div class="line">        Res4Type.put(<span class="number">0</span>, <span class="keyword">new</span> RvAdapterConfig(<span class="number">0</span>, res));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RvQuickAdapter</span><span class="params">(Context context, D[] ds, <span class="keyword">int</span> res)</span> </span>&#123;</div><div class="line">        Collections.addAll(datas, ds);</div><div class="line">        <span class="keyword">this</span>.mLayoutInflater = LayoutInflater.from(context);</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">        <span class="keyword">this</span>.Res4Type = <span class="keyword">new</span> SparseArray&lt;&gt;();</div><div class="line">        Res4Type.put(<span class="number">0</span>, <span class="keyword">new</span> RvAdapterConfig(<span class="number">0</span>, res));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setClickListener</span><span class="params">(OnRecyclerItemClickListener&lt;RvViewHolder&gt; listener)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (listener != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">this</span>.clickListener = listener;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLongClickListener</span><span class="params">(OnRecyclerItemLongClickListener&lt;RvViewHolder&gt; longClickListenter)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (longClickListenter != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">this</span>.longClickListenter = longClickListenter;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addHeader</span><span class="params">(View mHeaderView)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mHeaderView = mHeaderView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFooter</span><span class="params">(View mFooterView)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mFooterView = mFooterView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addHeader</span><span class="params">(<span class="keyword">int</span> mHeaderViewRes)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mHeaderView = getInflateView(mHeaderViewRes, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFooter</span><span class="params">(<span class="keyword">int</span> mFooterViewRes)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mFooterView = getInflateView(mFooterViewRes, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getInflateView</span><span class="params">(<span class="keyword">int</span> resId, ViewGroup parent)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mLayoutInflater.inflate(resId, parent, <span class="keyword">false</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> RvViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        RvViewHolder holder;</div><div class="line">        <span class="keyword">if</span> (isHasFooter() &amp;&amp; viewType == TYPE_FOOTER) &#123;</div><div class="line">            holder = <span class="keyword">new</span> RvFooterHolder(mFooterView);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isHasHeader() &amp;&amp; viewType == TYPE_HEADER) &#123;</div><div class="line">            holder = <span class="keyword">new</span> RvHeaderHolder(mHeaderView);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            holder = <span class="keyword">new</span> RvViewHolder(getInflateView(Res4Type.get(viewType).getResId(), parent));</div><div class="line">            <span class="keyword">if</span> (clickListener != <span class="keyword">null</span>) &#123;</div><div class="line">                holder.setOnItemClickListener(clickListener);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (longClickListenter != <span class="keyword">null</span>) &#123;</div><div class="line">                holder.setOnItemLongClickListener(longClickListenter);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (isStaggeredGridLayoutManager &amp;&amp; (holder <span class="keyword">instanceof</span> RvHeaderHolder || holder <span class="keyword">instanceof</span> RvFooterHolder)) &#123;</div><div class="line">            Log.e(<span class="string">"chendong"</span>,<span class="string">"瀑布流设置满行"</span>);</div><div class="line">            StaggeredGridLayoutManager.LayoutParams layoutParams = <span class="keyword">new</span> StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);</div><div class="line">            layoutParams.setFullSpan(<span class="keyword">true</span>);</div><div class="line">            holder.getParentView().setLayoutParams(layoutParams);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        bindListener4View(holder, viewType);</div><div class="line">        <span class="keyword">return</span> holder;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RvViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (isHasFooter() &amp;&amp; position == getItemCount() - <span class="number">1</span>) &#123;</div><div class="line">            bindLisAndData4Footer((RvFooterHolder) holder);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isHasHeader() &amp;&amp; position == <span class="number">0</span>) &#123;</div><div class="line">            bindLisAndData4Header((RvHeaderHolder) holder);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">int</span> pos = judgePos(position);</div><div class="line">            bindData4View(holder, datas.get(pos), pos, datas.get(pos).getRvType());</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="comment">//如果没有header没有footer直接返回</span></div><div class="line">        <span class="keyword">if</span> (!isHasHeader() &amp;&amp; !isHasFooter())</div><div class="line">            <span class="keyword">return</span> datas.get(position).getRvType();</div><div class="line"></div><div class="line">        <span class="comment">//有header且位置0</span></div><div class="line">        <span class="keyword">if</span> (isHasHeader() &amp;&amp; position == <span class="number">0</span>)</div><div class="line">            <span class="keyword">return</span> TYPE_HEADER;</div><div class="line"></div><div class="line">        <span class="comment">//pos超出</span></div><div class="line">        <span class="keyword">if</span> (isHasFooter() &amp;&amp; position == getItemCount() - <span class="number">1</span>)</div><div class="line">            <span class="keyword">return</span> TYPE_FOOTER;</div><div class="line"></div><div class="line">        <span class="comment">//如果有header,下标减一个</span></div><div class="line">        <span class="keyword">if</span> (isHasHeader())</div><div class="line">            <span class="keyword">return</span> datas.get(position - <span class="number">1</span>).getRvType();</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="comment">//没有header 按照原来的</span></div><div class="line">            <span class="keyword">return</span> datas.get(position).getRvType();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">judgePos</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (isHasHeader()) &#123;</div><div class="line">            <span class="keyword">return</span> pos - <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> pos;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttachedToRecyclerView</span><span class="params">(RecyclerView recyclerView)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onAttachedToRecyclerView(recyclerView);</div><div class="line">        Log.e(<span class="string">"chendong"</span>,<span class="string">"onAttachedToRecyclerView"</span>);</div><div class="line">        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();</div><div class="line">        <span class="keyword">if</span> (layoutManager <span class="keyword">instanceof</span> GridLayoutManager) &#123;</div><div class="line">            <span class="keyword">final</span> GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;</div><div class="line">            gridLayoutManager.setSpanSizeLookup(<span class="keyword">new</span> GridLayoutManager.SpanSizeLookup() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSpanSize</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">                    <span class="keyword">return</span> getItemViewType(position) == TYPE_HEADER || getItemViewType(position) == TYPE_FOOTER</div><div class="line">                            ? gridLayoutManager.getSpanCount() : <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(layoutManager <span class="keyword">instanceof</span> StaggeredGridLayoutManager)&#123;</div><div class="line">            isStaggeredGridLayoutManager = <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 绑定数据</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> holder ViewHolder数据持有者</div><div class="line">     * <span class="doctag">@param</span> data   数据集</div><div class="line">     * <span class="doctag">@param</span> pos    数据集中的位置</div><div class="line">     * <span class="doctag">@param</span> type   type</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">bindData4View</span><span class="params">(RvViewHolder holder, D data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 绑定监听器</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> holder ViewHolder数据持有者</div><div class="line">     * <span class="doctag">@param</span> type   type</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bindListener4View</span><span class="params">(RvViewHolder holder, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 绑定header的数据 和  监听</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> holder header holder</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bindLisAndData4Header</span><span class="params">(RvHeaderHolder holder)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 绑定footer的数据和监听</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> holder footer holder</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bindLisAndData4Footer</span><span class="params">(RvFooterHolder holder)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> pos = datas.size();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (isHasHeader())</div><div class="line">            pos++;</div><div class="line">        <span class="keyword">if</span> (isHasFooter())</div><div class="line">            pos++;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> pos;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getHeaderCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> isHasHeader() ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDataPos</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> pos - getHeaderCount();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isHasHeader</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mHeaderView != <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isHasFooter</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mFooterView != <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> type  数据的类型(如果有n种类型,那么type的值需要是0 ~ n-1)</div><div class="line">     * <span class="doctag">@param</span> resId 该类型对应的资源文件的id</div><div class="line">     * <span class="doctag">@return</span> QuickTypeAdapter</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> RvQuickAdapter&lt;D&gt; <span class="title">addType</span><span class="params">(<span class="keyword">int</span> type, <span class="keyword">int</span> resId)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.Res4Type == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">this</span>.Res4Type = <span class="keyword">new</span> SparseArray&lt;&gt;();</div><div class="line">        <span class="keyword">this</span>.Res4Type.put(type, <span class="keyword">new</span> RvAdapterConfig(type, resId));</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
@@ -489,10 +489,10 @@
   <a class="jiathis_button_qzone"></a>
   <a class="jiathis_button_kaixin001"></a>
   <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -512,8 +512,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/11/android/RecyclerView添加Header和Footer/"
-           data-title="RecyclerView添加Header和Footer的基本原理" data-url="http://chendongmarch.github.io/2016/04/11/android/RecyclerView添加Header和Footer/">
+      <div class="ds-thread" data-thread-key="2016/04/11/android/RecyclerView添加Header和Footer/" data-title="RecyclerView添加Header和Footer的基本原理" data-url="http://chendongmarch.github.io/2016/04/11/android/RecyclerView添加Header和Footer/">
       </div>
     
   </div>
@@ -538,7 +537,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -548,10 +547,8 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/avatar.jpg"
-               alt="chendong" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
           <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
         </div>
@@ -575,7 +572,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -602,11 +599,11 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank">GitHub</a>
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank">CSDN</a>
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
                 </li>
               
             </ul>
@@ -622,7 +619,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub"><span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量和方法"><span class="nav-text">变量和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据是否有Header和Footer获取数据Size"><span class="nav-text">根据是否有Header和Footer获取数据Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据是否有Header和Footer获取Type"><span class="nav-text">根据是否有Header和Footer获取Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据是否有Header和Footer创建Holder"><span class="nav-text">根据是否有Header和Footer创建Holder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinearLayoutManager"><span class="nav-text">LinearLayoutManager</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GridLayoutManager"><span class="nav-text">GridLayoutManager</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#StaggeredGridLayoutManager"><span class="nav-text">StaggeredGridLayoutManager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QuickAdapter"><span class="nav-text">QuickAdapter</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub"><span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量和方法"><span class="nav-text">变量和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据是否有Header和Footer获取数据Size"><span class="nav-text">根据是否有Header和Footer获取数据Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据是否有Header和Footer获取Type"><span class="nav-text">根据是否有Header和Footer获取Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据是否有Header和Footer创建Holder"><span class="nav-text">根据是否有Header和Footer创建Holder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinearLayoutManager"><span class="nav-text">LinearLayoutManager</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#GridLayoutManager"><span class="nav-text">GridLayoutManager</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#StaggeredGridLayoutManager"><span class="nav-text">StaggeredGridLayoutManager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QuickAdapter"><span class="nav-text">QuickAdapter</span></a></li></ol></li></div>
             
           </div>
         </section>
@@ -638,7 +635,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2017</span>
@@ -649,12 +646,12 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
     NexT.Mist
   </a>
 </div>
