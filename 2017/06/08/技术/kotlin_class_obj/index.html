@@ -1,0 +1,993 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="kotlin,类,对象,构造器">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍 Kotlin 类与对象。
+看了官方文档的相关描述，发现很多名词在 Kotlin 中和 Java 都有不太一样，在 Kotlin 中 方法 被称为 函数，而像 open , final 这种关键字被称为注解(annotation)，在我之前的认知当中只有 @Inject 这种才是注解。因此文章中的描述都尽量使用 Kotlin 中的术语。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin-类与对象篇">
+<meta property="og:url" content="http://chendongmarch.github.io/2017/06/08/技术/kotlin_class_obj/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文主要介绍 Kotlin 类与对象。
+看了官方文档的相关描述，发现很多名词在 Kotlin 中和 Java 都有不太一样，在 Kotlin 中 方法 被称为 函数，而像 open , final 这种关键字被称为注解(annotation)，在我之前的认知当中只有 @Inject 这种才是注解。因此文章中的描述都尽量使用 Kotlin 中的术语。">
+<meta property="og:updated_time" content="2017-06-13T02:15:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin-类与对象篇">
+<meta name="twitter:description" content="本文主要介绍 Kotlin 类与对象。
+看了官方文档的相关描述，发现很多名词在 Kotlin 中和 Java 都有不太一样，在 Kotlin 中 方法 被称为 函数，而像 open , final 这种关键字被称为注解(annotation)，在我之前的认知当中只有 @Inject 这种才是注解。因此文章中的描述都尽量使用 Kotlin 中的术语。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/2017/06/08/技术/kotlin_class_obj/">
+
+
+  <title> Kotlin-类与对象篇 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Kotlin-类与对象篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-08T00:00:00+08:00" content="2017-06-08">
+              2017-06-08
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/08/技术/kotlin_class_obj/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/08/技术/kotlin_class_obj/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍 <code>Kotlin</code> 类与对象。</p>
+<p>看了官方文档的相关描述，发现很多名词在 <code>Kotlin</code> 中和 <code>Java</code> 都有不太一样，在 <code>Kotlin</code> 中 <code>方法</code> 被称为 <code>函数</code>，而像 <code>open</code> , <code>final</code> 这种关键字被称为注解(<code>annotation</code>)，在我之前的认知当中只有 <code>@Inject</code> 这种才是注解。因此文章中的描述都尽量使用 <code>Kotlin</code> 中的术语。</p>
+<a id="more"></a>
+<h2 id="属性与域"><a href="#属性与域" class="headerlink" title="属性与域"></a>属性与域</h2><p><code>Kotlin</code> 中，使用 <code>val</code> 声明常量(不可变)，使用 <code>var</code> 声明变量(可变)。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">val</span> a = <span class="number">100</span> <span class="comment">// 常量，不可变，当你再想改变他的值时会报错</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">var</span> b = <span class="number">1000</span> <span class="comment">// 变量，可变</span></div><div class="line">b = <span class="number">-100</span></div><div class="line"></div><div class="line"><span class="keyword">val</span> c:<span class="built_in">Int</span>? = <span class="literal">null</span></div></pre></td></tr></table></figure>
+<h3 id="属性的声明"><a href="#属性的声明" class="headerlink" title="属性的声明"></a>属性的声明</h3><p>声明属性的完整语法如下，其中的初始化器(<code>initializer</code>)， 取值方法(<code>getter</code>)， 以及设值方法(<code>setter</code>)都是可选的。<code>Kotlin</code> 具有类型自动推断得特性，如果属性类型可以通过初始化器自动推断得到， 或者可以通过这个属性覆盖的基类成员属性推断得到， 则属性类型的声明也可以省略。</p>
+<p>标准的初始化方法，需要清楚其中几个概念</p>
+<blockquote>
+<ul>
+<li><code>propertyName</code> ：变量名</li>
+<li><code>PropertyType</code> ：变量类型，如果可以推断得到，可以省略</li>
+<li><code>property_initializer</code> ：初始化器，它可以是一个固定值或一个表达式</li>
+<li><code>getter</code> ：取值方法，访问器的一种</li>
+<li><code>setter</code> ：设值方法，访问器的一种</li>
+</ul>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> &lt;propertyName&gt;: &lt;PropertyType&gt; [= &lt;property_initializer&gt;]</div><div class="line">    [&lt;getter&gt;]</div><div class="line">    [&lt;setter&gt;]</div></pre></td></tr></table></figure>
+<p>注意，对于 <code>var</code> 变量来说，初始化器，设值，取值方法都是允许同时存在的，如下 <code>1</code>，对于 <code>val</code> 变量来说，不允许有设值方法，同时 <code>getter</code> 方法和 <code>初始化器</code> 不允许同时指定，如下 <code>2</code>，因为只读变量只允许初始化一次。</p>
+<p>使用 <strong>注解</strong> 和 <strong>可见度修饰符</strong>，如下实例中国年 <code>3</code>，如果不想在外界访问属性的 <code>set／get</code> 方法，可以使用可见度修饰符来避免外部访问。同样也可以在 <code>set／get</code> 方法前使用注解。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">ClsA</span> </span>&#123;</div><div class="line">    <span class="comment">// 1</span></div><div class="line">    <span class="keyword">var</span> x: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">        <span class="keyword">get</span>() = <span class="number">100</span></div><div class="line">        <span class="keyword">set</span>(value) &#123;</div><div class="line">            field = value</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    <span class="comment">// 2. 不允许有设值方法，同时get方法和初始化器不允许同时指定，因为只读变量只允许初始化一次</span></div><div class="line">    <span class="keyword">val</span> y: <span class="built_in">Int</span></div><div class="line">        <span class="keyword">get</span>() = <span class="number">100</span></div><div class="line">    <span class="comment">// 这是不允许的，因为val只读的</span></div><div class="line">    <span class="comment">// set(value) &#123;</span></div><div class="line">    <span class="comment">//    field = value</span></div><div class="line">    <span class="comment">// &#125;</span></div><div class="line">    </div><div class="line">    <span class="comment">// 3. 在set/get方法前使用可见度修饰符和注解</span></div><div class="line">    <span class="keyword">var</span> z: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">    <span class="meta">@Inject</span> <span class="keyword">get</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">set</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">eg:</div><div class="line"><span class="keyword">val</span> param:ClsA = ClsA()</div><div class="line"><span class="comment">// 编译错误，因为不允许访问z的设值方法</span></div><div class="line">param.z = <span class="number">100</span></div></pre></td></tr></table></figure>
+<h3 id="后端域变量和后端属性"><a href="#后端域变量和后端属性" class="headerlink" title="后端域变量和后端属性"></a>后端域变量和后端属性</h3><ul>
+<li>后端域变量</li>
+</ul>
+<p><code>Kotlin</code> 的类中不允许具有 <code>backing fields</code>，即 <code>后端域变量</code>。根本原因在于 <code>Kotlin</code> 中当你使用属性名直接方法该属性时会调用 <code>get/set</code> 方法。如下实例中中的 <code>1</code>。因此当你在 <code>set</code> 方法中调用该属性为他赋值时又会调用 <code>set</code> 方法，导致堆栈溢出，如实例中 <code>2</code>，这是我在开始写的时候遇到的问题。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1 伪代码</span></div><div class="line">ClsA().x = <span class="number">100</span> == ClsA().setX()</div><div class="line"><span class="keyword">val</span> a = ClsA.x == <span class="keyword">val</span> a = ClsA().getX()</div><div class="line"></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="keyword">var</span> xx: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">    <span class="keyword">set</span>(value) &#123;</div><div class="line">    	<span class="comment">// 再次调用 set 方法</span></div><div class="line">        xx = value + <span class="number">1</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>但是自定义属性的访问器时不可避免的要使用 域变量，因此 <code>Kotlin</code> 提供了一种自动的后端域变量，使用关键字 <code>field</code> 表示，<code>field</code> 标识符只允许在属性的访问器函数内使用，如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xx: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">    <span class="keyword">get</span>() = field++</div><div class="line">    <span class="keyword">set</span>(value) &#123;</div><div class="line">        field = value - <span class="number">1</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>后端属性    </li>
+</ul>
+<p>有时隐含的后端域属性不能解决某些情况的问题，此时可以使用自定义的后端属性。如下实例中，后端属性就是另外定义一个属性 <code>_yy</code> 用来存储数据，而外界访问的属性 <code>yy</code> 只是提供了一个访问器方法而已，本身已经不具备什么意义啦，将访问器的声明和数据的存储放在两个地方，就不会发生之前的冲突（我的理解😊）</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">var</span> _yy: String? = <span class="literal">null</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> yy: String</div><div class="line">    <span class="keyword">get</span>() &#123;</div><div class="line">        <span class="keyword">if</span> (_yy == <span class="literal">null</span>) &#123;</div><div class="line">            _yy = <span class="string">"init str"</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> _yy ?: <span class="string">"be changed"</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">set</span>(value) &#123;</div><div class="line">        _yy = <span class="string">"this is <span class="subst">$value</span>"</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line"><span class="comment">// 访问yy</span></div><div class="line"><span class="keyword">val</span> param: ClsA = ClsA()</div><div class="line">param.yy</div></pre></td></tr></table></figure>
+<h3 id="编译期常数"><a href="#编译期常数" class="headerlink" title="编译期常数"></a>编译期常数</h3><p>如果属性值在编译期间就能确定, 则可以使用 <code>const</code> 修饰符, 将属性标记为 <strong>编译期常数值(<code>compile time constants</code>)</strong>。 这类属性必须满足以下所有条件:</p>
+<blockquote>
+<ul>
+<li>必须是顶级属性， 或者是一个 <code>object</code> 的成员。</li>
+<li>值被初始化为 <code>String</code> 类型, 或基本类型(<code>primitive type</code>)。</li>
+<li>不存在自定义的取值方法。</li>
+</ul>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 顶级属性</span></div><div class="line">const <span class="keyword">val</span> TEST_CONST = <span class="string">"TEST_CONST"</span></div><div class="line"></div><div class="line"><span class="comment">// 声明在 object 中</span></div><div class="line"><span class="keyword">object</span> Const&#123;</div><div class="line">    const <span class="keyword">val</span> TEST_CONST_IN_OBJ = <span class="string">"TEST_CONST_IN_OBJ"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="属性的延迟初始化"><a href="#属性的延迟初始化" class="headerlink" title="属性的延迟初始化"></a>属性的延迟初始化</h3><p><code>lateinit</code> 关键字表示当前 变量 不会在声明时进行初始化操作，初始化操作会在后面进行，像是一种协议机制，告知编译器我会在后面使用该变量之前的恰当时机初始化该变量，不要进行警告⚠️。在一个 <code>lateinit</code> 属性被初始化之前访问它， 会抛出一个特别的异常，这个异常将会指明被访问的属性，以及它没有被初始化这一错误。</p>
+<p>需要注意的是使用 <code>lateinit</code> 关键字有很多限制:</p>
+<blockquote>
+<ul>
+<li>必须是变量，即使用 <code>var</code> 关键字进行声明。   </li>
+<li>不能修饰可为 <code>null</code> 的类型，比如 <code>lateinit var str:String?</code> 是编译不通过的。   </li>
+<li>不能修饰基本数据类型。例如 <code>Int</code>,<code>Float</code>等</li>
+</ul>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">lateinit <span class="keyword">var</span> stuLateInit:Student</div><div class="line"></div><div class="line">stuLateInit = Student(<span class="string">"name"</span>,<span class="number">11</span>)</div></pre></td></tr></table></figure>
+<h2 id="类的构造器"><a href="#类的构造器" class="headerlink" title="类的构造器"></a>类的构造器</h2><p><code>Kotlin</code> 中的类可以有一个 <strong>主构造器</strong> (<code>primary constructor</code>), 以及一个或多个 <strong>次构造器</strong> (<code>secondary constructor</code>)。主构造器是类头部的一部分, 位于类名称(以及可选的类型参数)之后。</p>
+<h3 id="主构造器"><a href="#主构造器" class="headerlink" title="主构造器"></a>主构造器</h3><p>主构造器紧跟在类名后面进行声明，声明的一般形式如下，可见度修饰符默认为 <code>public</code>，(如果主构造器是 <code>public</code> 的，同时没有注解那么可以省略 <code>constructor</code> 关键字)。当然如果类内部没有具体的实现，<code>{}</code> 也是可以省略的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 完整的写法</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> <span class="keyword">private</span> <span class="meta">@Inject</span> <span class="keyword">constructor</span></span>(name: String, age: <span class="built_in">Int</span>, language: String)</div><div class="line"></div><div class="line"><span class="comment">// 简化写法，由于是public的，同时没有注解，省略了constructor关键字</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> </span>(name: String, age: <span class="built_in">Int</span>, language: String)</div><div class="line"></div><div class="line"><span class="comment">// 默认生成一个public的无参构造器</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span></div></pre></td></tr></table></figure>
+<p>由于主构造器中无法使用初始化代码，可以在类内进行属性的初始化，使用 <code>init{}</code> 关键字表示。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span> </span>(name: String, age: <span class="built_in">Int</span>, language: String) &#123;</div><div class="line">    <span class="keyword">var</span> name: String = <span class="string">""</span></div><div class="line">    <span class="keyword">var</span> age:<span class="built_in">Int</span> = <span class="number">0</span></div><div class="line">    <span class="keyword">var</span> language:String = <span class="string">""</span></div><div class="line"></div><div class="line">    init &#123;</div><div class="line">        <span class="keyword">this</span>.name = name</div><div class="line">        <span class="keyword">this</span>.age = age</div><div class="line">        <span class="keyword">this</span>.language = language</div><div class="line">        log(<span class="string">"name = <span class="subst">$name</span>,age = <span class="subst">$age</span>, lan = <span class="subst">$language</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在主构造器内可以直接使用 <code>val</code> 和 <code>var</code> 声明和初始化属性，他们都是类的成员属性。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span>(<span class="keyword">val</span> name: String = <span class="string">""</span>, age: <span class="built_in">Int</span> = <span class="number">0</span>, language: String = <span class="string">""</span>) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意: 在 JVM 中, 如果主构造器的所有参数都指定了默认值, 编译器将会产生一个额外的无参数构造器, 这个无参数构造器会使用默认参数值来调用既有的构造器. 有些库(比如 Jackson 或 JPA) 会使用无参数构造器来创建对象实例, 这个特性将使得 Kotlin 比较容易与这种库协同工作.</p>
+</blockquote>
+<h3 id="次级构造器"><a href="#次级构造器" class="headerlink" title="次级构造器"></a>次级构造器</h3><p>如果类有主构造器, 那么每个次级构造器都必须委托给主构造器, 要么直接委托, 要么通过其他次级构造器间接委托. 委托到同一个类的另一个构造器时, 使用 <code>this</code> 关键字实现。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span>(<span class="keyword">val</span> name: String = <span class="string">""</span>, age: <span class="built_in">Int</span> = <span class="number">0</span>, language: String = <span class="string">""</span>) &#123;</div><div class="line">    <span class="keyword">constructor</span>(name: String, age: <span class="built_in">Int</span>) : <span class="keyword">this</span>(name, age, <span class="string">"en"</span>)&#123;</div><div class="line">        log(<span class="string">"次级构造器"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><p>构造器中的属性指定初始值后在创建对象时可以省略，使用如下方法，避免重载构造方法，主构造器中具有默认值的属性不是必须赋值的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> en = Engineer(<span class="string">""</span>,<span class="number">12</span>)</div><div class="line"><span class="keyword">val</span> en1 = Engineer(name = <span class="string">"test"</span>)</div><div class="line"><span class="keyword">val</span> en2 = Engineer(name = <span class="string">"test"</span>,age = <span class="number">12</span>,language = <span class="string">""</span>)</div></pre></td></tr></table></figure>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p><code>kotlin</code> 中所有的类默认继承自超类 <code>Any</code>,<code>Any</code> 不是 <code>java.lang.Object</code>; 尤其要注意, 除 <code>equals()</code> , <code>hashCode()</code> 和 <code>toString()</code> 之外, 它没有任何成员。  <code>Kotlin</code> 中所有的类都是 <code>fnial</code> 的，也就是不允许继承，这点和 <code>Java</code> 正好相反，如果你想继承一个类必须使用 <code>open</code> 关键字声明。 </p>
+<p><code>Kotlin</code> 使用 <code>:</code> 表示继承，子类和父类构造器调用分为以下两种情况</p>
+<ul>
+<li>如果类有主构造器, 那么必须在主构造器中使用主构造器的参数来初始化基类。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span>(<span class="keyword">var</span> name: String = <span class="string">""</span>, <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> language: String = <span class="string">""</span>) &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BigEngineer</span></span>(<span class="keyword">var</span> level: <span class="built_in">Int</span>) : Engineer(<span class="string">"name"</span>,<span class="number">12</span>) &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>如果类没有主构造器, 那么所有的次级构造器都必须使用 <code>super</code> 关键字来初始化基类, 或者委托到另一个构造器, 由被委托的构造器来初始化基类。 注意, 这种情况下, 不同的次级构造器可以调用基类中不同的构造器。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span>(<span class="keyword">var</span> name: String = <span class="string">""</span>, <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> language: String = <span class="string">""</span>) &#123;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BigEngineer</span> : <span class="type">Engineer &#123;</span></span></div><div class="line">    <span class="keyword">var</span> level = <span class="number">0</span></div><div class="line">    <span class="keyword">constructor</span>(name:String,age:<span class="built_in">Int</span>,level:<span class="built_in">Int</span>):<span class="keyword">super</span>(name,age,<span class="string">"en"</span>)&#123;</div><div class="line">        <span class="keyword">this</span>.level = level</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="方法的覆盖"><a href="#方法的覆盖" class="headerlink" title="方法的覆盖"></a>方法的覆盖</h3><p>和类一样，类中的所有方法都默认是 <code>final</code> 的，即不允许在子类中进行重写，如果想要在子类中更改，需要使用 <code>open</code> 注解声明，如实例中 <code>3</code>。</p>
+<p>如果子类想要覆盖父类的方法，必须添加 <code>override</code> 注解。 如果遗漏了这个注解，编译器将会报告错误。 如果一个函数没有标注 <code>open</code> 注解， 那么在子类中声明一个同名同参的方法将是非法的, 无论是否添加 <code>override</code> 注解， 都不可以，如实例中 <code>4</code>。 </p>
+<p>当一个子类成员标记了 <code>override</code> 注解来覆盖父类成员时， 覆盖后的子类成员本身也将是 <code>open</code> 的, 也就是说， 子类成员可以被自己的子类再次覆盖，如实例中 <code>1</code>。 如果你希望禁止这种再次覆盖，可以使用 <code>final</code> 注解，如实例中 <code>2</code>。</p>
+<p>实例：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span>(<span class="keyword">var</span> name: String = <span class="string">""</span>, <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> language: String = <span class="string">""</span>) &#123;</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">test2</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">    <span class="comment">// 此函数不允许在子类覆盖</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">test3</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">BigEngineer</span></span>(name: String = <span class="string">""</span>, age: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> level: <span class="built_in">Int</span> = <span class="number">0</span>) </div><div class="line">    : Engineer(name, age, <span class="string">"en"</span>) &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 1. 此函数覆盖了超类中的函数，他将默认是open的，他的子类可以覆盖该方法。</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment">// 2. 此函数在子类中将不会被覆盖，因为显式的添加了final注解</span></div><div class="line">    <span class="keyword">final</span> <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test2</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment">// 3. 这句是编译错误的，因为test3()不是open的</span></div><div class="line">    <span class="comment">// override fun test3() &#123;&#125; </span></div><div class="line">    </div><div class="line">    <span class="comment">//  4. 这句是编译错误的，超类中test3()是final的，在子类中声明同名同参的函数是非法的</span></div><div class="line">    <span class="comment">// fun test3()&#123;&#125;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在一个 <code>final</code> 类(比如， 一个没有添加 <code>open</code> 注解的类)中， 声明 <code>open</code> 成员是没有意义的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="comment">// 警告⚠️open has no effect in a final class。</span></div><div class="line">    <span class="comment">// 在一个final类中声明open成员是无意义的，因为类无法被继承，成员函数和变量也无法被重写。</span></div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">    <span class="keyword">open</span> <span class="keyword">val</span> a = <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="属性的覆盖"><a href="#属性的覆盖" class="headerlink" title="属性的覆盖"></a>属性的覆盖</h3><p>前提，属性的覆盖方式与方法覆盖类似，同样必须在父类中声明为 <code>open</code>，当超类中声明的属性在后代类中再次声明时，必须使用 <code>override</code> 关键字来标记，而且覆盖后的属性数据类型必须与超类中的属性数据类型兼容。 </p>
+<p>可以使用带初始化器的属性来覆盖超类属性， 也可以使用带取值方法(<code>getter</code>)的属性来覆盖。</p>
+<p>可以在主构造器的属性声明中使用 <code>override</code> 关键字，覆盖主构造器中的属性。</p>
+<p>可以使用一个 <code>var</code> 属性覆盖一个 <code>val</code> 属性，但不可以反过来使用一个 <code>val</code> 属性覆盖一个 <code>var</code> 属性。 允许这种覆盖的原因是， <code>val</code> 属性本质上只是定义了一个 <code>get</code> 方法，使用 <code>var</code> 属性来覆盖它， 只是向后代类中添加了一个 <code>set</code> 方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// name属性是open的，它可以在子类中被覆盖</span></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span>(<span class="keyword">open</span> <span class="keyword">var</span> name: String = <span class="string">""</span>, <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> language: String = <span class="string">""</span>) &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">open</span> <span class="keyword">val</span> a: <span class="built_in">Int</span></div><div class="line">        <span class="keyword">get</span>() = <span class="number">100</span></div><div class="line">        </div><div class="line">    <span class="keyword">open</span> <span class="keyword">val</span> b: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line"></div><div class="line">    <span class="keyword">open</span> <span class="keyword">var</span> c:<span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 覆盖了超类中的name属性</span></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">BigEngineer</span></span>(<span class="keyword">override</span> <span class="keyword">var</span> name: String = <span class="string">""</span>, age: <span class="built_in">Int</span> = <span class="number">0</span>, <span class="keyword">var</span> level: <span class="built_in">Int</span> = <span class="number">0</span>)</div><div class="line">    : Engineer(name, age, <span class="string">"en"</span>) &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 可以使用初始化器或getter方法对属性进行覆盖，都是允许的。</span></div><div class="line">    <span class="keyword">override</span> <span class="keyword">val</span> a: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> b = <span class="number">0</span></div><div class="line">        <span class="keyword">get</span>() = <span class="number">1</span></div><div class="line">        </div><div class="line">    <span class="comment">// 这句是编译错误的，因为val变量不能覆盖var变量</span></div><div class="line">    <span class="comment">// override val c:Int = 1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="覆盖的原则"><a href="#覆盖的原则" class="headerlink" title="覆盖的原则"></a>覆盖的原则</h3><p>在 <code>Kotlin</code> 中， 类继承中的方法实现问题, 遵守以下规则: 如果一个类从它的直接超类中继承了同一个成员的多个实现，那么这个子类必须覆盖这个成员，并提供一个自己的实现，这样在子类中消除歧，为了表示使用的方法是从哪个超类继承得到的， 我们使用 <code>super</code> 关键字, 将超类名称放在尖括号类, 比如 <code>super&lt;父类&gt;</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">ClsA</span> </span>&#123;</div><div class="line">    <span class="keyword">open</span> <span class="keyword">val</span> a = <span class="number">100</span></div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ClsB</span> </span>&#123;</div><div class="line">    <span class="keyword">val</span> a: <span class="built_in">Int</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClsC</span> : <span class="type">ClsA</span></span>(), ClsB &#123;</div><div class="line">    <span class="comment">// 属性的覆盖不存在这样的问题</span></div><div class="line">    <span class="keyword">override</span> <span class="keyword">val</span> a = <span class="number">1000</span></div><div class="line">    </div><div class="line">    <span class="comment">// 方法的覆盖</span></div><div class="line">    <span class="comment">// 此时编译器强制必须实现test()方法,因为可以从超类中继承多个实现</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="comment">// 明确的调用父类中的方法</span></div><div class="line">        <span class="keyword">super</span>&lt;ClsA&gt;.test()</div><div class="line">        <span class="keyword">super</span>&lt;ClsB&gt;.test()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kotlin/" rel="tag">#kotlin</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/04/技术/kotlin_basic/" rel="next" title="Kotlin-基础语法篇">
+                <i class="fa fa-chevron-left"></i> Kotlin-基础语法篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/06/08/技术/kotlin_class_obj/" data-title="Kotlin-类与对象篇" data-url="http://chendongmarch.github.io/2017/06/08/技术/kotlin_class_obj/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性与域"><span class="nav-text">属性与域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的声明"><span class="nav-text">属性的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后端域变量和后端属性"><span class="nav-text">后端域变量和后端属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译期常数"><span class="nav-text">编译期常数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的延迟初始化"><span class="nav-text">属性的延迟初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的构造器"><span class="nav-text">类的构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主构造器"><span class="nav-text">主构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#次级构造器"><span class="nav-text">次级构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象"><span class="nav-text">创建对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法的覆盖"><span class="nav-text">方法的覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的覆盖"><span class="nav-text">属性的覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖的原则"><span class="nav-text">覆盖的原则</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

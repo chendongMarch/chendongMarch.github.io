@@ -4,6 +4,66 @@
 
     
   <url>
+    <loc>http://chendongmarch.github.io/2017/06/08/%E6%8A%80%E6%9C%AF/kotlin_class_obj/</loc>
+    <lastmod>2017-06-13T02:15:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-类与对象篇</title>
+        <pubTime>2017-06-07T16:00:00.000Z</pubTime>
+        
+        <tag>kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/2017/06/01/%E6%8A%80%E6%9C%AF/kotlin_basic_variable/</loc>
+    <lastmod>2017-06-12T11:31:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-变量常量篇</title>
+        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
+        
+        <tag>kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/2017/06/04/%E6%8A%80%E6%9C%AF/kotlin_basic/</loc>
+    <lastmod>2017-06-08T03:43:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-基础语法篇</title>
+        <pubTime>2017-06-03T16:00:00.000Z</pubTime>
+        
+        <tag>kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://chendongmarch.github.io/2017/03/02/%E4%BB%A3%E7%A0%81%E4%B9%8B%E5%A4%96/Hexo%E5%BB%BA%E7%AB%99%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2017-06-05T16:32:42.000Z</lastmod>
     <data>
@@ -296,26 +356,6 @@
         <pubTime>2016-05-10T16:00:00.000Z</pubTime>
         
         <tag>Swift</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/2017/06/01/%E6%8A%80%E6%9C%AF/kotlin_basic_variable/</loc>
-    <lastmod>2017-06-03T05:28:05.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-变量常量篇</title>
-        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
-        
-        <tag>kotlin</tag>
          
          
            
