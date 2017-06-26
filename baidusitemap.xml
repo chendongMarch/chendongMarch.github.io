@@ -4,19 +4,21 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/2017/06/21/life/my_first_life_blog/</loc>
-    <lastmod>2017-06-21T12:58:02.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/2015/06/23/android/TabLayout%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-06-23T03:01:45.000Z</lastmod>
     <data>
         <display>
-        <title>第一篇</title>
-        <pubTime>2017-06-20T16:00:00.000Z</pubTime>
+        <title>TabLayout的使用详解</title>
+        <pubTime>2015-06-22T16:00:00.000Z</pubTime>
         
-        <tag>生活</tag>
+        <tag>Android</tag>
+         
+        <tag>Android5.+</tag>
          
          
            
              
-              <breadCrumb title="life" url="http://chendongmarch.github.io/categories/life/"/>
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
           
         </display>
     </data>
@@ -656,28 +658,6 @@
         <pubTime>2016-03-23T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/2015/06/23/android/TabLayout%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-04-07T05:40:28.000Z</lastmod>
-    <data>
-        <display>
-        <title>TabLayout的使用详解</title>
-        <pubTime>2015-06-22T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android5.+</tag>
          
          
            
