@@ -1,0 +1,954 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="kotlin,">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="本篇主要介绍 Kotlin 变量和常量 
+发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin-变量常量篇">
+<meta property="og:url" content="http://chendongmarch.github.io/技术/kotlin_basic_variable/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本篇主要介绍 Kotlin 变量和常量 
+发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
+<meta property="og:updated_time" content="2017-06-12T11:31:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin-变量常量篇">
+<meta name="twitter:description" content="本篇主要介绍 Kotlin 变量和常量 
+发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/技术/kotlin_basic_variable/">
+
+
+  <title> Kotlin-变量常量篇 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Kotlin-变量常量篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-01T00:00:00+08:00" content="2017-06-01">
+              2017-06-01
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/技术/kotlin_basic_variable/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="技术/kotlin_basic_variable/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇主要介绍 Kotlin 变量和常量 </p>
+<p>发现 <code>AS</code> 开发 <code>Kotlin</code> 的时候自动提示等功能有点卡顿，之前还在用<code>Kotlin 1.0.6</code> 的时候这个问题就很显著，现在 <code>1.1.2</code> 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 <code>Kotlin</code> 下的 <code>Parcelable</code> 插件，用起来还不错，之前用 <code>Java</code> 的时候也基本不会自己去写这个，相信 <code>Kotlin</code> 的各种插件支持也会越来越完善的。</p>
+<blockquote>
+<p>常量变量的声明<br>常量变量的初始化<br>常量变量的引用和 空安全<br>属性代理的相关概念<br>自定义属性代理   </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2><p><code>Kotlin</code> 中，使用 <code>val</code> 声明常量(不可变)，使用 <code>var</code> 声明变量(可变)。</p>
+<p><code>Kotlin</code> 具有自动类型推断的特性，例如声明 <code>val a = 100</code>，会自动推断 <code>a</code> 的类型为 <code>Int</code>，因此你可以省略类型的声明，当然你也可以显式的声明变量的类型，例如 <code>val a:Int = 100</code> ，采用 <code>:Type</code> 的形式跟在变量名后面。</p>
+<p>如果你没有在声明变量时进行初始化操作，那么编译器将无法推断变量的类型，此时必须使用显式声明类型的方式。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> a = <span class="number">100</span> <span class="comment">// 常量，不可变，当你再想改变他的值时会报错</span></div><div class="line"><span class="keyword">var</span> b = <span class="number">1000</span> <span class="comment">// 变量，可变</span></div><div class="line">b = <span class="number">-100</span></div><div class="line">        </div><div class="line"><span class="keyword">val</span> stuVal = Student(<span class="string">"name"</span>, <span class="number">11</span>)</div><div class="line"><span class="keyword">var</span> stuVar = Student(<span class="string">"name"</span>, <span class="number">11</span>)</div><div class="line">stuVar = Student(<span class="string">"name2"</span>,<span class="number">12</span>)</div><div class="line"></div><div class="line"><span class="comment">// 声明一个可以为null的变量</span></div><div class="line"><span class="keyword">var</span> stuCanBeNull: Student? = <span class="literal">null</span></div></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>首先你可以在声明 变量/常量 的时候进行 变量/常量 的初始化，当然大多数时候我们不会在声明 变量/常量 的时候进行初始化。</p>
+<p>Kotlin 中你可以使用 <code>lateinit</code> 和 <code>属性代理</code> 两种方式延迟 变量/常量 的初始化。</p>
+<h3 id="lateinit"><a href="#lateinit" class="headerlink" title="lateinit"></a>lateinit</h3><p><code>lateinit</code> 关键字表示当前 变量 不会在声明时进行初始化操作，初始化操作会在后面进行，像是一种协议机制，告知编译器我会在后面使用该变量之前的恰当时机初始化该变量，不要进行警告⚠️。需要注意的是使用 <code>lateinit</code> 关键字有很多限制:</p>
+<ul>
+<li>必须是变量，即使用 <code>var</code> 关键字进行声明。   </li>
+<li>不能修饰可为 null 的类型，比如 <code>lateinit var str:String?</code> 是编译不通过的。   </li>
+<li>不能修饰基本数据类型。例如 <code>Int</code>,<code>Float</code>等</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">lateinit <span class="keyword">var</span> stuLateInit:Student</div><div class="line"></div><div class="line">stuLateInit = Student(<span class="string">"name"</span>,<span class="number">11</span>)</div></pre></td></tr></table></figure>
+<h3 id="by-lazy"><a href="#by-lazy" class="headerlink" title="by lazy"></a>by lazy</h3><p><code>by lazy</code> 是属性代理的基本运用，使用 <code>by lazy</code> 可以延迟初始化变量的值;</p>
+<ul>
+<li>只有常量，也就是使用 <code>val</code>才能使用 <code>by lazy</code> 延迟初始化</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> stuByLazy:Student <span class="keyword">by</span> lazy &#123;</div><div class="line">    Student(<span class="string">"name"</span>,<span class="number">11</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">val</span> mMyMsgTv:TextView <span class="keyword">by</span> lazy &#123;</div><div class="line">    findViewById(R.id.mTestTv) <span class="keyword">as</span> TextView</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当常量被使用时才进行初始化</span></div><div class="line">logError(stuByLazy.myCls)</div><div class="line">mMyMsgTv.text=<span class="string">"文本"</span></div></pre></td></tr></table></figure>
+<h2 id="空值安全"><a href="#空值安全" class="headerlink" title="空值安全"></a>空值安全</h2><p>在进行 变量／常量 的初始化时能够感受到 <code>Kotlin</code> 在编译时对 <code>null</code> 值的控制，正是因为 <code>Kotlin</code> 的这些特性，使得 <code>Kotlin</code> 成为一种 <code>空安全(Null Safaty)</code> 的语言，遵循 <code>Kotlin</code> 的规范将有效的避免程序中的 <code>NPE</code>。</p>
+<p>其实遵循 <code>Kotlin</code> 的变量的声明和初始化方式基本可以避免 <code>NPE</code> 的出现，<code>Kotlin</code> 不允许给一个 变量 <code>null</code> 值，但是你可以使用 <code>Type?</code> 的形式(例如 <code>String?</code> )声明这是一个可以为 <code>null</code> 的变量，他就可以被初始化为 <code>null</code>。例如你可以这样声明一个可以为 <code>null</code> 的变量 <code>var stuCanBeNull: Student? = null</code>。也就是说变量仍旧可能是 <code>null</code> 的。</p>
+<h3 id="安全调用"><a href="#安全调用" class="headerlink" title="安全调用"></a>安全调用</h3><p>安全调用即 <code>safe calls</code>，使用<code>?.</code>操作符。</p>
+<p>当我们访问一个变量的属性或者方法时，为了避免 <code>NPE</code> 我们通常要在前期做严密的空值判断确保调用的对象不为空时才能放心调用，<code>safe calls</code> 的机制大大简化了这个过程。</p>
+<p><code>safe calls</code> 只有当引用不为 <code>null</code> 时才进行调用，否则直接返回 <code>null</code>，如下情况中 <code>b</code> 的类型为 <code>Int?</code>，因为 <code>a</code> 可能为 <code>null</code>，调用 <code>a</code> 的 <code>length</code> 属性，如果 <code>a</code> 不为 <code>null</code>，则返回 <code>Int</code> 类型的长度，反之返回 <code>null</code>，因此 <code>b</code> 为 <code>Int?</code>，即可能为 <code>null</code> 的 <code>Int</code> 类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> a: String? = <span class="literal">null</span></div><div class="line"><span class="keyword">val</span> b = a?.length</div></pre></td></tr></table></figure>
+<p>一个使用 <code>safe calls</code> 简化调用的实例</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> myParam1:Student? = <span class="literal">null</span></div><div class="line"></div><div class="line"><span class="comment">// java 中，在使用之前，我们通常会做一系列判空操作</span></div><div class="line"><span class="keyword">if</span>(myParam1!=<span class="literal">null</span> &amp;&amp; myParam1.myCls!=<span class="literal">null</span>)&#123;</div><div class="line">    Log.e(TAG,<span class="string">"<span class="subst">$&#123;myParam1.myCls.length&#125;</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Kotlin safe calls</span></div><div class="line">Log.e(TAG,<span class="string">"<span class="subst">$&#123;myParam1?.myCls?.length&#125;</span>"</span>)</div></pre></td></tr></table></figure>
+<p>有时我们在判空之后会执行一系列的操作，此时就可以结合 <code>let</code> 关键字，使用 <code>?.let{}</code> 来确保变量不为空时执行方法，同时在 <code>let</code> 方法体内，可以使用 <code>it</code> 关键字访问变量。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> a: String? = <span class="literal">null</span></div><div class="line"><span class="keyword">val</span> b = a?.length</div><div class="line"><span class="comment">// b不为null时进行打印</span></div><div class="line">b?.let &#123; log(<span class="string">"<span class="subst">$it</span>"</span>) &#125;</div></pre></td></tr></table></figure>
+<h3 id="Elvis-操作符"><a href="#Elvis-操作符" class="headerlink" title="Elvis 操作符"></a>Elvis 操作符</h3><p><code>Elvis 操作符</code> 即 <code>?:</code> 操作符。当使用 <code>?.</code> 操作符进行安全调用时，如果遇到 <code>null</code> 则会直接返回 <code>null</code>，那如果当为 <code>null</code> 时返回其他值时如何操作呢？<code>Elvis 操作符</code> 就是用来解决这个问题的。</p>
+<p>如果 <code>?:</code> 左侧的表达式值不是 <code>null</code>, <code>Elvis 操作符</code> 就会返回它的值, 否则, 返回右侧表达式的值. 注意, 只有在左侧表达式值为 <code>null</code> 时, 才会计算右侧表达式。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 原始版本，使用 if...else</span></div><div class="line"><span class="keyword">val</span> l: <span class="built_in">Int</span> = <span class="keyword">if</span> (b != <span class="literal">null</span>) b.length <span class="keyword">else</span> <span class="number">-1</span></div><div class="line"><span class="comment">// 使用 ?: 操作符</span></div><div class="line"><span class="keyword">val</span> l = b?.length ?: <span class="number">-1</span></div></pre></td></tr></table></figure>
+<p>由于在 <code>Kotlin</code> 中 <code>throw</code> 和 <code>return</code> 都是表达式, 因此它们也可以用在 <code>Elvis 操作符</code> s的右侧. 这种用法可以带来很大的方便, 比如, 可以用来检查函数参数值是否合法:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">(node: <span class="type">Node</span>)</span></span>: String? &#123;</div><div class="line">    <span class="keyword">val</span> parent = node.getParent() ?: <span class="keyword">return</span> <span class="literal">null</span></div><div class="line">    <span class="keyword">val</span> name = node.getName() ?: <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"name expected"</span>)</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="!! 操作符"></a>!! 操作符</h3><p>如果你确实清楚此时可以抛出一个 <code>NPE</code>，那么你可以使用 <code>!!</code> 操作符。</p>
+<p>对于 <code>b</code> 不为 <code>null</code> 的情况, 这个表达式将会返回这个非 <code>null</code> 的值, 如果 <code>b</code> 是 <code>null</code>, 这个表达式就会抛出一个 <code>NPE</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> l = b!!.length</div></pre></td></tr></table></figure>
+<h3 id="as-操作符"><a href="#as-操作符" class="headerlink" title="as? 操作符"></a>as? 操作符</h3><p>如果对象不是我们期望的目标类型, 那么通常的类型转换就会导致 <code>ClassCastException</code> 。 使用 <code>as?</code> 进行安全的类型转换, 如果转换不成功, 它将会返回 <code>null</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> aInt: <span class="built_in">Int</span>? = a <span class="keyword">as</span>? <span class="built_in">Int</span></div></pre></td></tr></table></figure>
+<h2 id="自定义属性代理"><a href="#自定义属性代理" class="headerlink" title="自定义属性代理"></a>自定义属性代理</h2><p>自定义属性代理访问<code>SharePreference</code>,可以大大简化数据的读取和写入操作</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Suppress(<span class="meta-string">"UNCHECKED_CAST"</span>)</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Preference</span>&lt;<span class="type">T</span>&gt;</span>(</div><div class="line">        <span class="keyword">val</span> context: Context,</div><div class="line">        <span class="keyword">val</span> name: String,</div><div class="line">        <span class="keyword">val</span> defaultValue: T) : ReadWriteProperty&lt;Any?, T&gt; &#123;</div><div class="line"></div><div class="line">    <span class="keyword">val</span> preference: SharedPreferences <span class="keyword">by</span> lazy &#123;</div><div class="line">        context.getSharedPreferences(<span class="string">"KEY"</span>, Context.MODE_PRIVATE)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123;</div><div class="line">        <span class="keyword">return</span> findPreference(name, defaultValue)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span> &#123;</div><div class="line">        putPreference(name, value)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;U&gt;</span> <span class="title">findPreference</span><span class="params">(name: <span class="type">String</span>, <span class="keyword">default</span>: <span class="type">U</span>)</span></span>: U = with(preference) &#123;</div><div class="line">        <span class="keyword">val</span> res: Any = <span class="keyword">when</span> (<span class="keyword">default</span>) &#123;</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Long</span> -&gt; getLong(name, <span class="keyword">default</span>)</div><div class="line">            <span class="keyword">is</span> String -&gt; getString(name, <span class="keyword">default</span>)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; getInt(name, <span class="keyword">default</span>)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Boolean</span> -&gt; getBoolean(name, <span class="keyword">default</span>)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Float</span> -&gt; getFloat(name, <span class="keyword">default</span>)</div><div class="line">            <span class="keyword">else</span> -&gt; <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"This type can be saved into Preferences"</span>)</div><div class="line">        &#125;</div><div class="line">        res <span class="keyword">as</span> U</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;U&gt;</span> <span class="title">putPreference</span><span class="params">(name: <span class="type">String</span>, value: <span class="type">U</span>)</span></span> &#123;</div><div class="line">        <span class="keyword">val</span> editor = preference.edit()</div><div class="line">        <span class="keyword">when</span> (value) &#123;</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Long</span> -&gt; editor.putLong(name, value)</div><div class="line">            <span class="keyword">is</span> String -&gt; editor.putString(name, value)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; editor.putInt(name, value)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Boolean</span> -&gt; editor.putBoolean(name, value)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Float</span> -&gt; editor.putFloat(name, value)</div><div class="line">            <span class="keyword">else</span> -&gt; <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"This type can be saved into Preferences"</span>)</div><div class="line">        &#125;</div><div class="line">        editor.apply()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 测试代码</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoActivity</span> : <span class="type">Activity</span></span>()&#123;</div><div class="line">    <span class="keyword">var</span> aInt: <span class="built_in">Int</span> <span class="keyword">by</span> Preference(<span class="keyword">this</span>, <span class="string">"aInt"</span>, <span class="number">0</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">whatever</span><span class="params">()</span></span>&#123;</div><div class="line">        println(aInt)<span class="comment">//会从SharedPreference取这个数据</span></div><div class="line">        aInt = <span class="number">9</span> <span class="comment">//会将这个数据写入SharedPreference</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kotlin/" rel="tag">#kotlin</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/android/as_gradle_231_exception/" rel="next" title="AS升级gradle到2.3.1异常">
+                <i class="fa fa-chevron-left"></i> AS升级gradle到2.3.1异常
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/技术/kotlin_basic/" rel="prev" title="Kotlin-基础语法篇">
+                Kotlin-基础语法篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="技术/kotlin_basic_variable/" data-title="Kotlin-变量常量篇" data-url="http://chendongmarch.github.io/技术/kotlin_basic_variable/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量和常量"><span class="nav-text">变量和常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lateinit"><span class="nav-text">lateinit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#by-lazy"><span class="nav-text">by lazy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空值安全"><span class="nav-text">空值安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全调用"><span class="nav-text">安全调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elvis-操作符"><span class="nav-text">Elvis 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-text">!! 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#as-操作符"><span class="nav-text">as? 操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义属性代理"><span class="nav-text">自定义属性代理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

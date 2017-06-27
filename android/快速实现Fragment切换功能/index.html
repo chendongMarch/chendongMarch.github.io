@@ -1,0 +1,923 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="1. 前言
+一个app首页通常是使用Activity + Fragment的形式展示，控制Fragment的显示和隐藏基本有两种实现方法:&amp;emsp;&amp;emsp;1. ViewPager , 比如微信 , 优势是手势操作更加方便，官方提供了FragmentPagerAdapter可以很方便帮助我们实现数据加载（Fragment要使用懒加载的方式，避免浪费资源），劣势就是当你的第一个Fragment">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速实现Fragment切换功能">
+<meta property="og:url" content="http://chendongmarch.github.io/android/快速实现Fragment切换功能/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="1. 前言
+一个app首页通常是使用Activity + Fragment的形式展示，控制Fragment的显示和隐藏基本有两种实现方法:&amp;emsp;&amp;emsp;1. ViewPager , 比如微信 , 优势是手势操作更加方便，官方提供了FragmentPagerAdapter可以很方便帮助我们实现数据加载（Fragment要使用懒加载的方式，避免浪费资源），劣势就是当你的第一个Fragment">
+<meta property="og:updated_time" content="2017-02-26T09:16:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快速实现Fragment切换功能">
+<meta name="twitter:description" content="1. 前言
+一个app首页通常是使用Activity + Fragment的形式展示，控制Fragment的显示和隐藏基本有两种实现方法:&amp;emsp;&amp;emsp;1. ViewPager , 比如微信 , 优势是手势操作更加方便，官方提供了FragmentPagerAdapter可以很方便帮助我们实现数据加载（Fragment要使用懒加载的方式，避免浪费资源），劣势就是当你的第一个Fragment">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/android/快速实现Fragment切换功能/">
+
+
+  <title> 快速实现Fragment切换功能 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                快速实现Fragment切换功能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-05T00:00:00+08:00" content="2016-11-05">
+              2016-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/android/快速实现Fragment切换功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="android/快速实现Fragment切换功能/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><blockquote>
+<p>一个app首页通常是使用<code>Activity + Fragment</code>的形式展示，控制Fragment的显示和隐藏基本有两种实现方法:<br>&emsp;&emsp;1. ViewPager , 比如微信 , 优势是手势操作更加方便，官方提供了FragmentPagerAdapter可以很方便帮助我们实现数据加载（Fragment要使用懒加载的方式，避免浪费资源），劣势就是当你的第一个Fragment中已经使用了ViewPager，两层套一起事件会冲突，而且操作也不友好啦。<br>&emsp;&emsp;2. FragmentManager , 比如头条，针对使用ViewPager组合Fragment的问题，使用FragmentManager控制Fragment的显示和隐藏，不需要考虑懒加载的问题，不过不能支持滑动啦。<br>&emsp;&emsp;3. 本文主要是封装FragmentManager切换页面的相关操作。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="2-最初的方案"><a href="#2-最初的方案" class="headerlink" title="2. 最初的方案"></a>2. 最初的方案</h2><p>刚开始的方案是定义了一个Activity的基类MultiFragmentActivity，在基类中实现切换Fragment的逻辑，想要实现该功能的Activity继承基类就可以实现切换功能。<a href="https://github.com/chendongMarch/CommonLib/blob/master/lib-core/src/main/java/com/march/lib/core/activity/MultiFragmentActivity.java" rel="external nofollow noopener noreferrer" target="_blank">MultiFragmentActivity.java源代码</a>，这种实现方式使用起来要更加简单，但是有个问题，整个项目通常会实现同一个基类来完成类似或者相同的功能，当然我们可以将MultiFragmentActivity继承自项目的基类，然后再继承MultiFragmentActivity，但是这样就不能把这个功能提取出来。</p>
+<p>少用继承，多用组合，继承造成的问题就是耦合性太高，不方便分离功能，所以决定使用组合的方法重新设计，定义帮助类FragmentHelper，并且使用一个接口与需要进行Fragment切换的Activity进行交流，Activity可以持有FragmentHelper来完成Fragment的切换，具体的切换逻辑由FragmentHelper来处理。</p>
+<h2 id="3-定义接口"><a href="#3-定义接口" class="headerlink" title="3. 定义接口"></a>3. 定义接口</h2><p>首先定义FragmentOperator接口，借助该接口需要进行Fragment切换的Activity可以自定义一些操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">FragmentOperator</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取放置fragment的控件id</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> id</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getFragmentContainerId</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 构建fragment</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> showItem 将要展示的fragment pos</div><div class="line">     * <span class="doctag">@return</span> fragment</div><div class="line">     */</div><div class="line">    <span class="function">Fragment <span class="title">makeFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 进行转换之前做操作,实现该方法可以自定义fragment切换的动画效果等</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> transaction transaction</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">beginTransaction</span><span class="params">(FragmentTransaction transaction)</span></span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 切换成功之后会回调这个方法，同步选中之后的显示状态</div><div class="line">     * 比如改变按钮的颜色等操作</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> selectImage 被选中的item</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">syncSelectState</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 当点击显示同一个，当两次切换到了同一个fragment，返回true时会进行此次切换</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> showItem 显示的item</div><div class="line">     * <span class="doctag">@return</span> 返回false表示忽略此次点击的切换</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">whenShowSameFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 当点击显示的不是同一个，用于需要针对切换到某个fragment时的场景</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> showItem 显示的item</div><div class="line">     * <span class="doctag">@return</span> 返回false表示忽略此次点击的切换</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">whenShowNotSameFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 上面的接口中不是所有的方法都是必须的，下面是一个简单的实现</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFragmentOperator</span> <span class="keyword">implements</span> <span class="title">FragmentOper</span></span></div><div class="line">    @<span class="title">Override</span></div><div class="line">    <span class="title">public</span> <span class="title">boolean</span> <span class="title">whenShowNotSameFragment</span>(<span class="title">int</span> <span class="title">showItem</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">whenShowSameFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">syncSelectState</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beginTransaction</span><span class="params">(FragmentTransaction transaction)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="4-核心方法"><a href="#4-核心方法" class="headerlink" title="4. 核心方法"></a>4. 核心方法</h2><p>使用tag作为标记添加fragment,避免重复创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FRAGMENT_ATG = <span class="string">"FragmentHelper"</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ITEM_HIDE    = <span class="string">"mHideItem"</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ITEM_SHOW    = <span class="string">"mShowItem"</span>;</div><div class="line"><span class="keyword">private</span> FragmentOperator operator;</div><div class="line"><span class="keyword">private</span> Fragment         mCurrentFragment;</div><div class="line"><span class="keyword">private</span> FragmentManager  mFragmentManager;</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span>              mShowItem, mHideItem;</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> mExactlyItem = <span class="number">0</span>;</div><div class="line"></div><div class="line">    </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 隐藏当前显示的fragment,显示将要显示的fragment</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> hideItem   需要隐藏的fragment</div><div class="line"> * <span class="doctag">@param</span> showItem   需要显示的fragment</div><div class="line"> * <span class="doctag">@param</span> isOnCreate 是否是第一次从OnCreate中启动,点击都是false</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">performSelectItem</span><span class="params">(<span class="keyword">int</span> hideItem, <span class="keyword">int</span> showItem, <span class="keyword">boolean</span> isOnCreate)</span> </span>&#123;</div><div class="line">    <span class="comment">// 获得将要显示页的tag</span></div><div class="line">    String currentTag = getFragmentTag(hideItem);</div><div class="line">    <span class="comment">// 隐藏当前的的fragment</span></div><div class="line">    FragmentTransaction transaction = mFragmentManager.beginTransaction();</div><div class="line">    operator.beginTransaction(transaction);</div><div class="line">    <span class="comment">// 第一次创建，一个都没有，不需要隐藏，直接显示</span></div><div class="line">    <span class="keyword">if</span> (mFragmentManager.getFragments() == <span class="keyword">null</span>) &#123;</div><div class="line">        mShowItem = showItem;</div><div class="line">        mExactlyItem = showItem;</div><div class="line">        mCurrentFragment = operator.makeFragment(showItem);</div><div class="line">        transaction.add(operator.getFragmentContainerId(), mCurrentFragment, getFragmentTag(</div><div class="line">                .show(mCurrentFragment);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 优化，如果被杀后再进来，全部的fragment都会被呈现显示状态，所以都隐藏一遍</span></div><div class="line">        <span class="keyword">if</span> (isOnCreate &amp;&amp; mFragmentManager.getFragments() != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (Fragment fragment : mFragmentManager.getFragments()) &#123;</div><div class="line">                transaction.hide(fragment);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// 正常按钮点击进入，隐藏上一个即可</span></div><div class="line">            Fragment lastFragment = mFragmentManager.findFragmentByTag(currentTag);</div><div class="line">            <span class="keyword">if</span> (lastFragment != <span class="keyword">null</span>) &#123;</div><div class="line">                transaction.hide(lastFragment);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 获得将要显示页的tag</span></div><div class="line">        String toTag = getFragmentTag(showItem);</div><div class="line">        <span class="comment">// find要显示的Fragment</span></div><div class="line">        mCurrentFragment = mFragmentManager.findFragmentByTag(toTag);</div><div class="line">        <span class="keyword">if</span> (mCurrentFragment != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// 已经存在则显示</span></div><div class="line">            transaction.show(mCurrentFragment);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// 不存在则添加新的fragment</span></div><div class="line">            mCurrentFragment = operator.makeFragment(showItem);</div><div class="line">            <span class="keyword">if</span> (mCurrentFragment != <span class="keyword">null</span>) &#123;</div><div class="line">                transaction.add(operator.getFragmentContainerId(), mCurrentFragment, toTag);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 同步状态</span></div><div class="line">    operator.syncSelectState(showItem);</div><div class="line">    <span class="comment">// 保存当前显示fragment的item</span></div><div class="line">    mHideItem = hideItem;</div><div class="line">    mShowItem = showItem;</div><div class="line">    transaction.commitAllowingStateLoss();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="5-在Activty显示某个Fragment"><a href="#5-在Activty显示某个Fragment" class="headerlink" title="5. 在Activty显示某个Fragment"></a>5. 在Activty显示某个Fragment</h2><p>在Activity中使用时只需要调用showFragment方法即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 显示某个fragment</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> showItem 显示的item</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (showItem == mShowItem) &#123;</div><div class="line">        <span class="keyword">if</span> (operator.whenShowSameFragment(showItem)) &#123;</div><div class="line">            performSelectItem(mExactlyItem, showItem, <span class="keyword">false</span>);</div><div class="line">            mExactlyItem = showItem;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">if</span> (operator.whenShowNotSameFragment(showItem)) &#123;</div><div class="line">            performSelectItem(mExactlyItem, showItem, <span class="keyword">false</span>);</div><div class="line">            mExactlyItem = showItem;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="6-优化"><a href="#6-优化" class="headerlink" title="6. 优化"></a>6. 优化</h2><p>当Activity被回收时，记录上次的状态</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 保存数据</span></div><div class="line"><span class="comment">// FragmentHelper</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle save)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (save != <span class="keyword">null</span>) &#123;</div><div class="line">        mHideItem = save.getInt(ITEM_HIDE, <span class="number">0</span>);</div><div class="line">        mShowItem = save.getInt(ITEM_SHOW, <span class="number">0</span>);</div><div class="line">        performSelectItem(mHideItem, mShowItem, <span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 在Activity销毁时调用</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">    <span class="keyword">if</span> (mFragmentHelper != <span class="keyword">null</span>) &#123;</div><div class="line">        mFragmentHelper.onSaveInstanceState(outState);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 重新加载</span></div><div class="line"><span class="comment">// FragmentHelper</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle save)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (save != <span class="keyword">null</span>) &#123;</div><div class="line">        mHideItem = save.getInt(ITEM_HIDE, <span class="number">0</span>);</div><div class="line">        mShowItem = save.getInt(ITEM_SHOW, <span class="number">0</span>);</div><div class="line">        performSelectItem(mHideItem, mShowItem, <span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 在Activity创建时调用</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    mFragmentHelper = <span class="keyword">new</span> FragmentHelper(getSupportFragmentManager(), mSimpleOperator);</div><div class="line">    mFragmentHelper.onCreate(savedInstanceState);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="7-使用"><a href="#7-使用" class="headerlink" title="7. 使用"></a>7. 使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestMultiFragmentActivity2</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> FragmentHelper mFragmentHelper;</div><div class="line">    <span class="keyword">private</span> FragmentHelper.SimpleFragmentOperator mSimpleOperator;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        mSimpleOperator = <span class="keyword">new</span> FragmentHelper.SimpleFragmentOperator() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFragmentContainerId</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> Fragment <span class="title">makeFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">syncSelectState</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        mFragmentHelper = <span class="keyword">new</span> FragmentHelper(getSupportFragmentManager(), mSimpleOperator);</div><div class="line">        <span class="comment">// 只有销毁后回来才会调起切换操作否则没反应</span></div><div class="line">        mFragmentHelper.onCreate(savedInstanceState);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">        <span class="keyword">if</span> (mFragmentHelper != <span class="keyword">null</span>) &#123;</div><div class="line">            mFragmentHelper.onSaveInstanceState(outState);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">getLayoutId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="8-源代码"><a href="#8-源代码" class="headerlink" title="8.  源代码"></a>8.  源代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * CreateAt : 2016/11/5</div><div class="line"> * Describe : 实现Fragment切换</div><div class="line"> *</div><div class="line"> * <span class="doctag">@author</span> chendong</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FragmentHelper</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FRAGMENT_ATG = <span class="string">"FragmentHelper"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ITEM_HIDE    = <span class="string">"mHideItem"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ITEM_SHOW    = <span class="string">"mShowItem"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> FragmentOperator operator;</div><div class="line">    <span class="keyword">private</span> Fragment         mCurrentFragment;</div><div class="line">    <span class="keyword">private</span> FragmentManager  mFragmentManager;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>              mShowItem, mHideItem;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mExactlyItem = <span class="number">0</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle save)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (save != <span class="keyword">null</span>) &#123;</div><div class="line">            mHideItem = save.getInt(ITEM_HIDE, <span class="number">0</span>);</div><div class="line">            mShowItem = save.getInt(ITEM_SHOW, <span class="number">0</span>);</div><div class="line">            performSelectItem(mHideItem, mShowItem, <span class="keyword">true</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">        outState.putInt(ITEM_HIDE, mHideItem);</div><div class="line">        outState.putInt(ITEM_SHOW, mShowItem);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FragmentHelper</span><span class="params">(FragmentManager mFragmentManager, FragmentOperator operator)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mFragmentManager = mFragmentManager;</div><div class="line">        <span class="keyword">this</span>.mFragmentManager = mFragmentManager;</div><div class="line">        <span class="keyword">this</span>.operator = operator;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 显示某个fragment</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> showItem 显示的item</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (showItem == mShowItem) &#123;</div><div class="line">            <span class="keyword">if</span> (operator.whenShowSameFragment(showItem)) &#123;</div><div class="line">                performSelectItem(mExactlyItem, showItem, <span class="keyword">false</span>);</div><div class="line">                mExactlyItem = showItem;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (operator.whenShowNotSameFragment(showItem)) &#123;</div><div class="line">                performSelectItem(mExactlyItem, showItem, <span class="keyword">false</span>);</div><div class="line">                mExactlyItem = showItem;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取当前处于活动状态的fragment'</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> fragment</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> Fragment <span class="title">getCurrentFragment</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mCurrentFragment;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 隐藏当前显示的fragment,显示将要显示的fragment</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> hideItem   需要隐藏的fragment</div><div class="line">     * <span class="doctag">@param</span> showItem   需要显示的fragment</div><div class="line">     * <span class="doctag">@param</span> isOnCreate 是否是第一次从OnCreate中启动,点击都是false</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">performSelectItem</span><span class="params">(<span class="keyword">int</span> hideItem, <span class="keyword">int</span> showItem, <span class="keyword">boolean</span> isOnCreate)</span> </span>&#123;</div><div class="line">        <span class="comment">// 获得将要显示页的tag</span></div><div class="line">        String currentTag = getFragmentTag(hideItem);</div><div class="line">        <span class="comment">// 隐藏当前的的fragment</span></div><div class="line">        FragmentTransaction transaction = mFragmentManager.beginTransaction();</div><div class="line">        operator.beginTransaction(transaction);</div><div class="line"></div><div class="line">        <span class="comment">// 第一次创建，一个都没有，不需要隐藏，直接显示</span></div><div class="line">        <span class="keyword">if</span> (mFragmentManager.getFragments() == <span class="keyword">null</span>) &#123;</div><div class="line">            mShowItem = showItem;</div><div class="line">            mExactlyItem = showItem;</div><div class="line">            mCurrentFragment = operator.makeFragment(showItem);</div><div class="line">            transaction.add(operator.getFragmentContainerId(), mCurrentFragment, getFragmentTag(showItem))</div><div class="line">                    .show(mCurrentFragment);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// 优化，如果被杀后再进来，全部的fragment都会被呈现显示状态，所以都隐藏一遍</span></div><div class="line">            <span class="keyword">if</span> (isOnCreate &amp;&amp; mFragmentManager.getFragments() != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">for</span> (Fragment fragment : mFragmentManager.getFragments()) &#123;</div><div class="line">                    transaction.hide(fragment);</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">// 正常按钮点击进入，隐藏上一个即可</span></div><div class="line">                Fragment lastFragment = mFragmentManager.findFragmentByTag(currentTag);</div><div class="line">                <span class="keyword">if</span> (lastFragment != <span class="keyword">null</span>) &#123;</div><div class="line">                    transaction.hide(lastFragment);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// 获得将要显示页的tag</span></div><div class="line">            String toTag = getFragmentTag(showItem);</div><div class="line">            <span class="comment">// find要显示的Fragment</span></div><div class="line">            mCurrentFragment = mFragmentManager.findFragmentByTag(toTag);</div><div class="line">            <span class="keyword">if</span> (mCurrentFragment != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="comment">// 已经存在则显示</span></div><div class="line">                transaction.show(mCurrentFragment);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">// 不存在则添加新的fragment</span></div><div class="line">                mCurrentFragment = operator.makeFragment(showItem);</div><div class="line">                <span class="keyword">if</span> (mCurrentFragment != <span class="keyword">null</span>) &#123;</div><div class="line">                    transaction.add(operator.getFragmentContainerId(), mCurrentFragment, toTag);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 同步状态</span></div><div class="line">        operator.syncSelectState(showItem);</div><div class="line">        <span class="comment">// 保存当前显示fragment的item</span></div><div class="line">        mHideItem = hideItem;</div><div class="line">        mShowItem = showItem;</div><div class="line">        transaction.commitAllowingStateLoss();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFragmentTag</span><span class="params">(<span class="keyword">int</span> item)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> FRAGMENT_ATG + item;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">FragmentOperator</span> </span>&#123;</div><div class="line">        <span class="comment">/**</span></div><div class="line">         * 获取放置fragment的控件id</div><div class="line">         *</div><div class="line">         * <span class="doctag">@return</span> id</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getFragmentContainerId</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * 构建fragment</div><div class="line">         *</div><div class="line">         * <span class="doctag">@param</span> showItem 将要展示的fragment pos</div><div class="line">         * <span class="doctag">@return</span> fragment</div><div class="line">         */</div><div class="line">        <span class="function">Fragment <span class="title">makeFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * 进行转换之前做操作,实现该方法可以自定义fragment切换的动画效果等</div><div class="line">         *</div><div class="line">         * <span class="doctag">@param</span> transaction transaction</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">beginTransaction</span><span class="params">(FragmentTransaction transaction)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * 切换成功之后会回调这个方法，同步选中之后的显示状态</div><div class="line">         * 比如改变按钮的颜色等操作</div><div class="line">         *</div><div class="line">         * <span class="doctag">@param</span> showItem 被选中的item</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">syncSelectState</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * 当点击显示同一个，当两次切换到了同一个fragment，返回true时会进行此次切换</div><div class="line">         *</div><div class="line">         * <span class="doctag">@param</span> showItem 显示的item</div><div class="line">         * <span class="doctag">@return</span> 返回false表示忽略此次点击的切换</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">whenShowSameFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * 当点击显示的不是同一个，用于需要针对切换到某个fragment时的场景</div><div class="line">         *</div><div class="line">         * <span class="doctag">@param</span> showItem 显示的item</div><div class="line">         * <span class="doctag">@return</span> 返回false表示忽略此次点击的切换</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">whenShowNotSameFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span></span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 上面的接口中不是所有的方法都是必须的，下面是一个简单的实现</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFragmentOperator</span> <span class="keyword">implements</span> <span class="title">FragmentOperator</span> </span>&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">whenShowNotSameFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">whenShowSameFragment</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">syncSelectState</span><span class="params">(<span class="keyword">int</span> showItem)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beginTransaction</span><span class="params">(FragmentTransaction transaction)</span> </span>&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/android/高仿QQ微信相册/" rel="next" title="高仿QQ微信相册">
+                <i class="fa fa-chevron-left"></i> 高仿QQ微信相册
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/android/十分钟接入微信微博QQ原生登录分享/" rel="prev" title="快速接入微信微博QQ原生登录分享">
+                快速接入微信微博QQ原生登录分享 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="android/快速实现Fragment切换功能/" data-title="快速实现Fragment切换功能" data-url="http://chendongmarch.github.io/android/快速实现Fragment切换功能/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-最初的方案"><span class="nav-text">2. 最初的方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-定义接口"><span class="nav-text">3. 定义接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-核心方法"><span class="nav-text">4. 核心方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-在Activty显示某个Fragment"><span class="nav-text">5. 在Activty显示某个Fragment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-优化"><span class="nav-text">6. 优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-使用"><span class="nav-text">7. 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-源代码"><span class="nav-text">8.  源代码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1051 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,Android5.+,">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="NestedScrollingParent分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NestedScrollingParent分析">
+<meta property="og:url" content="http://chendongmarch.github.io/android/NestedScrolling机制_NestedScrollingParent/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="NestedScrollingParent分析">
+<meta property="og:updated_time" content="2016-08-23T14:25:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NestedScrollingParent分析">
+<meta name="twitter:description" content="NestedScrollingParent分析">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/android/NestedScrolling机制_NestedScrollingParent/">
+
+
+  <title> NestedScrollingParent分析 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NestedScrollingParent分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T00:00:00+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/android/NestedScrolling机制_NestedScrollingParent/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="android/NestedScrolling机制_NestedScrollingParent/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>对NestedScrollingParent接口进行分析，主要是文档的翻译和一些理解，以及每个方法触发的时机。</li>
+</ul>
+<h2 id="NestedScrollingParent接口"><a href="#NestedScrollingParent接口" class="headerlink" title="NestedScrollingParent接口"></a>NestedScrollingParent接口</h2><ul>
+<li><p>This interface should be implemented by {@link android.view.ViewGroup ViewGroup} subclasses<br>that wish to support scrolling operations delegated by a nested child view.</p>
+</li>
+<li><p>翻译：这个接口被ViewGroup的子类实现来支持处理nest子视图的滑动操作。</p>
+</li>
+<li><p>Classes implementing this interface should create a final instance of a {@link NestedScrollingParentHelper} as a field and delegate any View or ViewGroup methods<br>to the <code>NestedScrollingParentHelper</code> methods of the same signature.</p>
+</li>
+<li><p>翻译：实现这个接口的类应该创建一个final类型的NestedScrollingParentHelper实例作为一个属性，来代理NestedScrollingParent中与NestedScrollingParentHelper具有相同方法名字的操作。</p>
+</li>
+<li><p>Views invoking nested scrolling functionality should always do so from the relevant {@link ViewCompat}, {@link ViewGroupCompat} or {@link ViewParentCompat} compatibility shim static methods. This ensures interoperability with nested scrolling views on Android 5.0 Lollipop and newer.</p>
+</li>
+<li><p>翻译：View调用嵌套滑动的相关功能时应该从相关的ViewCompat，ViewGroupCompat，ViewParentCompat调用兼容的静态方法，这保证了在5.0或者更新版本中与嵌套滑动的互用性。</p>
+</li>
+</ul>
+<h2 id="onStartNestedScroll方法"><a href="#onStartNestedScroll方法" class="headerlink" title="onStartNestedScroll方法"></a>onStartNestedScroll方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onStartNestedScroll</span><span class="params">(View child, View target, <span class="keyword">int</span> nestedScrollAxes)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数和返回值</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//ViewParent包涵的直接的子View</div><div class="line">@param child Direct child of this ViewParent containing target </div><div class="line">//启动嵌套滑动操作的View</div><div class="line">@param target View that initiated the nested scroll </div><div class="line">//flag垂直滑动还是水平滑动</div><div class="line">@param nestedScrollAxes Flags consisting of &#123;@link ViewCompat#SCROLL_AXIS_HORIZONTAL&#125;,                       &#123;@link ViewCompat#SCROLL_AXIS_VERTICAL&#125; or both </div><div class="line">//如果返回true代表父View接受消耗这个滑动操作。</div><div class="line">@return true if this ViewParent accepts the nested scroll operation</div></pre></td></tr></table></figure>
+<ul>
+<li><p>React to a descendant view initiating a nestable scroll operation, claiming the nested scroll operation if appropriate.</p>
+</li>
+<li><p>翻译：对一个派生View的嵌套滑动操作作出反应，如果需要的话将会拦截（消耗）这个滑动操作。</p>
+</li>
+<li><p>This method will be called in response to a descendant view invoking ink ViewCompat#startNestedScroll(View, int)}. Each parent up the view hierarchy will be given an opportunity to respond and claim the nested scrolling operation by returning <code>true</code>.</p>
+</li>
+<li><p>翻译：这个方法将会被作为派生View调用ViewCompat.startNestedScroll(View, int)时的回复响应，每个上层的父视图如果这个方法返回true,都将有机会响应和拦截（消耗）这个嵌套滑动操作.</p>
+</li>
+</ul>
+<h2 id="onNestedScrollAccepted方法"><a href="#onNestedScrollAccepted方法" class="headerlink" title="onNestedScrollAccepted方法"></a>onNestedScrollAccepted方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNestedScrollAccepted</span><span class="params">(View child, View target, <span class="keyword">int</span> nestedScrollAxes)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>React to the successful claiming of a nested scroll operation.</p>
+</li>
+<li><p>翻译：对嵌套滑动操作的成功声明作出响应，</p>
+</li>
+<li><p>This method will be called after {@link #onStartNestedScroll(View, View, int) onStartNestedScroll} returns true. It offers an opportunity for the view and its superclasses to perform initial configuration for the nested scroll. Implementations of this method should always call their superclass’s implementation of this method if one is present.</p>
+</li>
+<li><p>翻译：这个方法将会在 <code>onStartNestedScroll</code>方法返回<code>true</code>时被调用。这个方法提供给View和他的父类一个对嵌套滑动操作进行初始化配置的机会。如果父类对该方法有操作，实现此方法应该调用父类的实现。</p>
+</li>
+</ul>
+<h2 id="onStopNestedScroll方法"><a href="#onStopNestedScroll方法" class="headerlink" title="onStopNestedScroll方法"></a>onStopNestedScroll方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStopNestedScroll</span><span class="params">(View target)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数和返回值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//触发嵌套滑动的View</span></div><div class="line"><span class="meta">@param</span> target View that initiated the nested scroll</div></pre></td></tr></table></figure>
+<ul>
+<li><p>React to a nested scroll operation ending.</p>
+</li>
+<li><p>翻译：对嵌套滑动结束做出响应</p>
+</li>
+<li><p>Perform cleanup after a nested scrolling operation.This method will be called when a nested scroll stops, for example when a nested touch scroll ends with a {@link MotionEvent#ACTION_UP} or {@link MotionEvent#ACTION_CANCEL} event. Implementations of this method should always call their superclass’s implementation of this method if one is present.</p>
+</li>
+<li><p>翻译：确认在嵌套滑动操作结束之后的清理操作，比如一些参数的重新初始化，这个方法将会在嵌套滑动操作结束后调用，比如嵌套滑动操作因为ACTION_UP，ACTION_CANCEL事件被终止。如果父类对该方法有操作，实现此方法应该调用父类的实现。</p>
+</li>
+</ul>
+<h2 id="onNestedScroll方法"><a href="#onNestedScroll方法" class="headerlink" title="onNestedScroll方法"></a>onNestedScroll方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNestedScroll</span><span class="params">(View target, <span class="keyword">int</span> dxConsumed, <span class="keyword">int</span> dyConsumed, <span class="keyword">int</span> dxUnconsumed, <span class="keyword">int</span> dyUnconsumed)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数和返回值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 控制嵌套滑动的子View</span></div><div class="line"><span class="meta">@param</span> target The descendent view controlling the nested scroll</div><div class="line"><span class="comment">// 子View水平滑动消耗的距离</span></div><div class="line"><span class="meta">@param</span> dxConsumed Horizontal scroll distance in pixels already consumed by target</div><div class="line"><span class="comment">//  子View垂直滑动消耗的距离</span></div><div class="line"><span class="meta">@param</span> dyConsumed Vertical scroll distance in pixels already consumed by target</div><div class="line"><span class="comment">// 子View水平滑动没有消耗的距离</span></div><div class="line"><span class="meta">@param</span> dxUnconsumed Horizontal scroll distance in pixels not consumed by target</div><div class="line"><span class="comment">// 子View水平滑动没有消耗的距离</span></div><div class="line"><span class="meta">@param</span> dyUnconsumed Vertical scroll distance in pixels not consumed by target</div></pre></td></tr></table></figure>
+<ul>
+<li><p>React to a nested scroll in progress.</p>
+</li>
+<li><p>翻译：对滑动过程作出响应</p>
+</li>
+<li><p>This method will be called when the ViewParent’s current nested scrolling child view dispatches a nested scroll event. To receive calls to this method the ViewParent must have previously returned <code>true</code> for a call to {@link #onStartNestedScroll(View, View, int)}.</p>
+</li>
+<li><p>翻译：这个方法将会在ViewParent中当前正在嵌套滑动的子View分发嵌套滑动事件时被调用。为了能够接受到调用这个方法，ViewParent必须事先在<code>onStartNestedScroll</code>返回true。</p>
+</li>
+<li><p>Both the consumed and unconsumed portions of the scroll distance are reported to the ViewParent. An implementation may choose to use the consumed portion to match or chase scroll position of multiple child elements, for example. The unconsumed portion may be used to allow continuous dragging of multiple scrolling or draggable elements, such as scrolling a list within a vertical drawer where the drawer begins dragging once the edge of inner scrolling content is reached.</p>
+</li>
+<li><p>翻译：消耗部分和没有消耗部分的嵌套滑动的距离都被上报给ViewParent。一个实现可以选择使用消耗的部分来匹配或追逐多个子元素的滚动位置，例如。<br>未使用的部分可以用来允许连续滚动或拖动拖动多元素，如在一个垂直的抽屉内滚动一个列表，抽屉开始拖动滚动达到内容的边缘。</p>
+</li>
+</ul>
+<h2 id="onNestedPreScroll方法"><a href="#onNestedPreScroll方法" class="headerlink" title="onNestedPreScroll方法"></a>onNestedPreScroll方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNestedPreScroll</span><span class="params">(View target, <span class="keyword">int</span> dx, <span class="keyword">int</span> dy, <span class="keyword">int</span>[] consumed)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数和返回值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 发起嵌套滑动的子View</span></div><div class="line"><span class="meta">@param</span> target View that initiated the nested scroll</div><div class="line"><span class="comment">// 水平滑动的距离</span></div><div class="line"><span class="meta">@param</span> dx Horizontal scroll distance in pixels</div><div class="line"><span class="comment">// 垂直滑动的距离</span></div><div class="line"><span class="meta">@param</span> dy Vertical scroll distance in pixels</div><div class="line"><span class="comment">// 输出,水平滑动和垂直滑动被父View消耗的距离</span></div><div class="line"><span class="meta">@param</span> consumed Output. The horizontal and vertical scroll distance consumed by <span class="keyword">this</span> parent</div></pre></td></tr></table></figure>
+<ul>
+<li><p>React to a nested scroll in progress before the target view consumes a portion of the scroll.</p>
+</li>
+<li><p>滑动过程中在发起嵌套滑动的子View消耗滑动距离之前作出反应</p>
+</li>
+<li><p>When working with nested scrolling often the parent view may want an opportunity to consume the scroll before the nested scrolling child does. An example of this is a drawer that contains a scrollable list. The user will want to be able to scroll the list fully into view before the list itself begins scrolling.</p>
+</li>
+<li><p>在进行嵌套滑动时，通常父View希望获得机会在子View之前消耗滑动距离。例如，抽屉里面包含一个可以滑动的list,用户将希望能够在列表本身开始滚动之前将列表完全滚动到视图中。</p>
+</li>
+<li><p><code>onNestedPreScroll</code> is called when a nested scrolling child invokes {@link View#dispatchNestedPreScroll(int, int, int[], int[])}. The implementation should report how any pixels of the scroll reported by dx, dy were consumed in the <code>consumed</code> array. Index 0 corresponds to dx and index 1 corresponds to dy. This parameter will never be null. Initial values for consumed[0] and consumed[1] will always be 0.</p>
+</li>
+<li><p><code>onNestedPreScroll</code> 方法在子View调用<code>dispatchNestedPreScroll</code>方法时被调用。这个方法的实现应该报告对dx和dy进行了多少消耗。consumed[0]代表消耗的dx,consumed[1]代表消耗的dy,这个参数不会为空，consumed[0]和consumed[1]初始值为0。</p>
+</li>
+</ul>
+<h2 id="onNestedFling方法"><a href="#onNestedFling方法" class="headerlink" title="onNestedFling方法"></a>onNestedFling方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onNestedFling</span><span class="params">(View target, <span class="keyword">float</span> velocityX, <span class="keyword">float</span> velocityY, <span class="keyword">boolean</span> consumed)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>参数和返回值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 发起嵌套滑动的子View</span></div><div class="line"><span class="meta">@param</span> target View that initiated the nested scroll</div><div class="line"><span class="comment">// 横向滑动的速度</span></div><div class="line"><span class="meta">@param</span> velocityX Horizontal velocity in pixels per second</div><div class="line"><span class="comment">// 竖向滑动的速度</span></div><div class="line"><span class="meta">@param</span> velocityY Vertical velocity in pixels per second</div><div class="line"><span class="comment">// 如果是true表示这个子View消耗了这个滑动</span></div><div class="line"><span class="meta">@param</span> consumed <span class="keyword">true</span> <span class="keyword">if</span> the child consumed the fling, <span class="keyword">false</span> otherwise</div><div class="line"><span class="comment">// 返回true表示，父View消耗滑动或其他情况</span></div><div class="line"><span class="meta">@return</span> <span class="keyword">true</span> <span class="keyword">if</span> <span class="keyword">this</span> parent consumed or otherwise reacted to the fling</div></pre></td></tr></table></figure>
+<ul>
+<li><p>Request a fling from a nested scroll.</p>
+</li>
+<li><p>需要嵌套滑动发生fling事件</p>
+</li>
+<li><p>This method signifies that a nested scrolling child has detected suitable conditions for a fling. Generally this means that a touch scroll has ended with a  {@link VelocityTracker velocity} in the direction of scrolling that meets or exceeds  the {@link ViewConfiguration#getScaledMinimumFlingVelocity() minimum fling velocity} along a scrollable axis.</p>
+</li>
+<li><p>这个方法意味着嵌套滑动的子View监测到一个适合fling的情况。通常意味着触摸事件在一个可滑动的轴上在一个方向上以一定速度结束，这个速度超过了<code>ViewConfiguration#getScaledMinimumFlingVelocity()</code>的值。</p>
+</li>
+<li><p>If a nested scrolling child view would normally fling but it is at the edge of its own content, it can use this method to delegate the fling to its nested scrolling parent instead. The parent may optionally consume the fling or observe a child fling.</p>
+</li>
+<li><p>如果一个子View在嵌套滑动但是到达了他的内容边缘，它可以使用这个方法将处理fling事件代理给父View,父View可以选择性的消耗fling事件或者观察子View的fling事件。</p>
+</li>
+</ul>
+<h2 id="onNestedPreFling方法"><a href="#onNestedPreFling方法" class="headerlink" title="onNestedPreFling方法"></a>onNestedPreFling方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onNestedPreFling</span><span class="params">(View target, <span class="keyword">float</span> velocityX, <span class="keyword">float</span> velocityY)</span></span>;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>参数和返回值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 触发嵌套滑动的子View</span></div><div class="line"><span class="meta">@param</span> target View that initiated the nested scroll</div><div class="line"><span class="comment">// 水平方向滑动速度</span></div><div class="line"><span class="meta">@param</span> velocityX Horizontal velocity in pixels per second</div><div class="line"><span class="comment">// 垂直方向滑动速度</span></div><div class="line"><span class="meta">@param</span> velocityY Vertical velocity in pixels per second</div><div class="line"><span class="comment">// 如果父View要处理这个fling事件返回true</span></div><div class="line"><span class="meta">@return</span> <span class="keyword">true</span> <span class="keyword">if</span> <span class="keyword">this</span> parent consumed the fling ahead of the target view</div></pre></td></tr></table></figure>
+</li>
+<li><p>React to a nested fling before the target view consumes it.</p>
+</li>
+<li><p>在子View对嵌套fling事件消耗之前作出响应</p>
+</li>
+<li><p>This method siginfies that a nested scrolling child has detected a fling with the given velocity along each axis. Generally this means that a touch scroll has ended with a {@link VelocityTracker velocity} in the direction of scrolling that meets or exceeds  the {@link ViewConfiguration#getScaledMinimumFlingVelocity() minimum fling velocity} along a scrollable axis.</p>
+</li>
+<li><p>这个方法意味着嵌套滑动的子View在每个轴上给定的速度上发生了fling事件，通常意味着触摸事件在一个可滑动的轴上在一个方向上以一定速度结束，这个速度超过了<code>ViewConfiguration#getScaledMinimumFlingVelocity()</code>的值。</p>
+</li>
+<li><p>If a nested scrolling parent is consuming motion as part of a {@link #onNestedPreScroll(View, int, int, int[]) pre-scroll}, it may be appropriate for  it to also consume the pre-fling to complete that same motion. By returning  <code>true</code> from this method, the parent indicates that the child should not fling its own internal content as well.</p>
+</li>
+<li><p>如果父View在<code>onNestedPreScroll</code>方法中消耗了嵌套滑动，那么他可能同样也想在fling事件中进行消耗操作，来完成处理嵌套滑动的请求。这个方法返回<code>true</code>表明子View应该只在它自己的区域内滑动。</p>
+</li>
+</ul>
+<h2 id="getNestedScrollAxes-方法"><a href="#getNestedScrollAxes-方法" class="headerlink" title="getNestedScrollAxes()方法"></a>getNestedScrollAxes()方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public int getNestedScrollAxes();</div></pre></td></tr></table></figure>
+<ul>
+<li>参数和返回值</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 表明滑动轴方向的flag</div><div class="line">@return Flags indicating the current axes of nested scrolling</div><div class="line">@see ViewCompat#SCROLL_AXIS_HORIZONTAL</div><div class="line">@see ViewCompat#SCROLL_AXIS_VERTICAL</div><div class="line">@see ViewCompat#SCROLL_AXIS_NONE</div></pre></td></tr></table></figure>
+<ul>
+<li><p>A NestedScrollingParent returning something other than {@link ViewCompat#SCROLL_AXIS_NONE}］is currently acting as a nested scrolling parent for one or more descendant views in the hierarchy.</p>
+</li>
+<li><p>如果没有返回<code>ViewCompat#SCROLL_AXIS_NONE</code>，表明有子View在进行嵌套滑动。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Android5/" rel="tag">#Android5.+</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/android/AndroidM动态权限申请/" rel="next" title="Android 6.0权限动态申请">
+                <i class="fa fa-chevron-left"></i> Android 6.0权限动态申请
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/android/NestedScrolling机制_交互/" rel="prev" title="NestedScrolling交互">
+                NestedScrolling交互 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="android/NestedScrolling机制_NestedScrollingParent/" data-title="NestedScrollingParent分析" data-url="http://chendongmarch.github.io/android/NestedScrolling机制_NestedScrollingParent/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NestedScrollingParent接口"><span class="nav-text">NestedScrollingParent接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onStartNestedScroll方法"><span class="nav-text">onStartNestedScroll方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onNestedScrollAccepted方法"><span class="nav-text">onNestedScrollAccepted方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onStopNestedScroll方法"><span class="nav-text">onStopNestedScroll方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onNestedScroll方法"><span class="nav-text">onNestedScroll方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onNestedPreScroll方法"><span class="nav-text">onNestedPreScroll方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onNestedFling方法"><span class="nav-text">onNestedFling方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onNestedPreFling方法"><span class="nav-text">onNestedPreFling方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getNestedScrollAxes-方法"><span class="nav-text">getNestedScrollAxes()方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,956 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,开源库,">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍如何最简单的将自己的 Library 发布到 jcenter。
+2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程
+使用 gradle 开发过程中，我们可以使用 compile 命令，依赖 Library，这种做法的好处时，我们不需要再去关注一堆 jar 文件，当我们需要升级 Library 时，只需要改变依赖的版本号，就可以完成升级。
+我们之所以可以使用一句 gradl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将自己写的库发布到Jcenter">
+<meta property="og:url" content="http://chendongmarch.github.io/代码之外/发布开源库到JCenter/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文主要介绍如何最简单的将自己的 Library 发布到 jcenter。
+2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程
+使用 gradle 开发过程中，我们可以使用 compile 命令，依赖 Library，这种做法的好处时，我们不需要再去关注一堆 jar 文件，当我们需要升级 Library 时，只需要改变依赖的版本号，就可以完成升级。
+我们之所以可以使用一句 gradl">
+<meta property="og:updated_time" content="2017-06-16T08:05:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="将自己写的库发布到Jcenter">
+<meta name="twitter:description" content="本文主要介绍如何最简单的将自己的 Library 发布到 jcenter。
+2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程
+使用 gradle 开发过程中，我们可以使用 compile 命令，依赖 Library，这种做法的好处时，我们不需要再去关注一堆 jar 文件，当我们需要升级 Library 时，只需要改变依赖的版本号，就可以完成升级。
+我们之所以可以使用一句 gradl">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/代码之外/发布开源库到JCenter/">
+
+
+  <title> 将自己写的库发布到Jcenter | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                将自己写的库发布到Jcenter
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-12T00:00:00+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码之外/" itemprop="url" rel="index">
+                    <span itemprop="name">代码之外</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/代码之外/发布开源库到JCenter/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="代码之外/发布开源库到JCenter/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍如何最简单的将自己的 <code>Library</code> 发布到 <code>jcenter</code>。</p>
+<p>2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程</p>
+<p>使用 <code>gradle</code> 开发过程中，我们可以使用 <code>compile</code> 命令，依赖 <code>Library</code>，这种做法的好处时，我们不需要再去关注一堆 <code>jar</code> 文件，当我们需要升级 <code>Library</code> 时，只需要改变依赖的版本号，就可以完成升级。</p>
+<p>我们之所以可以使用一句 <code>gradle</code> 脚本完成依赖的下载，升级，是因为这些 <code>Library</code> 都被存储在了一个公共的服务器上，通过 <code>compile</code> 命令可以唯一的映射到服务器存储的 <code>Library</code>。 <code>jcenter</code> 就是一个这样的服务，<code>AndroidStudio</code> 现在新建项目都会默认依赖 <code>repositories {jcenter()}</code>，当执行 <code>compile</code> 脚本时，就会去 <code>jcenter</code> 检查对应的 <code>Library</code> 进行下载和依赖。</p>
+<a id="more"></a>
+<h2 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h2><ol>
+<li><p>删除 <code>gradle.properties</code> 里面会有 <code>systemProp.http.proxyHost=127.0.0.1 systemProp.http.proxyPort=1080</code>字段，使用代理可能会导致无法上传发布。</p>
+</li>
+<li><p>打包 <code>javadoc</code> 时会出问题，因为他会将你所有的注释打包进去，如果注释写的不规范就会报错，不过这个是有提示的，按照提示改掉就好了，注释要符合要求。</p>
+</li>
+<li><p>如果出现了 <code>gradle commond not found</code> ,说明你的 <code>gradle</code> 路径没有配置，<a href="http://blog.csdn.net/chendong_/article/details/50865767" rel="external nofollow noopener noreferrer" target="_blank">mac可以参考这篇文章进行配置</a>。</p>
+</li>
+<li><p>你的 <code>library</code> 中的 <code>manifest</code> 文件有 <code>allowback</code> 属性最好删掉， 当别人或者你的别的工程引用这个库时，需要进行 <code>manifest</code> 的 <code>merge</code> 操作，如果某些属性冲突了会导致合并失败，因此库文件的 <code>manifest</code> 文件只保留必要的属性，即可。</p>
+</li>
+</ol>
+<h2 id="注册账号"><a href="#注册账号" class="headerlink" title="注册账号"></a>注册账号</h2><p>我们要发布自己的库到 <code>JCenter</code>,首先要将代码发布到 <code>maven</code> 库，<a href="https://bintray.com/" rel="external nofollow noopener noreferrer" target="_blank">官方网站www.bintray.com</a> ，进去网站注册登录就好了，注册之后可以拿到你的用户名和 <code>apikey</code>。</p>
+<p><code>apiKey</code> 的获取方法 －&gt; 右上角点击头像 －&gt; <code>your profile</code>-&gt; 头像下面edit -&gt; 最下面的 <code>APIkey</code> 就可以获取了，后面有用。</p>
+<h2 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h2><p>使用 <code>AS</code> 开发你的项目应该是有多个 <code>module</code> 的，通常你的项目至少应该有 <code>app</code> 这个 <code>module</code> ，创建一个 <code>library</code> 类型的 <code>module</code>（点击工具栏 File - &gt; new moudle -&gt; library,就可以建立一个library moudle)，因为我们要发布到 <code>maven</code> 的是你的 <code>library</code>，所以这个 <code>moudle</code> 需要有。然后你应该把这个项目发布到 <code>github</code>上去，后续需要填写项目的地址，当然这不是必选的。</p>
+<h2 id="配置-project-build-gradle"><a href="#配置-project-build-gradle" class="headerlink" title="配置 project/build.gradle"></a>配置 project/build.gradle</h2><p>配置这个文件主要是依赖一些必要的插件来完成后续的打包上传操作，可能当你看到时下面的插件版本已经不是最新的了，你可以自己依赖最新的插件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//最后写完应该是这样的</span></div><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath <span class="string">'com.android.tools.build:gradle:2.2.3'</span></div><div class="line">        <span class="comment">//主要是下面的两行</span></div><div class="line">        classpath <span class="string">'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'</span></div><div class="line">        classpath <span class="string">'com.github.dcendents:android-maven-gradle-plugin:1.4.1'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="配置-module-build-gradle"><a href="#配置-module-build-gradle" class="headerlink" title="配置 module/build.gradle"></a>配置 module/build.gradle</h2><p>需要在 <code>ext{}</code> 内配置项目的相关信息，在每个信息上我都加了比较详细的注释。</p>
+<p>完整的配置文件如下，引用了我 <code>git</code> 上面远程的一个上传脚本，当然你也将全部内容复制到本地进行修改，使用远程脚本是为了简化书写脚本的流程。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.library'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">ext &#123;</div><div class="line">    <span class="comment">// 项目的主页</span></div><div class="line">    yourSiteUrl = <span class="string">'https://github.com/chendongMarch/LightAdapterExample'</span></div><div class="line">    <span class="comment">// Git仓库的url</span></div><div class="line">    yourGitUrl = <span class="string">'https://github.com/chendongMarch/LightAdapterExample'</span></div><div class="line">    <span class="comment">// issue 地址</span></div><div class="line">    YourIssueTrackerUrl = <span class="string">'https://github.com/chendongMarch/LightAdapterExample/issues'</span></div><div class="line"></div><div class="line">    <span class="comment">// 项目的名称，将会显示在bintray</span></div><div class="line">    yourProName = <span class="string">'LightAdapter'</span></div><div class="line">    <span class="comment">// 项目的描述</span></div><div class="line">    yourProDesc = <span class="string">'Java Recyclerview Library'</span></div><div class="line"></div><div class="line">    <span class="comment">// bintrayID</span></div><div class="line">    yourId = <span class="string">'chendongmarch'</span></div><div class="line">    <span class="comment">// nickName</span></div><div class="line">    yourName = <span class="string">'chendong'</span></div><div class="line">    <span class="comment">// email</span></div><div class="line">    yourEmail = <span class="string">'helloworld4x@gmial.com'</span></div><div class="line"></div><div class="line">    <span class="comment">// 最后生成依赖 compile 'yourGroup:yourArtifactId:yourVersion'</span></div><div class="line">    <span class="comment">// 最后生成依赖 compile 'com.march.lightadapter:lightadapter:1.0.1-beta1'</span></div><div class="line">    yourGroup = <span class="string">'com.march.lightadapter'</span></div><div class="line">    yourArtifactId = <span class="string">'lightadapter'</span></div><div class="line">    yourVersion = <span class="string">'1.0.1-beta4'</span></div><div class="line"></div><div class="line">    </div><div class="line">    <span class="comment">// 此文件中存储的是 bintray 的敏感信息，用户名和key</span></div><div class="line">    <span class="comment">// 你需要在该文件中如下声明</span></div><div class="line">    <span class="comment">// bintray.user=xxxx</span></div><div class="line">    <span class="comment">// bintray.apikey=xxxx</span></div><div class="line">    <span class="comment">// 你可以使用项目中的 local.properties</span></div><div class="line">    yourBintrayUserPath = <span class="string">'/Users/march/AndroidRes/file/common_local.properties'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">apply <span class="keyword">from</span>: <span class="string">'https://raw.githubusercontent.com/chendongMarch/Resource/master/jcenter/bintrayUpload.gradle'</span></div></pre></td></tr></table></figure>
+<h3 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h3><p>下面配置的三个值，决定了你最后生成的依赖是什么样的，我用我现在的库举了个例子，这个是可以后期修改的。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 最后生成依赖 compile 'yourGroup:yourArtifactId:yourVersion'</span></div><div class="line"><span class="comment">// 最后生成依赖 compile 'com.march.lightadapter:lightadapter:1.0.1-beta1'</span></div><div class="line">yourGroup = <span class="string">'com.march.lightadapter'</span></div><div class="line">yourArtifactId = <span class="string">'lightadapter'</span></div><div class="line">yourVersion = <span class="string">'1.0.1-beta4'</span></div></pre></td></tr></table></figure>
+<p>用户名和 <code>key</code>，这些敏感信息是不应该被传到 <code>git</code> 上面的， 你应该在 <code>.gitignore</code> 中避免上传这个文件，习惯的做法你可以将这些信息写在 <code>local.properties</code> 中，路径配置为 <code>yourBintrayUserPath = &#39;local.properties&#39;</code>，我的做法是写在本地文件中然后使用绝对路径引用。</p>
+<p>然后你在文件中需要按照如下格式声明 <code>bintray.user</code> 和 <code>bintray.apikey</code>；</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此文件中存储的是 bintray 的敏感信息，用户名和key</span></div><div class="line"><span class="comment">// 你需要在该文件中如下声明</span></div><div class="line"><span class="comment">// bintray.user=xxxx</span></div><div class="line"><span class="comment">// bintray.apikey=xxxx</span></div><div class="line"><span class="comment">// 你可以使用项目中的 local.properties</span></div><div class="line">yourBintrayUserPath = <span class="string">'/Users/march/AndroidRes/file/common_local.properties'</span></div></pre></td></tr></table></figure>
+<h2 id="发布类库"><a href="#发布类库" class="headerlink" title="发布类库"></a>发布类库</h2><p>我在 <code>mac</code> 下开发，相关命令可能有所差异。</p>
+<p>打开 <code>terminal</code>，运行 <code>install</code> 命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew install</div></pre></td></tr></table></figure>
+<p>成功后运行上传命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew bintrayUpload</div></pre></td></tr></table></figure>
+<p>当提示 <code>Build Success</code> 后，去<a href="www.bintray.com">网站</a>打开所在的项目，注意右上角有个链接，类似 <code>https://dl.bintray.com/chendongmarch/maven</code>，这是你 <code>maven</code>库的链接，也就是你私有的空间。注意左下角有三个很小的选项 <code>maven</code>、<code>gradle</code>、<code>lvy</code>，点击 <code>gradle</code> 可以看到一个依赖地址，这是 <code>compile</code> 的地址，就算大功告成啦。</p>
+<h3 id="在私有空间使用类库"><a href="#在私有空间使用类库" class="headerlink" title="在私有空间使用类库"></a>在私有空间使用类库</h3><p>此时你已经可以使用这个类库了，但是因为你的类库没有发布到共有空间，因此使用时需要在 <code>project/build.gradle</code> 声明你的私有空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//在 project/build.gradle 文件中添加你私有 maven 空间</div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">        // 现在之所以添加这一句是因为你的类库只是发布到了maven</div><div class="line">        // 但是没有发布到JCenter</div><div class="line">        // 因此需要单独依赖你的私有空间的地址。</div><div class="line">        maven &#123;url &apos;https://dl.bintray.com/chendongmarch/maven&apos;&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//在app/build.gradle文件中依赖</div><div class="line">compile &apos;com.march.lightadapter:lightadapter:1.0.1-beta1&apos;</div></pre></td></tr></table></figure>
+<h3 id="发布到-jcenter"><a href="#发布到-jcenter" class="headerlink" title="发布到 jcenter"></a>发布到 jcenter</h3><p>然后我们将类库发布到公共空间让别人可以快速使用，还是在网站查看项目右下角可以看到 <code>Add to jcenter</code> 点击之后可以很简单的添加你的库到 <code>JCenter</code>,但是审核需要时间，第一次会慢一点，以后会很快。等到审核通过，就可以将 <code>maven{url=&quot;&quot;}</code> 这一块去掉，直接 <code>compile</code>，因为已经可以在 <code>jcenter</code> 找到你的类库了， 不需要使用私有空间了。</p>
+<h3 id="在本地空间使用类库"><a href="#在本地空间使用类库" class="headerlink" title="在本地空间使用类库"></a>在本地空间使用类库</h3><p>单单运行 <code>./gradlew  install</code> 任务， <code>gradle</code> 会在 <code>maven</code> 的本地仓库中生成工件，只需将 <code>mavenLocal</code> 添加到 <code>repositories</code>，我们可以像发布到 <code>JCenter</code> 一样引用自己的库，方便打包那些多个项目共享又不想发布的私有库, 在<code>project/build.gradle</code> 文件添加下面的依赖，可以使用本地库，类比上面的私有空间，这个应该算本地空间。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">allprojects</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        mavenLocal()</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="一些理解"><a href="#一些理解" class="headerlink" title="一些理解"></a>一些理解</h2><p>总体来说，最最重要的是打包上传的脚本，他负责打包源文件，生成 <code>aar</code>，生成 <code>doc</code> 然后上传到 <code>bintray</code>，我之前采用过别的方式打包类库，本文介绍的方法有个很大的优点就是把这个任务独立出来，写在 <code>bintrayUpload.gradle</code> 文件中，使用远程脚本，需要打包上传的 <code>library</code> 只需要配置一下类库相关信息，引用这个脚本就可以上传，不需要进行复杂的配置。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/开源库/" rel="tag">#开源库</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/android/Adapter封装5-ListView_QuickAdapter/" rel="next" title="QuickAdapter重构">
+                <i class="fa fa-chevron-left"></i> QuickAdapter重构
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/代码之外/在Mac下配置Gradle命令/" rel="prev" title="在Mac下配置Gradle命令">
+                在Mac下配置Gradle命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="代码之外/发布开源库到JCenter/" data-title="将自己写的库发布到Jcenter" data-url="http://chendongmarch.github.io/代码之外/发布开源库到JCenter/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#踩过的坑"><span class="nav-text">踩过的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册账号"><span class="nav-text">注册账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建项目"><span class="nav-text">构建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-project-build-gradle"><span class="nav-text">配置 project/build.gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-module-build-gradle"><span class="nav-text">配置 module/build.gradle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要注意的点"><span class="nav-text">需要注意的点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布类库"><span class="nav-text">发布类库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在私有空间使用类库"><span class="nav-text">在私有空间使用类库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布到-jcenter"><span class="nav-text">发布到 jcenter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在本地空间使用类库"><span class="nav-text">在本地空间使用类库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些理解"><span class="nav-text">一些理解</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
