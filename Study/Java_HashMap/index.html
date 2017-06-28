@@ -1,0 +1,1006 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Java,Android,源码">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="对HashMap源码的简单分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap源码分析（Android&Java）">
+<meta property="og:url" content="http://chendongmarch.github.io/Study/Java_HashMap/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="对HashMap源码的简单分析">
+<meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/hm.png">
+<meta property="og:updated_time" content="2017-06-03T05:51:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HashMap源码分析（Android&Java）">
+<meta name="twitter:description" content="对HashMap源码的简单分析">
+<meta name="twitter:image" content="http://7xtjec.com1.z0.glb.clouddn.com/hm.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/Study/Java_HashMap/">
+
+
+  <title> HashMap源码分析（Android&Java） | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HashMap源码分析（Android&Java）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-14T00:00:00+08:00" content="2015-11-14">
+              2015-11-14
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Study/Java_HashMap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="Study/Java_HashMap/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对HashMap源码的简单分析</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ol>
+<li><p>基本的数据结构有，数组，链表，树，图。</p>
+</li>
+<li><p>数组的特点是长度固定，空间连续，占用内存很大，空间复杂度是O(n),但是寻址容易，时间复杂度O(1).<br>总结：寻址容易，插入删除困难。</p>
+</li>
+<li><p>链表的特点是长度可变，存储空间离散，占用内存小，空间复杂度是O(1),但是寻址困难，时间复杂度为O(n).<br>总结：寻址困难，插入删除容易。</p>
+</li>
+<li><p>哈希表基于数组结构，采用键值的方式存储数据，插入删除容易，寻址是根据键值直接查找数据，时间复杂度是O(1)，但是使用哈希值存储数据总会出现哈希冲突，解决哈希冲突的方法主要有，开放定址法（再散列），再哈希法，链地址法（拉链法），建立公共溢出区。</p>
+</li>
+<li><p>缺点：存储空间填满时需要将其复制到另一个更大的数组结构中，并进行再哈希计算，这是哈希表内存占用的暴涨点，这是基于数组结构的一个缺点。</p>
+</li>
+<li><p>哈希表不能以一种特定的顺序遍历数据结构中的所有数据，如果需要按序存储，使用哈希表并不合适</p>
+</li>
+</ol>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ol>
+<li><p>HashMap是线程不安全的HashTable是线程安全的。</p>
+</li>
+<li><p>HashMap就是基于链地址法实现的数据存储。也就是链表的数组。</p>
+</li>
+<li><p>HashMap允许键 值 为null。HashTable是不允许的。</p>
+</li>
+<li><p>在Android和Java里面对HashMap的实现，稍有不同，开始我还以为是我的jdk有问题。</p>
+</li>
+<li><p>在HashMap的基础数组中，每一个数组项称之为一个桶，HashMap就是基于这种桶+链表的结构。</p>
+</li>
+<li><p>存储方式，使用key值取哈希，一般的算法是hash(key)/len获得他存放位置的下标，这样就将key与下标对应起来。</p>
+</li>
+</ol>
+<h2 id="存储的数据结构"><a href="#存储的数据结构" class="headerlink" title="存储的数据结构"></a>存储的数据结构</h2><ul>
+<li>总结来说，HashMap就是数组+内部类（Entry）实现，Entry中具有下一个Entry的引用，由此构成了链表的结构。之前看过有人介绍说是Set+静态内部类，其实并不是。第一行的代码是用来对HashMap进行操作时使用的变量，比如迭代HashMap所有的子项，添加一个EntrySet到HashMap中，删除，修改。。。。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">transient</span> Set&lt;Entry&lt;K, V&gt;&gt; entrySet;</div><div class="line"><span class="keyword">transient</span> HashMapEntry&lt;K, V&gt;[] table;</div></pre></td></tr></table></figure>
+<p><img src="http://7xtjec.com1.z0.glb.clouddn.com/hm.png" alt="1"></p>
+<h2 id="HashMapEntry"><a href="#HashMapEntry" class="headerlink" title="HashMapEntry"></a>HashMapEntry</h2><ul>
+<li><p>HashMap中有一个很重要的存储结构HashMapEntry,用来保存键值对，和下一个Entry的引用，这就形成了一个链表结构。</p>
+</li>
+<li><p>在Java中，这个静态内部类叫Entry<k,v>,在android中叫HashMapEntry<k, v="">，在功能上应该是相似的。是一个存储数据的基础bean,关注一下源码：</k,></k,v></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMapEntry</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Entry</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">final</span> K key;</div><div class="line">    V value;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> hash;</div><div class="line">    HashMapEntry&lt;K, V&gt; next;</div><div class="line">    HashMapEntry(K key, V value, <span class="keyword">int</span> hash, HashMapEntry&lt;K, V&gt; next) &#123;</div><div class="line">        <span class="keyword">this</span>.key = key;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">        <span class="keyword">this</span>.hash = hash;</div><div class="line">        <span class="keyword">this</span>.next = next;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> K <span class="title">getKey</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> key;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">getValue</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">setValue</span><span class="params">(V value)</span> </span>&#123;</div><div class="line">        V oldValue = <span class="keyword">this</span>.value;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">        <span class="keyword">return</span> oldValue;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Entry)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        Entry&lt;?, ?&gt; e = (Entry&lt;?, ?&gt;) o;</div><div class="line">        <span class="keyword">return</span> Objects.equal(e.getKey(), key)</div><div class="line">                &amp;&amp; Objects.equal(e.getValue(), value);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (key == <span class="keyword">null</span> ? <span class="number">0</span> : key.hashCode()) ^</div><div class="line">                (value == <span class="keyword">null</span> ? <span class="number">0</span> : value.hashCode());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> key + <span class="string">"="</span> + value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="哈希值的计算"><a href="#哈希值的计算" class="headerlink" title="哈希值的计算"></a>哈希值的计算</h2><ol>
+<li><p>存储数据是根据key的哈希值来存储的，类似这样的方法hash(key.hashcode())</p>
+</li>
+<li><p>Java和Android中对求哈希值的操作相似但是哈希算法不同，当进行存取操作时，key都需要使用这个算法进行中转。</p>
+</li>
+<li><p>在Android中使用的是Collections类下的静态方法及进行哈希计算，但是这里的h是key的hashcode(),看注释使用的是Wang/Jenkins哈希算法的变体,源代码：</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java实现</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">secondaryHash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</div><div class="line">    <span class="comment">// Spread bits to regularize both segment and index locations,</span></div><div class="line">    <span class="comment">// using variant of single-word Wang/Jenkins hash.</span></div><div class="line">    h += (h &lt;&lt;  <span class="number">15</span>) ^ <span class="number">0xffffcd7d</span>;</div><div class="line">    h ^= (h &gt;&gt;&gt; <span class="number">10</span>);</div><div class="line">    h += (h &lt;&lt;   <span class="number">3</span>);</div><div class="line">    h ^= (h &gt;&gt;&gt;  <span class="number">6</span>);</div><div class="line">    h += (h &lt;&lt;   <span class="number">2</span>) + (h &lt;&lt; <span class="number">14</span>);</div><div class="line">    <span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">16</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//android实现</span></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</div><div class="line">        <span class="comment">// This function ensures that hashCodes that differ only by</span></div><div class="line">        <span class="comment">// constant multiples at each bit position have a bounded</span></div><div class="line">        <span class="comment">// number of collisions (approximately 8 at default load factor).</span></div><div class="line">        h ^= (h &gt;&gt;&gt; <span class="number">20</span>) ^ (h &gt;&gt;&gt; <span class="number">12</span>);</div><div class="line">        <span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">7</span>) ^ (h &gt;&gt;&gt; <span class="number">4</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="put方法"><a href="#put方法" class="headerlink" title="put方法"></a>put方法</h2><ol>
+<li><p>检查键值是否为空，null时将存储到forNullEntry所在的链表中。</p>
+</li>
+<li><p>获取哈希值之后获得下标索引，检查key是否已经存在，是则替换，否则添加到当前链表，基本思想是这样的，几个不同的点</p>
+</li>
+<li><p>putForNullKey(value)方法，在Android和Java中都有实现，当键值为null时，分配一个数组的一项，这个数组指向key == null 的Entry</p>
+</li>
+<li><p>一个不同点，Java中是在添加Entry之后重新计算容量，而Android是在AddNewEntry之前进行。</p>
+</li>
+<li><p>扩容的方法都是扩大为原来的两倍。</p>
+</li>
+<li><p>在Android中的实现基本类似，使用Collections静态方法进行二次哈希计算，计算下表索引</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在java中的实现代码:</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> putForNullKey(value);</div><div class="line">        <span class="keyword">int</span> hash = hash(key.hashCode());</div><div class="line">        <span class="comment">//计算hash值，使用indexFor（）这个函数获得该哈希值对应数组下标，由此可以得到对应的那个链表。</span></div><div class="line">        <span class="keyword">int</span> i = indexFor(hash, table.length );</div><div class="line">        <span class="keyword">for</span> (Entry&lt;K,V&gt; e = table [i]; e != <span class="keyword">null</span>; e = e.next) &#123;</div><div class="line">            Object k;</div><div class="line">            <span class="comment">//关注这部分代码是替换掉已经存在的key对应的value</span></div><div class="line">            <span class="keyword">if</span> (e.hash == hash &amp;&amp; ((k = e.key ) == key || key.equals(k))) &#123;</div><div class="line">                V oldValue = e. value;</div><div class="line">                e. value = value;</div><div class="line">                e.recordAccess( <span class="keyword">this</span>);</div><div class="line">                <span class="keyword">return</span> oldValue;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        modCount++;</div><div class="line">        addEntry(hash, key, value, i);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span> ;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line"><span class="comment">//解释一下这部分代码，做的操作就是将新添加的Entry放在链表的头部，而原来的链表会接在这个新的Entry后面。</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEntry</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">int</span> bucketIndex)</span> </span>&#123;</div><div class="line"><span class="comment">//注意这里的bucketIndex是上一个函数得到的数组下标。取到该数组项链接的Entry给了临时变量e</span></div><div class="line">Entry&lt;K,V&gt; e = table [bucketIndex];</div><div class="line"><span class="comment">//新建了一个Entry将其链接到了数组项上，然后把e给了新的Entry的Next,也就是后面的链表重新链接到了新的Entry后面，而新的Entry作为了该链表的第一项。</span></div><div class="line">table[bucketIndex] = <span class="keyword">new</span> Entry&lt;K,V&gt;(hash, key, value, e);</div><div class="line"><span class="comment">//添加之后重新计算容量。</span></div><div class="line"><span class="keyword">if</span> (size ++ &gt;= threshold)</div><div class="line">            resize(<span class="number">2</span> * table.length );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//android中的实现</span></div><div class="line"><span class="meta">@Override</span> </div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> putValueForNullKey(value);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> hash = Collections.secondaryHash(key);</div><div class="line">    HashMapEntry&lt;K, V&gt;[] tab = table;</div><div class="line">    <span class="keyword">int</span> index = hash &amp; (tab.length - <span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span> (HashMapEntry&lt;K, V&gt; e = tab[index]; e != <span class="keyword">null</span>; e = e.next) &#123;</div><div class="line">        <span class="keyword">if</span> (e.hash == hash &amp;&amp; key.equals(e.key)) &#123;</div><div class="line">            preModify(e);</div><div class="line">            V oldValue = e.value;</div><div class="line">            e.value = value;</div><div class="line">            <span class="keyword">return</span> oldValue;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// No entry for (non-null) key is present; create one</span></div><div class="line">    modCount++;</div><div class="line">    <span class="comment">//注意这里是先进行扩容后进行添加的</span></div><div class="line">    <span class="keyword">if</span> (size++ &gt; threshold) &#123;</div><div class="line">        tab = doubleCapacity();</div><div class="line">        index = hash &amp; (tab.length - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    addNewEntry(key, value, hash, index);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//Android添加代码就更简单了，不过也很好理解，操作与java中是一样的。不过方法很巧//妙，简化了代码，让我想起了InputStream is = new FileInputStream("path")is = new BufferedInputStream(is)`</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addNewEntry</span><span class="params">(K key, V value, <span class="keyword">int</span> hash, <span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">table[index] = <span class="keyword">new</span> HashMapEntry&lt;K, V&gt;(key, value, hash, table[index]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="get方法"><a href="#get方法" class="headerlink" title="get方法"></a>get方法</h2><ul>
+<li>同样的获取hashcode,再哈希计算哈希值，获得下标索引，得到对应链表，遍历链表得到结果，在Java和Android中实现大同小异.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//java中的实现</span></div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> getForNullKey();</div><div class="line">        <span class="keyword">int</span> hash = hash(key.hashCode());</div><div class="line">        <span class="keyword">for</span> (Entry&lt;K,V&gt; e = table [indexFor(hash, table.length )];</div><div class="line">             e != <span class="keyword">null</span>;</div><div class="line">             e = e. next) &#123;</div><div class="line">            Object k;</div><div class="line">            <span class="keyword">if</span> (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k)))</div><div class="line">                <span class="keyword">return</span> e.value ;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Android中的实现</span></div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span>) &#123;</div><div class="line">        HashMapEntry&lt;K, V&gt; e = entryForNullKey;</div><div class="line">        <span class="keyword">return</span> e == <span class="keyword">null</span> ? <span class="keyword">null</span> : e.value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> hash = Collections.secondaryHash(key);</div><div class="line">    HashMapEntry&lt;K, V&gt;[] tab = table;</div><div class="line">    <span class="keyword">for</span> (HashMapEntry&lt;K, V&gt; e = tab[hash &amp; (tab.length - <span class="number">1</span>)];</div><div class="line">            e != <span class="keyword">null</span>; e = e.next) &#123;</div><div class="line">        K eKey = e.key;</div><div class="line">        <span class="keyword">if</span> (eKey == key || (e.hash == hash &amp;&amp; key.equals(eKey))) &#123;</div><div class="line">            <span class="keyword">return</span> e.value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ul>
+<li>在Java和Android中HashMap的初始化略有不同,Android中初始容量是2，Java中初始容量是16。</li>
+</ul>
+<h3 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h3><ul>
+<li>Java中的初始容量和负载因子是学习Java比较经典的内容，看一下Java中HashMap的默认构造方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">static final int DEFAULT_INITIAL_CAPACITY = 16;</div><div class="line">static final float DEFAULT_LOAD_FACTOR = 0.75f;</div><div class="line">public HashMap() &#123;</div><div class="line">//默认的构造方法会初始化一个容量是16，负载因子0.75的HashMap,threshold有阈值的意思，就是当前容量可以承受的负载,当超过这个负载时就会进行扩容。</div><div class="line">this.loadFactor = DEFAULT_LOAD_FACTOR;</div><div class="line">threshold = (int )(DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR );</div><div class="line">table = new Entry[DEFAULT_INITIAL_CAPACITY];</div><div class="line">init();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>带有参数的构造方法实现</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//指定容量和负载因子时会检查容量和负载因子的值是不是有问题</span></div><div class="line"><span class="comment">//然后会进行一个位运算算法获得-》大于当前要求的容量的-》最小的2的幂</span></div><div class="line"><span class="comment">//（也就是如果是7--》8如果是9--》16）</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor)</span> </span>&#123;</div><div class="line"><span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</div><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal initial capacity: "</span> +initialCapacity);</div><div class="line"><span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</div><div class="line">initialCapacity = MAXIMUM_CAPACITY;</div><div class="line"><span class="keyword">if</span> (loadFactor &lt;= <span class="number">0</span> || Float.isNaN(loadFactor))</div><div class="line"><span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal load factor: "</span> +loadFactor);</div><div class="line"><span class="comment">// Find a power of 2 &gt;= initialCapacity</span></div><div class="line"><span class="comment">//算法原理：capacity初始为1，当capacity小于initialCapacity时左移一位，就是*2,直到找到大于当前要求的容量最小的2的幂</span></div><div class="line"><span class="keyword">int</span> capacity = <span class="number">1</span>;</div><div class="line"><span class="keyword">while</span> (capacity &lt; initialCapacity)</div><div class="line">capacity &lt;&lt;= <span class="number">1</span>;</div><div class="line"><span class="keyword">this</span>.loadFactor = loadFactor;</div><div class="line">threshold = (<span class="keyword">int</span> )(capacity * loadFactor);</div><div class="line">table = <span class="keyword">new</span> Entry[capacity];</div><div class="line">init();</div><div class="line">&#125;</div><div class="line"><span class="comment">//容量增加，transfer(newTable);会将原来的数据再哈希重新放入数据</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> newCapacity)</span> </span>&#123;</div><div class="line">        Entry[] oldTable = table;</div><div class="line">        <span class="keyword">int</span> oldCapacity = oldTable.length ;</div><div class="line">        <span class="keyword">if</span> (oldCapacity == MAXIMUM_CAPACITY) &#123;</div><div class="line">            threshold = Integer.MAX_VALUE;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Entry[] newTable = <span class="keyword">new</span> Entry[newCapacity];</div><div class="line">        transfer(newTable);</div><div class="line">        table = newTable;</div><div class="line">        threshold = (<span class="keyword">int</span>)(newCapacity * loadFactor);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="在Android中的实现"><a href="#在Android中的实现" class="headerlink" title="在Android中的实现"></a>在Android中的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//默认的初始最小容量是4，一个静态的初始数组的容量是最小容量无符号右移1位，也就是2，默认构造时，会将该静态数组交给table,这里有一行源码的注释（ Forces first put invocation to replace EMPTY_TABLE），意思是根据第一次put方法加入的数量来扩充数组，此时负载容量是-1，添加时会立刻扩充容量，这可能也是为什么Android中添加元素是先检查扩充容量再添加的原因。。在put时第一次百分百检测到容量不够，此时进行一次doubleCapacity()将容量加倍，在这个方法中会调用</span></div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MINIMUM_CAPACITY = <span class="number">4</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Entry[] EMPTY_TABLE</div><div class="line">        = <span class="keyword">new</span> HashMapEntry[MINIMUM_CAPACITY &gt;&gt;&gt; <span class="number">1</span>];</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">()</span> </span>&#123;</div><div class="line">    table = (HashMapEntry&lt;K, V&gt;[]) EMPTY_TABLE;</div><div class="line">    threshold = -<span class="number">1</span>; <span class="comment">// Forces first put invocation to replace EMPTY_TABLE</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//容量增长或初始化时会调用该方法，重置阈值，与Java稍有不同，使用固定的容量的3/4来作为阈值，Java中还要比较容量的大小，取Math.min(容量，)</span></div><div class="line"><span class="keyword">private</span> HashMapEntry&lt;K, V&gt;[] doubleCapacity() &#123;</div><div class="line">    HashMapEntry&lt;K, V&gt;[] oldTable = table;</div><div class="line">    <span class="keyword">int</span> oldCapacity = oldTable.length;</div><div class="line">    <span class="keyword">if</span> (oldCapacity == MAXIMUM_CAPACITY) &#123;</div><div class="line">        <span class="keyword">return</span> oldTable;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> newCapacity = oldCapacity * <span class="number">2</span>;</div><div class="line">    HashMapEntry&lt;K, V&gt;[] newTable = makeTable(newCapacity);</div><div class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> newTable;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; oldCapacity; j++) &#123;</div><div class="line">        <span class="comment">/*</span></div><div class="line">         * Rehash the bucket using the minimum number of field writes.</div><div class="line">         * This is the most subtle and delicate code in the class.</div><div class="line">         */</div><div class="line">        HashMapEntry&lt;K, V&gt; e = oldTable[j];</div><div class="line">        <span class="keyword">if</span> (e == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> highBit = e.hash &amp; oldCapacity;</div><div class="line">        HashMapEntry&lt;K, V&gt; broken = <span class="keyword">null</span>;</div><div class="line">        newTable[j | highBit] = e;</div><div class="line">        <span class="keyword">for</span> (HashMapEntry&lt;K, V&gt; n = e.next; n != <span class="keyword">null</span>; e = n, n = n.next) &#123;</div><div class="line">            <span class="keyword">int</span> nextHighBit = n.hash &amp; oldCapacity;</div><div class="line">            <span class="keyword">if</span> (nextHighBit != highBit) &#123;</div><div class="line">                <span class="keyword">if</span> (broken == <span class="keyword">null</span>)</div><div class="line">                    newTable[j | nextHighBit] = n;</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    broken.next = n;</div><div class="line">                broken = e;</div><div class="line">                highBit = nextHighBit;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (broken != <span class="keyword">null</span>)</div><div class="line">            broken.next = <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newTable;</div><div class="line">&#125;</div><div class="line"><span class="keyword">private</span> HashMapEntry&lt;K, V&gt;[] makeTable(<span class="keyword">int</span> newCapacity) &#123;</div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>) HashMapEntry&lt;K, V&gt;[] newTable</div><div class="line">            = (HashMapEntry&lt;K, V&gt;[]) <span class="keyword">new</span> HashMapEntry[newCapacity];</div><div class="line">    table = newTable;</div><div class="line">    <span class="comment">//阈值时是容量的3/4,使用了位运算</span></div><div class="line">    threshold = (newCapacity &gt;&gt; <span class="number">1</span>) + (newCapacity &gt;&gt; <span class="number">2</span>); <span class="comment">// 3/4 capacity</span></div><div class="line">    <span class="keyword">return</span> newTable;</div><div class="line">&#125;</div><div class="line"><span class="comment">//同样的检查机制，然后使用了一个方法，又是Collections类中的方法Collections.roundUpToPowerOfTwo(capacity);，作用是一样的，将容量修改为大于输入容量的最小的2的幂。但是使用二进制实现，会不会更牛逼一点。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (capacity &lt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Capacity: "</span> + capacity);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (capacity == <span class="number">0</span>) &#123;</div><div class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">        HashMapEntry&lt;K, V&gt;[] tab = (HashMapEntry&lt;K, V&gt;[]) EMPTY_TABLE;</div><div class="line">        table = tab;</div><div class="line">        threshold = -<span class="number">1</span>; <span class="comment">// Forces first put() to replace EMPTY_TABLE</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (capacity &lt; MINIMUM_CAPACITY) &#123;</div><div class="line">        capacity = MINIMUM_CAPACITY;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (capacity &gt; MAXIMUM_CAPACITY) &#123;</div><div class="line">        capacity = MAXIMUM_CAPACITY;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        capacity = Collections.roundUpToPowerOfTwo(capacity);</div><div class="line">    &#125;</div><div class="line">    makeTable(capacity);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//看不懂啊，应该收藏一下关于二进制的算法，高大上的别人都看不懂</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">roundUpToPowerOfTwo</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">    i--; <span class="comment">// If input is a power of two, shift its high-order bit right.</span></div><div class="line"></div><div class="line">    <span class="comment">// "Smear" the high-order bit all the way to the right.</span></div><div class="line">    i |= i &gt;&gt;&gt;  <span class="number">1</span>;</div><div class="line">    i |= i &gt;&gt;&gt;  <span class="number">2</span>;</div><div class="line">    i |= i &gt;&gt;&gt;  <span class="number">4</span>;</div><div class="line">    i |= i &gt;&gt;&gt;  <span class="number">8</span>;</div><div class="line">    i |= i &gt;&gt;&gt; <span class="number">16</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><ol>
+<li><p>JDK1.8在容量过大时使用红黑树存储数据，事件复杂度O(logn),对于红黑树不是很了解，算法很菜，暂时放放吧。</p>
+</li>
+<li><p>阈值  =  容量 <em> 负载因子，当容量超过阈值时会进行扩容和再散列，此时是hashmap的内存占用的增长点，扩容会将容量扩大为原来的两倍然后将数据拷贝到新的区域进行再散列。但是这里有个问题不太懂：HashMap扩容，每次添加一个元素size++,当size&gt;阈值（容量</em>负载因子）时进行扩容，但是HashMap是基于数组+链表的，添加的元素不一定集中到一个数组项。举个例子说，当一个hashmap容量是16，阈值就是12，此时添加的元素如果有12个了，但是却只是集中在某几个数组项所在 的链表中，那么此时进行扩容合适吗？暂时合理的解释是hash（）算法可以很好的将数据分散在所有的数组项中，那么这种比较也是比较合理的。</p>
+</li>
+<li><p>为什么要将初始容量计算得到大于该容量的最小的2的幂？我们可以看一下这个代码<code>int index = hash &amp; (tab.length - 1);</code>在java中有相同的设计是一个函数<code>indexfor(int hash)</code>在计算hashcode对应的数组下标时使用hash&amp;len-1代替了hash%len，只有在len是2的幂时，这两个方法才是等价不等效的。可能不太好理解，举个例子：len是16时，二进制10000，len-1是01111，如果得到的hash小于16时，比如是3吧，进行&amp;运算01111&amp;00011得到的结果是3，也就是本身。确实等价于3%16，再比如大于16，是19吧，再大也是一个意思，也就是01111&amp;10011得到的结果是3，等价于19%16，右数第5位以上的1都被过滤掉了，说这么多只是解释一下确实hash&amp;len-1等价于hash%len，但是使用位运算效率会大大提高，在源码中位运算随处可见。ps:我总觉的还有别的作用，但是没有了解到。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/源码/" rel="tag">#源码</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Android/Adapter封装1-ListView单类型适配/" rel="next" title="Android单类型抽象适配器">
+                <i class="fa fa-chevron-left"></i> Android单类型抽象适配器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Android/Adapter封装2-ListView多类型适配/" rel="prev" title="Android分类适配">
+                Android分类适配 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="Study/Java_HashMap/" data-title="HashMap源码分析（Android&Java）" data-url="http://chendongmarch.github.io/Study/Java_HashMap/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">86</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储的数据结构"><span class="nav-text">存储的数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMapEntry"><span class="nav-text">HashMapEntry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希值的计算"><span class="nav-text">哈希值的计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#put方法"><span class="nav-text">put方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#get方法"><span class="nav-text">get方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java实现"><span class="nav-text">Java实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Android中的实现"><span class="nav-text">在Android中的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多"><span class="nav-text">更多</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

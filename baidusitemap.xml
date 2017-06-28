@@ -4,7 +4,352 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android-LightAdapter/</loc>
+    <loc>http://chendongmarch.github.io/Android/View/android_webview/</loc>
+    <lastmod>2017-06-28T02:09:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android WebView</title>
+        <pubTime>2017-06-26T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Android/View/android_tablayout/</loc>
+    <lastmod>2017-06-28T02:09:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>TabLayout的使用详解</title>
+        <pubTime>2015-06-22T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_new_feature/</loc>
+    <lastmod>2017-06-28T02:07:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-新特性篇</title>
+        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_class_obj/</loc>
+    <lastmod>2017-06-28T02:07:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-类与对象篇</title>
+        <pubTime>2017-06-07T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_basic/</loc>
+    <lastmod>2017-06-28T02:07:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-基础语法篇</title>
+        <pubTime>2017-06-03T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_basic_variable/</loc>
+    <lastmod>2017-06-28T02:07:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-变量常量篇</title>
+        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Python/python_singleton/</loc>
+    <lastmod>2017-06-28T02:06:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python实现单例</title>
+        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Python/python_restful_request/</loc>
+    <lastmod>2017-06-28T02:05:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>python发送get/post/put/delete请求</title>
+        <pubTime>2015-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Python/python_json/</loc>
+    <lastmod>2017-06-28T02:05:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python Json相关</title>
+        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Python/python_Django_1/</loc>
+    <lastmod>2017-06-28T02:05:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python Django服务器搭建初体验</title>
+        <pubTime>2016-05-13T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Python/python_basic_method_type/</loc>
+    <lastmod>2017-06-28T02:05:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python普通方法、静态方法、类方法</title>
+        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Python/python_basic_1/</loc>
+    <lastmod>2017-06-28T02:05:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础1</title>
+        <pubTime>2016-01-20T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Swift/swift_basic_1/</loc>
+    <lastmod>2017-06-28T02:04:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>Swift基础语法1</title>
+        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/Study/Swift/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Study/Swift/swift_basic_2/</loc>
+    <lastmod>2017-06-28T02:04:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Swift基础2</title>
+        <pubTime>2016-05-10T16:00:00.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/Study/Swift/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/study/swift/Swift_basic_1/</loc>
+    <lastmod>2017-06-28T01:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Swift基础语法1</title>
+        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
+        
+        <tag>swift</tag>
+         
+         
+           
+             
+              <breadCrumb title="study" url="http://chendongmarch.github.io/categories/study/"/>
+          
+             
+              <breadCrumb title="swift" url="http://chendongmarch.github.io/categories/study/swift/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/Android/Android-LightAdapter/</loc>
     <lastmod>2017-06-27T06:42:55.000Z</lastmod>
     <data>
         <display>
@@ -30,7 +375,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/swift/Swift_basic_2/</loc>
+    <loc>http://chendongmarch.github.io/study/swift/Swift_basic_2/</loc>
     <lastmod>2017-06-27T05:59:25.000Z</lastmod>
     <data>
         <display>
@@ -46,91 +391,6 @@
           
              
               <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/Swift/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/swift/Swift_basic_1/</loc>
-    <lastmod>2017-06-27T05:59:19.000Z</lastmod>
-    <data>
-        <display>
-        <title>Swift基础语法1</title>
-        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-             
-              <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/Swift/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/kotlin_basic/</loc>
-    <lastmod>2017-06-27T05:40:33.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-基础语法篇</title>
-        <pubTime>2017-06-03T16:00:00.000Z</pubTime>
-        
-        <tag>kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/kotlin_class_obj/</loc>
-    <lastmod>2017-06-27T02:08:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-类与对象篇</title>
-        <pubTime>2017-06-07T16:00:00.000Z</pubTime>
-        
-        <tag>kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/android/TabLayout%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-06-23T03:01:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>TabLayout的使用详解</title>
-        <pubTime>2015-06-22T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android5.+</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
           
         </display>
     </data>
@@ -160,7 +420,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/android_ffmpeg_2_try_cmd/</loc>
+    <loc>http://chendongmarch.github.io/Android/android_ffmpeg_2_try_cmd/</loc>
     <lastmod>2017-06-13T05:14:49.000Z</lastmod>
     <data>
         <display>
@@ -182,7 +442,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/android_ffmpeg_1_hello/</loc>
+    <loc>http://chendongmarch.github.io/Android/android_ffmpeg_1_hello/</loc>
     <lastmod>2017-06-13T05:13:43.000Z</lastmod>
     <data>
         <display>
@@ -197,26 +457,6 @@
            
              
               <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/kotlin_basic_variable/</loc>
-    <lastmod>2017-06-12T11:31:41.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-变量常量篇</title>
-        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
-        
-        <tag>kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -242,27 +482,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/kotlin_new_feature/</loc>
-    <lastmod>2017-06-05T06:23:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-新特性篇</title>
-        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
-        
-        <tag>kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/Java_HashMap/</loc>
+    <loc>http://chendongmarch.github.io/Study/Java_HashMap/</loc>
     <lastmod>2017-06-03T05:51:11.000Z</lastmod>
     <data>
         <display>
@@ -286,7 +506,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/Java_RSA_encrypt/</loc>
+    <loc>http://chendongmarch.github.io/Study/Java_RSA_encrypt/</loc>
     <lastmod>2017-06-03T05:51:04.000Z</lastmod>
     <data>
         <display>
@@ -306,7 +526,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/Java_sort_logic/</loc>
+    <loc>http://chendongmarch.github.io/Study/Java_sort_logic/</loc>
     <lastmod>2017-06-03T05:50:54.000Z</lastmod>
     <data>
         <display>
@@ -326,7 +546,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/Java_Zip_GZip/</loc>
+    <loc>http://chendongmarch.github.io/Study/Java_Zip_GZip/</loc>
     <lastmod>2017-06-03T05:50:43.000Z</lastmod>
     <data>
         <display>
@@ -346,7 +566,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/NodeJs_basic_1/</loc>
+    <loc>http://chendongmarch.github.io/Study/NodeJs_basic_1/</loc>
     <lastmod>2017-06-03T05:50:32.000Z</lastmod>
     <data>
         <display>
@@ -366,127 +586,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/python_basic_1/</loc>
-    <lastmod>2017-06-03T05:50:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python基础1</title>
-        <pubTime>2016-01-20T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/python_basic_method_type/</loc>
-    <lastmod>2017-06-03T05:50:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python普通方法、静态方法、类方法</title>
-        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/python_Django_1/</loc>
-    <lastmod>2017-06-03T05:49:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python Django服务器搭建初体验</title>
-        <pubTime>2016-05-13T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/python_restful_request/</loc>
-    <lastmod>2017-06-03T05:48:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>python发送get/post/put/delete请求</title>
-        <pubTime>2015-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/python_singleton/</loc>
-    <lastmod>2017-06-03T05:48:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python实现单例</title>
-        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/python_json/</loc>
-    <lastmod>2017-06-03T05:48:44.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python Json相关</title>
-        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://chendongmarch.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/android_handler/</loc>
+    <loc>http://chendongmarch.github.io/Android/android_handler/</loc>
     <lastmod>2017-05-27T13:16:11.000Z</lastmod>
     <data>
         <display>
@@ -508,7 +608,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/Java_ArrayList/</loc>
+    <loc>http://chendongmarch.github.io/Study/Java_ArrayList/</loc>
     <lastmod>2017-05-27T13:15:03.000Z</lastmod>
     <data>
         <display>
@@ -532,7 +632,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/Java_aes_des_encrypt/</loc>
+    <loc>http://chendongmarch.github.io/Study/Java_aes_des_encrypt/</loc>
     <lastmod>2017-05-27T13:13:17.000Z</lastmod>
     <data>
         <display>
@@ -552,7 +652,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/Java_Genericity/</loc>
+    <loc>http://chendongmarch.github.io/Study/Java_Genericity/</loc>
     <lastmod>2017-05-27T13:10:14.000Z</lastmod>
     <data>
         <display>
@@ -574,7 +674,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/%E6%8A%80%E6%9C%AF/db_install_mongo/</loc>
+    <loc>http://chendongmarch.github.io/Study/db_install_mongo/</loc>
     <lastmod>2017-05-27T13:06:31.000Z</lastmod>
     <data>
         <display>
@@ -594,7 +694,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/as_gradle_231_exception/</loc>
+    <loc>http://chendongmarch.github.io/Android/as_gradle_231_exception/</loc>
     <lastmod>2017-05-26T08:43:11.000Z</lastmod>
     <data>
         <display>
@@ -614,7 +714,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%88%B0%E7%9B%B8%E5%86%8C%E6%98%BE%E7%A4%BA/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%88%B0%E7%9B%B8%E5%86%8C%E6%98%BE%E7%A4%BA/</loc>
     <lastmod>2017-05-24T11:42:46.000Z</lastmod>
     <data>
         <display>
@@ -656,7 +756,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E7%B3%BB%E7%BB%9F%E5%88%86%E4%BA%AB%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E8%B0%83%E8%B5%B7/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E7%B3%BB%E7%BB%9F%E5%88%86%E4%BA%AB%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E8%B0%83%E8%B5%B7/</loc>
     <lastmod>2017-04-07T08:28:07.000Z</lastmod>
     <data>
         <display>
@@ -676,7 +776,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Fragment%E6%87%92%E5%8A%A0%E8%BD%BD/</loc>
+    <loc>http://chendongmarch.github.io/Android/Fragment%E6%87%92%E5%8A%A0%E8%BD%BD/</loc>
     <lastmod>2017-03-14T04:02:21.000Z</lastmod>
     <data>
         <display>
@@ -697,7 +797,7 @@
     
     
   <url>
-    <loc>http://chendongmarch.github.io/android/EditText%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</loc>
+    <loc>http://chendongmarch.github.io/Android/EditText%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/</loc>
     <lastmod>2017-03-02T10:37:49.000Z</lastmod>
     <data>
         <display>
@@ -739,7 +839,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E4%BB%BFQQ%E7%9B%B8%E5%86%8CRecyclerView%E6%BB%91%E5%8A%A8%E9%80%89%E4%B8%AD/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E4%BB%BFQQ%E7%9B%B8%E5%86%8CRecyclerView%E6%BB%91%E5%8A%A8%E9%80%89%E4%B8%AD/</loc>
     <lastmod>2017-02-28T01:39:23.000Z</lastmod>
     <data>
         <display>
@@ -759,7 +859,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0Fragment%E5%88%87%E6%8D%A2%E5%8A%9F%E8%83%BD/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0Fragment%E5%88%87%E6%8D%A2%E5%8A%9F%E8%83%BD/</loc>
     <lastmod>2017-02-26T09:16:39.000Z</lastmod>
     <data>
         <display>
@@ -779,7 +879,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E9%AB%98%E4%BB%BFQQ%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%86%8C/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E9%AB%98%E4%BB%BFQQ%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%86%8C/</loc>
     <lastmod>2017-02-25T03:54:49.000Z</lastmod>
     <data>
         <display>
@@ -799,7 +899,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E5%8D%81%E5%88%86%E9%92%9F%E6%8E%A5%E5%85%A5%E5%BE%AE%E4%BF%A1%E5%BE%AE%E5%8D%9AQQ%E5%8E%9F%E7%94%9F%E7%99%BB%E5%BD%95%E5%88%86%E4%BA%AB/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E5%8D%81%E5%88%86%E9%92%9F%E6%8E%A5%E5%85%A5%E5%BE%AE%E4%BF%A1%E5%BE%AE%E5%8D%9AQQ%E5%8E%9F%E7%94%9F%E7%99%BB%E5%BD%95%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2017-02-23T09:09:03.000Z</lastmod>
     <data>
         <display>
@@ -847,7 +947,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E4%B9%9D%E7%82%B9%E6%BB%91%E5%8A%A8%E8%A7%A3%E9%94%81/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E4%B9%9D%E7%82%B9%E6%BB%91%E5%8A%A8%E8%A7%A3%E9%94%81/</loc>
     <lastmod>2016-11-29T02:11:31.000Z</lastmod>
     <data>
         <display>
@@ -869,7 +969,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E4%BA%8B%E4%BB%B6%E4%BA%A4%E4%BA%92/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E4%BA%8B%E4%BB%B6%E4%BA%A4%E4%BA%92/</loc>
     <lastmod>2016-11-28T10:51:32.000Z</lastmod>
     <data>
         <display>
@@ -909,7 +1009,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Adapter%E5%B0%81%E8%A3%85-RecyclerView2/</loc>
+    <loc>http://chendongmarch.github.io/Android/Adapter%E5%B0%81%E8%A3%85-RecyclerView2/</loc>
     <lastmod>2016-11-10T06:35:03.000Z</lastmod>
     <data>
         <display>
@@ -935,7 +1035,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Token%E6%9C%BA%E5%88%B6/</loc>
+    <loc>http://chendongmarch.github.io/Android/Token%E6%9C%BA%E5%88%B6/</loc>
     <lastmod>2016-11-05T06:35:55.000Z</lastmod>
     <data>
         <display>
@@ -977,7 +1077,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/SwipeRefreshLayout%E5%88%86%E6%9E%90/</loc>
+    <loc>http://chendongmarch.github.io/Android/SwipeRefreshLayout%E5%88%86%E6%9E%90/</loc>
     <lastmod>2016-08-28T16:38:35.000Z</lastmod>
     <data>
         <display>
@@ -999,7 +1099,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/AndroidM%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E7%94%B3%E8%AF%B7/</loc>
+    <loc>http://chendongmarch.github.io/Android/AndroidM%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E7%94%B3%E8%AF%B7/</loc>
     <lastmod>2016-08-28T06:12:36.000Z</lastmod>
     <data>
         <display>
@@ -1021,7 +1121,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/NestedScrolling%E6%9C%BA%E5%88%B6_%E4%BA%A4%E4%BA%92/</loc>
+    <loc>http://chendongmarch.github.io/Android/NestedScrolling%E6%9C%BA%E5%88%B6_%E4%BA%A4%E4%BA%92/</loc>
     <lastmod>2016-08-26T06:06:29.000Z</lastmod>
     <data>
         <display>
@@ -1043,7 +1143,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/NestedScrolling%E6%9C%BA%E5%88%B6_NestedScrollingParent/</loc>
+    <loc>http://chendongmarch.github.io/Android/NestedScrolling%E6%9C%BA%E5%88%B6_NestedScrollingParent/</loc>
     <lastmod>2016-08-23T14:25:59.000Z</lastmod>
     <data>
         <display>
@@ -1089,7 +1189,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/ViewPager%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E5%B9%BF%E5%91%8A%E6%9D%BF%E8%BD%AE%E6%92%AD/</loc>
+    <loc>http://chendongmarch.github.io/Android/ViewPager%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E5%B9%BF%E5%91%8A%E6%9D%BF%E8%BD%AE%E6%92%AD/</loc>
     <lastmod>2016-08-18T12:14:21.000Z</lastmod>
     <data>
         <display>
@@ -1111,7 +1211,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/RecyclerView%E6%B7%BB%E5%8A%A0Header%E5%92%8CFooter/</loc>
+    <loc>http://chendongmarch.github.io/Android/RecyclerView%E6%B7%BB%E5%8A%A0Header%E5%92%8CFooter/</loc>
     <lastmod>2016-08-18T12:09:31.000Z</lastmod>
     <data>
         <display>
@@ -1133,7 +1233,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/AndroidDialog%E6%80%BB%E7%BB%93/</loc>
+    <loc>http://chendongmarch.github.io/Android/AndroidDialog%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2016-08-18T11:58:58.000Z</lastmod>
     <data>
         <display>
@@ -1153,7 +1253,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E4%B8%8EWebView%E4%BA%A4%E4%BA%92/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E4%B8%8EWebView%E4%BA%A4%E4%BA%92/</loc>
     <lastmod>2016-08-18T11:55:40.000Z</lastmod>
     <data>
         <display>
@@ -1173,7 +1273,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E6%96%B0%E8%AE%BE%E8%AE%A1MetrailDesign/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E6%96%B0%E8%AE%BE%E8%AE%A1MetrailDesign/</loc>
     <lastmod>2016-08-18T11:55:18.000Z</lastmod>
     <data>
         <display>
@@ -1195,7 +1295,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E6%96%B0%E6%8E%A7%E4%BB%B6V4V7/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E6%96%B0%E6%8E%A7%E4%BB%B6V4V7/</loc>
     <lastmod>2016-08-18T11:35:48.000Z</lastmod>
     <data>
         <display>
@@ -1217,7 +1317,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E6%96%B0%E6%8E%A7%E4%BB%B6RecyclerView/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E6%96%B0%E6%8E%A7%E4%BB%B6RecyclerView/</loc>
     <lastmod>2016-08-18T11:30:37.000Z</lastmod>
     <data>
         <display>
@@ -1239,7 +1339,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E6%96%B0%E6%8E%A7%E4%BB%B6CardView/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E6%96%B0%E6%8E%A7%E4%BB%B6CardView/</loc>
     <lastmod>2016-08-18T11:27:07.000Z</lastmod>
     <data>
         <display>
@@ -1261,7 +1361,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E7%89%A9%E7%90%86%E6%8C%89%E9%94%AE/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E7%89%A9%E7%90%86%E6%8C%89%E9%94%AE/</loc>
     <lastmod>2016-08-18T11:24:12.000Z</lastmod>
     <data>
         <display>
@@ -1281,7 +1381,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/</loc>
     <lastmod>2016-08-18T11:21:52.000Z</lastmod>
     <data>
         <display>
@@ -1301,7 +1401,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E6%B7%BB%E5%8A%A0%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E6%B7%BB%E5%8A%A0%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/</loc>
     <lastmod>2016-08-18T11:21:31.000Z</lastmod>
     <data>
         <display>
@@ -1321,7 +1421,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD(ContentProvider_Loader_Sqlite)/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD(ContentProvider_Loader_Sqlite)/</loc>
     <lastmod>2016-08-18T11:20:27.000Z</lastmod>
     <data>
         <display>
@@ -1341,7 +1441,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E8%BD%BB%E6%9D%BE%E9%9B%86%E6%88%90Camera%E6%8B%8D%E7%85%A7/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E8%BD%BB%E6%9D%BE%E9%9B%86%E6%88%90Camera%E6%8B%8D%E7%85%A7/</loc>
     <lastmod>2016-08-18T11:15:12.000Z</lastmod>
     <data>
         <display>
@@ -1365,7 +1465,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2016-08-18T11:08:07.000Z</lastmod>
     <data>
         <display>
@@ -1385,7 +1485,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E5%90%88%E6%88%90GIF/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E5%90%88%E6%88%90GIF/</loc>
     <lastmod>2016-08-18T11:06:06.000Z</lastmod>
     <data>
         <display>
@@ -1405,7 +1505,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2016-08-18T10:54:59.000Z</lastmod>
     <data>
         <display>
@@ -1427,7 +1527,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Android-ORM%E6%A1%86%E6%9E%B6GreenDao/</loc>
+    <loc>http://chendongmarch.github.io/Android/Android-ORM%E6%A1%86%E6%9E%B6GreenDao/</loc>
     <lastmod>2016-08-18T10:25:10.000Z</lastmod>
     <data>
         <display>
@@ -1449,7 +1549,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Andriod%E5%90%AF%E5%8A%A8%E5%8E%BB%E6%8E%89%E7%99%BD%E5%B1%8F%E6%88%96%E9%BB%91%E5%B1%8F/</loc>
+    <loc>http://chendongmarch.github.io/Android/Andriod%E5%90%AF%E5%8A%A8%E5%8E%BB%E6%8E%89%E7%99%BD%E5%B1%8F%E6%88%96%E9%BB%91%E5%B1%8F/</loc>
     <lastmod>2016-08-18T10:17:08.000Z</lastmod>
     <data>
         <display>
@@ -1471,7 +1571,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Adapter%E5%B0%81%E8%A3%855-ListView_QuickAdapter/</loc>
+    <loc>http://chendongmarch.github.io/Android/Adapter%E5%B0%81%E8%A3%855-ListView_QuickAdapter/</loc>
     <lastmod>2016-08-18T10:12:13.000Z</lastmod>
     <data>
         <display>
@@ -1495,7 +1595,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Adapter%E5%B0%81%E8%A3%853-ListView%E5%A4%9A%E7%B1%BB%E5%9E%8B%E6%8A%BD%E8%B1%A1%E9%80%82%E9%85%8D/</loc>
+    <loc>http://chendongmarch.github.io/Android/Adapter%E5%B0%81%E8%A3%853-ListView%E5%A4%9A%E7%B1%BB%E5%9E%8B%E6%8A%BD%E8%B1%A1%E9%80%82%E9%85%8D/</loc>
     <lastmod>2016-08-18T10:08:26.000Z</lastmod>
     <data>
         <display>
@@ -1517,7 +1617,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Adapter%E5%B0%81%E8%A3%852-ListView%E5%A4%9A%E7%B1%BB%E5%9E%8B%E9%80%82%E9%85%8D/</loc>
+    <loc>http://chendongmarch.github.io/Android/Adapter%E5%B0%81%E8%A3%852-ListView%E5%A4%9A%E7%B1%BB%E5%9E%8B%E9%80%82%E9%85%8D/</loc>
     <lastmod>2016-08-18T09:55:28.000Z</lastmod>
     <data>
         <display>
@@ -1539,7 +1639,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/Adapter%E5%B0%81%E8%A3%851-ListView%E5%8D%95%E7%B1%BB%E5%9E%8B%E9%80%82%E9%85%8D/</loc>
+    <loc>http://chendongmarch.github.io/Android/Adapter%E5%B0%81%E8%A3%851-ListView%E5%8D%95%E7%B1%BB%E5%9E%8B%E9%80%82%E9%85%8D/</loc>
     <lastmod>2016-08-18T09:51:17.000Z</lastmod>
     <data>
         <display>
@@ -1561,7 +1661,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E8%87%AA%E5%AE%9A%E4%B9%89Tab%E5%AF%BC%E8%88%AA/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E8%87%AA%E5%AE%9A%E4%B9%89Tab%E5%AF%BC%E8%88%AA/</loc>
     <lastmod>2016-08-18T09:42:20.000Z</lastmod>
     <data>
         <display>
@@ -1585,7 +1685,7 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/android/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B62%E7%BB%A7%E6%89%BFViewgroup/</loc>
+    <loc>http://chendongmarch.github.io/Android/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B62%E7%BB%A7%E6%89%BFViewgroup/</loc>
     <lastmod>2016-08-18T09:40:00.000Z</lastmod>
     <data>
         <display>
