@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://chendongmarch.github.io/about/index.html</loc>
+    
+    <lastmod>2017-06-30T04:14:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://chendongmarch.github.io/article/185805107/</loc>
     
-    <lastmod>2017-06-30T02:06:04.000Z</lastmod>
+    <lastmod>2017-06-30T03:47:30.000Z</lastmod>
     
   </url>
   
@@ -565,13 +572,6 @@
     <loc>http://chendongmarch.github.io/index/index.html</loc>
     
     <lastmod>2016-08-18T03:48:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://chendongmarch.github.io/about/index.html</loc>
-    
-    <lastmod>2016-08-18T03:43:03.000Z</lastmod>
     
   </url>
   

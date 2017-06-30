@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -27,8 +27,17 @@
 </script>
 
 
+
+
+
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
 
 
 
@@ -77,11 +86,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
-
-
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
 
@@ -89,55 +96,63 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
 
 
 
-<meta name="description" content="Google 2017 IO大会宣布Kotlin作为Android一级开发语言，一时间各大技术博客网站，微信订阅号，朋友圈都被kotlin刷屏了，全都是对kotlin的简要介绍，现在过了大约一周感觉大家慢慢平静下来了，发布的文章的质量也更高，更有针对性，相信不久的将来再广大开发者的推动下，kotlin会发展的越来越好。
-就像Google发布Android专用的开发工具AndroidStudio一样">
+<meta name="description" content="Google 2017 IO大会宣布Kotlin作为Android一级开发语言，一时间各大技术博客网站，微信订阅号，朋友圈都被kotlin刷屏了，全都是对kotlin的简要介绍，现在过了大约一周感觉大家慢慢平静下来了，发布的文章的质量也更高，更有针对性，相信不久的将来再广大开发者的推动下，kotlin会发展的越来越好。 就像Google发布Android专用的开发工具AndroidStudio一样">
+<meta name="keywords" content="Kotlin,新特性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin-新特性篇">
 <meta property="og:url" content="http://chendongmarch.github.io/article/3395269050/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="Google 2017 IO大会宣布Kotlin作为Android一级开发语言，一时间各大技术博客网站，微信订阅号，朋友圈都被kotlin刷屏了，全都是对kotlin的简要介绍，现在过了大约一周感觉大家慢慢平静下来了，发布的文章的质量也更高，更有针对性，相信不久的将来再广大开发者的推动下，kotlin会发展的越来越好。
-就像Google发布Android专用的开发工具AndroidStudio一样">
+<meta property="og:description" content="Google 2017 IO大会宣布Kotlin作为Android一级开发语言，一时间各大技术博客网站，微信订阅号，朋友圈都被kotlin刷屏了，全都是对kotlin的简要介绍，现在过了大约一周感觉大家慢慢平静下来了，发布的文章的质量也更高，更有针对性，相信不久的将来再广大开发者的推动下，kotlin会发展的越来越好。 就像Google发布Android专用的开发工具AndroidStudio一样">
 <meta property="og:updated_time" content="2017-06-30T01:37:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin-新特性篇">
-<meta name="twitter:description" content="Google 2017 IO大会宣布Kotlin作为Android一级开发语言，一时间各大技术博客网站，微信订阅号，朋友圈都被kotlin刷屏了，全都是对kotlin的简要介绍，现在过了大约一周感觉大家慢慢平静下来了，发布的文章的质量也更高，更有针对性，相信不久的将来再广大开发者的推动下，kotlin会发展的越来越好。
-就像Google发布Android专用的开发工具AndroidStudio一样">
+<meta name="twitter:description" content="Google 2017 IO大会宣布Kotlin作为Android一级开发语言，一时间各大技术博客网站，微信订阅号，朋友圈都被kotlin刷屏了，全都是对kotlin的简要介绍，现在过了大约一周感觉大家慢慢平静下来了，发布的文章的质量也更高，更有针对性，相信不久的将来再广大开发者的推动下，kotlin会发展的越来越好。 就像Google发布Android专用的开发工具AndroidStudio一样">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: 'undefined',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://chendongmarch.github.io/article/3395269050/">
 
 
-  <title> Kotlin-新特性篇 | 三月 </title>
-</head>
 
-<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
 
+
+  <title>Kotlin-新特性篇 | 三月</title>
   
+
+
 
 
 
@@ -145,7 +160,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -158,12 +173,18 @@
 
 
 
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
   <!--- add Fork me on Github  -->
@@ -175,25 +196,29 @@
     <!--- add Fork me on Github -->   
     
     <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta custom-logo">
-  
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">三月</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">The darkest hour is that before the dawn.</h1>
+      
   </div>
-  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -283,17 +308,34 @@
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
 
 
     </div>
   
 </nav>
+
+
 
  </div>
     </header>
@@ -308,49 +350,64 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/3395269050/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Kotlin-新特性篇
-              
-            
-          </h1>
+          <h2 class="post-title" itemprop="name headline">Kotlin-新特性篇</h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-23T00:00:00+08:00" content="2017-05-23">
-              2017-05-23
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-23T00:00:00+08:00">
+                2017-05-23
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category">
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Study/" itemprop="url" rel="index">
                     <span itemprop="name">Study</span>
                   </a>
@@ -360,9 +417,8 @@
                 
                   ， 
                 
-
               
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Study/Kotlin/" itemprop="url" rel="index">
                     <span itemprop="name">Kotlin</span>
                   </a>
@@ -370,7 +426,6 @@
 
                 
                 
-
               
             </span>
           
@@ -378,29 +433,34 @@
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/article/3395269050/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3395269050/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3395269050/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
-              &nbsp; | &nbsp;
-              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
-              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
-              </span>
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"> 本文访问总量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
           
+
+          
+
+          
+
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -458,7 +518,7 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> myParam1:Student? = <span class="literal">null</span></div><div class="line"></div><div class="line"><span class="comment">// java 中，在使用之前，我们通常会做一系列判空操作</span></div><div class="line"><span class="keyword">if</span>(myParam1!=<span class="literal">null</span> &amp;&amp; myParam1.myCls!=<span class="literal">null</span>)&#123;</div><div class="line">    Log.e(TAG,<span class="string">"<span class="subst">$&#123;myParam1.myCls.length&#125;</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Kotlin safe calls</span></div><div class="line">Log.e(TAG,<span class="string">"<span class="subst">$&#123;myParam1?.myCls?.length&#125;</span>"</span>)</div></pre></td></tr></table></figure>
 <h2 id="字符串模版"><a href="#字符串模版" class="headerlink" title="字符串模版"></a>字符串模版</h2><p>再也不用 <code>+</code> 或者 <code>StringBuilder</code> 来回拼接和计算字符串，kotlin提供了更加优雅的实现方式。</p>
 <p>使用 <code>${表达式}</code> 的方式可以在字符串中间插入数据。只有一个简单值时可以省略 <code>{}</code> ,同时也支持复杂表达式的计算。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> user = User()</div><div class="line"><span class="keyword">val</span> param = <span class="number">100</span></div><div class="line"><span class="keyword">var</span> str = <span class="string">"test str template like <span class="subst">$param</span>"</span></div><div class="line">str = <span class="string">"test str template like <span class="subst">$&#123;user.name&#125;</span> "</span></div><div class="line">str = <span class="string">"test str template like <span class="subst">$&#123;if (user.age &lt;= <span class="number">0</span>) <span class="number">100</span> else user.age&#125;</span>"</span></div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> user = User()</div><div class="line"><span class="keyword">val</span> param = <span class="number">100</span></div><div class="line"><span class="keyword">var</span> str = <span class="string">"test str template like <span class="variable">$param</span>"</span></div><div class="line">str = <span class="string">"test str template like <span class="subst">$&#123;user.name&#125;</span> "</span></div><div class="line">str = <span class="string">"test str template like <span class="subst">$&#123;if (user.age &lt;= <span class="number">0</span>) <span class="number">100</span> else user.age&#125;</span>"</span></div></pre></td></tr></table></figure>
 <h2 id="扩展函数和属性"><a href="#扩展函数和属性" class="headerlink" title="扩展函数和属性"></a>扩展函数和属性</h2><p><code>Kotlin</code> 提供了向一个类扩展新功能的能力，而且不必从这个类继承, 也不必使用任何设计模式, 比如 <code>Decorator</code> 模式之类。 这种功能是通过一种特殊的声明来实现的, <code>Kotlin</code> 中称为 <code>扩展(extension)</code>。 <code>Kotlin</code> 支持 <code>扩展函数(extension function)</code> 和 <code>扩展属性(extension property)</code>。</p>
 <p>另外我刚开始看这个地方的时候，是将扩展函数声明在使用它的类中，在另一个类中要使用就无法引用了，难道每次都要重新写？那不是很鸡肋。其实由于 <code>java</code> 的惯性，我觉得所有的方法必须声明在类中，<code>java</code> 中确实是这样的， 但是 <code>Kotlin</code> 不必这样做，你的类文件的名字可以不和文件名相同，函数也可以直接声明在文件中，而不是某个类中。</p>
 <blockquote>
@@ -486,7 +546,7 @@
 <p>函数作为参数，下面的函数接受一个参数为 <code>String</code> 返回值为 <code>Int</code> 的函数作为参数，并调用他。<code>lis</code> 是形参，<code>(String) -&gt; Int)</code>是函数类型。下面的两个重载函数的例子，是为了展示只有一个函数参数时的简化写法，多个参数时使用常规写法。结合上面 <code>lambda</code> 表达式的相关用法。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 只有一个函数做参数，并且只有一个参数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testFunOneFunParam</span><span class="params">(lis: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>): <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> lis(<span class="string">"测试函数作为参数传递,只有一个函数作为参数"</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 有多个参数，并且函数不是最后一个</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testFunMultiParam</span><span class="params">(lis: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>, param: String): <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> lis(<span class="string">"测试函数作为参数传递,第一个参数是函数"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 调用</span></div><div class="line">testFunOneFunParam &#123;</div><div class="line">    param -&gt;</div><div class="line">    param.hashCode()</div><div class="line">&#125;</div><div class="line"></div><div class="line">testFunMultiParam(&#123;</div><div class="line">    param -&gt;</div><div class="line">    param.hashCode()</div><div class="line">&#125;, <span class="string">"测试函数不是作为第一个参数的情况"</span>)</div></pre></td></tr></table></figure>
 <p>函数作为返回值</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数作为返回值</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">returnFun</span><span class="params">(param: <span class="type">String</span>)</span></span>: ((intParam: <span class="built_in">Int</span>) -&gt; String) &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        intParam -&gt;</div><div class="line">        <span class="string">"int param is <span class="subst">$intParam</span> param is <span class="subst">$param</span>"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 调用</span></div><div class="line">returnFun(<span class="string">"执行完返回一个函数"</span>)(<span class="number">100</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数作为返回值</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">returnFun</span><span class="params">(param: <span class="type">String</span>)</span></span>: ((intParam: <span class="built_in">Int</span>) -&gt; String) &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        intParam -&gt;</div><div class="line">        <span class="string">"int param is <span class="variable">$intParam</span> param is <span class="variable">$param</span>"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 调用</span></div><div class="line">returnFun(<span class="string">"执行完返回一个函数"</span>)(<span class="number">100</span>)</div></pre></td></tr></table></figure>
 <p>单表达式函数，当函数的返回值只有一个简单表达式时，可以使用单表达式函数，简化代码</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 单表达式函数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testFun2</span><span class="params">()</span></span> = <span class="number">100</span></div><div class="line"><span class="comment">// 单表达式函数结合when</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testFun3</span><span class="params">(param: <span class="type">Int</span>)</span></span> = <span class="keyword">when</span> (param) &#123;</div><div class="line">    <span class="number">0</span> -&gt; <span class="number">0</span></div><div class="line">    <span class="keyword">in</span> <span class="number">1.</span><span class="number">.5</span> -&gt; <span class="number">1</span></div><div class="line">    <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span> -&gt; <span class="number">2</span></div><div class="line">    <span class="keyword">else</span> -&gt; <span class="number">100</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="数据类"><a href="#数据类" class="headerlink" title="数据类"></a>数据类</h2><p>我们经常会创建一些数据类, 什么功能也没有, 而仅仅用来保存数据. 在这些类中, 某些常见的功能经常可以由类中保存的数据内容即可自动推断得到. 在 <code>Kotlin</code> 中, 我们将这样的类称为 数据类, 通过 <code>data</code> 关键字标记；</p>
@@ -497,7 +557,14 @@
 </blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">DataModel</span></span>(<span class="keyword">val</span> param1: String, <span class="keyword">val</span> param2: <span class="built_in">Int</span>)</div><div class="line"><span class="comment">// 使用</span></div><div class="line"><span class="keyword">val</span> dataModel = DataModel(<span class="string">"p1"</span>,<span class="number">100</span>)</div><div class="line">dataModel.copy(<span class="string">"p2"</span>,<span class="number">99</span>)</div></pre></td></tr></table></figure>
 <p>数据类添加成员方法</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">DataModel</span></span>(<span class="keyword">val</span> param1: String, <span class="keyword">val</span> param2: <span class="built_in">Int</span>) &#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">speak</span><span class="params">(msg: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        Log.e(<span class="string">"DataModel"</span>, <span class="string">"speak<span class="subst">$msg</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">dataModel.speak(<span class="string">"haha"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">DataModel</span></span>(<span class="keyword">val</span> param1: String, <span class="keyword">val</span> param2: <span class="built_in">Int</span>) &#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">speak</span><span class="params">(msg: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        Log.e(<span class="string">"DataModel"</span>, <span class="string">"speak<span class="variable">$msg</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">dataModel.speak(<span class="string">"haha"</span>)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
 
       
     </div>
@@ -520,9 +587,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Kotlin/" rel="tag">#Kotlin</a>
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -534,6 +605,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -622,23 +695,30 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
-          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">76</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -646,8 +726,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -659,6 +741,17 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
@@ -686,19 +779,29 @@
           </div>
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐文章"><span class="nav-text">推荐文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本配置"><span class="nav-text">基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#汇总一些细节"><span class="nav-text">汇总一些细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用xml中的控件"><span class="nav-text">引用xml中的控件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空值安全-Null-Safety"><span class="nav-text">空值安全(Null Safety)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串模版"><span class="nav-text">字符串模版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展函数和属性"><span class="nav-text">扩展函数和属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动类型推断"><span class="nav-text">自动类型推断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持-lambda-表达式"><span class="nav-text">支持 lambda 表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数是一等公民"><span class="nav-text">函数是一等公民</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类"><span class="nav-text">数据类</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -713,13 +816,14 @@
       <div class="footer-inner">
         <div class="copyright">
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">chendong</span>
 </div>
+
 
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
@@ -732,31 +836,40 @@
   </a>
 </div>
 
+
         
-
 <div class="busuanzi-count">
-
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+    <span class="site-uv">
+      <i class="fa fa-user"> 本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
   
 
   
-    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
-  
+    <span class="site-pv">
+      <i class="fa fa-eye"> 本站访问总量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
   
 </div>
-
 
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -776,6 +889,15 @@
 
 
   
+
+
+
+
+
+
+
+
+
 
 
 
@@ -801,25 +923,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -849,136 +971,351 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
   
-  
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = false;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = decodeURIComponent(data.url);
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title >= 0 || index_content >= 0 ){
-                                isMatch = true;
-								if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            } 
-							
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
+      'use strict';
 
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
-            proceedsearch();
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
-    });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
+
+
   
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
 
   
 
@@ -1001,6 +1338,11 @@
 
   
 
+  
+
+  
+
+  
 
 </body>
 </html>

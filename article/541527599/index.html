@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -27,8 +27,17 @@
 </script>
 
 
+
+
+
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
 
 
 
@@ -77,11 +86,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
-
-
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
 
@@ -89,72 +96,65 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
 
 
 
-<meta name="description" content="Handler意思是处理者，它是android特有的用来消息处理的一个类。使用它可以解决很多android中常见的问题.
-
-
-Handler体现的是一种消息的发送与处理异步进行的机制，消息发送时即刻返回，将消息加入队列中，另一端looper负责循环取出消息进行操作。
-
-
-需要注意的是Handler可以发送Message也可以发送Runnable对象。但是消息处理必定是在Handler所在的线程中">
+<meta name="description" content="Handler意思是处理者，它是android特有的用来消息处理的一个类。使用它可以解决很多android中常见的问题.   Handler体现的是一种消息的发送与处理异步进行的机制，消息发送时即刻返回，将消息加入队列中，另一端looper负责循环取出消息进行操作。   需要注意的是Handler可以发送Message也可以发送Runnable对象。但是消息处理必定是在Handler所在的线程中">
+<meta name="keywords" content="Android,Handler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handler源码分析">
 <meta property="og:url" content="http://chendongmarch.github.io/article/541527599/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="Handler意思是处理者，它是android特有的用来消息处理的一个类。使用它可以解决很多android中常见的问题.
-
-
-Handler体现的是一种消息的发送与处理异步进行的机制，消息发送时即刻返回，将消息加入队列中，另一端looper负责循环取出消息进行操作。
-
-
-需要注意的是Handler可以发送Message也可以发送Runnable对象。但是消息处理必定是在Handler所在的线程中">
+<meta property="og:description" content="Handler意思是处理者，它是android特有的用来消息处理的一个类。使用它可以解决很多android中常见的问题.   Handler体现的是一种消息的发送与处理异步进行的机制，消息发送时即刻返回，将消息加入队列中，另一端looper负责循环取出消息进行操作。   需要注意的是Handler可以发送Message也可以发送Runnable对象。但是消息处理必定是在Handler所在的线程中">
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/handler.png">
 <meta property="og:updated_time" content="2017-06-30T01:25:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler源码分析">
-<meta name="twitter:description" content="Handler意思是处理者，它是android特有的用来消息处理的一个类。使用它可以解决很多android中常见的问题.
-
-
-Handler体现的是一种消息的发送与处理异步进行的机制，消息发送时即刻返回，将消息加入队列中，另一端looper负责循环取出消息进行操作。
-
-
-需要注意的是Handler可以发送Message也可以发送Runnable对象。但是消息处理必定是在Handler所在的线程中">
+<meta name="twitter:description" content="Handler意思是处理者，它是android特有的用来消息处理的一个类。使用它可以解决很多android中常见的问题.   Handler体现的是一种消息的发送与处理异步进行的机制，消息发送时即刻返回，将消息加入队列中，另一端looper负责循环取出消息进行操作。   需要注意的是Handler可以发送Message也可以发送Runnable对象。但是消息处理必定是在Handler所在的线程中">
 <meta name="twitter:image" content="http://7xtjec.com1.z0.glb.clouddn.com/handler.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: 'undefined',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://chendongmarch.github.io/article/541527599/">
 
 
-  <title> Handler源码分析 | 三月 </title>
-</head>
 
-<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
 
+
+  <title>Handler源码分析 | 三月</title>
   
+
+
 
 
 
@@ -162,7 +162,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -175,12 +175,18 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
 
 
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
   <!--- add Fork me on Github  -->
@@ -192,25 +198,29 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
     <!--- add Fork me on Github -->   
     
     <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta custom-logo">
-  
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">三月</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">The darkest hour is that before the dawn.</h1>
+      
   </div>
-  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -300,17 +310,34 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
 
 
     </div>
   
 </nav>
+
+
 
  </div>
     </header>
@@ -325,49 +352,64 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/541527599/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Handler源码分析
-              
-            
-          </h1>
+          <h2 class="post-title" itemprop="name headline">Handler源码分析</h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-17T00:00:00+08:00" content="2015-11-17">
-              2015-11-17
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-17T00:00:00+08:00">
+                2015-11-17
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category">
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Android/" itemprop="url" rel="index">
                     <span itemprop="name">Android</span>
                   </a>
@@ -375,7 +417,6 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
                 
                 
-
               
             </span>
           
@@ -383,29 +424,34 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
           
             
               <span class="post-comments-count">
-                &nbsp; | &nbsp;
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/article/541527599/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/541527599/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/541527599/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
-          
           
 
           
-              &nbsp; | &nbsp;
-              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
-              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
-              </span>
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"> 本文访问总量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
           
+
+          
+
+          
+
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -524,7 +570,7 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 <li>死循环实际是发生在MessageQueue中的，我在注释中写了说明。关于MessageQueue的很多本地方法的介绍，大家可以参考<a href="http://blog.csdn.net/android_panda/article/details/8161501" rel="external nofollow noopener noreferrer" target="_blank">这里</a></li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Message msg = 	queue.next(); <span class="comment">// might block</span></div><div class="line"><span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</div><div class="line"><span class="comment">// No message indicates that the message queue is quitting.</span></div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"><span class="function">Message <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Return here if the message loop has already quit and been disposed.</span></div><div class="line"><span class="comment">// This can happen if the application tries to restart a looper after quit</span></div><div class="line"><span class="comment">// which is not supported.</span></div><div class="line"><span class="keyword">final</span> <span class="keyword">long</span> ptr = mPtr;</div><div class="line"><span class="keyword">if</span> (ptr == <span class="number">0</span>) &#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> pendingIdleHandlerCount = -<span class="number">1</span>; <span class="comment">// -1 only during first iteration</span></div><div class="line"><span class="comment">//超时时间</span></div><div class="line"><span class="keyword">int</span> nextPollTimeoutMillis = <span class="number">0</span>;</div><div class="line"><span class="comment">//开始循环取出消息</span></div><div class="line"><span class="keyword">for</span> (;;) &#123;</div><div class="line">    <span class="keyword">if</span> (nextPollTimeoutMillis != <span class="number">0</span>) &#123;</div><div class="line">        Binder.flushPendingCommands();</div><div class="line">&#125;</div><div class="line">nativePollOnce(ptr, nextPollTimeoutMillis);</div><div class="line"><span class="comment">//接下来进行锁定，开始取出消息</span></div><div class="line"><span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">	</div><div class="line">     <span class="comment">// Try to retrieve the next message.  Return if found.</span></div><div class="line">     <span class="keyword">final</span> <span class="keyword">long</span> now = SystemClock.uptimeMillis();</div><div class="line">     Message prevMsg = <span class="keyword">null</span>;</div><div class="line">     Message msg = mMessages;</div><div class="line">     <span class="comment">//取到消息是空，然后进行一个循环查找下一个可用消息</span></div><div class="line">     <span class="keyword">if</span> (msg != <span class="keyword">null</span> &amp;&amp; msg.target == <span class="keyword">null</span>) &#123;</div><div class="line">     <span class="comment">// Stalled by a barrier.  Find the next asynchronous message in the queue.</span></div><div class="line">     do &#123;</div><div class="line">      prevMsg = msg;</div><div class="line">      msg = msg.next;</div><div class="line">     &#125; <span class="keyword">while</span> (msg != <span class="keyword">null</span> &amp;&amp; !msg.isAsynchronous());</div><div class="line"> &#125;</div><div class="line"><span class="keyword">if</span> (msg != <span class="keyword">null</span>) &#123;</div><div class="line">   <span class="keyword">if</span> (now &lt; msg.when) &#123;</div><div class="line"><span class="comment">// Next message is not ready.  Set a timeout to wake up when it is ready.</span></div><div class="line"><span class="comment">//当前时间没有达到执行这个消息的时间。将会进行超时等待</span></div><div class="line">    nextPollTimeoutMillis = (<span class="keyword">int</span>) Math.min(msg.when - now, Integer.MAX_VALUE);</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">   <span class="comment">//取出头部的消息返回</span></div><div class="line">   <span class="comment">// Got a message.</span></div><div class="line">   mBlocked = <span class="keyword">false</span>;</div><div class="line">   <span class="keyword">if</span> (prevMsg != <span class="keyword">null</span>) &#123;</div><div class="line">      prevMsg.next = msg.next;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">      mMessages = msg.next;</div><div class="line">   &#125;</div><div class="line">   msg.next = <span class="keyword">null</span>;</div><div class="line">   <span class="keyword">return</span> msg;</div><div class="line">&#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">// No more messages.</span></div><div class="line">  nextPollTimeoutMillis = -<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// Process the quit message now that all pending messages have been handled.</span></div><div class="line"><span class="comment">//线程不存在时返回null，loop()也会随之结束</span></div><div class="line"><span class="keyword">if</span> (mQuitting) &#123;</div><div class="line">       dispose();</div><div class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// If first time idle, then get the number of idlers to run.</span></div><div class="line"><span class="comment">// Idle handles only run if the queue is empty or if the first message</span></div><div class="line"><span class="comment">// in the queue (possibly a barrier) is due to be handled in the future.</span></div><div class="line"><span class="keyword">if</span> (pendingIdleHandlerCount &lt; <span class="number">0</span>&amp;&amp; (mMessages == <span class="keyword">null</span> || now &lt; mMessages.when)) &#123;</div><div class="line">      pendingIdleHandlerCount = mIdleHandlers.size();</div><div class="line">&#125;</div><div class="line"><span class="comment">//死循环发生在这里，具体还没有很明白，需要再去研究</span></div><div class="line"><span class="keyword">if</span> (pendingIdleHandlerCount &lt;= <span class="number">0</span>) &#123;</div><div class="line"><span class="comment">// No idle handlers to run.  Loop and wait some more.</span></div><div class="line"> mBlocked = <span class="keyword">true</span>;</div><div class="line"><span class="keyword">continue</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (mPendingIdleHandlers == <span class="keyword">null</span>) &#123;</div><div class="line">mPendingIdleHandlers = <span class="keyword">new</span> IdleHandler[Math.max(pendingIdleHandlerCount, <span class="number">4</span>)];</div><div class="line">&#125;</div><div class="line">mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);</div><div class="line">&#125;</div><div class="line"><span class="comment">// Run the idle handlers.</span></div><div class="line"><span class="comment">// We only ever reach this code block during the first iteration.</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pendingIdleHandlerCount; i++) &#123;</div><div class="line">    <span class="keyword">final</span> IdleHandler idler = mPendingIdleHandlers[i];</div><div class="line">    mPendingIdleHandlers[i] = <span class="keyword">null</span>; <span class="comment">// release the reference to the handler</span></div><div class="line"><span class="keyword">boolean</span> keep = <span class="keyword">false</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    keep = idler.queueIdle();</div><div class="line">&#125; <span class="keyword">catch</span> (Throwable t) &#123;</div><div class="line">Log.wtf(<span class="string">"MessageQueue"</span>, <span class="string">"IdleHandler threw exception"</span>, t);</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (!keep) &#123;</div><div class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">      mIdleHandlers.remove(idler);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// Reset the idle handler count to 0 so we do not run them again.</span></div><div class="line">pendingIdleHandlerCount = <span class="number">0</span>;</div><div class="line"><span class="comment">// While calling an idle handler, a new message could have been delivered</span></div><div class="line"><span class="comment">// so go back and look again for a pending message without waiting.</span></div><div class="line">nextPollTimeoutMillis = <span class="number">0</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line"><span class="function">Message <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Return here if the message loop has already quit and been disposed.</span></div><div class="line"><span class="comment">// This can happen if the application tries to restart a looper after quit</span></div><div class="line"><span class="comment">// which is not supported.</span></div><div class="line"><span class="keyword">final</span> <span class="keyword">long</span> ptr = mPtr;</div><div class="line"><span class="keyword">if</span> (ptr == <span class="number">0</span>) &#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">int</span> pendingIdleHandlerCount = -<span class="number">1</span>; <span class="comment">// -1 only during first iteration</span></div><div class="line"><span class="comment">//超时时间</span></div><div class="line"><span class="keyword">int</span> nextPollTimeoutMillis = <span class="number">0</span>;</div><div class="line"><span class="comment">//开始循环取出消息</span></div><div class="line"><span class="keyword">for</span> (;;) &#123;</div><div class="line">    <span class="keyword">if</span> (nextPollTimeoutMillis != <span class="number">0</span>) &#123;</div><div class="line">        Binder.flushPendingCommands();</div><div class="line">&#125;</div><div class="line">nativePollOnce(ptr, nextPollTimeoutMillis);</div><div class="line"><span class="comment">//接下来进行锁定，开始取出消息</span></div><div class="line"><span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">	</div><div class="line">     <span class="comment">// Try to retrieve the next message.  Return if found.</span></div><div class="line">     <span class="keyword">final</span> <span class="keyword">long</span> now = SystemClock.uptimeMillis();</div><div class="line">     Message prevMsg = <span class="keyword">null</span>;</div><div class="line">     Message msg = mMessages;</div><div class="line">     <span class="comment">//取到消息是空，然后进行一个循环查找下一个可用消息</span></div><div class="line">     <span class="keyword">if</span> (msg != <span class="keyword">null</span> &amp;&amp; msg.target == <span class="keyword">null</span>) &#123;</div><div class="line">     <span class="comment">// Stalled by a barrier.  Find the next asynchronous message in the queue.</span></div><div class="line">     <span class="keyword">do</span> &#123;</div><div class="line">      prevMsg = msg;</div><div class="line">      msg = msg.next;</div><div class="line">     &#125; <span class="keyword">while</span> (msg != <span class="keyword">null</span> &amp;&amp; !msg.isAsynchronous());</div><div class="line"> &#125;</div><div class="line"><span class="keyword">if</span> (msg != <span class="keyword">null</span>) &#123;</div><div class="line">   <span class="keyword">if</span> (now &lt; msg.when) &#123;</div><div class="line"><span class="comment">// Next message is not ready.  Set a timeout to wake up when it is ready.</span></div><div class="line"><span class="comment">//当前时间没有达到执行这个消息的时间。将会进行超时等待</span></div><div class="line">    nextPollTimeoutMillis = (<span class="keyword">int</span>) Math.min(msg.when - now, Integer.MAX_VALUE);</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">   <span class="comment">//取出头部的消息返回</span></div><div class="line">   <span class="comment">// Got a message.</span></div><div class="line">   mBlocked = <span class="keyword">false</span>;</div><div class="line">   <span class="keyword">if</span> (prevMsg != <span class="keyword">null</span>) &#123;</div><div class="line">      prevMsg.next = msg.next;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">      mMessages = msg.next;</div><div class="line">   &#125;</div><div class="line">   msg.next = <span class="keyword">null</span>;</div><div class="line">   <span class="keyword">return</span> msg;</div><div class="line">&#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">// No more messages.</span></div><div class="line">  nextPollTimeoutMillis = -<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// Process the quit message now that all pending messages have been handled.</span></div><div class="line"><span class="comment">//线程不存在时返回null，loop()也会随之结束</span></div><div class="line"><span class="keyword">if</span> (mQuitting) &#123;</div><div class="line">       dispose();</div><div class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// If first time idle, then get the number of idlers to run.</span></div><div class="line"><span class="comment">// Idle handles only run if the queue is empty or if the first message</span></div><div class="line"><span class="comment">// in the queue (possibly a barrier) is due to be handled in the future.</span></div><div class="line"><span class="keyword">if</span> (pendingIdleHandlerCount &lt; <span class="number">0</span>&amp;&amp; (mMessages == <span class="keyword">null</span> || now &lt; mMessages.when)) &#123;</div><div class="line">      pendingIdleHandlerCount = mIdleHandlers.size();</div><div class="line">&#125;</div><div class="line"><span class="comment">//死循环发生在这里，具体还没有很明白，需要再去研究</span></div><div class="line"><span class="keyword">if</span> (pendingIdleHandlerCount &lt;= <span class="number">0</span>) &#123;</div><div class="line"><span class="comment">// No idle handlers to run.  Loop and wait some more.</span></div><div class="line"> mBlocked = <span class="keyword">true</span>;</div><div class="line"><span class="keyword">continue</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (mPendingIdleHandlers == <span class="keyword">null</span>) &#123;</div><div class="line">mPendingIdleHandlers = <span class="keyword">new</span> IdleHandler[Math.max(pendingIdleHandlerCount, <span class="number">4</span>)];</div><div class="line">&#125;</div><div class="line">mPendingIdleHandlers = mIdleHandlers.toArray(mPendingIdleHandlers);</div><div class="line">&#125;</div><div class="line"><span class="comment">// Run the idle handlers.</span></div><div class="line"><span class="comment">// We only ever reach this code block during the first iteration.</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pendingIdleHandlerCount; i++) &#123;</div><div class="line">    <span class="keyword">final</span> IdleHandler idler = mPendingIdleHandlers[i];</div><div class="line">    mPendingIdleHandlers[i] = <span class="keyword">null</span>; <span class="comment">// release the reference to the handler</span></div><div class="line"><span class="keyword">boolean</span> keep = <span class="keyword">false</span>;</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    keep = idler.queueIdle();</div><div class="line">&#125; <span class="keyword">catch</span> (Throwable t) &#123;</div><div class="line">Log.wtf(<span class="string">"MessageQueue"</span>, <span class="string">"IdleHandler threw exception"</span>, t);</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (!keep) &#123;</div><div class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">      mIdleHandlers.remove(idler);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// Reset the idle handler count to 0 so we do not run them again.</span></div><div class="line">pendingIdleHandlerCount = <span class="number">0</span>;</div><div class="line"><span class="comment">// While calling an idle handler, a new message could have been delivered</span></div><div class="line"><span class="comment">// so go back and look again for a pending message without waiting.</span></div><div class="line">nextPollTimeoutMillis = <span class="number">0</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="Handler类"><a href="#Handler类" class="headerlink" title="Handler类"></a>Handler类</h2><h3 id="成员变量-2"><a href="#成员变量-2" class="headerlink" title="成员变量"></a>成员变量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//从这里看得出Handler很好的连接了Looper和MessageQueue</span></div><div class="line"><span class="keyword">final</span> MessageQueue mQueue;</div><div class="line"><span class="keyword">final</span> Looper mLooper;</div><div class="line"><span class="comment">//这是一个接口，用来处理消息，下面是具体实现，也是我们通常要实现的方法。</span></div><div class="line"><span class="keyword">final</span> Callback mCallback;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callback</span> </span>&#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h3><ul>
 <li>重载了多个构造方法，老规矩，我们只看没有最底层的构造方法和我们最常用的构造方法</li>
@@ -567,15 +613,26 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/SourceCode/" rel="tag">#SourceCode</a>
+            <a href="/tags/SourceCode/" rel="tag"># SourceCode</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -587,6 +644,8 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -675,23 +734,30 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
-          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">76</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -699,8 +765,10 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -712,6 +780,17 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
           
         </div>
 
@@ -739,19 +818,29 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
           </div>
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景："><span class="nav-text">使用场景：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler原理图解："><span class="nav-text">Handler原理图解：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Looper类"><span class="nav-text">Looper类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成员变量"><span class="nav-text">成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成员方法"><span class="nav-text">成员方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Message类"><span class="nav-text">Message类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#成员变量-1"><span class="nav-text">成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成员方法obtain"><span class="nav-text">成员方法obtain()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Message的回收方法"><span class="nav-text">Message的回收方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MessageQueue类"><span class="nav-text">MessageQueue类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-1"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入队方法"><span class="nav-text">入队方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出队方法"><span class="nav-text">出队方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler类"><span class="nav-text">Handler类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#成员变量-2"><span class="nav-text">成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法-1"><span class="nav-text">构造方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成员方法-1"><span class="nav-text">成员方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件分发与处理"><span class="nav-text">事件分发与处理</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -766,13 +855,14 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
       <div class="footer-inner">
         <div class="copyright">
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">chendong</span>
 </div>
+
 
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
@@ -785,31 +875,40 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
   </a>
 </div>
 
+
         
-
 <div class="busuanzi-count">
-
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+    <span class="site-uv">
+      <i class="fa fa-user"> 本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
   
 
   
-    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
-  
+    <span class="site-pv">
+      <i class="fa fa-eye"> 本站访问总量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
   
 </div>
-
 
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -829,6 +928,15 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
 
   
+
+
+
+
+
+
+
+
+
 
 
 
@@ -854,25 +962,25 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -902,136 +1010,351 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
 
 
+
+
+
+
+
+
+
+
+
+
   
-  
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = false;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = decodeURIComponent(data.url);
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title >= 0 || index_content >= 0 ){
-                                isMatch = true;
-								if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            } 
-							
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
+      'use strict';
 
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
-            proceedsearch();
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
-    });}
+      });
+    }
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
 
+
+
   
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
 
   
 
@@ -1054,6 +1377,11 @@ Handler体现的是一种消息的发送与处理异步进行的机制，消息�
 
   
 
+  
+
+  
+
+  
 
 </body>
 </html>
