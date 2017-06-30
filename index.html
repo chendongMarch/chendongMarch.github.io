@@ -308,26 +308,20 @@
   
     <div class="site-search">
       
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
   </div>
-
+  <div id="local-search-result"></div>
+</div>
 
 
 
@@ -774,19 +768,7 @@
       
         
           <p><code>LightAdapter</code> 希望能够实现一个轻量级的、更容易使用和理解的<code>RecyclerView Adapter</code> 类库，吸取别人的长处，不断完善中。</p>
-<p>基本的数据加载与绑定由 <code>LightAdapter</code> 来实现，更多增强功能由多个模块 <code>Module</code> 分工合作完成，现在具有以下模块</p>
-<ol>
-<li><p><code>HFModule</code>，实现为 <code>RecyclerView</code> 添加 <code>Header</code> 和 <code>Footer</code> 的功能，可以动态的显示和移除 <code>Header</code> 和 <code>Footer</code>。</p>
-</li>
-<li><p><code>LoadMoreModule</code>，实现到达列表底部自动触发监听加载更多数据。</p>
-</li>
-<li><p><code>TopLoadMoreModule</code>，实现到达列表顶部自动触发监听加载更多数据。</p>
-</li>
-<li><p><code>SelectorModule</code>，实现选择器功能，辅助简化列表单选和多选操作和数据更新和存储。</p>
-</li>
-<li><p><code>UpdateModule</code>，实现包装数据更新功能，在主线程更新数据，并提供更多更新数据的方法。</p>
-</li>
-</ol>
+<p>基本的数据加载与绑定由 <code>LightAdapter</code> 来实现，更多增强功能由多个模块 <code>Module</code> 分工合作完成，现在具有以下模块<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/article/1632666977/#more" rel="contents">
@@ -796,7 +778,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -2563,19 +2545,6 @@
   </script>
 
 
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
 
 
 

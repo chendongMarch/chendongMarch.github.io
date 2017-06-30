@@ -308,26 +308,20 @@
   
     <div class="site-search">
       
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
   </div>
-
+  <div id="local-search-result"></div>
+</div>
 
 
 
@@ -515,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/2940188893/" rel="next" title="NestedScrolling交互">
-                <i class="fa fa-chevron-left"></i> NestedScrolling交互
+              <a href="/article/1655050953/" rel="next" title="NestedScrollingParent分析">
+                <i class="fa fa-chevron-left"></i> NestedScrollingParent分析
               </a>
             
           </div>
@@ -525,8 +519,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/3936083469/" rel="prev" title="仿QQ相册RecyclerView滑动选中">
-                仿QQ相册RecyclerView滑动选中 <i class="fa fa-chevron-right"></i>
+              <a href="/article/3766638624/" rel="prev" title="Android事件交互">
+                Android事件交互 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1216,19 +1210,6 @@
   </script>
 
 
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
 
 
 

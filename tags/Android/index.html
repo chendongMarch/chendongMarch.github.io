@@ -306,26 +306,20 @@
   
     <div class="site-search">
       
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
   </div>
-
+  <div id="local-search-result"></div>
+</div>
 
 
 
@@ -644,9 +638,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/3766638624/" itemprop="url">
+            <a class="post-title-link" href="/article/2940188893/" itemprop="url">
               
-                <span itemprop="name">Android事件交互</span>
+                <span itemprop="name">NestedScrolling交互</span>
               
             </a>
         
@@ -696,9 +690,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/2940188893/" itemprop="url">
+            <a class="post-title-link" href="/article/3766638624/" itemprop="url">
               
-                <span itemprop="name">NestedScrolling交互</span>
+                <span itemprop="name">Android事件交互</span>
               
             </a>
         
@@ -956,9 +950,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/2863351425/" itemprop="url">
+            <a class="post-title-link" href="/article/3189961703/" itemprop="url">
               
-                <span itemprop="name">在 Mac 下配置 Gradle 命令</span>
+                <span itemprop="name">将自己写的库发布到Jcenter</span>
               
             </a>
         
@@ -1008,9 +1002,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/3189961703/" itemprop="url">
+            <a class="post-title-link" href="/article/2863351425/" itemprop="url">
               
-                <span itemprop="name">将自己写的库发布到Jcenter</span>
+                <span itemprop="name">在 Mac 下配置 Gradle 命令</span>
               
             </a>
         
@@ -1398,9 +1392,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/2317215752/" itemprop="url">
+            <a class="post-title-link" href="/article/1969447237/" itemprop="url">
               
-                <span itemprop="name">自定义控件九宫格滑动解锁</span>
+                <span itemprop="name">保存照片和视频到相册显示</span>
               
             </a>
         
@@ -1424,9 +1418,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/1969447237/" itemprop="url">
+            <a class="post-title-link" href="/article/2317215752/" itemprop="url">
               
-                <span itemprop="name">保存照片和视频到相册显示</span>
+                <span itemprop="name">自定义控件九宫格滑动解锁</span>
               
             </a>
         
@@ -2271,19 +2265,6 @@
   </script>
 
 
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
 
 
 

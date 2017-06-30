@@ -3,6 +3,33 @@
 
 
     
+  <url>
+    <loc>http://chendongmarch.github.io/article/1632666977/</loc>
+    <lastmod>2017-06-30T04:47:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>RecyclerView Adapter</title>
+        <pubTime>2017-06-18T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Adapter</tag>
+         
+        <tag>RecyclerView</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Adapter" url="http://chendongmarch.github.io/categories/Android/Adapter/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://chendongmarch.github.io/article/185805107/</loc>
@@ -1545,33 +1572,6 @@
         <display>
         <title>RecyclerView添加Header和Footer的基本原理</title>
         <pubTime>2016-04-10T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Adapter</tag>
-         
-        <tag>RecyclerView</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="Adapter" url="http://chendongmarch.github.io/categories/Android/Adapter/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/article/1632666977/</loc>
-    <lastmod>2017-06-30T01:24:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>RecyclerView Adapter</title>
-        <pubTime>2017-06-18T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
