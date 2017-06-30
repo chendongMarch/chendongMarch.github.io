@@ -116,7 +116,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: '0',
+      userId: 'undefined',
       author: '博主'
     }
   };
@@ -324,7 +324,7 @@
             
               
                 
-                <a class="post-title-link" href="/Study/Swift/swift_basic_0/" itemprop="url">
+                <a class="post-title-link" href="/article/1996349588/" itemprop="url">
                   Swift基础语法1
                 </a>
               
@@ -380,8 +380,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Study/Swift/swift_basic_0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Study/Swift/swift_basic_0/" itemprop="commentsCount"></span>
+                <a href="/article/1996349588/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/1996349588/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -414,7 +414,7 @@
 </li>
 </ol>
           <div class="post-more-link text-center">
-            <a class="btn" href="/Study/Swift/swift_basic_0/#more" rel="contents">
+            <a class="btn" href="/article/1996349588/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -465,139 +465,7 @@
             
               
                 
-                <a class="post-title-link" href="/Android/在Mac下配置Gradle命令/" itemprop="url">
-                  在 Mac 下配置 Gradle 命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T00:00:00+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category">
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Android/在Mac下配置Gradle命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/在Mac下配置Gradle命令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          推荐阅读Mac 下配置 Sdk,Gradle
-相关下载下载gradle http://gradle.org/downloads/
-配置环境变量
-打开.bash-profile
-
-12touch .bash-profileopen -e .bash_profile
-
-打开 bash_profile，配
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Android/在Mac下配置Gradle命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Android/Publish/publish_to_jcenter/" itemprop="url">
+                <a class="post-title-link" href="/article/3189961703/" itemprop="url">
                   将自己写的库发布到Jcenter
                 </a>
               
@@ -653,8 +521,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Android/Publish/publish_to_jcenter/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/Publish/publish_to_jcenter/" itemprop="commentsCount"></span>
+                <a href="/article/3189961703/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3189961703/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -683,7 +551,7 @@
 <p>使用 <code>gradle</code> 开发过程中，我们可以使用 <code>compile</code> 命令，依赖 <code>Library</code>，这种做法的好处时，我们不需要再去关注一堆 <code>jar</code> 文件，当我们需要升级 <code>Library</code> 时，只需要改变依赖的版本号，就可以完成升级。</p>
 <p>我们之所以可以使用一句 <code>gradle</code> 脚本完成依赖的下载，升级，是因为这些 <code>Library</code> 都被存储在了一个公共的服务器上，通过 <code>compile</code> 命令可以唯一的映射到服务器存储的 <code>Library</code>。 <code>jcenter</code> 就是一个这样的服务，<code>AndroidStudio</code> 现在新建项目都会默认依赖 <code>repositories {jcenter()}</code>，当执行 <code>compile</code> 脚本时，就会去 <code>jcenter</code> 检查对应的 <code>Library</code> 进行下载和依赖。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/Android/Publish/publish_to_jcenter/#more" rel="contents">
+            <a class="btn" href="/article/3189961703/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -734,129 +602,7 @@
             
               
                 
-                <a class="post-title-link" href="/Android/Android轻松集成Camera拍照/" itemprop="url">
-                  Android轻松集成Camera拍照
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T00:00:00+08:00" content="2016-03-12">
-              2016-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category">
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/Android/Android轻松集成Camera拍照/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/Android轻松集成Camera拍照/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          Android轻松集成Camera拍照
-          <div class="post-more-link text-center">
-            <a class="btn" href="/Android/Android轻松集成Camera拍照/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/Android/Publish/publish_to_jitpack/" itemprop="url">
+                <a class="post-title-link" href="/article/2091453987/" itemprop="url">
                   将自己写的库发布到 JitPack
                 </a>
               
@@ -912,8 +658,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Android/Publish/publish_to_jitpack/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/Publish/publish_to_jitpack/" itemprop="commentsCount"></span>
+                <a href="/article/2091453987/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2091453987/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -944,7 +690,7 @@ AndroidStudio创建
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/Android/Publish/publish_to_jitpack/#more" rel="contents">
+            <a class="btn" href="/article/2091453987/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -995,7 +741,274 @@ AndroidStudio创建
             
               
                 
-                <a class="post-title-link" href="/Android/Adapter/listview_adapter_4/" itemprop="url">
+                <a class="post-title-link" href="/article/2863351425/" itemprop="url">
+                  在 Mac 下配置 Gradle 命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-12T00:00:00+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/2863351425/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2863351425/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          推荐阅读Mac 下配置 Sdk,Gradle
+相关下载下载gradle http://gradle.org/downloads/
+配置环境变量
+打开.bash-profile
+
+12touch .bash-profileopen -e .bash_profile
+
+打开 bash_profile，配
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/article/2863351425/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/article/3102190682/" itemprop="url">
+                  Android轻松集成Camera拍照
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-12T00:00:00+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/3102190682/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3102190682/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言
+最近有在做Camera拍照相关的项目，从一开始到现在看了好多资料，将Camera封装了一下，现在分享出来。
+
+GitHub
+GitHub
+
+Gradle
+compile &#39;com.march.cameralibs:easycameralibs:1.0.8&#39;
+
+介绍
+不需要再去关
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/article/3102190682/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/article/2414640248/" itemprop="url">
                   ListView Adapter 4
                 </a>
               
@@ -1051,8 +1064,8 @@ AndroidStudio创建
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Android/Adapter/listview_adapter_4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/Adapter/listview_adapter_4/" itemprop="commentsCount"></span>
+                <a href="/article/2414640248/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2414640248/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1084,7 +1097,7 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/Android/Adapter/listview_adapter_4/#more" rel="contents">
+            <a class="btn" href="/article/2414640248/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1135,7 +1148,7 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
             
               
                 
-                <a class="post-title-link" href="/Android/Android合成GIF/" itemprop="url">
+                <a class="post-title-link" href="/article/3121499733/" itemprop="url">
                   在Android平台下合成Gif
                 </a>
               
@@ -1179,8 +1192,8 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Android/Android合成GIF/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/Android合成GIF/" itemprop="commentsCount"></span>
+                <a href="/article/3121499733/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3121499733/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1206,7 +1219,7 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
         
           在Android平台下合成Gif
           <div class="post-more-link text-center">
-            <a class="btn" href="/Android/Android合成GIF/">
+            <a class="btn" href="/article/3121499733/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1257,7 +1270,7 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
             
               
                 
-                <a class="post-title-link" href="/Android/android_physical equipment/" itemprop="url">
+                <a class="post-title-link" href="/article/4013192295/" itemprop="url">
                   Android物理按键及物理连接
                 </a>
               
@@ -1301,8 +1314,8 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Android/android_physical equipment/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/android_physical equipment/" itemprop="commentsCount"></span>
+                <a href="/article/4013192295/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/4013192295/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1326,15 +1339,15 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
 
       
         
-          Android物理按键及物理连接
+          <p>本文主要介绍 <code>Android</code> 手机物理按键触发监听，以及外接蓝牙，耳机等设备的检测。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/Android/android_physical equipment/">
+            <a class="btn" href="/article/4013192295/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -1379,7 +1392,7 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
             
               
                 
-                <a class="post-title-link" href="/Study/Python/python_basic_1/" itemprop="url">
+                <a class="post-title-link" href="/article/1811789999/" itemprop="url">
                   Python基础1
                 </a>
               
@@ -1435,8 +1448,8 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Study/Python/python_basic_1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Study/Python/python_basic_1/" itemprop="commentsCount"></span>
+                <a href="/article/1811789999/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/1811789999/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1468,7 +1481,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/Study/Python/python_basic_1/#more" rel="contents">
+            <a class="btn" href="/article/1811789999/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1519,7 +1532,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
             
               
                 
-                <a class="post-title-link" href="/Android/Android图片处理/" itemprop="url">
+                <a class="post-title-link" href="/article/2699277879/" itemprop="url">
                   Android图像处理相关
                 </a>
               
@@ -1563,8 +1576,8 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/Android/Android图片处理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="Android/Android图片处理/" itemprop="commentsCount"></span>
+                <a href="/article/2699277879/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2699277879/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1590,7 +1603,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         
           Android图像处理
           <div class="post-more-link text-center">
-            <a class="btn" href="/Android/Android图片处理/">
+            <a class="btn" href="/article/2699277879/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1671,7 +1684,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1680,7 +1693,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1859,10 +1872,6 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
     })();
   </script>
 
-  
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 

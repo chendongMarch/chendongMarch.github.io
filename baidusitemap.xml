@@ -4,13 +4,40 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Life/day_2017_6_29/</loc>
-    <lastmod>2017-06-29T01:10:39.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/185805107/</loc>
+    <lastmod>2017-06-30T02:06:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
+          
+             
+              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3443742407/</loc>
+    <lastmod>2017-06-30T01:44:45.000Z</lastmod>
     <data>
         <display>
         <title>从现在开始</title>
         <pubTime>2017-06-28T16:00:00.000Z</pubTime>
         
+        <tag>Diary</tag>
+         
          
            
              
@@ -22,12 +49,623 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Tips/android_sys_share/</loc>
-    <lastmod>2017-06-28T14:00:35.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/1243741076/</loc>
+    <lastmod>2017-06-30T01:40:59.000Z</lastmod>
     <data>
         <display>
-        <title>Android系统分享的注册和调起</title>
-        <pubTime>2016-03-23T16:00:00.000Z</pubTime>
+        <title>Swift基础2</title>
+        <pubTime>2016-05-10T16:00:00.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/Study/Swift/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1996349588/</loc>
+    <lastmod>2017-06-30T01:40:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>Swift基础语法1</title>
+        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/Study/Swift/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3789624758/</loc>
+    <lastmod>2017-06-30T01:38:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python实现单例</title>
+        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3174426477/</loc>
+    <lastmod>2017-06-30T01:38:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>python发送get/post/put/delete请求</title>
+        <pubTime>2015-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2150468451/</loc>
+    <lastmod>2017-06-30T01:38:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python Json相关</title>
+        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1002618664/</loc>
+    <lastmod>2017-06-30T01:38:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python Django服务器搭建初体验</title>
+        <pubTime>2016-05-13T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1727896955/</loc>
+    <lastmod>2017-06-30T01:37:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python普通方法、静态方法、类方法</title>
+        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1811789999/</loc>
+    <lastmod>2017-06-30T01:37:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python基础1</title>
+        <pubTime>2016-01-20T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3697016025/</loc>
+    <lastmod>2017-06-30T01:37:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>Node.js基础1</title>
+        <pubTime>2016-05-13T16:00:00.000Z</pubTime>
+        
+        <tag>Node</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Node" url="http://chendongmarch.github.io/categories/Study/Node/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3395269050/</loc>
+    <lastmod>2017-06-30T01:37:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-新特性篇</title>
+        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2717980190/</loc>
+    <lastmod>2017-06-30T01:37:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-类与对象篇</title>
+        <pubTime>2017-06-07T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/811551029/</loc>
+    <lastmod>2017-06-30T01:36:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-基础语法篇</title>
+        <pubTime>2017-06-03T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3679990147/</loc>
+    <lastmod>2017-06-30T01:36:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin-变量常量篇</title>
+        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1637707051/</loc>
+    <lastmod>2017-06-30T01:36:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>汉字转换拼音</title>
+        <pubTime>2016-03-27T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Tools</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1361585574/</loc>
+    <lastmod>2017-06-30T01:36:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>软件设计原则</title>
+        <pubTime>2015-02-11T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/837682646/</loc>
+    <lastmod>2017-06-30T01:36:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jave IO流之压缩流（zip,Gzip）</title>
+        <pubTime>2015-08-31T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/395850883/</loc>
+    <lastmod>2017-06-30T01:36:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>常见排序及搜索算法总结</title>
+        <pubTime>2014-12-31T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1309915903/</loc>
+    <lastmod>2017-06-30T01:36:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>加密解密（RSA）</title>
+        <pubTime>2015-08-10T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1753510098/</loc>
+    <lastmod>2017-06-30T01:36:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>HashMap源码分析（Android&Java）</title>
+        <pubTime>2015-11-13T16:00:00.000Z</pubTime>
+        
+        <tag>SourceCode</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2053934834/</loc>
+    <lastmod>2017-06-30T01:35:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java 范型</title>
+        <pubTime>2016-07-19T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1697740661/</loc>
+    <lastmod>2017-06-30T01:35:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>ArrayList源码分析(Java&Android)</title>
+        <pubTime>2015-11-14T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3556316359/</loc>
+    <lastmod>2017-06-30T01:35:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>加密解密（DES,AES）</title>
+        <pubTime>2015-08-14T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1299261529/</loc>
+    <lastmod>2017-06-30T01:35:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>SQL</title>
+        <pubTime>2017-04-12T16:00:00.000Z</pubTime>
+        
+        <tag>Database</tag>
+         
+        <tag>SQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Db" url="http://chendongmarch.github.io/categories/Study/Db/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3372882306/</loc>
+    <lastmod>2017-06-30T01:35:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Mac 安装 Mongdb</title>
+        <pubTime>2016-05-17T16:00:00.000Z</pubTime>
+        
+        <tag>Database</tag>
+         
+        <tag>MongoDb</tag>
+         
+         
+           
+             
+              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
+          
+             
+              <breadCrumb title="Db" url="http://chendongmarch.github.io/categories/Study/Db/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/684233485/</loc>
+    <lastmod>2017-06-30T01:34:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo加密文章示例</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
+          
+             
+              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/149273814/</loc>
+    <lastmod>2017-06-30T01:34:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>ViewPager自定义控件广告板轮播</title>
+        <pubTime>2016-03-15T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源库</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3518734228/</loc>
+    <lastmod>2017-06-30T01:34:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android WebView</title>
+        <pubTime>2017-06-26T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -37,7 +675,7 @@
               <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
           
              
-              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
+              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
           
         </display>
     </data>
@@ -45,8 +683,166 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Tips/save_image_video_to_album/</loc>
-    <lastmod>2017-06-28T13:58:48.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/1315779230/</loc>
+    <lastmod>2017-06-30T01:34:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>TabLayout的使用详解</title>
+        <pubTime>2015-06-22T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2021227864/</loc>
+    <lastmod>2017-06-30T01:34:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android RecyclerView</title>
+        <pubTime>2015-11-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2515477621/</loc>
+    <lastmod>2017-06-30T01:33:50.000Z</lastmod>
+    <data>
+        <display>
+        <title>EditText 使用详解</title>
+        <pubTime>2016-10-30T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2807458501/</loc>
+    <lastmod>2017-06-30T01:33:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android  CardView</title>
+        <pubTime>2015-10-13T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1482489498/</loc>
+    <lastmod>2017-06-30T01:33:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>移动端与服务器token机制</title>
+        <pubTime>2016-09-27T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2940188893/</loc>
+    <lastmod>2017-06-30T01:33:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>NestedScrolling交互</title>
+        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="todo" url="http://chendongmarch.github.io/categories/Android/todo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2799403346/</loc>
+    <lastmod>2017-06-30T01:33:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>Fragment懒加载</title>
+        <pubTime>2017-03-13T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="todo" url="http://chendongmarch.github.io/categories/Android/todo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1969447237/</loc>
+    <lastmod>2017-06-30T01:33:05.000Z</lastmod>
     <data>
         <display>
         <title>保存照片和视频到相册显示</title>
@@ -68,31 +864,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Tips/android_flash_page_optimazed/</loc>
-    <lastmod>2017-06-28T08:09:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>防止app闪白屏或闪黑屏</title>
-        <pubTime>2016-04-17T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Tips/manager_switch_fragment/</loc>
-    <lastmod>2017-06-28T08:05:54.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/4099568815/</loc>
+    <lastmod>2017-06-30T01:32:57.000Z</lastmod>
     <data>
         <display>
         <title>快速实现Fragment切换功能</title>
@@ -114,8 +887,194 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/CustomView/sliding_select_layout/</loc>
-    <lastmod>2017-06-28T07:58:54.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/1817351074/</loc>
+    <lastmod>2017-06-30T01:32:50.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android开发问题常见问题</title>
+        <pubTime>2015-01-17T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2758264870/</loc>
+    <lastmod>2017-06-30T01:32:43.000Z</lastmod>
+    <data>
+        <display>
+        <title>AS 升级 gradle 到2.3.1异常</title>
+        <pubTime>2017-05-25T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3733894393/</loc>
+    <lastmod>2017-06-30T01:32:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android系统分享的注册和调起</title>
+        <pubTime>2016-03-23T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3133739946/</loc>
+    <lastmod>2017-06-30T01:32:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>防止app闪白屏或闪黑屏</title>
+        <pubTime>2016-04-17T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/308486771/</loc>
+    <lastmod>2017-06-30T01:32:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>分析SwipeRefreshLayout实现自定义刷新</title>
+        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android5.+</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2091453987/</loc>
+    <lastmod>2017-06-30T01:32:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>将自己写的库发布到 JitPack</title>
+        <pubTime>2016-03-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Publish</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Publish" url="http://chendongmarch.github.io/categories/Android/Publish/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3189961703/</loc>
+    <lastmod>2017-06-30T01:31:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>将自己写的库发布到Jcenter</title>
+        <pubTime>2016-03-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Publish</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Publish" url="http://chendongmarch.github.io/categories/Android/Publish/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1655050953/</loc>
+    <lastmod>2017-06-30T01:31:50.000Z</lastmod>
+    <data>
+        <display>
+        <title>NestedScrollingParent分析</title>
+        <pubTime>2016-08-21T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android5.+</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3936083469/</loc>
+    <lastmod>2017-06-30T01:31:40.000Z</lastmod>
     <data>
         <display>
         <title>仿QQ相册RecyclerView滑动选中</title>
@@ -139,31 +1098,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/todo/NestedScrolling%E6%9C%BA%E5%88%B6_%E4%BA%A4%E4%BA%92/</loc>
-    <lastmod>2017-06-28T07:51:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>NestedScrolling交互</title>
-        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="todo" url="http://chendongmarch.github.io/categories/Android/todo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/CustomView/nine_point_lock/</loc>
-    <lastmod>2017-06-28T07:49:15.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/2317215752/</loc>
+    <lastmod>2017-06-30T01:31:32.000Z</lastmod>
     <data>
         <display>
         <title>自定义控件九宫格滑动解锁</title>
@@ -187,8 +1123,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/CustomView/customview_extend_viewgroup/</loc>
-    <lastmod>2017-06-28T07:47:23.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/844112004/</loc>
+    <lastmod>2017-06-30T01:31:18.000Z</lastmod>
     <data>
         <display>
         <title>自定义控件—继承ViewGroup</title>
@@ -212,8 +1148,270 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/android_physical%20equipment/</loc>
-    <lastmod>2017-06-28T07:45:26.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/4229621729/</loc>
+    <lastmod>2017-06-30T01:31:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>在 AS 中使用 Lambda 表达式</title>
+        <pubTime>2016-07-15T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidStudio</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="AndroidStudio" url="http://chendongmarch.github.io/categories/Android/AndroidStudio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3239800061/</loc>
+    <lastmod>2017-06-30T01:30:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>AndridStudio+Freeline加速编译</title>
+        <pubTime>2015-05-04T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidStudio</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="AndroidStudio" url="http://chendongmarch.github.io/categories/Android/AndroidStudio/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2939773101/</loc>
+    <lastmod>2017-06-30T01:30:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 6.0权限动态申请</title>
+        <pubTime>2016-08-15T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android5.+</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3353371585/</loc>
+    <lastmod>2017-06-30T01:30:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android设计MetrailDesign</title>
+        <pubTime>2015-03-08T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android5.+</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/1947623271/</loc>
+    <lastmod>2017-06-30T01:27:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android V7V4包新控件</title>
+        <pubTime>2015-03-02T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Android5.+</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2699277879/</loc>
+    <lastmod>2017-06-30T01:26:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android图像处理相关</title>
+        <pubTime>2016-01-17T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3591670187/</loc>
+    <lastmod>2017-06-30T01:26:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android添加快捷方式</title>
+        <pubTime>2016-07-28T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3092091804/</loc>
+    <lastmod>2017-06-30T01:26:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用传统Android组件实现高效数据加载</title>
+        <pubTime>2015-05-13T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3766638624/</loc>
+    <lastmod>2017-06-30T01:26:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android事件交互</title>
+        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3102190682/</loc>
+    <lastmod>2017-06-30T01:26:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android轻松集成Camera拍照</title>
+        <pubTime>2016-03-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Camera</tag>
+         
+        <tag>开源库</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3121499733/</loc>
+    <lastmod>2017-06-30T01:26:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Android平台下合成Gif</title>
+        <pubTime>2016-03-08T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/438600076/</loc>
+    <lastmod>2017-06-30T01:25:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android编码解码及其原理</title>
+        <pubTime>2015-05-10T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/4013192295/</loc>
+    <lastmod>2017-06-30T01:25:48.000Z</lastmod>
     <data>
         <display>
         <title>Android物理按键及物理连接</title>
@@ -232,12 +1430,100 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/todo/Fragment%E6%87%92%E5%8A%A0%E8%BD%BD/</loc>
-    <lastmod>2017-06-28T07:42:24.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/541527599/</loc>
+    <lastmod>2017-06-30T01:25:36.000Z</lastmod>
     <data>
         <display>
-        <title>Fragment懒加载</title>
-        <pubTime>2017-03-13T16:00:00.000Z</pubTime>
+        <title>Handler源码分析</title>
+        <pubTime>2015-11-16T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/4043209466/</loc>
+    <lastmod>2017-06-30T01:25:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android编译FFmpeg之命令行</title>
+        <pubTime>2017-06-12T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>FFmpeg</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3809198562/</loc>
+    <lastmod>2017-06-30T01:25:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android编译FFmpeg之HelloWorld</title>
+        <pubTime>2017-05-24T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>FFmpeg</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3564593419/</loc>
+    <lastmod>2017-06-30T01:25:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>ORM框架－GreenDao2.0</title>
+        <pubTime>2016-07-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/4015034291/</loc>
+    <lastmod>2017-06-30T01:25:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>ADB命令大全</title>
+        <pubTime>2015-09-06T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -246,63 +1532,14 @@
              
               <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
           
-             
-              <breadCrumb title="todo" url="http://chendongmarch.github.io/categories/Android/todo/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Tips/as_gradle_231_exception/</loc>
-    <lastmod>2017-06-28T07:37:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>AS 升级 gradle 到2.3.1异常</title>
-        <pubTime>2017-05-25T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Tips/develop_problem/</loc>
-    <lastmod>2017-06-28T07:37:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android开发问题常见问题</title>
-        <pubTime>2015-01-17T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="Tips" url="http://chendongmarch.github.io/categories/Android/Tips/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Adapter/recyclerview_header_footer/</loc>
-    <lastmod>2017-06-28T07:32:41.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/4007050602/</loc>
+    <lastmod>2017-06-30T01:24:53.000Z</lastmod>
     <data>
         <display>
         <title>RecyclerView添加Header和Footer的基本原理</title>
@@ -328,8 +1565,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Adapter/recyclerview_adapter/</loc>
-    <lastmod>2017-06-28T07:32:28.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/1632666977/</loc>
+    <lastmod>2017-06-30T01:24:45.000Z</lastmod>
     <data>
         <display>
         <title>RecyclerView Adapter</title>
@@ -355,8 +1592,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Adapter/listview_adapter_4/</loc>
-    <lastmod>2017-06-28T07:31:06.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/2414640248/</loc>
+    <lastmod>2017-06-30T01:24:38.000Z</lastmod>
     <data>
         <display>
         <title>ListView Adapter 4</title>
@@ -364,9 +1601,9 @@
         
         <tag>Android</tag>
          
-        <tag>Adapter</tag>
-         
         <tag>ListView</tag>
+         
+        <tag>Adapter</tag>
          
          
            
@@ -382,8 +1619,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Adapter/listview_adapter_3/</loc>
-    <lastmod>2017-06-28T07:30:37.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/294185431/</loc>
+    <lastmod>2017-06-30T01:24:26.000Z</lastmod>
     <data>
         <display>
         <title>ListView Adapter 3</title>
@@ -391,9 +1628,9 @@
         
         <tag>Android</tag>
          
-        <tag>Adapter</tag>
-         
         <tag>ListView</tag>
+         
+        <tag>Adapter</tag>
          
          
            
@@ -409,8 +1646,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Adapter/listview_adapter_2/</loc>
-    <lastmod>2017-06-28T07:30:05.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/1720703307/</loc>
+    <lastmod>2017-06-30T01:24:02.000Z</lastmod>
     <data>
         <display>
         <title>ListView Adapter 2</title>
@@ -418,9 +1655,9 @@
         
         <tag>Android</tag>
          
-        <tag>Adapter</tag>
-         
         <tag>ListView</tag>
+         
+        <tag>Adapter</tag>
          
          
            
@@ -436,8 +1673,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/Adapter/listview_adapter_1/</loc>
-    <lastmod>2017-06-28T07:29:35.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/4287006971/</loc>
+    <lastmod>2017-06-30T01:23:14.000Z</lastmod>
     <data>
         <display>
         <title>ListView Adapter 1</title>
@@ -445,9 +1682,9 @@
         
         <tag>Android</tag>
          
-        <tag>Adapter</tag>
-         
         <tag>ListView</tag>
+         
+        <tag>Adapter</tag>
          
          
            
@@ -463,127 +1700,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/View/android_cardview/</loc>
-    <lastmod>2017-06-28T07:16:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android  CardView</title>
-        <pubTime>2015-10-13T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/View/android_edittext/</loc>
-    <lastmod>2017-06-28T07:14:28.000Z</lastmod>
-    <data>
-        <display>
-        <title>EditText 使用详解</title>
-        <pubTime>2016-10-30T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/View/android_recyclerView/</loc>
-    <lastmod>2017-06-28T07:12:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android RecyclerView</title>
-        <pubTime>2015-11-11T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Publish/publish_to_jitpack/</loc>
-    <lastmod>2017-06-28T07:03:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>将自己写的库发布到 JitPack</title>
-        <pubTime>2016-03-11T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Publish</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="Publish" url="http://chendongmarch.github.io/categories/Android/Publish/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Publish/publish_to_jcenter/</loc>
-    <lastmod>2017-06-28T07:02:41.000Z</lastmod>
-    <data>
-        <display>
-        <title>将自己写的库发布到Jcenter</title>
-        <pubTime>2016-03-11T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Publish</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="Publish" url="http://chendongmarch.github.io/categories/Android/Publish/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/%E5%9C%A8Mac%E4%B8%8B%E9%85%8D%E7%BD%AEGradle%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2017-06-28T07:01:16.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/2863351425/</loc>
+    <lastmod>2017-06-30T01:22:50.000Z</lastmod>
     <data>
         <display>
         <title>在 Mac 下配置 Gradle 命令</title>
@@ -602,853 +1720,8 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/Android/adb_command/</loc>
-    <lastmod>2017-06-28T06:59:39.000Z</lastmod>
-    <data>
-        <display>
-        <title>ADB命令大全</title>
-        <pubTime>2015-09-06T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/android_handler/</loc>
-    <lastmod>2017-06-28T06:51:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>Handler源码分析</title>
-        <pubTime>2015-11-16T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/andriod_greendao_2.0/</loc>
-    <lastmod>2017-06-28T06:50:20.000Z</lastmod>
-    <data>
-        <display>
-        <title>ORM框架－GreenDao2.0</title>
-        <pubTime>2016-07-11T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>三方框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/tool_pinyin/</loc>
-    <lastmod>2017-06-28T06:48:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>汉字转换拼音</title>
-        <pubTime>2016-03-27T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>Tools</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/software_design_principle/</loc>
-    <lastmod>2017-06-28T06:47:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>软件设计原则</title>
-        <pubTime>2015-02-11T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Extensions/Hexo/hexo_secret_article/</loc>
-    <lastmod>2017-06-28T06:40:57.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo加密文章示例</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-        <tag>Extensions</tag>
-         
-         
-           
-             
-              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
-          
-             
-              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Extensions/Hexo/hexo_next_blog/</loc>
-    <lastmod>2017-06-28T06:38:24.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-        <tag>Extensions</tag>
-         
-         
-           
-             
-              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
-          
-             
-              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/AndroidStudio/mac_as_keymap/</loc>
-    <lastmod>2017-06-28T06:16:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>Mac 下 AS 快捷键</title>
-        <pubTime>2015-08-04T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>AndroidStudio</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="AndroidStudio" url="http://chendongmarch.github.io/categories/Android/AndroidStudio/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/AndroidStudio/android_studio_lambda/</loc>
-    <lastmod>2017-06-28T06:13:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>在 AS 中使用 Lambda 表达式</title>
-        <pubTime>2016-07-15T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>AndroidStudio</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="AndroidStudio" url="http://chendongmarch.github.io/categories/Android/AndroidStudio/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/AndroidStudio/android_freeline/</loc>
-    <lastmod>2017-06-28T06:10:39.000Z</lastmod>
-    <data>
-        <display>
-        <title>AndridStudio+Freeline加速编译</title>
-        <pubTime>2015-05-04T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>AndroidStudio</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="AndroidStudio" url="http://chendongmarch.github.io/categories/Android/AndroidStudio/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/Java_sort_logic/</loc>
-    <lastmod>2017-06-28T05:47:39.000Z</lastmod>
-    <data>
-        <display>
-        <title>常见排序及搜索算法总结</title>
-        <pubTime>2014-12-31T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Db/SQL/</loc>
-    <lastmod>2017-06-28T05:44:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>SQL</title>
-        <pubTime>2017-04-12T16:00:00.000Z</pubTime>
-        
-        <tag>SQL</tag>
-         
-        <tag>Database</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Db" url="http://chendongmarch.github.io/categories/Study/Db/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Db/db_install_mongo/</loc>
-    <lastmod>2017-06-28T05:43:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>Mac安装Mongdb</title>
-        <pubTime>2016-05-17T16:00:00.000Z</pubTime>
-        
-        <tag>Database</tag>
-         
-        <tag>MongoDb</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Db" url="http://chendongmarch.github.io/categories/Study/Db/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Node/NodeJs_basic_1/</loc>
-    <lastmod>2017-06-28T05:41:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>Node.js基础1</title>
-        <pubTime>2016-05-13T16:00:00.000Z</pubTime>
-        
-        <tag>Node</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Node" url="http://chendongmarch.github.io/categories/Study/Node/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/Java_Zip_GZip/</loc>
-    <lastmod>2017-06-28T05:40:52.000Z</lastmod>
-    <data>
-        <display>
-        <title>Jave IO流之压缩流（zip,Gzip）</title>
-        <pubTime>2015-08-31T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/Java_RSA_encrypt/</loc>
-    <lastmod>2017-06-28T05:39:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>加密解密（RSA）</title>
-        <pubTime>2015-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/Java_HashMap/</loc>
-    <lastmod>2017-06-28T05:38:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>HashMap源码分析（Android&Java）</title>
-        <pubTime>2015-11-13T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/Java_Genericity/</loc>
-    <lastmod>2017-06-28T05:37:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java 范型</title>
-        <pubTime>2016-07-19T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/Java_ArrayList/</loc>
-    <lastmod>2017-06-28T05:37:07.000Z</lastmod>
-    <data>
-        <display>
-        <title>ArrayList源码分析(Java&Android)</title>
-        <pubTime>2015-11-14T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Java</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Java/Java_aes_des_encrypt/</loc>
-    <lastmod>2017-06-28T05:36:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>加密解密（DES,AES）</title>
-        <pubTime>2015-08-14T16:00:00.000Z</pubTime>
-        
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Study/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Swift/swift_basic_0/</loc>
-    <lastmod>2017-06-28T02:14:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>Swift基础语法1</title>
-        <pubTime>2016-03-14T16:00:00.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/Study/Swift/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/View/android_webview/</loc>
-    <lastmod>2017-06-28T02:09:29.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android WebView</title>
-        <pubTime>2017-06-26T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/View/android_tablayout/</loc>
-    <lastmod>2017-06-28T02:09:19.000Z</lastmod>
-    <data>
-        <display>
-        <title>TabLayout的使用详解</title>
-        <pubTime>2015-06-22T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://chendongmarch.github.io/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_new_feature/</loc>
-    <lastmod>2017-06-28T02:07:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-新特性篇</title>
-        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_class_obj/</loc>
-    <lastmod>2017-06-28T02:07:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-类与对象篇</title>
-        <pubTime>2017-06-07T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_basic/</loc>
-    <lastmod>2017-06-28T02:07:08.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-基础语法篇</title>
-        <pubTime>2017-06-03T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Kotlin/kotlin_basic_variable/</loc>
-    <lastmod>2017-06-28T02:07:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin-变量常量篇</title>
-        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Kotlin" url="http://chendongmarch.github.io/categories/Study/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Python/python_singleton/</loc>
-    <lastmod>2017-06-28T02:06:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python实现单例</title>
-        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Python/python_restful_request/</loc>
-    <lastmod>2017-06-28T02:05:54.000Z</lastmod>
-    <data>
-        <display>
-        <title>python发送get/post/put/delete请求</title>
-        <pubTime>2015-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Python/python_json/</loc>
-    <lastmod>2017-06-28T02:05:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python Json相关</title>
-        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Python/python_Django_1/</loc>
-    <lastmod>2017-06-28T02:05:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python Django服务器搭建初体验</title>
-        <pubTime>2016-05-13T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Python/python_basic_method_type/</loc>
-    <lastmod>2017-06-28T02:05:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python普通方法、静态方法、类方法</title>
-        <pubTime>2016-08-10T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Python/python_basic_1/</loc>
-    <lastmod>2017-06-28T02:05:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>Python基础1</title>
-        <pubTime>2016-01-20T16:00:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Python" url="http://chendongmarch.github.io/categories/Study/Python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Study/Swift/swift_basic_1/</loc>
-    <lastmod>2017-06-28T02:04:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>Swift基础2</title>
-        <pubTime>2016-05-10T16:00:00.000Z</pubTime>
-        
-        <tag>Swift</tag>
-         
-         
-           
-             
-              <breadCrumb title="Study" url="http://chendongmarch.github.io/categories/Study/"/>
-          
-             
-              <breadCrumb title="Swift" url="http://chendongmarch.github.io/categories/Study/Swift/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/android_ffmpeg_2_try_cmd/</loc>
-    <lastmod>2017-06-13T05:14:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android编译FFmpeg之命令行</title>
-        <pubTime>2017-06-12T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>FFmpeg</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/android_ffmpeg_1_hello/</loc>
-    <lastmod>2017-06-13T05:13:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android编译FFmpeg之HelloWorld</title>
-        <pubTime>2017-05-24T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>FFmpeg</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/%E5%8D%81%E5%88%86%E9%92%9F%E6%8E%A5%E5%85%A5%E5%BE%AE%E4%BF%A1%E5%BE%AE%E5%8D%9AQQ%E5%8E%9F%E7%94%9F%E7%99%BB%E5%BD%95%E5%88%86%E4%BA%AB/</loc>
-    <lastmod>2017-02-23T09:09:03.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/3067853428/</loc>
+    <lastmod>2017-06-30T01:21:42.000Z</lastmod>
     <data>
         <display>
         <title>快速接入微信微博QQ原生登录分享</title>
@@ -1468,305 +1741,34 @@
     </url>
 
     
-    
-    
   <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E4%BA%8B%E4%BB%B6%E4%BA%A4%E4%BA%92/</loc>
-    <lastmod>2016-11-28T10:51:32.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/8d16bcb4/</loc>
+    <lastmod>2017-06-30T01:07:05.000Z</lastmod>
     <data>
         <display>
-        <title>Android事件交互</title>
-        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
+        <title>Mac + AndroidStudio 快捷操作</title>
+        <pubTime>2015-08-04T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
+         
+        <tag>AndroidStudio</tag>
          
          
            
              
               <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Token%E6%9C%BA%E5%88%B6/</loc>
-    <lastmod>2016-11-05T06:35:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>移动端与服务器token机制</title>
-        <pubTime>2016-09-27T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
              
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+              <breadCrumb title="AndroidStudio" url="http://chendongmarch.github.io/categories/Android/AndroidStudio/"/>
           
         </display>
     </data>
     </url>
 
     
-  <url>
-    <loc>http://chendongmarch.github.io/Android/SwipeRefreshLayout%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2016-08-28T16:38:35.000Z</lastmod>
-    <data>
-        <display>
-        <title>分析SwipeRefreshLayout实现自定义刷新</title>
-        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android5.+</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
-  <url>
-    <loc>http://chendongmarch.github.io/Android/AndroidM%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E7%94%B3%E8%AF%B7/</loc>
-    <lastmod>2016-08-28T06:12:36.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android 6.0权限动态申请</title>
-        <pubTime>2016-08-15T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android5.+</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
-  <url>
-    <loc>http://chendongmarch.github.io/Android/NestedScrolling%E6%9C%BA%E5%88%B6_NestedScrollingParent/</loc>
-    <lastmod>2016-08-23T14:25:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>NestedScrollingParent分析</title>
-        <pubTime>2016-08-21T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android5.+</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
-  <url>
-    <loc>http://chendongmarch.github.io/Android/ViewPager%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6%E5%B9%BF%E5%91%8A%E6%9D%BF%E8%BD%AE%E6%92%AD/</loc>
-    <lastmod>2016-08-18T12:14:21.000Z</lastmod>
-    <data>
-        <display>
-        <title>ViewPager自定义控件广告板轮播</title>
-        <pubTime>2016-03-15T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>开源库</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E6%96%B0%E8%AE%BE%E8%AE%A1MetrailDesign/</loc>
-    <lastmod>2016-08-18T11:55:18.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android设计MetrailDesign</title>
-        <pubTime>2015-03-08T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android5.+</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E6%96%B0%E6%8E%A7%E4%BB%B6V4V7/</loc>
-    <lastmod>2016-08-18T11:35:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android V7V4包新控件</title>
-        <pubTime>2015-03-02T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Android5.+</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/</loc>
-    <lastmod>2016-08-18T11:21:52.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android图像处理相关</title>
-        <pubTime>2016-01-17T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E6%B7%BB%E5%8A%A0%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/</loc>
-    <lastmod>2016-08-18T11:21:31.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android添加快捷方式</title>
-        <pubTime>2016-07-28T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD(ContentProvider_Loader_Sqlite)/</loc>
-    <lastmod>2016-08-18T11:20:27.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用传统Android组件实现高效数据加载</title>
-        <pubTime>2015-05-13T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E8%BD%BB%E6%9D%BE%E9%9B%86%E6%88%90Camera%E6%8B%8D%E7%85%A7/</loc>
-    <lastmod>2016-08-18T11:15:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android轻松集成Camera拍照</title>
-        <pubTime>2016-03-11T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>开源库</tag>
-         
-        <tag>Camera</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E5%90%88%E6%88%90GIF/</loc>
-    <lastmod>2016-08-18T11:06:06.000Z</lastmod>
-    <data>
-        <display>
-        <title>在Android平台下合成Gif</title>
-        <pubTime>2016-03-08T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/Android/Android%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86/</loc>
-    <lastmod>2016-08-18T10:54:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android编码解码及其原理</title>
-        <pubTime>2015-05-10T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
     
 </urlset>

@@ -1,0 +1,1056 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,自定义控件,九宫格滑动解锁">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="1. 前言
+最近想给自己做的的app添加一个滑动解锁的功能，用的是乐视的手机，就模仿它的效果实现.
+
+视频演示一下效果
+
+GitHub
+
+
+2. LockPoint实体
+每个点是一个实体（LockPoint）用来存储这个点的所有信息，包括点的物理位置(x,y)和点的index位置(0-8)
+
+12345678910111213141516171819202122232425262728293031">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义控件九宫格滑动解锁">
+<meta property="og:url" content="http://chendongmarch.github.io/article/2317215752/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="1. 前言
+最近想给自己做的的app添加一个滑动解锁的功能，用的是乐视的手机，就模仿它的效果实现.
+
+视频演示一下效果
+
+GitHub
+
+
+2. LockPoint实体
+每个点是一个实体（LockPoint）用来存储这个点的所有信息，包括点的物理位置(x,y)和点的index位置(0-8)
+
+12345678910111213141516171819202122232425262728293031">
+<meta property="og:updated_time" content="2017-06-30T01:31:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义控件九宫格滑动解锁">
+<meta name="twitter:description" content="1. 前言
+最近想给自己做的的app添加一个滑动解锁的功能，用的是乐视的手机，就模仿它的效果实现.
+
+视频演示一下效果
+
+GitHub
+
+
+2. LockPoint实体
+每个点是一个实体（LockPoint）用来存储这个点的所有信息，包括点的物理位置(x,y)和点的index位置(0-8)
+
+12345678910111213141516171819202122232425262728293031">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/article/2317215752/">
+
+
+  <title> 自定义控件九宫格滑动解锁 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自定义控件九宫格滑动解锁
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-23T00:00:00+08:00" content="2015-08-23">
+              2015-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/自定义控件/" itemprop="url" rel="index">
+                    <span itemprop="name">自定义控件</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/2317215752/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2317215752/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><ul>
+<li><p>最近想给自己做的的app添加一个滑动解锁的功能，用的是乐视的手机，就模仿它的效果实现.</p>
+</li>
+<li><p><a href="http://39.130.133.37/xdispatch/7xtjec.com1.z0.glb.clouddn.com/lockview.mp4" rel="external nofollow noopener noreferrer" target="_blank">视频演示一下效果</a></p>
+</li>
+<li><p><a href="https://github.com/chendongMarch/CommonLib/blob/master/lib-view/src/main/java/com/march/lib/view/LockView.java" rel="external nofollow noopener noreferrer" target="_blank">GitHub</a></p>
+</li>
+</ul>
+<h2 id="2-LockPoint实体"><a href="#2-LockPoint实体" class="headerlink" title="2. LockPoint实体"></a>2. LockPoint实体</h2><ul>
+<li>每个点是一个实体（LockPoint）用来存储这个点的所有信息，包括点的物理位置(x,y)和点的index位置(0-8)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LockPoint</span> </span>&#123;</div><div class="line">        <span class="comment">// 点的位置 0-8</span></div><div class="line">        <span class="keyword">int</span> index;</div><div class="line">        <span class="comment">// 点的x,y坐标</span></div><div class="line">        <span class="keyword">float</span> x, y;</div><div class="line">        <span class="comment">// 构造方法，初始化一个点</span></div><div class="line">        LockPoint(<span class="keyword">int</span> index, <span class="keyword">float</span> x, <span class="keyword">float</span> y) &#123;</div><div class="line">            <span class="keyword">this</span>.index = index;</div><div class="line">            <span class="keyword">this</span>.x = x;</div><div class="line">            <span class="keyword">this</span>.y = y;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 构造方法，从另一个点初始化</span></div><div class="line">        LockPoint(LockPoint p) &#123;</div><div class="line">            <span class="keyword">this</span>.x = p.x;</div><div class="line">            <span class="keyword">this</span>.y = p.y;</div><div class="line">            <span class="keyword">this</span>.index = p.index;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 默认构造方法，初始化为一个空的点</span></div><div class="line">        LockPoint() &#123;</div><div class="line">            <span class="keyword">this</span>.x = -<span class="number">1</span>;</div><div class="line">            <span class="keyword">this</span>.y = -<span class="number">1</span>;</div><div class="line">            <span class="keyword">this</span>.index = -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 判断该点是不是一个空的点</span></div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.x == -<span class="number">1</span> &amp;&amp; <span class="keyword">this</span>.y == -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 重新给位置赋值</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">float</span> x, <span class="keyword">float</span> y)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.x = x;</div><div class="line">            <span class="keyword">this</span>.y = y;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 设置为另一点的值</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(LockPoint p)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.x = p.x;</div><div class="line">            <span class="keyword">this</span>.y = p.y;</div><div class="line">            <span class="keyword">this</span>.index = p.index;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 判断一个位置是不是在该点触摸范围内,touchSensitiveRange为触摸有效半径</span></div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">isTouchIn</span><span class="params">(<span class="keyword">float</span> judgeX, <span class="keyword">float</span> judgeY)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> judgeX &lt; x + touchSensitiveRange &amp;&amp;</div><div class="line">                    judgeX &gt; x - touchSensitiveRange &amp;&amp;</div><div class="line">                    judgeY &lt; y + touchSensitiveRange &amp;&amp;</div><div class="line">                    judgeY &gt; y - touchSensitiveRange;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 重写equals和hashCode</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">            LockPoint p = (LockPoint) o;</div><div class="line">            <span class="keyword">return</span> p.x == x &amp;&amp; p.y == y;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function">String <span class="title">out</span><span class="params">(String tag)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> tag + <span class="string">" : x = "</span> + x + <span class="string">" , y = "</span> + y;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3. 初始化"></a>3. 初始化</h2><ul>
+<li>初始化九个点的位置，需要根据控件的大小动态计算，因此在onMeare()之后进行</li>
+<li>需求是需要将九个点放在控件中间，来适应控件大小的变化，首先确定第一个点距离左边的距离startSpace，两个点之间的距离 =（控件宽度 - 2 * startSpace）／2</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> size = getMeasuredWidth();</div><div class="line">      <span class="comment">// 将宽高设置为一样的，正方形</span></div><div class="line">      setMeasuredDimension(size, size);</div><div class="line">      <span class="comment">// 初始化屏幕中的九个点的位置和下标</span></div><div class="line">      initLockPointArray = <span class="keyword">new</span> LockPoint[<span class="number">9</span>];</div><div class="line">      <span class="comment">// startSpace 为距离左边的距离，计算九个点的位置,保证九个点放在控件中间</span></div><div class="line">      <span class="keyword">if</span> (startSpace == AUTO_START_SPACING) &#123;</div><div class="line">      	<span class="comment">//默认是控件的1/4</span></div><div class="line">          startSpace = size / <span class="number">4</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 计算每两个点之间的间隔</span></div><div class="line">      internalSpace = (size - <span class="number">2</span> * startSpace) / <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>初始化九个点的位置</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 初始化九个点的位置</span></div><div class="line">         <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">             <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</div><div class="line">                 initLockPointArray[index] = <span class="keyword">new</span> LockPoint(index, startSpace + j * internalSpace, startSpace + i * internalSpace);</div><div class="line">                 index++;</div><div class="line">             &#125;</div><div class="line">         &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>onMeasure()完整代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// onMeasure之后初始化数据</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">        <span class="keyword">int</span> size = getMeasuredWidth();</div><div class="line">        <span class="comment">// 将宽高设置为一样的，正方形</span></div><div class="line">        setMeasuredDimension(size, size);</div><div class="line">        <span class="comment">// 初始化屏幕中的九个点的位置和下标</span></div><div class="line">        <span class="keyword">if</span> (initLockPointArray == <span class="keyword">null</span>) &#123;</div><div class="line">            initLockPointArray = <span class="keyword">new</span> LockPoint[<span class="number">9</span>];</div><div class="line">            <span class="comment">// startSpace 为距离左边的距离，计算九个点的位置放在控件中间</span></div><div class="line">            <span class="keyword">if</span> (startSpace == AUTO_START_SPACING) &#123;</div><div class="line">                startSpace = size / <span class="number">4</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 计算每两个点之间的间隔</span></div><div class="line">            internalSpace = (size - <span class="number">2</span> * startSpace) / <span class="number">2</span>;</div><div class="line">            <span class="comment">// 初始化九个点的位置</span></div><div class="line">            <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</div><div class="line">                    initLockPointArray[index] = <span class="keyword">new</span> LockPoint(index, startSpace + j * internalSpace, startSpace + i * internalSpace);</div><div class="line">                    index++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 为了在preview时能看到效果</span></div><div class="line">            <span class="keyword">if</span> (isInEditMode()) &#123;</div><div class="line">                historyPointList.addAll(Arrays.asList(initLockPointArray));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="4-onDraw"><a href="#4-onDraw" class="headerlink" title="4. onDraw"></a>4. onDraw</h2><ul>
+<li><p>绘制过程大致分为三个步骤</p>
+</li>
+<li><p><1> 绘制九个点，这是每次都需要绘制的 </1></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LockPoint tempPoint;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">    canvas.drawCircle(initLockPointArray[i].x, initLockPointArray[i].y, pointRadius, pointPaint);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><2> 绘制已经划过的点</2></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 绘制之前触过存储起来的的点,绘制第i个点和i+1个点之间的线</span></div><div class="line">      <span class="keyword">if</span> (historyPointList.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; historyPointList.size() - <span class="number">1</span>; i++) &#123;</div><div class="line">              canvas.drawLine(historyPointList.get(i).x, historyPointList.get(i).y, historyPointList.get(i + <span class="number">1</span>).x, historyPointList.get(i + <span class="number">1</span>).y, linePaint);</div><div class="line">          &#125;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><3> 绘制触摸点和最后一个点的连线</3></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 画最后一个点和触摸的点之间的线</span></div><div class="line">      <span class="keyword">if</span> (currentLockPoint != <span class="keyword">null</span></div><div class="line">              &amp;&amp; currentLockPoint.x != -<span class="number">1</span> &amp;&amp; currentLockPoint.y != -<span class="number">1</span></div><div class="line">              &amp;&amp; touchPoint.x != -<span class="number">1</span> &amp;&amp; touchPoint.y != -<span class="number">1</span>) &#123;</div><div class="line">          canvas.drawLine(currentLockPoint.x, currentLockPoint.y, touchPoint.x, touchPoint.y, linePaint);</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<h2 id="5-事件处理"><a href="#5-事件处理" class="headerlink" title="5. 事件处理"></a>5. 事件处理</h2><ul>
+<li>对用户touch事件进行处理<ol>
+<li>要记录当前触摸的点，用于绘制跟随手指的连线</li>
+<li>检测触摸的点是不是在九个点中某个点的范围内，如果是的话该点要加入被触摸点的列表中</li>
+<li>当手指抬起时，清除数据,恢复初始状态</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line"></div><div class="line">       <span class="keyword">if</span> (!isEnabled() || isEventOver)</div><div class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"></div><div class="line">       <span class="keyword">int</span> action = MotionEventCompat.getActionMasked(event);</div><div class="line">       <span class="keyword">switch</span> (action) &#123;</div><div class="line">           <span class="comment">// 重新初始化触摸点</span></div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">               touchPoint.init(event.getX(), event.getY());</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="comment">// 移动时检测是否在触摸范围内</span></div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">               touchPoint.init(event.getX(), event.getY());</div><div class="line">               LockPoint tempPoint;</div><div class="line">               <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">                   tempPoint = initLockPointArray[i];</div><div class="line">                   <span class="keyword">if</span> (!historyPointList.contains(tempPoint)</div><div class="line">                           &amp;&amp; tempPoint.isTouchIn(event.getX(), event.getY())) &#123;</div><div class="line">                       historyPointList.add(<span class="keyword">new</span> LockPoint(tempPoint));</div><div class="line">                       currentLockPoint.init(tempPoint);</div><div class="line">                       <span class="keyword">break</span>;</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="comment">// 抬起时结束，重新初始化</span></div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_CANCEL:</div><div class="line">               touchPoint.init(-<span class="number">1</span>, -<span class="number">1</span>);</div><div class="line">               currentLockPoint.init(-<span class="number">1</span>, -<span class="number">1</span>);</div><div class="line">               historyPointList.clear();</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">       &#125;</div><div class="line">       postInvalidate();</div><div class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h2 id="6-优化-多点触控事件处理"><a href="#6-优化-多点触控事件处理" class="headerlink" title="6. 优化-多点触控事件处理"></a>6. 优化-多点触控事件处理</h2><ul>
+<li>用户在触摸屏幕时可能有多个手指在操作，上面的代码在单指时没有问题，兼容多点触控的思路是：<ol>
+<li>当用户触发down事件时，我们可以获取到一个pointerId，这个id唯一的标志了这个指头，后面发生的所有事件都使用用这个pointerId来获取，只处理这个指头的事件，避免事件的错乱。</li>
+<li>当我们开始的时候标志的那个手指抬起来了怎么办呢，两个解决方法，第一个就是直接结束整个流程，相当于单指时手指抬起。第二个方法就是转移事件，当一个指头抬起时，从该事件中获取还没抬起的手指，更改标志的pointerId,事件就转移到了另一个手指上，我们关心就是新手指的触摸啦</li>
+<li>关于对于事件进行处理的相关机制可以看<a href="http://blog.csdn.net/chendong_/article/details/53382175" rel="external nofollow noopener noreferrer" target="_blank">Android事件机制，</a>写的都是比较基本的东西，后面慢慢完善，不过理解获取多指的事件9⃣️绰绰有余啦</li>
+</ol>
+</li>
+<li>话不多说，上代码，比较需要注意的地方我都标注在注释中，方便查找</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 处理触摸事件，支持多点触摸</span></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">       <span class="comment">// fast stop</span></div><div class="line">       <span class="keyword">if</span> (!isEnabled() || isEventOver)</div><div class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">       <span class="comment">// pointerIndex 是事件的在event中的下标</span></div><div class="line">       <span class="keyword">int</span> pointerIndex;</div><div class="line">       <span class="comment">// 获取事件掩码</span></div><div class="line">       <span class="keyword">int</span> action = MotionEventCompat.getActionMasked(event);</div><div class="line">       <span class="keyword">switch</span> (action) &#123;</div><div class="line">           <span class="comment">// 重新初始化触摸点</span></div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">               <span class="comment">// pointerId 记录当前激活的pointerId</span></div><div class="line">               activePointerId = event.getPointerId(<span class="number">0</span>);</div><div class="line">               <span class="comment">// 根据pointerId查找事件在event中的位置</span></div><div class="line">               pointerIndex = event.findPointerIndex(activePointerId);</div><div class="line">               <span class="comment">// 根据位置获取到具体的事件的坐标，这里获得的坐标就是我们要记住的那个指头的坐标</span></div><div class="line">               touchPoint.init(event.getX(pointerIndex), event.getY(pointerIndex));</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">               <span class="comment">// 手指移动时还是根据激活的pointerId获取下标index,来进行后续操作，避免事件错乱</span></div><div class="line">               pointerIndex = event.findPointerIndex(activePointerId);</div><div class="line">               <span class="comment">// pointerIndex &lt; 0表示手指的事件获取不到了，结束响应事件</span></div><div class="line">               <span class="keyword">if</span> (pointerIndex &lt; <span class="number">0</span>) &#123;</div><div class="line">                   Log.e(TAG, <span class="string">"Got ACTION_MOVE event but have an invalid active pointer id."</span>);</div><div class="line">                   cancelLockDraw();</div><div class="line">                   <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">               &#125;</div><div class="line">               <span class="comment">// 根据移动的位置获取坐标，初始化touchPoint的值</span></div><div class="line">               touchPoint.init(event.getX(pointerIndex), event.getY(pointerIndex));</div><div class="line">               LockPoint tempPoint;</div><div class="line">               <span class="comment">// 检索触摸点有没有在九个点中的某一个的触摸范围内</span></div><div class="line">               <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">                   tempPoint = initLockPointArray[i];</div><div class="line">                   <span class="keyword">if</span> (!historyPointList.contains(tempPoint)</div><div class="line">                           &amp;&amp; tempPoint.isTouchIn(event.getX(pointerIndex), event.getY(pointerIndex))) &#123;</div><div class="line">                       LockPoint centerPoint = findCenterPoint(tempPoint);</div><div class="line">                       <span class="comment">// 优化，查找两个点之间的点，后面会有介绍</span></div><div class="line">                       <span class="keyword">if</span> (!centerPoint.isEmpty()) &#123;</div><div class="line">                           activePoint(centerPoint);</div><div class="line">                       &#125;</div><div class="line">                       activePoint(tempPoint);</div><div class="line">                       <span class="keyword">break</span>;</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEventCompat.ACTION_POINTER_UP:</div><div class="line">               <span class="comment">// 多指操作中 非 最后一个手指抬起时触发ACTION_POINTER_UP，此时要获取还在屏幕上的其他手指转移事件的对象</span></div><div class="line">               onSecondaryPointerUp(event);</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">               <span class="comment">// 最后的手指抬起触发 ACTION_UP</span></div><div class="line">               pointerIndex = event.findPointerIndex(activePointerId);</div><div class="line">               <span class="keyword">if</span> (pointerIndex &lt; <span class="number">0</span>) &#123;</div><div class="line">                   Log.e(TAG, <span class="string">"Got ACTION_UP event but don't have an active pointer id."</span>);</div><div class="line">                   activePointerId = INVALID_POINTER;</div><div class="line">                   <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">               &#125;</div><div class="line">               <span class="comment">// 发布绘制的结果，可能是监听回调之类的</span></div><div class="line">               publishResult();</div><div class="line">               <span class="comment">// 置为-1</span></div><div class="line">               activePointerId = INVALID_POINTER;</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           <span class="keyword">case</span> MotionEvent.ACTION_CANCEL:</div><div class="line">               <span class="comment">// 类似up</span></div><div class="line">               cancelLockDraw();</div><div class="line">               activePointerId = INVALID_POINTER;</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">       &#125;</div><div class="line">       postInvalidate();</div><div class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>转移焦点的方法,在各种控件的源代码中随处可见，我也是拷贝出来直接用的，逻辑不是很复杂</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">/**</span></div><div class="line">     * 当一个手机抬起时，转移焦点</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> ev 事件</div><div class="line">     */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onSecondaryPointerUp</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> pointerIndex = MotionEventCompat.getActionIndex(ev);</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);</div><div class="line">        <span class="keyword">if</span> (pointerId == activePointerId) &#123;</div><div class="line">            <span class="comment">// This was our active pointer going up. Choose a new</span></div><div class="line">            <span class="comment">// active pointer and adjust accordingly.</span></div><div class="line">            <span class="keyword">final</span> <span class="keyword">int</span> newPointerIndex = pointerIndex == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">            activePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>发布结果</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 发布绘制结果</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">publishResult</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (listener != <span class="keyword">null</span>) &#123;</div><div class="line">           isEventOver = <span class="keyword">true</span>;</div><div class="line">           StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">           <span class="keyword">for</span> (LockPoint lockPoint : historyPointList) &#123;</div><div class="line">               sb.append(lockPoint.index);</div><div class="line">           &#125;</div><div class="line">           String passWd = sb.toString();</div><div class="line">           <span class="keyword">boolean</span> isFinish = listener.onFinish(LockView.<span class="keyword">this</span>, passWd, passWd.length());</div><div class="line">           <span class="keyword">if</span> (isFinish) &#123;</div><div class="line">               <span class="comment">// 输入合法</span></div><div class="line">               touchPoint.init(currentLockPoint);</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">               <span class="comment">// 输入不合法</span></div><div class="line">               cancelLockDraw();</div><div class="line">               isEventOver = <span class="keyword">false</span>;</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           cancelLockDraw();</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>回复初始状态,因为在多处调用了，贴一下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 结束绘制，恢复初始状态</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">cancelLockDraw</span><span class="params">()</span> </span>&#123;</div><div class="line">       touchPoint.init(-<span class="number">1</span>, -<span class="number">1</span>);</div><div class="line">       currentLockPoint.init(-<span class="number">1</span>, -<span class="number">1</span>);</div><div class="line">       historyPointList.clear();</div><div class="line">       postInvalidate();</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h2 id="7-优化-自动添加两点之间连线上的点"><a href="#7-优化-自动添加两点之间连线上的点" class="headerlink" title="7. 优化-自动添加两点之间连线上的点"></a>7. 优化-自动添加两点之间连线上的点</h2><ul>
+<li><p>当滑动时越过中间的点之间连接两端，自动查找和添加两点之间的点，手机上的滑动解锁也是这样的逻辑，不然会导致图形很繁琐，不美观而且不符合常见逻辑。也就是说如果当前激发的点和上一个激发的点之间有没有激发的点，那么自动给他激发。</p>
+</li>
+<li><p>首先如果两个点是相邻的或者是对角线上相邻，那么中间一定不会有空下来的点，需要排除这个情况</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">    * 检测相邻</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> p1 点1</div><div class="line">    * <span class="doctag">@param</span> p2 点2</div><div class="line">    * <span class="doctag">@return</span> p1和p2是否相邻，斜对角也算相邻</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isAdjacentPoint</span><span class="params">(LockPoint p1, LockPoint p2)</span> </span>&#123;</div><div class="line">       <span class="comment">// internalSpace是初始化时两个点之间的距离，都是简单的计算和情况罗列</span></div><div class="line">       <span class="keyword">if</span> ((p1.x == p2.x &amp;&amp; Math.abs(p1.y - p2.y) == internalSpace)</div><div class="line">               || (p1.y == p2.y &amp;&amp; Math.abs(p1.x - p2.x) == internalSpace)</div><div class="line">               || (Math.abs(p1.x - p2.x) == internalSpace &amp;&amp; Math.abs(p1.y - p2.y) == internalSpace)) &#123;</div><div class="line">           Log.e(TAG, <span class="string">"相邻点，不处理"</span>);</div><div class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>然后如何判断一个点位于首尾两个激发点的中间，思路是当这个点在两个点的连线上时且不是首尾两个点就是中间的点。判断的根据是斜率是不是相等，就是初中的数学问题啦。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 判断c点是不是在p1-p2的直线上</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> p1 起始点</div><div class="line">    * <span class="doctag">@param</span> p2 终止点</div><div class="line">    * <span class="doctag">@param</span> c  判断的点</div><div class="line">    * <span class="doctag">@return</span> 是否在该线上</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isInLine</span><span class="params">(LockPoint p1, LockPoint p2, LockPoint c)</span> </span>&#123;</div><div class="line">       <span class="keyword">float</span> k1 = (p1.x - p2.x) * <span class="number">1f</span> / (p1.y - p2.y);</div><div class="line">       <span class="keyword">float</span> k2 = (p1.x - c.x) * <span class="number">1f</span> / (p1.y - c.y);</div><div class="line">       <span class="keyword">return</span> k1 == k2;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>最后整合一下，去掉不必要的判断，在touch事件中调用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 检测当前激活的点和上一个激活点之间的是否有没有激发的点</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> activePoint 当前被激发的点</div><div class="line">    * <span class="doctag">@return</span> 当前激活的点和上一个激活点之间的是否有没有激发的点，没有返回empty的&#123;<span class="doctag">@link</span> LockPoint#isEmpty()&#125;</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> LockPoint <span class="title">findCenterPoint</span><span class="params">(LockPoint activePoint)</span> </span>&#123;</div><div class="line">       LockPoint rstPoint = <span class="keyword">new</span> LockPoint();</div><div class="line">       <span class="comment">// 只有一个点不需要比较</span></div><div class="line">       <span class="keyword">if</span> (historyPointList.size() &lt; <span class="number">1</span>) &#123;</div><div class="line">           <span class="keyword">return</span> rstPoint;</div><div class="line">       &#125;</div><div class="line">       LockPoint tempPoint;</div><div class="line">       <span class="comment">// 获取上个点</span></div><div class="line">       LockPoint preActivePoint = historyPointList.get(historyPointList.size() - <span class="number">1</span>);</div><div class="line">       <span class="comment">// 两个点是不是相邻的，是相邻的是坚决不会中间有点被空出来的</span></div><div class="line">       <span class="keyword">if</span> (isAdjacentPoint(preActivePoint, activePoint))</div><div class="line">           <span class="keyword">return</span> rstPoint;</div><div class="line"></div><div class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">           tempPoint = initLockPointArray[i];</div><div class="line">           <span class="comment">// 没有被触摸过 &amp;&amp; 不是首点 &amp;&amp; 不是尾点</span></div><div class="line">           <span class="keyword">if</span> (!historyPointList.contains(tempPoint) &amp;&amp; !preActivePoint.equals(tempPoint) &amp;&amp; !activePoint.equals(tempPoint)) &#123;	</div><div class="line">           	<span class="comment">// 在连线上</span></div><div class="line">               <span class="keyword">if</span> (isInLine(preActivePoint, activePoint, tempPoint)) &#123;</div><div class="line">                   Log.e(TAG, <span class="string">"点在线上 "</span> + tempPoint.out(<span class="string">"temp"</span>) + <span class="string">" "</span> + preActivePoint.out(<span class="string">"pre"</span>) + <span class="string">" "</span> + activePoint.out(<span class="string">"active"</span>));</div><div class="line">                   rstPoint.init(tempPoint);</div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> rstPoint;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在onTouchEvent中调用</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">LockPoint centerPoint = findCenterPoint(tempPoint);</div><div class="line">    	<span class="comment">// 优化，查找两个点之间的点</span></div><div class="line">    	<span class="keyword">if</span> (!centerPoint.isEmpty()) &#123;</div><div class="line">         activePoint(centerPoint);</div><div class="line">    	&#125;</div><div class="line">   activePoint(tempPoint);</div></pre></td></tr></table></figure>
+<h2 id="8-优化-给被触摸的点添加动画"><a href="#8-优化-给被触摸的点添加动画" class="headerlink" title="8. 优化-给被触摸的点添加动画"></a>8. 优化-给被触摸的点添加动画</h2><ul>
+<li><p>当手指触摸到一个点时，添加一个缩放动画来反馈触摸操作</p>
+</li>
+<li><p>思路时，当触摸到一个点时使用ValueAnimator开启动画，不断改变半径的值，在绘制时达到实现缩放的效果</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 开始缩放动画</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startScaleAnimation</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">       <span class="keyword">if</span> (mScaleAnimator == <span class="keyword">null</span>) &#123;</div><div class="line">           mScaleAnimator = ValueAnimator.ofFloat(<span class="number">1f</span>, scaleMax, <span class="number">1f</span>);</div><div class="line">           mScaleAnimator.addUpdateListener(<span class="keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;</div><div class="line">               <span class="meta">@Override</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</div><div class="line">                   <span class="keyword">float</span> scale = (<span class="keyword">float</span>) animation.getAnimatedValue();</div><div class="line">                   <span class="comment">// 不断改变半径的值</span></div><div class="line">                   scalePointRadius = pointRadius * scale;</div><div class="line">                   postInvalidate();</div><div class="line">               &#125;</div><div class="line">           &#125;);</div><div class="line">           mScaleAnimator.addListener(<span class="keyword">new</span> Animator.AnimatorListener() &#123;</div><div class="line">               <span class="meta">@Override</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationStart</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line"></div><div class="line">               &#125;</div><div class="line"></div><div class="line">               <span class="meta">@Override</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationEnd</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line">               		<span class="comment">// 动画结束后初始化回标准半径的值</span></div><div class="line">                   scalePointRadius = pointRadius;</div><div class="line">               &#125;</div><div class="line"></div><div class="line">               <span class="meta">@Override</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationCancel</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line"></div><div class="line">               &#125;</div><div class="line"></div><div class="line">               <span class="meta">@Override</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationRepeat</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line"></div><div class="line">               &#125;</div><div class="line">           &#125;);</div><div class="line">           mScaleAnimator.setDuration(scaleAnimDuration);</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span> (mScaleAnimator.isRunning())</div><div class="line">           mScaleAnimator.end();</div><div class="line">       mScaleAnimator.start();</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>同时在onDraw()方法中对刚刚触摸的点要进行绘制,更改onDraw()方法中绘制九个点的部分，对刚刚触摸的点使用缩放后的半径绘制。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 绘制九个点，当动画在执行时被激活的点会被放大</span></div><div class="line">      LockPoint tempPoint;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">          tempPoint = initLockPointArray[i];</div><div class="line">          <span class="comment">// 最后触摸的点</span></div><div class="line">          <span class="keyword">if</span> (currentLockPoint != <span class="keyword">null</span> &amp;&amp; currentLockPoint.equals(tempPoint)) &#123;</div><div class="line">              canvas.drawCircle(tempPoint.x, tempPoint.y, scalePointRadius, pointPaint);</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">              canvas.drawCircle(tempPoint.x, tempPoint.y, pointRadius, pointPaint);</div><div class="line">          &#125;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<h2 id="9-回调"><a href="#9-回调" class="headerlink" title="9. 回调"></a>9. 回调</h2><ul>
+<li>使用监听将结果回调给使用者，在ACTION_UP时发布结果</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnLockFinishListener</span> </span>&#123;</div><div class="line">      <span class="comment">/**</span></div><div class="line">       * </div><div class="line">       * <span class="doctag">@param</span> lockView 控件</div><div class="line">       * <span class="doctag">@param</span> passWd 密码</div><div class="line">       * <span class="doctag">@param</span> passWsLength 密码长度</div><div class="line">       * <span class="doctag">@return</span> 当返回true时，画面将会定格在绘制结束后的状态，比如当密码输入正确的时候</div><div class="line">       * 返回false时，画面会重新初始化回初始状态，比如密码重新二次输入确认或者密码错误的时候</div><div class="line">       */</div><div class="line">      <span class="function"><span class="keyword">boolean</span> <span class="title">onFinish</span><span class="params">(LockView lockView, String passWd, <span class="keyword">int</span> passWsLength)</span></span>;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  </div><div class="line">  <span class="comment">/**</span></div><div class="line">   * 发布绘制结果</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">publishResult</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">if</span> (listener != <span class="keyword">null</span>) &#123;</div><div class="line">          isEventOver = <span class="keyword">true</span>;</div><div class="line">          StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">          <span class="keyword">for</span> (LockPoint lockPoint : historyPointList) &#123;</div><div class="line">              sb.append(lockPoint.index);</div><div class="line">          &#125;</div><div class="line">          String passWd = sb.toString();</div><div class="line">          <span class="keyword">boolean</span> isFinish = listener.onFinish(LockView.<span class="keyword">this</span>, passWd, passWd.length());</div><div class="line">          <span class="keyword">if</span> (isFinish) &#123;</div><div class="line">              <span class="comment">// 画面定格</span></div><div class="line">              touchPoint.init(currentLockPoint);</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">              <span class="comment">// 恢复初始化</span></div><div class="line">              cancelLockDraw();</div><div class="line">              isEventOver = <span class="keyword">false</span>;</div><div class="line">          &#125;</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">          cancelLockDraw();</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h2 id="10-综上"><a href="#10-综上" class="headerlink" title="10. 综上"></a>10. 综上</h2><ul>
+<li>还遗留了一个点，就是自动添加中间的点时应该也是有动画效果的，暂时还没做，有空补上吧，希望大家指正。</li>
+</ul>
+<h2 id="11-完整代码"><a href="#11-完整代码" class="headerlink" title="11. 完整代码"></a>11. 完整代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Project  : CdLibsTest</div><div class="line"> * Package  : com.march.cdlibstest.widget</div><div class="line"> * CreateAt : 2016/11/26</div><div class="line"> * Describe : 自定义控件实现九宫格滑动解锁</div><div class="line"> *</div><div class="line"> * <span class="doctag">@author</span> chendong</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"LOCK_VIEW"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INVALID_POINTER = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> AUTO_START_SPACING = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_MIN_POINT_NUM = <span class="number">4</span>;</div><div class="line">    <span class="comment">// 激活的触摸点id</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> activePointerId = INVALID_POINTER;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// 四边的间隔，默认是控件的1／4</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> startSpace;</div><div class="line">    <span class="comment">// 两点间隔</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> internalSpace;</div><div class="line"></div><div class="line">    <span class="comment">// 点的半径</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pointRadius;</div><div class="line">    <span class="comment">// 动画scale的半径</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> scalePointRadius;</div><div class="line">    <span class="comment">// 触摸半径，在点的一定范围内触发</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> touchSensitiveRange;</div><div class="line">    <span class="comment">// 线宽度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lineWidth;</div><div class="line">    <span class="comment">// 点颜色</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pointColor;</div><div class="line">    <span class="comment">// 线颜色</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lineColor;</div><div class="line"></div><div class="line">    <span class="comment">// 缩放的大小</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> scaleMax;</div><div class="line">    <span class="comment">// 动画时间</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> scaleAnimDuration = <span class="number">150</span>;</div><div class="line">    <span class="comment">// 本次绘制结束，调用init()方法恢复初始化</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isEventOver = <span class="keyword">false</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">LockPoint</span> </span>&#123;</div><div class="line">        <span class="comment">// 点的位置 0-8</span></div><div class="line">        <span class="keyword">int</span> index;</div><div class="line">        <span class="comment">//  点的x,y坐标</span></div><div class="line">        <span class="keyword">float</span> x, y;</div><div class="line">        <span class="comment">// 构造方法，初始化一个点</span></div><div class="line">        LockPoint(<span class="keyword">int</span> index, <span class="keyword">float</span> x, <span class="keyword">float</span> y) &#123;</div><div class="line">            <span class="keyword">this</span>.index = index;</div><div class="line">            <span class="keyword">this</span>.x = x;</div><div class="line">            <span class="keyword">this</span>.y = y;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 构造方法，从另一个点初始化</span></div><div class="line">        LockPoint(LockPoint p) &#123;</div><div class="line">            <span class="keyword">this</span>.x = p.x;</div><div class="line">            <span class="keyword">this</span>.y = p.y;</div><div class="line">            <span class="keyword">this</span>.index = p.index;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 默认构造方法，初始化为一个空的点</span></div><div class="line">        LockPoint() &#123;</div><div class="line">            <span class="keyword">this</span>.x = -<span class="number">1</span>;</div><div class="line">            <span class="keyword">this</span>.y = -<span class="number">1</span>;</div><div class="line">            <span class="keyword">this</span>.index = -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 判断该点是不是一个空的点</span></div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.x == -<span class="number">1</span> &amp;&amp; <span class="keyword">this</span>.y == -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 重新给位置赋值</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">float</span> x, <span class="keyword">float</span> y)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.x = x;</div><div class="line">            <span class="keyword">this</span>.y = y;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 设置为另一点的值</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(LockPoint p)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.x = p.x;</div><div class="line">            <span class="keyword">this</span>.y = p.y;</div><div class="line">            <span class="keyword">this</span>.index = p.index;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 判断一个位置是不是在该点触摸范围内,touchSensitiveRange为触摸有效半径</span></div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">isTouchIn</span><span class="params">(<span class="keyword">float</span> judgeX, <span class="keyword">float</span> judgeY)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> judgeX &lt; x + touchSensitiveRange &amp;&amp;</div><div class="line">                    judgeX &gt; x - touchSensitiveRange &amp;&amp;</div><div class="line">                    judgeY &lt; y + touchSensitiveRange &amp;&amp;</div><div class="line">                    judgeY &gt; y - touchSensitiveRange;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 重写equals和hashCode</span></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">            LockPoint p = (LockPoint) o;</div><div class="line">            <span class="keyword">return</span> p.x == x &amp;&amp; p.y == y;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function">String <span class="title">out</span><span class="params">(String tag)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> tag + <span class="string">" : x = "</span> + x + <span class="string">" , y = "</span> + y;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 动画</span></div><div class="line">    <span class="keyword">private</span> ValueAnimator mScaleAnimator;</div><div class="line">    <span class="comment">// 初始化的九个点</span></div><div class="line">    <span class="keyword">private</span> LockPoint[] initLockPointArray;</div><div class="line">    <span class="comment">// 触摸过的点泪飙</span></div><div class="line">    <span class="keyword">private</span> List&lt;LockPoint&gt; historyPointList;</div><div class="line"></div><div class="line">    <span class="comment">// 触摸的点</span></div><div class="line">    <span class="keyword">private</span> LockPoint touchPoint;</div><div class="line">    <span class="comment">// 当前最后一个激活的点</span></div><div class="line">    <span class="keyword">private</span> LockPoint currentLockPoint;</div><div class="line"></div><div class="line">    <span class="comment">// 画线</span></div><div class="line">    <span class="keyword">private</span> Paint linePaint;</div><div class="line">    <span class="comment">// 画点</span></div><div class="line">    <span class="keyword">private</span> Paint pointPaint;</div><div class="line"></div><div class="line">    <span class="comment">// 监听</span></div><div class="line">    <span class="keyword">private</span> OnLockFinishListener listener;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnLockFinishListener</span> </span>&#123;</div><div class="line">        <span class="comment">/**</span></div><div class="line">         *</div><div class="line">         * <span class="doctag">@param</span> lockView 控件</div><div class="line">         * <span class="doctag">@param</span> passWd 密码</div><div class="line">         * <span class="doctag">@param</span> passWsLength 密码长度</div><div class="line">         * <span class="doctag">@return</span> 当返回true时，画面将会定格在绘制结束后的状态</div><div class="line">         * 返回false时，画面会重新初始化回初始状态</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">onFinish</span><span class="params">(LockView lockView, String passWd, <span class="keyword">int</span> passWsLength)</span></span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LockView</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(context, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LockView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(context, attrs, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LockView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</div><div class="line">        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LockView);</div><div class="line">        <span class="keyword">float</span> density = getResources().getDisplayMetrics().density;</div><div class="line"></div><div class="line">        pointRadius = (<span class="keyword">int</span>) typedArray.getDimension(R.styleable.LockView_lock_pointRadius, (<span class="number">8</span> * density));</div><div class="line">        scalePointRadius = pointRadius;</div><div class="line">        touchSensitiveRange = (<span class="keyword">int</span>) typedArray.getDimension(R.styleable.LockView_lock_touchSensitiveRange, pointRadius * <span class="number">3</span>);</div><div class="line">        startSpace = (<span class="keyword">int</span>) typedArray.getDimension(R.styleable.LockView_lock_startSpace, AUTO_START_SPACING);</div><div class="line">        lineWidth = (<span class="keyword">int</span>) typedArray.getDimension(R.styleable.LockView_lock_lineWidth, (<span class="number">5</span> * density));</div><div class="line"></div><div class="line">        lineColor = typedArray.getColor(R.styleable.LockView_lock_lineColor, Color.WHITE);</div><div class="line">        pointColor = typedArray.getColor(R.styleable.LockView_lock_pointColor, Color.WHITE);</div><div class="line"></div><div class="line">        scaleAnimDuration = typedArray.getInt(R.styleable.LockView_lock_scaleAnimDuration, <span class="number">180</span>);</div><div class="line">        scaleMax = typedArray.getFloat(R.styleable.LockView_lock_scaleMax, <span class="number">2.5f</span>);</div><div class="line">        typedArray.recycle();</div><div class="line"></div><div class="line">        historyPointList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        touchPoint = <span class="keyword">new</span> LockPoint();</div><div class="line">        currentLockPoint = <span class="keyword">new</span> LockPoint();</div><div class="line"></div><div class="line">        pointPaint = <span class="keyword">new</span> Paint();</div><div class="line">        pointPaint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        pointPaint.setColor(pointColor);</div><div class="line">        pointPaint.setStyle(Paint.Style.FILL_AND_STROKE);</div><div class="line"></div><div class="line">        linePaint = <span class="keyword">new</span> Paint();</div><div class="line">        linePaint.setAntiAlias(<span class="keyword">true</span>);</div><div class="line">        linePaint.setStrokeWidth(lineWidth);</div><div class="line">        linePaint.setColor(lineColor);</div><div class="line">        linePaint.setStyle(Paint.Style.STROKE);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setListener</span><span class="params">(OnLockFinishListener listener)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.listener = listener;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 开始缩放动画</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startScaleAnimation</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (mScaleAnimator == <span class="keyword">null</span>) &#123;</div><div class="line">            mScaleAnimator = ValueAnimator.ofFloat(<span class="number">1f</span>, scaleMax, <span class="number">1f</span>);</div><div class="line">            mScaleAnimator.addUpdateListener(<span class="keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</div><div class="line">                    <span class="keyword">float</span> scale = (<span class="keyword">float</span>) animation.getAnimatedValue();</div><div class="line">                    scalePointRadius = pointRadius * scale;</div><div class="line">                    postInvalidate();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            mScaleAnimator.addListener(<span class="keyword">new</span> Animator.AnimatorListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationStart</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line"></div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationEnd</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line">                    scalePointRadius = pointRadius;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationCancel</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line"></div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationRepeat</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            mScaleAnimator.setDuration(scaleAnimDuration);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (mScaleAnimator.isRunning())</div><div class="line">            mScaleAnimator.end();</div><div class="line">        mScaleAnimator.start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 处理触摸事件，支持多点触摸</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</div><div class="line">        <span class="comment">// fast stop</span></div><div class="line">        <span class="keyword">if</span> (!isEnabled() || isEventOver)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="comment">// pointerIndex 是事件的在event中的下标</span></div><div class="line">        <span class="keyword">int</span> pointerIndex;</div><div class="line">        <span class="comment">// 获取事件掩码</span></div><div class="line">        <span class="keyword">int</span> action = MotionEventCompat.getActionMasked(event);</div><div class="line">        <span class="keyword">switch</span> (action) &#123;</div><div class="line">            <span class="comment">// 重新初始化触摸点</span></div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</div><div class="line">                <span class="comment">// pointerId 记录当前激活的pointerId</span></div><div class="line">                activePointerId = event.getPointerId(<span class="number">0</span>);</div><div class="line">                <span class="comment">// 根据pointerId查找事件在event中的位置</span></div><div class="line">                pointerIndex = event.findPointerIndex(activePointerId);</div><div class="line">                <span class="comment">// 根据位置获取到具体的事件的坐标，这里获得的坐标就是我们要记住的那个指头的坐标</span></div><div class="line">                touchPoint.init(event.getX(pointerIndex), event.getY(pointerIndex));</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_MOVE:</div><div class="line">                <span class="comment">// 手指移动时还是根据激活的pointerId获取下标index,来进行后续操作，避免事件错乱</span></div><div class="line">                pointerIndex = event.findPointerIndex(activePointerId);</div><div class="line">                <span class="comment">// pointerIndex &lt; 0表示手指的事件获取不到了，结束响应事件</span></div><div class="line">                <span class="keyword">if</span> (pointerIndex &lt; <span class="number">0</span>) &#123;</div><div class="line">                    Log.e(TAG, <span class="string">"Got ACTION_MOVE event but have an invalid active pointer id."</span>);</div><div class="line">                    cancelLockDraw();</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 根据移动的位置获取坐标，初始化touchPoint的值</span></div><div class="line">                touchPoint.init(event.getX(pointerIndex), event.getY(pointerIndex));</div><div class="line">                LockPoint tempPoint;</div><div class="line">                <span class="comment">// 检索触摸点有没有在九个点中的某一个的触摸范围内</span></div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">                    tempPoint = initLockPointArray[i];</div><div class="line">                    <span class="keyword">if</span> (!historyPointList.contains(tempPoint)</div><div class="line">                            &amp;&amp; tempPoint.isTouchIn(event.getX(pointerIndex), event.getY(pointerIndex))) &#123;</div><div class="line">                        LockPoint centerPoint = findCenterPoint(tempPoint);</div><div class="line">                        <span class="keyword">if</span> (!centerPoint.isEmpty()) &#123;</div><div class="line">                            activePoint(centerPoint);</div><div class="line">                        &#125;</div><div class="line">                        activePoint(tempPoint);</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MotionEventCompat.ACTION_POINTER_UP:</div><div class="line">                <span class="comment">// 多指操作中 非 最后一个手指抬起时触发ACTION_POINTER_UP，此时要获取还在屏幕上的其他手指转移事件的对象</span></div><div class="line">                onSecondaryPointerUp(event);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:</div><div class="line">                <span class="comment">// 最后的手指抬起触发 ACTION_UP</span></div><div class="line">                pointerIndex = event.findPointerIndex(activePointerId);</div><div class="line">                <span class="keyword">if</span> (pointerIndex &lt; <span class="number">0</span>) &#123;</div><div class="line">                    Log.e(TAG, <span class="string">"Got ACTION_UP event but don't have an active pointer id."</span>);</div><div class="line">                    activePointerId = INVALID_POINTER;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 发布绘制的结果，可能是监听回调之类的</span></div><div class="line">                publishResult();</div><div class="line">                <span class="comment">// 置为-1</span></div><div class="line">                activePointerId = INVALID_POINTER;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> MotionEvent.ACTION_CANCEL:</div><div class="line">                <span class="comment">// 类似up</span></div><div class="line">                cancelLockDraw();</div><div class="line">                activePointerId = INVALID_POINTER;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        postInvalidate();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 发布绘制结果</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">publishResult</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (listener != <span class="keyword">null</span>) &#123;</div><div class="line">            isEventOver = <span class="keyword">true</span>;</div><div class="line">            StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">            <span class="keyword">for</span> (LockPoint lockPoint : historyPointList) &#123;</div><div class="line">                sb.append(lockPoint.index);</div><div class="line">            &#125;</div><div class="line">            String passWd = sb.toString();</div><div class="line">            <span class="keyword">boolean</span> isFinish = listener.onFinish(LockView.<span class="keyword">this</span>, passWd, passWd.length());</div><div class="line">            <span class="keyword">if</span> (isFinish) &#123;</div><div class="line">                <span class="comment">// 输入合法</span></div><div class="line">                touchPoint.init(currentLockPoint);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">// 输入不合法</span></div><div class="line">                cancelLockDraw();</div><div class="line">                isEventOver = <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            cancelLockDraw();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 当一个手机抬起时，转移焦点</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> ev 事件</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onSecondaryPointerUp</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> pointerIndex = MotionEventCompat.getActionIndex(ev);</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);</div><div class="line">        <span class="keyword">if</span> (pointerId == activePointerId) &#123;</div><div class="line">            <span class="comment">// This was our active pointer going up. Choose a new</span></div><div class="line">            <span class="comment">// active pointer and adjust accordingly.</span></div><div class="line">            <span class="keyword">final</span> <span class="keyword">int</span> newPointerIndex = pointerIndex == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">            activePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 检测当前激活的点和上一个激活点之间的是否有没有激发的点</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> activePoint 当前被激发的点</div><div class="line">     * <span class="doctag">@return</span> 当前激活的点和上一个激活点之间的是否有没有激发的点，没有返回empty的&#123;<span class="doctag">@link</span> LockPoint#isEmpty()&#125;</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> LockPoint <span class="title">findCenterPoint</span><span class="params">(LockPoint activePoint)</span> </span>&#123;</div><div class="line">        LockPoint rstPoint = <span class="keyword">new</span> LockPoint();</div><div class="line">        <span class="comment">// 只有一个点不需要比较</span></div><div class="line">        <span class="keyword">if</span> (historyPointList.size() &lt; <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> rstPoint;</div><div class="line">        &#125;</div><div class="line">        LockPoint tempPoint;</div><div class="line">        <span class="comment">// 获取上个点</span></div><div class="line">        LockPoint preActivePoint = historyPointList.get(historyPointList.size() - <span class="number">1</span>);</div><div class="line">        <span class="comment">// 两个点是不是相邻的，是相邻的是坚决不会中间有点被空出来的</span></div><div class="line">        <span class="keyword">if</span> (isAdjacentPoint(preActivePoint, activePoint))</div><div class="line">            <span class="keyword">return</span> rstPoint;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">            tempPoint = initLockPointArray[i];</div><div class="line">            <span class="comment">// 没有被触摸过 &amp;&amp; 不是首点 &amp;&amp; 不是尾点</span></div><div class="line">            <span class="keyword">if</span> (!historyPointList.contains(tempPoint) &amp;&amp; !preActivePoint.equals(tempPoint) &amp;&amp; !activePoint.equals(tempPoint)) &#123;</div><div class="line">                <span class="keyword">if</span> (isInLine(preActivePoint, activePoint, tempPoint)) &#123;</div><div class="line">                    Log.e(TAG, <span class="string">"点在线上 "</span> + tempPoint.out(<span class="string">"temp"</span>) + <span class="string">" "</span> + preActivePoint.out(<span class="string">"pre"</span>) + <span class="string">" "</span> + activePoint.out(<span class="string">"active"</span>));</div><div class="line">                    rstPoint.init(tempPoint);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> rstPoint;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 检测相邻</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> p1 点1</div><div class="line">     * <span class="doctag">@param</span> p2 点2</div><div class="line">     * <span class="doctag">@return</span> p1和p2是否相邻，斜对角也算相邻</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isAdjacentPoint</span><span class="params">(LockPoint p1, LockPoint p2)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> ((p1.x == p2.x &amp;&amp; Math.abs(p1.y - p2.y) == internalSpace)</div><div class="line">                || (p1.y == p2.y &amp;&amp; Math.abs(p1.x - p2.x) == internalSpace)</div><div class="line">                || (Math.abs(p1.x - p2.x) == internalSpace &amp;&amp; Math.abs(p1.y - p2.y) == internalSpace)) &#123;</div><div class="line">            Log.e(TAG, <span class="string">"相邻点，不处理"</span>);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 判断c点是不是在p1-p2的直线上</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> p1 起始点</div><div class="line">     * <span class="doctag">@param</span> p2 终止点</div><div class="line">     * <span class="doctag">@param</span> c  判断的点</div><div class="line">     * <span class="doctag">@return</span> 是否在该线上</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isInLine</span><span class="params">(LockPoint p1, LockPoint p2, LockPoint c)</span> </span>&#123;</div><div class="line">        <span class="keyword">float</span> k1 = (p1.x - p2.x) * <span class="number">1f</span> / (p1.y - p2.y);</div><div class="line">        <span class="keyword">float</span> k2 = (p1.x - c.x) * <span class="number">1f</span> / (p1.y - c.y);</div><div class="line">        <span class="keyword">return</span> k1 == k2;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 激活该点，该点将会添加到选中点列表中，然后执行动画</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> tempPoint 被激活的点</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">activePoint</span><span class="params">(LockPoint tempPoint)</span> </span>&#123;</div><div class="line">        historyPointList.add(<span class="keyword">new</span> LockPoint(tempPoint));</div><div class="line">        currentLockPoint.init(tempPoint);</div><div class="line">        startScaleAnimation();</div><div class="line">        postInvalidate();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</div><div class="line">        isEventOver = <span class="keyword">false</span>;</div><div class="line">        cancelLockDraw();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 结束绘制，恢复初始状态</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">cancelLockDraw</span><span class="params">()</span> </span>&#123;</div><div class="line">        touchPoint.init(-<span class="number">1</span>, -<span class="number">1</span>);</div><div class="line">        currentLockPoint.init(-<span class="number">1</span>, -<span class="number">1</span>);</div><div class="line">        historyPointList.clear();</div><div class="line">        postInvalidate();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// onMeasure之后初始化数据</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</div><div class="line">        <span class="keyword">int</span> size = getMeasuredWidth();</div><div class="line">        <span class="comment">// 将宽高设置为一样的，正方形</span></div><div class="line">        setMeasuredDimension(size, size);</div><div class="line">        <span class="comment">// 初始化屏幕中的九个点的位置和下标</span></div><div class="line">        <span class="keyword">if</span> (initLockPointArray == <span class="keyword">null</span>) &#123;</div><div class="line">            initLockPointArray = <span class="keyword">new</span> LockPoint[<span class="number">9</span>];</div><div class="line">            <span class="comment">// startSpace 为距离左边的距离，计算九个点的位置放在控件中间</span></div><div class="line">            <span class="keyword">if</span> (startSpace == AUTO_START_SPACING) &#123;</div><div class="line">                startSpace = size / <span class="number">4</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 计算每两个点之间的间隔</span></div><div class="line">            internalSpace = (size - <span class="number">2</span> * startSpace) / <span class="number">2</span>;</div><div class="line">            <span class="comment">// 初始化九个点的位置</span></div><div class="line">            <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</div><div class="line">                    initLockPointArray[index] = <span class="keyword">new</span> LockPoint(index, startSpace + j * internalSpace, startSpace + i * internalSpace);</div><div class="line">                    index++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 为了在preview时能看到效果</span></div><div class="line">            <span class="keyword">if</span> (isInEditMode()) &#123;</div><div class="line">                historyPointList.addAll(Arrays.asList(initLockPointArray));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(Object... objs)</span> </span>&#123;</div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">for</span> (Object obj : objs) &#123;</div><div class="line">            sb.append(obj.toString()).append(<span class="string">"   "</span>);</div><div class="line">        &#125;</div><div class="line">        Log.e(TAG, sb.toString());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDraw(canvas);</div><div class="line">        <span class="comment">// fast stop</span></div><div class="line">        <span class="keyword">if</span> (initLockPointArray == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span>;</div><div class="line"></div><div class="line">        log(currentLockPoint.out(<span class="string">"current"</span>), touchPoint.out(<span class="string">"touch"</span>));</div><div class="line"></div><div class="line">        <span class="comment">// 画最后一个点和触摸的点之间的线</span></div><div class="line">        <span class="keyword">if</span> (currentLockPoint != <span class="keyword">null</span></div><div class="line">                &amp;&amp; currentLockPoint.x != -<span class="number">1</span> &amp;&amp; currentLockPoint.y != -<span class="number">1</span></div><div class="line">                &amp;&amp; touchPoint.x != -<span class="number">1</span> &amp;&amp; touchPoint.y != -<span class="number">1</span>) &#123;</div><div class="line">            canvas.drawLine(currentLockPoint.x, currentLockPoint.y, touchPoint.x, touchPoint.y, linePaint);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 绘制之前触过存储起来的的点</span></div><div class="line">        <span class="keyword">if</span> (historyPointList.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; historyPointList.size() - <span class="number">1</span>; i++) &#123;</div><div class="line">                canvas.drawLine(historyPointList.get(i).x, historyPointList.get(i).y, historyPointList.get(i + <span class="number">1</span>).x, historyPointList.get(i + <span class="number">1</span>).y, linePaint);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 绘制九个点，当动画在执行时被激活的点会被放大</span></div><div class="line">        LockPoint tempPoint;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initLockPointArray.length; i++) &#123;</div><div class="line">            tempPoint = initLockPointArray[i];</div><div class="line">            <span class="keyword">if</span> (currentLockPoint != <span class="keyword">null</span> &amp;&amp; currentLockPoint.equals(tempPoint)) &#123;</div><div class="line">                canvas.drawCircle(tempPoint.x, tempPoint.y, scalePointRadius, pointPaint);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                canvas.drawCircle(tempPoint.x, tempPoint.y, pointRadius, pointPaint);</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/自定义控件/" rel="tag">#自定义控件</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/1969447237/" rel="next" title="保存照片和视频到相册显示">
+                <i class="fa fa-chevron-left"></i> 保存照片和视频到相册显示
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/837682646/" rel="prev" title="Jave IO流之压缩流（zip,Gzip）">
+                Jave IO流之压缩流（zip,Gzip） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="article/2317215752/" data-title="自定义控件九宫格滑动解锁" data-url="http://chendongmarch.github.io/article/2317215752/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">76</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-LockPoint实体"><span class="nav-text">2. LockPoint实体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-初始化"><span class="nav-text">3. 初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-onDraw"><span class="nav-text">4. onDraw</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-事件处理"><span class="nav-text">5. 事件处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-优化-多点触控事件处理"><span class="nav-text">6. 优化-多点触控事件处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-优化-自动添加两点之间连线上的点"><span class="nav-text">7. 优化-自动添加两点之间连线上的点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-优化-给被触摸的点添加动画"><span class="nav-text">8. 优化-给被触摸的点添加动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-回调"><span class="nav-text">9. 回调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-综上"><span class="nav-text">10. 综上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-完整代码"><span class="nav-text">11. 完整代码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

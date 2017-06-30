@@ -1,0 +1,925 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,FFmpeg,">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2">
+
+
+
+
+
+
+<meta name="description" content="上篇文章介绍了 FFmpeg 大体的编译流程，并在 Java 层进行 JNI 接口的调用，借此了解 Android 编译底层 so 库的方式，本文主要介绍如何在 Android 平台使用 FFmoeg 命令行对音视频进行操作。
+承接上文，本文从编译好各个 so 文件之后，编写 Java 层调用的 c 文件开始。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android编译FFmpeg之命令行">
+<meta property="og:url" content="http://chendongmarch.github.io/article/4043209466/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="上篇文章介绍了 FFmpeg 大体的编译流程，并在 Java 层进行 JNI 接口的调用，借此了解 Android 编译底层 so 库的方式，本文主要介绍如何在 Android 平台使用 FFmoeg 命令行对音视频进行操作。
+承接上文，本文从编译好各个 so 文件之后，编写 Java 层调用的 c 文件开始。">
+<meta property="og:updated_time" content="2017-06-30T01:25:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android编译FFmpeg之命令行">
+<meta name="twitter:description" content="上篇文章介绍了 FFmpeg 大体的编译流程，并在 Java 层进行 JNI 接口的调用，借此了解 Android 编译底层 so 库的方式，本文主要介绍如何在 Android 平台使用 FFmoeg 命令行对音视频进行操作。
+承接上文，本文从编译好各个 so 文件之后，编写 Java 层调用的 c 文件开始。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/article/4043209466/">
+
+
+  <title> Android编译FFmpeg之命令行 | 三月 </title>
+</head>
+
+<body itemscope="" itemtype="//schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    
+    <a href="https://github.com/chendongmarch" rel="external nofollow noopener noreferrer" target="_blank">
+      <img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+    </a>
+    
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The darkest hour is that before the dawn.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android编译FFmpeg之命令行
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-13T00:00:00+08:00" content="2017-06-13">
+              2017-06-13
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/article/4043209466/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/4043209466/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"> 本文访问数</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上篇文章介绍了 <code>FFmpeg</code> 大体的编译流程，并在 <code>Java</code> 层进行 <code>JNI</code> 接口的调用，借此了解 <code>Android</code> 编译底层 <code>so</code> 库的方式，本文主要介绍如何在 <code>Android</code> 平台使用 <code>FFmoeg</code> 命令行对音视频进行操作。</p>
+<p>承接上文，本文从编译好各个 <code>so</code> 文件之后，编写 <code>Java</code> 层调用的 <code>c</code> 文件开始。</p>
+<a id="more"></a>
+<h2 id="Java-层-Native-方法"><a href="#Java-层-Native-方法" class="headerlink" title="Java 层 Native 方法"></a>Java 层 Native 方法</h2><p>首先进行 <code>Java</code> 层代码的编写，创建 <code>FFmpegSupport</code> 类，加载 <code>so</code> 文件，声明 <code>native</code> 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FFmpegSupport</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            System.loadLibrary(<span class="string">"avdevice-57"</span>);</div><div class="line">            System.loadLibrary(<span class="string">"avfilter-6"</span>);</div><div class="line">            System.loadLibrary(<span class="string">"avformat-57"</span>);</div><div class="line">            System.loadLibrary(<span class="string">"avutil-55"</span>);</div><div class="line">            System.loadLibrary(<span class="string">"avcodec-57"</span>);</div><div class="line">            System.loadLibrary(<span class="string">"postproc-54"</span>);</div><div class="line">            System.loadLibrary(<span class="string">"swresample-2"</span>);</div><div class="line">            System.loadLibrary(<span class="string">"swscale-4"</span>);</div><div class="line"></div><div class="line">            System.loadLibrary(<span class="string">"ffmpegjni"</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ffmpegRunCommand</span><span class="params">(String command)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (command.isEmpty()) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        String[] args = command.split(<span class="string">" "</span>);</div><div class="line">        <span class="keyword">return</span> ffmpegRunCommand(args);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ffmpegRunCommand</span><span class="params">(String[] commands)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (String command : commands) &#123;</div><div class="line">            Log.d(<span class="string">"ffmpeg-jni"</span>, command);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ffmpegRun(commands.length, commands);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">ffmpegRun</span><span class="params">(<span class="keyword">int</span> argc, String[] args)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="生成-h-头文件"><a href="#生成-h-头文件" class="headerlink" title="生成    .h    头文件"></a>生成    .h    头文件</h2><p>使用 <code>javah</code> 命令根据你的 <code>java</code> 文件自动生成 <code>.h</code> 文件，<code>javah</code> 命令需要 <code>class</code> 文件，所以首先你需要对工程进行编译，生成 <code>class</code> 文件，它位于 <code>project/app/build/intermediates/classes/debug</code> 目录下。</p>
+<p>比如我的类叫做 <code>FFmpegSupport</code>，包名 <code>com.march.fas</code>，运行命令后生成了 <code>com_march_fas_FFmpegSupport.h</code> 文件，这个 <code>.h</code> 文件的名字应该是可以自定义的，现在是默认的包名类名，我还没有查到相关参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">javah <span class="_">-d</span> &lt;.h文件生成的目录&gt; -classpath &lt;class文件存储的目录&gt; &lt;包名.类名&gt;</div><div class="line"></div><div class="line">// 如下</div><div class="line">javah <span class="_">-d</span> /Users/march/AndroidPro/FFmpegAndroidSupport/app/src/main/jni \</div><div class="line">-classpath /Users/march/AndroidPro/FFmpegAndroidSupport/app/build/intermediates/classes/debug \</div><div class="line">com.march.fas.FFmpegSupport</div></pre></td></tr></table></figure>
+<p>查看 <code>.h</code> 文件的内容，将 <code>jclass</code> 改为 <code>jobject</code>，原因的话我也不知道为什么，不是很懂这一块儿，也是查资料慢慢总结的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* DO NOT EDIT THIS FILE - it is machine generated */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></div><div class="line"><span class="comment">/* Header for class com_march_fas_FFmpegSupport */</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _Included_com_march_fas_FFmpegSupport</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _Included_com_march_fas_FFmpegSupport</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="comment">/*</span></div><div class="line"> * Class:     com_march_fas_FFmpegSupport</div><div class="line"> * Method:    ffmpegRun</div><div class="line"> * Signature: (I[Ljava/lang/String;)I</div><div class="line"> */</div><div class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_com_march_fas_FFmpegSupport_ffmpegRun</span></span></div><div class="line">  <span class="params">(JNIEnv *, jobject, jint, jobjectArray)</span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h2 id="编写对应-c-文件"><a href="#编写对应-c-文件" class="headerlink" title="编写对应 c 文件"></a>编写对应 c 文件</h2><p>根据生成的 <code>.h</code> 编写 <code>c</code> 文件，其中 <code>logjni.h</code> 是一个打印日志的工具类，详细可以参考 <code>github</code> 上面的源文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"logjni.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"com_march_fas_FFmpegSupport.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>;</div><div class="line"></div><div class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_com_march_fas_FFmpegSupport_ffmpegRun</span></span></div><div class="line"><span class="params">(JNIEnv *env, jobject obj, jint argc, jobjectArray args)</span> &#123;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">char</span> **argv = <span class="literal">NULL</span>;</div><div class="line">    jstring *strr = <span class="literal">NULL</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (args != <span class="literal">NULL</span>) &#123;</div><div class="line">        argv = (<span class="keyword">char</span> **) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span> *) * argc);</div><div class="line">        strr = (jstring *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(jstring) * argc);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; argc; ++i) &#123;</div><div class="line">            strr[i] = (jstring)(*env)-&gt;GetObjectArrayElement(env, args, i);</div><div class="line">            argv[i] = (<span class="keyword">char</span> *)(*env)-&gt;GetStringUTFChars(env, strr[i], <span class="number">0</span>);</div><div class="line">            LOGD(<span class="string">"args: %s"</span>, argv[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    LOGD(<span class="string">"Run ffmpeg"</span>);</div><div class="line">    <span class="keyword">int</span> result = main(argc, argv);</div><div class="line">    LOGD(<span class="string">"ffmpeg result %d"</span>, result);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; argc; ++i) &#123;</div><div class="line">        (*env)-&gt;ReleaseStringUTFChars(env, strr[i], argv[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">free</span>(argv);</div><div class="line">    <span class="built_in">free</span>(strr);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>如上代码中，我们使用 <code>ffmpeg.c</code> 中的 <code>main()</code> 函数，因此需要将 <code>ffmpeg.c</code> 和 <code>ffmpeg.h</code> 拷贝到 <code>jni</code> 目录中，同时 <code>ffmpeg.c</code> 又引用了多个文件，大致有以下几个文件，这些文件都需要拷贝到 <code>jni</code> 目录中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">config.h</div><div class="line">ffmpeg.c</div><div class="line">ffmpeg.h</div><div class="line">ffmpeg_filter.c</div><div class="line">ffmpeg_opt.c</div><div class="line">cmdutils_common_opts.h</div><div class="line">cmdutils.h</div><div class="line">cmdutils.c</div></pre></td></tr></table></figure>
+<p>跟上一篇文章说的一样，我们还是要将编译好的 <code>so</code> 文件拷贝到 <code>jni</code> 目录，同时编写 <code>Android.mk</code> 和 <code>Application.mk</code> 文件。为了让结构更加清晰，我对目录做了些许改动。在 <code>jni</code> 目录下新建了 <code>prebuilt/armeabi</code> 文件夹，用来存放 <code>so</code> 文件。同时 <code>Android.mk</code> 和 <code>Application.mk</code> 文件也需要做相应修改。</p>
+<p><code>Android.mk</code> 文件，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH:= $(call my-dir)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avcodec-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavcodec-57.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avdevice-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavdevice-57.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avfilter-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavfilter-6.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE:= avformat-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES:= prebuilt/armeabi/libavformat-57.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE :=  avutil-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES := prebuilt/armeabi/libavutil-55.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := swresample-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES := prebuilt/armeabi/libswresample-2.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := swscale-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES := prebuilt/armeabi/libswscale-4.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line">LOCAL_MODULE := postproc-prebuilt-armeabi</div><div class="line">LOCAL_SRC_FILES := prebuilt/armeabi/libpostproc-54.so</div><div class="line">include $(PREBUILT_SHARED_LIBRARY)</div><div class="line"></div><div class="line">include $(CLEAR_VARS)</div><div class="line"></div><div class="line">LOCAL_MODULE := libffmpegjni</div><div class="line"></div><div class="line">LOCAL_ARM_MODE := arm</div><div class="line"></div><div class="line">LOCAL_SRC_FILES := com_march_fas_FFmpegSupport.c \</div><div class="line">                   ffmpeg.c \</div><div class="line">                   cmdutils.c \</div><div class="line">                   ffmpeg_opt.c \</div><div class="line">                   ffmpeg_filter.c</div><div class="line"></div><div class="line">LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -llog -lz</div><div class="line"></div><div class="line">LOCAL_SHARED_LIBRARIES:= avcodec-prebuilt-armeabi \</div><div class="line">                         avdevice-prebuilt-armeabi \</div><div class="line">                         avfilter-prebuilt-armeabi \</div><div class="line">                         avformat-prebuilt-armeabi \</div><div class="line">                         avutil-prebuilt-armeabi \</div><div class="line">                         swresample-prebuilt-armeabi \</div><div class="line">                         swscale-prebuilt-armeabi \</div><div class="line">                         postproc-prebuilt-armeabi</div><div class="line"></div><div class="line">LOCAL_C_INCLUDES += -L$(SYSROOT)/usr/include</div><div class="line"></div><div class="line">LOCAL_C_INCLUDES += /Users/march/AndroidPro/FFmpegAndroidSupport/ffmpeg-3.3.1</div><div class="line"></div><div class="line">LOCAL_CFLAGS := -DUSE_ARM_CONFIG</div><div class="line"></div><div class="line">include $(BUILD_SHARED_LIBRARY)</div></pre></td></tr></table></figure>
+<p><code>Application.mk</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">APP_ABI := armeabi-v7a</div><div class="line">APP_PLATFORM := android-14</div></pre></td></tr></table></figure>
+<h2 id="修改-ffmpeg-源代码"><a href="#修改-ffmpeg-源代码" class="headerlink" title="修改 ffmpeg 源代码"></a>修改 ffmpeg 源代码</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/FFmpeg/" rel="tag">#FFmpeg</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/2717980190/" rel="next" title="Kotlin-类与对象篇">
+                <i class="fa fa-chevron-left"></i> Kotlin-类与对象篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/1632666977/" rel="prev" title="RecyclerView Adapter">
+                RecyclerView Adapter <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="article/4043209466/" data-title="Android编译FFmpeg之命令行" data-url="http://chendongmarch.github.io/article/4043209466/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+          <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">76</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-层-Native-方法"><span class="nav-text">Java 层 Native 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成-h-头文件"><span class="nav-text">生成    .h    头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写对应-c-文件"><span class="nav-text">编写对应 c 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-ffmpeg-源代码"><span class="nav-text">修改 ffmpeg 源代码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 本站访客数</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"> 本站访问总量</i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
