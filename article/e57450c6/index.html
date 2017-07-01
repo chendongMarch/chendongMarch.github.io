@@ -1,0 +1,1276 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,Retrofit,OkHttp">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="OkHttp + Retrofit + RxJava  本文介绍 OkHttp 和 Retrofit 的基本使用，包括：  创建和配置 OkHttpClient 创建和配置 Retrofit 如何使用 Retrofit 定义接口发起请求 关于 Retrofit 的请求方法，路径，请求参数，请求body，header 的详细说明。">
+<meta name="keywords" content="Android,Retrofit,OkHttp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OkHttp+Retrofit+RxJava(1)">
+<meta property="og:url" content="http://chendongmarch.github.io/article/e57450c6/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="OkHttp + Retrofit + RxJava  本文介绍 OkHttp 和 Retrofit 的基本使用，包括：  创建和配置 OkHttpClient 创建和配置 Retrofit 如何使用 Retrofit 定义接口发起请求 关于 Retrofit 的请求方法，路径，请求参数，请求body，header 的详细说明。">
+<meta property="og:updated_time" content="2017-07-01T07:24:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OkHttp+Retrofit+RxJava(1)">
+<meta name="twitter:description" content="OkHttp + Retrofit + RxJava  本文介绍 OkHttp 和 Retrofit 的基本使用，包括：  创建和配置 OkHttpClient 创建和配置 Retrofit 如何使用 Retrofit 定义接口发起请求 关于 Retrofit 的请求方法，路径，请求参数，请求body，header 的详细说明。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chendongmarch.github.io/article/e57450c6/">
+
+
+
+
+
+    <title>OkHttp+Retrofit+RxJava(1) | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+  @media (min-width: 768px) {
+    .forkme{
+      display: inline;
+    }
+  }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  </head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    <div class="forkme">
+   <a target="_blank" href="https://github.com/chendongMarch" rel="external nofollow noopener noreferrer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    </div>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">The darkest hour is that before the dawn.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/e57450c6/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">OkHttp+Retrofit+RxJava(1)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-01T14:31:11+08:00">
+                2017-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/e57450c6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="article/e57450c6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"> 本文访问总量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>OkHttp</code> + <code>Retrofit</code> + <code>RxJava</code> </p>
+<p>本文介绍 <code>OkHttp</code> 和 <code>Retrofit</code> 的基本使用，包括：</p>
+<blockquote>
+<p>创建和配置 <code>OkHttpClient</code></p>
+<p>创建和配置 <code>Retrofit</code></p>
+<p>如何使用 <code>Retrofit</code> 定义接口发起请求</p>
+<p>关于 <code>Retrofit</code> 的请求方法，路径，请求参数，请求<code>body</code>，<code>header</code> 的详细说明。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 网络请求</span></div><div class="line">okhttp3                 : <span class="string">'com.squareup.okhttp3:okhttp:3.4.2'</span>,</div><div class="line"><span class="comment">// 单元测试，未用</span></div><div class="line">okhttp3Mockwebserver    : <span class="string">'com.squareup.okhttp3:mockwebserver:3.4.2'</span>,</div><div class="line"><span class="comment">// 调试工具类库</span></div><div class="line">stetho                  : <span class="string">'com.facebook.stetho:stetho:1.4.2'</span>,</div><div class="line">stetho_okhttp3          : <span class="string">'com.facebook.stetho:stetho-okhttp3:1.4.2'</span>,</div><div class="line"><span class="comment">// json解析</span></div><div class="line">gson                    : <span class="string">'com.google.code.gson:gson:2.6.1'</span>,</div><div class="line"><span class="comment">// 网络请求 retrofit + okhttp + gson</span></div><div class="line">retrofit                : <span class="string">'com.squareup.retrofit2:retrofit:2.3.0'</span>,</div><div class="line">converter_gson          : <span class="string">'com.squareup.retrofit2:converter-gson:2.1.0'</span>,</div><div class="line">adapter_rxjava2         : <span class="string">'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'</span>,</div><div class="line">logging_interceptor     : <span class="string">'com.squareup.okhttp3:logging-interceptor:3.8.0'</span>,</div><div class="line">rxjava2                 : <span class="string">'io.reactivex.rxjava2:rxjava:2.1.0'</span>,</div><div class="line">rxandroid               : <span class="string">'io.reactivex.rxjava2:rxandroid:2.0.1'</span></div></pre></td></tr></table></figure>
+<h2 id="创建-OkHttp"><a href="#创建-OkHttp" class="headerlink" title="创建 OkHttp"></a>创建 OkHttp</h2><p><code>Retrofit</code> 是对 <code>OkHttp</code> 的封装，提供了使用注解更简单的构建各种请求，配置各种参数的方式。本质发起网路请求的还是 <code>OkHttp</code>。创建一个 <code>OkHttpClent</code> 并进行简单配置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 创建 OkHttpClient</div><div class="line"> *</div><div class="line"> * <span class="doctag">@return</span> OkHttpClient</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> OkHttpClient <span class="title">buildOkHttpClient</span><span class="params">()</span> </span>&#123;</div><div class="line">    OkHttpClient.Builder okHttpBuilder = <span class="keyword">new</span> OkHttpClient.Builder();</div><div class="line">    <span class="comment">// 连接超时</span></div><div class="line">    okHttpBuilder.connectTimeout(<span class="number">5</span> * <span class="number">1000</span>, TimeUnit.MILLISECONDS);</div><div class="line">    <span class="comment">// 读超时</span></div><div class="line">    okHttpBuilder.readTimeout(<span class="number">5</span> * <span class="number">1000</span>, TimeUnit.MILLISECONDS);</div><div class="line">    <span class="comment">// 写超时</span></div><div class="line">    okHttpBuilder.writeTimeout(<span class="number">5</span> * <span class="number">1000</span>, TimeUnit.MILLISECONDS);</div><div class="line">    <span class="comment">// 清除 interceptors</span></div><div class="line">    okHttpBuilder.interceptors().clear();</div><div class="line">    okHttpBuilder.networkInterceptors().clear();</div><div class="line">    <span class="comment">// 自定义 Interceptor，用来添加全局 Header</span></div><div class="line">    okHttpBuilder.addNetworkInterceptor(<span class="keyword">new</span> HeaderInterceptor());</div><div class="line">    <span class="comment">// 自定义 Interceptor，进行日志打印，扩展自 HttpLoggingInterceptor</span></div><div class="line">    okHttpBuilder.addNetworkInterceptor(<span class="keyword">new</span> LogInterceptor(LogInterceptor.Level.BOTH));</div><div class="line">    <span class="comment">// 失败后重试</span></div><div class="line">    okHttpBuilder.retryOnConnectionFailure(<span class="keyword">true</span>);</div><div class="line">    <span class="comment">// face book 调试框架</span></div><div class="line">    okHttpBuilder.addNetworkInterceptor(<span class="keyword">new</span> StethoInterceptor());</div><div class="line">    <span class="comment">// token校验，返回 403 时</span></div><div class="line">    okHttpBuilder.authenticator(<span class="keyword">new</span> TokenAuthenticator());</div><div class="line">    <span class="keyword">return</span> okHttpBuilder.build();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="创建-Retrofit"><a href="#创建-Retrofit" class="headerlink" title="创建 Retrofit"></a>创建 Retrofit</h2><p><code>OkHttp</code> 只负责发起网络请求，维护网络连接等操作，而 <code>Retrofit</code> 帮我们将网络传输的数据转换为可用的 <code>model</code> 对象，并且提供简单的数据处理方式。</p>
+<p>配置 <code>CallAdapterFactory</code> 为 <code>RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io())</code> 用来将返回的数据转换为 <code>RxJava</code> 调用的对象。</p>
+<p>配置 <code>ConverterFactory</code>  为 <code>GsonConverterFactory.create(new Gson())</code> 用来使用 <code>GSON</code> 将网络数据转化为对象。</p>
+<p><code>baseUrl</code> 要求以 <code>/</code> 结尾，而请求的 <code>path</code> 要求不以 <code>/</code> 开头，也就是说我们需要类似 <code>https://www.baidu.com/</code> 的形式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 创建 retrofit</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> okHttpClient client</div><div class="line"> * <span class="doctag">@return</span> retrofit</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> Retrofit <span class="title">buildRetrofit</span><span class="params">(OkHttpClient okHttpClient)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> Retrofit.Builder retrofitBuilder = <span class="keyword">new</span> Retrofit.Builder();</div><div class="line">    <span class="comment">// client</span></div><div class="line">    retrofitBuilder.client(okHttpClient);</div><div class="line">    <span class="comment">// baseUrl</span></div><div class="line">    retrofitBuilder.baseUrl(BASE_URL);</div><div class="line">    <span class="comment">// rxJava 调用 adapter</span></div><div class="line">    retrofitBuilder.addCallAdapterFactory(</div><div class="line">            RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()));</div><div class="line">    <span class="comment">// 数据转换 adapter</span></div><div class="line">    retrofitBuilder.addConverterFactory(GsonConverterFactory.create(<span class="keyword">new</span> Gson()));</div><div class="line">    <span class="keyword">return</span> retrofitBuilder.build();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="创建-api-服务接口"><a href="#创建-api-服务接口" class="headerlink" title="创建 api 服务接口"></a>创建 api 服务接口</h2><p>创建接口类，使用注解声明网络请求的方法和相关参数，这里只是一个简单的例子，更多参数和配置将在后面说明，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApiService</span> </span>&#123;</div><div class="line"></div><div class="line">    String GET_USER_INFO = <span class="string">"api/v1/user/info"</span>;</div><div class="line">	 </div><div class="line">    <span class="meta">@GET</span>(GET_USER_INFO)</div><div class="line">    <span class="function">Call&lt;UserInfoDTOResponse&gt; <span class="title">getUser</span><span class="params">(@Header(<span class="string">"Authorization"</span>)</span> String auth)</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 <code>Retrofit</code> 初始化 api 请求服务。获取到 <code>ApiService</code> 的实例之后就可以使用该实例发起请求。我是使用了一个单例持有的，进行请求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createService</span><span class="params">()</span> </span>&#123;</div><div class="line">    Retrofit retrofit = buildRetrofit(buildOkHttpClient());</div><div class="line">    mApiService = retrofit.create(ApiService.class);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>发起请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 从单例中获取 ApiService</span></div><div class="line">    ApiService service = ApiRequest.getService();</div><div class="line">    <span class="comment">// 创建请求</span></div><div class="line">    Call&lt;UserInfoDTOResponse&gt; userCall = service.getUser();</div><div class="line">    <span class="comment">// 发起请求</span></div><div class="line">    userCall.enqueue(<span class="keyword">new</span> Callback&lt;UserInfoDTOResponse&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(@NonNull Call&lt;UserInfoDTOResponse&gt; call,</span></span></div><div class="line">                               @NonNull Response&lt;UserInfoDTOResponse&gt; response) &#123;</div><div class="line">            UserInfoDTOResponse body = response.body();</div><div class="line">            <span class="keyword">if</span> (body != <span class="keyword">null</span> &amp;&amp; body.getData() != <span class="keyword">null</span>) &#123;</div><div class="line">                L.e(TAG, body.getData().toString());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(@NonNull Call&lt;UserInfoDTOResponse&gt; call,</span></span></div><div class="line">                              @NonNull Throwable t) &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><code>Retrofit</code> 支持 <code>GET</code>，<code>POST</code>，<code>PUT</code>，<code>DELETE</code>，<code>HEAD</code>，<code>OPTION</code> 等请求方式，并有对应的注解。</p>
+<p>使用如下方式标记，声明请求的方式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GET</span>(GET_USER_INFO)</div><div class="line"><span class="function">Call&lt;UserInfoDTOResponse&gt; <span class="title">getUser</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="meta">@DELETE</span>(DELETE_RM_BABY)</div><div class="line"><span class="function">Call&lt;BaseResponse&gt; <span class="title">deleteBaby</span><span class="params">(@Path(PATH_BABY_ID)</span> Long babyId)</span>;</div></pre></td></tr></table></figure>
+<h2 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h2><p>请求路径，请求路径中可以包含参数，并在参数中使用 <code>@PATH</code> 注解来动态改变路径，<br>比如路径 <code>api/v1/user/{id}</code>，使用注解 <code>@PATH(&quot;id&quot;) Long id</code> 即可改变路径中 <code>{id}</code> 请求时的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  path 中不包含参数</span></div><div class="line"><span class="meta">@GET</span>(GET_USER_INFO)</div><div class="line"><span class="function">Call&lt;UserInfoDTOResponse&gt; <span class="title">getUser</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">String PATH_BABY_ID = <span class="string">"babyId"</span>;</div><div class="line">String PUT_EDIT_BABY = <span class="string">"api/v2/baby/doEdit/&#123;"</span> + PATH_BABY_ID + <span class="string">"&#125;"</span>;</div><div class="line"></div><div class="line"><span class="meta">@PUT</span>(PUT_EDIT_BABY)</div><div class="line"><span class="function">Call&lt;BaseResponse&gt; <span class="title">putEditBaby</span><span class="params">(@Path(PATH_BABY_ID)</span> Long babyId)</span>;</div></pre></td></tr></table></figure>
+<h2 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h2><p>发送 <code>POST</code> 、<code>PUT</code> 请求时通常需要携带 <code>body</code> 数据，使用 <code>@Body</code> 注解，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@PUT</span>(PUT_EDIT_BABY)</div><div class="line"><span class="function">Call&lt;BaseResponse&gt; <span class="title">putEditBaby</span><span class="params">(@Body BabyParam babyParam)</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><p>配置 <code>UrlQuery</code> 参数，比如 <code>api/v1/user/list?limit=100&amp;offset=10</code> 这种类型。有两种配置方式：</p>
+<p>第一种使用 <code>@Query</code> 注解，如 <code>@Query(&quot;userId&quot;) Long userId</code> 的形式。这种形式可以传递 <code>null</code> 值，如果某个参数为 <code>null</code>，将不会拼接在 <code>url</code> 后面。</p>
+<p>第二种使用 <code>@QueryMap</code> 注解，如 <code>@QureyMap Map&lt;String,String&gt; params</code>  的形式。这种形式传递一个 <code>map</code> 作为参数，但是 <code>map</code> 中 <code>value</code> 不能为空，否则会抛出异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GET</span>(GET_BABY_RELATION_LIST)</div><div class="line"><span class="function">Call&lt;UserBabyRelationResp&gt; <span class="title">getBabyRelationList</span><span class="params">(@Query(<span class="string">"babyId"</span>)</span> Long babyId, @<span class="title">Query</span><span class="params">(<span class="string">"limit"</span>)</span> <span class="keyword">int</span> limit, @<span class="title">Query</span><span class="params">(<span class="string">"offset"</span>)</span> Long offset)</span>;</div><div class="line"></div><div class="line"><span class="meta">@GET</span>(GET_BABY_RELATION_LIST)</div><div class="line"><span class="function">Call&lt;UserBabyRelationResp&gt; <span class="title">getBabyRelationList</span><span class="params">(@QueryMap Map&lt;String,String&gt; map)</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h2><p>静态 <code>Header</code>，使用 <code>@Headers</code> 注解添加在请求接口上，用法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Headers</span>(&#123;<span class="string">"key:value"</span>,<span class="string">"key:value"</span>&#125;)</div><div class="line"><span class="meta">@Headers</span>(<span class="string">"key:value"</span>)</div><div class="line"></div><div class="line">eg:</div><div class="line"><span class="meta">@Headers</span>(&#123;<span class="string">"Authorization: authValue"</span>,</div><div class="line">                 <span class="string">"User-Agent: Retrofit-Sample-App"</span>&#125;)</div><div class="line"><span class="meta">@GET</span>(GET_USER_INFO)</div><div class="line"><span class="function">Call&lt;UserInfoDTOResponse&gt; <span class="title">getUser</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="meta">@Headers</span>(<span class="string">"Authorization: authValue"</span>)</div><div class="line"><span class="meta">@GET</span>(GET_USER_INFO)</div><div class="line"><span class="function">Call&lt;UserInfoDTOResponse&gt; <span class="title">getUser</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<p>局部动态 <code>Header</code>，使用 <code>@Header(&quot;key&quot;)</code> 和 <code>@HeaderMap</code> 注解添加在请求参数上，动态配置，用法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Header</span>(<span class="string">"Authorization"</span>) String auth</div><div class="line"><span class="comment">// retrofit:2.1.0 添加</span></div><div class="line"><span class="meta">@HeaderMap</span> Map&lt;String, String&gt; headers</div><div class="line"></div><div class="line">eg:</div><div class="line"><span class="meta">@GET</span>(GET_USER_INFO)</div><div class="line"><span class="function">Call&lt;UserInfoDTOResponse&gt; <span class="title">getUser</span><span class="params">(@Header(<span class="string">"Authorization"</span>)</span> String auth)</span>;</div><div class="line"></div><div class="line"><span class="meta">@GET</span>(GET_USER_INFO)</div><div class="line"><span class="function">Call&lt;UserInfoDTOResponse&gt; <span class="title">getUser</span><span class="params">(@HeaderMap Map&lt;String, String&gt; headers)</span></span>;</div></pre></td></tr></table></figure>
+<p>全局配置 <code>Header</code>，为 <code>OkHttp</code> 添加 <code>Interceptor</code>，需要注意的是 <code>addNetWorkIntercepror()</code> 和 <code>addInterceptor()</code> 的区别。当进入 <code>netWorkInterceptor</code> 时已经添加了 <code>User-Agent</code> 等 <code>Header</code>，此时要把自己的 <code>Header</code> 一个一个 <code>addHeader()</code> 进去，防止把原来的冲掉。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">HeaderInterceptor</span> <span class="keyword">implements</span> <span class="title">Interceptor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = HeaderInterceptor.class.getSimpleName();</div><div class="line"></div><div class="line">    <span class="comment">// 到达 netWorkInterceptor 时，默认 header 已经添加，不能使用替换的方式，要使用 addHeader 的方式</span></div><div class="line">    <span class="comment">// 到达 interceptor 时，还没有添加默认 header ,可以直接替换原来的 header ，后面会追加默认 header</span></div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(@NonNull Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        Request request = chain.request();</div><div class="line">        L.e(TAG, <span class="string">"添加全局 header "</span>);</div><div class="line">        Request.Builder builder = request.newBuilder();</div><div class="line">        Map&lt;String, String&gt; headersMap = ApiRequest.getHeadersMap();</div><div class="line">        <span class="keyword">for</span> (String key : headersMap.keySet()) &#123;</div><div class="line">            builder.addHeader(key, headersMap.get(key));</div><div class="line">        &#125;</div><div class="line">        Response response;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            response = chain.proceed(builder.build());</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">            <span class="keyword">throw</span> e;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> response;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">OkHttpClient.Builder okHttpBuilder = <span class="keyword">new</span> OkHttpClient.Builder();</div><div class="line">okHttpBuilder.addNetworkInterceptor(<span class="keyword">new</span> HeaderInterceptor());</div></pre></td></tr></table></figure>
+<h2 id="Todo"><a href="#Todo" class="headerlink" title="Todo"></a>Todo</h2><p>更多内容还没有涉及…</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 表单提交</span></div><div class="line"><span class="meta">@FormUrlEncoded</span></div><div class="line"><span class="meta">@POST</span>(<span class="string">"user/edit"</span>)</div><div class="line"><span class="meta">@HEAD</span></div><div class="line"><span class="function">Call&lt;User&gt; <span class="title">updateUser</span><span class="params">(@Field(<span class="string">"first_name"</span>)</span> String first, @<span class="title">Field</span><span class="params">(<span class="string">"last_name"</span>)</span> String last)</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 文件上传</span></div><div class="line"><span class="meta">@Multipart</span></div><div class="line"><span class="meta">@PUT</span>(<span class="string">"user/photo"</span>)</div><div class="line"><span class="function">Call&lt;User&gt; <span class="title">updateUser</span><span class="params">(@Part(<span class="string">"photo"</span>)</span> RequestBody photo, @<span class="title">Part</span><span class="params">(<span class="string">"description"</span>)</span> RequestBody description)</span>;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/三方框架/" rel="tag"># 三方框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/3443742407/" rel="next" title="从现在开始">
+                <i class="fa fa-chevron-left"></i> 从现在开始
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank" rel="external nofollow noopener noreferrer"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="article/e57450c6/" data-title="OkHttp+Retrofit+RxJava(1)" data-url="http://chendongmarch.github.io/article/e57450c6/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加依赖"><span class="nav-text">添加依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-OkHttp"><span class="nav-text">创建 OkHttp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Retrofit"><span class="nav-text">创建 Retrofit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-api-服务接口"><span class="nav-text">创建 api 服务接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-text">Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PATH"><span class="nav-text">PATH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Body"><span class="nav-text">Body</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Query"><span class="nav-text">Query</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Header"><span class="nav-text">Header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Todo"><span class="nav-text">Todo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"> 本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"> 本站访问总量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"march911091"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

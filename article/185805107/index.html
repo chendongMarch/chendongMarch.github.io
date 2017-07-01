@@ -6,8 +6,8 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -112,7 +112,7 @@
 <meta property="og:url" content="http://chendongmarch.github.io/article/185805107/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文主要介绍如何使用 Hexo+NexT 搭建自己的博客，和在建站期间遇到的一些问题以及优化方式。">
-<meta property="og:updated_time" content="2017-06-30T05:13:44.000Z">
+<meta property="og:updated_time" content="2017-06-30T05:27:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
 <meta name="twitter:description" content="本文主要介绍如何使用 Hexo+NexT 搭建自己的博客，和在建站期间遇到的一些问题以及优化方式。">
@@ -149,18 +149,18 @@
 
 
 
-  <title>Hexo | 三月</title>
-<style>
-  .forkme{
-    display: none;
+    <title>Hexo | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+  @media (min-width: 768px) {
+    .forkme{
+      display: inline;
+    }
   }
-@media (min-width: 768px) {
-  .forkme{
-    display: inline;
-  }
-}
-  </style>
-  
+    </style>
+    
 
 
 
@@ -185,7 +185,7 @@
 
 
 
-</head>
+  </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -472,16 +472,16 @@
       
         <p>本文主要介绍如何使用 <code>Hexo+NexT</code> 搭建自己的博客，和在建站期间遇到的一些问题以及优化方式。</p>
 <a id="more"></a>
+<h2 id="BugFix"><a href="#BugFix" class="headerlink" title="BugFix"></a>BugFix</h2><p>错误 <code>Cannot set property &#39;lastIndex&#39; of undefined</code>，修改 <code>hexo/config.yml</code> 设置 <code>auto_detect: false</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">highlight</span>:</div><div class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span></div><div class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">true</span></div><div class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></div><div class="line">  <span class="selector-tag">tab_replace</span>:</div></pre></td></tr></table></figure>
 <h2 id="SEO优化"><a href="#SEO优化" class="headerlink" title="SEO优化"></a>SEO优化</h2><blockquote>
 <p><a href="https://lancelot_lewis.coding.me/2016/08/16/blog/Hexo-NexT-SEO/" rel="external nofollow noopener noreferrer" target="_blank">Hexo NexT主题SEO优化</a></p>
 <p><a href="http://www.jianshu.com/p/86557c34b671" rel="external nofollow noopener noreferrer" target="_blank">SEO优化，Google收录</a></p>
 </blockquote>
 <h2 id="页面简单加密访问"><a href="#页面简单加密访问" class="headerlink" title="页面简单加密访问"></a>页面简单加密访问</h2><p>找到文件<code>themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig</code>在<code>&lt;meta&gt;</code>标签之后添加如下js代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">                alert(<span class="string">'密码错误！'</span>);</div><div class="line">                history.back();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">                alert(<span class="string">'密码错误！'</span>);</div><div class="line">                history.back();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>在文章的<code>Front-matter</code>定义<code>password</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: post</div><div class="line">title: Hexo加密文章示例</div><div class="line">date: 2017-03-02</div><div class="line">category: </div><div class="line">tags: </div><div class="line">keywords:</div><div class="line">password: 123456</div><div class="line">---</div></pre></td></tr></table></figure>
-<h2 id="BugFix"><a href="#BugFix" class="headerlink" title="BugFix"></a>BugFix</h2><p>错误 <code>Cannot set property &#39;lastIndex&#39; of undefined</code>，修改 <code>hexo/config.yml</code> 设置 <code>auto_detect: false</code></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">highlight</span>:</div><div class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span></div><div class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">true</span></div><div class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></div><div class="line">  <span class="selector-tag">tab_replace</span>:</div></pre></td></tr></table></figure>
 <h2 id="添加留言界面"><a href="#添加留言界面" class="headerlink" title="添加留言界面"></a>添加留言界面</h2><p>添加page，在博客根目录下执行如下命令，会在source目录下面创建<code>msg/index.md</code>文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page msg</div></pre></td></tr></table></figure>
 <p>配置文字和图标，打开<code>themes/next/_config.yml</code>文件，进行如下配置，才能使留言的界面显示</p>
@@ -502,10 +502,18 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-all-minifier</div></pre></td></tr></table></figure>
 <p>配置 <code>hexo/_config.yml</code>，添加如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"># 文章压缩</div><div class="line">html_minifier:</div><div class="line">  enable: true</div><div class="line">  ignore_error: false</div><div class="line">  exclude:</div><div class="line"></div><div class="line">css_minifier:</div><div class="line">  enable: true</div><div class="line">  exclude:</div><div class="line">    - &apos;*.min.css&apos;</div><div class="line"></div><div class="line">js_minifier:</div><div class="line">  enable: true</div><div class="line">  mangle: true</div><div class="line">  output:</div><div class="line">  compress:</div><div class="line">  exclude:</div><div class="line">    - &apos;*.min.js&apos;</div><div class="line"></div><div class="line">image_minifier:</div><div class="line">  enable: true</div><div class="line">  interlaced: false</div><div class="line">  multipass: false</div><div class="line">  optimizationLevel: 2</div><div class="line">  pngquant: false</div><div class="line">  progressive: false</div></pre></td></tr></table></figure>
-<h2 id="添加-fork-me-on-github"><a href="#添加-fork-me-on-github" class="headerlink" title="添加 fork me on github"></a>添加 fork me on github</h2><p>修改 <code>hexoBlog/themes/next/layout/_layout.swig</code> 文件，在 <code>header</code><br>标签之前添加图片，图片样式可以到<a href="https://github.com/blog/273-github-ribbons" rel="external nofollow noopener noreferrer" target="_blank">该站点</a>选择颜色和位置等。<code>href</code> 中需要修改你为的 <code>github</code> 地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;&#123;&#123; container_class &#125;&#125; &#123;% block page_class %&#125;&#123;% endblock %&#125; &quot;&gt;</div><div class="line">    &lt;div class=&quot;headband&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">  &lt;!--- add Fork me on Github  --&gt;</div><div class="line">    </div><div class="line">   &lt;a href=&quot;https://github.com/chendongMarch&quot;&gt;&lt;img style=&quot;position: absolute; top: 0; left: 0; border: 0;&quot; src=&quot;https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67&quot; alt=&quot;Fork me on GitHub&quot; data-canonical-src=&quot;https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png&quot;&gt;&lt;/a&gt;</div><div class="line">    </div><div class="line">    &lt;!--- add Fork me on Github --&gt;   </div><div class="line">    </div><div class="line">    &lt;header id=&quot;header&quot; class=&quot;header&quot; itemscope itemtype=&quot;//schema.org/WPHeader&quot;&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="添加-fork-me-on-github"><a href="#添加-fork-me-on-github" class="headerlink" title="添加 fork me on github"></a>添加 fork me on github</h2><p>修改 <code>hexoBlog/themes/next/layout/_layout.swig</code> 文件，在 <code>header</code><br>标签之前添加图片，图片样式可以到<a href="https://github.com/blog/273-github-ribbons" rel="external nofollow noopener noreferrer" target="_blank">该站点</a>选择颜色和位置等。<code>href</code> 中需要修改你为的 <code>github</code> 地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;&#123;&#123; container_class &#125;&#125; &#123;% block page_class %&#125;&#123;% endblock %&#125; &quot;&gt;</div><div class="line">   &lt;div class=&quot;headband&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line"> &lt;!--- add Fork me on Github  --&gt;</div><div class="line">   &lt;div class=&quot;forkme&quot;&gt;</div><div class="line">  &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/chendongMarch&quot;&gt;&lt;img style=&quot;position: absolute; top: 0; left: 0; border: 0;&quot; src=&quot;https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67&quot; alt=&quot;Fork me on GitHub&quot; data-canonical-src=&quot;https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png&quot;&gt;&lt;/a&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line">   &lt;!--- add Fork me on Github --&gt;   </div><div class="line">   </div><div class="line">   &lt;header id=&quot;header&quot; class=&quot;header&quot; itemscope itemtype=&quot;//schema.org/WPHeader&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>在 <code>head</code> 标签内添加 <code>style</code> 使小屏幕访问时不显示这个图片</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  &#123;% include '_partials/head.swig' %&#125;</div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;% block title %&#125;&#123;% endblock %&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">  <span class="selector-class">.forkme</span>&#123;</div><div class="line">    <span class="attribute">display</span>: none;</div><div class="line">  &#125;</div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123;</div><div class="line">  <span class="selector-class">.forkme</span>&#123;</div><div class="line">    <span class="attribute">display</span>: inline;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">  &#123;% include '_third-party/analytics/index.swig' %&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="代码风格处理"><a href="#代码风格处理" class="headerlink" title="代码风格处理"></a>代码风格处理</h2><p>查看 <code>hexoBlog/themes/next/source/css/_common/components/highlight/highlight.styl</code> 文件，是对高亮代码的相关配置。找到标签修改既可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 行内代码</div><div class="line">code&#123;</div><div class="line">	// 分行时是不是根据单词划分</div><div class="line">	word-wrap: break-all/break-word;</div><div class="line">	// 代码颜色</div><div class="line">	color:#fff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="添加本地搜索"><a href="#添加本地搜索" class="headerlink" title="添加本地搜索"></a>添加本地搜索</h2>
+<h2 id="添加本地搜索"><a href="#添加本地搜索" class="headerlink" title="添加本地搜索"></a>添加本地搜索</h2><p>安装插件 <code>hexo-generator-searchdb</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-searchdb --save</div></pre></td></tr></table></figure>
+<p>配置 <code>hexo/_config.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">search:</div><div class="line">  path: search.xml</div><div class="line">  field: post</div><div class="line">  format: html</div><div class="line">  limit: 10000</div></pre></td></tr></table></figure>
+<p>配置 <code>next/_config.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Local search</div><div class="line">local_search:</div><div class="line">  enable: true</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -657,7 +665,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-count">77</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -743,7 +751,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO优化"><span class="nav-text">SEO优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面简单加密访问"><span class="nav-text">页面简单加密访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BugFix"><span class="nav-text">BugFix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加留言界面"><span class="nav-text">添加留言界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤文件不进行渲染"><span class="nav-text">过滤文件不进行渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#category-分级"><span class="nav-text">category 分级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接唯一化"><span class="nav-text">链接唯一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章压缩"><span class="nav-text">文章压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-fork-me-on-github"><span class="nav-text">添加 fork me on github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码风格处理"><span class="nav-text">代码风格处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加本地搜索"><span class="nav-text">添加本地搜索</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BugFix"><span class="nav-text">BugFix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO优化"><span class="nav-text">SEO优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面简单加密访问"><span class="nav-text">页面简单加密访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加留言界面"><span class="nav-text">添加留言界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤文件不进行渲染"><span class="nav-text">过滤文件不进行渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#category-分级"><span class="nav-text">category 分级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接唯一化"><span class="nav-text">链接唯一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章压缩"><span class="nav-text">文章压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-fork-me-on-github"><span class="nav-text">添加 fork me on github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码风格处理"><span class="nav-text">代码风格处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加本地搜索"><span class="nav-text">添加本地搜索</span></a></li></ol></div>
             
 
           </div>
