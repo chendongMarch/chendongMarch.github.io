@@ -4,8 +4,33 @@
 
     
   <url>
+    <loc>http://chendongmarch.github.io/article/3251baff/</loc>
+    <lastmod>2017-07-01T15:34:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>rxjava_1</title>
+        <pubTime>2017-07-01T15:00:28.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://chendongmarch.github.io/article/e57450c6/</loc>
-    <lastmod>2017-07-01T07:24:59.000Z</lastmod>
+    <lastmod>2017-07-01T10:53:51.000Z</lastmod>
     <data>
         <display>
         <title>OkHttp+Retrofit+RxJava(1)</title>
@@ -19,6 +44,9 @@
            
              
               <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
           
         </display>
     </data>
