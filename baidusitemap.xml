@@ -4,31 +4,11 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/article/3443742407/</loc>
-    <lastmod>2017-07-02T15:02:17.000Z</lastmod>
-    <data>
-        <display>
-        <title>改变</title>
-        <pubTime>2017-06-28T16:00:00.000Z</pubTime>
-        
-        <tag>Diary</tag>
-         
-         
-           
-             
-              <breadCrumb title="Life" url="http://chendongmarch.github.io/categories/Life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://chendongmarch.github.io/article/3251baff/</loc>
-    <lastmod>2017-07-02T11:19:05.000Z</lastmod>
+    <lastmod>2017-07-03T08:59:26.000Z</lastmod>
     <data>
         <display>
-        <title>RxJava 从零开始</title>
+        <title>RxJava2.x开发-1 (开始)</title>
         <pubTime>2017-07-01T15:00:28.000Z</pubTime>
         
         <tag>Android</tag>
@@ -42,6 +22,105 @@
           
              
               <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/4043209466/</loc>
+    <lastmod>2017-07-03T08:59:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android编译FFmpeg之命令行</title>
+        <pubTime>2017-06-12T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Ndk" url="http://chendongmarch.github.io/categories/Android/Ndk/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3809198562/</loc>
+    <lastmod>2017-07-03T08:59:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android编译FFmpeg之HelloWorld</title>
+        <pubTime>2017-05-24T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="Ndk" url="http://chendongmarch.github.io/categories/Android/Ndk/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2a4b463b/</loc>
+    <lastmod>2017-07-03T08:04:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Rxjava2.x开发-n (Flowable和Backpressure)</title>
+        <pubTime>2017-07-03T07:51:09.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3443742407/</loc>
+    <lastmod>2017-07-02T15:02:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>改变</title>
+        <pubTime>2017-06-28T16:00:00.000Z</pubTime>
+        
+        <tag>Diary</tag>
+         
+         
+           
+             
+              <breadCrumb title="Life" url="http://chendongmarch.github.io/categories/Life/"/>
           
         </display>
     </data>
@@ -1586,50 +1665,6 @@
         <tag>Android</tag>
          
         <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/article/4043209466/</loc>
-    <lastmod>2017-06-30T01:25:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android编译FFmpeg之命令行</title>
-        <pubTime>2017-06-12T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>FFmpeg</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/article/3809198562/</loc>
-    <lastmod>2017-06-30T01:25:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android编译FFmpeg之HelloWorld</title>
-        <pubTime>2017-05-24T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>FFmpeg</tag>
          
          
            

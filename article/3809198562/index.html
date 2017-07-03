@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Android,FFmpeg,">
+  <meta name="keywords" content="Android,FFmpeg,Ndk,">
 
 
 <script>
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="编译FFmpeg3.3.1的so文件，并在Android工程中使用。     FFmpeg版本：3.3.1  ／  OS：Mac OSX 本文博客链接    GitHub，本文介绍内容请查看hello_world分支    ps: 开始的时候我只编译出了6个so文件，缺少libavdevice.so和libpostproc.so，主要是因为build_andorid.sh的配置不同，现在可以编译出">
-<meta name="keywords" content="Android,FFmpeg">
+<meta name="keywords" content="Android,FFmpeg,Ndk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android编译FFmpeg之HelloWorld">
 <meta property="og:url" content="http://chendongmarch.github.io/article/3809198562/index.html">
@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/ffmpeg_finder_dir_scan.jpeg">
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/ffmpeg_as_dir_scan.jpg">
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/ffmpeg_compile_end.jpeg">
-<meta property="og:updated_time" content="2017-06-30T01:25:15.000Z">
+<meta property="og:updated_time" content="2017-07-03T08:59:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android编译FFmpeg之HelloWorld">
 <meta name="twitter:description" content="编译FFmpeg3.3.1的so文件，并在Android工程中使用。     FFmpeg版本：3.3.1  ／  OS：Mac OSX 本文博客链接    GitHub，本文介绍内容请查看hello_world分支    ps: 开始的时候我只编译出了6个so文件，缺少libavdevice.so和libpostproc.so，主要是因为build_andorid.sh的配置不同，现在可以编译出">
@@ -401,8 +401,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:25:15+08:00">
-                2017-06-30
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-03T16:59:03+08:00">
+                2017-07-03
               </time>
             
           </span>
@@ -422,6 +422,17 @@
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Android/" itemprop="url" rel="index">
                     <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Ndk/" itemprop="url" rel="index">
+                    <span itemprop="name">Ndk</span>
                   </a>
                 </span>
 
@@ -474,7 +485,10 @@
 <p>FFmpeg版本：3.3.1  ／  OS：Mac OSX</p>
 <p><a href="http://chendongmarch.github.io/2017/05/25/Android%E5%BC%80%E5%8F%91/%E7%BC%96%E8%AF%91ffmpeg/">本文博客链接</a>   </p>
 <p><a href="https://github.com/chendongMarch/FFmpegAndroidSupport" rel="external nofollow noopener noreferrer" target="_blank">GitHub，本文介绍内容请查看hello_world分支</a>   </p>
-<p>ps: 开始的时候我只编译出了6个so文件，缺少<code>libavdevice.so</code>和<code>libpostproc.so</code>，主要是因为<code>build_andorid.sh</code>的配置不同，现在可以编译出8个so文件，在文章中的图片出现的都是6个so文件，特此声明。<br><a id="more"></a></p>
+<p>ps: 开始的时候我只编译出了6个so文件，缺少<code>libavdevice.so</code>和<code>libpostproc.so</code>，主要是因为<code>build_andorid.sh</code>的配置不同，现在可以编译出8个so文件，在文章中的图片出现的都是6个so文件，特此声明。</p>
+<blockquote>
+<p>源代码 <a href="https://github.com/chendongMarch/FFmpegAndroidSupport/tree/hello_world" rel="external nofollow noopener noreferrer" target="_blank">GitHub - FFmpegAndroidSupport</a>(注意在 hello_world 分支)<br><a id="more"></a></p>
+</blockquote>
 <h2 id="配置-NDK-环境"><a href="#配置-NDK-环境" class="headerlink" title="配置 NDK 环境"></a>配置 NDK 环境</h2><p>打开<code>~/.bash_profile</code>文件，添加<code>ndk</code>的环境变量，最后别忘了<code>source .bash_profile</code>更新配置，完成之后运行 <code>ndk-build -v</code>查看版本，没有提示找不到命令就可以了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ndk                  </span></div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;PATH&#125;</span>:/Users/march/AndroidRes/sdk/ndk-bundle</div></pre></td></tr></table></figure>
 <h2 id="修改-configure"><a href="#修改-configure" class="headerlink" title="修改 configure"></a>修改 configure</h2><p>修改<code>ffmpeg-3.3.1/configure</code>文件，这个主要是生成的lib包的包名规范成以libxxx.so的形式。 否则生成的so文件在android下是无法加载的，替换过程一定要谨慎，需要全部替换掉。这里我提供一个<a href="https://github.com/chendongMarch/FFmpegAndroidSupport/blob/master/backups/prebuild/configure" rel="external nofollow noopener noreferrer" target="_blank">替换好的configure文件</a>供参考:thumbsup:</p>
@@ -551,6 +565,8 @@
             <a href="/tags/Android/" rel="tag"># Android</a>
           
             <a href="/tags/FFmpeg/" rel="tag"># FFmpeg</a>
+          
+            <a href="/tags/Ndk/" rel="tag"># Ndk</a>
           
         </div>
       
@@ -675,7 +691,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -686,7 +702,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -697,7 +713,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
