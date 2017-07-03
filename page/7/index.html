@@ -57,32 +57,6 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
@@ -147,6 +121,26 @@
 
 
 
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
     <title> 三月 - 生命不息，奋斗不止。 </title>
   <style>
     .forkme{
@@ -216,7 +210,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">The darkest hour is that before the dawn.</h1>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -358,6 +352,360 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/2021227864/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/2021227864/" itemprop="url">Android RecyclerView</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-12T00:00:00+08:00">
+                2015-11-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:34:03+08:00">
+                2017-06-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/View/" itemprop="url" rel="index">
+                    <span itemprop="name">View</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/2021227864/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/2021227864/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          RecycerView 是类似于 ListView 和 GridView 的控件，可以使用列表的形式展示数据，使用不同的 LayoutManager 来实现单列，网格，瀑布流等展示效果。相比原来的列表控件要强大的多。
+LayoutManager
+在代码中设置LayoutManager，需要在设置ad
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/2021227864/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/844112004/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/844112004/" itemprop="url">自定义控件—继承ViewGroup</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-01T00:00:00+08:00">
+                2015-11-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:31:18+08:00">
+                2017-06-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/自定义控件/" itemprop="url" rel="index">
+                    <span itemprop="name">自定义控件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/844112004/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/844112004/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言
+继承ViewGroup是自定义控件的一般方法，根据需要选择需要继承的ViewGroup的子类，本章将使用纯代码添加控件,方式确实不直观，但是可以用来练习使用代码操作控件的方法，毕竟不是所有的代码都可以用xml文件代替。
+
+案例介绍
+这次的目的实现一个类似这样的组合控件，出现这种需求是因为需要在
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/844112004/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/2807458501/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -395,7 +743,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:33:41+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -442,7 +802,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/2807458501/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2807458501/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/2807458501/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,6 +813,7 @@
 
           
 
+          <br>
           
 
           
@@ -472,7 +833,7 @@
 <p><code>compile &#39;com.android.support:cardview-v7:21.+</code></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/2807458501/#more" rel="contents">
+            <a class="btn" href="/article/2807458501/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -555,7 +916,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:25:01+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -591,7 +964,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/4015034291/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/4015034291/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/4015034291/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -602,6 +975,7 @@
 
           
 
+          <br>
           
 
           
@@ -622,7 +996,7 @@
 <p><strong>注：</strong>有部分命令的支持情况可能与 Android 系统版本及定制 ROM 的实现有关。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/4015034291/#more" rel="contents">
+            <a class="btn" href="/article/4015034291/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -705,7 +1079,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:36:20+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -752,7 +1138,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/837682646/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/837682646/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/837682646/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -763,6 +1149,7 @@
 
           
 
+          <br>
           
 
           
@@ -781,7 +1168,7 @@
           <p>JAVAIO流是java的一个很重要的部分，清晰有很复杂，各种各样的流分管不同的功能。正确使用IO流可以让你的输入输出效率增加，这篇博客主要说一下压缩流的使用，使用JAVA内置API压缩解压缩文件。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/837682646/#more" rel="contents">
+            <a class="btn" href="/article/837682646/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -864,7 +1251,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:31:32+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -911,7 +1310,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/2317215752/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2317215752/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/2317215752/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -922,6 +1321,7 @@
 
           
 
+          <br>
           
 
           
@@ -953,7 +1353,7 @@ GitHub
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/2317215752/#more" rel="contents">
+            <a class="btn" href="/article/2317215752/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1036,7 +1436,19 @@ GitHub
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:33:05+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -1083,7 +1495,7 @@ GitHub
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/1969447237/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/1969447237/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/1969447237/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1094,6 +1506,7 @@ GitHub
 
           
 
+          <br>
           
 
           
@@ -1112,7 +1525,7 @@ GitHub
           <p>照片和视频保存到本地的方法大致都是通过流的方式写入文件里面就可以达到保存到文件夹的目的，但是你保存到文件夹的资源却不一定能够在相册显示出来，只能翻看文件管理。<br>怎么能够将保存到本地的照片视频显示在系统相册中，最常用的方式是发送广播扫描的方式来通知系统扫描文件夹，但是这种方式经常不起作用，根本原因在于，向系统发送广播时系统只会去扫描系统资源的相册，如果你保存的文件夹是自己建立的，那么你发广播时系统是不会扫描到的。<br>解决这个问题，想要显示在相册需要将数据插入到<code>ContentProvider</code>中，因此对于非系统能够扫描到的相册我们使用手动插入的方式。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/1969447237/#more" rel="contents">
+            <a class="btn" href="/article/1969447237/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1195,7 +1608,19 @@ GitHub
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:35:37+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -1242,7 +1667,7 @@ GitHub
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/3556316359/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3556316359/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/3556316359/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1253,6 +1678,7 @@ GitHub
 
           
 
+          <br>
           
 
           
@@ -1271,7 +1697,7 @@ GitHub
           <p>加密解密的原理是个很麻烦的问题，我之前上过一门课叫密码学，最后也没怎么学懂，所以这里我们只是使用java代码实现加密解密的功能，而不是讨论他的原理。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/3556316359/#more" rel="contents">
+            <a class="btn" href="/article/3556316359/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1354,7 +1780,19 @@ GitHub
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:38:19+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -1401,7 +1839,7 @@ GitHub
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/3174426477/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3174426477/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/3174426477/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1412,6 +1850,7 @@ GitHub
 
           
 
+          <br>
           
 
           
@@ -1432,7 +1871,7 @@ GitHub
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/3174426477/#more" rel="contents">
+            <a class="btn" href="/article/3174426477/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1515,7 +1954,19 @@ GitHub
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:36:08+08:00">
+                2017-06-30
+              </time>
             
           </span>
 
@@ -1562,7 +2013,7 @@ GitHub
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/1309915903/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/1309915903/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/1309915903/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1573,6 +2024,7 @@ GitHub
 
           
 
+          <br>
           
 
           
@@ -1593,335 +2045,7 @@ GitHub
 <p>RSA中有公钥和私钥的概念，公钥加密私钥解密，私钥加密公钥解密，也可以使用RSA对消息进行签名</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/1309915903/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/8d16bcb4/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/8d16bcb4/" itemprop="url">Mac + AndroidStudio 快捷操作</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-08-05T00:00:00+08:00">
-                2015-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/AndroidStudio/" itemprop="url" rel="index">
-                    <span itemprop="name">AndroidStudio</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/article/8d16bcb4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/8d16bcb4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          快捷键常用123456789101112131415161718- 快速提示alt + Enter- 跳转到某一行command + L- 整理代码alt + command + L- 重命名变量shift + F6- 代码大小写转换shift + command + u- 列选中alt + 鼠标
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/8d16bcb4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/1315779230/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/1315779230/" itemprop="url">TabLayout的使用详解</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-23T00:00:00+08:00">
-                2015-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/View/" itemprop="url" rel="index">
-                    <span itemprop="name">View</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/article/1315779230/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/1315779230/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文主要介绍 <code>TabLayout</code> 的详细使用，持续完善中… </p>
-<blockquote>
-<ol>
-<li><code>TabLayout</code> 的基本属性及效果 </li>
-<li><code>TabLayout</code> 与 <code>ViewPager</code> 联动</li>
-<li>自定义 <code>TabLayout</code> 的 <code>tab</code> 显示</li>
-</ol>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/1315779230/#more" rel="contents">
+            <a class="btn" href="/article/1309915903/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2005,7 +2129,7 @@ GitHub
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2124,7 +2248,7 @@ GitHub
 
   
     <span class="site-uv">
-      <i class="fa fa-user"> 本站访客数</i>
+      <i class="fa fa-user"> 访客数</i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       人
     </span>
@@ -2132,7 +2256,7 @@ GitHub
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"> 本站访问总量</i>
+      <i class="fa fa-eye"> 访问总量</i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
@@ -2228,32 +2352,33 @@ GitHub
 
   
 
+
   
+
     
-  
+      <script id="dsq-count-scr" src="https://chendong.disqus.com/count.js" async></script>
+    
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"march911091"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+    
 
   
 
 
 
 
+	
 
 
 
 
+
+  
+
+
+
+
+
+  
 
 
 
@@ -2609,6 +2734,9 @@ GitHub
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
+
 
   
 

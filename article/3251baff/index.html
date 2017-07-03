@@ -57,32 +57,6 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
@@ -105,17 +79,17 @@
 
 
 
-<meta name="description" content="RxJava">
+<meta name="description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。">
 <meta name="keywords" content="Android,RxJava">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rxjava_1">
+<meta property="og:title" content="RxJava 从零开始">
 <meta property="og:url" content="http://chendongmarch.github.io/article/3251baff/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="RxJava">
-<meta property="og:updated_time" content="2017-07-01T15:34:36.000Z">
+<meta property="og:description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。">
+<meta property="og:updated_time" content="2017-07-02T11:19:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rxjava_1">
-<meta name="twitter:description" content="RxJava">
+<meta name="twitter:title" content="RxJava 从零开始">
+<meta name="twitter:description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。">
 
 
 
@@ -149,7 +123,27 @@
 
 
 
-    <title>rxjava_1 | 三月</title>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+    <title>RxJava 从零开始 | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -216,7 +210,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">The darkest hour is that before the dawn.</h1>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -375,7 +369,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">rxjava_1</h2>
+          <h2 class="post-title" itemprop="name headline">RxJava 从零开始</h2>
         
 
         <div class="post-meta">
@@ -393,7 +387,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-02T19:19:05+08:00">
+                2017-07-02
+              </time>
             
           </span>
 
@@ -440,7 +446,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/3251baff/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3251baff/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/3251baff/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -451,11 +457,12 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"> 本文访问总量</i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>人看过
             </span>
           
 
+          <br>
           
 
           
@@ -470,10 +477,38 @@
       
 
       
-        <p><code>RxJava</code></p>
+        <p>开始总结记录 <code>RxJava</code> 的相关内容，本文中所有涉及 <code>RxJava</code> 的地方均指 <code>Rxjava2.0</code>。</p>
 <a id="more"></a>
-<p>学习文章：</p>
-<p><a href="https://gank.io/post/560e15be2dca930e00da1083" rel="external nofollow noopener noreferrer" target="_blank">RxJava1 - 给 Android 开发者的 RxJava 详解(扔物线)</a></p>
+<blockquote>
+<p><strong><a href="https://github.com/ReactiveX/RxJava" rel="external nofollow noopener noreferrer" target="_blank">RxJava https://github.com/ReactiveX/RxJava</a></strong></p>
+<p><strong><a href="https://github.com/ReactiveX/RxAndroid" rel="external nofollow noopener noreferrer" target="_blank">RxJava https://github.com/ReactiveX/RxAndroid</a></strong></p>
+</blockquote>
+<h2 id="推荐文章"><a href="#推荐文章" class="headerlink" title="推荐文章"></a>推荐文章</h2><p>记录一下看过的几篇还不错的关于 <code>RxJava</code> 的文章，感谢他们的总结和分享。</p>
+<p><a href="https://gank.io/post/560e15be2dca930e00da1083" rel="external nofollow noopener noreferrer" target="_blank">RxJava1 - 《 给 Android 开发者的 RxJava 详解 》- 扔物线)</a>，这篇文章是对 <code>RxJava1</code> 的讲解，很不错，图文并茂，看了一遍之后仍旧有些疑惑，建议多看几遍，很多关于原理的介绍可以加强对 <code>Rx</code> 的理解。</p>
+<p><a href="https://juejin.im/post/5848d96761ff4b0058c9d3dc" rel="external nofollow noopener noreferrer" target="_blank">RxJava2 - 《 给初学者的RxJava2.0教程(一) 》- 掘金</a> 以及 <a href="https://juejin.im/post/5848dd11b123db0066030123" rel="external nofollow noopener noreferrer" target="_blank">RxJava2 - 《 给初学者的RxJava2.0教程(二) 》- 掘金</a>，特点就是作者使用水管上游下游的描述方式，简化了对观察者模式和事件发送的理解，浅显易懂，也很全面，适合入门。</p>
+<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>上面推荐的文章中对 <code>RxJava</code> 的相关原理都做了部分说明，我就不做过多描述，说一下我的一些理解吧。</p>
+<blockquote>
+<p><code>Observable</code>，被观察者，被订阅者，可被观察的，他是数据和事件发射的源，他在 <code>RxJava</code> 中是有多种实现方式的，这里不是说的哪个类，而是一种泛指。</p>
+<p><code>Observer／Subscriber</code>，观察者，订阅者，他是数据接受者。</p>
+</blockquote>
+<p>通过观察者模式，观察者被注册到被观察者，当被观察者状态发生变化时，观察者第一时间做出响应。当然这中间就可能会涉及线程切换和数据处理等操作，通过 <code>RxJava</code> 丰富的运算符和强大的线程调度，结合链式编程的特点，我们可以将数据发送，数据处理，获取结果这一过程，就像流水线一样，链式的走下来，避免层层的嵌套和缩进，提高代码的可读性。</p>
+<p>整体来看，可以理解为一条事件流，被观察者在上游发送事件，观察者在下游接受事件，中游会有很多针对事件的处理和变换，这样理解更简单一些，也更有助于理解背压(<code>Backpressure</code>)的存在。为了更好的理解，避免叙述的混乱，文章中我会用 <strong>上游</strong> 和 <strong>下游</strong> 这样的描述来代替 <strong>被观察者</strong> 和 <strong>观察者</strong>。</p>
+<h2 id="实现一个简单的订阅"><a href="#实现一个简单的订阅" class="headerlink" title="实现一个简单的订阅"></a>实现一个简单的订阅</h2><p>创建一个最简单的 <code>Observable</code>，发送 <code>Integer</code> 类型的数据，<code>RxJava</code> 有很多创建 <code>Observable</code> 的简单方法，我们暂时就使用最原始的那种，方便理解。</p>
+<p><code>ObservableEmitter</code> 继承 <code>Emitter</code>，是一个数据发射器，用来向观察者发送数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建 Observable</span></div><div class="line">Observable&lt;Integer&gt; observable = Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull ObservableEmitter&lt;Integer&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 发射数据</span></div><div class="line">        e.onNext(<span class="number">1</span>);</div><div class="line">        e.onNext(<span class="number">2</span>);</div><div class="line">        <span class="comment">// 结束发送</span></div><div class="line">        e.onComplete();</div><div class="line">        e.onNext(<span class="number">3</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>创建一个 <code>Observer</code>，接受数据并打印。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Observer&lt;Integer&gt; observer = <span class="keyword">new</span> Observer&lt;Integer&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(@NonNull Disposable d)</span> </span>&#123;</div><div class="line">        log(<span class="string">"onSubscribe"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(@NonNull Integer integer)</span> </span>&#123;</div><div class="line">        log(<span class="string">"onNext == &gt; "</span> + integer);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(@NonNull Throwable e)</span> </span>&#123;</div><div class="line">        log(<span class="string">"onError"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">        log(<span class="string">"onComplete"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>实现订阅，查看结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">observable.subscribe(observer);</div><div class="line"></div><div class="line"><span class="comment">// 结果为</span></div><div class="line">onSubscribe</div><div class="line">onNext == &gt; <span class="number">1</span></div><div class="line">onNext == &gt; <span class="number">2</span></div><div class="line">onComplete</div></pre></td></tr></table></figure>
+<p>这样我们就实现了一个简单的订阅流程，完成了数据的传递，总结以下要点：</p>
+<p><code>ObservableEmitter</code> 继承 <code>Emitter</code>，是一个发射器，用来向下游发送事件，它可以发送如下3种事件，也对应下游订阅者的相关方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Emitter</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onNext</span><span class="params">(@NonNull T value)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(@NonNull Throwable error)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上游可以发送无数个 <code>onNext(T t)</code> 事件，下游都可以接受到。</p>
+<p>当上游发送 <code>onComplete()</code> 事件之后，上游的事件会继续发送，但是下游在接受到 <code>onCompelete()</code> 事件之后就会切换事件流，不会在接受后续的事件，因此发送多个  <code>onComplete()</code> 是无意义的。</p>
+<p>上游只能发送</p>
+<p>Action - 无参无返回值<br>Consumer - 有参无返回值<br>Function - 有参有返回值</p>
+<p>变换<br>map - 将一种类型变换为另一种类型<br>flatmap - 将输入转换为 Obervable&lt;&gt; 继续操作</p>
+<p>RxBindding<br>RxBus</p>
 
       
     </div>
@@ -495,6 +530,21 @@
     <div>
       
         
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://chendongmarch.github.io/article/3251baff/" title="RxJava 从零开始">http://chendongmarch.github.io/article/3251baff/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
 
       
     </div>
@@ -518,8 +568,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/e57450c6/" rel="next" title="OkHttp+Retrofit+RxJava(1)">
-                <i class="fa fa-chevron-left"></i> OkHttp+Retrofit+RxJava(1)
+              <a href="/article/e57450c6/" rel="next" title="Retrofit + OkHttp 从零开始">
+                <i class="fa fa-chevron-left"></i> Retrofit + OkHttp 从零开始
               </a>
             
           </div>
@@ -527,6 +577,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/927e4523/" rel="prev" title="坚持">
+                坚持 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -575,7 +629,11 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/3251baff/" data-title="rxjava_1" data-url="http://chendongmarch.github.io/article/3251baff/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -599,8 +657,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -613,7 +680,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -690,6 +757,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐文章"><span class="nav-text">推荐文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解"><span class="nav-text">理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现一个简单的订阅"><span class="nav-text">实现一个简单的订阅</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -732,7 +815,7 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"> 本站访客数</i>
+      <i class="fa fa-user"> 访客数</i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       人
     </span>
@@ -740,7 +823,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"> 本站访问总量</i>
+      <i class="fa fa-eye"> 访问总量</i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
@@ -836,22 +919,37 @@
 
   
 
+
   
+
     
+      <script id="dsq-count-scr" src="https://chendong.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://chendongmarch.github.io/article/3251baff/';
+          this.page.identifier = 'article/3251baff/';
+          this.page.title = 'RxJava 从零开始';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://chendong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"march911091"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+
+
+
+	
+
+
+
+
 
   
 
@@ -859,9 +957,7 @@
 
 
 
-
-
-
+  
 
 
 
@@ -1217,6 +1313,9 @@
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
+
 
   
 

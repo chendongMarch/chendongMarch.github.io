@@ -57,32 +57,6 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
@@ -108,13 +82,13 @@
 <meta name="description" content="本文主要介绍 Kotlin 类与对象。 看了官方文档的相关描述，发现很多名词在 Kotlin 中和 Java 都有不太一样，在 Kotlin 中 方法 被称为 函数，而像 open , final 这种关键字被称为注解(annotation)，在我之前的认知当中只有 @Inject 这种才是注解。因此文章中的描述都尽量使用 Kotlin 中的术语。">
 <meta name="keywords" content="Kotlin,类,对象,构造器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin-类与对象篇">
+<meta property="og:title" content="使用 Kotlin 开发-4 (类与对象篇)">
 <meta property="og:url" content="http://chendongmarch.github.io/article/2717980190/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文主要介绍 Kotlin 类与对象。 看了官方文档的相关描述，发现很多名词在 Kotlin 中和 Java 都有不太一样，在 Kotlin 中 方法 被称为 函数，而像 open , final 这种关键字被称为注解(annotation)，在我之前的认知当中只有 @Inject 这种才是注解。因此文章中的描述都尽量使用 Kotlin 中的术语。">
-<meta property="og:updated_time" content="2017-07-01T16:21:43.000Z">
+<meta property="og:updated_time" content="2017-07-02T02:16:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kotlin-类与对象篇">
+<meta name="twitter:title" content="使用 Kotlin 开发-4 (类与对象篇)">
 <meta name="twitter:description" content="本文主要介绍 Kotlin 类与对象。 看了官方文档的相关描述，发现很多名词在 Kotlin 中和 Java 都有不太一样，在 Kotlin 中 方法 被称为 函数，而像 open , final 这种关键字被称为注解(annotation)，在我之前的认知当中只有 @Inject 这种才是注解。因此文章中的描述都尽量使用 Kotlin 中的术语。">
 
 
@@ -149,7 +123,27 @@
 
 
 
-    <title>Kotlin-类与对象篇 | 三月</title>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+    <title>使用 Kotlin 开发-4 (类与对象篇) | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -216,7 +210,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">The darkest hour is that before the dawn.</h1>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -375,7 +369,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Kotlin-类与对象篇</h2>
+          <h2 class="post-title" itemprop="name headline">使用 Kotlin 开发-4 (类与对象篇)</h2>
         
 
         <div class="post-meta">
@@ -393,7 +387,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-02T10:16:49+08:00">
+                2017-07-02
+              </time>
             
           </span>
 
@@ -440,7 +446,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/2717980190/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/2717980190/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/2717980190/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -451,11 +457,12 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"> 本文访问总量</i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>人看过
             </span>
           
 
+          <br>
           
 
           
@@ -473,55 +480,6 @@
         <p>本文主要介绍 <code>Kotlin</code> 类与对象。</p>
 <p>看了官方文档的相关描述，发现很多名词在 <code>Kotlin</code> 中和 <code>Java</code> 都有不太一样，在 <code>Kotlin</code> 中 <code>方法</code> 被称为 <code>函数</code>，而像 <code>open</code> , <code>final</code> 这种关键字被称为注解(<code>annotation</code>)，在我之前的认知当中只有 <code>@Inject</code> 这种才是注解。因此文章中的描述都尽量使用 <code>Kotlin</code> 中的术语。</p>
 <a id="more"></a>
-<h2 id="属性与域"><a href="#属性与域" class="headerlink" title="属性与域"></a>属性与域</h2><p><code>Kotlin</code> 中，使用 <code>val</code> 声明常量(不可变)，使用 <code>var</code> 声明变量(可变)。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">val</span> a = <span class="number">100</span> <span class="comment">// 常量，不可变，当你再想改变他的值时会报错</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">var</span> b = <span class="number">1000</span> <span class="comment">// 变量，可变</span></div><div class="line">b = <span class="number">-100</span></div><div class="line"></div><div class="line"><span class="keyword">val</span> c:<span class="built_in">Int</span>? = <span class="literal">null</span></div></pre></td></tr></table></figure>
-<h3 id="属性的声明"><a href="#属性的声明" class="headerlink" title="属性的声明"></a>属性的声明</h3><p>声明属性的完整语法如下，其中的初始化器(<code>initializer</code>)， 取值方法(<code>getter</code>)， 以及设值方法(<code>setter</code>)都是可选的。<code>Kotlin</code> 具有类型自动推断得特性，如果属性类型可以通过初始化器自动推断得到， 或者可以通过这个属性覆盖的基类成员属性推断得到， 则属性类型的声明也可以省略。</p>
-<p>标准的初始化方法，需要清楚其中几个概念</p>
-<blockquote>
-<ul>
-<li><code>propertyName</code> ：变量名</li>
-<li><code>PropertyType</code> ：变量类型，如果可以推断得到，可以省略</li>
-<li><code>property_initializer</code> ：初始化器，它可以是一个固定值或一个表达式</li>
-<li><code>getter</code> ：取值方法，访问器的一种</li>
-<li><code>setter</code> ：设值方法，访问器的一种</li>
-</ul>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> &lt;propertyName&gt;: &lt;PropertyType&gt; [= &lt;property_initializer&gt;]</div><div class="line">    [&lt;getter&gt;]</div><div class="line">    [&lt;setter&gt;]</div></pre></td></tr></table></figure>
-<p>注意，如下注释 <code>1</code> 处，对于 <code>var</code> 变量来说，初始化器，设值，取值方法都是允许同时存在的；如下注释 <code>2</code> 处，对于 <code>val</code> 变量来说，不允许有设值方法，同时 <code>getter</code> 方法和 <code>初始化器</code> 不允许同时指定，因为只读变量只允许初始化一次。</p>
-<p>使用 <strong>注解</strong> 和 <strong>可见度修饰符</strong>，如下注释 <code>3</code> 处，，如果不想在外界访问属性的 <code>set／get</code> 方法，可以使用可见度修饰符来避免外部访问。同样也可以在 <code>set／get</code> 方法前使用注解。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">ClsA</span> </span>&#123;</div><div class="line">    <span class="comment">// 1</span></div><div class="line">    <span class="keyword">var</span> x: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">        <span class="keyword">get</span>() = <span class="number">100</span></div><div class="line">        <span class="keyword">set</span>(value) &#123;</div><div class="line">            field = value</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    <span class="comment">// 2. 不允许有设值方法，同时get方法和初始化器不允许同时指定，因为只读变量只允许初始化一次</span></div><div class="line">    <span class="keyword">val</span> y: <span class="built_in">Int</span></div><div class="line">        <span class="keyword">get</span>() = <span class="number">100</span></div><div class="line">    <span class="comment">// 这是不允许的，因为val只读的</span></div><div class="line">    <span class="comment">// set(value) &#123;</span></div><div class="line">    <span class="comment">//    field = value</span></div><div class="line">    <span class="comment">// &#125;</span></div><div class="line">    </div><div class="line">    <span class="comment">// 3. 在set/get方法前使用可见度修饰符和注解</span></div><div class="line">    <span class="keyword">var</span> z: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">    <span class="meta">@Inject</span> <span class="keyword">get</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">set</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">eg:</div><div class="line"><span class="keyword">val</span> param:ClsA = ClsA()</div><div class="line"><span class="comment">// 编译错误，因为不允许访问z的设值方法</span></div><div class="line">param.z = <span class="number">100</span></div></pre></td></tr></table></figure>
-<h3 id="Backing-Fields-和-Backing-Property"><a href="#Backing-Fields-和-Backing-Property" class="headerlink" title="Backing Fields 和 Backing Property"></a>Backing Fields 和 Backing Property</h3><ul>
-<li>Backing Fields</li>
-</ul>
-<p><code>Kotlin</code> 我们可以直接使用属性名称对类的属性进行访问，但是实际上我们并没有直接访问该属性的引用，而是在编译时被转换成了 <code>getter/setter</code> 方法来进行访问，如注释中 <code>1</code> 处代码，这样我们既可以简化代码，又保持了类的封闭性。</p>
-<p><code>Kotlin</code> 的类中不允许拥有域(<code>Field</code>)，也就是说你在类内部也无法直接使用属性的名称对属性进行访问，而是都会转换为 <code>getter/getter</code> 方法。因此当你在 <code>set</code> 方法中调用该属性为他赋值时又会调用 <code>set</code> 方法，导致 <strong>堆栈溢出</strong>，如实例中 <code>2</code>，这是我在开始写的时候遇到的问题。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1 伪代码</span></div><div class="line">ClsA().x = <span class="number">100</span> 相当于 ClsA().setX(<span class="number">100</span>)</div><div class="line"><span class="keyword">val</span> a = ClsA.x 相当于 <span class="keyword">val</span> a = ClsA().getX()</div><div class="line"></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="keyword">var</span> xx: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">    <span class="keyword">set</span>(value) &#123;</div><div class="line">    	<span class="comment">// 再次调用 set 方法</span></div><div class="line">        xx = value + <span class="number">1</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>但是自定义属性的访问器时不可避免的要使用 域变量，因此 <code>Kotlin</code> 提供了 <code>Backing Fields</code> 的特性，使用关键字 <code>field</code> 表示，<code>field</code> 标识符只允许在属性的访问器函数内使用，如下代码中，使用 <code>field</code> 即可真实的访问(不经过<code>getter/setter</code>) 变量 <code>xx</code>，完成赋值操作。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xx: <span class="built_in">Int</span> = <span class="number">100</span></div><div class="line">    <span class="keyword">get</span>() = field++</div><div class="line">    <span class="keyword">set</span>(value) &#123;</div><div class="line">        field = value - <span class="number">1</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Backing Property    </li>
-</ul>
-<p>有时隐含的后端域属性不足以解决某些情况的问题，此时可以使用自定义的 <code>Backing Property</code>。如下实例中，<code>Backing Property</code> 就是另外定义一个属性 <code>_yy</code> 用来存储数据，而外界访问的属性 <code>yy</code> 只是提供了一个访问器方法而已，本身已经不具备什么意义啦，将访问器的声明和数据的存储放在两个地方，就不会发生之前的冲突（我的理解😊）</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">var</span> _yy: String? = <span class="literal">null</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> yy: String</div><div class="line">    <span class="keyword">get</span>() &#123;</div><div class="line">        <span class="keyword">if</span> (_yy == <span class="literal">null</span>) &#123;</div><div class="line">            _yy = <span class="string">"init str"</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> _yy ?: <span class="string">"be changed"</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">set</span>(value) &#123;</div><div class="line">        _yy = <span class="string">"this is <span class="variable">$value</span>"</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line"><span class="comment">// 访问yy</span></div><div class="line"><span class="keyword">val</span> param: ClsA = ClsA()</div><div class="line">param.yy</div></pre></td></tr></table></figure>
-<h3 id="编译期常数"><a href="#编译期常数" class="headerlink" title="编译期常数"></a>编译期常数</h3><p>如果属性值在编译期间就能确定, 则可以使用 <code>const</code> 修饰符, 将属性标记为 <strong>编译期常数值(<code>compile time constants</code>)</strong>。 这类属性必须满足以下所有条件:</p>
-<blockquote>
-<ul>
-<li>必须是顶级属性， 或者是一个 <code>object</code> 的成员。</li>
-<li>值被初始化为 <code>String</code> 类型, 或基本类型(<code>primitive type</code>)。</li>
-<li>不存在自定义的取值方法。</li>
-</ul>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 顶级属性</span></div><div class="line">const <span class="keyword">val</span> TEST_CONST = <span class="string">"TEST_CONST"</span></div><div class="line"></div><div class="line"><span class="comment">// 声明在 object 中</span></div><div class="line"><span class="keyword">object</span> Const&#123;</div><div class="line">    const <span class="keyword">val</span> TEST_CONST_IN_OBJ = <span class="string">"TEST_CONST_IN_OBJ"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="属性的延迟初始化"><a href="#属性的延迟初始化" class="headerlink" title="属性的延迟初始化"></a>属性的延迟初始化</h3><p><code>lateinit</code> 关键字表示当前 变量 不会在声明时进行初始化操作，初始化操作会在后面进行，像是一种协议机制，告知编译器我会在后面使用该变量之前的恰当时机初始化该变量，不要进行警告⚠️。在一个 <code>lateinit</code> 属性被初始化之前访问它， 会抛出一个特别的异常，这个异常将会指明被访问的属性，以及它没有被初始化这一错误。</p>
-<p>需要注意的是使用 <code>lateinit</code> 关键字有很多限制:</p>
-<blockquote>
-<ul>
-<li>必须是变量，即使用 <code>var</code> 关键字进行声明。   </li>
-<li>不能修饰可为 <code>null</code> 的类型，比如 <code>lateinit var str:String?</code> 是编译不通过的。   </li>
-<li>不能修饰基本数据类型。例如 <code>Int</code>,<code>Float</code>等</li>
-</ul>
-</blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">lateinit</span> <span class="keyword">var</span> stuLateInit:Student</div><div class="line"></div><div class="line">stuLateInit = Student(<span class="string">"name"</span>,<span class="number">11</span>)</div></pre></td></tr></table></figure>
 <h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口使用 <code>interface</code> 关键字声明；</p>
 <blockquote>
 <ul>
@@ -594,6 +552,21 @@
     <div>
       
         
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://chendongmarch.github.io/article/2717980190/" title="使用 Kotlin 开发-4 (类与对象篇)">http://chendongmarch.github.io/article/2717980190/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
 
       
     </div>
@@ -615,8 +588,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/811551029/" rel="next" title="Kotlin-基础语法篇">
-                <i class="fa fa-chevron-left"></i> Kotlin-基础语法篇
+              <a href="/article/811551029/" rel="next" title="使用 Kotlin 开发-2 (基础语法篇)">
+                <i class="fa fa-chevron-left"></i> 使用 Kotlin 开发-2 (基础语法篇)
               </a>
             
           </div>
@@ -625,8 +598,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/4043209466/" rel="prev" title="Android编译FFmpeg之命令行">
-                Android编译FFmpeg之命令行 <i class="fa fa-chevron-right"></i>
+              <a href="/article/12ba0671/" rel="prev" title="使用 Kotlin 开发-3 (属性与域篇)">
+                使用 Kotlin 开发-3 (属性与域篇) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -676,7 +649,11 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/2717980190/" data-title="Kotlin-类与对象篇" data-url="http://chendongmarch.github.io/article/2717980190/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -723,7 +700,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -809,7 +786,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性与域"><span class="nav-text">属性与域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的声明"><span class="nav-text">属性的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backing-Fields-和-Backing-Property"><span class="nav-text">Backing Fields 和 Backing Property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译期常数"><span class="nav-text">编译期常数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的延迟初始化"><span class="nav-text">属性的延迟初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现接口"><span class="nav-text">实现接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决接口覆盖冲突"><span class="nav-text">解决接口覆盖冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的构造器"><span class="nav-text">类的构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主构造器"><span class="nav-text">主构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#次级构造器"><span class="nav-text">次级构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象"><span class="nav-text">创建对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法的覆盖"><span class="nav-text">方法的覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的覆盖"><span class="nav-text">属性的覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖的原则"><span class="nav-text">覆盖的原则</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现接口"><span class="nav-text">实现接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决接口覆盖冲突"><span class="nav-text">解决接口覆盖冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的构造器"><span class="nav-text">类的构造器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主构造器"><span class="nav-text">主构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#次级构造器"><span class="nav-text">次级构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象"><span class="nav-text">创建对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法的覆盖"><span class="nav-text">方法的覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性的覆盖"><span class="nav-text">属性的覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖的原则"><span class="nav-text">覆盖的原则</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -858,7 +835,7 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"> 本站访客数</i>
+      <i class="fa fa-user"> 访客数</i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       人
     </span>
@@ -866,7 +843,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"> 本站访问总量</i>
+      <i class="fa fa-eye"> 访问总量</i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
@@ -962,22 +939,37 @@
 
   
 
+
   
+
     
+      <script id="dsq-count-scr" src="https://chendong.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://chendongmarch.github.io/article/2717980190/';
+          this.page.identifier = 'article/2717980190/';
+          this.page.title = '使用 Kotlin 开发-4 (类与对象篇)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://chendong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"march911091"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+
+
+
+	
+
+
+
+
 
   
 
@@ -985,9 +977,7 @@
 
 
 
-
-
-
+  
 
 
 
@@ -1343,6 +1333,9 @@
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
+
 
   
 

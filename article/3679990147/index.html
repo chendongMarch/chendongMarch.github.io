@@ -57,32 +57,6 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
@@ -108,13 +82,13 @@
 <meta name="description" content="本篇主要介绍 Kotlin 变量和常量  发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
 <meta name="keywords" content="Kotlin,变量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin-变量常量篇">
+<meta property="og:title" content="使用 Kotlin 开发 (番外)">
 <meta property="og:url" content="http://chendongmarch.github.io/article/3679990147/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本篇主要介绍 Kotlin 变量和常量  发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
-<meta property="og:updated_time" content="2017-06-30T01:36:47.000Z">
+<meta property="og:updated_time" content="2017-07-02T02:15:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kotlin-变量常量篇">
+<meta name="twitter:title" content="使用 Kotlin 开发 (番外)">
 <meta name="twitter:description" content="本篇主要介绍 Kotlin 变量和常量  发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
 
 
@@ -149,7 +123,27 @@
 
 
 
-    <title>Kotlin-变量常量篇 | 三月</title>
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+    <title>使用 Kotlin 开发 (番外) | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -216,7 +210,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">The darkest hour is that before the dawn.</h1>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -375,7 +369,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Kotlin-变量常量篇</h2>
+          <h2 class="post-title" itemprop="name headline">使用 Kotlin 开发 (番外)</h2>
         
 
         <div class="post-meta">
@@ -393,7 +387,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-02T10:15:24+08:00">
+                2017-07-02
+              </time>
             
           </span>
 
@@ -440,7 +446,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/article/3679990147/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="article/3679990147/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="article/3679990147/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -451,11 +457,12 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"> 本文访问总量</i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>人看过
             </span>
           
 
+          <br>
           
 
           
@@ -476,24 +483,6 @@
 <p>常量变量的声明<br>常量变量的初始化<br>常量变量的引用和 空安全<br>属性代理的相关概念<br>自定义属性代理   </p>
 </blockquote>
 <a id="more"></a>
-<h2 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2><p><code>Kotlin</code> 中，使用 <code>val</code> 声明常量(不可变)，使用 <code>var</code> 声明变量(可变)。</p>
-<p><code>Kotlin</code> 具有自动类型推断的特性，例如声明 <code>val a = 100</code>，会自动推断 <code>a</code> 的类型为 <code>Int</code>，因此你可以省略类型的声明，当然你也可以显式的声明变量的类型，例如 <code>val a:Int = 100</code> ，采用 <code>:Type</code> 的形式跟在变量名后面。</p>
-<p>如果你没有在声明变量时进行初始化操作，那么编译器将无法推断变量的类型，此时必须使用显式声明类型的方式。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> a = <span class="number">100</span> <span class="comment">// 常量，不可变，当你再想改变他的值时会报错</span></div><div class="line"><span class="keyword">var</span> b = <span class="number">1000</span> <span class="comment">// 变量，可变</span></div><div class="line">b = <span class="number">-100</span></div><div class="line">        </div><div class="line"><span class="keyword">val</span> stuVal = Student(<span class="string">"name"</span>, <span class="number">11</span>)</div><div class="line"><span class="keyword">var</span> stuVar = Student(<span class="string">"name"</span>, <span class="number">11</span>)</div><div class="line">stuVar = Student(<span class="string">"name2"</span>,<span class="number">12</span>)</div><div class="line"></div><div class="line"><span class="comment">// 声明一个可以为null的变量</span></div><div class="line"><span class="keyword">var</span> stuCanBeNull: Student? = <span class="literal">null</span></div></pre></td></tr></table></figure>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>首先你可以在声明 变量/常量 的时候进行 变量/常量 的初始化，当然大多数时候我们不会在声明 变量/常量 的时候进行初始化。</p>
-<p>Kotlin 中你可以使用 <code>lateinit</code> 和 <code>属性代理</code> 两种方式延迟 变量/常量 的初始化。</p>
-<h3 id="lateinit"><a href="#lateinit" class="headerlink" title="lateinit"></a>lateinit</h3><p><code>lateinit</code> 关键字表示当前 变量 不会在声明时进行初始化操作，初始化操作会在后面进行，像是一种协议机制，告知编译器我会在后面使用该变量之前的恰当时机初始化该变量，不要进行警告⚠️。需要注意的是使用 <code>lateinit</code> 关键字有很多限制:</p>
-<ul>
-<li>必须是变量，即使用 <code>var</code> 关键字进行声明。   </li>
-<li>不能修饰可为 null 的类型，比如 <code>lateinit var str:String?</code> 是编译不通过的。   </li>
-<li>不能修饰基本数据类型。例如 <code>Int</code>,<code>Float</code>等</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">lateinit</span> <span class="keyword">var</span> stuLateInit:Student</div><div class="line"></div><div class="line">stuLateInit = Student(<span class="string">"name"</span>,<span class="number">11</span>)</div></pre></td></tr></table></figure>
-<h3 id="by-lazy"><a href="#by-lazy" class="headerlink" title="by lazy"></a>by lazy</h3><p><code>by lazy</code> 是属性代理的基本运用，使用 <code>by lazy</code> 可以延迟初始化变量的值;</p>
-<ul>
-<li>只有常量，也就是使用 <code>val</code>才能使用 <code>by lazy</code> 延迟初始化</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> stuByLazy:Student <span class="keyword">by</span> lazy &#123;</div><div class="line">    Student(<span class="string">"name"</span>,<span class="number">11</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">val</span> mMyMsgTv:TextView <span class="keyword">by</span> lazy &#123;</div><div class="line">    findViewById(R.id.mTestTv) <span class="keyword">as</span> TextView</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当常量被使用时才进行初始化</span></div><div class="line">logError(stuByLazy.myCls)</div><div class="line">mMyMsgTv.text=<span class="string">"文本"</span></div></pre></td></tr></table></figure>
 <h2 id="空值安全"><a href="#空值安全" class="headerlink" title="空值安全"></a>空值安全</h2><p>在进行 变量／常量 的初始化时能够感受到 <code>Kotlin</code> 在编译时对 <code>null</code> 值的控制，正是因为 <code>Kotlin</code> 的这些特性，使得 <code>Kotlin</code> 成为一种 <code>空安全(Null Safaty)</code> 的语言，遵循 <code>Kotlin</code> 的规范将有效的避免程序中的 <code>NPE</code>。</p>
 <p>其实遵循 <code>Kotlin</code> 的变量的声明和初始化方式基本可以避免 <code>NPE</code> 的出现，<code>Kotlin</code> 不允许给一个 变量 <code>null</code> 值，但是你可以使用 <code>Type?</code> 的形式(例如 <code>String?</code> )声明这是一个可以为 <code>null</code> 的变量，他就可以被初始化为 <code>null</code>。例如你可以这样声明一个可以为 <code>null</code> 的变量 <code>var stuCanBeNull: Student? = null</code>。也就是说变量仍旧可能是 <code>null</code> 的。</p>
 <h3 id="安全调用"><a href="#安全调用" class="headerlink" title="安全调用"></a>安全调用</h3><p>安全调用即 <code>safe calls</code>，使用<code>?.</code>操作符。</p>
@@ -537,6 +526,21 @@
     <div>
       
         
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://chendongmarch.github.io/article/3679990147/" title="使用 Kotlin 开发 (番外)">http://chendongmarch.github.io/article/3679990147/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
 
       
     </div>
@@ -568,8 +572,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/811551029/" rel="prev" title="Kotlin-基础语法篇">
-                Kotlin-基础语法篇 <i class="fa fa-chevron-right"></i>
+              <a href="/article/811551029/" rel="prev" title="使用 Kotlin 开发-2 (基础语法篇)">
+                使用 Kotlin 开发-2 (基础语法篇) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -619,7 +623,11 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="article/3679990147/" data-title="Kotlin-变量常量篇" data-url="http://chendongmarch.github.io/article/3679990147/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer" target="_blank">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -666,7 +674,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -752,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量和常量"><span class="nav-text">变量和常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lateinit"><span class="nav-text">lateinit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#by-lazy"><span class="nav-text">by lazy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空值安全"><span class="nav-text">空值安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全调用"><span class="nav-text">安全调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elvis-操作符"><span class="nav-text">Elvis 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-text">!! 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#as-操作符"><span class="nav-text">as? 操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义属性代理"><span class="nav-text">自定义属性代理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#空值安全"><span class="nav-text">空值安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全调用"><span class="nav-text">安全调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elvis-操作符"><span class="nav-text">Elvis 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-text">!! 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#as-操作符"><span class="nav-text">as? 操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义属性代理"><span class="nav-text">自定义属性代理</span></a></li></ol></div>
             
 
           </div>
@@ -801,7 +809,7 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"> 本站访客数</i>
+      <i class="fa fa-user"> 访客数</i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       人
     </span>
@@ -809,7 +817,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"> 本站访问总量</i>
+      <i class="fa fa-eye"> 访问总量</i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       次
     </span>
@@ -905,22 +913,37 @@
 
   
 
+
   
+
     
+      <script id="dsq-count-scr" src="https://chendong.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://chendongmarch.github.io/article/3679990147/';
+          this.page.identifier = 'article/3679990147/';
+          this.page.title = '使用 Kotlin 开发 (番外)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://chendong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"march911091"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+
+
+
+	
+
+
+
+
 
   
 
@@ -928,9 +951,7 @@
 
 
 
-
-
-
+  
 
 
 
@@ -1286,6 +1307,9 @@
   
 
   
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
+
 
   
 
