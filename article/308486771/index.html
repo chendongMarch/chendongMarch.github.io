@@ -429,6 +429,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/article/308486771/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -531,8 +541,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/2940188893/" rel="next" title="NestedScrolling交互">
-                <i class="fa fa-chevron-left"></i> NestedScrolling交互
+              <a href="/article/3766638624/" rel="next" title="Android事件交互">
+                <i class="fa fa-chevron-left"></i> Android事件交互
               </a>
             
           </div>
@@ -541,8 +551,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/3766638624/" rel="prev" title="Android事件交互">
-                Android事件交互 <i class="fa fa-chevron-right"></i>
+              <a href="/article/2940188893/" rel="prev" title="NestedScrolling交互">
+                NestedScrolling交互 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -591,6 +601,8 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -868,18 +880,21 @@
 
 
   
-
-
-
-
-
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "6b7f5b4b24ef4236866bde764daab452",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
 
 
 
 
-
-  
 
 
 
