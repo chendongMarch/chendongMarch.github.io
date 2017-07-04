@@ -3,6 +3,58 @@
 
 
     
+  <url>
+    <loc>http://chendongmarch.github.io/article/185805107/</loc>
+    <lastmod>2017-07-03T15:56:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
+          
+             
+              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/8de84f35/</loc>
+    <lastmod>2017-07-03T14:58:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>RxJava2.x开发-2 (Schedulers)</title>
+        <pubTime>2017-07-03T09:54:28.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://chendongmarch.github.io/article/3591670187/</loc>
@@ -346,9 +398,9 @@
         
         <tag>Android</tag>
          
-        <tag>自定义控件</tag>
-         
         <tag>AndroidDevLibs</tag>
+         
+        <tag>自定义控件</tag>
          
          
            
@@ -395,11 +447,11 @@
         
         <tag>Android</tag>
          
+        <tag>AndroidDevLibs</tag>
+         
         <tag>Adapter</tag>
          
         <tag>RecyclerView</tag>
-         
-        <tag>AndroidDevLibs</tag>
          
          
            
@@ -408,58 +460,6 @@
           
              
               <breadCrumb title="Adapter" url="http://chendongmarch.github.io/categories/Android/Adapter/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/article/8de84f35/</loc>
-    <lastmod>2017-07-03T11:41:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>RxJava2.x开发-2 (Schedulers)</title>
-        <pubTime>2017-07-03T09:54:28.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>三方框架</tag>
-         
-        <tag>RxJava2.x</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/article/185805107/</loc>
-    <lastmod>2017-07-03T11:05:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Extensions</tag>
-         
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
-          
-             
-              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
           
         </display>
     </data>
