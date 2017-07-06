@@ -82,13 +82,13 @@
 <meta name="description" content="Retrofit 本文介绍 OkHttp 和 Retrofit 的基本使用，包括：  创建和配置 OkHttpClient 创建和配置 Retrofit 如何使用 Retrofit 定义接口发起请求 关于 Retrofit 中 method，path，query param，body，Header 注解声明的介绍。">
 <meta name="keywords" content="Android,Retrofit,OkHttp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Retrofit + OkHttp 从零开始">
+<meta property="og:title" content="Retrofit 开发-1(OkHttp+Retrofit基本使用)">
 <meta property="og:url" content="http://chendongmarch.github.io/article/e57450c6/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="Retrofit 本文介绍 OkHttp 和 Retrofit 的基本使用，包括：  创建和配置 OkHttpClient 创建和配置 Retrofit 如何使用 Retrofit 定义接口发起请求 关于 Retrofit 中 method，path，query param，body，Header 注解声明的介绍。">
-<meta property="og:updated_time" content="2017-07-02T07:04:02.000Z">
+<meta property="og:updated_time" content="2017-07-05T09:44:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Retrofit + OkHttp 从零开始">
+<meta name="twitter:title" content="Retrofit 开发-1(OkHttp+Retrofit基本使用)">
 <meta name="twitter:description" content="Retrofit 本文介绍 OkHttp 和 Retrofit 的基本使用，包括：  创建和配置 OkHttpClient 创建和配置 Retrofit 如何使用 Retrofit 定义接口发起请求 关于 Retrofit 中 method，path，query param，body，Header 注解声明的介绍。">
 
 
@@ -143,7 +143,7 @@
         border-left-color: #1E92FB;    /*左边框颜色*/
     }
 </style>
-    <title>Retrofit + OkHttp 从零开始 | 三月</title>
+    <title>Retrofit 开发-1(OkHttp+Retrofit基本使用) | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -369,7 +369,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Retrofit + OkHttp 从零开始</h2>
+          <h2 class="post-title" itemprop="name headline">Retrofit 开发-1(OkHttp+Retrofit基本使用)</h2>
         
 
         <div class="post-meta">
@@ -397,8 +397,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-02T15:04:02+08:00">
-                2017-07-02
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-05T17:44:14+08:00">
+                2017-07-05
               </time>
             
           </span>
@@ -454,7 +454,7 @@
 
           
           
-             <span id="/article/e57450c6/" class="leancloud_visitors" data-flag-title="Retrofit + OkHttp 从零开始">
+             <span id="/article/e57450c6/" class="leancloud_visitors" data-flag-title="Retrofit 开发-1(OkHttp+Retrofit基本使用)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -556,7 +556,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/e57450c6/" title="Retrofit + OkHttp 从零开始">http://chendongmarch.github.io/article/e57450c6/</a>
+      <a href="http://chendongmarch.github.io/article/e57450c6/" title="Retrofit 开发-1(OkHttp+Retrofit基本使用)">http://chendongmarch.github.io/article/e57450c6/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -575,6 +575,8 @@
             <a href="/tags/Android/" rel="tag"># Android</a>
           
             <a href="/tags/三方框架/" rel="tag"># 三方框架</a>
+          
+            <a href="/tags/Retrofit/" rel="tag"># Retrofit</a>
           
         </div>
       
@@ -597,8 +599,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/3251baff/" rel="prev" title="RxJava2.x开发-1 (开始)">
-                RxJava2.x开发-1 (开始) <i class="fa fa-chevron-right"></i>
+              <a href="/article/3251baff/" rel="prev" title="RxJava2.x开发-1 (基础篇)">
+                RxJava2.x开发-1 (基础篇) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -694,7 +696,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">87</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -705,7 +707,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -716,7 +718,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1401,9 +1403,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
-
 
   
 

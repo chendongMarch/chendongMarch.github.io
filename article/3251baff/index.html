@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。 在 RxJava2.x 中将被观察者的创建分成了 Observable，Flowable，Maybe，Single 等方式，本文主要以 Observable 和 Flowable 为例 介绍 RxJava2.0 的基本使用。  RxJava https://github.com/Reactive">
+<meta name="description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。 本文主要以 Observable 和 Flowable 为例介绍如何创建被观察者和观察者，并连接他们。  RxJava https://github.com/ReactiveX/RxJava RxJava https://github.com/ReactiveX/RxAndroid">
 <meta name="keywords" content="Android,RxJava,Observable,Flowable">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxJava2.x开发-1 (开始)">
+<meta property="og:title" content="RxJava2.x开发-1 (基础篇)">
 <meta property="og:url" content="http://chendongmarch.github.io/article/3251baff/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。 在 RxJava2.x 中将被观察者的创建分成了 Observable，Flowable，Maybe，Single 等方式，本文主要以 Observable 和 Flowable 为例 介绍 RxJava2.0 的基本使用。  RxJava https://github.com/Reactive">
-<meta property="og:updated_time" content="2017-07-03T09:52:45.000Z">
+<meta property="og:description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。 本文主要以 Observable 和 Flowable 为例介绍如何创建被观察者和观察者，并连接他们。  RxJava https://github.com/ReactiveX/RxJava RxJava https://github.com/ReactiveX/RxAndroid">
+<meta property="og:updated_time" content="2017-07-05T01:23:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxJava2.x开发-1 (开始)">
-<meta name="twitter:description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。 在 RxJava2.x 中将被观察者的创建分成了 Observable，Flowable，Maybe，Single 等方式，本文主要以 Observable 和 Flowable 为例 介绍 RxJava2.0 的基本使用。  RxJava https://github.com/Reactive">
+<meta name="twitter:title" content="RxJava2.x开发-1 (基础篇)">
+<meta name="twitter:description" content="开始总结记录 RxJava 的相关内容，本文中所有涉及 RxJava 的地方均指 Rxjava2.0。 本文主要以 Observable 和 Flowable 为例介绍如何创建被观察者和观察者，并连接他们。  RxJava https://github.com/ReactiveX/RxJava RxJava https://github.com/ReactiveX/RxAndroid">
 
 
 
@@ -143,7 +143,7 @@
         border-left-color: #1E92FB;    /*左边框颜色*/
     }
 </style>
-    <title>RxJava2.x开发-1 (开始) | 三月</title>
+    <title>RxJava2.x开发-1 (基础篇) | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -369,7 +369,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">RxJava2.x开发-1 (开始)</h2>
+          <h2 class="post-title" itemprop="name headline">RxJava2.x开发-1 (基础篇)</h2>
         
 
         <div class="post-meta">
@@ -397,8 +397,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-03T17:52:45+08:00">
-                2017-07-03
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-05T09:23:05+08:00">
+                2017-07-05
               </time>
             
           </span>
@@ -454,7 +454,7 @@
 
           
           
-             <span id="/article/3251baff/" class="leancloud_visitors" data-flag-title="RxJava2.x开发-1 (开始)">
+             <span id="/article/3251baff/" class="leancloud_visitors" data-flag-title="RxJava2.x开发-1 (基础篇)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -484,7 +484,7 @@
 
       
         <p>开始总结记录 <code>RxJava</code> 的相关内容，本文中所有涉及 <code>RxJava</code> 的地方均指 <code>Rxjava2.0</code>。</p>
-<p>在 <code>RxJava2.x</code> 中将被观察者的创建分成了 <code>Observable</code>，<code>Flowable</code>，<code>Maybe</code>，<code>Single</code> 等方式，本文主要以 <code>Observable</code> 和 <code>Flowable</code> 为例 介绍 <code>RxJava2.0</code> 的基本使用。</p>
+<p>本文主要以 <code>Observable</code> 和 <code>Flowable</code> 为例介绍如何创建被观察者和观察者，并连接他们。</p>
 <blockquote>
 <p><strong><a href="https://github.com/ReactiveX/RxJava" rel="external nofollow noopener noreferrer" target="_blank">RxJava https://github.com/ReactiveX/RxJava</a></strong></p>
 <p><strong><a href="https://github.com/ReactiveX/RxAndroid" rel="external nofollow noopener noreferrer" target="_blank">RxJava https://github.com/ReactiveX/RxAndroid</a></strong></p>
@@ -494,13 +494,14 @@
 <p><a href="https://gank.io/post/560e15be2dca930e00da1083" rel="external nofollow noopener noreferrer" target="_blank">RxJava1 - 《 给 Android 开发者的 RxJava 详解 》- 扔物线)</a>，这篇文章是对 <code>RxJava1</code> 的讲解，很不错，图文并茂，看了一遍之后仍旧有些疑惑，建议多看几遍，很多关于原理的介绍可以加强对 <code>Rx</code> 的理解。</p>
 <p><a href="https://juejin.im/post/5848d96761ff4b0058c9d3dc" rel="external nofollow noopener noreferrer" target="_blank">RxJava2 - 《 给初学者的RxJava2.0教程(一) 》- 掘金</a> 以及 <a href="https://juejin.im/post/5848dd11b123db0066030123" rel="external nofollow noopener noreferrer" target="_blank">RxJava2 - 《 给初学者的RxJava2.0教程(二) 》- 掘金</a>，特点就是作者使用水管上游下游的描述方式，简化了对观察者模式和事件发送的理解，浅显易懂，也很全面，适合入门。</p>
 <p><a href="http://www.jianshu.com/p/785d9dfb0a5b" rel="external nofollow noopener noreferrer" target="_blank">《 RxJava2.0 你不知道的事》- 简书</a> 是对 <code>RxJava1.x</code> 和 <code>RxJava2.x</code> 的对比，文章中对 <code>2.x</code>  的部分 <code>api</code>，进行了列举，对比起来看就清晰多了，另外很好的解释了背压的问题，受益匪浅。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/23584382" rel="external nofollow noopener noreferrer" target="_blank">《关于RxJava最友好的文章》- 知乎</a></p>
 <p><a href="http://reactivex.io/RxJava/2.x/javadoc/" rel="external nofollow noopener noreferrer" target="_blank">RxJava2.x APi 文档</a></p>
 <h2 id="我的理解"><a href="#我的理解" class="headerlink" title="我的理解"></a>我的理解</h2><p>上面推荐的文章中对 <code>RxJava</code> 的相关原理都做了部分说明，我就不做过多描述，说一下我的一些理解吧。</p>
+<p><code>RxJava</code> 最关键的两个点就是 <strong>观察者模式</strong> 和 <strong>异步</strong>。在 <code>RxJava</code> 中被观察者作为事件的产生方，是 <em>主动</em> 的，是整个事件流程的起点。观察者作为事件的处理方，是 <em>被动</em> 的，是整个事件流程的终点。在起点和终点之间，即事件传递的过程中是可以被加工，过滤，转换，合并等等方式处理的。</p>
 <blockquote>
-<p><code>Observable</code>，被观察者，被订阅者，可被观察的，他是数据和事件发射的源，他在 <code>RxJava</code> 中是有多种实现方式的，这里不是说的哪个类，而是一种泛指。</p>
-<p><code>Observer／Subscriber</code>，观察者，订阅者，他是数据接受者。</p>
+<p><code>Observable</code>，被观察者，被订阅者，可被观察的，他是数据和事件发射的源，他在 <code>RxJava</code> 中是有多种实现方式，这里不是说的哪个类，而是一种泛指。</p>
+<p><code>Observer／Subscriber</code>，观察者，订阅者，他是事件接受者。</p>
 </blockquote>
-<p>通过观察者模式，观察者被注册到被观察者，当被观察者状态发生变化时，观察者第一时间做出响应。当然这中间就可能会涉及线程切换和数据处理等操作，通过 <code>RxJava</code> 丰富的运算符和强大的线程调度，结合链式编程的特点，我们可以将数据发送，数据处理，获取结果这一过程，就像流水线一样，链式的走下来，避免层层的嵌套和缩进，提高代码的可读性。</p>
 <p>整体来看，可以理解为一条事件流，被观察者在上游发送事件，观察者在下游接受事件，中游会有很多针对事件的处理和变换，这样理解更简单一些，也更有助于理解背压(<code>Backpressure</code>)的存在。为了更好的理解，避免叙述的混乱，文章中我会用 <strong>上游</strong> 和 <strong>下游</strong> 这样的描述来代替 <strong>被观察者</strong> 和 <strong>观察者</strong>。</p>
 <h2 id="使用-Observable"><a href="#使用-Observable" class="headerlink" title="使用 Observable"></a>使用 Observable</h2><p>创建一个最简单的 <code>Observable</code>，发送 <code>Integer</code> 类型的数据，<code>RxJava</code> 有很多创建 <code>Observable</code> 的简单方法，我们暂时就使用最原始的那种，方便理解。</p>
 <p><code>ObservableEmitter</code> 继承 <code>Emitter</code>，是一个数据发射器，用来向观察者发送数据。</p>
@@ -563,6 +564,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Completable.create(<span class="keyword">new</span> CompletableOnSubscribe() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull CompletableEmitter e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;).subscribe(<span class="keyword">new</span> CompletableObserver() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(@NonNull Disposable d)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(@NonNull Throwable e)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p><code>Single</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Single.create(<span class="keyword">new</span> SingleOnSubscribe&lt;Object&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull SingleEmitter&lt;Object&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;).subscribe(<span class="keyword">new</span> SingleObserver&lt;Object&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(@NonNull Disposable d)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(@NonNull Object o)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(@NonNull Throwable e)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -590,7 +592,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/3251baff/" title="RxJava2.x开发-1 (开始)">http://chendongmarch.github.io/article/3251baff/</a>
+      <a href="http://chendongmarch.github.io/article/3251baff/" title="RxJava2.x开发-1 (基础篇)">http://chendongmarch.github.io/article/3251baff/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -623,8 +625,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/e57450c6/" rel="next" title="Retrofit + OkHttp 从零开始">
-                <i class="fa fa-chevron-left"></i> Retrofit + OkHttp 从零开始
+              <a href="/article/e57450c6/" rel="next" title="Retrofit 开发-1(OkHttp+Retrofit基本使用)">
+                <i class="fa fa-chevron-left"></i> Retrofit 开发-1(OkHttp+Retrofit基本使用)
               </a>
             
           </div>
@@ -730,7 +732,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">87</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -741,7 +743,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -752,7 +754,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1437,9 +1439,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
-
 
   
 

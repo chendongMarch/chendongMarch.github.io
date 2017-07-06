@@ -4,24 +4,171 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/article/185805107/</loc>
-    <lastmod>2017-07-03T15:56:17.000Z</lastmod>
+    <loc>http://chendongmarch.github.io/article/65563eb2/</loc>
+    <lastmod>2017-07-06T02:41:42.000Z</lastmod>
     <data>
         <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        <title>Java 双重检查加锁创建单例</title>
+        <pubTime>2017-07-06T01:58:05.000Z</pubTime>
         
-        <tag>Extensions</tag>
-         
-        <tag>Hexo</tag>
+        <tag>设计模式</tag>
          
          
            
              
-              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
+              <breadCrumb title="Java" url="http://chendongmarch.github.io/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/22324dc8/</loc>
+    <lastmod>2017-07-05T14:44:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Js 开发-1(基础)</title>
+        <pubTime>2017-07-05T14:30:11.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/36f21fa4/</loc>
+    <lastmod>2017-07-05T14:17:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>Retrofit 开发-2(结合RxJava)</title>
+        <pubTime>2017-07-05T09:09:11.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+        <tag>Retrofit</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
           
              
-              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/e57450c6/</loc>
+    <lastmod>2017-07-05T09:44:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>Retrofit 开发-1(OkHttp+Retrofit基本使用)</title>
+        <pubTime>2017-07-01T06:31:11.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+        <tag>Retrofit</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/2a4b463b/</loc>
+    <lastmod>2017-07-05T08:38:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>Rxjava2.x开发-4 (Backpressure)</title>
+        <pubTime>2017-07-05T08:38:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/6cad82c9/</loc>
+    <lastmod>2017-07-05T08:17:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Rxjava2.x开发-n (运算符) todo</title>
+        <pubTime>2018-07-05T07:51:09.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/7ae7177b/</loc>
+    <lastmod>2017-07-05T08:17:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>RxJava2.x开发-3 (源码解析)</title>
+        <pubTime>2017-07-05T01:54:28.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
           
         </display>
     </data>
@@ -30,7 +177,7 @@
     
   <url>
     <loc>http://chendongmarch.github.io/article/8de84f35/</loc>
-    <lastmod>2017-07-03T14:58:55.000Z</lastmod>
+    <lastmod>2017-07-05T03:51:52.000Z</lastmod>
     <data>
         <display>
         <title>RxJava2.x开发-2 (Schedulers)</title>
@@ -49,6 +196,58 @@
           
              
               <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/3251baff/</loc>
+    <lastmod>2017-07-05T01:23:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>RxJava2.x开发-1 (基础篇)</title>
+        <pubTime>2017-07-01T15:00:28.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>三方框架</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
+          
+             
+              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://chendongmarch.github.io/article/185805107/</loc>
+    <lastmod>2017-07-03T15:56:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Extensions" url="http://chendongmarch.github.io/categories/Extensions/"/>
+          
+             
+              <breadCrumb title="Hexo" url="http://chendongmarch.github.io/categories/Extensions/Hexo/"/>
           
         </display>
     </data>
@@ -467,60 +666,6 @@
 
     
   <url>
-    <loc>http://chendongmarch.github.io/article/2a4b463b/</loc>
-    <lastmod>2017-07-03T09:53:41.000Z</lastmod>
-    <data>
-        <display>
-        <title>Rxjava2.x开发-n (背压)</title>
-        <pubTime>2017-07-03T07:51:09.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>三方框架</tag>
-         
-        <tag>RxJava2.x</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/article/3251baff/</loc>
-    <lastmod>2017-07-03T09:52:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>RxJava2.x开发-1 (开始)</title>
-        <pubTime>2017-07-01T15:00:28.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>三方框架</tag>
-         
-        <tag>RxJava2.x</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://chendongmarch.github.io/article/4043209466/</loc>
     <lastmod>2017-07-03T08:59:17.000Z</lastmod>
     <data>
@@ -588,31 +733,6 @@
            
              
               <breadCrumb title="Life" url="http://chendongmarch.github.io/categories/Life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://chendongmarch.github.io/article/e57450c6/</loc>
-    <lastmod>2017-07-02T07:04:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>Retrofit + OkHttp 从零开始</title>
-        <pubTime>2017-07-01T06:31:11.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>三方框架</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://chendongmarch.github.io/categories/Android/"/>
-          
-             
-              <breadCrumb title="三方框架" url="http://chendongmarch.github.io/categories/Android/%E4%B8%89%E6%96%B9%E6%A1%86%E6%9E%B6/"/>
           
         </display>
     </data>
@@ -1111,9 +1231,9 @@
         <title>HashMap源码分析（Android&Java）</title>
         <pubTime>2015-11-13T16:00:00.000Z</pubTime>
         
-        <tag>SourceCode</tag>
-         
         <tag>Java</tag>
+         
+        <tag>SourceCode</tag>
          
          
            
@@ -1161,9 +1281,9 @@
         
         <tag>Android</tag>
          
-        <tag>SourceCode</tag>
-         
         <tag>Java</tag>
+         
+        <tag>SourceCode</tag>
          
          
            

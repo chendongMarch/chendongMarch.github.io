@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="本文主要记录总结背压的相关知识。 当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。 背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略">
 <meta name="keywords" content="Android,RxJava,Flowable,backpressure,背压">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rxjava2.x开发-n (背压)">
+<meta property="og:title" content="Rxjava2.x开发-4 (Backpressure)">
 <meta property="og:url" content="http://chendongmarch.github.io/article/2a4b463b/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:updated_time" content="2017-07-03T09:53:41.000Z">
+<meta property="og:description" content="本文主要记录总结背压的相关知识。 当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。 背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略">
+<meta property="og:updated_time" content="2017-07-05T08:38:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rxjava2.x开发-n (背压)">
+<meta name="twitter:title" content="Rxjava2.x开发-4 (Backpressure)">
+<meta name="twitter:description" content="本文主要记录总结背压的相关知识。 当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。 背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略">
 
 
 
@@ -140,7 +143,7 @@
         border-left-color: #1E92FB;    /*左边框颜色*/
     }
 </style>
-    <title>Rxjava2.x开发-n (背压) | 三月</title>
+    <title>Rxjava2.x开发-4 (Backpressure) | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -366,7 +369,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Rxjava2.x开发-n (背压)</h2>
+          <h2 class="post-title" itemprop="name headline">Rxjava2.x开发-4 (Backpressure)</h2>
         
 
         <div class="post-meta">
@@ -378,8 +381,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T15:51:09+08:00">
-                2017-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-05T16:38:00+08:00">
+                2017-07-05
               </time>
             
 
@@ -394,8 +397,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-03T17:53:41+08:00">
-                2017-07-03
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-05T16:38:18+08:00">
+                2017-07-05
               </time>
             
           </span>
@@ -451,7 +454,7 @@
 
           
           
-             <span id="/article/2a4b463b/" class="leancloud_visitors" data-flag-title="Rxjava2.x开发-n (背压)">
+             <span id="/article/2a4b463b/" class="leancloud_visitors" data-flag-title="Rxjava2.x开发-4 (Backpressure)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -480,7 +483,12 @@
       
 
       
-        <a id="more"></a>
+        <p>本文主要记录总结背压的相关知识。</p>
+<p>当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。</p>
+<p><strong>背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略</strong></p>
+<a id="more"></a>
+<p>本来想写一段程序触发一下 <code>MissingBackpressureException</code> ，结果没成功。</p>
+<p>在 <code>RxJava2.x</code> 中 <code>Observable</code> 是默认不支持背压的，而 <code>Flowable</code> 是支持背压的。</p>
 
       
     </div>
@@ -509,7 +517,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/2a4b463b/" title="Rxjava2.x开发-n (背压)">http://chendongmarch.github.io/article/2a4b463b/</a>
+      <a href="http://chendongmarch.github.io/article/2a4b463b/" title="Rxjava2.x开发-4 (Backpressure)">http://chendongmarch.github.io/article/2a4b463b/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -542,8 +550,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/927e4523/" rel="next" title="坚持">
-                <i class="fa fa-chevron-left"></i> 坚持
+              <a href="/article/7ae7177b/" rel="next" title="RxJava2.x开发-3 (源码解析)">
+                <i class="fa fa-chevron-left"></i> RxJava2.x开发-3 (源码解析)
               </a>
             
           </div>
@@ -552,8 +560,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/8de84f35/" rel="prev" title="RxJava2.x开发-2 (Schedulers)">
-                RxJava2.x开发-2 (Schedulers) <i class="fa fa-chevron-right"></i>
+              <a href="/article/36f21fa4/" rel="prev" title="Retrofit 开发-2(结合RxJava)">
+                Retrofit 开发-2(结合RxJava) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -640,7 +648,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-count">87</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -651,7 +659,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -662,7 +670,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1331,9 +1339,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.1"></script>
-  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.1"></script>
-
 
   
 
