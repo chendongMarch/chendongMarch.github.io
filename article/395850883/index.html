@@ -83,7 +83,7 @@
 <meta name="keywords" content="Java,sort,排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见排序及搜索算法总结">
-<meta property="og:url" content="http://chendongmarch.github.io/article/395850883/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/395850883/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="Arrays.sort()Arrays.sort()使用了两种排序方法，快速排序和优化的合并排序。 快速排序主要是对哪些基本类型数据（int,short,long等）排序。 而合并排序用于对对象类型进行排序。 原因：使用不同类型的排序算法主要是由于快速排序是不稳定的，而合并排序是稳定的。这里的稳定是指比较相等的数据在排序之后仍然按照排序之前的前后顺序排列。对于基本数据类型，稳定性没有意义，而对于对">
 <meta property="og:updated_time" content="2017-06-30T01:36:14.000Z">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/395850883/">
+  <link rel="canonical" href="http://cdevlab.top/article/395850883/">
 
 
 
@@ -131,24 +131,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>常见排序及搜索算法总结 | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -235,7 +254,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -245,7 +264,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -255,7 +274,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -265,7 +284,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -275,17 +294,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -298,7 +307,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -352,7 +361,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/395850883/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/395850883/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -525,7 +534,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/395850883/" title="常见排序及搜索算法总结">http://chendongmarch.github.io/article/395850883/</a>
+      <a href="http://cdevlab.top/article/395850883/" title="常见排序及搜索算法总结">http://cdevlab.top/article/395850883/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>

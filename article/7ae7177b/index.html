@@ -83,7 +83,7 @@
 <meta name="keywords" content="Android,RxJava2.x,源码解析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxJava2.x开发-3 (源码解析)">
-<meta property="og:url" content="http://chendongmarch.github.io/article/7ae7177b/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/7ae7177b/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="知其然(知道轮子是怎么用的)，知其所以然(也要知道轮子是怎么造的)。  本文主要介绍 RxJava2.x 是如何通过流式API完成事件的传递和变换的，我们不是要全部把它弄的清清楚楚，那需要大量的时间和不断深入才可以，只是通过简单的例子来理解他的基本工作原理和主要功能。 看了很多文章，文章中会讲代理模式什么的，但我觉得更像是包装者模式，可能我理解有偏差😭，但是我觉得这样更好理解一些，我就先按照我">
 <meta property="og:updated_time" content="2017-07-05T08:17:26.000Z">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/7ae7177b/">
+  <link rel="canonical" href="http://cdevlab.top/article/7ae7177b/">
 
 
 
@@ -131,24 +131,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>RxJava2.x开发-3 (源码解析) | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -235,7 +254,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -245,7 +264,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -255,7 +274,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -265,7 +284,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -275,17 +294,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -298,7 +307,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -352,7 +361,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/7ae7177b/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/7ae7177b/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -566,7 +575,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/7ae7177b/" title="RxJava2.x开发-3 (源码解析)">http://chendongmarch.github.io/article/7ae7177b/</a>
+      <a href="http://cdevlab.top/article/7ae7177b/" title="RxJava2.x开发-3 (源码解析)">http://cdevlab.top/article/7ae7177b/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>

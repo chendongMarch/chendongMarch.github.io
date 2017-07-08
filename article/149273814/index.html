@@ -83,7 +83,7 @@
 <meta name="keywords" content="ViewPager">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ViewPager自定义控件广告板轮播">
-<meta property="og:url" content="http://chendongmarch.github.io/article/149273814/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/149273814/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="GitHub GitHub地址  Gradle compile &amp;#39;com.march.billboardview:billboardview:2.0.6-beta4&amp;#39;  xml 里面使用12345678910111213xml 里面使用&amp;lt;com.march.billboardview.BillBoardView        android:id=&quot;@+id/billboar">
 <meta property="og:updated_time" content="2017-07-03T12:56:18.000Z">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/149273814/">
+  <link rel="canonical" href="http://cdevlab.top/article/149273814/">
 
 
 
@@ -131,24 +131,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>ViewPager自定义控件广告板轮播 | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -235,7 +254,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -245,7 +264,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -255,7 +274,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -265,7 +284,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -275,17 +294,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -298,7 +307,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -352,7 +361,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/149273814/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/149273814/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -575,7 +584,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/149273814/" title="ViewPager自定义控件广告板轮播">http://chendongmarch.github.io/article/149273814/</a>
+      <a href="http://cdevlab.top/article/149273814/" title="ViewPager自定义控件广告板轮播">http://cdevlab.top/article/149273814/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>

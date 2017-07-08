@@ -83,7 +83,7 @@
 <meta name="keywords" content="Android,Camera,AndroidDevLibs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android轻松集成Camera拍照">
-<meta property="og:url" content="http://chendongmarch.github.io/article/3102190682/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/3102190682/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="前言 最近有在做Camera拍照相关的项目，从一开始到现在看了好多资料，将Camera封装了一下，现在分享出来。  GitHub GitHub  Gradle compile &amp;#39;com.march.cameralibs:easycameralibs:1.0.8&amp;#39;  介绍 不需要再去关注如何使用camera类和设置相关参数，提供简单的API接口  支持UI和Camera参数同步切换，">
 <meta property="og:updated_time" content="2017-07-03T12:57:38.000Z">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/3102190682/">
+  <link rel="canonical" href="http://cdevlab.top/article/3102190682/">
 
 
 
@@ -131,24 +131,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>Android轻松集成Camera拍照 | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -235,7 +254,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -245,7 +264,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -255,7 +274,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -265,7 +284,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -275,17 +294,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -298,7 +307,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -352,7 +361,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/3102190682/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3102190682/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -549,7 +558,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/3102190682/" title="Android轻松集成Camera拍照">http://chendongmarch.github.io/article/3102190682/</a>
+      <a href="http://cdevlab.top/article/3102190682/" title="Android轻松集成Camera拍照">http://cdevlab.top/article/3102190682/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -582,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/3189961703/" rel="next" title="将自己写的库发布到Jcenter">
-                <i class="fa fa-chevron-left"></i> 将自己写的库发布到Jcenter
+              <a href="/article/3121499733/" rel="next" title="在Android平台下合成Gif">
+                <i class="fa fa-chevron-left"></i> 在Android平台下合成Gif
               </a>
             
           </div>
@@ -592,8 +601,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2091453987/" rel="prev" title="将自己写的库发布到 JitPack">
-                将自己写的库发布到 JitPack <i class="fa fa-chevron-right"></i>
+              <a href="/article/2863351425/" rel="prev" title="在 Mac 下配置 Gradle 命令">
+                在 Mac 下配置 Gradle 命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

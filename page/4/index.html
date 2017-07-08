@@ -82,7 +82,7 @@
 <meta name="description" content="生命不息，奋斗不止。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="三月">
-<meta property="og:url" content="http://chendongmarch.github.io/page/4/index.html">
+<meta property="og:url" content="http://cdevlab.top/page/4/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="生命不息，奋斗不止。">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/page/4/">
+  <link rel="canonical" href="http://cdevlab.top/page/4/">
 
 
 
@@ -129,24 +129,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title> 三月 - 生命不息，奋斗不止。 </title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -235,7 +254,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -245,7 +264,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -255,7 +274,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -265,7 +284,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -275,17 +294,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -298,7 +307,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -344,6 +353,7 @@
   <section id="posts" class="posts-expand">
     
       
+      	
 
   
 
@@ -352,7 +362,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/1482489498/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1482489498/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -504,8 +514,10 @@
   </article>
 
 
+      
     
       
+      	
 
   
 
@@ -514,7 +526,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/3936083469/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3936083469/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -638,7 +650,7 @@
 
       
         
-          <p>显示相册在app中是一个比较常见的操作，大致的操作就是通过ContentProvider获取多媒体资源进行展示，我综合了一下QQ 的和微信的显示效果，实现了一下,<a href="http://chendongmarch.github.io/2016/11/02/Android%E5%BC%80%E5%8F%91/%E9%AB%98%E4%BB%BFQQ%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%86%8C/">仿微信QQ显示手机相册</a>，在QQ的相册选择时是支持滑动选中的，即手指碰到哪个就选中哪张照片，正好公司的项目中用到了这个功能，在网上找了找没有很好的解决方案，所以通过自定义控件处理事件，这篇文章主要介绍这个功能的实现。 </p>
+          <p>显示相册在app中是一个比较常见的操作，大致的操作就是通过ContentProvider获取多媒体资源进行展示，我综合了一下QQ 的和微信的显示效果，实现了一下,<a href="http://chendongmarch.github.io/2016/11/02/Android%E5%BC%80%E5%8F%91/%E9%AB%98%E4%BB%BFQQ%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%86%8C/" rel="external nofollow noopener noreferrer" target="_blank">仿微信QQ显示手机相册</a>，在QQ的相册选择时是支持滑动选中的，即手指碰到哪个就选中哪张照片，正好公司的项目中用到了这个功能，在网上找了找没有很好的解决方案，所以通过自定义控件处理事件，这篇文章主要介绍这个功能的实现。 </p>
 <blockquote>
 <p>自定义控件SlidingSelectLayout的源代码<a href="https://github.com/chendongMarch/CommonLib/blob/master/lib-dev/src/main/java/com/march/dev/widget/SlidingSelectLayout.java" rel="external nofollow noopener noreferrer" target="_blank">点击这里获取</a></p>
 </blockquote>
@@ -680,8 +692,10 @@
   </article>
 
 
+      
     
       
+      	
 
   
 
@@ -690,7 +704,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/3766638624/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3766638624/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -848,8 +862,10 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
   </article>
 
 
+      
     
       
+      	
 
   
 
@@ -858,172 +874,7 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/308486771/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/308486771/" itemprop="url">分析SwipeRefreshLayout实现自定义刷新</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-25T00:00:00+08:00">
-                2016-08-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-03T21:02:15+08:00">
-                2017-07-03
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/article/308486771/" class="leancloud_visitors" data-flag-title="分析SwipeRefreshLayout实现自定义刷新">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          <br>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前言
-分析SwipeRefreshLayout的源代码来深入的理解一下关于刷新的事件处理和NestedScrolling机制的使用。Android5.0之后官方推出了SwipeRefreshLayout来实现下拉刷新，当然还有很多其他控件，因为像下拉刷新，抽屉效果，tabLayout效果几乎是每个A
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/308486771/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/2940188893/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2940188893/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1210,8 +1061,10 @@ onNest
   </article>
 
 
+      
     
       
+      	
 
   
 
@@ -1220,7 +1073,174 @@ onNest
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/1655050953/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/308486771/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/308486771/" itemprop="url">分析SwipeRefreshLayout实现自定义刷新</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-25T00:00:00+08:00">
+                2016-08-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-03T21:02:15+08:00">
+                2017-07-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/308486771/" class="leancloud_visitors" data-flag-title="分析SwipeRefreshLayout实现自定义刷新">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言
+分析SwipeRefreshLayout的源代码来深入的理解一下关于刷新的事件处理和NestedScrolling机制的使用。Android5.0之后官方推出了SwipeRefreshLayout来实现下拉刷新，当然还有很多其他控件，因为像下拉刷新，抽屉效果，tabLayout效果几乎是每个A
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/308486771/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      	
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1655050953/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1372,8 +1392,10 @@ onNest
   </article>
 
 
+      
     
       
+      	
 
   
 
@@ -1382,7 +1404,7 @@ onNest
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/2939773101/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2939773101/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1540,8 +1562,10 @@ maxSdkVersion指的是你的应用可
   </article>
 
 
+      
     
       
+      	
 
   
 
@@ -1550,182 +1574,7 @@ maxSdkVersion指的是你的应用可
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/1727896955/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/1727896955/" itemprop="url">Python普通方法、静态方法、类方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-11T00:00:00+08:00">
-                2016-08-11
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:37:51+08:00">
-                2017-06-30
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Study/" itemprop="url" rel="index">
-                    <span itemprop="name">Study</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Study/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/article/1727896955/" class="leancloud_visitors" data-flag-title="Python普通方法、静态方法、类方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          <br>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          开始123456789101112131415161718192021222324# -*-coding:utf-8-*-# 普通方法,类方法,静态方法的区别__metaclass__ = typeclass Tst:    name = 'tst'    data = 'this is data'
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/1727896955/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/2150468451/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2150468451/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1890,8 +1739,10 @@ maxSdkVersion指的是你的应用可
   </article>
 
 
+      
     
       
+      	
 
   
 
@@ -1900,7 +1751,7 @@ maxSdkVersion指的是你的应用可
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/3789624758/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3789624758/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -2068,6 +1919,184 @@ maxSdkVersion指的是你的应用可
   </article>
 
 
+      
+    
+      
+      	
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1727896955/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/1727896955/" itemprop="url">Python普通方法、静态方法、类方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-11T00:00:00+08:00">
+                2016-08-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:37:51+08:00">
+                2017-06-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Study</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/1727896955/" class="leancloud_visitors" data-flag-title="Python普通方法、静态方法、类方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          开始123456789101112131415161718192021222324# -*-coding:utf-8-*-# 普通方法,类方法,静态方法的区别__metaclass__ = typeclass Tst:    name = 'tst'    data = 'this is data'
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/1727896955/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
     
   </section>
 

@@ -83,7 +83,7 @@
 <meta name="keywords" content="Android,JitPack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将自己写的库发布到 JitPack">
-<meta property="og:url" content="http://chendongmarch.github.io/article/2091453987/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/2091453987/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="JitPack优缺 在使用Jcenter发布库代码时，需要先上传到Bintray网站，比较麻烦，不过我之前已经给出了简化的方案,根据这篇文章发布自己的库到JCenter可以很快的配置好项目。本文介绍另外一种发布自己的库代码的方式，使用JitPack发布代码更简单一些。 AndroidStudio创建项目时没有默认生成JitPack的依赖，当使用库时需要添加如下依赖1234repositories">
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/2016-08-12%2023.27.46.png">
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/2091453987/">
+  <link rel="canonical" href="http://cdevlab.top/article/2091453987/">
 
 
 
@@ -138,24 +138,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>将自己写的库发布到 JitPack | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -242,7 +261,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -252,7 +271,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -262,7 +281,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -272,7 +291,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -282,17 +301,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -305,7 +314,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -359,7 +368,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/2091453987/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2091453987/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -541,7 +550,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/2091453987/" title="将自己写的库发布到 JitPack">http://chendongmarch.github.io/article/2091453987/</a>
+      <a href="http://cdevlab.top/article/2091453987/" title="将自己写的库发布到 JitPack">http://cdevlab.top/article/2091453987/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -572,8 +581,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/3102190682/" rel="next" title="Android轻松集成Camera拍照">
-                <i class="fa fa-chevron-left"></i> Android轻松集成Camera拍照
+              <a href="/article/3189961703/" rel="next" title="将自己写的库发布到Jcenter">
+                <i class="fa fa-chevron-left"></i> 将自己写的库发布到Jcenter
               </a>
             
           </div>

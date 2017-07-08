@@ -83,7 +83,7 @@
 <meta name="keywords" content="Android,自定义控件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义控件—继承ViewGroup">
-<meta property="og:url" content="http://chendongmarch.github.io/article/844112004/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/844112004/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="前言 继承ViewGroup是自定义控件的一般方法，根据需要选择需要继承的ViewGroup的子类，本章将使用纯代码添加控件,方式确实不直观，但是可以用来练习使用代码操作控件的方法，毕竟不是所有的代码都可以用xml文件代替。  案例介绍 这次的目的实现一个类似这样的组合控件，出现这种需求是因为需要在一个ListView中添加一个类似ListView的部分，但是数量很少，可以不需要使用ListVie">
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/purecode_all.png">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/844112004/">
+  <link rel="canonical" href="http://cdevlab.top/article/844112004/">
 
 
 
@@ -134,24 +134,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>自定义控件—继承ViewGroup | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -238,7 +257,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -248,7 +267,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -258,7 +277,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -268,7 +287,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -278,17 +297,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -301,7 +310,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -355,7 +364,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/844112004/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/844112004/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -525,7 +534,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/844112004/" title="自定义控件—继承ViewGroup">http://chendongmarch.github.io/article/844112004/</a>
+      <a href="http://cdevlab.top/article/844112004/" title="自定义控件—继承ViewGroup">http://cdevlab.top/article/844112004/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>

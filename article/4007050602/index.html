@@ -83,7 +83,7 @@
 <meta name="keywords" content="Android,RecyclerView,Adapter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RecyclerView添加Header和Footer的基本原理">
-<meta property="og:url" content="http://chendongmarch.github.io/article/4007050602/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/4007050602/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="介绍 采用的基本原理就是Header和Footer作为RecyclerView的一个Item，只是显示的方式特别一点，ListView实际也是这么做的所以添加了Header之后，数据的位置会错乱。  由于使用不同的LayoutManager时显示效果也不一样， 所以针对不同的LayoutManager需要做不同的操作。  分析一下，LinearLayoutManager比较简单，只需要将Heade">
 <meta property="og:updated_time" content="2017-06-30T01:24:53.000Z">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/4007050602/">
+  <link rel="canonical" href="http://cdevlab.top/article/4007050602/">
 
 
 
@@ -131,24 +131,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>RecyclerView添加Header和Footer的基本原理 | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -235,7 +254,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -245,7 +264,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -255,7 +274,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -265,7 +284,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -275,17 +294,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -298,7 +307,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -352,7 +361,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/4007050602/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/4007050602/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -537,7 +546,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/4007050602/" title="RecyclerView添加Header和Footer的基本原理">http://chendongmarch.github.io/article/4007050602/</a>
+      <a href="http://cdevlab.top/article/4007050602/" title="RecyclerView添加Header和Footer的基本原理">http://cdevlab.top/article/4007050602/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>

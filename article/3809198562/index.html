@@ -83,7 +83,7 @@
 <meta name="keywords" content="Android,FFmpeg,Ndk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android编译FFmpeg之HelloWorld">
-<meta property="og:url" content="http://chendongmarch.github.io/article/3809198562/index.html">
+<meta property="og:url" content="http://cdevlab.top/article/3809198562/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="编译FFmpeg3.3.1的so文件，并在Android工程中使用。     FFmpeg版本：3.3.1  ／  OS：Mac OSX 本文博客链接    GitHub，本文介绍内容请查看hello_world分支    ps: 开始的时候我只编译出了6个so文件，缺少libavdevice.so和libpostproc.so，主要是因为build_andorid.sh的配置不同，现在可以编译出">
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/ffmpeg_finder_dir_scan.jpeg">
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/article/3809198562/">
+  <link rel="canonical" href="http://cdevlab.top/article/3809198562/">
 
 
 
@@ -135,24 +135,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>Android编译FFmpeg之HelloWorld | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -239,7 +258,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -249,7 +268,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -259,7 +278,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -269,7 +288,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -279,17 +298,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -302,7 +311,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -356,7 +365,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://chendongmarch.github.io/article/3809198562/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3809198562/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -489,7 +498,7 @@
       
         <p>编译<code>FFmpeg3.3.1</code>的so文件，并在<code>Android</code>工程中使用。    </p>
 <p>FFmpeg版本：3.3.1  ／  OS：Mac OSX</p>
-<p><a href="http://chendongmarch.github.io/2017/05/25/Android%E5%BC%80%E5%8F%91/%E7%BC%96%E8%AF%91ffmpeg/">本文博客链接</a>   </p>
+<p><a href="http://chendongmarch.github.io/2017/05/25/Android%E5%BC%80%E5%8F%91/%E7%BC%96%E8%AF%91ffmpeg/" rel="external nofollow noopener noreferrer" target="_blank">本文博客链接</a>   </p>
 <p><a href="https://github.com/chendongMarch/FFmpegAndroidSupport" rel="external nofollow noopener noreferrer" target="_blank">GitHub，本文介绍内容请查看hello_world分支</a>   </p>
 <p>ps: 开始的时候我只编译出了6个so文件，缺少<code>libavdevice.so</code>和<code>libpostproc.so</code>，主要是因为<code>build_andorid.sh</code>的配置不同，现在可以编译出8个so文件，在文章中的图片出现的都是6个so文件，特此声明。</p>
 <blockquote>
@@ -552,7 +561,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://chendongmarch.github.io/article/3809198562/" title="Android编译FFmpeg之HelloWorld">http://chendongmarch.github.io/article/3809198562/</a>
+      <a href="http://cdevlab.top/article/3809198562/" title="Android编译FFmpeg之HelloWorld">http://cdevlab.top/article/3809198562/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>

@@ -82,7 +82,7 @@
 <meta name="description" content="生命不息，奋斗不止。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="三月">
-<meta property="og:url" content="http://chendongmarch.github.io/archives/2016/08/index.html">
+<meta property="og:url" content="http://cdevlab.top/archives/2016/08/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="生命不息，奋斗不止。">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://chendongmarch.github.io/archives/2016/08/">
+  <link rel="canonical" href="http://cdevlab.top/archives/2016/08/">
 
 
 
@@ -129,24 +129,43 @@
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <style>
-    .pace .pace-progress {
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #0000;    /*上边框颜色*/
+        border-left-color: #0000;    /*左边框颜色*/
+      }
+
+    @media (min-width: 768px){
+      .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
-    }
-    .pace .pace-progress-inner {
+      }
+      .pace .pace-progress-inner {
          box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
+      }
+      .pace .pace-activity {
         border-top-color: #1E92FB;    /*上边框颜色*/
         border-left-color: #1E92FB;    /*左边框颜色*/
+      }
     }
+ 
 </style>
+
+
+
     <title>归档 | 三月</title>
   <style>
     .forkme{
       display: none;
     }
-  @media (min-width: 768px) {
+    
+    @media (min-width: 768px) {
     .forkme{
       display: inline;
     }
@@ -233,7 +252,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -243,7 +262,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -253,7 +272,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            关于
+            About Me
           </a>
         </li>
       
@@ -263,7 +282,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Timeline
           </a>
         </li>
       
@@ -273,17 +292,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br>
-            
-            留言
+            Tags
           </a>
         </li>
       
@@ -296,7 +305,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -407,9 +416,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/308486771/" itemprop="url">
+            <a class="post-title-link" href="/article/2940188893/" itemprop="url">
               
-                <span itemprop="name">分析SwipeRefreshLayout实现自定义刷新</span>
+                <span itemprop="name">NestedScrolling交互</span>
               
             </a>
         
@@ -442,9 +451,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/2940188893/" itemprop="url">
+            <a class="post-title-link" href="/article/308486771/" itemprop="url">
               
-                <span itemprop="name">NestedScrolling交互</span>
+                <span itemprop="name">分析SwipeRefreshLayout实现自定义刷新</span>
               
             </a>
         
@@ -547,41 +556,6 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/article/1727896955/" itemprop="url">
-              
-                <span itemprop="name">Python普通方法、静态方法、类方法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-08-11T00:00:00+08:00" content="2016-08-11">
-          08-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
             <a class="post-title-link" href="/article/2150468451/" itemprop="url">
               
                 <span itemprop="name">Python Json相关</span>
@@ -620,6 +594,41 @@
             <a class="post-title-link" href="/article/3789624758/" itemprop="url">
               
                 <span itemprop="name">Python实现单例</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2016-08-11T00:00:00+08:00" content="2016-08-11">
+          08-11
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/article/1727896955/" itemprop="url">
+              
+                <span itemprop="name">Python普通方法、静态方法、类方法</span>
               
             </a>
         
