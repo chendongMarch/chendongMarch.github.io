@@ -134,7 +134,7 @@
         height: 0px;
       }
       .pace .pace-progress-inner {
-         box-shadow: 0 0 0px #0000, 0 0 0px     #1E92FB; /*阴影颜色*/
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
       }
       .pace .pace-activity {
         border-top-color: #0000;    /*上边框颜色*/
@@ -147,11 +147,11 @@
         height: 2px;
       }
       .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
       }
       .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
+        border-top-color: #f2f2f2;    /*上边框颜色*/
+        border-left-color: #f2f2f2;    /*左边框颜色*/
       }
     }
  
@@ -704,7 +704,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2940188893/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/308486771/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -723,7 +723,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/2940188893/" itemprop="url">NestedScrolling交互</a></h2>
+                <a class="post-title-link" href="/article/308486771/" itemprop="url">分析SwipeRefreshLayout实现自定义刷新</a></h2>
         
 
         <div class="post-meta">
@@ -751,8 +751,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:33:25+08:00">
-                2017-06-30
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-03T21:02:15+08:00">
+                2017-07-03
               </time>
             
           </span>
@@ -777,17 +777,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/todo/" itemprop="url" rel="index">
-                    <span itemprop="name">todo</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -798,7 +787,7 @@
 
           
           
-             <span id="/article/2940188893/" class="leancloud_visitors" data-flag-title="NestedScrolling交互">
+             <span id="/article/308486771/" class="leancloud_visitors" data-flag-title="分析SwipeRefreshLayout实现自定义刷新">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -829,33 +818,12 @@
       
         
           
-          前言交互
-
-
-触发时机
-NestedScrollChild
-NestedScrollParent
-
-
-
-
-Down
-startNestScroll
-onStartNestScroll
-
-
-
-
-onNestScrollAccept
-
-
-Move
-dispatchNestPreScroll
-onNest
+          前言
+分析SwipeRefreshLayout的源代码来深入的理解一下关于刷新的事件处理和NestedScrolling机制的使用。Android5.0之后官方推出了SwipeRefreshLayout来实现下拉刷新，当然还有很多其他控件，因为像下拉刷新，抽屉效果，tabLayout效果几乎是每个A
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/2940188893/" rel="contents">
+            <a class="btn" href="/article/308486771/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1073,7 +1041,7 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/308486771/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2940188893/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1092,7 +1060,7 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/308486771/" itemprop="url">分析SwipeRefreshLayout实现自定义刷新</a></h2>
+                <a class="post-title-link" href="/article/2940188893/" itemprop="url">NestedScrolling交互</a></h2>
         
 
         <div class="post-meta">
@@ -1120,8 +1088,8 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-03T21:02:15+08:00">
-                2017-07-03
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:33:25+08:00">
+                2017-06-30
               </time>
             
           </span>
@@ -1146,6 +1114,17 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/todo/" itemprop="url" rel="index">
+                    <span itemprop="name">todo</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -1156,7 +1135,7 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
 
           
           
-             <span id="/article/308486771/" class="leancloud_visitors" data-flag-title="分析SwipeRefreshLayout实现自定义刷新">
+             <span id="/article/2940188893/" class="leancloud_visitors" data-flag-title="NestedScrolling交互">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1187,12 +1166,33 @@ Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEv
       
         
           
-          前言
-分析SwipeRefreshLayout的源代码来深入的理解一下关于刷新的事件处理和NestedScrolling机制的使用。Android5.0之后官方推出了SwipeRefreshLayout来实现下拉刷新，当然还有很多其他控件，因为像下拉刷新，抽屉效果，tabLayout效果几乎是每个A
+          前言交互
+
+
+触发时机
+NestedScrollChild
+NestedScrollParent
+
+
+
+
+Down
+startNestScroll
+onStartNestScroll
+
+
+
+
+onNestScrollAccept
+
+
+Move
+dispatchNestPreScroll
+onNest
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/308486771/" rel="contents">
+            <a class="btn" href="/article/2940188893/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1574,6 +1574,183 @@ maxSdkVersion指的是你的应用可
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2150468451/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/2150468451/" itemprop="url">Python Json相关</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-11T00:00:00+08:00">
+                2016-08-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:38:09+08:00">
+                2017-06-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Study</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/2150468451/" class="leancloud_visitors" data-flag-title="Python Json相关">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          开始12345678910111213141516171819202122232425# -*-coding:utf-8-*-import jsonfrom httptst.Singleton import singleton@singletonclass JsonHelper(object):  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/2150468451/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      	
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3789624758/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1707,183 +1884,6 @@ maxSdkVersion指的是你的应用可
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/article/3789624758/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
-      
-      	
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2150468451/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/2150468451/" itemprop="url">Python Json相关</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-11T00:00:00+08:00">
-                2016-08-11
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:38:09+08:00">
-                2017-06-30
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Study/" itemprop="url" rel="index">
-                    <span itemprop="name">Study</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Study/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/article/2150468451/" class="leancloud_visitors" data-flag-title="Python Json相关">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          <br>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          开始12345678910111213141516171819202122232425# -*-coding:utf-8-*-import jsonfrom httptst.Singleton import singleton@singletonclass JsonHelper(object):  
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/2150468451/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
