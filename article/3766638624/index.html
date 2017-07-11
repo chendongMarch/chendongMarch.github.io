@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Android,">
+  <meta name="keywords" content="Android,View,">
 
 
 <script>
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="前言 Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。  推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:">
-<meta name="keywords" content="Android">
+<meta name="description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:  3M">
+<meta name="keywords" content="Android,View">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android事件交互">
 <meta property="og:url" content="http://cdevlab.top/article/3766638624/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="前言 Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。  推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:">
-<meta property="og:updated_time" content="2017-06-30T01:26:31.000Z">
+<meta property="og:description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:  3M">
+<meta property="og:updated_time" content="2017-07-10T07:02:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件交互">
-<meta name="twitter:description" content="前言 Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。  推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:">
+<meta name="twitter:description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:  3M">
 
 
 
@@ -407,19 +407,7 @@ var _hmt = _hmt || [];
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-30T09:26:31+08:00">
-                2017-06-30
-              </time>
             
           </span>
 
@@ -438,6 +426,17 @@ var _hmt = _hmt || [];
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Android/" itemprop="url" rel="index">
                     <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/View/" itemprop="url" rel="index">
+                    <span itemprop="name">View</span>
                   </a>
                 </span>
 
@@ -492,9 +491,7 @@ var _hmt = _hmt || [];
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li>Android事件交互,当用户手指触碰屏幕时会触发<code>onTouchEvent(MotionEven event)</code>方法。</li>
-</ul>
+        <p>Android事件交互,当用户手指触碰屏幕时会触发<code>onTouchEvent(MotionEven event)</code>方法。</p>
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="http://www.jianshu.com/p/0c863bbde8eb" rel="external nofollow noopener noreferrer" target="_blank">简书－MotionEvent详解</a></p>
 <h2 id="常用事件"><a href="#常用事件" class="headerlink" title="常用事件"></a>常用事件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">MotionEvent.ACTION_DOWN:  <span class="number">0</span></div><div class="line">MotionEvent.ACTION_UP:  <span class="number">1</span></div><div class="line">MotionEvent.ACTION_MOVE:  <span class="number">2</span></div><div class="line">MotionEvent.ACTION_CANCEL:  <span class="number">3</span></div><div class="line">MotionEvent.ACTION_OUTSIDE:  <span class="number">4</span></div><div class="line">MotionEvent.ACTION_POINTER_DOWN:  <span class="number">5</span></div><div class="line">MotionEvent.ACTION_POINTER_UP:  <span class="number">6</span></div></pre></td></tr></table></figure>
 <h2 id="获取事件"><a href="#获取事件" class="headerlink" title="获取事件"></a>获取事件</h2><ul>
@@ -622,6 +619,8 @@ var _hmt = _hmt || [];
           
             <a href="/tags/Android/" rel="tag"># Android</a>
           
+            <a href="/tags/View/" rel="tag"># View</a>
+          
         </div>
       
 
@@ -633,8 +632,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/2940188893/" rel="next" title="NestedScrolling交互">
-                <i class="fa fa-chevron-left"></i> NestedScrolling交互
+              <a href="/article/308486771/" rel="next" title="分析SwipeRefreshLayout实现自定义刷新">
+                <i class="fa fa-chevron-left"></i> 分析SwipeRefreshLayout实现自定义刷新
               </a>
             
           </div>
@@ -643,8 +642,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/3936083469/" rel="prev" title="仿QQ相册RecyclerView滑动选中">
-                仿QQ相册RecyclerView滑动选中 <i class="fa fa-chevron-right"></i>
+              <a href="/article/2940188893/" rel="prev" title="NestedScrolling交互">
+                NestedScrolling交互 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -740,7 +739,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">88</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -751,7 +750,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -762,7 +761,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -826,7 +825,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用事件"><span class="nav-text">常用事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取事件"><span class="nav-text">获取事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointer"><span class="nav-text">Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MotionEventCompat"><span class="nav-text">MotionEventCompat</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用事件"><span class="nav-text">常用事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取事件"><span class="nav-text">获取事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointer"><span class="nav-text">Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MotionEventCompat"><span class="nav-text">MotionEventCompat</span></a></li></ol></div>
             
 
           </div>

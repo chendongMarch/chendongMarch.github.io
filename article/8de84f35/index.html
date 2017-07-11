@@ -82,13 +82,13 @@
 <meta name="description" content="本文主要介绍 RxJava2.x 强大的线程调度。 在 Android 开发中因为不允许阻塞主线程，所以所有的耗时请求都必须全部放在子线程来做，然后再去主线程更新UI，关于主线程和子线程的通信其实异常复杂，好在Android 给我们提供了 AsyncTask，Handler 等方式来简化这一过程。使用 RxJava 会让切换线程变得更简单。 文中部分描述可能有些混乱，为了更好的看出在哪个线程调用，">
 <meta name="keywords" content="Android,RxJava,线程调度,Schedulers">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxJava2.x开发-2 (Schedulers)">
+<meta property="og:title" content="RxJava2.x开发-2-Schedulers">
 <meta property="og:url" content="http://cdevlab.top/article/8de84f35/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文主要介绍 RxJava2.x 强大的线程调度。 在 Android 开发中因为不允许阻塞主线程，所以所有的耗时请求都必须全部放在子线程来做，然后再去主线程更新UI，关于主线程和子线程的通信其实异常复杂，好在Android 给我们提供了 AsyncTask，Handler 等方式来简化这一过程。使用 RxJava 会让切换线程变得更简单。 文中部分描述可能有些混乱，为了更好的看出在哪个线程调用，">
-<meta property="og:updated_time" content="2017-07-05T03:51:52.000Z">
+<meta property="og:updated_time" content="2017-07-10T06:40:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxJava2.x开发-2 (Schedulers)">
+<meta name="twitter:title" content="RxJava2.x开发-2-Schedulers">
 <meta name="twitter:description" content="本文主要介绍 RxJava2.x 强大的线程调度。 在 Android 开发中因为不允许阻塞主线程，所以所有的耗时请求都必须全部放在子线程来做，然后再去主线程更新UI，关于主线程和子线程的通信其实异常复杂，好在Android 给我们提供了 AsyncTask，Handler 等方式来简化这一过程。使用 RxJava 会让切换线程变得更简单。 文中部分描述可能有些混乱，为了更好的看出在哪个线程调用，">
 
 
@@ -161,7 +161,7 @@
 
 
 
-  <title>RxJava2.x开发-2 (Schedulers) | 三月</title>
+  <title>RxJava2.x开发-2-Schedulers | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -389,7 +389,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">RxJava2.x开发-2 (Schedulers)</h2>
+          <h2 class="post-title" itemprop="name headline">RxJava2.x开发-2-Schedulers</h2>
         
 
         <div class="post-meta">
@@ -407,19 +407,7 @@ var _hmt = _hmt || [];
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-05T11:51:52+08:00">
-                2017-07-05
-              </time>
             
           </span>
 
@@ -447,8 +435,8 @@ var _hmt = _hmt || [];
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/三方框架/" itemprop="url" rel="index">
-                    <span itemprop="name">三方框架</span>
+                  <a href="/categories/Android/Library/" itemprop="url" rel="index">
+                    <span itemprop="name">Library</span>
                   </a>
                 </span>
 
@@ -474,7 +462,7 @@ var _hmt = _hmt || [];
 
           
           
-             <span id="/article/8de84f35/" class="leancloud_visitors" data-flag-title="RxJava2.x开发-2 (Schedulers)">
+             <span id="/article/8de84f35/" class="leancloud_visitors" data-flag-title="RxJava2.x开发-2-Schedulers">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -613,7 +601,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/8de84f35/" title="RxJava2.x开发-2 (Schedulers)">http://cdevlab.top/article/8de84f35/</a>
+      <a href="http://cdevlab.top/article/8de84f35/" title="RxJava2.x开发-2-Schedulers">http://cdevlab.top/article/8de84f35/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -630,8 +618,6 @@ var _hmt = _hmt || [];
         <div class="post-tags">
           
             <a href="/tags/Android/" rel="tag"># Android</a>
-          
-            <a href="/tags/三方框架/" rel="tag"># 三方框架</a>
           
             <a href="/tags/RxJava2-x/" rel="tag"># RxJava2.x</a>
           
@@ -656,8 +642,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/7ae7177b/" rel="prev" title="RxJava2.x开发-3 (源码解析)">
-                RxJava2.x开发-3 (源码解析) <i class="fa fa-chevron-right"></i>
+              <a href="/article/7ae7177b/" rel="prev" title="RxJava2.x开发-3-源码分析">
+                RxJava2.x开发-3-源码分析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -753,7 +739,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">88</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -764,7 +750,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -775,7 +761,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
