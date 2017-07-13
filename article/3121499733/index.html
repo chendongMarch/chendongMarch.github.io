@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="_查看原文_ 本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择">
+<meta name="description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。   使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。    当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 jav">
 <meta name="keywords" content="Android,GIF合成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Android平台下合成Gif">
 <meta property="og:url" content="http://cdevlab.top/article/3121499733/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="_查看原文_ 本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择">
-<meta property="og:updated_time" content="2017-07-13T11:47:19.000Z">
+<meta property="og:description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。   使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。    当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 jav">
+<meta property="og:updated_time" content="2017-07-13T13:00:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Android平台下合成Gif">
-<meta name="twitter:description" content="_查看原文_ 本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择">
+<meta name="twitter:description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。   使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。    当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 jav">
 
 
 
@@ -471,21 +471,21 @@ var _hmt = _hmt || [];
       
 
       
-        <p><strong><a href="http://cdevlab.top/article/3121499733/"><strong>_</strong>查看原文<strong>_</strong></a></strong></p>
-<p>本文介绍在 <code>Android</code> 平台下合成 <code>GIF</code> 的方法，查阅资料的过程中发现大致有两种方案。</p>
+        <p>本文介绍在 <code>Android</code> 平台下合成 <code>GIF</code> 的方法，查阅资料的过程中发现大致有两种方案。</p>
+<blockquote>
 <ol>
 <li><p>使用 <code>giflen</code> (一个 <code>C</code> 的合成 <code>gif</code> 的库) 进行 <code>gif</code> 合成。</p>
 </li>
 <li><p>使用 <code>java</code> 层的 <code>GifEncoder</code>、<code>LZWEncoder</code>、<code>NeuQuant</code> 来进行 <code>gif</code> 合成。</p>
 </li>
 </ol>
+</blockquote>
 <p>当然二者都是基于 <code>LZW</code> 算法，简单测试的结果是，速度上差不多，由于对 <code>C</code> 不是很擅长，因此我选择了 <code>java</code> 层进行合成的方法，但是两种方法速度上都是 <strong>很慢很慢</strong> 😭。</p>
 <p>因此本文还将会使用多线程独立编码的方法来进行优化，每帧图片并行编码，加快合成速度，现在的成果是 <code>600 * 450</code> 的图片 <code>20</code> 张的话，时间大约在 <code>12s</code> 左右。</p>
 <blockquote>
 <p><strong>本文相关源码在 <a href="https://github.com/chendongMarch/GifMaker" rel="external nofollow noopener noreferrer" target="_blank">GitHub - GifMaker</a></strong></p>
 </blockquote>
-<a id="more"></a>
-<h2 id="Giflen-合成"><a href="#Giflen-合成" class="headerlink" title="Giflen 合成"></a>Giflen 合成</h2><p>使用 <code>jni</code> 合成，感兴趣的同学可以 <code>google</code> 一下 <code>giflen</code> 这个库，这里有一个编译好的 <code>so</code> 和 <code>jar</code> 文件，以及相关 <code>C</code> 源码，备份在 <a href="https://github.com/chendongMarch/GifMaker/tree/master/backup/giflen" rel="external nofollow noopener noreferrer" target="_blank">GitHub</a> 上，有需要的同学可以直接下载使用。经过我的简单尝试发现，使用 <code>so</code> 合成的速度和 <code>java</code> 合成的速度差不多，都是慢的要死…</p>
+<h2 id="使用-giflen-合成"><a href="#使用-giflen-合成" class="headerlink" title="使用 giflen 合成"></a>使用 giflen 合成</h2><p>使用 <code>jni</code> 合成，感兴趣的同学可以 <code>google</code> 一下 <code>giflen</code> 这个库，这里有一个编译好的 <code>so</code> 和 <code>jar</code> 文件，以及相关 <code>C</code> 源码，备份在 <a href="https://github.com/chendongMarch/GifMaker/tree/master/backup/giflen" rel="external nofollow noopener noreferrer" target="_blank">GitHub</a> 上，有需要的同学可以直接下载使用。经过我的简单尝试发现，使用 <code>so</code> 合成的速度和 <code>java</code> 合成的速度差不多，都是慢的要死…</p>
 <h2 id="优化后的-java-合成"><a href="#优化后的-java-合成" class="headerlink" title="优化后的 java 合成"></a>优化后的 java 合成</h2><p>原始的合成方法，真的慢…特别慢，简直不能忍。</p>
 <p>原始的合成方法是将每一个 <code>Bitmap</code> 使用 <code>LZWEncoder</code> 进行编码，由于是一个串行的逻辑，后面的图片需要等待前面的编码完成才可以继续下一张编码，优化后的逻辑是启动一个线程池，每张图片独立编码，最后在所有图片编码完成之后输出流合并，输出到文件中，就完成了 <code>gif</code> 的合成。</p>
 <p>缺点：大量的 <code>Bitmap</code> 持有在内存中并行编码，可能会 <code>OOM</code>，不过我测试 20 张 450 * 600 的图片，暂时没有出现问题。合成的图片要求宽高应该是一样的，当然使用宽高不一致的图片也不会有问题，但是会优先使用第一张的图片的宽高作为 <code>gif</code> 的宽高，出来的图片就有些尴尬，因此图片的转换和处理需要在外面完成。</p>
@@ -725,7 +725,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Giflen-合成"><span class="nav-text">Giflen 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化后的-java-合成"><span class="nav-text">优化后的 java 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单演示"><span class="nav-text">简单演示</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-giflen-合成"><span class="nav-text">使用 giflen 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化后的-java-合成"><span class="nav-text">优化后的 java 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单演示"><span class="nav-text">简单演示</span></a></li></ol></div>
             
 
           </div>

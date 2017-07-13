@@ -1944,19 +1944,18 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
 
       
         
-          <p><strong><a href="http://cdevlab.top/article/3121499733/"><strong>_</strong>查看原文<strong>_</strong></a></strong></p>
-<p>本文介绍在 <code>Android</code> 平台下合成 <code>GIF</code> 的方法，查阅资料的过程中发现大致有两种方案。</p>
-<ol>
-<li><p>使用 <code>giflen</code> (一个 <code>C</code> 的合成 <code>gif</code> 的库) 进行 <code>gif</code> 合成。</p>
-</li>
-<li><p>使用 <code>java</code> 层的 <code>GifEncoder</code>、<code>LZWEncoder</code>、<code>NeuQuant</code> 来进行 <code>gif</code> 合成。</p>
-</li>
-</ol>
-<p>当然二者都是基于 <code>LZW</code> 算法，简单测试的结果是，速度上差不多，由于对 <code>C</code> 不是很擅长，因此我选择了 <code>java</code> 层进行合成的方法，但是两种方法速度上都是 <strong>很慢很慢</strong> 😭。</p>
-<p>因此本文还将会使用多线程独立编码的方法来进行优化，每帧图片并行编码，加快合成速度，现在的成果是 <code>600 * 450</code> 的图片 <code>20</code> 张的话，时间大约在 <code>12s</code> 左右。</p>
-<blockquote>
-<p><strong>本文相关源码在 <a href="https://github.com/chendongMarch/GifMaker" rel="external nofollow noopener noreferrer" target="_blank">GitHub - GifMaker</a></strong></p>
-</blockquote>
+          
+          本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。
+
+
+使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。
+
+使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。
+
+
+
+当然二者
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/article/3121499733/" rel="contents">
