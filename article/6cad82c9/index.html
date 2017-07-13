@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="本文主要总结 RxJava2.x 关于创建操作相关操作符的用法。">
+<meta name="description" content="本文以 Observable 为例，本文主要总结 RxJava2.x 关于 创建 操作相关操作符的用法。">
 <meta name="keywords" content="Android,RxJava2.x,操作符,创建操作符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rxjava2.x开发-4-操作符-创建">
 <meta property="og:url" content="http://cdevlab.top/article/6cad82c9/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本文主要总结 RxJava2.x 关于创建操作相关操作符的用法。">
-<meta property="og:updated_time" content="2017-07-11T03:40:22.000Z">
+<meta property="og:description" content="本文以 Observable 为例，本文主要总结 RxJava2.x 关于 创建 操作相关操作符的用法。">
+<meta property="og:updated_time" content="2017-07-12T00:54:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rxjava2.x开发-4-操作符-创建">
-<meta name="twitter:description" content="本文主要总结 RxJava2.x 关于创建操作相关操作符的用法。">
+<meta name="twitter:description" content="本文以 Observable 为例，本文主要总结 RxJava2.x 关于 创建 操作相关操作符的用法。">
 
 
 
@@ -491,7 +491,7 @@ var _hmt = _hmt || [];
       
 
       
-        <p>本文主要总结 <code>RxJava2.x</code> 关于创建操作相关操作符的用法。</p>
+        <p>本文以 <code>Observable</code> 为例，本文主要总结 <code>RxJava2.x</code> 关于 <strong>创建</strong> 操作相关操作符的用法。</p>
 <a id="more"></a>
 <h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p><code>Create</code> 是最基本的创建操作符，他用来创建一个标准的被观察者，然后恰当的调用观察者的 <code>onNext</code>，<code>onError</code> 和 <code>onCompleted</code> 方法。 一个形式正确的有限 <code>Observable</code> 必须尝试调用观察者的 <code>onCompleted</code> 正好一次或者它的 <code>onError</code> 正好一次，而且此后不能再调用观察者的任何其它方法。</p>
 <p>好的做法是在数据发射之前判断观察者的状态，在没有观察者时不进行事件发送和计算操作。<code>Create</code> 操作符不在任何线程调度器上执行。</p>
@@ -593,8 +593,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/d318b1f4/" rel="next" title="CSS 选择器">
-                <i class="fa fa-chevron-left"></i> CSS 选择器
+              <a href="/article/cc39cbd0/" rel="next" title="Rxjava2.x开发-5-操作符-变换">
+                <i class="fa fa-chevron-left"></i> Rxjava2.x开发-5-操作符-变换
               </a>
             
           </div>
@@ -683,7 +683,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">89</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

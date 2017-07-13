@@ -4,6 +4,78 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/3121499733/</loc>
+    <lastmod>2017-07-13T06:23:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Android平台下合成Gif</title>
+        <pubTime>2016-03-08T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidTips</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/cc39cbd0/</loc>
+    <lastmod>2017-07-12T01:22:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Rxjava2.x开发-5-操作符-变换</title>
+        <pubTime>2017-07-10T07:51:09.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="Library" url="http://cdevlab.top/categories/Android/Library/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/6cad82c9/</loc>
+    <lastmod>2017-07-12T00:54:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Rxjava2.x开发-4-操作符-创建</title>
+        <pubTime>2017-07-10T07:51:09.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="Library" url="http://cdevlab.top/categories/Android/Library/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/684233485/</loc>
     <lastmod>2017-07-11T05:08:26.000Z</lastmod>
     <data>
@@ -11,9 +83,9 @@
         <title>Hexo加密文章示例</title>
         <pubTime>2017-03-01T16:00:00.000Z</pubTime>
         
-        <tag>Hexo</tag>
-         
         <tag>Extensions</tag>
+         
+        <tag>Hexo</tag>
          
          
            
@@ -631,31 +703,6 @@
            
              
               <breadCrumb title="CSS" url="http://cdevlab.top/categories/CSS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/6cad82c9/</loc>
-    <lastmod>2017-07-11T03:40:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>Rxjava2.x开发-4-操作符-创建</title>
-        <pubTime>2017-07-10T07:51:09.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>RxJava2.x</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="Library" url="http://cdevlab.top/categories/Android/Library/"/>
           
         </display>
     </data>
@@ -1446,28 +1493,6 @@
           
              
               <breadCrumb title="todo" url="http://cdevlab.top/categories/Android/todo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3121499733/</loc>
-    <lastmod>2017-07-10T06:27:33.000Z</lastmod>
-    <data>
-        <display>
-        <title>在Android平台下合成Gif</title>
-        <pubTime>2016-03-08T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>AndroidTips</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>

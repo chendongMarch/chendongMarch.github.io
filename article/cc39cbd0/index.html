@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="Android,RxJava2.x,操作符,变换操作符">
 
 
 <script>
@@ -79,15 +79,17 @@
 
 
 
-<meta name="description" content="生命不息，奋斗不止。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="三月">
-<meta property="og:url" content="http://cdevlab.top/tags/Java/index.html">
+<meta name="description" content="本文以 Observable 为例，主要总结 RxJava2.x 关于 变换 操作相关操作符的用法。">
+<meta name="keywords" content="Android,RxJava2.x,操作符,变换操作符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rxjava2.x开发-5-操作符-变换">
+<meta property="og:url" content="http://cdevlab.top/article/cc39cbd0/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="生命不息，奋斗不止。">
+<meta property="og:description" content="本文以 Observable 为例，主要总结 RxJava2.x 关于 变换 操作相关操作符的用法。">
+<meta property="og:updated_time" content="2017-07-12T01:22:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三月">
-<meta name="twitter:description" content="生命不息，奋斗不止。">
+<meta name="twitter:title" content="Rxjava2.x开发-5-操作符-变换">
+<meta name="twitter:description" content="本文以 Observable 为例，主要总结 RxJava2.x 关于 变换 操作相关操作符的用法。">
 
 
 
@@ -115,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://cdevlab.top/tags/Java/">
+  <link rel="canonical" href="http://cdevlab.top/article/cc39cbd0/">
 
 
 
@@ -159,7 +161,7 @@
 
 
 
-  <title>标签: Java | 三月</title>
+  <title>Rxjava2.x开发-5-操作符-变换 | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -216,7 +218,7 @@ var _hmt = _hmt || [];
     
   
 
-  <div class="container sidebar-position-right  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
   <!--- add Fork me on Github  -->
@@ -360,250 +362,236 @@ var _hmt = _hmt || [];
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>Java<small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/2053934834/" itemprop="url">
-              
-                <span itemprop="name">Java 范型</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-07-20T00:00:00+08:00" content="2016-07-20">
-          07-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1637707051/" itemprop="url">
-              
-                <span itemprop="name">汉字转换拼音</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-03-28T00:00:00+08:00" content="2016-03-28">
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1697740661/" itemprop="url">
-              
-                <span itemprop="name">ArrayList源码分析</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-11-15T00:00:00+08:00" content="2015-11-15">
-          11-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1753510098/" itemprop="url">
-              
-                <span itemprop="name">HashMap源码分析</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-11-14T00:00:00+08:00" content="2015-11-14">
-          11-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/837682646/" itemprop="url">
-              
-                <span itemprop="name">JaveIO流之压缩流(zip,Gzip)</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-09-01T00:00:00+08:00" content="2015-09-01">
-          09-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/3556316359/" itemprop="url">
-              
-                <span itemprop="name">DES,AES 加密解密</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-08-15T00:00:00+08:00" content="2015-08-15">
-          08-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1309915903/" itemprop="url">
-              
-                <span itemprop="name">RSA加密解密</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-08-11T00:00:00+08:00" content="2015-08-11">
-          08-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1361585574/" itemprop="url">
-              
-                <span itemprop="name">软件设计原则</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-02-12T00:00:00+08:00" content="2015-02-12">
-          02-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/395850883/" itemprop="url">
-              
-                <span itemprop="name">常见排序及搜索算法总结</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2015-01-01T00:00:00+08:00" content="2015-01-01">
-          01-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/cc39cbd0/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Rxjava2.x开发-5-操作符-变换</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-10T15:51:09+08:00">
+                2017-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Library/" itemprop="url" rel="index">
+                    <span itemprop="name">Library</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/article/cc39cbd0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/cc39cbd0/" class="leancloud_visitors" data-flag-title="Rxjava2.x开发-5-操作符-变换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文以 <code>Observable</code> 为例，主要总结 <code>RxJava2.x</code> 关于 <strong>变换</strong> 操作相关操作符的用法。</p>
+<a id="more"></a>
+<h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><p>收集 <code>Observable</code> 的数据放进一个数据包裹，然后发射这些数据包裹，而不是一次发射一个值。<code>Buffer</code> 操作符将一个 <code>Observable</code> 变换为另一个，原来的<code>Observable</code> 正常发射数据，变换产生的 <code>Observable</code> 发射这些数据的缓存集合。 </p>
+<p>注意：如果原来的 <code>Observable</code> 发射了一个 <code>onError</code> 通知，<code>Buffer</code> 会立即传递这个通知，而不是首先发射缓存的数据，即使在这之前缓存中包含了原始<code>Observable</code> 发射的数据。</p>
+<p>我们创建一个 <code>Observable</code> 用来发送 0 ～ 49 的50个整数值，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">List&lt;Integer&gt; integers = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</div><div class="line">    integers.add(i);</div><div class="line">&#125;</div><div class="line">Observable&lt;Integer&gt; observable = Observable.fromIterable(integers);</div></pre></td></tr></table></figure>
+<h3 id="buffer-count-skip-bufferSupplier"><a href="#buffer-count-skip-bufferSupplier" class="headerlink" title="buffer(count[,skip][,bufferSupplier])"></a>buffer(count[,skip][,bufferSupplier])</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">observable</div><div class="line">        .buffer(<span class="number">10</span>)</div><div class="line">        .subscribe(<span class="keyword">new</span> MyObserver&lt;List&lt;Integer&gt;&gt;(<span class="string">"buffer1"</span>));</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/cc39cbd0/" title="Rxjava2.x开发-5-操作符-变换">http://cdevlab.top/article/cc39cbd0/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/RxJava2-x/" rel="tag"># RxJava2.x</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/d318b1f4/" rel="next" title="CSS 选择器">
+                <i class="fa fa-chevron-left"></i> CSS 选择器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/6cad82c9/" rel="prev" title="Rxjava2.x开发-4-操作符-创建">
+                Rxjava2.x开发-4-操作符-创建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -611,6 +599,12 @@ var _hmt = _hmt || [];
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -630,8 +624,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -720,6 +723,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Buffer"><span class="nav-text">Buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#buffer-count-skip-bufferSupplier"><span class="nav-text">buffer(count[,skip][,bufferSupplier])</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -833,10 +852,10 @@ var _hmt = _hmt || [];
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 

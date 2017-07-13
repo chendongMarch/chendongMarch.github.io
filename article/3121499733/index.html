@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="最近在做合成 gif 的工作，在网上搜到了很多资料，总结一下，总共找到了两种方法，分别是使用 jni 和 java 算法实现。测试表明 java 算法比 so 文件更快，大约快两倍。 java算法合成 Java算法源代码  网上流传很广的就是下面在java中的算法，修改了一些bug    AnimatedGifEncoder.java LZWEncoder.java NeuQuant.java">
+<meta name="description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 java">
 <meta name="keywords" content="Android,GIF合成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Android平台下合成Gif">
 <meta property="og:url" content="http://cdevlab.top/article/3121499733/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="最近在做合成 gif 的工作，在网上搜到了很多资料，总结一下，总共找到了两种方法，分别是使用 jni 和 java 算法实现。测试表明 java 算法比 so 文件更快，大约快两倍。 java算法合成 Java算法源代码  网上流传很广的就是下面在java中的算法，修改了一些bug    AnimatedGifEncoder.java LZWEncoder.java NeuQuant.java">
-<meta property="og:updated_time" content="2017-07-10T06:27:33.000Z">
+<meta property="og:description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 java">
+<meta property="og:updated_time" content="2017-07-13T06:23:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Android平台下合成Gif">
-<meta name="twitter:description" content="最近在做合成 gif 的工作，在网上搜到了很多资料，总结一下，总共找到了两种方法，分别是使用 jni 和 java 算法实现。测试表明 java 算法比 so 文件更快，大约快两倍。 java算法合成 Java算法源代码  网上流传很广的就是下面在java中的算法，修改了一些bug    AnimatedGifEncoder.java LZWEncoder.java NeuQuant.java">
+<meta name="twitter:description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 java">
 
 
 
@@ -480,47 +480,26 @@ var _hmt = _hmt || [];
       
 
       
-        <p>最近在做合成 <code>gif</code> 的工作，在网上搜到了很多资料，总结一下，总共找到了两种方法，分别是使用 <code>jni</code> 和 <code>java</code> 算法实现。测试表明 <code>java</code> 算法比 <code>so</code> 文件更快，大约快两倍。</p>
-<h2 id="java算法合成"><a href="#java算法合成" class="headerlink" title="java算法合成"></a>java算法合成</h2><ul>
-<li><p><a href="https://github.com/chendongMarch/cdlibs/tree/master/src/main/java/com/march/libs/gif" rel="external nofollow noopener noreferrer" target="_blank">Java算法源代码</a></p>
-</li>
-<li><p>网上流传很广的就是下面在java中的算法，修改了一些bug</p>
-</li>
-</ul>
+        <p>本文介绍在 <code>Android</code> 平台下合成 <code>GIF</code> 的方法，查阅资料的过程中发现大致有两种方案。</p>
 <ol>
-<li>AnimatedGifEncoder.java</li>
-<li>LZWEncoder.java</li>
-<li>NeuQuant.java</li>
+<li><p>使用 <code>giflen</code> (一个 <code>C</code> 的合成 <code>gif</code> 的库) 进行 <code>gif</code> 合成。</p>
+</li>
+<li><p>使用 <code>java</code> 层的 <code>GifEncoder</code>、<code>LZWEncoder</code>、<code>NeuQuant</code> 来进行 <code>gif</code> 合成。</p>
+</li>
 </ol>
-<h2 id="C算法"><a href="#C算法" class="headerlink" title="C算法"></a>C算法</h2><ul>
-<li><p><a href="http://download.csdn.net/detail/chendong_/9457106" rel="external nofollow noopener noreferrer" target="_blank">C的源代码</a></p>
-</li>
-<li><p>网上有很多关于gifflen合成gif的文章 可以很轻松的get到C源代码，但是需要ndk进行编译 当然也可以用现成的so文件，但是需要将utils类建立在指定包下</p>
-</li>
-</ul>
-<h2 id="一份合成好的so文件"><a href="#一份合成好的so文件" class="headerlink" title="一份合成好的so文件"></a>一份合成好的so文件</h2><ul>
-<li><p><a href="http://download.csdn.net/detail/chendong_/9457110" rel="external nofollow noopener noreferrer" target="_blank">so文件</a></p>
-</li>
-<li><p>加载so文件时需要将jni接口写在指定的包下，目前com.xingye.gif</p>
-</li>
-</ul>
-<h2 id="合成好的jar文件"><a href="#合成好的jar文件" class="headerlink" title="合成好的jar文件"></a>合成好的jar文件</h2><ul>
-<li><p><a href="http://download.csdn.net/detail/chendong_/9457110" rel="external nofollow noopener noreferrer" target="_blank">jar文件下载</a></p>
-</li>
-<li><p>结合so文件可以直接使用，不需要自己建包</p>
-</li>
-</ul>
-<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><ul>
-<li><a href="https://github.com/chendongMarch/cdlibs/blob/master/src/main/java/com/march/libs/utils/GifUtils.java" rel="external nofollow noopener noreferrer" target="_blank">详见该类</a></li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>java的库很简单，有那几个合成的类，定制一个工具类就好了，C的库比较繁琐，虽然效率还没有java快，总结一下就是</li>
-</ul>
-<ol>
-<li>自己用C代码合成so  </li>
-<li>用我合成的so,但是你需要按照编译好的con.xingye.gif包下的GifUtil 来执行代码  </li>
-<li>更简单，jar文件已经打包好，集成so文件和jar文件，编译可以使用,就是自定义不方便了。</li>
-</ol>
+<p>当然二者都是基于 <code>LZW</code> 算法，简单测试的结果是，速度上差不多，由于对 <code>C</code> 不是很擅长，因此我选择了 <code>java</code> 层进行合成的方法，但是两种方法速度上都是 <strong>很慢很慢</strong> 😭。</p>
+<p>因此本文还将会使用多线程独立编码的方法来进行优化，每帧图片并行编码，加快合成速度，现在的成果是 <code>600 * 450</code> 的图片 <code>20</code> 张的话，时间大约在 <code>12s</code> 左右。</p>
+<blockquote>
+<p><strong>本文相关源码在 <a href="https://github.com/chendongMarch/GifMaker" rel="external nofollow noopener noreferrer" target="_blank">GitHub - GifMaker</a></strong></p>
+</blockquote>
+<a id="more"></a>
+<h2 id="giflen"><a href="#giflen" class="headerlink" title="giflen"></a>giflen</h2><p>使用 <code>jni</code> 合成，感兴趣的同学可以 <code>google</code> 一下 <code>giflen</code> 这个库，这里有一个编译好的 <code>so</code> 和 <code>jar</code> 文件，以及相关 <code>C</code> 源码，备份在 <a href="https://github.com/chendongMarch/GifMaker/tree/master/backup/giflen" rel="external nofollow noopener noreferrer" target="_blank">GitHub</a> 上，有需要的同学可以直接下载使用。经过我的简单尝试发现，使用 <code>so</code> 合成的速度和 <code>java</code> 合成的速度差不多，都是慢的要死…</p>
+<h2 id="优化后的-java-合成"><a href="#优化后的-java-合成" class="headerlink" title="优化后的 java 合成"></a>优化后的 java 合成</h2><p>原始的合成方法，真的慢…特别慢，简直不能忍。</p>
+<p>原始的合成方法是将每一个 <code>Bitmap</code> 使用 <code>LZWEncoder</code> 进行编码，由于是一个串行的逻辑，后面的图片需要等待前面的编码完成才可以继续下一张编码，优化后的逻辑是启动一个线程池，每张图片独立编码，最后在所有图片编码完成之后输出流合并，输出到文件中，就完成了 <code>gif</code> 的合成。</p>
+<p>缺点：大量的 <code>Bitmap</code> 持有在内存中并行编码，可能会 <code>OOM</code>，不过我测试 20 张 450 * 600 的图片，暂时没有出现问题。合成的图片要求宽高应该是一样的，当然使用宽高不一致的图片也不会有问题，但是会优先使用第一张的图片的宽高作为 <code>gif</code> 的宽高，出来的图片就有些尴尬，因此图片的转换和处理需要在外面完成。</p>
+<h2 id="简单演示"><a href="#简单演示" class="headerlink" title="简单演示"></a>简单演示</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">composeGif</span><span class="params">(List&lt;Bitmap&gt; bitmaps)</span> </span>&#123;</div><div class="line">    String absolutePath = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory()</div><div class="line">            , System.currentTimeMillis() + <span class="string">".gif"</span>).getAbsolutePath();</div><div class="line">    <span class="keyword">new</span> GifMaker(<span class="number">100</span>, mExecutorService)</div><div class="line">            .makeGifInThread(bitmaps, absolutePath, <span class="keyword">new</span> GifMaker.OnGifMakerListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMakeGifSucceed</span><span class="params">(String outPath)</span> </span>&#123;</div><div class="line">                    <span class="keyword">if</span> (!isFinishing()) &#123;</div><div class="line">                        GlideUtils.with(mActivity, outPath).into(mImageView);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看一下输出的结果，20 张大约维持在 12s 左右</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">I/GifMaker: 完成第<span class="number">10</span>帧,耗时:<span class="number">9.594</span> s - bitmap [<span class="number">600</span>,<span class="number">450</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">11</span>帧,耗时:<span class="number">9.774</span> s - bitmap [<span class="number">600</span>,<span class="number">450</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">18</span>帧,耗时:<span class="number">9.880</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">9</span>帧,耗时:<span class="number">10.41</span> s - bitmap [<span class="number">600</span>,<span class="number">450</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">17</span>帧,耗时:<span class="number">10.145</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">16</span>帧,耗时:<span class="number">10.331</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">6</span>帧,耗时:<span class="number">10.586</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">5</span>帧,耗时:<span class="number">10.557</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">8</span>帧,耗时:<span class="number">10.701</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">15</span>帧,耗时:<span class="number">10.715</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">4</span>帧,耗时:<span class="number">10.736</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">1</span>帧,耗时:<span class="number">10.835</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">19</span>帧,耗时:<span class="number">10.842</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">13</span>帧,耗时:<span class="number">10.940</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">0</span>帧,耗时:<span class="number">10.944</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">14</span>帧,耗时:<span class="number">10.967</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">3</span>帧,耗时:<span class="number">10.989</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">12</span>帧,耗时:<span class="number">10.994</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">2</span>帧,耗时:<span class="number">10.994</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 完成第<span class="number">7</span>帧,耗时:<span class="number">11.148</span> s - bitmap [<span class="number">450</span>,<span class="number">600</span>]</div><div class="line">I/GifMaker: 合成完成,耗时:<span class="number">11.167</span> s</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -580,8 +559,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/2414640248/" rel="next" title="ListView Adapter 4">
-                <i class="fa fa-chevron-left"></i> ListView Adapter 4
+              <a href="/article/4013192295/" rel="next" title="Android物理按键及物理连接">
+                <i class="fa fa-chevron-left"></i> Android物理按键及物理连接
               </a>
             
           </div>
@@ -590,8 +569,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/3189961703/" rel="prev" title="将自己写的库发布到Jcenter">
-                将自己写的库发布到Jcenter <i class="fa fa-chevron-right"></i>
+              <a href="/article/2414640248/" rel="prev" title="ListView Adapter 4">
+                ListView Adapter 4 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -670,7 +649,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">89</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -756,7 +735,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java算法合成"><span class="nav-text">java算法合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C算法"><span class="nav-text">C算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一份合成好的so文件"><span class="nav-text">一份合成好的so文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合成好的jar文件"><span class="nav-text">合成好的jar文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub"><span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#giflen"><span class="nav-text">giflen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化后的-java-合成"><span class="nav-text">优化后的 java 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单演示"><span class="nav-text">简单演示</span></a></li></ol></div>
             
 
           </div>
