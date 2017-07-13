@@ -86,7 +86,7 @@
 <meta property="og:url" content="http://cdevlab.top/article/3121499733/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 java">
-<meta property="og:updated_time" content="2017-07-13T06:23:07.000Z">
+<meta property="og:updated_time" content="2017-07-13T06:35:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Android平台下合成Gif">
 <meta name="twitter:description" content="本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。  使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。  使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。   当然二者都是基于 LZW 算法，简单测试的结果是，速度上差不多，由于对 C 不是很擅长，因此我选择了 java">
@@ -139,11 +139,12 @@
          box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
       }
       .pace .pace-activity {
-        border-top-color: #0000;    /*上边框颜色*/
-        border-left-color: #0000;    /*左边框颜色*/
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
       }
 
-    @media (min-width: 768px){
+    @media screen and (min-width: 800px) {
       .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
@@ -152,8 +153,8 @@
          box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
       }
       .pace .pace-activity {
-        border-top-color: #f2f2f2;    /*上边框颜色*/
-        border-left-color: #f2f2f2;    /*左边框颜色*/
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
       }
     }
  
@@ -437,16 +438,6 @@ var _hmt = _hmt || [];
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a class="cloud-tie-join-count" href="/article/3121499733/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -493,7 +484,7 @@ var _hmt = _hmt || [];
 <p><strong>本文相关源码在 <a href="https://github.com/chendongMarch/GifMaker" rel="external nofollow noopener noreferrer" target="_blank">GitHub - GifMaker</a></strong></p>
 </blockquote>
 <a id="more"></a>
-<h2 id="giflen"><a href="#giflen" class="headerlink" title="giflen"></a>giflen</h2><p>使用 <code>jni</code> 合成，感兴趣的同学可以 <code>google</code> 一下 <code>giflen</code> 这个库，这里有一个编译好的 <code>so</code> 和 <code>jar</code> 文件，以及相关 <code>C</code> 源码，备份在 <a href="https://github.com/chendongMarch/GifMaker/tree/master/backup/giflen" rel="external nofollow noopener noreferrer" target="_blank">GitHub</a> 上，有需要的同学可以直接下载使用。经过我的简单尝试发现，使用 <code>so</code> 合成的速度和 <code>java</code> 合成的速度差不多，都是慢的要死…</p>
+<h2 id="Giflen-合成"><a href="#Giflen-合成" class="headerlink" title="Giflen 合成"></a>Giflen 合成</h2><p>使用 <code>jni</code> 合成，感兴趣的同学可以 <code>google</code> 一下 <code>giflen</code> 这个库，这里有一个编译好的 <code>so</code> 和 <code>jar</code> 文件，以及相关 <code>C</code> 源码，备份在 <a href="https://github.com/chendongMarch/GifMaker/tree/master/backup/giflen" rel="external nofollow noopener noreferrer" target="_blank">GitHub</a> 上，有需要的同学可以直接下载使用。经过我的简单尝试发现，使用 <code>so</code> 合成的速度和 <code>java</code> 合成的速度差不多，都是慢的要死…</p>
 <h2 id="优化后的-java-合成"><a href="#优化后的-java-合成" class="headerlink" title="优化后的 java 合成"></a>优化后的 java 合成</h2><p>原始的合成方法，真的慢…特别慢，简直不能忍。</p>
 <p>原始的合成方法是将每一个 <code>Bitmap</code> 使用 <code>LZWEncoder</code> 进行编码，由于是一个串行的逻辑，后面的图片需要等待前面的编码完成才可以继续下一张编码，优化后的逻辑是启动一个线程池，每张图片独立编码，最后在所有图片编码完成之后输出流合并，输出到文件中，就完成了 <code>gif</code> 的合成。</p>
 <p>缺点：大量的 <code>Bitmap</code> 持有在内存中并行编码，可能会 <code>OOM</code>，不过我测试 20 张 450 * 600 的图片，暂时没有出现问题。合成的图片要求宽高应该是一样的，当然使用宽高不一致的图片也不会有问题，但是会优先使用第一张的图片的宽高作为 <code>gif</code> 的宽高，出来的图片就有些尴尬，因此图片的转换和处理需要在外面完成。</p>
@@ -559,8 +550,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/4013192295/" rel="next" title="Android物理按键及物理连接">
-                <i class="fa fa-chevron-left"></i> Android物理按键及物理连接
+              <a href="/article/2414640248/" rel="next" title="ListView Adapter 4">
+                <i class="fa fa-chevron-left"></i> ListView Adapter 4
               </a>
             
           </div>
@@ -569,8 +560,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2414640248/" rel="prev" title="ListView Adapter 4">
-                ListView Adapter 4 <i class="fa fa-chevron-right"></i>
+              <a href="/article/2091453987/" rel="prev" title="将自己写的库发布到 JitPack">
+                将自己写的库发布到 JitPack <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -602,8 +593,6 @@ var _hmt = _hmt || [];
 
           
   <div class="comments" id="comments">
-    
-      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -735,7 +724,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#giflen"><span class="nav-text">giflen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化后的-java-合成"><span class="nav-text">优化后的 java 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单演示"><span class="nav-text">简单演示</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Giflen-合成"><span class="nav-text">Giflen 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化后的-java-合成"><span class="nav-text">优化后的 java 合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单演示"><span class="nav-text">简单演示</span></a></li></ol></div>
             
 
           </div>
@@ -881,21 +870,18 @@ var _hmt = _hmt || [];
 
 
   
-    
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "6b7f5b4b24ef4236866bde764daab452",
-        target: "cloud-tie-wrapper"
-      };
-    </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
   
 
 
 
 
+
+  
 
 
 
