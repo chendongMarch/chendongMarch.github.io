@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/3518734228/</loc>
+    <lastmod>2017-07-15T04:48:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>WebView</title>
+        <pubTime>2017-06-26T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/3121499733/</loc>
     <lastmod>2017-07-13T13:00:02.000Z</lastmod>
     <data>
@@ -1210,31 +1235,6 @@
         <display>
         <title>v4v7 新控件</title>
         <pubTime>2015-03-02T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3518734228/</loc>
-    <lastmod>2017-07-10T06:36:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>WebView</title>
-        <pubTime>2017-06-26T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
