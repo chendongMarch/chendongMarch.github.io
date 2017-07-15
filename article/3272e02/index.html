@@ -1,0 +1,1415 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,Contribute,">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍 Android 轻量级路由方案 的实现过程； 什么是路由协议？路由协议就是约定一套路径解析的规则，然后大家都遵循这个规则来进行页面跳转，从而达到动态和解耦的目的。 路由的存在有什么意义？  多模块，组件化，插件化开发时，使用路由进行解耦，组件之间遵循约定好的路由协议进行跳转，不再需要互相依赖。  混合开发时，Web 端使用约定好的路由路径，可以方便跳转 app 内各个页面并进行参数传">
+<meta name="keywords" content="Android,Contribute">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 超轻量级路由方案">
+<meta property="og:url" content="http://cdevlab.top/article/3272e02/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文主要介绍 Android 轻量级路由方案 的实现过程； 什么是路由协议？路由协议就是约定一套路径解析的规则，然后大家都遵循这个规则来进行页面跳转，从而达到动态和解耦的目的。 路由的存在有什么意义？  多模块，组件化，插件化开发时，使用路由进行解耦，组件之间遵循约定好的路由协议进行跳转，不再需要互相依赖。  混合开发时，Web 端使用约定好的路由路径，可以方便跳转 app 内各个页面并进行参数传">
+<meta property="og:updated_time" content="2017-07-15T12:39:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 超轻量级路由方案">
+<meta name="twitter:description" content="本文主要介绍 Android 轻量级路由方案 的实现过程； 什么是路由协议？路由协议就是约定一套路径解析的规则，然后大家都遵循这个规则来进行页面跳转，从而达到动态和解耦的目的。 路由的存在有什么意义？  多模块，组件化，插件化开发时，使用路由进行解耦，组件之间遵循约定好的路由协议进行跳转，不再需要互相依赖。  混合开发时，Web 端使用约定好的路由路径，可以方便跳转 app 内各个页面并进行参数传">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/3272e02/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Android 超轻量级路由方案 | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    <div class="forkme">
+   <a target="_blank" href="https://github.com/chendongMarch" rel="external nofollow noopener noreferrer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    </div>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3272e02/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Android 超轻量级路由方案</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-15T00:00:00+08:00">
+                2017-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/3272e02/" class="leancloud_visitors" data-flag-title="Android 超轻量级路由方案">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍 <strong>Android 轻量级路由方案</strong> 的实现过程；</p>
+<p>什么是路由协议？路由协议就是约定一套路径解析的规则，然后大家都遵循这个规则来进行页面跳转，从而达到动态和解耦的目的。</p>
+<p>路由的存在有什么意义？</p>
+<ul>
+<li><p>多模块，组件化，插件化开发时，使用路由进行解耦，组件之间遵循约定好的路由协议进行跳转，不再需要互相依赖。</p>
+</li>
+<li><p>混合开发时，<code>Web</code> 端使用约定好的路由路径，可以方便跳转 <code>app</code> 内各个页面并进行参数传递。</p>
+</li>
+</ul>
+<a id="more"></a>
+<p>在 <code>GitHub</code> 上已经有很多相当成熟的路由框架，他们支持编译时注解路径，支持隐式跳转，支持跳转到 <code>Fragment</code>，支持自定义解析等等… 可以说非常强大了。。</p>
+<p>那我为啥还要自己写？主要还是因为，我们要知其然(知道轮子怎么用)，知其所以然(知道轮子怎么造)。另外虽然我写的功能不如那些框架强大，但是也更轻量，完成路由的生成、解析和跳转，大约只有 300 行代码，用来完成简单的路由需求也是不错的选择。</p>
+<p>我并没有给这个功能单独创建一个工程，因为他太轻量了，我把他集成在了我常用开发库中，本文相关的源代码可以在 <strong><a href="https://github.com/chendongMarch/DevKitSample/tree/master/devKit/src/main/java/com/march/dev/router" rel="external nofollow noopener noreferrer" target="_blank">GitHub-DevKitSample</a></strong> 中查看。</p>
+<p>总的来说这个路由方案的核心的原理就是对路径进行解析，然后生成 <code>intent</code>，设置参数，进行页面跳转，同时又要支持使用参数，配置生成跳转的路由路径，感谢强大的 <code>Uri</code>，简化了我很多解析的过程。</p>
+<h2 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h2><p>一个路由路径应该有 <code>Scheme</code>、<code>Authority</code>、<code>Path</code>、<code>QueryParam</code> 几部分组成，他们以下面的形式组装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Scheme://Authority/Path?QueryParam</div></pre></td></tr></table></figure>
+<p>比如下面的 <code>https</code> 协议的路径，<code>Scheme</code> 就是 <code>https</code>，<code>Authority</code> 就是 <code>www.baidu.com</code>，<code>Path</code> 就是 <code>test/list</code>，<code>QueryParam</code> 以 <code>key=value</code> 的形式表现，如 <code>id=100</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://www.baidu.com/test/list?id=100&amp;key=value</div></pre></td></tr></table></figure>
+<p>因此我们可以定制自己的协议，作为应用内跳转的解析方式，比如定义下面的协议：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chendong://test.march.com/page/1?id=100</div></pre></td></tr></table></figure>
+<h2 id="定制协议"><a href="#定制协议" class="headerlink" title="定制协议"></a>定制协议</h2><p>我们在 <code>Android</code> 中进行数据传递时需要知道参数的类型，而这些仅仅靠字符串的路径是无法表达的，因此我们需要对 <code>QueryParam</code> 的声明形式进行如下约定，在 <code>QueryParam</code> 的 <code>key</code> 中需要表达数据的类型。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">int</th>
+<th style="text-align:left">long</th>
+<th style="text-align:left">boolean</th>
+<th style="text-align:left">float</th>
+<th style="text-align:left">double</th>
+<th style="text-align:left">String</th>
+<th style="text-align:left">Object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">i-key</td>
+<td style="text-align:left">l-key</td>
+<td style="text-align:left">b-key</td>
+<td style="text-align:left">f-key</td>
+<td style="text-align:left">d-key</td>
+<td style="text-align:left">s-key</td>
+<td style="text-align:left">o-key</td>
+</tr>
+</tbody>
+</table>
+<p>那么我们就会有如下的一个路径，参数仍然是 <code>key-value</code> 的形式，只不过 <code>key</code> 的写法我们是有约定要求的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chendong:<span class="comment">//testJs.march.com/page/1?i-iKey=10&amp;f-fKey=1.25&amp;l-lKey=10000000000&amp;d-dKey=1.23456789&amp;b-bKey=true&amp;s-sKey=test</span></div></pre></td></tr></table></figure>
+<p>当路径为 <code>/page/pageId</code> 这种路径时表示是一个页面跳转，其中 <code>pageId</code> 为页面的唯一标示，至于 <code>pageId</code> 和页面的唯一映射，需要提前配置起来，我们会存储以下两个映射 <code>map</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 存储 pageId - Activity.class 的映射</span></div><div class="line"><span class="keyword">private</span> Map&lt;Integer,Class&gt;  pageMap  = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line"><span class="comment">// 存储 Activity.class - pageId 的映射</span></div><div class="line"><span class="keyword">private</span> Map&lt;Class, Integer&gt; classMap = <span class="keyword">new</span> HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
+<h2 id="解析-pageId"><a href="#解析-pageId" class="headerlink" title="解析 pageId"></a>解析 pageId</h2><p>首先将路径转换为 <code>Uri</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Uri uri = Uri.parse(url);</div></pre></td></tr></table></figure>
+<p>接下来我们需要进行 <code>pageId</code> 的解析，我们只有获取到 <code>pageId</code> 才能确认跳转的是哪个页面，使用正则来进行解析。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 解析 pageId</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">parsePageId</span><span class="params">(Uri uri)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> pageId = -<span class="number">1</span>;</div><div class="line">    String path = uri.getPath();</div><div class="line">    <span class="keyword">if</span> (path.startsWith(PATH_PAGE)) &#123;</div><div class="line">        Pattern compile = Pattern.compile(<span class="string">"/page/([0-9]*$)"</span>);</div><div class="line">        Matcher matcher = compile.matcher(path);</div><div class="line">        <span class="keyword">if</span> (matcher.find()) &#123;</div><div class="line">            pageId = Integer.parseInt(matcher.group(<span class="number">1</span>));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> pageId;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 根据映射拿到跳转界面的 class</span></div><div class="line">Class pageCls = sRouterConfig.pageMap.get(parsePageId(uri));</div></pre></td></tr></table></figure>
+<h2 id="解析传递的参数"><a href="#解析传递的参数" class="headerlink" title="解析传递的参数"></a>解析传递的参数</h2><p>声明以下几种数据类型的标示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TYPE_I = <span class="string">"i"</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TYPE_L = <span class="string">"l"</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TYPE_B = <span class="string">"b"</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TYPE_F = <span class="string">"f"</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TYPE_D = <span class="string">"d"</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TYPE_S = <span class="string">"s"</span>;</div></pre></td></tr></table></figure>
+<p>定义一个数据类型，除了存储 <code>key-value</code>，我们还需要将数据的类型分离出来存储</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Param</span> </span>&#123;</div><div class="line">    String type; <span class="comment">// 类型，i,l,b,f,d,s</span></div><div class="line">    String key; </div><div class="line">    String value;</div><div class="line">    Param(String type, String key, String value) &#123;</div><div class="line">        <span class="keyword">this</span>.type = type;</div><div class="line">        <span class="keyword">this</span>.key = key;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>解析参数，使用 <code>Uri</code> 的几个 <code>api</code> 和简单的正则，将 <code>type</code>，<code>key</code>，<code>value</code> 三部分分离出来存储起来，so easy ~</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 解析参数</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;Param&gt; <span class="title">parseParams</span><span class="params">(Uri uri)</span> </span>&#123;</div><div class="line">    Set&lt;String&gt; keySets = uri.getQueryParameterNames();</div><div class="line">    List&lt;Param&gt; params = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    Param param;</div><div class="line">    Pattern compile = Pattern.compile(<span class="string">"(\\b[ilbfds])-(.*)"</span>);</div><div class="line">    <span class="keyword">for</span> (String queryKey : keySets) &#123;</div><div class="line">        String queryValue = uri.getQueryParameter(queryKey);</div><div class="line">        Matcher matcher = compile.matcher(queryKey);</div><div class="line">        <span class="keyword">if</span> (matcher.find()) &#123;</div><div class="line">            String type = matcher.group(<span class="number">1</span>);</div><div class="line">            String key = matcher.group(<span class="number">2</span>);</div><div class="line">            <span class="keyword">if</span> (!TextUtils.isEmpty(type) &amp;&amp; !TextUtils.isEmpty(key)) &#123;</div><div class="line">                param = <span class="keyword">new</span> Param(type, key, queryValue);</div><div class="line">                params.add(param);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> params;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="构建跳转的-intent"><a href="#构建跳转的-intent" class="headerlink" title="构建跳转的 intent"></a>构建跳转的 intent</h2><p>我们已经拿到了想要跳转的界面，直接创建跳转的 <code>intent</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// find class</span></div><div class="line">Class pageCls = sRouterConfig.pageMap.get(parsePageId(uri));</div><div class="line">Intent intent = <span class="keyword">new</span> Intent(context, pageCls);</div></pre></td></tr></table></figure>
+<p>向 <code>intent</code> 中添加传递的参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// parse params</span></div><div class="line">List&lt;Param&gt; params = parseParams(uri);</div><div class="line"><span class="keyword">for</span> (Param param : params) &#123;</div><div class="line">    putExtra(intent, param);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 向 intent 根据类型输入参数</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">putExtra</span><span class="params">(Intent intent, Param param)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (param.type) &#123;</div><div class="line">        <span class="keyword">case</span> TYPE_I:</div><div class="line">            intent.putExtra(param.key, Integer.parseInt(param.value));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> TYPE_L:</div><div class="line">            intent.putExtra(param.key, Long.parseLong(param.value));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> TYPE_B:</div><div class="line">            intent.putExtra(param.key, Boolean.parseBoolean(param.value));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> TYPE_F:</div><div class="line">            intent.putExtra(param.key, Float.parseFloat(param.value));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> TYPE_D:</div><div class="line">            intent.putExtra(param.key, Double.parseDouble(param.value));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> TYPE_S:</div><div class="line">            intent.putExtra(param.key, param.value);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>进行页面跳转，兼容了一下 <code>startActivityForResult()</code> 的情况。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 启动 activity</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">startActivity</span><span class="params">(Context context, <span class="keyword">int</span> reqCode, Class pageCls, List&lt;Param&gt; params)</span> </span></div><div class="line">    Intent intent = <span class="keyword">new</span> Intent(context, pageCls);</div><div class="line">    <span class="keyword">for</span> (Param param : params) &#123;</div><div class="line">        putExtra(intent, param);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (reqCode == -<span class="number">1</span>) &#123;</div><div class="line">        context.startActivity(intent);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (context <span class="keyword">instanceof</span> Activity) &#123;</div><div class="line">        ((Activity) context).startActivityForResult(intent, reqCode);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        context.startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>展示一下完整的流程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">goFrom</span><span class="params">(Context context, String url, <span class="keyword">int</span> reqCode)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        Uri uri = Uri.parse(url);</div><div class="line">        <span class="keyword">if</span> (checkSchemeAuthority(uri))</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        <span class="comment">// find class</span></div><div class="line">        Class pageCls = sRouterConfig.pageMap.get(parsePageId(uri));</div><div class="line">        <span class="keyword">if</span> (pageCls == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// parse params</span></div><div class="line">        List&lt;Param&gt; params = parseParams(uri);</div><div class="line">        startActivity(context, reqCode, pageCls, params);</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="生成跳转的路由路径"><a href="#生成跳转的路由路径" class="headerlink" title="生成跳转的路由路径"></a>生成跳转的路由路径</h2><p>我们支持使用路由路径跳转的同时，也要支持配置参数生成跳转的路由路径。同样借助 <code>Uri</code> 的相关 <code>api</code>，这个操作并不困难。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// url 构建器</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">RouterUrlBuilder</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Uri.Builder uriBuilder;</div><div class="line">    </div><div class="line">    RouterUrlBuilder(String scheme, String authority, <span class="keyword">int</span> pageId) &#123;</div><div class="line">        uriBuilder = <span class="keyword">new</span> Uri.Builder()</div><div class="line">                .scheme(scheme)</div><div class="line">                .authority(authority)</div><div class="line">                .path(PATH_PAGE + pageId);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> RouterUrlBuilder <span class="title">put</span><span class="params">(String key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        uriBuilder.appendQueryParameter(TYPE_I + SEPARATOR + key, String.valueOf(value));</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> RouterUrlBuilder <span class="title">put</span><span class="params">(String key, <span class="keyword">long</span> value)</span> </span>&#123;</div><div class="line">        uriBuilder.appendQueryParameter(TYPE_L + SEPARATOR + key, String.valueOf(value));</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> RouterUrlBuilder <span class="title">put</span><span class="params">(String key, <span class="keyword">boolean</span> value)</span> </span>&#123;</div><div class="line">        uriBuilder.appendQueryParameter(TYPE_B + SEPARATOR + key, String.valueOf(value));</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> RouterUrlBuilder <span class="title">put</span><span class="params">(String key, <span class="keyword">float</span> value)</span> </span>&#123;</div><div class="line">        uriBuilder.appendQueryParameter(TYPE_F + SEPARATOR + key, String.valueOf(value));</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> RouterUrlBuilder <span class="title">put</span><span class="params">(String key, <span class="keyword">double</span> value)</span> </span>&#123;</div><div class="line">        uriBuilder.appendQueryParameter(TYPE_D + SEPARATOR + key, String.valueOf(value));</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> RouterUrlBuilder <span class="title">put</span><span class="params">(String key, String value)</span> </span>&#123;</div><div class="line">        uriBuilder.appendQueryParameter(TYPE_S + SEPARATOR + key, value);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> uriBuilder.build().toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们需要使用 <code>Router</code> 中配置的 <code>Scheme</code>、<code>Authority</code> 和页面映射。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RouterUrlBuilder <span class="title">newRouterUrlBuilder</span><span class="params">(Class targetActivity)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (sRouterConfig == <span class="keyword">null</span> || !sRouterConfig.isSchemeAndAuthoritySet()) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"set scheme and authority first"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RouterUrlBuilder(sRouterConfig.scheme, sRouterConfig.authority,</div><div class="line">            sRouterConfig.classMap.get(targetActivity));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后我们可以这样配置传递的参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String url = Router.newRouterUrlBuilder(HomeActivity.class)</div><div class="line">        .put(<span class="string">"iKey"</span>, <span class="number">10</span>)</div><div class="line">        .put(<span class="string">"sKey1"</span>, <span class="string">"ss=ss"</span>)</div><div class="line">        .put(<span class="string">"sKey2"</span>, <span class="string">"ss=s&amp;s"</span>)</div><div class="line">        .put(<span class="string">"sKey3"</span>, <span class="string">"ss&amp;ss"</span>)</div><div class="line">        .build();</div></pre></td></tr></table></figure>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>配置 <code>Scheme</code>、<code>Authority</code> 和页面映射</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Router.RouterConfig(<span class="string">"chendong"</span>, <span class="string">"testJs.march.com"</span>)</div><div class="line">        .add(<span class="number">1</span>, JBTestActivity.class)</div><div class="line">        .add(<span class="number">2</span>, HomeActivity.class)</div><div class="line">        .apply();</div></pre></td></tr></table></figure>
+<p>根据路径跳转</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String url = <span class="string">"chendong://testJs.march.com/page/1?i-iKey=10&amp;f-fKey=1.25&amp;l-lKey=10000000000&amp;d-dKey=1.23456789&amp;b-bKey=true&amp;s-sKey=test"</span>;</div><div class="line">Router.goFrom(mActivity, url);</div></pre></td></tr></table></figure>
+<p>生成路由路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String jumpUrl = Router.newRouterUrlBuilder(HomeActivity.class)s</div><div class="line">        .put(<span class="string">"iKey"</span>, <span class="number">10</span>)</div><div class="line">        .put(<span class="string">"sKey1"</span>, <span class="string">"ss=ss"</span>)</div><div class="line">        .put(<span class="string">"sKey2"</span>, <span class="string">"ss=s&amp;s"</span>)</div><div class="line">        .put(<span class="string">"sKey3"</span>, <span class="string">"ss&amp;ss"</span>)</div><div class="line">        .build();</div></pre></td></tr></table></figure>
+<p>我们可以在 <code>html</code> 页面中使用路由路径进行 <code>app</code> 内页面跳转</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"chendong://testJs.march.com/page/2?i-id=10&amp;s-name"</span>&gt;</span> 打开首页  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>截断路径进行跳转</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mWebView.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!Router.goFrom(mContext, url)) &#123;</div><div class="line">            mWebView.loadUrl(url);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><p>现在只是简化的版本，支持基本的功能，需要完善和验证的地方还有很多。</p>
+<hr>
+<p>我把他集成在了我常用开发库中，本文相关的源代码可以在 <strong><a href="https://github.com/chendongMarch/DevKitSample/tree/master/devKit/src/main/java/com/march/dev/router" rel="external nofollow noopener noreferrer" target="_blank">GitHub-DevKitSample</a></strong> 中查看。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/3272e02/" title="Android 超轻量级路由方案">http://cdevlab.top/article/3272e02/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Contribute/" rel="tag"># Contribute</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/cc39cbd0/" rel="next" title="Rxjava2.x开发-5-操作符-变换">
+                <i class="fa fa-chevron-left"></i> Rxjava2.x开发-5-操作符-变换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">90</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#路由协议"><span class="nav-text">路由协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定制协议"><span class="nav-text">定制协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析-pageId"><span class="nav-text">解析 pageId</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析传递的参数"><span class="nav-text">解析传递的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建跳转的-intent"><span class="nav-text">构建跳转的 intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成跳转的路由路径"><span class="nav-text">生成跳转的路由路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#todo"><span class="nav-text">todo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
