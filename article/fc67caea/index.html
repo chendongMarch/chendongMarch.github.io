@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="Android,Ndk,libjpeg-turbo,cmake,图片压缩">
 
 
 <script>
@@ -79,15 +79,18 @@
 
 
 
-<meta name="description" content="生命不息，奋斗不止。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="三月">
-<meta property="og:url" content="http://cdevlab.top/categories/Study/Db/index.html">
+<meta name="description" content="本文主要介绍使用  CMAKE 编译 libjpeg-turbo 类库，本文相关代码请在GitHub-TurboJpegSample 查看。 libjpeg-turbo 附 GitHub 地址，libjpeg-turbo 是个运用极其广泛的库，可以说，基本上电脑上手机上能见到的 JPEG 压缩的地方用的一般都是 libjpeg-turbo，本文只介绍使用了图片压缩的功能。">
+<meta name="keywords" content="Android,Ndk,libjpeg-turbo,cmake,图片压缩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android使用CMAKE编译libjpeg-turbo">
+<meta property="og:url" content="http://cdevlab.top/article/fc67caea/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="生命不息，奋斗不止。">
+<meta property="og:description" content="本文主要介绍使用  CMAKE 编译 libjpeg-turbo 类库，本文相关代码请在GitHub-TurboJpegSample 查看。 libjpeg-turbo 附 GitHub 地址，libjpeg-turbo 是个运用极其广泛的库，可以说，基本上电脑上手机上能见到的 JPEG 压缩的地方用的一般都是 libjpeg-turbo，本文只介绍使用了图片压缩的功能。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-19T14:04:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三月">
-<meta name="twitter:description" content="生命不息，奋斗不止。">
+<meta name="twitter:title" content="Android使用CMAKE编译libjpeg-turbo">
+<meta name="twitter:description" content="本文主要介绍使用  CMAKE 编译 libjpeg-turbo 类库，本文相关代码请在GitHub-TurboJpegSample 查看。 libjpeg-turbo 附 GitHub 地址，libjpeg-turbo 是个运用极其广泛的库，可以说，基本上电脑上手机上能见到的 JPEG 压缩的地方用的一般都是 libjpeg-turbo，本文只介绍使用了图片压缩的功能。">
 
 
 
@@ -115,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="http://cdevlab.top/categories/Study/Db/">
+  <link rel="canonical" href="http://cdevlab.top/article/fc67caea/">
 
 
 
@@ -137,11 +140,12 @@
          box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
       }
       .pace .pace-activity {
-        border-top-color: #0000;    /*上边框颜色*/
-        border-left-color: #0000;    /*左边框颜色*/
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
       }
 
-    @media (min-width: 768px){
+    @media screen and (min-width: 800px) {
       .pace .pace-progress {
         background: #00d9cf; /*进度条颜色*/
         height: 2px;
@@ -150,8 +154,8 @@
          box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
       }
       .pace .pace-activity {
-        border-top-color: #f2f2f2;    /*上边框颜色*/
-        border-left-color: #f2f2f2;    /*左边框颜色*/
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
       }
     }
  
@@ -159,7 +163,7 @@
 
 
 
-  <title>分类: Db | 三月</title>
+  <title>Android使用CMAKE编译libjpeg-turbo | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -216,7 +220,7 @@ var _hmt = _hmt || [];
     
   
 
-  <div class="container sidebar-position-right  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
   <!--- add Fork me on Github  -->
@@ -360,69 +364,245 @@ var _hmt = _hmt || [];
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>Db<small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1299261529/" itemprop="url">
-              
-                <span itemprop="name">SQL</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-04-13T00:00:00+08:00" content="2017-04-13">
-          04-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/3372882306/" itemprop="url">
-              
-                <span itemprop="name">Mac 安装 Mongdb</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-05-18T00:00:00+08:00" content="2016-05-18">
-          05-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/fc67caea/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Android使用CMAKE编译libjpeg-turbo</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T19:56:37+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Ndk/" itemprop="url" rel="index">
+                    <span itemprop="name">Ndk</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/fc67caea/" class="leancloud_visitors" data-flag-title="Android使用CMAKE编译libjpeg-turbo">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍使用  <code>CMAKE</code> 编译 <code>libjpeg-turbo</code> 类库，本文相关代码请在<a href="https://github.com/chendongMarch/TurboJpegSample" rel="external nofollow noopener noreferrer" target="_blank">GitHub-TurboJpegSample</a> 查看。</p>
+<p><code>libjpeg-turbo</code> 附<a href="https://github.com/libjpeg-turbo/libjpeg-turbo" rel="external nofollow noopener noreferrer" target="_blank"> GitHub 地址</a>，<code>libjpeg-turbo</code> 是个运用极其广泛的库，可以说，基本上电脑上手机上能见到的 <code>JPEG</code> 压缩的地方用的一般都是 <code>libjpeg-turbo</code>，本文只介绍使用了图片压缩的功能。</p>
+<a id="more"></a>
+<p>使用 <code>Android</code> 保存图片时，我们通常使用的是 <code>Bitmap.compress()</code> 方法，但是使用该方法时，就算 <code>quality</code> 设置为 100，图片质量还是会越来越模糊，颜色也会越来越绿～，至于为什么会这样，请看 <a href="https://www.zhihu.com/question/29355920" rel="external nofollow noopener noreferrer" target="_blank">知乎回答</a>。 这个问题在贴吧上体现尤为明显，贴吧里面经常很多绿绿的图片就是因为大家保存下来上传上去，保存下来上传上去 … 导致质量越拉越低，我解压了 美图秀秀 和 in 的 apk 发现里面都引用了 <code>libjpeg.so</code>，所以这个应该是一个比较通用的解决方案。</p>
+<p>我们对图片使用质量压缩时它的底层就是用 <code>skia</code> 引擎进行处理，如我们调用<code>bitmap.compress(Bitmap.CompressFormat.JPEG...)</code> 他实际会 使用一个<code>libjpeg.so</code> 的动态库进行编码压缩。<code>android</code> 在进行 <code>jpeg</code> 压缩编码的时候，考虑到了效率问题使用了定长编码方式进行编码（因为当时的手机性能都比较低），而 <code>ios</code> 使用了变长编码的算法——哈夫曼算法。而且 <code>IOS</code> 对 <code>skia</code> 引擎也做了优化，所以我们看到同样的图片在 <code>ios</code> 上压缩会好一点。</p>
+<p>文档就整理到这里吧，其实上面说的都是看了一些博客的介绍然后进行了整理和记录，来清楚为什么我们需要自己来编译 so 实现图片压缩。</p>
+<h2 id="资源准备"><a href="#资源准备" class="headerlink" title="资源准备"></a>资源准备</h2><p>我们需要下载源码编译出 <code>libjpeg.so</code> 来使用，clone 源代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git://git.linaro.org/people/tomgall/libjpeg-turbo/libjpeg-turbo.git -b linaro-android</div></pre></td></tr></table></figure>
+<p>重命名根目录 <code>libjpeg-turbo</code> 为 <code>jni</code>，进入 <code>jni</code> 目录，首先你应该配置好 <code>ndk</code>， 使用 <code>ndk-build</code>  命令进行编译。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mv libjpeg-turbo jni</div><div class="line"></div><div class="line">ndk-build APP_ABI=armeabi-v7a,armeabi</div></pre></td></tr></table></figure>
+<p>编译完成之后我们就可以获取到 <code>libjpeg.so</code>，目录如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">jni</div><div class="line">libs</div><div class="line">	- armeabi</div><div class="line">		- libjpeg.so</div><div class="line">	- armeabi-v7a</div><div class="line">		- libjpeg.so</div><div class="line">obj</div><div class="line">	- <span class="built_in">local</span></div><div class="line">		- armeabi</div><div class="line">		- armeabi-v7a</div></pre></td></tr></table></figure>
+<p>此时如果出现了以下异常：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Users/march/AndroidRes/sdk/ndk-bundle/build/core/build-binary.mk:702: </div><div class="line">*** Android NDK: Aborting (<span class="built_in">set</span> APP_ALLOW_MISSING_DEPS=<span class="literal">true</span> to allow missing dependencies)    .  Stop.</div></pre></td></tr></table></figure>
+<p>打开 <code>build-binary.mk</code> 添加 <code>APP_ALLOW_MISSING_DEPS=true</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ifdef undefined_libs</div><div class="line">    $(call __ndk_warning,Module $(LOCAL_MODULE) depends on undefined modules: $(undefined_libs))</div><div class="line"></div><div class="line">    <span class="comment"># https://github.com/android-ndk/ndk/issues/208</span></div><div class="line">    <span class="comment"># ndk-build didn't used to fail the build for a missing dependency. This</span></div><div class="line">    <span class="comment"># seems to have always been the behavior, so there's a good chance that</span></div><div class="line">    <span class="comment"># there are builds out there that depend on this behavior (as of right now,</span></div><div class="line">    <span class="comment"># anything using libc++ on ARM has this problem because of libunwind).</span></div><div class="line">    <span class="comment">#</span></div><div class="line">    <span class="comment"># By default we will abort in this situation because this is so completely</span></div><div class="line">    <span class="comment"># broken. A user may define APP_ALLOW_MISSING_DEPS to "true" in their</span></div><div class="line">    <span class="comment"># Application.mk or on the command line to revert to the old, broken</span></div><div class="line">    <span class="comment"># behavior.</span></div><div class="line">    APP_ALLOW_MISSING_DEPS=<span class="literal">true</span> <span class="comment"># here</span></div><div class="line">    ifneq ($(APP_ALLOW_MISSING_DEPS),<span class="literal">true</span>)</div><div class="line">        $(call __ndk_error,Aborting (<span class="built_in">set</span> APP_ALLOW_MISSING_DEPS=<span class="literal">true</span> to allow missing dependencies))</div><div class="line">    endif</div><div class="line">endif</div></pre></td></tr></table></figure>
+<h2 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h2><p>使用 <code>AndroidStudio</code> 新建工程，勾选 <code>support c++</code>，生成的工程中会包含 <code>CMakeLists.txt</code> 文件，在下面的介绍中没有截图，对目录的说明如果不够清晰，请至 <a href="https://github.com/chendongMarch/TurboJpegSample" rel="external nofollow noopener noreferrer" target="_blank">GitHub-TurboJpegSample</a> 查看工程代码。</p>
+<p>在 <code>app</code> 目录下新建文件夹 <code>libjpeg</code>，用来存放 <code>so</code> 文件和头文件，目录如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">app</div><div class="line">	- libjpeg</div><div class="line">		- prebuilt</div><div class="line">			- armeabi</div><div class="line">				- libjpeg.so</div><div class="line">		- include</div><div class="line">			- 头文件</div><div class="line">	- src </div><div class="line">		- main</div><div class="line">			- cpp</div><div class="line">			- java</div><div class="line">			- res</div></pre></td></tr></table></figure>
+<p>编写 <code>compress.h</code> 和 <code>compress.c</code>，这个就是压缩的核心代码了，篇幅较长，但是这里就不贴了，详情请查看 <a href="https://github.com/chendongMarch/TurboJpegSample/tree/master/app/src/main/cpp" rel="external nofollow noopener noreferrer" target="_blank">项目的 cpp 目录</a>，使用的算法是网上查找的，看起来资料介绍的都是这一种。</p>
+<h2 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># 最低版本</span></div><div class="line">cmake_minimum_required(VERSION 3.4.1)</div><div class="line"></div><div class="line"><span class="comment">#设置生成的 so 动态库最后输出的路径</span></div><div class="line"><span class="built_in">set</span>(CMAKE_LIBRARY_OUTPUT_DIRECTORY <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/../jniLibs/<span class="variable">$&#123;ANDROID_ABI&#125;</span>)</div><div class="line"></div><div class="line"><span class="comment"># 初始化目录变量</span></div><div class="line"><span class="built_in">set</span>(libjpeg_dir <span class="variable">$&#123;CMAKE_SOURCE_DIR&#125;</span>/libjpeg)</div><div class="line"><span class="built_in">set</span>(INC_DIR <span class="variable">$&#123;libjpeg_dir&#125;</span>/include)</div><div class="line"><span class="built_in">set</span>(libjpeg_lib_dir <span class="variable">$&#123;libjpeg_dir&#125;</span>/prebuilt)</div><div class="line"></div><div class="line"><span class="comment"># 添加头文件目录</span></div><div class="line">include_directories(<span class="variable">$&#123;INC_DIR&#125;</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置资源路径</span></div><div class="line"><span class="built_in">set</span>(SOURCE_FILES src/main/cpp/compress.c)</div><div class="line"></div><div class="line"><span class="comment"># </span></div><div class="line">add_library(compress SHARED</div><div class="line">            <span class="variable">$&#123;SOURCE_FILES&#125;</span>)</div><div class="line"></div><div class="line"></div><div class="line">find_library(<span class="built_in">log</span>-lib <span class="built_in">log</span>)</div><div class="line">find_library(graphics jnigraphics)</div><div class="line"></div><div class="line">add_library(libjpeg SHARED IMPORTED)</div><div class="line">set_target_properties(libjpeg PROPERTIES IMPORTED_LOCATION <span class="variable">$&#123;libjpeg_lib_dir&#125;</span>/<span class="variable">$&#123;ANDROID_ABI&#125;</span>/libjpeg.so)</div><div class="line"></div><div class="line"></div><div class="line">target_link_libraries(compress libjpeg <span class="variable">$&#123;log-lib&#125;</span> <span class="variable">$&#123;graphics&#125;</span>)</div></pre></td></tr></table></figure>
+<h2 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a>build.gradle</h2><p>相比普通的 <code>Android</code> 工程，<code>app/build.gradle</code> 文件也有些许不同，我只编译了 <code>armeabi</code> 。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">25</span></div><div class="line">    buildToolsVersion <span class="string">"25.0.3"</span></div><div class="line">    defaultConfig &#123;</div><div class="line">	     ...</div><div class="line">        externalNativeBuild &#123;</div><div class="line">            cmake &#123;</div><div class="line">                abiFilters <span class="string">'armeabi'</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        ndk &#123;</div><div class="line">            <span class="comment">//打包进APK的ABI类型</span></div><div class="line">            abiFilters <span class="string">'armeabi'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    externalNativeBuild &#123;</div><div class="line">        cmake &#123;</div><div class="line">            path <span class="string">"CMakeLists.txt"</span></div><div class="line">        &#125; </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">sourceSets</span> &#123;</div><div class="line">        main &#123;</div><div class="line">            java.srcDirs <span class="string">'src/java'</span></div><div class="line">            jniLibs.srcDirs  <span class="string">'libs'</span></div><div class="line"><span class="comment">//          jniLibs.srcDirs '../libjpeg/prebuilt', 'libs'</span></div><div class="line"></div><div class="line">            <span class="comment">// 这里没有添加libjpeg.so这个动态库，也是可以执行的。</span></div><div class="line">            <span class="comment">// 原因在于android本身使用了 libjpeg.so这个动态库，</span></div><div class="line">            <span class="comment">// 这个库存放在/system/lib下，如果我们没有加入</span></div><div class="line">            <span class="comment">// libjpeg.so的话，他会去/system/lib下加载这个动态库</span></div><div class="line"></div><div class="line">            <span class="comment">// 如果android手机上没有 libjpeg.so这个动态库的话，</span></div><div class="line">            <span class="comment">// 也可以使用: jniLibs.srcDirs '../libjpeg/prebuilt' 'libcd</span></div><div class="line">            <span class="comment">// 将libjpeg.so加入到apk中</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="编写-java-调用"><a href="#编写-java-调用" class="headerlink" title="编写 java 调用"></a>编写 java 调用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TurboJpegUtils</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        System.loadLibrary(<span class="string">"compress"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 使用native方法进行图片压缩。</div><div class="line">     * Bitmap的格式必须是ARGB_8888 &#123;<span class="doctag">@link</span> android.graphics.Bitmap.Config&#125;。</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> bitmap   图片数据</div><div class="line">     * <span class="doctag">@param</span> quality  压缩质量</div><div class="line">     * <span class="doctag">@param</span> dstFile  压缩后存放的路径</div><div class="line">     * <span class="doctag">@param</span> optimize 是否使用哈夫曼算法</div><div class="line">     * <span class="doctag">@return</span> 结果</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">compress</span><span class="params">(Bitmap bitmap, <span class="keyword">int</span> quality, String dstFile, <span class="keyword">boolean</span> optimize)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行之后就可以测试结果，同时在 配置的 <code>jniLibs</code> 目录中也会生成 so 文件，在别的地方使用同包名下的 <code>TurboJpegUtils</code> 类也可以调用了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>测试对比结果，确实比 <code>Andorid</code> 原生的算法压缩图片的效果好很多，但是压缩次数多了以后也会有明显的模糊现象。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/fc67caea/" title="Android使用CMAKE编译libjpeg-turbo">http://cdevlab.top/article/fc67caea/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Ndk/" rel="tag"># Ndk</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/327200/" rel="next" title="Android 超轻量级路由方案">
+                <i class="fa fa-chevron-left"></i> Android 超轻量级路由方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/d0378250/" rel="prev" title="Kotlin开发-6-扩展">
+                Kotlin开发-6-扩展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -430,6 +610,10 @@ var _hmt = _hmt || [];
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -449,8 +633,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -463,7 +656,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">94</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -474,7 +667,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -485,7 +678,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -539,6 +732,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资源准备"><span class="nav-text">资源准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建工程"><span class="nav-text">创建工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMakeLists-txt"><span class="nav-text">CMakeLists.txt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build-gradle"><span class="nav-text">build.gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写-java-调用"><span class="nav-text">编写 java 调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -652,10 +861,10 @@ var _hmt = _hmt || [];
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -679,21 +888,18 @@ var _hmt = _hmt || [];
 
 
   
-    
-    <script>
-      var cloudTieConfig = {
-        url: document.location.href, 
-        sourceId: "",
-        productKey: "6b7f5b4b24ef4236866bde764daab452",
-        target: "cloud-tie-wrapper"
-      };
-    </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+
+
   
 
 
 
 
+
+  
 
 
 
