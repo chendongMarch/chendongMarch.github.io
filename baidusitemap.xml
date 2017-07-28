@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/9e4433d5/</loc>
+    <lastmod>2017-07-27T12:45:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-8-范型</title>
+        <pubTime>2017-07-27T02:14:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/aa2c40d4/</loc>
     <lastmod>2017-07-24T02:37:43.000Z</lastmod>
     <data>
@@ -680,9 +700,9 @@
         <title>HashMap源码分析</title>
         <pubTime>2015-11-13T16:00:00.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>SourceCode</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -722,11 +742,11 @@
         <title>ArrayList源码分析</title>
         <pubTime>2015-11-14T16:00:00.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>Android</tag>
          
         <tag>SourceCode</tag>
+         
+        <tag>Java</tag>
          
          
            
