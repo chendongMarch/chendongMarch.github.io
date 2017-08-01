@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="Kotlin,object,对象表达式,对象声明">
 
 
 <script>
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="生命不息，奋斗不止。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="三月">
-<meta property="og:url" content="http://cdevlab.top/archives/2016/05/index.html">
+<meta name="description" content="本文学习 Kotlin 中 object 关键字的使用。 使用 object 关键字的对象表达式可以创建匿名对象，适合那些只需要使用一次的类实现，使用匿名对象我们不需要给这些只用一次的类对象声明 class 而是在运行时直接创建即可。 使用 object 关键字进行对象声明，借助这种方法可以简单的实现单例和同伴对象。">
+<meta name="keywords" content="Kotlin,object,对象表达式,对象声明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin开发-9-object关键字">
+<meta property="og:url" content="http://cdevlab.top/article/40486d0b/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="生命不息，奋斗不止。">
+<meta property="og:description" content="本文学习 Kotlin 中 object 关键字的使用。 使用 object 关键字的对象表达式可以创建匿名对象，适合那些只需要使用一次的类实现，使用匿名对象我们不需要给这些只用一次的类对象声明 class 而是在运行时直接创建即可。 使用 object 关键字进行对象声明，借助这种方法可以简单的实现单例和同伴对象。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-01T03:33:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三月">
-<meta name="twitter:description" content="生命不息，奋斗不止。">
+<meta name="twitter:title" content="Kotlin开发-9-object关键字">
+<meta name="twitter:description" content="本文学习 Kotlin 中 object 关键字的使用。 使用 object 关键字的对象表达式可以创建匿名对象，适合那些只需要使用一次的类实现，使用匿名对象我们不需要给这些只用一次的类对象声明 class 而是在运行时直接创建即可。 使用 object 关键字进行对象声明，借助这种方法可以简单的实现单例和同伴对象。">
 
 
 
@@ -116,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="http://cdevlab.top/archives/2016/05/">
+  <link rel="canonical" href="http://cdevlab.top/article/40486d0b/">
 
 
 
@@ -161,7 +163,7 @@
 
 
 
-  <title>归档 | 三月</title>
+  <title>Kotlin开发-9-object关键字 | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -218,7 +220,7 @@ var _hmt = _hmt || [];
     
   
 
-  <div class="container sidebar-position-right  page-archive  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
   <!--- add Fork me on Github  -->
@@ -362,168 +364,236 @@ var _hmt = _hmt || [];
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      很好! 目前共计 97 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/3372882306/" itemprop="url">
-              
-                <span itemprop="name">Mac 安装 Mongdb</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-05-18T00:00:00+08:00" content="2016-05-18">
-          05-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/3697016025/" itemprop="url">
-              
-                <span itemprop="name">Node开发-1-基础</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-05-14T00:00:00+08:00" content="2016-05-14">
-          05-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1002618664/" itemprop="url">
-              
-                <span itemprop="name">Python Django服务器搭建</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-05-14T00:00:00+08:00" content="2016-05-14">
-          05-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/article/1243741076/" itemprop="url">
-              
-                <span itemprop="name">Swift基础2</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-05-11T00:00:00+08:00" content="2016-05-11">
-          05-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/40486d0b/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Kotlin开发-9-object关键字</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T16:47:00+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/40486d0b/" class="leancloud_visitors" data-flag-title="Kotlin开发-9-object关键字">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文学习 <code>Kotlin</code> 中 <code>object</code> 关键字的使用。</p>
+<p>使用 <code>object</code> 关键字的对象表达式可以创建匿名对象，适合那些只需要使用一次的类实现，使用匿名对象我们不需要给这些只用一次的类对象声明 <code>class</code> 而是在运行时直接创建即可。</p>
+<p>使用 <code>object</code> 关键字进行对象声明，借助这种方法可以简单的实现单例和同伴对象。</p>
+<a id="more"></a>
+<h2 id="对象表达式"><a href="#对象表达式" class="headerlink" title="对象表达式"></a>对象表达式</h2><p>对象表达式（Object expression）</p>
+<p>对象表达式则会在使用处 <strong>立即</strong> 执行(并且初始化)</p>
+<p>使用 <code>object</code> 可以创建匿名内部类，以点击事件为例</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mMyMsgTv.setOnClickListener(<span class="keyword">object</span>: View.OnClickListener&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(v: <span class="type">View</span>?)</span></span> &#123;</div><div class="line">        <span class="comment">// click</span></div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 使用 Lambda 表达式简化。</span></div><div class="line">mMyMsgTv.setOnClickListener &#123;</div><div class="line">    log(<span class="string">"click"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>自己定义两个接口</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">OneFunInterface</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(param:<span class="type">String</span>)</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">TwoFunInterface</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">test1</span><span class="params">(param:<span class="type">String</span>)</span></span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">test2</span><span class="params">(param:<span class="type">String</span>)</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以使用匿名内部类创建对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> o1 = <span class="keyword">object</span> : OneFunInterface &#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(param: <span class="type">String</span>)</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">val</span> o2 = <span class="keyword">object</span> : TwoFunInterface &#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test1</span><span class="params">(param: <span class="type">String</span>)</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test2</span><span class="params">(param: <span class="type">String</span>)</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实现匿名内部类时可以继承多个基类，如果基类有构造器，那么必须传递合适的参数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> o3 = <span class="keyword">object</span>:User(<span class="string">"zhang"</span>,<span class="number">22</span>),OneFunInterface&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(param: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也可以不继承任何基类直接创建对象，👍</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> o4 = <span class="keyword">object</span>&#123;</div><div class="line">    <span class="keyword">val</span> x = <span class="number">10</span></div><div class="line">    <span class="keyword">val</span> y = <span class="number">20</span></div><div class="line">&#125;</div><div class="line">log(o4.x)</div></pre></td></tr></table></figure>
+<p>对象表达式的内部可以访问创建对象表达式的域内的变量，这点和 <code>Java</code> 的匿名内部类是一样的， 但是 <code>Kotlin</code> 中不需要将变量强制声明为 <code>final</code> ，👍</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">var</span> t = <span class="number">100</span> <span class="comment">// 不必声明为 final</span></div><div class="line">	<span class="keyword">val</span> o1 = <span class="keyword">object</span> : OneFunInterface &#123;</div><div class="line">   	 	<span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(param: <span class="type">String</span>)</span></span> &#123;</div><div class="line">   	   	  t = <span class="number">10</span></div><div class="line">   	 	&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="对象声明"><a href="#对象声明" class="headerlink" title="对象声明"></a>对象声明</h2><p>对象声明（Object declaration）不可以是局部的(也就是说，不可以直接嵌套在函数之内)， 但可以嵌套在另一个对象声明之内，或者嵌套在另一个非内部类之内。</p>
+<p>对象声明是 <strong>延迟(lazily)</strong> 初始化的， 只会在首次访问时才会初始化</p>
+<p>使用 <code>object</code> 关键字创建单例，不能具有构造器，可以指定基类，可以直接使用类名引用。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">object</span> Singleton : User(name = <span class="string">"test"</span>, age = <span class="number">12</span>) &#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">testFun</span><span class="params">()</span></span> &#123;</div><div class="line">        Log.e(javaClass.simpleName, <span class="string">"name = <span class="variable">$name</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">val</span> testVal = age</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// usage</span></div><div class="line">Singleton.testFun()</div><div class="line">Singleton.testVal</div></pre></td></tr></table></figure>
+<p>同伴对象，一个类内部对象声明可以使用 <code>companion</code> 关键字标记为同伴对象(<code>Companion Object</code>)。<code>Companion Object</code> 可以具有自己的类名，也可以直接使用默认类名 <code>Companion</code>。<code>Companion Object</code> 可以继承基类和实现接口。</p>
+<p>同伴对象会在对应的类被装载(解析)时初始化</p>
+<blockquote>
+<p>虽然同伴对象的成员看起来很像其他语言中的类的静态成员，但在运行时期，这些成员仍然是真实对象的实例的成员，它们与静态成员是不同的，但是，如果使用<code>@JvmStatic</code> 注解， 你可以让同伴对象的成员在 <code>JVM</code> 上被编译为真正的静态方法(static method)和静态域(static field)。</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 默认类名 Companion</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">testFun</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">        <span class="keyword">val</span> testVal = <span class="number">10</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 自己的类名</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass1</span> </span>&#123;</div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> MyCompanion &#123;</div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">testFun</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">        <span class="keyword">val</span> testVal = <span class="number">10</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 继承基类 实现接口</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass2</span> </span>&#123;</div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> : User(), OneFunInterface &#123;</div><div class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(param: <span class="type">String</span>)</span></span> &#123;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">testFun</span><span class="params">()</span></span> &#123;&#125;</div><div class="line">        <span class="keyword">val</span> testVal = <span class="number">10</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以直接使用外部类的类名调用其同伴对象的方法和属性</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MyClass.Companion</div><div class="line">MyClass1.MyCompanion</div><div class="line">MyClass.testVal</div><div class="line">MyClass.testFun()</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/40486d0b/" title="Kotlin开发-9-object关键字">http://cdevlab.top/article/40486d0b/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/9e4433d5/" rel="next" title="Kotlin开发-8-范型">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-8-范型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/cc5968a9/" rel="prev" title="Kotlin开发-10-代理">
+                Kotlin开发-10-代理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -531,6 +601,10 @@ var _hmt = _hmt || [];
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -550,8 +624,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -640,6 +723,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象表达式"><span class="nav-text">对象表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象声明"><span class="nav-text">对象声明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -753,11 +852,9 @@ var _hmt = _hmt || [];
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   

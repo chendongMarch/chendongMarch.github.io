@@ -1,0 +1,1383 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Kotlin,delegate,代理,委托">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="本文主要学习 Kotlin 中的代理模式的实现以及属性代理的使用。 代理模式已被实践证明为类继承模式之外的另一种很好的替代方案，Kotlin 对代理模式做了很好的支持，我们可以非常简单的实现代理模式。 属性代理使得我们可以将具有共同性质的属性的初始化通过属性代理来实现，简化了数据的读取和存储，同时在  Kotlin 中还内置了很多标准代理，可以大大简化开发过程。 最后我们使用属性代理来实现一个完全">
+<meta name="keywords" content="Kotlin,delegate,代理,委托">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin开发-10-代理">
+<meta property="og:url" content="http://cdevlab.top/article/cc5968a9/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文主要学习 Kotlin 中的代理模式的实现以及属性代理的使用。 代理模式已被实践证明为类继承模式之外的另一种很好的替代方案，Kotlin 对代理模式做了很好的支持，我们可以非常简单的实现代理模式。 属性代理使得我们可以将具有共同性质的属性的初始化通过属性代理来实现，简化了数据的读取和存储，同时在  Kotlin 中还内置了很多标准代理，可以大大简化开发过程。 最后我们使用属性代理来实现一个完全">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-01T03:28:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin开发-10-代理">
+<meta name="twitter:description" content="本文主要学习 Kotlin 中的代理模式的实现以及属性代理的使用。 代理模式已被实践证明为类继承模式之外的另一种很好的替代方案，Kotlin 对代理模式做了很好的支持，我们可以非常简单的实现代理模式。 属性代理使得我们可以将具有共同性质的属性的初始化通过属性代理来实现，简化了数据的读取和存储，同时在  Kotlin 中还内置了很多标准代理，可以大大简化开发过程。 最后我们使用属性代理来实现一个完全">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/cc5968a9/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Kotlin开发-10-代理 | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    <div class="forkme">
+   <a target="_blank" href="https://github.com/chendongMarch" rel="external nofollow noopener noreferrer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    </div>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/cc5968a9/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Kotlin开发-10-代理</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T18:25:00+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/cc5968a9/" class="leancloud_visitors" data-flag-title="Kotlin开发-10-代理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要学习 <code>Kotlin</code> 中的代理模式的实现以及属性代理的使用。</p>
+<p>代理模式已被实践证明为类继承模式之外的另一种很好的替代方案，<code>Kotlin</code> 对代理模式做了很好的支持，我们可以非常简单的实现代理模式。</p>
+<p>属性代理使得我们可以将具有共同性质的属性的初始化通过属性代理来实现，简化了数据的读取和存储，同时在  <code>Kotlin</code> 中还内置了很多标准代理，可以大大简化开发过程。</p>
+<p>最后我们使用属性代理来实现一个完全的封闭的访问 <code>SharePreference</code> 进行数据存取的例子。</p>
+<a id="more"></a>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>代理 (Delegate) 模式是一种常用的设计模式，<code>Kotlin</code> 对此作了很好的支持。</p>
+<p>代理模式已被实践证明为类继承模式之外的另一种很好的替代方案，当我们已经抽象了部分功能出来，又想当前的对象具备这些功能，除了继承，我们可以使用代理模式，将当前对象需要的操作代理给别人做，实现复用。</p>
+<p>使用官网的一个例子，并且进行了部分扩展，来理解代理模式的意义。</p>
+<p>假设 <code>BaseA</code> 声明了 A 类逻辑，<code>BaseAImpl</code> 实现了这部分逻辑，<code>BaseB</code> 声明了 B 类逻辑，<code>BaseBImpl</code> 实现了这部分逻辑。此时我们的 <code>Derived</code> 需要同时具备 <code>BaseA</code> 和 <code>BaseB</code> 的功能，我们可以使用 <code>Derived</code> 再次实现 <code>BaseA</code> 和 <code>BaseB</code> 的相关功能但我们将无法复用在 <code>BaseAImpl</code> 和 <code>BaseBImpl</code> 中已经实现的逻辑代码。</p>
+<p>使用代理模式，我们将 <code>Derived</code> 需要实现的功能分别代理给 <code>BaseA</code> 和 <code>BaseB</code> 的实现类，<code>Derived</code> 自己不做任何处理，使用代理去接收处理。事实上，我们会在 <code>Derived</code> 类中持有代理的对象，然后在对象的接口方法逻辑实现时转发给代理的相关方法，实现代理模式需要设计很多相关的接口代码，好在 <code>Kotlin</code> 已经为我们提供了代理模式的支持，我们只需要使用 <code>by</code> 关键字将功能的实现代理给指定对象即可。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">BaseA</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printA</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">BaseB</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">printB</span><span class="params">()</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseAImpl</span></span>(<span class="keyword">var</span> x: <span class="built_in">Int</span>) : BaseA &#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">printA</span><span class="params">()</span></span> &#123;</div><div class="line">        log(<span class="string">"BaseAImpl <span class="variable">$x</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseBImpl</span></span>(<span class="keyword">var</span> x: <span class="built_in">Int</span>) : BaseB &#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">printB</span><span class="params">()</span></span> &#123;</div><div class="line">        log(<span class="string">"BaseBImpl <span class="variable">$x</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 将 BaseA 的逻辑代理给 ba, 将 BaseB 的逻辑代理给 bb</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(ba: BaseA, bb: BaseB) : User(), BaseA <span class="keyword">by</span> ba, BaseB <span class="keyword">by</span> bb</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">val derived = Derived(BaseAImpl(10), BaseBImpl(100))</div><div class="line">derived.printA()</div><div class="line">derived.printB()</div><div class="line"></div><div class="line"><span class="comment"># 输出</span></div><div class="line">com.march.ktexample E/BaseAImpl: BaseAImpl 10</div><div class="line">com.march.ktexample E/BaseBImpl: BaseBImpl 100</div></pre></td></tr></table></figure>
+<h2 id="属性代理"><a href="#属性代理" class="headerlink" title="属性代理"></a>属性代理</h2><p>我们可以使用代理属性的功能来初始化那些具有共性的属性，比如从 <code>SharePerenferce</code> 或者数据库中读取和存储，我们创建一个属性代理使用它来初始化这些具有共性的属性将会简单很多。</p>
+<h3 id="一个简单的代理实现"><a href="#一个简单的代理实现" class="headerlink" title="一个简单的代理实现"></a>一个简单的代理实现</h3><p>使用一个简单的代理来初始化 <code>value</code> 属性</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> value: String <span class="keyword">by</span> MyDelegate()</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyDelegate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> temp = <span class="string">"test"</span></div><div class="line"></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: String &#123;</div><div class="line">        log(thisRef.toString())</div><div class="line">        log(property.toString())</div><div class="line">        log(<span class="string">"invoke getValue"</span>)</div><div class="line">        <span class="keyword">return</span> temp</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        log(<span class="string">"invoke setValue value is <span class="variable">$value</span>"</span>)</div><div class="line">        temp = value</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当我们读或写 <code>value</code> 属性时将会触发对应的代理方法</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">log(value)</div><div class="line">value = <span class="string">"123"</span></div><div class="line">log(value)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// thisRef 的值</div><div class="line">MyDelegate: com.march.ktexample.MainActivity@445adf9</div><div class="line">// property 的值，操作的是 value 属性</div><div class="line">MyDelegate: property value (Kotlin reflection is not available)</div><div class="line"></div><div class="line">MyDelegate: invoke getValue</div><div class="line">MainActivity: <span class="built_in">test</span></div><div class="line">MyDelegate: invoke setValue value is 123</div><div class="line">MyDelegate: invoke getValue</div><div class="line">MainActivity: 123</div></pre></td></tr></table></figure>
+<p>代理属性的语法如下：</p>
+<p><code>by</code> 关键字后面的表达式就是代理，他需要具有 <code>getValue()</code> 方法， 如果属性是  <code>var</code> 类型，那么还必须有 <code>setValue()</code> 方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span>/<span class="keyword">var</span> &lt;propertyName&gt;:&lt;propertyType&gt; <span class="keyword">by</span> &lt;expression&gt;</div></pre></td></tr></table></figure>
+<h3 id="getValue-和-setValue"><a href="#getValue-和-setValue" class="headerlink" title="getValue() 和 setValue()"></a>getValue() 和 setValue()</h3><p>代理中的 <code>getValue()</code> 和 <code>setValue()</code> 方法没有类似接口的那种强制模板的实现，可能没有办法像接口那样声明统一的接口方法。</p>
+<p><code>getValue()</code> 和 <code>setValue()</code> 函数需要使用 <code>operator</code> 关键字标记，它们可以是委托类的成员函数，也可以是它的扩展函数。如果你需要将属性委托给一个对象，而这个对象本来没有提供这些函数，这时使用扩展函数会更便利一些。</p>
+<p>参数列表和返回类型：</p>
+<p>参数 <code>thisRef:Any?</code> 的类型必须与 <strong>属性所属的类</strong> 相同或者是它的基类(对于扩展属性 — 这个参数的类型必须与被扩展的类型相同或者是它的基类)。</p>
+<p>参数 <code>property: KProperty&lt;*&gt;</code> 是被代理的属性，可以使用 <code>property.name</code> 查看属性名，这个参数的类型必须是 <code>KProperty&lt;*&gt;</code> 或者是它的基类。</p>
+<p>对于 <code>getValue()</code> 函数来说返回值必须与被代理的属性的类型相同。</p>
+<p>对于 <code>setValue()</code> 函数来说参数 <code>value: Type</code> 是属性的新值，他必须与属性的类型相同。另外需要将值进行存储，在 <code>getValue()</code> 函数中返回，否则将无法改变属性的值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: String &#123;</div><div class="line">      <span class="keyword">return</span> temp</div><div class="line">&#125;</div><div class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">String</span>)</span></span> &#123;</div><div class="line">    temp = value</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Standard-Delegates"><a href="#Standard-Delegates" class="headerlink" title="Standard Delegates"></a>Standard Delegates</h2><p><code>Kotlin</code> 内置了一些标准代理。</p>
+<h3 id="Lazy"><a href="#Lazy" class="headerlink" title="Lazy"></a>Lazy</h3><p><code>by lazy</code> 是属性代理在 <code>kotlin</code> 中的一个简化实现，使用 <code>by lazy</code> 可以延迟属性的加载，他接受一个 <code>Lambda</code> 表达式作为参数，返回一个 <code>Lazy&lt;T&gt;</code> 类型的实例。</p>
+<blockquote>
+<p>只有 <code>val</code> 属性才能使用 <code>by lazy</code> 延迟初始化，因为 <code>by lazy</code> 只提供 <code>getValue()</code> 方法。</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@kotlin</span>.jvm.JvmVersion</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">lazy</span><span class="params">(initializer: ()</span></span> -&gt; T): Lazy&lt;T&gt; </div><div class="line">= SynchronizedLazyImpl(initializer)</div></pre></td></tr></table></figure>
+<p>使用 <code>by lazy</code> 只有在第一次获取值的时候回去计算 <code>Lambda</code> 表达式的值，后面再次访问，只会返回之前的值，不会再做计算。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> lazyValue: <span class="built_in">Int</span> <span class="keyword">by</span> lazy &#123;</div><div class="line">    log(<span class="string">"invoke by lazy"</span>)</div><div class="line">    <span class="number">100</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 测试</span></div><div class="line">log(lazyValue)</div><div class="line">log(lazyValue)</div><div class="line"></div><div class="line"><span class="comment">// 结果</span></div><div class="line">com.march.ktexample E/MainActivity: invoke <span class="keyword">by</span> lazy</div><div class="line">com.march.ktexample E/MainActivity: <span class="number">100</span></div><div class="line">com.march.ktexample E/MainActivity: <span class="number">100</span></div></pre></td></tr></table></figure>
+<p>默认情况下，<code>by lazy</code> 的计算是 <strong>同步的(synchronized)</strong>: 属性值只会在唯一一个线程内计算，然后所有线程都将得到同样的属性值。如果委托的初始化计算不需要同步，多个线程可以同时执行初始化计算，那么可以使用<code>LazyThreadSafetyMode.PUBLICATION</code> 参数。相反，如果你确信初期化计算只可能发生在一个线程内，那么可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，这种模式不会保持线程同步，因此不会带来这方面的性能损失。</p>
+<h3 id="Observable-amp-Vetoable"><a href="#Observable-amp-Vetoable" class="headerlink" title="Observable &amp; Vetoable"></a>Observable &amp; Vetoable</h3><p>可观察属性，<code>Delegates.observable()</code> 函数接受一个初始化值和一个属性值变化的响应器作为参数，可以用来观察属性的变化，当属性的值发生变化时会触发响应器。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> observableValue: <span class="built_in">Int</span> <span class="keyword">by</span> Delegates.observable(<span class="number">1</span>) &#123;</div><div class="line">    property, oldValue, newValue -&gt;</div><div class="line">    log(<span class="string">"Delegates.observable - <span class="subst">$&#123;property.name&#125;</span> <span class="variable">$oldValue</span> <span class="variable">$newValue</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 测试</span></div><div class="line">observableValue = <span class="number">100</span></div><div class="line">observableValue = <span class="number">200</span></div><div class="line"></div><div class="line"><span class="comment">// 结果</span></div><div class="line">MainActivity: Delegates.observable - observableValue <span class="number">1</span> <span class="number">100</span></div><div class="line">MainActivity: Delegates.observable - observableValue <span class="number">100</span> <span class="number">200</span></div></pre></td></tr></table></figure>
+<p>如果想要在检测到属性变化时，截断赋值操作，需要使用 <code>Delegates.vetoable()</code>，如下，值等于 200 时，不做赋值操作。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vetoableValue: <span class="built_in">Int</span> <span class="keyword">by</span> Delegates.vetoable(<span class="number">1</span>) &#123;</div><div class="line">    property, oldValue, newValue -&gt;</div><div class="line">    log(<span class="string">"Delegates.vetoable - <span class="subst">$&#123;property.name&#125;</span> <span class="variable">$oldValue</span> <span class="variable">$newValue</span>"</span>)</div><div class="line">    newValue != <span class="number">200</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 测试</span></div><div class="line">vetoableValue = <span class="number">100</span></div><div class="line">log(<span class="string">"(after set 100) <span class="variable">$vetoableValue</span>"</span>)</div><div class="line">vetoableValue = <span class="number">200</span></div><div class="line">log(<span class="string">"(after set 200) <span class="variable">$vetoableValue</span>"</span>)</div><div class="line"></div><div class="line"><span class="comment">// 结果</span></div><div class="line">MainActivity: Delegates.vetoable - vetoableValue <span class="number">1</span> <span class="number">100</span></div><div class="line">MainActivity: (after <span class="keyword">set</span> <span class="number">100</span>) value <span class="keyword">is</span> <span class="number">100</span></div><div class="line">MainActivity: Delegates.vetoable - vetoableValue <span class="number">100</span> <span class="number">200</span></div><div class="line">MainActivity: (after <span class="keyword">set</span> <span class="number">200</span>) value <span class="keyword">is</span> <span class="number">100</span></div></pre></td></tr></table></figure>
+<h3 id="NotNull"><a href="#NotNull" class="headerlink" title="NotNull"></a>NotNull</h3><p>使用非空代理 <code>Delegates.notNull()</code>，属性在声明时必须进行初始化，避免空指针的出现，<code>Delegates.notNull()</code> 类似于 <code>lateinit</code> 关键字，使你可以在后面初始化属性的值，在没有初始化之前如果使用了该属性，则会抛出异常 <code>java.lang.IllegalStateException: Property notNullValue should be initialized before get.</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> notNullValue: String <span class="keyword">by</span> Delegates.notNull&lt;String&gt;()</div></pre></td></tr></table></figure>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>使用 <code>Map</code> 存储属性的值，就可以从 <code>Map</code> 中获取对应属性的名称为 <code>key</code> 的值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapUser</span></span>(propertyMap: Map&lt;String, Any?&gt;) &#123;</div><div class="line">    <span class="keyword">val</span> name <span class="keyword">by</span> propertyMap</div><div class="line">    <span class="keyword">val</span> age <span class="keyword">by</span> propertyMap</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用  <code>Map</code> 初始化一个对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> mapUser = MapUser(mapOf(</div><div class="line">        <span class="string">"name"</span> to <span class="string">"myName"</span>,</div><div class="line">        <span class="string">"age"</span> to <span class="number">25</span></div><div class="line">))</div><div class="line">log(<span class="string">"name = <span class="subst">$&#123;mapUser.name&#125;</span> ,age = <span class="subst">$&#123;mapUser.age&#125;</span>"</span>)</div><div class="line"></div><div class="line"><span class="comment">// 结果为</span></div><div class="line">MainActivity: name = myName ,age = <span class="number">25</span></div></pre></td></tr></table></figure>
+<h2 id="SharedPreferences-读写代理"><a href="#SharedPreferences-读写代理" class="headerlink" title="SharedPreferences 读写代理"></a>SharedPreferences 读写代理</h2><p>一个代理属性的例子。</p>
+<p>以属性名为 <code>key</code> 从 <code>SharedPreferences</code> 读取数据，用来初始化属性的值，存储数据时同时写入 <code>SharedPreferences</code>；</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 自定义 SharedPreferences 属性读写</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpDelegate</span>&lt;<span class="type">T</span>&gt;</span>(<span class="keyword">val</span> context: Context, <span class="keyword">val</span> readName: String?, <span class="keyword">val</span> defValue: T) </div><div class="line">    : ReadWriteProperty&lt;Any?, T&gt; &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">constructor</span>(context: Context, defValue: T) : <span class="keyword">this</span>(context, <span class="literal">null</span>, defValue)</div><div class="line">    </div><div class="line">    <span class="keyword">val</span> KEY = <span class="string">"SharePreference"</span></div><div class="line">    </div><div class="line">    <span class="keyword">val</span> mSharePreference: SharedPreferences <span class="keyword">by</span> lazy &#123;</div><div class="line">        context.getSharedPreferences(KEY, Context.MODE_PRIVATE)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Suppress(<span class="meta-string">"UNCHECKED_CAST"</span>)</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123;</div><div class="line">        <span class="keyword">val</span> name = readName ?: property.name</div><div class="line">        <span class="keyword">val</span> result: Any = <span class="keyword">when</span> (defValue) &#123;</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Boolean</span> -&gt; mSharePreference.getBoolean(name, defValue)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; mSharePreference.getInt(name, defValue)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Long</span> -&gt; mSharePreference.getLong(name, defValue)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Float</span> -&gt; mSharePreference.getFloat(name, defValue)</div><div class="line">            <span class="keyword">is</span> String -&gt; mSharePreference.getString(name, defValue)</div><div class="line">            <span class="keyword">else</span> -&gt; <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"un support"</span>)</div><div class="line">        &#125;</div><div class="line">        log(<span class="string">"getValue : result = "</span> + result)</div><div class="line">        <span class="keyword">return</span> result <span class="keyword">as</span> T</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(thisRef: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">T</span>)</span></span> &#123;</div><div class="line">        <span class="keyword">val</span> editor = mSharePreference.edit()</div><div class="line">        <span class="keyword">val</span> name = readName ?: property.name</div><div class="line">        <span class="keyword">when</span> (value) &#123;</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Boolean</span> -&gt; editor.putBoolean(name, value)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; editor.putInt(name, value)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Long</span> -&gt; editor.putLong(name, value)</div><div class="line">            <span class="keyword">is</span> <span class="built_in">Float</span> -&gt; editor.putFloat(name, value)</div><div class="line">            <span class="keyword">is</span> String -&gt; editor.putString(name, value)</div><div class="line">            <span class="keyword">else</span> -&gt; <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"un support"</span>)</div><div class="line">        &#125;</div><div class="line">        log(<span class="string">"setValue : newValue = "</span> + value)</div><div class="line">        editor.apply()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试属性的读取和写入</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> shareIntVar1: <span class="built_in">Int</span> <span class="keyword">by</span> SpDelegate(<span class="keyword">this</span>, <span class="number">1</span>)</div><div class="line"><span class="keyword">var</span> shareStringVar1: String <span class="keyword">by</span> SpDelegate(<span class="keyword">this</span>, <span class="string">"def String value"</span>)</div><div class="line"></div><div class="line">log(shareIntVar1)</div><div class="line">shareIntVar1 = <span class="number">1000</span></div><div class="line">log(shareIntVar1)</div><div class="line">log(shareStringVar1)</div><div class="line">shareStringVar1 = <span class="string">"new String value"</span></div><div class="line">log(shareStringVar1)</div></pre></td></tr></table></figure>
+<p>结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">SpDelegate: getValue : result = 1</div><div class="line">MainActivity: 1</div><div class="line">SpDelegate: setValue : newValue = 1000</div><div class="line">SpDelegate: getValue : result = 1000</div><div class="line">MainActivity: 1000</div><div class="line">SpDelegate: getValue : result = def String value</div><div class="line">MainActivity: def String value</div><div class="line">SpDelegate: setValue : newValue = new String value</div><div class="line">SpDelegate: getValue : result = new String value</div><div class="line">MainActivity: new String value</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/cc5968a9/" title="Kotlin开发-10-代理">http://cdevlab.top/article/cc5968a9/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/40486d0b/" rel="next" title="Kotlin开发-9-object关键字">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-9-object关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性代理"><span class="nav-text">属性代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个简单的代理实现"><span class="nav-text">一个简单的代理实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getValue-和-setValue"><span class="nav-text">getValue() 和 setValue()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Standard-Delegates"><span class="nav-text">Standard Delegates</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lazy"><span class="nav-text">Lazy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable-amp-Vetoable"><span class="nav-text">Observable & Vetoable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NotNull"><span class="nav-text">NotNull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SharedPreferences-读写代理"><span class="nav-text">SharedPreferences 读写代理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

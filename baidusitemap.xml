@@ -4,8 +4,88 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/d0378250/</loc>
+    <lastmod>2017-08-01T03:48:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-6-扩展</title>
+        <pubTime>2017-07-20T00:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/aa2c40d4/</loc>
+    <lastmod>2017-08-01T03:48:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-7-特殊类</title>
+        <pubTime>2017-07-23T00:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/40486d0b/</loc>
+    <lastmod>2017-08-01T03:33:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-9-object关键字</title>
+        <pubTime>2017-07-29T08:47:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/cc5968a9/</loc>
+    <lastmod>2017-08-01T03:28:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-10-代理</title>
+        <pubTime>2017-07-29T10:25:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/9e4433d5/</loc>
-    <lastmod>2017-07-27T12:45:40.000Z</lastmod>
+    <lastmod>2017-08-01T03:21:31.000Z</lastmod>
     <data>
         <display>
         <title>Kotlin开发-8-范型</title>
@@ -24,12 +104,12 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/aa2c40d4/</loc>
-    <lastmod>2017-07-24T02:37:43.000Z</lastmod>
+    <loc>http://cdevlab.top/article/3679990147/</loc>
+    <lastmod>2017-08-01T02:18:33.000Z</lastmod>
     <data>
         <display>
-        <title>Kotlin开发-7-特殊类</title>
-        <pubTime>2017-07-23T00:57:00.000Z</pubTime>
+        <title>使用 Kotlin 开发 (番外)</title>
+        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
          
@@ -70,26 +150,6 @@
         <display>
         <title>Kotlin开发-5-类与对象</title>
         <pubTime>2017-06-08T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/d0378250/</loc>
-    <lastmod>2017-07-23T07:55:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-6-扩展</title>
-        <pubTime>2017-07-20T00:57:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
          
@@ -296,9 +356,9 @@
         <title>Hexo加密文章示例</title>
         <pubTime>2017-03-01T16:00:00.000Z</pubTime>
         
-        <tag>Extensions</tag>
-         
         <tag>Hexo</tag>
+         
+        <tag>Extensions</tag>
          
          
            
@@ -517,26 +577,6 @@
         <display>
         <title>Kotlin开发-1-新特性篇</title>
         <pubTime>2017-05-22T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3679990147/</loc>
-    <lastmod>2017-07-11T05:04:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用 Kotlin 开发 (番外)</title>
-        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
          
@@ -1270,9 +1310,9 @@
         
         <tag>Android</tag>
          
-        <tag>Library</tag>
-         
         <tag>Retrofit</tag>
+         
+        <tag>Library</tag>
          
          
            

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要关于 Kotlin 中的特殊类，包括 数据类，嵌套类，内部类，匿名内部类，枚举类">
+<meta name="description" content="本文主要关于 Kotlin 中的特殊类，包括： 数据类：数据类的使用有诸多限制，它声明了一种数据结构，进行数据的存储。 嵌套类：相当于 java 中的静态内部类，可以直接使用外部类名创建。 内部类：相当于 java 中的内部类，需要使用外部类实例才能创建。 匿名内部类：使用 object 关键字创建的只用一次的类实现。 枚举类：比 java 更强大的枚举实现。">
 <meta name="keywords" content="Kotlin,类,数据类,嵌套类,内部类,匿名内部类,枚举类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin开发-7-特殊类">
 <meta property="og:url" content="http://cdevlab.top/article/aa2c40d4/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本文主要关于 Kotlin 中的特殊类，包括 数据类，嵌套类，内部类，匿名内部类，枚举类">
+<meta property="og:description" content="本文主要关于 Kotlin 中的特殊类，包括： 数据类：数据类的使用有诸多限制，它声明了一种数据结构，进行数据的存储。 嵌套类：相当于 java 中的静态内部类，可以直接使用外部类名创建。 内部类：相当于 java 中的内部类，需要使用外部类实例才能创建。 匿名内部类：使用 object 关键字创建的只用一次的类实现。 枚举类：比 java 更强大的枚举实现。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-24T02:37:43.000Z">
+<meta property="og:updated_time" content="2017-08-01T03:48:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-7-特殊类">
-<meta name="twitter:description" content="本文主要关于 Kotlin 中的特殊类，包括 数据类，嵌套类，内部类，匿名内部类，枚举类">
+<meta name="twitter:description" content="本文主要关于 Kotlin 中的特殊类，包括： 数据类：数据类的使用有诸多限制，它声明了一种数据结构，进行数据的存储。 嵌套类：相当于 java 中的静态内部类，可以直接使用外部类名创建。 内部类：相当于 java 中的内部类，需要使用外部类实例才能创建。 匿名内部类：使用 object 关键字创建的只用一次的类实现。 枚举类：比 java 更强大的枚举实现。">
 
 
 
@@ -472,11 +472,16 @@ var _hmt = _hmt || [];
       
 
       
-        <p>本文主要关于 <code>Kotlin</code> 中的特殊类，包括 <strong>数据类</strong>，<strong>嵌套类</strong>，<strong>内部类</strong>，<strong>匿名内部类</strong>，<strong>枚举类</strong></p>
+        <p>本文主要关于 <code>Kotlin</code> 中的特殊类，包括：</p>
+<p><strong>数据类</strong>：数据类的使用有诸多限制，它声明了一种数据结构，进行数据的存储。</p>
+<p><strong>嵌套类</strong>：相当于 <code>java</code> 中的静态内部类，可以直接使用外部类名创建。</p>
+<p><strong>内部类</strong>：相当于 <code>java</code> 中的内部类，需要使用外部类实例才能创建。</p>
+<p><strong>匿名内部类</strong>：使用 <code>object</code> 关键字创建的只用一次的类实现。</p>
+<p><strong>枚举类</strong>：比 <code>java</code> 更强大的枚举实现。</p>
 <a id="more"></a>
 <h2 id="数据类"><a href="#数据类" class="headerlink" title="数据类"></a>数据类</h2><p>数据类是一种特别的类，顾名思义，就是用来结构化的存放数据的类，在 <code>Kotlin</code> 中可以使用关键字 <code>data</code> 来很简单的声明一个数据类。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(<span class="keyword">val</span> name: String = <span class="string">"123"</span>, <span class="keyword">val</span> age: <span class="built_in">Int</span> = <span class="number">123</span>)</div><div class="line"></div><div class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</div></pre></td></tr></table></figure>
-<p>如果在数据类中对以下函数没有明确的定义，也没有从父类中国年继承的多，那么数据类会自动生成这些函数，如 <code>hashCode()</code> 和 <code>equals()</code> 函数对、<code>Person(name=c, age=3)</code> 形式的 <code>toString()</code> 方法、用来访问属性址的 <code>componentN()</code> 函数群、用来复制对象 <code>copy()</code> 方法。</p>
+<p>如果在数据类中对以下函数没有明确的定义，也没有从父类中继承得到，那么数据类会自动生成这些函数，如 <code>hashCode()</code> 和 <code>equals()</code> 函数对、<code>Person(name=c, age=3)</code> 形式的 <code>toString()</code> 方法、用来访问属性址的 <code>componentN()</code> 函数群、用来复制对象 <code>copy()</code> 方法。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建数据类对象</span></div><div class="line"><span class="keyword">val</span> p: Person = Person(<span class="string">"a"</span>, <span class="number">1</span>)</div><div class="line"><span class="keyword">val</span> p1 = Person(<span class="string">"b"</span>, <span class="number">2</span>)</div><div class="line"><span class="comment">// equals() &amp; hasoCode()</span></div><div class="line">log(p.equals(p1))</div><div class="line"><span class="comment">// toString()</span></div><div class="line">log(p.toString())</div><div class="line"><span class="comment">// componentN</span></div><div class="line">log(p.component1() + <span class="string">" "</span> + p.component2())</div><div class="line"><span class="comment">// copy()，copy 的对象将会是一个全新的对象</span></div><div class="line"><span class="keyword">val</span> p2 = p.copy(<span class="string">"c"</span>, <span class="number">3</span>)</div><div class="line">log( <span class="string">"<span class="subst">$&#123;p2.hashCode()&#125;</span> <span class="subst">$&#123;p.hashCode()&#125;</span> <span class="variable">$p2</span>"</span>)</div></pre></td></tr></table></figure>
 <p>输出</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MainActivity: <span class="literal">false</span></div><div class="line">MainActivity: Person(name=a, age=1)</div><div class="line">MainActivity: a 1</div><div class="line">MainActivity: 3072 3008 Person(name=c, age=3)</div></pre></td></tr></table></figure>
@@ -658,7 +663,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

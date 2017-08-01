@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要介绍 Kotlin 范型的相关用法。 泛型的本质是参数化类型，操作的数据类型被指定为一个参数。使用范型约束：  增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 List&amp;lt;T&amp;gt;，就可以用来存储任何一种对象。  保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测">
+<meta name="description" content="本文主要介绍 Kotlin 范型的相关用法。 泛型的本质是参数化类型，操作的数据类型被指定为一个参数。使用范型约束： 增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 List&amp;lt;T&amp;gt;，就可以用来存储任何一种对象。 保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测和转">
 <meta name="keywords" content="Kotlin,generic,范型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin开发-8-范型">
 <meta property="og:url" content="http://cdevlab.top/article/9e4433d5/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本文主要介绍 Kotlin 范型的相关用法。 泛型的本质是参数化类型，操作的数据类型被指定为一个参数。使用范型约束：  增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 List&amp;lt;T&amp;gt;，就可以用来存储任何一种对象。  保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测">
+<meta property="og:description" content="本文主要介绍 Kotlin 范型的相关用法。 泛型的本质是参数化类型，操作的数据类型被指定为一个参数。使用范型约束： 增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 List&amp;lt;T&amp;gt;，就可以用来存储任何一种对象。 保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测和转">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-27T12:45:40.000Z">
+<meta property="og:updated_time" content="2017-08-01T03:21:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-8-范型">
-<meta name="twitter:description" content="本文主要介绍 Kotlin 范型的相关用法。 泛型的本质是参数化类型，操作的数据类型被指定为一个参数。使用范型约束：  增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 List&amp;lt;T&amp;gt;，就可以用来存储任何一种对象。  保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测">
+<meta name="twitter:description" content="本文主要介绍 Kotlin 范型的相关用法。 泛型的本质是参数化类型，操作的数据类型被指定为一个参数。使用范型约束： 增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 List&amp;lt;T&amp;gt;，就可以用来存储任何一种对象。 保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测和转">
 
 
 
@@ -474,12 +474,8 @@ var _hmt = _hmt || [];
       
         <p>本文主要介绍 <code>Kotlin</code> 范型的相关用法。</p>
 <p>泛型的本质是参数化类型，操作的数据类型被指定为一个参数。使用范型约束：</p>
-<ol>
-<li><p>增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 <code>List&lt;T&gt;</code>，就可以用来存储任何一种对象。</p>
-</li>
-<li><p>保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测和转换，避免运行期出现类型转换异常，而且这些转换都是自动和隐式的。</p>
-</li>
-</ol>
+<p>增加代码的复用性，有时我们使用一些公用的数据结构，方法，类等，只是操作的对象类型不一样，但是代码逻辑一样，此时可以使用范型复用代码，比如 <code>List&lt;T&gt;</code>，就可以用来存储任何一种对象。</p>
+<p>保证代码中类型转换的安全性，使用范型进行约束，能够保证在编译期对类型的匹配进行检测和转换，避免运行期出现类型转换异常，而且这些转换都是自动和隐式的。</p>
 <p><a href="http://www.10tiao.com/html/330/201707/2653579163/2.html" rel="external nofollow noopener noreferrer" target="_blank">推荐阅读 - Kotlin 泛型详解 - 10条</a><br><a id="more"></a></p>
 <h2 id="简单实现"><a href="#简单实现" class="headerlink" title="简单实现"></a>简单实现</h2><p>下面在 <code>Java</code> 和 <code>Kotlin</code> 中实现了最简单的范型的用法，用法相似，但是 <code>Kotlin</code> 就更加简单。当类型可以通过推断得到时，不必显式声明类型。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// java</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> T t;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Box</span><span class="params">(T t)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.t = t;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> t;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T t)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.t = t;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Box box = <span class="keyword">new</span> Box&lt;&gt;(<span class="number">1</span>);</div></pre></td></tr></table></figure>
@@ -617,8 +613,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
-                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              <a href="/article/40486d0b/" rel="prev" title="Kotlin开发-9-object关键字">
+                Kotlin开发-9-object关键字 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -695,7 +691,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

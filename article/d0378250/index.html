@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要介绍 Kotlin 扩展 ( Extension )的相关内容。 以下翻译自官方文档： 与 C# 和 Gosu 类似， Kotlin 提供了向一个类扩展新功能的能力， 而且不必从这个类继承，也不必使用任何设计模式， 比如 Decorator 模式之类。 这种功能是通过一种特殊的声明来实现的， Kotlin 中称为 扩展(extension)。Kotlin 支持 扩展函数(extension">
+<meta name="description" content="本文主要介绍 Kotlin 扩展 ( Extension )的相关内容。 以下翻译自官方文档：  与 C# 和 Gosu 类似， Kotlin 提供了向一个类扩展新功能的能力， 而且不必从这个类继承，也不必使用任何设计模式， 比如 Decorator 模式之类。 这种功能是通过一种特殊的声明来实现的， Kotlin 中称为 扩展(extension)。Kotlin 支持 扩展函数(extensio">
 <meta name="keywords" content="Kotlin,类,对象,扩展函数,扩展属性,Extension">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin开发-6-扩展">
 <meta property="og:url" content="http://cdevlab.top/article/d0378250/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本文主要介绍 Kotlin 扩展 ( Extension )的相关内容。 以下翻译自官方文档： 与 C# 和 Gosu 类似， Kotlin 提供了向一个类扩展新功能的能力， 而且不必从这个类继承，也不必使用任何设计模式， 比如 Decorator 模式之类。 这种功能是通过一种特殊的声明来实现的， Kotlin 中称为 扩展(extension)。Kotlin 支持 扩展函数(extension">
+<meta property="og:description" content="本文主要介绍 Kotlin 扩展 ( Extension )的相关内容。 以下翻译自官方文档：  与 C# 和 Gosu 类似， Kotlin 提供了向一个类扩展新功能的能力， 而且不必从这个类继承，也不必使用任何设计模式， 比如 Decorator 模式之类。 这种功能是通过一种特殊的声明来实现的， Kotlin 中称为 扩展(extension)。Kotlin 支持 扩展函数(extensio">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-23T07:55:01.000Z">
+<meta property="og:updated_time" content="2017-08-01T03:48:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-6-扩展">
-<meta name="twitter:description" content="本文主要介绍 Kotlin 扩展 ( Extension )的相关内容。 以下翻译自官方文档： 与 C# 和 Gosu 类似， Kotlin 提供了向一个类扩展新功能的能力， 而且不必从这个类继承，也不必使用任何设计模式， 比如 Decorator 模式之类。 这种功能是通过一种特殊的声明来实现的， Kotlin 中称为 扩展(extension)。Kotlin 支持 扩展函数(extension">
+<meta name="twitter:description" content="本文主要介绍 Kotlin 扩展 ( Extension )的相关内容。 以下翻译自官方文档：  与 C# 和 Gosu 类似， Kotlin 提供了向一个类扩展新功能的能力， 而且不必从这个类继承，也不必使用任何设计模式， 比如 Decorator 模式之类。 这种功能是通过一种特殊的声明来实现的， Kotlin 中称为 扩展(extension)。Kotlin 支持 扩展函数(extensio">
 
 
 
@@ -474,7 +474,9 @@ var _hmt = _hmt || [];
       
         <p>本文主要介绍 <code>Kotlin</code> 扩展 ( <code>Extension</code> )的相关内容。</p>
 <p>以下翻译自官方文档：</p>
+<blockquote>
 <p>与 <code>C#</code> 和 <code>Gosu</code> 类似， <code>Kotlin</code> 提供了向一个类扩展新功能的能力， 而且不必从这个类继承，也不必使用任何设计模式， 比如 <code>Decorator</code> 模式之类。 这种功能是通过一种特殊的声明来实现的， <code>Kotlin</code> 中称为 扩展(<code>extension</code>)。<code>Kotlin</code> 支持 扩展函数(<code>extension function</code>) 和 扩展属性(<code>extension property</code>)。</p>
+</blockquote>
 <p><strong>扩展</strong> 是很多高级语言都具备的特性，使用扩展可以在不侵入原来类的基础上扩展新的功能，比如我们常用的 <code>Utils</code> 方法，就可以完全使用扩展方法来替代。<br><a id="more"></a></p>
 <h2 id="扩展函数"><a href="#扩展函数" class="headerlink" title="扩展函数"></a>扩展函数</h2><p>扩展函数需要声明在<code>top-level</code> 级别下，如果声明在一个类里面，那么只能在这个类内使用，也就失去了扩展的意义。我开始写的时候因为写 <code>java</code> 的惯性，就声明在类里面，结果别的地方根本用不了，一度十分怀疑扩展存在的意义。。。</p>
 <p>声明的方式与普通函数稍有不同，在函数名前面要使用扩展的接收者，扩展的接收者就是我们要扩展的对象，如下：</p>
@@ -670,7 +672,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">97</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
