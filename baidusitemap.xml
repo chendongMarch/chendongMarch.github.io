@@ -4,6 +4,71 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/c5b3d729/</loc>
+    <lastmod>2017-08-07T10:48:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-12-空值安全</title>
+        <pubTime>2017-08-07T10:15:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/acb7c552/</loc>
+    <lastmod>2017-08-07T02:04:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-11-函数</title>
+        <pubTime>2017-08-01T10:15:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/cc39cbd0/</loc>
+    <lastmod>2017-08-01T07:35:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Rxjava2.x开发-5-操作符-变换</title>
+        <pubTime>2017-07-10T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>RxJava2.x</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="Library" url="http://cdevlab.top/categories/Android/Library/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/d0378250/</loc>
     <lastmod>2017-08-01T03:48:39.000Z</lastmod>
     <data>
@@ -90,26 +155,6 @@
         <display>
         <title>Kotlin开发-8-范型</title>
         <pubTime>2017-07-27T02:14:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3679990147/</loc>
-    <lastmod>2017-08-01T02:18:33.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用 Kotlin 开发 (番外)</title>
-        <pubTime>2017-05-31T16:00:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
          
@@ -292,31 +337,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/cc39cbd0/</loc>
-    <lastmod>2017-07-12T01:22:27.000Z</lastmod>
-    <data>
-        <display>
-        <title>Rxjava2.x开发-5-操作符-变换</title>
-        <pubTime>2017-07-10T07:51:09.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>RxJava2.x</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="Library" url="http://cdevlab.top/categories/Android/Library/"/>
           
         </display>
     </data>
@@ -1310,9 +1330,9 @@
         
         <tag>Android</tag>
          
-        <tag>Retrofit</tag>
-         
         <tag>Library</tag>
+         
+        <tag>Retrofit</tag>
          
          
            

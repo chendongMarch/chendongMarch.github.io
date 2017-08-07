@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Kotlin,变量">
+  <meta name="keywords" content="Kotlin,空值安全,NonNull">
 
 
 <script>
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本篇主要介绍 Kotlin 变量和常量  发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
-<meta name="keywords" content="Kotlin,变量">
+<meta name="description" content="在进行属性的初始化时能够感受到 Kotlin 在编译时对 null 值的控制，正是因为 Kotlin 的这些特性，使得 Kotlin 成为一种 空安全(Null Safaty) 的语言，遵循 Kotlin 的规范将有效的避免程序中的 NPE。 其实遵循 Kotlin 的变量的声明和初始化方式基本可以避免 NPE 的出现，Kotlin 不允许给一个 变量 null 值，但是你可以使用 Type? 的">
+<meta name="keywords" content="Kotlin,空值安全,NonNull">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 Kotlin 开发 (番外)">
-<meta property="og:url" content="http://cdevlab.top/article/3679990147/index.html">
+<meta property="og:title" content="Kotlin开发-12-空值安全">
+<meta property="og:url" content="http://cdevlab.top/article/c5b3d729/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本篇主要介绍 Kotlin 变量和常量  发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
+<meta property="og:description" content="在进行属性的初始化时能够感受到 Kotlin 在编译时对 null 值的控制，正是因为 Kotlin 的这些特性，使得 Kotlin 成为一种 空安全(Null Safaty) 的语言，遵循 Kotlin 的规范将有效的避免程序中的 NPE。 其实遵循 Kotlin 的变量的声明和初始化方式基本可以避免 NPE 的出现，Kotlin 不允许给一个 变量 null 值，但是你可以使用 Type? 的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-01T02:18:33.000Z">
+<meta property="og:updated_time" content="2017-08-07T10:48:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 Kotlin 开发 (番外)">
-<meta name="twitter:description" content="本篇主要介绍 Kotlin 变量和常量  发现 AS 开发 Kotlin 的时候自动提示等功能有点卡顿，之前还在用Kotlin 1.0.6 的时候这个问题就很显著，现在 1.1.2 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 Kotlin 下的 Parcelable 插件，用起来还不错，之前用 Java 的时候也基本不会自己去写这个，相信 Kotlin 的各种插件支持也会越">
+<meta name="twitter:title" content="Kotlin开发-12-空值安全">
+<meta name="twitter:description" content="在进行属性的初始化时能够感受到 Kotlin 在编译时对 null 值的控制，正是因为 Kotlin 的这些特性，使得 Kotlin 成为一种 空安全(Null Safaty) 的语言，遵循 Kotlin 的规范将有效的避免程序中的 NPE。 其实遵循 Kotlin 的变量的声明和初始化方式基本可以避免 NPE 的出现，Kotlin 不允许给一个 变量 null 值，但是你可以使用 Type? 的">
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="http://cdevlab.top/article/3679990147/">
+  <link rel="canonical" href="http://cdevlab.top/article/c5b3d729/">
 
 
 
@@ -163,7 +163,7 @@
 
 
 
-  <title>使用 Kotlin 开发 (番外) | 三月</title>
+  <title>Kotlin开发-12-空值安全 | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -374,7 +374,7 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3679990147/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/c5b3d729/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -391,7 +391,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">使用 Kotlin 开发 (番外)</h2>
+          <h2 class="post-title" itemprop="name headline">Kotlin开发-12-空值安全</h2>
         
 
         <div class="post-meta">
@@ -403,8 +403,8 @@ var _hmt = _hmt || [];
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-01T00:00:00+08:00">
-                2017-06-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T18:15:00+08:00">
+                2017-08-07
               </time>
             
 
@@ -443,7 +443,7 @@ var _hmt = _hmt || [];
 
           
           
-             <span id="/article/3679990147/" class="leancloud_visitors" data-flag-title="使用 Kotlin 开发 (番外)">
+             <span id="/article/c5b3d729/" class="leancloud_visitors" data-flag-title="Kotlin开发-12-空值安全">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -472,15 +472,10 @@ var _hmt = _hmt || [];
       
 
       
-        <p>本篇主要介绍 Kotlin 变量和常量 </p>
-<p>发现 <code>AS</code> 开发 <code>Kotlin</code> 的时候自动提示等功能有点卡顿，之前还在用<code>Kotlin 1.0.6</code> 的时候这个问题就很显著，现在 <code>1.1.2</code> 也并没有改善，用起来卡卡的有点不爽啊😕，希望尽早优化。今天下载了 <code>Kotlin</code> 下的 <code>Parcelable</code> 插件，用起来还不错，之前用 <code>Java</code> 的时候也基本不会自己去写这个，相信 <code>Kotlin</code> 的各种插件支持也会越来越完善的。</p>
-<blockquote>
-<p>常量变量的声明<br>常量变量的初始化<br>常量变量的引用和 空安全<br>属性代理的相关概念<br>自定义属性代理   </p>
-</blockquote>
+        <p>在进行属性的初始化时能够感受到 <code>Kotlin</code> 在编译时对 <code>null</code> 值的控制，正是因为 <code>Kotlin</code> 的这些特性，使得 <code>Kotlin</code> 成为一种 <code>空安全(Null Safaty)</code> 的语言，遵循 <code>Kotlin</code> 的规范将有效的避免程序中的 <code>NPE</code>。</p>
+<p>其实遵循 <code>Kotlin</code> 的变量的声明和初始化方式基本可以避免 <code>NPE</code> 的出现，<code>Kotlin</code> 不允许给一个 变量 <code>null</code> 值，但是你可以使用 <code>Type?</code> 的形式(例如 <code>String?</code> )声明这是一个可以为 <code>null</code> 的变量，他就可以被初始化为 <code>null</code>。</p>
 <a id="more"></a>
-<h2 id="空值安全"><a href="#空值安全" class="headerlink" title="空值安全"></a>空值安全</h2><p>在进行 变量／常量 的初始化时能够感受到 <code>Kotlin</code> 在编译时对 <code>null</code> 值的控制，正是因为 <code>Kotlin</code> 的这些特性，使得 <code>Kotlin</code> 成为一种 <code>空安全(Null Safaty)</code> 的语言，遵循 <code>Kotlin</code> 的规范将有效的避免程序中的 <code>NPE</code>。</p>
-<p>其实遵循 <code>Kotlin</code> 的变量的声明和初始化方式基本可以避免 <code>NPE</code> 的出现，<code>Kotlin</code> 不允许给一个 变量 <code>null</code> 值，但是你可以使用 <code>Type?</code> 的形式(例如 <code>String?</code> )声明这是一个可以为 <code>null</code> 的变量，他就可以被初始化为 <code>null</code>。例如你可以这样声明一个可以为 <code>null</code> 的变量 <code>var stuCanBeNull: Student? = null</code>。也就是说变量仍旧可能是 <code>null</code> 的。</p>
-<h3 id="安全调用"><a href="#安全调用" class="headerlink" title="安全调用"></a>安全调用</h3><p>安全调用即 <code>safe calls</code>，使用<code>?.</code>操作符。</p>
+<h2 id="安全调用"><a href="#安全调用" class="headerlink" title="安全调用 (?.)"></a>安全调用 (?.)</h2><p>安全调用即 <code>safe calls</code>，使用<code>?.</code>操作符。</p>
 <p>当我们访问一个变量的属性或者方法时，为了避免 <code>NPE</code> 我们通常要在前期做严密的空值判断确保调用的对象不为空时才能放心调用，<code>safe calls</code> 的机制大大简化了这个过程。</p>
 <p><code>safe calls</code> 只有当引用不为 <code>null</code> 时才进行调用，否则直接返回 <code>null</code>，如下情况中 <code>b</code> 的类型为 <code>Int?</code>，因为 <code>a</code> 可能为 <code>null</code>，调用 <code>a</code> 的 <code>length</code> 属性，如果 <code>a</code> 不为 <code>null</code>，则返回 <code>Int</code> 类型的长度，反之返回 <code>null</code>，因此 <code>b</code> 为 <code>Int?</code>，即可能为 <code>null</code> 的 <code>Int</code> 类型。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> a: String? = <span class="literal">null</span></div><div class="line"><span class="keyword">val</span> b = a?.length</div></pre></td></tr></table></figure>
@@ -488,7 +483,7 @@ var _hmt = _hmt || [];
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> myParam1:Student? = <span class="literal">null</span></div><div class="line"></div><div class="line"><span class="comment">// java 中，在使用之前，我们通常会做一系列判空操作</span></div><div class="line"><span class="keyword">if</span>(myParam1!=<span class="literal">null</span> &amp;&amp; myParam1.myCls!=<span class="literal">null</span>)&#123;</div><div class="line">    Log.e(TAG,<span class="string">"<span class="subst">$&#123;myParam1.myCls.length&#125;</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Kotlin safe calls</span></div><div class="line">Log.e(TAG,<span class="string">"<span class="subst">$&#123;myParam1?.myCls?.length&#125;</span>"</span>)</div></pre></td></tr></table></figure>
 <p>有时我们在判空之后会执行一系列的操作，此时就可以结合 <code>let</code> 关键字，使用 <code>?.let{}</code> 来确保变量不为空时执行方法，同时在 <code>let</code> 方法体内，可以使用 <code>it</code> 关键字访问变量。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> a: String? = <span class="literal">null</span></div><div class="line"><span class="keyword">val</span> b = a?.length</div><div class="line"><span class="comment">// b不为null时进行打印</span></div><div class="line">b?.let &#123; log(<span class="string">"<span class="variable">$it</span>"</span>) &#125;</div></pre></td></tr></table></figure>
-<h3 id="Elvis-操作符"><a href="#Elvis-操作符" class="headerlink" title="Elvis 操作符"></a>Elvis 操作符</h3><p><code>Elvis 操作符</code> 即 <code>?:</code> 操作符。当使用 <code>?.</code> 操作符进行安全调用时，如果遇到 <code>null</code> 则会直接返回 <code>null</code>，那如果当为 <code>null</code> 时返回其他值时如何操作呢？<code>Elvis 操作符</code> 就是用来解决这个问题的。</p>
+<h3 id="Elvis-操作符"><a href="#Elvis-操作符" class="headerlink" title="Elvis 操作符 (?:)"></a>Elvis 操作符 (?:)</h3><p><code>Elvis 操作符</code> 即 <code>?:</code> 操作符。当使用 <code>?.</code> 操作符进行安全调用时，如果遇到 <code>null</code> 则会直接返回 <code>null</code>，那如果当为 <code>null</code> 时返回其他值时如何操作呢？<code>Elvis 操作符</code> 就是用来解决这个问题的。</p>
 <p>如果 <code>?:</code> 左侧的表达式值不是 <code>null</code>, <code>Elvis 操作符</code> 就会返回它的值, 否则, 返回右侧表达式的值. 注意, 只有在左侧表达式值为 <code>null</code> 时, 才会计算右侧表达式。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 原始版本，使用 if...else</span></div><div class="line"><span class="keyword">val</span> l: <span class="built_in">Int</span> = <span class="keyword">if</span> (b != <span class="literal">null</span>) b.length <span class="keyword">else</span> <span class="number">-1</span></div><div class="line"><span class="comment">// 使用 ?: 操作符</span></div><div class="line"><span class="keyword">val</span> l = b?.length ?: <span class="number">-1</span></div></pre></td></tr></table></figure>
 <p>由于在 <code>Kotlin</code> 中 <code>throw</code> 和 <code>return</code> 都是表达式, 因此它们也可以用在 <code>Elvis 操作符</code> s的右侧. 这种用法可以带来很大的方便, 比如, 可以用来检查函数参数值是否合法:</p>
@@ -526,7 +521,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/3679990147/" title="使用 Kotlin 开发 (番外)">http://cdevlab.top/article/3679990147/</a>
+      <a href="http://cdevlab.top/article/c5b3d729/" title="Kotlin开发-12-空值安全">http://cdevlab.top/article/c5b3d729/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -555,8 +550,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/2758264870/" rel="next" title="AS 升级 gradle 到2.3.1异常">
-                <i class="fa fa-chevron-left"></i> AS 升级 gradle 到2.3.1异常
+              <a href="/article/acb7c552/" rel="next" title="Kotlin开发-11-函数">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-11-函数
               </a>
             
           </div>
@@ -565,8 +560,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/811551029/" rel="prev" title="Kotlin开发-2-基础">
-                Kotlin开发-2-基础 <i class="fa fa-chevron-right"></i>
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -643,7 +638,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">97</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -729,7 +724,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#空值安全"><span class="nav-text">空值安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全调用"><span class="nav-text">安全调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elvis-操作符"><span class="nav-text">Elvis 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-text">!! 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#as-操作符"><span class="nav-text">as? 操作符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安全调用"><span class="nav-text">安全调用 (?.)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elvis-操作符"><span class="nav-text">Elvis 操作符 (?:)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-text">!! 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#as-操作符"><span class="nav-text">as? 操作符</span></a></li></ol></li></ol></div>
             
 
           </div>

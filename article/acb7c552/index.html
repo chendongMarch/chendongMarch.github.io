@@ -1,0 +1,1446 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Kotlin,函数">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="本文学习 Kotlin 函数的相关用法。主要包括 ： 函数的声明和使用，函数的参数和返回值，单表达式函数的使用，使用不定长参数。 局部函数，尾递归函数，高阶函数，内联函数等。 Lambda 表达式，匿名函数和闭包。 其他如，reifeid 关键字，非局部返回及带有接受者的函数字面值。">
+<meta name="keywords" content="Kotlin,函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin开发-11-函数">
+<meta property="og:url" content="http://cdevlab.top/article/acb7c552/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文学习 Kotlin 函数的相关用法。主要包括 ： 函数的声明和使用，函数的参数和返回值，单表达式函数的使用，使用不定长参数。 局部函数，尾递归函数，高阶函数，内联函数等。 Lambda 表达式，匿名函数和闭包。 其他如，reifeid 关键字，非局部返回及带有接受者的函数字面值。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-07T02:04:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin开发-11-函数">
+<meta name="twitter:description" content="本文学习 Kotlin 函数的相关用法。主要包括 ： 函数的声明和使用，函数的参数和返回值，单表达式函数的使用，使用不定长参数。 局部函数，尾递归函数，高阶函数，内联函数等。 Lambda 表达式，匿名函数和闭包。 其他如，reifeid 关键字，非局部返回及带有接受者的函数字面值。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/acb7c552/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Kotlin开发-11-函数 | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    <div class="forkme">
+   <a target="_blank" href="https://github.com/chendongMarch" rel="external nofollow noopener noreferrer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    </div>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/acb7c552/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Kotlin开发-11-函数</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-01T18:15:00+08:00">
+                2017-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/acb7c552/" class="leancloud_visitors" data-flag-title="Kotlin开发-11-函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文学习 <code>Kotlin</code> 函数的相关用法。主要包括 ：</p>
+<p>函数的声明和使用，函数的参数和返回值，单表达式函数的使用，使用不定长参数。</p>
+<p>局部函数，尾递归函数，高阶函数，内联函数等。</p>
+<p><code>Lambda</code> 表达式，匿名函数和闭包。</p>
+<p>其他如，<code>reifeid</code> 关键字，非局部返回及带有接受者的函数字面值。</p>
+<a id="more"></a>
+<h2 id="声明和使用"><a href="#声明和使用" class="headerlink" title="声明和使用"></a>声明和使用</h2><p>函数声明的一般形式为</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">functionName</span><span class="params">(param1:<span class="type">Type</span>,param2:<span class="type">Type</span>...)</span></span>[:ReturnType]&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果是 <code>top-level</code> 级别的函数可以直接使用函数名调用，如果是一个类函数，需要拿到类实例，使用点号标记法调用。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">simpleFunction</span><span class="params">(param:<span class="type">String</span>)</span></span>:<span class="built_in">Int</span>&#123;</div><div class="line">    <span class="keyword">return</span> param.length</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 调用</span></div><div class="line">simpleFunction(<span class="string">"100"</span>)</div><div class="line">Engineer().test()</div></pre></td></tr></table></figure>
+<p><code>Kotlin</code> 支持中缀标记法调用函数，如果需要支持中缀标记法调用，需要满足条件：</p>
+<blockquote>
+<p>是一个类函数或扩展函数，使用 <code>infix</code> 关键字声明，只有一个参数</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="title">cross</span><span class="params">(another: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span> * another</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Engineer</span></span>(<span class="keyword">var</span> name: String = <span class="string">""</span>, <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span>)&#123;</div><div class="line">    <span class="comment">// together 函数</span></div><div class="line">    <span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="title">together</span><span class="params">(e: <span class="type">Engineer</span>)</span></span>: <span class="built_in">Int</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age + e.age</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>它使得函数可以像运算符那样使用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> x = <span class="number">100</span></div><div class="line"><span class="keyword">val</span> result = x cross <span class="number">10</span></div><div class="line"><span class="comment">// 相当于</span></div><div class="line"><span class="keyword">val</span> result2 = x.cross(<span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="keyword">val</span> e = Engineer()</div><div class="line"><span class="keyword">var</span> newEngineer = e together Engineer(name = <span class="string">"new"</span>)</div><div class="line"><span class="comment">// 相当于</span></div><div class="line"><span class="keyword">var</span> newEngineer2 = e.together(Engineer(name = <span class="string">"new"</span>))</div></pre></td></tr></table></figure>
+<h2 id="参数和返回值"><a href="#参数和返回值" class="headerlink" title="参数和返回值"></a>参数和返回值</h2><p>在 <code>Kotlin</code> 中，参数使用 <code>param:Type</code> 的形式声明，每个参数必须声明数据类型；返回值在函数的最后，函数体之前，使用 <code>:returnType</code> 的形式声明，如果没有返回值，可以使用 <code>:Unit</code> 或者不写返回值的形式来表示。</p>
+<p>参数支持 默认值 和 参数名指定参数 调用，简化函数的重载。主要体现在：</p>
+<p>具有默认值的参数我们在调用过程中可以不传该参数，将会使用参数的默认值，另外我们可以使用参数名指定某些参数，也就是只传部分参数，当然没有默认值的参数是必须传的。</p>
+<p>使用函数的默认值进行函数重载时，需要注意参数是从第一个参数开始往后面匹配的，因此无默认的参数要往前面放，如下函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testDefParam</span><span class="params">(p1: <span class="type">String</span> = <span class="string">""</span>, p2: <span class="type">Int</span> = <span class="number">10</span>, p3: <span class="type">Int</span> = <span class="number">1</span>, p4: <span class="type">String</span>)</span></span> &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 我们如此调用是不可以的</span></div><div class="line">testDefParam(<span class="string">""</span>, <span class="string">""</span>) <span class="comment">// error</span></div><div class="line"></div><div class="line"><span class="comment">//  我们需要将无默认值的参数提到前面，才能自动匹配上</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testDefParam</span><span class="params">(p4: <span class="type">String</span>, p1: <span class="type">String</span> = <span class="string">""</span>, p2: <span class="type">Int</span> = <span class="number">10</span>, p3: <span class="type">Int</span> = <span class="number">1</span>)</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用默认值调用时，当参数过多时，默认匹配的方式也多，而且我们必须将没有默认值的参数提前，会导致代码阅读性变差，不容易维护，因此相对更推荐使用参数名指定参数的方式，代码会更清晰，参数列表也没有任何限制，但是如果没有默认值的参数是必须传值的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testNamedParam</span><span class="params">(p1: <span class="type">String</span> = <span class="string">""</span>, p2: <span class="type">Int</span> = <span class="number">10</span>, p3: <span class="type">Int</span> = <span class="number">1</span>,p4: <span class="type">String</span>)</span></span> &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// p4 参数是必须传的</span></div><div class="line">testNamedParam(p2 = <span class="number">11</span>,p4 = <span class="string">"test"</span>)</div></pre></td></tr></table></figure>
+<p>类函数在继承时，子类不可以声明默认值，不论父类中同函数参数有没有默认值都不可以。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">ATest</span> </span>&#123;</div><div class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(p1: <span class="type">Int</span>, p2: <span class="type">String</span> = <span class="string">""</span>)</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BTest</span> : <span class="type">ATest</span></span>() &#123;</div><div class="line">    <span class="comment">// p1 p2 参数都不能再声明默认值</span></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(p1: <span class="type">Int</span>, p2: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.test(p1, p2)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>虽然在子类中我们不能声明参数默认值，但是父类中的参数默认值在子类中同样生效，如上面的代码我们可以如下调用：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ATest().test(<span class="number">1</span>)</div><div class="line">BTest().test(<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p>函数的参数中的基本数据类型都是 <code>val</code> 类型的变量，也就是在函数体内无法改变其值</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testFuncParamVal</span><span class="params">(index:<span class="type">Int</span>,user:<span class="type">User</span>)</span></span>&#123;</div><div class="line">    index = <span class="number">100</span> <span class="comment">// error. val can not be reassigned</span></div><div class="line">    user.name = <span class="string">""</span> <span class="comment">// error. val can not be reassigned</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="单表达式函数-Single-Expression"><a href="#单表达式函数-Single-Expression" class="headerlink" title="单表达式函数(Single-Expression)"></a>单表达式函数(Single-Expression)</h2><p>单表达式函数 (Single-Expression function)</p>
+<p>如果函数可以直接使用一条简单的表达式表示，可以省略函数体，直接在  <code>=</code>  之后声明，如果函数的返回类型可以通过类型推断得到，那么返回类型也可以省略。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">singleExpressionFunc</span><span class="params">()</span></span>: <span class="built_in">Int</span> = <span class="number">12</span> * <span class="number">10</span></div><div class="line"><span class="comment">// 省略返回类型</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">singleExpressionFunc</span><span class="params">()</span></span> = <span class="number">12</span> * <span class="number">10</span></div></pre></td></tr></table></figure>
+<h2 id="不定长参数-varargs"><a href="#不定长参数-varargs" class="headerlink" title="不定长参数(varargs)"></a>不定长参数(varargs)</h2><p>类似 <code>java</code> 中的 <code>...</code> ，<code>kotlin</code> 使用 <code>varargs</code> 来表示不定长参数，<code>varargs</code> 声明的参数的类型实际上是一个 <code>Array&lt;out T&gt;</code> 类型的值，因此可以使用下标访问每一个参数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span>  <span class="title">asList</span><span class="params">(<span class="keyword">vararg</span> args: <span class="type">String</span>)</span></span>: List&lt;String&gt; &#123;</div><div class="line">    <span class="keyword">val</span> list = ArrayList&lt;String&gt;()</div><div class="line">    <span class="keyword">for</span> (arg <span class="keyword">in</span> args) &#123;</div><div class="line">        list.add(arg)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> list</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 简单调用</span></div><div class="line"> asList(<span class="string">"1"</span>,<span class="string">"@"</span>,<span class="string">"3"</span>)</div></pre></td></tr></table></figure>
+<p>通常情况下 <code>varargs</code> 类型的参数应该是最后一个参数，因为由于  <code>varargs</code> 类型的参数接受的是一个数组，后面的参数将无法识别，不过好在 <code>kotlin</code> 有使用参数名指定参数的传参方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span>  <span class="title">asList</span><span class="params">(<span class="keyword">vararg</span> args: <span class="type">String</span>,count:<span class="type">Int</span>)</span></span>: List&lt;String&gt; &#123;</div><div class="line">    <span class="keyword">val</span> list = ArrayList&lt;String&gt;()</div><div class="line">    list += args</div><div class="line">    <span class="keyword">return</span> list</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// test</span></div><div class="line">asList(<span class="string">"1"</span>,<span class="string">"@"</span>,<span class="string">"3"</span>,count = <span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p>当我们已经有一个数组时，希望将这个数组作为参数直接传递给函数，此时是无法传参的，因为它会将整个 <code>Array</code> 作为一项，如下面的代码中，会提示类型不对，这种情况可以使用 <strong>展开操作符(*)</strong>，将数组展开</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> strings = arrayOf(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>)</div><div class="line"><span class="comment">// error. Required:String,Found:Array&lt;String&gt;</span></div><div class="line">asList(strings,count = <span class="number">1</span>) </div><div class="line"></div><div class="line"><span class="comment">// 正确姿势</span></div><div class="line"><span class="keyword">val</span> strings = arrayOf(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>)</div><div class="line">asList(*strings,count = <span class="number">1</span>)</div></pre></td></tr></table></figure>
+<h2 id="几种函数类型"><a href="#几种函数类型" class="headerlink" title="几种函数类型"></a>几种函数类型</h2><p><strong>顶级函数</strong>：函数可以声明为 <code>top-level</code> 级别，我们不需要单独定义一个类来容纳这个函数，顶级函数可以访问公开的类和属性。</p>
+<p><strong>局部函数</strong>：指的是声明在函数内部的函数，局部函数可以访问外部函数的局部变量。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MainActivity 中的变量</span></div><div class="line"><span class="keyword">val</span> valueInMainActivity = <span class="number">100</span></div><div class="line"><span class="comment">// 外部函数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">localFunctionOutter</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">// 外部函数的局部变量</span></div><div class="line">    <span class="keyword">val</span> valueInLocalFunctionOuter = <span class="number">10</span></div><div class="line">    <span class="comment">// 局部函数</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">localFunctionInner</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">// 局部函数的局部变量</span></div><div class="line">        <span class="keyword">val</span> valueInLocalFunctionInner = <span class="number">1</span></div><div class="line">        <span class="comment">// 局部函数可以访问外部函数的局部变量</span></div><div class="line">        log(<span class="string">"<span class="variable">$valueInMainActivity</span> <span class="variable">$valueInLocalFunctionOuter</span> <span class="variable">$valueInLocalFunctionInner</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 调用局部函数</span></div><div class="line">    localFunctionInner()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>成员函数</strong>：声明在类和对象中的函数，它作为类的成员可以访问其他成员。</p>
+<p><strong>范型函数</strong>：函数中可以带有范型，关于范型的相关问题在 <a href="../9e4433d5">kotlin-范型</a> 会有更细致的描述。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">test2</span><span class="params">(t:<span class="type">T</span>)</span></span> where T : Box&lt;T&gt;, T : Cloneable&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>扩展函数</strong>：对已有类进行扩展，关于扩展函数的相关问题在 <a href="../d0378250">kotlin-扩展</a> 会有更细致的描述。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;E&gt;</span> MutableList<span class="type">&lt;E&gt;</span>.<span class="title">swap</span><span class="params">(index1: <span class="type">Int</span>, index2: <span class="type">Int</span>)</span></span> &#123;</div><div class="line">    <span class="keyword">val</span> temp = <span class="keyword">this</span>[index1]</div><div class="line">    <span class="keyword">this</span>[index1] = <span class="keyword">this</span>[index2]</div><div class="line">    <span class="keyword">this</span>[index2] = temp</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="尾递归函数-tailrec"><a href="#尾递归函数-tailrec" class="headerlink" title="尾递归函数(tailrec)"></a>尾递归函数(tailrec)</h2><p>我们在 <code>Java</code> 中使用递归函数时，如果递归的次数太多，具体能够承载的递归次数与函数的复杂程度有关，会导致堆栈溢出，<code>kotlin</code> 对递归函数做了优化，使用 <code>tailrec</code>  关键字声明尾递归函数，并且满足要求的形式，在编译时，会消除函数的递归调用，产生一段基于循环的代码，避免嵌套过深导致堆栈溢出。</p>
+<p>要符合 <code>tailrec</code> 修饰符的要求，函数必须在它执行的所有操作的最后一步，递归调用它自身。如果在这个递归调用之后还存在其他代码，那么你不能使用尾递归，而且你不能将尾递归用在 <code>try/catch/finally</code> 结构内。</p>
+<p>尾递归函数和我们平常的递归函数没有很大差别，使用 <code>tailrec</code> 关键字声明，参照官网上面的例子。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tailrec <span class="function"><span class="keyword">fun</span> <span class="title">findFixPoint</span><span class="params">(x: <span class="type">Double</span> = <span class="number">1.0</span>)</span></span>: <span class="built_in">Double</span></div><div class="line">        = <span class="keyword">if</span> (Math.cos(x) == x) x <span class="keyword">else</span> findFixPoint(Math.cos(x))</div></pre></td></tr></table></figure>
+<p>在编译时，他将会生成类似如下的结构</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">findFixPoint</span><span class="params">()</span></span>: <span class="built_in">Double</span> &#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="number">1.0</span></div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">val</span> y = Math.cos(x)</div><div class="line">        <span class="keyword">if</span> (x == y) <span class="keyword">return</span> y</div><div class="line">        x = y</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>在 <code>kotlin</code> 中函数和属性一样可以作为另一个函数的参数或返回值，这类函数被称为高阶函数，它使得函数可以如同对象一样进行传递。</p>
+<p>如同字符串类型是 <code>String</code>，整型的类型是 <code>Int</code>，函数具有自己的类型，函数的类型使用 <code>(p1:Type1,p2:Type2...) -&gt; returnType</code>，其中参数的名称 <code>p1,p2</code> 是可以省略的，需要注意的是即使函数返回值是 <code>Unit</code> 也无法省略，因为编译器将无法识别 <code>(Type)</code> 是一个什么类型。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 声明函数的类型</span></div><div class="line"><span class="keyword">val</span> fun1: (String, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123;</div><div class="line">    p1, p2 -&gt;</div><div class="line">    p1.length + p2</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 带有参数名</span></div><div class="line"><span class="keyword">val</span> fun2: (p1: <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123;</div><div class="line">    p1 -&gt;</div><div class="line">    p1</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 返回值为 Unit</span></div><div class="line"><span class="keyword">val</span> fun3: (String) -&gt; <span class="built_in">Unit</span> = &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// error. 不能省略 Unit</span></div><div class="line"><span class="keyword">val</span> fun4: (String) = &#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="函数作为返回值"><a href="#函数作为返回值" class="headerlink" title="函数作为返回值"></a>函数作为返回值</h3><p>函数可以作为返回值，作为返回值时，需要使用 <code>Lambda</code> 表达式的方式书写。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数作为返回值</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testReturnFunction</span><span class="params">()</span></span>: (String, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="comment">// 返回一个 参数为 (String,Int) 返回值为 Int 的函数</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        p1: String, p2: <span class="built_in">Int</span> -&gt;</div><div class="line">        p1.length + p2</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 我们可以使用该函数获取内部返回的函数</span></div><div class="line"><span class="keyword">val</span> returnFunction = testReturnFunction()</div><div class="line"><span class="keyword">var</span> value = returnFunction(<span class="string">"2"</span>, <span class="number">1</span>)</div></pre></td></tr></table></figure>
+<h3 id="函数作为参数"><a href="#函数作为参数" class="headerlink" title="函数作为参数"></a>函数作为参数</h3><p>函数可以作为函数参数，声明函数时可以像普通对象那样对待函数类型的参数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数作为参数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testParamFunction</span><span class="params">(inFun: (<span class="type">String</span>, <span class="built_in">Int</span>)</span></span> -&gt; <span class="built_in">Int</span>): <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> inFun(<span class="string">"1"</span>, <span class="number">1</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以使用一个 <code>Lambda</code> 表达式创建一个函数作为参数，当函数 A 的最后一个参数也是函数时，可以在函数 A 后面直接用 <code>{}</code> 声明函数体。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 普通用法</span></div><div class="line">testParamFunction(inFun = &#123;</div><div class="line">    s, i -&gt;</div><div class="line">    s.length + i</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 简单用法</span></div><div class="line">testParamFunction &#123; s, i -&gt; s.length + i &#125;</div></pre></td></tr></table></figure>
+<p>如果该函数还有其他参数，那就必须使用 <code>()</code> 来放置这些参数，如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数作为参数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testParamFunction</span><span class="params">(count:<span class="type">Int</span>,inFun: (<span class="type">String</span>, <span class="built_in">Int</span>)</span></span> -&gt; <span class="built_in">Int</span>): <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> inFun(<span class="string">"1"</span>, <span class="number">1</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 普通用法</span></div><div class="line">testParamFunction(<span class="number">1</span>,inFun = &#123;</div><div class="line">    s, i -&gt;</div><div class="line">    s.length + i</div><div class="line">&#125;)</div><div class="line"><span class="comment">// 简单用法</span></div><div class="line">testParamFunction(<span class="number">1</span>) &#123; s, i -&gt; s.length + i &#125;</div></pre></td></tr></table></figure>
+<p>融会贯通，让函数如同对象一样自由的传递，我们以上面的两种函数为例</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 声明一个函数</span></div><div class="line"><span class="keyword">val</span> fun1: (String, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = &#123;</div><div class="line">    p1, p2 -&gt;</div><div class="line">    p1.length + p2</div><div class="line">&#125;</div><div class="line">testParamFunction(<span class="number">1</span>, inFun = fun1)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 从另一个函数中返回一个函数</span></div><div class="line"><span class="keyword">val</span> fun5: (String, <span class="built_in">Int</span>) -&gt; <span class="built_in">Int</span> = testReturnFunction()</div><div class="line">testParamFunction(<span class="number">1</span>, inFun = fun5)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 使用 lambda 表达式创建一个函数</span></div><div class="line">testParamFunction(<span class="number">1</span>, inFun = &#123;</div><div class="line">            p1, p2 -&gt;</div><div class="line">            p1.length + p2</div><div class="line">        &#125;)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 使用声明好的函数 kt 1.2-M1	</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fun6</span><span class="params">(p1:<span class="type">String</span>,p2:<span class="type">Int</span>)</span></span>:<span class="built_in">Int</span>&#123;</div><div class="line">    <span class="keyword">return</span> p1.length + p2</div><div class="line">&#125;</div><div class="line">testParamFunction(<span class="number">1</span>, inFun = ::fun6)</div></pre></td></tr></table></figure>
+<h2 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h2><p>在 <code>Kotlin</code> 中使用 <code>Lambda</code> 表达式，<code>Lambda</code> 表达式使用如下方式。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	param1,param2 -&gt;</div><div class="line">	...函数体...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当某个参数我们不用时，可以使用 <code>_</code> 代替，如函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testLambda</span><span class="params">(inFun: (<span class="type">String</span>, <span class="built_in">Int</span>)</span></span> -&gt; <span class="built_in">Int</span>): <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> inFun(<span class="string">"1"</span>, <span class="number">1</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">testLambda&#123;</div><div class="line">    p1,p2 -&gt;</div><div class="line">    p1.length + p2</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 不使用 p2 参数</span></div><div class="line">testLambda&#123;</div><div class="line">    p1, _ -&gt;</div><div class="line">    p1.length</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当只有一个参数时，如果没有用到这个参数可以直接不用声明，也可以使用单一参数的隐含名称 <code>it</code> 代替。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testLambda</span><span class="params">(inFun: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>): <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> inFun(<span class="string">"1"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 当不使用参数时，可以不用声明</span></div><div class="line">testLambda &#123;</div><div class="line">    <span class="number">0</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 隐含参数 it</span></div><div class="line">testLambda &#123;</div><div class="line">    it.length</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认函数体的最后一条语句将会作为函数的返回值，但是不需要显式使用 <code>return</code> 关键字。如果想在其他位置返回值，需要使用带有后缀的 <code>return</code> 语句。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 最后一句将作为返回值</span></div><div class="line">testLambda &#123;</div><div class="line">    it.length</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 使用带后缀的 return 语句返回指定值</span></div><div class="line">testLambda &#123;</div><div class="line">    <span class="keyword">if</span> (it.length &gt; <span class="number">100</span>)</div><div class="line">        <span class="keyword">return</span><span class="symbol">@testLambda</span> it.length</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span><span class="symbol">@testLambda</span> <span class="number">100</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>匿名函数与普通函数类似，但是不需要指定函数名，支持单单表达式函数，也支持多行函数。</p>
+<p>匿名函数必须使用  <code>()</code> 传递，对 <code>Lambda</code> 表达式支持的一些使用方式，对匿名函数并不支持。</p>
+<p><code>Lambda</code> 表达式与匿名函数之间的另一个区别是，它们的 <strong>非局部返回(non-local return)</strong> 的行为不同。不使用标签的 <code>return</code> 语句总是从 <code>fun</code> 关键字定义的函数中返回。也就是说，<code>Lambda</code> 表达式内的 <code>return</code> 将会从包含这个 <code>Lambda</code> 表达式的函数中返回，而匿名函数内的 <code>return</code> 只会从匿名函数本身返回。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">testParamFunction(<span class="number">1</span>, inFun = (<span class="function"><span class="title">fun</span><span class="params">(p1, p2)</span></span> = p1.length + p2))</div><div class="line"></div><div class="line">testParamFunction(<span class="number">1</span>, inFun = (<span class="function"><span class="title">fun</span><span class="params">(p1, p2)</span></span>: <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> p1.length + p2</div><div class="line">&#125;))</div></pre></td></tr></table></figure>
+<h2 id="函数的闭包"><a href="#函数的闭包" class="headerlink" title="函数的闭包"></a>函数的闭包</h2><p><code>Lambda</code> 表达式和匿名函数可以访问外部变量，因此会形成闭包。</p>
+<p>函数 和 函数能访问到的变量(环境) 的总和 就形成了一个闭包。也就是说，当一个内部函数访问了外部函数的变量，此时会形成一个闭包。</p>
+<p>使用闭包的目的是隐藏一些变量，这些变量只在外部函数中声明，但是不需要声明为全局属性。</p>
+<p>如下函数声明，在 <code>MainActivity</code> 中和外部函数中分别都有变量，内部函数访问这些变量。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MainActivity 中的变量</span></div><div class="line"><span class="keyword">val</span> valueInMainActivity = <span class="number">100</span></div><div class="line"><span class="comment">// 外部函数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">localFunctionOuter</span><span class="params">()</span></span>: () -&gt; <span class="built_in">Unit</span> &#123;</div><div class="line">    <span class="comment">// 外部函数的局部变量</span></div><div class="line">    <span class="keyword">val</span> valueInLocalFunctionOuter = <span class="number">10</span></div><div class="line">    <span class="comment">// 局部函数</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">localFunctionInner</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="comment">// 局部函数的局部变量</span></div><div class="line">        <span class="keyword">val</span> valueInLocalFunctionInner = <span class="number">1</span></div><div class="line">        <span class="comment">// 局部函数可以访问外部函数的局部变量</span></div><div class="line">        log(<span class="string">"valueInMainActivity = <span class="variable">$valueInMainActivity</span> "</span> +</div><div class="line">                <span class="string">",valueInLocalFunctionOuter = <span class="variable">$valueInLocalFunctionOuter</span> "</span> +</div><div class="line">                <span class="string">",valueInLocalFunctionInner = <span class="variable">$valueInLocalFunctionInner</span>"</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 调用局部函数</span></div><div class="line">    <span class="keyword">return</span> ::localFunctionInner</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在下面的调用中，虽然 <code>localFunctionOuter()</code> 函数已经结束了， 但是仍然可以使用返回的函数访问 <code>localFunctionOuter()</code> 内部的变量，我们对外部隐藏了 <code>valueInLocalFunctionOuter</code> 这个变量。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> f = localFunctionOuter()</div><div class="line">f()</div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line">MainActivity: valueInMainActivity = <span class="number">100</span> ,valueInLocalFunctionOuter = <span class="number">10</span> ,valueInLocalFunctionInner = <span class="number">1</span></div></pre></td></tr></table></figure>
+<h2 id="带有接受者的函数字面值"><a href="#带有接受者的函数字面值" class="headerlink" title="带有接受者的函数字面值"></a>带有接受者的函数字面值</h2><p>带有接受者的函数字面值（Function Literals with Receiver）</p>
+<p>这是一个类似于扩展函数一样的特性，我们借助官网的几个例子理解一下他的用法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> sum = <span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="params">(other: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = <span class="keyword">this</span> + other</div><div class="line"><span class="number">1.</span>sum(<span class="number">12</span>)</div></pre></td></tr></table></figure>
+<p>这种声明方式和普通的函数有相似之处，他只是在参数前面追加了 <code>Int</code> 类型，来表示这个函数是 <code>Int</code> 类型可以直接调用的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> sum = <span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="params">(other: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = other</div><div class="line"><span class="keyword">val</span> sum2 = <span class="function"><span class="title">fun</span> <span class="params">(other: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = other</div></pre></td></tr></table></figure>
+<p>再来看一下官网的另一个例子，第一眼看上去是有些懵逼的，分析一下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 一个普通的类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HTML</span> </span>&#123;</div><div class="line">    <span class="comment">// 一个普通的函数</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">body</span><span class="params">()</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 还是一个普通的函数，返回值为 HTML 对象</span></div><div class="line"><span class="comment">// init 参数是一个无参无返回值的函数，</span></div><div class="line"><span class="comment">// 由于使用了 (HTML.) 说明这个函数是一个可以被 HTML 对象直接调用的函数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">html</span><span class="params">(init: <span class="type">HTML</span>.()</span></span> -&gt; <span class="built_in">Unit</span>): HTML &#123;</div><div class="line">    <span class="keyword">val</span> html = HTML()  </div><div class="line">    html.init() <span class="comment">// 使用创建的 HTML 对象调用该函数</span></div><div class="line">    <span class="keyword">return</span> html</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用，接受的参数是 <code>HTML</code> 类的一个无参无返回值的函数。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">html &#123;</div><div class="line">    body()   </div><div class="line">&#125;</div><div class="line"></div><div class="line">相当于</div><div class="line"></div><div class="line">html(&#123;</div><div class="line">    body()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="内联函数-inline"><a href="#内联函数-inline" class="headerlink" title="内联函数(inline)"></a>内联函数(inline)</h2><p>使用高阶函数，每个函数都是一个对象，而且它还要捕获一个闭包，这些都会造成内存的损耗和运行效率的下降。使用内联函数可以将函数内联在函数调用处，而不用生成多余的对象再去调用他。</p>
+<p>使用内联函数需要使用 <code>inline</code> 关键字声明，<code>inline</code> 关键字会影响函数本身，也会影响传递给他的表达式，这两者都会被内联到调用处。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">testInline</span><span class="params">(str:<span class="type">String</span>,f: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>): <span class="built_in">Int</span> &#123;</div><div class="line">    <span class="keyword">return</span> f(str)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果函数有多个函数参数，可以使用 <code>noinline</code> 关键字声明那些不需要内联的函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">testInline</span><span class="params">(str: <span class="type">String</span>, f1: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>, <span class="keyword">noinline</span> f2: () -&gt; <span class="built_in">Unit</span>): <span class="built_in">Int</span> &#123;</div><div class="line">    f2()</div><div class="line">    <span class="keyword">return</span> f1(str)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>内联函数不能作为递归参数使用，对于内联函数中没有声明为 <code>noinline</code> 函数参数(它们都是内联的)，具有一些限制，这些参数 不能保存在域中，不能作为函数返回值返回，只能在内联函数内部调用，只能作为可以内联的函数参数传递给其他函数，我们通过一个例子说明：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 一个内联函数</span></div><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">testInline2</span><span class="params">(f1: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>)&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个非内联函数</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testInline3</span><span class="params">(f1: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>)&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">testInline</span><span class="params">(str: <span class="type">String</span>, f1: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>, <span class="keyword">noinline</span> f2: () -&gt; <span class="built_in">Unit</span>):  (String) -&gt; <span class="built_in">Int</span> &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// error. inline 不可以保存在域内</span></div><div class="line">    <span class="comment">// val localFun = f1</span></div><div class="line">    </div><div class="line">    <span class="comment">// error. 不能是递归的</span></div><div class="line">    <span class="comment">// testInline(str,f1,f2)</span></div><div class="line">    </div><div class="line">    <span class="comment">// yes. 内联的 lambda 表达式参数，可以作为其他内联函数的参数</span></div><div class="line">    testInline2(f1)</div><div class="line">    </div><div class="line">    <span class="comment">// error. 内联的 lambda 表达式参数，不能作为非内联函数的参数</span></div><div class="line">    <span class="comment">// testInline(f1)</span></div><div class="line">    </div><div class="line">    <span class="comment">// error. inline 不可以作为返回值</span></div><div class="line">    <span class="comment">// return f1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="非局部返回-Non-local-return"><a href="#非局部返回-Non-local-return" class="headerlink" title="非局部返回(Non-local return)"></a>非局部返回(Non-local return)</h2><p>非局部返回（Non-local return）</p>
+<p>在 <code>Kotlin</code> 中，使用不带标签的 <code>return</code> 语句只能返回使用 <code>fun</code> 关键字声明的函数，即普通的函数和匿名函数，在 <code>Lambda</code> 表达式是不允许使用不带标签的 <code>return</code> 语句的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testNonReturn</span><span class="params">(f: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>) &#123;</div><div class="line">    log(f(<span class="string">"test"</span>))</div><div class="line">    log(<span class="string">"testNonReturn"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">testNonReturn &#123;</div><div class="line">    <span class="comment">// 不允许 return</span></div><div class="line">    it.length</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以使用带有指定标签的 <code>return</code> 语句，用来返回不同条件下的结果，因为 <code>Lambda</code> 表达式总是将最后一句的结果作为返回值，带有标签的 <code>return</code> 语句只会从对应 <code>Lambda</code> 表达式返回，后面代码仍会执行。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">testNonReturn &#123;</div><div class="line">    <span class="keyword">if</span> (it.length &gt; <span class="number">2</span>)</div><div class="line">        <span class="keyword">return</span><span class="symbol">@testNonReturn</span> <span class="number">100</span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span><span class="symbol">@testNonReturn</span> <span class="number">1</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">MainActivity: <span class="number">100</span></div><div class="line">MainActivity: testNonReturn</div></pre></td></tr></table></figure>
+<p>对于内联函数，<code>Lambda</code> 表达式会被内联在调用处，那么可以使用 <code>return</code> 语句，此时 <code>return</code> 的作用是结束 <code>Lambda</code> 表达式作为参数的函数所在的那个函数，有点绕，借助下面的例子，<code>testNonLocalReturn()</code> 函数接受的 <code>Lambda</code> 参数将会结束 <code>testNonLocalReturn()</code> 函数所在的 <code>foo()</code> 函数，这种返回方式被称为 非局部返回（Non-local return）；</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">testNonReturn</span><span class="params">(f: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>)&#123;</div><div class="line">    f(<span class="string">"test"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span>:<span class="built_in">Boolean</span> &#123;</div><div class="line">    log(<span class="string">"before testNonLocalReturn"</span>)</div><div class="line">    testNonLocalReturn &#123;</div><div class="line">        <span class="comment">// 返回值为 boolean，将直接退出 foo 函数</span></div><div class="line">        log(<span class="string">"invoke testNonLocalReturn"</span>)</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">    log(<span class="string">"after testNonLocalReturn"</span>)</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MainActivity: before testNonLocalReturn</div><div class="line">MainActivity: invoke testNonLocalReturn</div></pre></td></tr></table></figure>
+<p>有些时候 <code>Lambda</code> 表达式参数并不一定在函数内部执行，他可能通过一个局部对象或一个嵌套函数传递给其他执行环境调用，此时非局部返回也是被禁止的，为了明确这一点，我们使用 <code>crossinline</code> 关键字声明。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 因为将会在另一个环境执行，使用 crossinline 标记</span></div><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">testNonLocalReturnV2</span><span class="params">(<span class="keyword">crossinline</span> f: ()</span></span> -&gt; <span class="built_in">Unit</span>): Runnable &#123;</div><div class="line">    <span class="keyword">val</span> r = Runnable &#123; f() &#125;</div><div class="line">    <span class="keyword">return</span> r</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fooV2</span><span class="params">()</span></span> &#123;</div><div class="line">    testNonLocalReturnV2&#123;</div><div class="line">        <span class="comment">// error 使用 crossinline 标记，不能非局部返回</span></div><div class="line">        <span class="comment">// return</span></div><div class="line">    &#125;</div><div class="line">    log(<span class="string">"invoke fooV2"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="实体化的类型参数-reified"><a href="#实体化的类型参数-reified" class="headerlink" title="实体化的类型参数(reified)"></a>实体化的类型参数(reified)</h2><p>实体化的类型参数(Reified type parameter)</p>
+<p>主要用来解决范型参数无法像普通的类那样访问的问题。写一个函数，判断某个对象是不是属于某种类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">testReifiedType</span><span class="params">(p: <span class="type">Any</span>, cls: <span class="type">Class</span>&lt;<span class="type">T</span>&gt;)</span></span>: <span class="built_in">Boolean</span> &#123;</div><div class="line">    <span class="keyword">return</span> cls.isInstance(p)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 我们可以这样使用它</span></div><div class="line">testReifiedType(<span class="string">"test"</span>, String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></div></pre></td></tr></table></figure>
+<p>这让我想起了 <code>Gson</code> 的使用方法，除了约定一个范型，我们还需要传递对应的 <code>class</code> 进去才能解析，<code>kotlin</code> 中内联函数支持 <code>Reified type parameter</code>，使用  <code>reifeid</code> 关键字注解范型，就可以像一个普通的类那样来访问范型类型了。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> <span class="title">testReifiedType</span><span class="params">(p: <span class="type">Any</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</div><div class="line">    <span class="keyword">return</span> p <span class="keyword">is</span> T</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 调用</span></div><div class="line">testReifiedType&lt;String&gt;(<span class="string">""</span>)</div></pre></td></tr></table></figure>
+<p>需要注意的是，函数必须是 <code>inline</code> 类型才可以使用 <code>reifeid</code> 关键字注解。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/acb7c552/" title="Kotlin开发-11-函数">http://cdevlab.top/article/acb7c552/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/cc5968a9/" rel="next" title="Kotlin开发-10-代理">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-10-代理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/c5b3d729/" rel="prev" title="Kotlin开发-12-空值安全">
+                Kotlin开发-12-空值安全 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明和使用"><span class="nav-text">声明和使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数和返回值"><span class="nav-text">参数和返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单表达式函数-Single-Expression"><span class="nav-text">单表达式函数(Single-Expression)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不定长参数-varargs"><span class="nav-text">不定长参数(varargs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种函数类型"><span class="nav-text">几种函数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尾递归函数-tailrec"><span class="nav-text">尾递归函数(tailrec)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函数"><span class="nav-text">高阶函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为返回值"><span class="nav-text">函数作为返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为参数"><span class="nav-text">函数作为参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda-表达式"><span class="nav-text">Lambda 表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名函数"><span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的闭包"><span class="nav-text">函数的闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带有接受者的函数字面值"><span class="nav-text">带有接受者的函数字面值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联函数-inline"><span class="nav-text">内联函数(inline)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非局部返回-Non-local-return"><span class="nav-text">非局部返回(Non-local return)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体化的类型参数-reified"><span class="nav-text">实体化的类型参数(reified)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
