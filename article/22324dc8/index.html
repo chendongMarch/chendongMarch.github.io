@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Js 是弱类型动态语言 内建数据类型object (Func,Array,Date…)numberstringbooleannullundefined + : 只要有字符串就是字符串拼接- : 如果有字符串，转换为数字计算 == : 等于，类型相同，同 ===，类型不同，进行转换，null == undefined, number == string(转换为数字比较)，boolean == nu">
+<meta name="description" content="Js 是弱类型动态语言 内建数据类型object (Func,Array,Date…)numberstringbooleannullundefined + : 只要有字符串就是字符串拼接- : 如果有字符串，转换为数字计算 空字符串，null，undefined，数字0，数字NaN 转化为 boolean 为 false，其他为true. == : 等于，类型相同，同 ===，类型不同，进行转换">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Js 开发-1(基础)">
 <meta property="og:url" content="http://cdevlab.top/article/22324dc8/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="Js 是弱类型动态语言 内建数据类型object (Func,Array,Date…)numberstringbooleannullundefined + : 只要有字符串就是字符串拼接- : 如果有字符串，转换为数字计算 == : 等于，类型相同，同 ===，类型不同，进行转换，null == undefined, number == string(转换为数字比较)，boolean == nu">
+<meta property="og:description" content="Js 是弱类型动态语言 内建数据类型object (Func,Array,Date…)numberstringbooleannullundefined + : 只要有字符串就是字符串拼接- : 如果有字符串，转换为数字计算 空字符串，null，undefined，数字0，数字NaN 转化为 boolean 为 false，其他为true. == : 等于，类型相同，同 ===，类型不同，进行转换">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-11T05:03:58.000Z">
+<meta property="og:updated_time" content="2017-08-07T13:26:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Js 开发-1(基础)">
-<meta name="twitter:description" content="Js 是弱类型动态语言 内建数据类型object (Func,Array,Date…)numberstringbooleannullundefined + : 只要有字符串就是字符串拼接- : 如果有字符串，转换为数字计算 == : 等于，类型相同，同 ===，类型不同，进行转换，null == undefined, number == string(转换为数字比较)，boolean == nu">
+<meta name="twitter:description" content="Js 是弱类型动态语言 内建数据类型object (Func,Array,Date…)numberstringbooleannullundefined + : 只要有字符串就是字符串拼接- : 如果有字符串，转换为数字计算 空字符串，null，undefined，数字0，数字NaN 转化为 boolean 为 false，其他为true. == : 等于，类型相同，同 ===，类型不同，进行转换">
 
 
 
@@ -476,7 +476,9 @@ var _hmt = _hmt || [];
 <p><code>Js</code> 是弱类型动态语言</p>
 <h2 id="内建数据类型"><a href="#内建数据类型" class="headerlink" title="内建数据类型"></a>内建数据类型</h2><p>object (Func,Array,Date…)<br>number<br>string<br>boolean<br>null<br>undefined</p>
 <p><code>+</code> : 只要有字符串就是字符串拼接<br><code>-</code> : 如果有字符串，转换为数字计算</p>
-<p><code>==</code> : 等于，类型相同，同 ===，类型不同，进行转换，null == undefined, number == string(转换为数字比较)，boolean == number(boolean转换为number),object == number/string(尝试将obj转为基本类型)<br><code>===</code> : 严格等于，类型不同，返回 false，类型相同 null === null,undefined === undefind,NaN != NaN,new Object != new Object</p>
+<p>空字符串，null，undefined，数字0，数字NaN 转化为 boolean 为 false，其他为true.</p>
+<p><code>==</code> : 等于，类型相同，同 ===，类型不同，进行转换，null == undefined, number == string(转换为数字比较)，boolean == number(转换成bool比较),object == number/string(尝试将obj转为基本类型)</p>
+<p><code>===</code> : 严格等于，类型不同，返回 false，类型相同 null === null,undefined === undefind,NaN != NaN,new Object != new Object</p>
 
       
     </div>
@@ -622,7 +624,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

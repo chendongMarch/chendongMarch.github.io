@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文学习 Kotlin 函数的相关用法。主要包括 ： 函数的声明和使用，函数的参数和返回值，单表达式函数的使用，使用不定长参数。 局部函数，尾递归函数，高阶函数，内联函数等。 Lambda 表达式，匿名函数和闭包。 其他如，reifeid 关键字，非局部返回及带有接受者的函数字面值。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-07T02:04:00.000Z">
+<meta property="og:updated_time" content="2017-08-08T01:47:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-11-函数">
 <meta name="twitter:description" content="本文学习 Kotlin 函数的相关用法。主要包括 ： 函数的声明和使用，函数的参数和返回值，单表达式函数的使用，使用不定长参数。 局部函数，尾递归函数，高阶函数，内联函数等。 Lambda 表达式，匿名函数和闭包。 其他如，reifeid 关键字，非局部返回及带有接受者的函数字面值。">
@@ -492,7 +492,8 @@ var _hmt = _hmt || [];
 <h2 id="参数和返回值"><a href="#参数和返回值" class="headerlink" title="参数和返回值"></a>参数和返回值</h2><p>在 <code>Kotlin</code> 中，参数使用 <code>param:Type</code> 的形式声明，每个参数必须声明数据类型；返回值在函数的最后，函数体之前，使用 <code>:returnType</code> 的形式声明，如果没有返回值，可以使用 <code>:Unit</code> 或者不写返回值的形式来表示。</p>
 <p>参数支持 默认值 和 参数名指定参数 调用，简化函数的重载。主要体现在：</p>
 <p>具有默认值的参数我们在调用过程中可以不传该参数，将会使用参数的默认值，另外我们可以使用参数名指定某些参数，也就是只传部分参数，当然没有默认值的参数是必须传的。</p>
-<p>使用函数的默认值进行函数重载时，需要注意参数是从第一个参数开始往后面匹配的，因此无默认的参数要往前面放，如下函数</p>
+<p>使用函数的默认值进行函数重载时，需要注意参数是从第一个参数开始往后面匹配的，因此无默认值的参数要往前面放，如下函数：</p>
+<p>另外，由于如果最后一个参数是一个函数，那么可以将这个函数放在 <code>()</code> 之外，使用 <code>Lambda</code> 表达式传参，因此，如果有这样的函数参数，建议放在最后。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testDefParam</span><span class="params">(p1: <span class="type">String</span> = <span class="string">""</span>, p2: <span class="type">Int</span> = <span class="number">10</span>, p3: <span class="type">Int</span> = <span class="number">1</span>, p4: <span class="type">String</span>)</span></span> &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 我们如此调用是不可以的</span></div><div class="line">testDefParam(<span class="string">""</span>, <span class="string">""</span>) <span class="comment">// error</span></div><div class="line"></div><div class="line"><span class="comment">//  我们需要将无默认值的参数提到前面，才能自动匹配上</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testDefParam</span><span class="params">(p4: <span class="type">String</span>, p1: <span class="type">String</span> = <span class="string">""</span>, p2: <span class="type">Int</span> = <span class="number">10</span>, p3: <span class="type">Int</span> = <span class="number">1</span>)</span></span> &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使用默认值调用时，当参数过多时，默认匹配的方式也多，而且我们必须将没有默认值的参数提前，会导致代码阅读性变差，不容易维护，因此相对更推荐使用参数名指定参数的方式，代码会更清晰，参数列表也没有任何限制，但是如果没有默认值的参数是必须传值的。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testNamedParam</span><span class="params">(p1: <span class="type">String</span> = <span class="string">""</span>, p2: <span class="type">Int</span> = <span class="number">10</span>, p3: <span class="type">Int</span> = <span class="number">1</span>,p4: <span class="type">String</span>)</span></span> &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// p4 参数是必须传的</span></div><div class="line">testNamedParam(p2 = <span class="number">11</span>,p4 = <span class="string">"test"</span>)</div></pre></td></tr></table></figure>
@@ -735,7 +736,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">98</span>
+                <span class="site-state-item-count">99</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
