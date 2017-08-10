@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="在 Java 中集合类型也是很重要的数据结构，它可以用来存储一组同类型的数据； 在 Kotlin 中将集合明确分为了可变的集合和不可变的结合，List&amp;lt;out T&amp;gt; 是一个只读的接口，只能执行的 get()，size() 等读取方法，如果想要更改集合的数据，需要使用 MutableList&amp;lt;T&amp;gt;，从而区分可辨与不可变集合。Set&amp;lt;out T&amp;gt; 和 Mutable">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-09T09:48:45.000Z">
+<meta property="og:updated_time" content="2017-08-10T02:55:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-13-集合">
 <meta name="twitter:description" content="在 Java 中集合类型也是很重要的数据结构，它可以用来存储一组同类型的数据； 在 Kotlin 中将集合明确分为了可变的集合和不可变的结合，List&amp;lt;out T&amp;gt; 是一个只读的接口，只能执行的 get()，size() 等读取方法，如果想要更改集合的数据，需要使用 MutableList&amp;lt;T&amp;gt;，从而区分可辨与不可变集合。Set&amp;lt;out T&amp;gt; 和 Mutable">
@@ -475,11 +475,12 @@ var _hmt = _hmt || [];
         <p>在 <code>Java</code> 中集合类型也是很重要的数据结构，它可以用来存储一组同类型的数据；</p>
 <p>在 <code>Kotlin</code> 中将集合明确分为了可变的集合和不可变的结合，<code>List&lt;out T&gt;</code> 是一个只读的接口，只能执行的 <code>get()</code>，<code>size()</code> 等读取方法，如果想要更改集合的数据，需要使用 <code>MutableList&lt;T&gt;</code>，从而区分可辨与不可变集合。<code>Set&lt;out T&gt;</code> 和 <code>MutableSet&lt;T&gt;</code>、<code>Map&lt;K,out V&gt;</code> 和 <code>MutableMap&lt;K,V&gt;</code> 也是同样的模式。</p>
 <p>相比 <code>Java</code>，<code>Kotlin</code> 中的集合除了包含 <code>Java</code> 中的集合的相关方法，还扩展了很多简化集合操作的函数，结合 <code>Lambda</code> 表达式，把一些对集合的操作变的相当相当方便。</p>
+<p>本文主要是对集合类的各种函数进行尝试和整理。</p>
 <a id="more"></a>
 <h2 id="创建和访问"><a href="#创建和访问" class="headerlink" title="创建和访问"></a>创建和访问</h2><p>在 <code>Kotlin</code> 中，<code>List&lt;out T&gt;</code> 是只读的，因此只能访问它的 <code>get()</code> 方法，如果需要改变元素的值，需要使用 <code>MutableList&lt;out T&gt;</code>，<code>Kotlin</code> 中列表的元素可以像数组那样使用 <code>list[index]</code> 的形式访问。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个可变列表</span></div><div class="line"><span class="keyword">val</span> mutableList = mutableListOf(<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line"><span class="comment">// 创建一个只读列表</span></div><div class="line"><span class="keyword">val</span> readOnlyList = listOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div></pre></td></tr></table></figure>
 <p>读写元素</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> item = list[<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="comment">// mutable</span></div><div class="line">list[<span class="number">0</span>] = <span class="string">"1"</span></div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">val</span> item = list[<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="comment">// mutable</span></div><div class="line">list[<span class="number">0</span>] = <span class="string">"1"</span></div></pre></td></tr></table></figure>
 <p>在 <code>Kotlin</code> 中也针对元素的读写扩展了很多简化的方法</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index 在范围内返回值，否则返回 lambda 表达式的结果</span></div><div class="line">list.getOrElse(<span class="number">1</span>) &#123; <span class="string">"<span class="variable">$it</span>"</span> &#125;</div><div class="line"><span class="comment">// index 在范围内返回值，否则返回 null</span></div><div class="line">list.getOrNull(<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment">// 一些类似的函数</span></div><div class="line">list.elementAt(<span class="number">2</span>)</div><div class="line">list.elementAtOrNull(<span class="number">2</span>)</div><div class="line">list.elementAtOrElse(<span class="number">2</span>) &#123; <span class="string">"<span class="variable">$it</span>"</span> &#125;</div></pre></td></tr></table></figure>
 <p>获取下标</p>
@@ -657,8 +658,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
-                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              <a href="/article/578c5201/" rel="prev" title="Kotlin开发-14-解构声明">
+                Kotlin开发-14-解构声明 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -735,7 +736,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">99</span>
+                <span class="site-state-item-count">100</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

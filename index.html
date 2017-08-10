@@ -377,6 +377,161 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/578c5201/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/578c5201/" itemprop="url">Kotlin开发-14-解构声明</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T10:18:00+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/578c5201/" class="leancloud_visitors" data-flag-title="Kotlin开发-14-解构声明">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>花了整整两天，短短续续的整理了集合类的函数用法，相比 <code>Java</code> 确实强大很多。</p>
+<p>本文主要介绍解构声明的相关内容。</p>
+<p>前天的得到消息，<code>Jake Wharton</code> 离开 <code>Square</code> 入职 <code>Google</code>，并专注 <code>Kotlin</code> 领域开发，所以要快点学 <code>Kotlin</code> 了。</p>
+<p><img src="http://olx4t2q6z.bkt.clouddn.com/17-8-10/93287092.jpg" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/578c5201/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      	
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/4c59f5f5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -481,6 +636,7 @@ var _hmt = _hmt || [];
           <p>在 <code>Java</code> 中集合类型也是很重要的数据结构，它可以用来存储一组同类型的数据；</p>
 <p>在 <code>Kotlin</code> 中将集合明确分为了可变的集合和不可变的结合，<code>List&lt;out T&gt;</code> 是一个只读的接口，只能执行的 <code>get()</code>，<code>size()</code> 等读取方法，如果想要更改集合的数据，需要使用 <code>MutableList&lt;T&gt;</code>，从而区分可辨与不可变集合。<code>Set&lt;out T&gt;</code> 和 <code>MutableSet&lt;T&gt;</code>、<code>Map&lt;K,out V&gt;</code> 和 <code>MutableMap&lt;K,V&gt;</code> 也是同样的模式。</p>
 <p>相比 <code>Java</code>，<code>Kotlin</code> 中的集合除了包含 <code>Java</code> 中的集合的相关方法，还扩展了很多简化集合操作的函数，结合 <code>Lambda</code> 表达式，把一些对集合的操作变的相当相当方便。</p>
+<p>本文主要是对集合类的各种函数进行尝试和整理。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/article/4c59f5f5/" rel="contents">
@@ -1610,170 +1766,6 @@ var _hmt = _hmt || [];
 
       
     
-      
-      	
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/fc67caea/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/fc67caea/" itemprop="url">Android使用CMAKE编译libjpeg-turbo</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T19:56:37+08:00">
-                2017-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/Ndk/" itemprop="url" rel="index">
-                    <span itemprop="name">Ndk</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/article/fc67caea/" class="leancloud_visitors" data-flag-title="Android使用CMAKE编译libjpeg-turbo">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          <br>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文主要介绍使用  <code>CMAKE</code> 编译 <code>libjpeg-turbo</code> 类库，本文相关代码请在<a href="https://github.com/chendongMarch/TurboJpegSample" rel="external nofollow noopener noreferrer" target="_blank">GitHub-TurboJpegSample</a> 查看。</p>
-<p><code>libjpeg-turbo</code> 附<a href="https://github.com/libjpeg-turbo/libjpeg-turbo" rel="external nofollow noopener noreferrer" target="_blank"> GitHub 地址</a>，<code>libjpeg-turbo</code> 是个运用极其广泛的库，可以说，基本上电脑上手机上能见到的 <code>JPEG</code> 压缩的地方用的一般都是 <code>libjpeg-turbo</code>，本文只介绍使用了图片压缩的功能。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/fc67caea/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
   </section>
 
   
@@ -1821,7 +1813,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">99</span>
+                <span class="site-state-item-count">100</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
