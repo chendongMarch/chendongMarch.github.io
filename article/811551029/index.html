@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本篇主要介绍 Kotlin 的基础语法，控制流，内建数据类型等内容…  import 语句和包的相关概念。     可见度修饰符的使用。     大部分内建数据类型的介绍。包括数值类型，字符类型，布尔类型，数组类型，字符串类型。  控制流的使用，if , when , for , while 等关键字在 Kotlin 中的新特性。  如何在函数中返回和跳转，return , continue ,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-20T00:51:28.000Z">
+<meta property="og:updated_time" content="2017-08-14T05:03:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-2-基础">
 <meta name="twitter:description" content="本篇主要介绍 Kotlin 的基础语法，控制流，内建数据类型等内容…  import 语句和包的相关概念。     可见度修饰符的使用。     大部分内建数据类型的介绍。包括数值类型，字符类型，布尔类型，数组类型，字符串类型。  控制流的使用，if , when , for , while 等关键字在 Kotlin 中的新特性。  如何在函数中返回和跳转，return , continue ,">
@@ -513,6 +513,7 @@ var _hmt = _hmt || [];
 <h2 id="内建数据类型"><a href="#内建数据类型" class="headerlink" title="内建数据类型"></a>内建数据类型</h2><p>介绍 <code>Kotlin</code> 的内建数据类型，包括数值类型，字符类型，布尔类型，数组类型，字符串类型。</p>
 <h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><p><code>Kotlin</code> 数值使用内建对象表示，所有数值类型继承自 <code>Number</code> 抽象类，<code>Number</code> 中定义了数值在各个类型之间转换的方法。</p>
 <p> <code>Long</code> 类型需要在数字末尾追加 <strong>大写</strong> 的 <code>L</code> 表示，如 <code>123L</code>；<code>Float</code> 类型需要在数字末尾追加 <code>f／F</code> 表示，如 <code>123.5F</code>。默认十进制计数，如： <code>123</code>；十六进制以 <code>0x</code> 开头，如 <code>0x1FA</code>；二进制以 <code>0b</code> 开头，如 <code>0b001101</code>；<strong>不支持</strong> 八进制表示。</p>
+<p>小数默认是 <code>Double</code> 类型，如果需要显式声明为 <code>Float</code>，需要加 <code>f/F</code> 后缀。</p>
 <p><code>Double</code> (64 bit) ；<code>Float</code> (32 bit) ；<code>Long</code> (64 bit) ；<code>Int</code> (32 bit) ；<code>Short</code> (16 bit) ；<code>Byte</code> (8 bit) ；</p>
 <blockquote>
 <p>同一性：对象的类型，内容相同，使用 <code>===</code> 运算符比较为 <code>true</code>   </p>
@@ -724,7 +725,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">100</span>
+                <span class="site-state-item-count">101</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -735,7 +736,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -746,7 +747,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

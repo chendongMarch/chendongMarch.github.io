@@ -82,14 +82,14 @@
 <meta name="description" content="本文主要介绍如何最简单的将自己的 Library 发布到 jcenter。 2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程 使用 gradle 开发过程中，我们可以使用 compile 命令，依赖 Library，这种做法的好处时，我们不需要再去关注一堆 jar 文件，当我们需要升级 Library 时，只需要改变依赖的版本号，就可以完成升级。 我们之所以可以使用一句 gradl">
 <meta name="keywords" content="Android,jcenter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="将自己写的库发布到Jcenter">
+<meta property="og:title" content="将自己写的库发布到 Jcenter">
 <meta property="og:url" content="http://cdevlab.top/article/3189961703/index.html">
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文主要介绍如何最简单的将自己的 Library 发布到 jcenter。 2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程 使用 gradle 开发过程中，我们可以使用 compile 命令，依赖 Library，这种做法的好处时，我们不需要再去关注一堆 jar 文件，当我们需要升级 Library 时，只需要改变依赖的版本号，就可以完成升级。 我们之所以可以使用一句 gradl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-06-30T01:31:59.000Z">
+<meta property="og:updated_time" content="2017-08-17T09:34:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将自己写的库发布到Jcenter">
+<meta name="twitter:title" content="将自己写的库发布到 Jcenter">
 <meta name="twitter:description" content="本文主要介绍如何最简单的将自己的 Library 发布到 jcenter。 2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程 使用 gradle 开发过程中，我们可以使用 compile 命令，依赖 Library，这种做法的好处时，我们不需要再去关注一堆 jar 文件，当我们需要升级 Library 时，只需要改变依赖的版本号，就可以完成升级。 我们之所以可以使用一句 gradl">
 
 
@@ -163,7 +163,7 @@
 
 
 
-  <title>将自己写的库发布到Jcenter | 三月</title>
+  <title>将自己写的库发布到 Jcenter | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -391,7 +391,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">将自己写的库发布到Jcenter</h2>
+          <h2 class="post-title" itemprop="name headline">将自己写的库发布到 Jcenter</h2>
         
 
         <div class="post-meta">
@@ -454,7 +454,7 @@ var _hmt = _hmt || [];
 
           
           
-             <span id="/article/3189961703/" class="leancloud_visitors" data-flag-title="将自己写的库发布到Jcenter">
+             <span id="/article/3189961703/" class="leancloud_visitors" data-flag-title="将自己写的库发布到 Jcenter">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -504,13 +504,13 @@ var _hmt = _hmt || [];
 <h2 id="配置-project-build-gradle"><a href="#配置-project-build-gradle" class="headerlink" title="配置 project/build.gradle"></a>配置 project/build.gradle</h2><p>配置这个文件主要是依赖一些必要的插件来完成后续的打包上传操作，可能当你看到时下面的插件版本已经不是最新的了，你可以自己依赖最新的插件。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//最后写完应该是这样的</span></div><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath <span class="string">'com.android.tools.build:gradle:2.2.3'</span></div><div class="line">        <span class="comment">//主要是下面的两行</span></div><div class="line">        classpath <span class="string">'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'</span></div><div class="line">        classpath <span class="string">'com.github.dcendents:android-maven-gradle-plugin:1.4.1'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="配置-module-build-gradle"><a href="#配置-module-build-gradle" class="headerlink" title="配置 module/build.gradle"></a>配置 module/build.gradle</h2><p>需要在 <code>ext{}</code> 内配置项目的相关信息，在每个信息上我都加了比较详细的注释。</p>
-<p>完整的配置文件如下，引用了我 <code>git</code> 上面远程的一个上传脚本，当然你也将全部内容复制到本地进行修改，使用远程脚本是为了简化书写脚本的流程。</p>
+<p>完整的配置文件如下，引用了我 <code>git</code> 上面远程的一个上传脚本，当然你也将全部内容复制到本地进行修改，然后引用自己本地的上传脚本，使用远程脚本是为了简化书写脚本的流程。</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.library'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">ext &#123;</div><div class="line">    <span class="comment">// 项目的主页</span></div><div class="line">    yourSiteUrl = <span class="string">'https://github.com/chendongMarch/LightAdapterExample'</span></div><div class="line">    <span class="comment">// Git仓库的url</span></div><div class="line">    yourGitUrl = <span class="string">'https://github.com/chendongMarch/LightAdapterExample'</span></div><div class="line">    <span class="comment">// issue 地址</span></div><div class="line">    YourIssueTrackerUrl = <span class="string">'https://github.com/chendongMarch/LightAdapterExample/issues'</span></div><div class="line"></div><div class="line">    <span class="comment">// 项目的名称，将会显示在bintray</span></div><div class="line">    yourProName = <span class="string">'LightAdapter'</span></div><div class="line">    <span class="comment">// 项目的描述</span></div><div class="line">    yourProDesc = <span class="string">'Java Recyclerview Library'</span></div><div class="line"></div><div class="line">    <span class="comment">// bintrayID</span></div><div class="line">    yourId = <span class="string">'chendongmarch'</span></div><div class="line">    <span class="comment">// nickName</span></div><div class="line">    yourName = <span class="string">'chendong'</span></div><div class="line">    <span class="comment">// email</span></div><div class="line">    yourEmail = <span class="string">'helloworld4x@gmial.com'</span></div><div class="line"></div><div class="line">    <span class="comment">// 最后生成依赖 compile 'yourGroup:yourArtifactId:yourVersion'</span></div><div class="line">    <span class="comment">// 最后生成依赖 compile 'com.march.lightadapter:lightadapter:1.0.1-beta1'</span></div><div class="line">    yourGroup = <span class="string">'com.march.lightadapter'</span></div><div class="line">    yourArtifactId = <span class="string">'lightadapter'</span></div><div class="line">    yourVersion = <span class="string">'1.0.1-beta4'</span></div><div class="line"></div><div class="line">    </div><div class="line">    <span class="comment">// 此文件中存储的是 bintray 的敏感信息，用户名和key</span></div><div class="line">    <span class="comment">// 你需要在该文件中如下声明</span></div><div class="line">    <span class="comment">// bintray.user=xxxx</span></div><div class="line">    <span class="comment">// bintray.apikey=xxxx</span></div><div class="line">    <span class="comment">// 你可以使用项目中的 local.properties</span></div><div class="line">    yourBintrayUserPath = <span class="string">'/Users/march/AndroidRes/file/common_local.properties'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">apply <span class="keyword">from</span>: <span class="string">'https://raw.githubusercontent.com/chendongMarch/Resource/master/jcenter/bintrayUpload.gradle'</span></div></pre></td></tr></table></figure>
 <h3 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h3><p>下面配置的三个值，决定了你最后生成的依赖是什么样的，我用我现在的库举了个例子，这个是可以后期修改的。</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 最后生成依赖 compile 'yourGroup:yourArtifactId:yourVersion'</span></div><div class="line"><span class="comment">// 最后生成依赖 compile 'com.march.lightadapter:lightadapter:1.0.1-beta1'</span></div><div class="line">yourGroup = <span class="string">'com.march.lightadapter'</span></div><div class="line">yourArtifactId = <span class="string">'lightadapter'</span></div><div class="line">yourVersion = <span class="string">'1.0.1-beta4'</span></div></pre></td></tr></table></figure>
 <p>用户名和 <code>key</code>，这些敏感信息是不应该被传到 <code>git</code> 上面的， 你应该在 <code>.gitignore</code> 中避免上传这个文件，习惯的做法你可以将这些信息写在 <code>local.properties</code> 中，路径配置为 <code>yourBintrayUserPath = &#39;local.properties&#39;</code>，我的做法是写在本地文件中然后使用绝对路径引用。</p>
 <p>然后你在文件中需要按照如下格式声明 <code>bintray.user</code> 和 <code>bintray.apikey</code>；</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此文件中存储的是 bintray 的敏感信息，用户名和key</span></div><div class="line"><span class="comment">// 你需要在该文件中如下声明</span></div><div class="line"><span class="comment">// bintray.user=xxxx</span></div><div class="line"><span class="comment">// bintray.apikey=xxxx</span></div><div class="line"><span class="comment">// 你可以使用项目中的 local.properties</span></div><div class="line">yourBintrayUserPath = <span class="string">'/Users/march/AndroidRes/file/common_local.properties'</span></div></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此文件中存储的是 bintray 的敏感信息，用户名和key</span></div><div class="line"><span class="comment">// 你需要在该文件中如下声明</span></div><div class="line"><span class="comment">// bintray.user=xxxx</span></div><div class="line"><span class="comment">// bintray.apikey=xxxx</span></div><div class="line"><span class="comment">// 你可以使用项目中的 local.properties</span></div><div class="line"></div><div class="line">yourBintrayUserPath = <span class="string">'/Users/march/AndroidRes/file/common_local.properties'</span></div></pre></td></tr></table></figure>
 <h2 id="发布类库"><a href="#发布类库" class="headerlink" title="发布类库"></a>发布类库</h2><p>我在 <code>mac</code> 下开发，相关命令可能有所差异。</p>
 <p>打开 <code>terminal</code>，运行 <code>install</code> 命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew install</div></pre></td></tr></table></figure>
@@ -551,7 +551,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/3189961703/" title="将自己写的库发布到Jcenter">http://cdevlab.top/article/3189961703/</a>
+      <a href="http://cdevlab.top/article/3189961703/" title="将自己写的库发布到 Jcenter">http://cdevlab.top/article/3189961703/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -582,8 +582,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/2863351425/" rel="next" title="在 Mac 下配置 Gradle 命令">
-                <i class="fa fa-chevron-left"></i> 在 Mac 下配置 Gradle 命令
+              <a href="/article/3121499733/" rel="next" title="在Android平台下合成Gif">
+                <i class="fa fa-chevron-left"></i> 在Android平台下合成Gif
               </a>
             
           </div>
@@ -592,8 +592,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2091453987/" rel="prev" title="将自己写的库发布到 JitPack">
-                将自己写的库发布到 JitPack <i class="fa fa-chevron-right"></i>
+              <a href="/article/2863351425/" rel="prev" title="在 Mac 下配置 Gradle 命令">
+                在 Mac 下配置 Gradle 命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -670,7 +670,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">100</span>
+                <span class="site-state-item-count">101</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -681,7 +681,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -692,7 +692,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
