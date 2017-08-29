@@ -1,0 +1,1378 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Android,DataBinding">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="本文记录如何使用 Google 官方库 DataBinding 进行数据绑定。 平时编译使用 Freeline ，但是很遗憾的是 Freeline 在 DataBinding 的支持上还有些问题，希望早些解决。 另外 AndroidStudio 对 DataBinding 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。">
+<meta name="keywords" content="Android,DataBinding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataBinding">
+<meta property="og:url" content="http://cdevlab.top/article/83ba57f4/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文记录如何使用 Google 官方库 DataBinding 进行数据绑定。 平时编译使用 Freeline ，但是很遗憾的是 Freeline 在 DataBinding 的支持上还有些问题，希望早些解决。 另外 AndroidStudio 对 DataBinding 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-29T02:05:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataBinding">
+<meta name="twitter:description" content="本文记录如何使用 Google 官方库 DataBinding 进行数据绑定。 平时编译使用 Freeline ，但是很遗憾的是 Freeline 在 DataBinding 的支持上还有些问题，希望早些解决。 另外 AndroidStudio 对 DataBinding 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/83ba57f4/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>DataBinding | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    <div class="forkme">
+   <a target="_blank" href="https://github.com/chendongMarch" rel="external nofollow noopener noreferrer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    </div>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/83ba57f4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">DataBinding</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T08:51:00+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/DataBinding/" itemprop="url" rel="index">
+                    <span itemprop="name">DataBinding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/83ba57f4/" class="leancloud_visitors" data-flag-title="DataBinding">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文记录如何使用 <code>Google</code> 官方库 <code>DataBinding</code> 进行数据绑定。</p>
+<p>平时编译使用 <code>Freeline</code> ，但是很遗憾的是 <code>Freeline</code> 在 <code>DataBinding</code> 的支持上还有些问题，希望早些解决。</p>
+<p>另外 <code>AndroidStudio</code> 对 <code>DataBinding</code> 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。</p>
+<a id="more"></a>
+<h2 id="开启-DataBinding"><a href="#开启-DataBinding" class="headerlink" title="开启 DataBinding"></a>开启 DataBinding</h2><p>在 <code>AndroidStudio</code> 开启 <code>DataBinding</code> 十分简单，只需要在 对应的 <code>build.gradle</code> 文件中声明</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">    dataBinding &#123;</div><div class="line">        enabled = <span class="keyword">true</span></div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>开启之后即可使用，这里我遇到了异常如下，<code>clean</code> 项目仍不见效果，解决措施在去除下面提到的警告的前提下，由菜单 <code>File-&gt;Invalidate Caches/ReStart</code>，重启 <code>IDE</code> 即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Generated class list does not exist /Users/march/AndroidPro/DevKitSample/devKit/build/intermediates/data-binding-info/release/_generated.txt</div></pre></td></tr></table></figure>
+<p>由于我使用 <code>ButterKnife</code> 等注解类框架，遇到 <code>Warning</code>，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Warning:Using incompatible plugins <span class="keyword">for</span> the annotation processing: android-apt. This may result <span class="keyword">in</span> an unexpected behavior.</div></pre></td></tr></table></figure>
+<p>这是因为 <code>android-apt</code> 的作者已经不再维护它了，解决方案是使用官方的处理器来代替他，即可去除警告信息。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 删除依赖路径</span></div><div class="line"><span class="keyword">classpath</span> <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.8'</span></div><div class="line"><span class="comment">// 删除插件引用</span></div><div class="line">apply plugin: <span class="string">'com.neenbedankt.android-apt'</span></div><div class="line"></div><div class="line"><span class="comment">// 将 android-apt 替换为 annotationProcessor </span></div><div class="line">annotationProcessor rootProject.ext.support.butterknife840_processor</div></pre></td></tr></table></figure>
+<h2 id="layout-文件结构"><a href="#layout-文件结构" class="headerlink" title="layout 文件结构"></a>layout 文件结构</h2><p>开启的过程还挺麻烦，查到的文章里都只提到了设置 <code>build.gradle</code> 文件，遇到的问题耽误了不少时间。</p>
+<p>使用 <code>DataBinding</code> 时，主要是将数据直接绑定到视图中，对我们来说就是 <code>layout.xml</code> 文件了，样式有所更改，最外层需要使用新的 <code>&lt;layout&gt;</code> 标签，<code>&lt;layout&gt;</code> 标签中分为了 <strong>数据(Model)</strong> 和 <strong>视图(View)</strong> 两部分，<code>View</code> 部分自然还是原来的布局文件，在后面的描述中，我都会称他们为 <code>xml</code> 的 <code>Model</code> 部分和 <code>View</code> 部分。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">layout</span></span></div><div class="line">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--数据部分--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">import</span></span></div><div class="line">            <span class="attr">alias</span>=<span class="string">"User"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"name"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"String"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"User"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--原来的布局文件--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"@&#123;name&#125;"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"@color/black"</span></div><div class="line">            <span class="attr">android:textSize</span>=<span class="string">"18sp"</span>/&gt;</div><div class="line">            </div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="DataBindingUtil"><a href="#DataBindingUtil" class="headerlink" title="DataBindingUtil"></a>DataBindingUtil</h2><p>在使用 <code>DataBinding</code> 时，我们需要一个 <code>ViewDataBinding</code> 对象，他是连接数据和视图的桥梁，<code>DataBindingUtil</code> 作为一个工具类，提供了创建 <code>ViewDataBinding</code> 的静态方法。</p>
+<p><code>setContentView()</code> 方法，用来替代 <code>Activity</code> 的 <code>setContentView()</code>，可以在设置视图的同时返回 <code>ViewDataBinding</code> 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends ViewDataBinding&gt; <span class="function">T <span class="title">setContentView</span><span class="params">(Activity activity, <span class="keyword">int</span> layoutId)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> setContentView(activity, layoutId, sDefaultComponent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>inflate()</code> 方法，用来代替 <code>LayoutInflater</code> 的 <code>inflate()</code> 方法，用来在加载一个布局时返回 <code>ViewDataBinding</code> 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends ViewDataBinding&gt; <span class="function">T <span class="title">inflate</span><span class="params">(LayoutInflater inflater, <span class="keyword">int</span> layoutId,</span></span></div><div class="line">        @Nullable ViewGroup parent, <span class="keyword">boolean</span> attachToParent) &#123;</div><div class="line">    <span class="keyword">return</span> inflate(inflater, layoutId, parent, attachToParent, sDefaultComponent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>关于 <code>ViewDataBinding</code> 对象，它由插件自动编译生成，类的名字取决于你的 <code>layout.xml</code> 文件的名字，例如布局文件名为 <code>R.layout.activity_databinding</code> 那么生成对应类则为 <code>ActivityDatabindingBinding</code>。</p>
+<hr>
+<font color="blue">语法部分⬇️</font>
+
+<hr>
+<p>在 <code>xml</code> 文件中，我们可以在 <code>View</code> 部分使用任何在 <code>Model</code> 部分声明的数据，为此，<code>DataBinding</code> 提供了丰富而简便的语法支持。</p>
+<p>由于 <code>AndroidStudio</code> 对 <code>DataBinding</code> 的语法支持的没有那么好，所以很多语法在编译期都是错误的，但是运行之后就可以使用，相信在不久的以后这些支持会更加全面。</p>
+<h2 id="Model-部分语法"><a href="#Model-部分语法" class="headerlink" title="Model 部分语法"></a>Model 部分语法</h2><p><code>Model</code> 部分被 <code>&lt;data&gt;&lt;/data&gt;</code> 标签包含</p>
+<p>声明一个数据，使用 <code>variable</code> 关键字，<code>type</code> 声明的是类名，<code>java.lang</code> 包下面的类，可以不用写完整路径，但是其他的类，需要声明完整路径。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"name"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"String"</span>/&gt;</div><div class="line">    </div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>导包，使用 <code>import</code> 关键字，同时可以声明别名，然后在声明数据时，可以不用使用完整路径，也可以使用该别名。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">import</span></span></div><div class="line">    <span class="attr">alias</span>=<span class="string">"User"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div><div class="line">    </div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"User"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>当我们声明 <code>List&lt;T&gt;</code> 和 <code>Map&lt;K,V&gt;</code> 等数据类型时，在 <code>xml</code> 中 <code>&lt;&gt;</code> 是不允许使用的， 因为我们要使用转义字符 <code>&amp;lt;</code> 和 <code>&amp;gt;</code> 来表示，不得不说这种写法，可读性很差，而且在编译期是标红的，但是仍然可以运行，绑定成功。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--List--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"java.util.List"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"list"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"List&amp;lt;User&amp;gt;"</span>/&gt;</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="comment">&lt;!--不导包直接使用也是可以的--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"list"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"java.util.List&amp;lt;User&amp;gt;"</span>/&gt;</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="comment">&lt;!--Map--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"java.util.Map"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"map"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"Map&amp;lt;String,String&amp;gt;"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>自定义绑定生成的类名，编译生成绑定类的名称是根据 <code>layout.xml</code> 文件的名字<br>来生成的，默认放置在 <code>包名.databinding</code> 包下，但是我们通常不希望使用那种很长很没有意义的类名，甚至希望自定义这个绑定类的具体的包名，使用 <code>&lt;data/&gt;</code> 的 <code>class</code> 属性来实现。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--指定绑定类--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">data</span>  <span class="attr">class</span>=<span class="string">"DiyBinding"</span>&gt;</span><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--指定绑定类，并放置在应用包名根目录下--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">data</span>  <span class="attr">class</span>=<span class="string">".DiyBinding"</span>&gt;</span><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--指定绑定类，并指定包名--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">data</span>  <span class="attr">class</span>=<span class="string">"com.example.DiyBinding"</span>&gt;</span><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="View-部分语法"><a href="#View-部分语法" class="headerlink" title="View 部分语法"></a>View 部分语法</h2><p>数据绑定的本质其实是在 <code>View</code> 部分的 <code>xml</code> 中引用数据部分声明的数据，这样我们使用时只需要设置数据即可根据在 <code>xml</code> 中绑定的规则自动完成数据的设置，<code>DataBinding</code> 的优势在于它将这一过程使用自动编译生成的类来完成，而我们需要做的只是说明绑定的规则和设置数据即可。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/83ba57f4/" title="DataBinding">http://cdevlab.top/article/83ba57f4/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/DataBinding/" rel="tag"># DataBinding</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/2650e1c8/" rel="next" title="Kotlin开发-16-反射">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-16-反射
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">104</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启-DataBinding"><span class="nav-text">开启 DataBinding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layout-文件结构"><span class="nav-text">layout 文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataBindingUtil"><span class="nav-text">DataBindingUtil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-部分语法"><span class="nav-text">Model 部分语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-部分语法"><span class="nav-text">View 部分语法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

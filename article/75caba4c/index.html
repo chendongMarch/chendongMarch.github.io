@@ -1,0 +1,1479 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="Kotlin,操作符重载">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="在 Kotlin 中允许对操作符进行重载，并提供了简单友好的方式来支持这个特性，这样的好处就是我们可以对一些原本不支持操作符的类型使用操作符，简化代码，举个例子，Kotlin 中的集合类型是支持操作符的，而 Java 中不支持，对比一下使用和不使用操作符对集合增减元素的操作。 1234567891011// 使用操作符val a = list + &quot;1&quot;val b = list + destLis">
+<meta name="keywords" content="Kotlin,操作符重载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin开发-15-操作符重载">
+<meta property="og:url" content="http://cdevlab.top/article/75caba4c/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="在 Kotlin 中允许对操作符进行重载，并提供了简单友好的方式来支持这个特性，这样的好处就是我们可以对一些原本不支持操作符的类型使用操作符，简化代码，举个例子，Kotlin 中的集合类型是支持操作符的，而 Java 中不支持，对比一下使用和不使用操作符对集合增减元素的操作。 1234567891011// 使用操作符val a = list + &quot;1&quot;val b = list + destLis">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-26T00:55:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin开发-15-操作符重载">
+<meta name="twitter:description" content="在 Kotlin 中允许对操作符进行重载，并提供了简单友好的方式来支持这个特性，这样的好处就是我们可以对一些原本不支持操作符的类型使用操作符，简化代码，举个例子，Kotlin 中的集合类型是支持操作符的，而 Java 中不支持，对比一下使用和不使用操作符对集合增减元素的操作。 1234567891011// 使用操作符val a = list + &quot;1&quot;val b = list + destLis">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/75caba4c/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Kotlin开发-15-操作符重载 | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    <div class="forkme">
+   <a target="_blank" href="https://github.com/chendongMarch" rel="external nofollow noopener noreferrer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    </div>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/75caba4c/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Kotlin开发-15-操作符重载</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T08:51:00+08:00">
+                2017-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/75caba4c/" class="leancloud_visitors" data-flag-title="Kotlin开发-15-操作符重载">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 <code>Kotlin</code> 中允许对操作符进行重载，并提供了简单友好的方式来支持这个特性，这样的好处就是我们可以对一些原本不支持操作符的类型使用操作符，简化代码，举个例子，<code>Kotlin</code> 中的集合类型是支持操作符的，而 <code>Java</code> 中不支持，对比一下使用和不使用操作符对集合增减元素的操作。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用操作符</span></div><div class="line"><span class="keyword">val</span> a = list + <span class="string">"1"</span></div><div class="line"><span class="keyword">val</span> b = list + destList</div><div class="line"><span class="keyword">val</span> c = list - <span class="string">"2"</span></div><div class="line"><span class="keyword">val</span> d = list - destList</div><div class="line"></div><div class="line"><span class="comment">// 不使用操作符</span></div><div class="line"><span class="keyword">val</span> e = list.add(<span class="string">"1"</span>)</div><div class="line"><span class="keyword">val</span> f = list.addAll(destList)</div><div class="line"><span class="keyword">val</span> g = list.remove(<span class="string">"2"</span>)</div><div class="line"><span class="keyword">val</span> h = list.removeAll(destList)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>操作符重载的基本原理就是每种操作符都有其对应的函数名，这是一一对应的，当对某个类型的对象使用操作符时，编译器便会查找该类型下，是否存在该名称的函数，并使用 <code>operator</code> 关键字标记，<strong>可以是成员函数也可以是扩展函数</strong>，如果有的话，匹配相应的参数，调用该函数。</p>
+<h2 id="操作符函数一览表"><a href="#操作符函数一览表" class="headerlink" title="操作符函数一览表"></a>操作符函数一览表</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">操作符</th>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">+a</td>
+<td style="text-align:left">unaryPlus()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">-a</td>
+<td style="text-align:left">unaryMinus()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">!a</td>
+<td style="text-align:left">not()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a++/++a</td>
+<td style="text-align:left">inc()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a- -/- -a</td>
+<td style="text-align:left">dec()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a+b</td>
+<td style="text-align:left">plus(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a-b</td>
+<td style="text-align:left">minus(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a*b</td>
+<td style="text-align:left">times(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a/b</td>
+<td style="text-align:left">div(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a%b</td>
+<td style="text-align:left">rem(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a+=b</td>
+<td style="text-align:left">plusAssign(b)</td>
+<td style="text-align:left">不能有返回值</td>
+</tr>
+<tr>
+<td style="text-align:left">a-=b</td>
+<td style="text-align:left">minusAssign(b)</td>
+<td style="text-align:left">不能有返回值</td>
+</tr>
+<tr>
+<td style="text-align:left">a*=b</td>
+<td style="text-align:left">timesAssign(b)</td>
+<td style="text-align:left">不能有返回值</td>
+</tr>
+<tr>
+<td style="text-align:left">a/=b</td>
+<td style="text-align:left">divAssign(b)</td>
+<td style="text-align:left">不能有返回值</td>
+</tr>
+<tr>
+<td style="text-align:left">a%=b</td>
+<td style="text-align:left">remAssign(b)</td>
+<td style="text-align:left">不能有返回值</td>
+</tr>
+<tr>
+<td style="text-align:left">a[i][j]</td>
+<td style="text-align:left">get(i,j)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a[i][j=b]</td>
+<td style="text-align:left">set(i,j,b)</td>
+<td style="text-align:left">至少有一个参数为b</td>
+</tr>
+<tr>
+<td style="text-align:left">a(p)</td>
+<td style="text-align:left">invoke(p)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a..b</td>
+<td style="text-align:left">rangeTo(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">b in a</td>
+<td style="text-align:left">contains(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a==b</td>
+<td style="text-align:left">equals(b)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">a&gt;b</td>
+<td style="text-align:left">compareTo(b)</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="一元操作符"><a href="#一元操作符" class="headerlink" title="一元操作符"></a>一元操作符</h2><p>主要包括 <code>+a,-a,!a,a++,a--,++a,--a</code> 等一元操作符运算。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span></span>(<span class="keyword">var</span> myName: String, <span class="keyword">var</span> myAge: <span class="built_in">Int</span>):Comparable&lt;MyData&gt; &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> desc = <span class="string">""</span></div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"name <span class="variable">$myName</span>,age <span class="variable">$myAge</span> <span class="variable">$desc</span>"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// +a</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">unaryPlus</span><span class="params">()</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 +a "</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// -a</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">unaryMinus</span><span class="params">()</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 -a "</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// !a</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">not</span><span class="params">()</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 !a "</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// a++/++a</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">inc</span><span class="params">()</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a++"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a--/--a</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">dec</span><span class="params">()</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a--"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">data</span> = MyData(<span class="string">"chendong"</span>, <span class="number">11</span>)</div><div class="line">log((+<span class="keyword">data</span>).toString())</div><div class="line">log((-<span class="keyword">data</span>).toString())</div><div class="line">log((!<span class="keyword">data</span>).toString())</div><div class="line">log((<span class="keyword">data</span>++).toString())</div><div class="line">log((<span class="keyword">data</span>--).toString())</div><div class="line">log((++<span class="keyword">data</span>).toString())</div><div class="line">log((--<span class="keyword">data</span>).toString())</div></pre></td></tr></table></figure>
+<h2 id="四则运算与模运算"><a href="#四则运算与模运算" class="headerlink" title="四则运算与模运算"></a>四则运算与模运算</h2><p>这类运算符使得任何类型的对象都可以进行 <code>+ - * / %</code> 的运算，当然这些运算的具体实现细节是由我们自己实现的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span></span>(<span class="keyword">var</span> myName: String, <span class="keyword">var</span> myAge: <span class="built_in">Int</span>):Comparable&lt;MyData&gt; &#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> desc = <span class="string">""</span></div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"name <span class="variable">$myName</span>,age <span class="variable">$myAge</span> <span class="variable">$desc</span>"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    </div><div class="line">    <span class="comment">// 二元操作符</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// a + b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(p: <span class="type">MyData</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a+b"</span></div><div class="line">        myAge += p.myAge</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a - b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">minus</span><span class="params">(p: <span class="type">MyData</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a-b"</span></div><div class="line">        myAge -= p.myAge</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a * b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">times</span><span class="params">(p: <span class="type">MyData</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a*b"</span></div><div class="line">        myAge *= p.myAge</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a / b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">div</span><span class="params">(p: <span class="type">MyData</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a/b"</span></div><div class="line">        myAge /= p.myAge</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a % b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">rem</span><span class="params">(p: <span class="type">MyData</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a%b"</span></div><div class="line">        myAge %= p.myAge</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// a += b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plusAssign</span><span class="params">(p: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        desc = <span class="string">"执行了 a+=b"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a -= b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">minusAssign</span><span class="params">(p: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        desc = <span class="string">"执行了 a-=b"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a *= b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">timesAssign</span><span class="params">(p: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        desc = <span class="string">"执行了 a*b"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a /= b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">divAssign</span><span class="params">(p: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        desc = <span class="string">"执行了 a/=b"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a %= b</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">remAssign</span><span class="params">(p: <span class="type">String</span>)</span></span> &#123;</div><div class="line">        desc = <span class="string">"执行了 a%b"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">data</span> = MyData(<span class="string">"chendong"</span>, <span class="number">11</span>)</div><div class="line"><span class="keyword">var</span> data2 = MyData(<span class="string">"new"</span>, <span class="number">10</span>)</div><div class="line">log((<span class="keyword">data</span> + data2).toString())</div><div class="line">log((<span class="keyword">data</span> - data2).toString())</div><div class="line">log((<span class="keyword">data</span> * data2).toString())</div><div class="line">log((<span class="keyword">data</span> / data2).toString())</div><div class="line">log((<span class="keyword">data</span> % data2).toString())</div><div class="line"><span class="keyword">data</span> += <span class="string">"test"</span></div><div class="line">log(<span class="keyword">data</span>.toString())</div><div class="line"><span class="keyword">data</span> -= <span class="string">"test"</span></div><div class="line">log(<span class="keyword">data</span>.toString())</div><div class="line"><span class="keyword">data</span> *= <span class="string">"test"</span></div><div class="line">log(<span class="keyword">data</span>.toString())</div><div class="line"><span class="keyword">data</span> /= <span class="string">"test"</span></div><div class="line">log(<span class="keyword">data</span>.toString())</div><div class="line"><span class="keyword">data</span> %= <span class="string">"test"</span></div><div class="line">log(<span class="keyword">data</span>.toString())</div></pre></td></tr></table></figure>
+<h2 id="下标访问"><a href="#下标访问" class="headerlink" title="下标访问"></a>下标访问</h2><p>这类匀速符使对象可以如同数组一样使用 <code>a[i][j]..</code> 的形式访问。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span></span>(<span class="keyword">var</span> myName: String, <span class="keyword">var</span> myAge: <span class="built_in">Int</span>):Comparable&lt;MyData&gt; &#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> desc = <span class="string">""</span></div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"name <span class="variable">$myName</span>,age <span class="variable">$myAge</span> <span class="variable">$desc</span>"</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// a[i]</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(i: <span class="type">Int</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a[<span class="variable">$i</span>]"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a[i][j]</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(i: <span class="type">Int</span>, j: <span class="type">Int</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a[<span class="variable">$i</span>][<span class="variable">$j</span>]"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a[i] = "test"</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(i: <span class="type">Int</span>, value: <span class="type">String</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a[<span class="variable">$i</span>]= <span class="variable">$value</span>"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a[i][j] = "test"</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">set</span><span class="params">(i: <span class="type">Int</span>, j: <span class="type">Int</span>, value: <span class="type">String</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a[<span class="variable">$i</span>][<span class="variable">$j</span>]= <span class="variable">$value</span>"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">data</span> = MyData(<span class="string">"chendong"</span>, <span class="number">11</span>)</div><div class="line">log(<span class="keyword">data</span>[<span class="number">0</span>])</div><div class="line">log(<span class="keyword">data</span>[<span class="number">1</span>][<span class="number">2</span>])</div><div class="line"><span class="keyword">data</span>[<span class="number">0</span>] = <span class="string">"test"</span></div><div class="line">log(<span class="keyword">data</span>.toString())</div><div class="line"><span class="keyword">data</span>[<span class="number">1</span>][<span class="number">2</span>] = <span class="string">"test"</span></div><div class="line">log(<span class="keyword">data</span>.toString())</div></pre></td></tr></table></figure>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>这个操作符使得我们可以像函数一样直接使用对象后面添加括号，如 <code>a()</code> 来调用这个对象的 <code>invike()</code> 函数。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyData</span></span>(<span class="keyword">var</span> myName: String, <span class="keyword">var</span> myAge: <span class="built_in">Int</span>):Comparable&lt;MyData&gt; &#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> desc = <span class="string">""</span></div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"name <span class="variable">$myName</span>,age <span class="variable">$myAge</span> <span class="variable">$desc</span>"</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// a()</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">invoke</span><span class="params">()</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a()"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// a("test")</span></div><div class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">invoke</span><span class="params">(p: <span class="type">String</span>)</span></span>: MyData &#123;</div><div class="line">        desc = <span class="string">"执行了 a(\'<span class="variable">$p</span>\')"</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">data</span> = MyData(<span class="string">"chendong"</span>, <span class="number">11</span>)</div><div class="line"><span class="keyword">var</span> data2 = MyData(<span class="string">"new"</span>, <span class="number">10</span>)</div><div class="line"></div><div class="line">log(<span class="keyword">data</span>().toString())</div><div class="line">log(<span class="keyword">data</span>(<span class="string">"test"</span>).toString())</div></pre></td></tr></table></figure>
+<h2 id="其他操作符"><a href="#其他操作符" class="headerlink" title="其他操作符"></a>其他操作符</h2><p>使用 <code>..</code> 操作符</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a .. b</span></div><div class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">rangeTo</span><span class="params">(p: <span class="type">MyData</span>)</span></span>: MyData &#123;</div><div class="line">    desc = <span class="string">"执行了 a..b"</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 <code>in</code> 操作符</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// b in a</span></div><div class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">contains</span><span class="params">(p: <span class="type">MyData</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</div><div class="line">    desc = <span class="string">"执行了 b in a"</span></div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 <code>==</code> 操作符</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">equals</span><span class="params">(other: <span class="type">Any</span>?)</span></span>: <span class="built_in">Boolean</span> &#123;</div><div class="line">    desc = <span class="string">"执行了 =="</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.equals(other)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 <code>&lt;,&gt;,&lt;=,&gt;=</code> 操作符</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">compareTo</span><span class="params">(other: <span class="type">MyData</span>)</span></span>: <span class="built_in">Int</span> &#123;</div><div class="line">    desc = <span class="string">"执行了 比较操作    "</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">data</span> = MyData(<span class="string">"chendong"</span>, <span class="number">11</span>)</div><div class="line"><span class="keyword">var</span> data2 = MyData(<span class="string">"new"</span>, <span class="number">10</span>)</div><div class="line">            </div><div class="line"><span class="keyword">data</span> == data2</div><div class="line">log(<span class="keyword">data</span>.toString())</div><div class="line"></div><div class="line"><span class="keyword">data</span> &gt; data2</div><div class="line">log(<span class="keyword">data</span>.toString())</div><div class="line"></div><div class="line">log((<span class="keyword">data</span>..data2).toString())</div><div class="line"></div><div class="line"><span class="keyword">if</span> (<span class="keyword">data</span>.contains(data2)) &#123;</div><div class="line">    log(<span class="keyword">data</span>.toString())</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/75caba4c/" title="Kotlin开发-15-操作符重载">http://cdevlab.top/article/75caba4c/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/b51d9f8e/" rel="next" title="Git 命令">
+                <i class="fa fa-chevron-left"></i> Git 命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2650e1c8/" rel="prev" title="Kotlin开发-16-反射">
+                Kotlin开发-16-反射 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">104</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符函数一览表"><span class="nav-text">操作符函数一览表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一元操作符"><span class="nav-text">一元操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四则运算与模运算"><span class="nav-text">四则运算与模运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下标访问"><span class="nav-text">下标访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用"><span class="nav-text">函数调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他操作符"><span class="nav-text">其他操作符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
