@@ -482,7 +482,7 @@ var _hmt = _hmt || [];
 <p><a href="http://www.jianshu.com/p/86557c34b671" rel="external nofollow noopener noreferrer" target="_blank">SEO优化，Google收录</a></p>
 </blockquote>
 <h2 id="页面简单加密访问"><a href="#页面简单加密访问" class="headerlink" title="页面简单加密访问"></a>页面简单加密访问</h2><p>找到文件<code>themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig</code>在<code>&lt;meta&gt;</code>标签之后添加如下js代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">                alert(<span class="string">'密码错误！'</span>);</div><div class="line">                history.back();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">                alert(<span class="string">'密码错误！'</span>);</div><div class="line">                history.back();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>在文章的<code>Front-matter</code>定义<code>password</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: post</div><div class="line">title: Hexo加密文章示例</div><div class="line">date: 2017-03-02</div><div class="line">category: </div><div class="line">tags: </div><div class="line">keywords:</div><div class="line">password: 123456</div><div class="line">---</div></pre></td></tr></table></figure>
 <h2 id="添加留言界面"><a href="#添加留言界面" class="headerlink" title="添加留言界面"></a>添加留言界面</h2><p>添加page，在博客根目录下执行如下命令，会在source目录下面创建<code>msg/index.md</code>文件。</p>
@@ -583,8 +583,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/4099568815/" rel="next" title="快速实现Fragment切换功能">
-                <i class="fa fa-chevron-left"></i> 快速实现Fragment切换功能
+              <a href="/article/684233485/" rel="next" title="Hexo加密文章示例">
+                <i class="fa fa-chevron-left"></i> Hexo加密文章示例
               </a>
             
           </div>
@@ -593,8 +593,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/684233485/" rel="prev" title="Hexo加密文章示例">
-                Hexo加密文章示例 <i class="fa fa-chevron-right"></i>
+              <a href="/article/2799403346/" rel="prev" title="Fragment懒加载">
+                Fragment懒加载 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

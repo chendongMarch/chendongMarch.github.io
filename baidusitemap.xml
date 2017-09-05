@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://cdevlab.top/article/83ba57f4/</loc>
-    <lastmod>2017-08-29T02:05:16.000Z</lastmod>
+    <lastmod>2017-09-05T03:30:51.000Z</lastmod>
     <data>
         <display>
         <title>DataBinding</title>
@@ -20,8 +20,27 @@
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/b51d9f8e/</loc>
+    <lastmod>2017-08-31T05:52:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git 命令</title>
+        <pubTime>2017-08-10T08:50:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+        <tag>Git</tag>
+         
+         
+           
              
-              <breadCrumb title="DataBinding" url="http://cdevlab.top/categories/Android/DataBinding/"/>
+              <breadCrumb title="Git" url="http://cdevlab.top/categories/Git/"/>
           
         </display>
     </data>
@@ -147,28 +166,6 @@
            
              
               <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/b51d9f8e/</loc>
-    <lastmod>2017-08-10T08:57:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>Git 命令</title>
-        <pubTime>2017-08-10T08:50:00.000Z</pubTime>
-        
-        <tag>Extensions</tag>
-         
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://cdevlab.top/categories/Git/"/>
           
         </display>
     </data>
@@ -1482,9 +1479,9 @@
         
         <tag>Android</tag>
          
-        <tag>Library</tag>
-         
         <tag>Retrofit</tag>
+         
+        <tag>Library</tag>
          
          
            
@@ -2109,9 +2106,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
@@ -2136,9 +2133,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            

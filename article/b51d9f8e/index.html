@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="Git 日常命令收集。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-10T08:57:11.000Z">
+<meta property="og:updated_time" content="2017-08-31T05:52:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 命令">
 <meta name="twitter:description" content="Git 日常命令收集。">
@@ -476,6 +476,8 @@ var _hmt = _hmt || [];
 <a id="more"></a>
 <p>解决 <code>fix fatal: cannot do a partial commit during a merge.</code> 的问题，这个问题是出现在合并代码时出现问题，分支一直处于 <code>merging</code> 状态无法提交的问题。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -i * -m <span class="string">"message"</span></div></pre></td></tr></table></figure>
+<p>解决 <code>Unable to create &#39;.git/index.lock&#39;: File exists</code> 问题，删除 <code>lock</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -f ./.git/index.lock</div></pre></td></tr></table></figure>
 <p>删除远程文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm -r --cached dirname</div><div class="line">git commit -m <span class="string">'say something'</span></div><div class="line">git push origin master</div></pre></td></tr></table></figure>
 <p>仓库清理</p>
