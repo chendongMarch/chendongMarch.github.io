@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文介绍 Kotlin 反射的用法。 在 Java 中也有反射的相关用法，不过因为运行时反射效率差，而且 java 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 Kotlin 中的反射使用起来十分简单，简单就像访问对象的一个属性一样。 反射，我们平常访问对象的属性和函数，是针对对象来说的，总是访问他们的 “值”，比如一个属性的具体值，或者执行某个函数，都是使用对象来调用，这都">
+<meta name="description" content="本文介绍 Kotlin 反射的用法。 在 Java 中也有反射的相关用法，不过因为运行时反射效率差，而且 java 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 Kotlin 中的反射使用起来十分简单。 反射，我们平常访问对象的属性和函数，是针对对象来说的，总是访问他们的 “值”，比如一个属性的具体值，或者执行某个函数，都是使用对象来调用，这都是访问 “值” 的操作，而反射，">
 <meta name="keywords" content="Kotlin,反射">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin开发-16-反射">
 <meta property="og:url" content="http://cdevlab.top/article/2650e1c8/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本文介绍 Kotlin 反射的用法。 在 Java 中也有反射的相关用法，不过因为运行时反射效率差，而且 java 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 Kotlin 中的反射使用起来十分简单，简单就像访问对象的一个属性一样。 反射，我们平常访问对象的属性和函数，是针对对象来说的，总是访问他们的 “值”，比如一个属性的具体值，或者执行某个函数，都是使用对象来调用，这都">
+<meta property="og:description" content="本文介绍 Kotlin 反射的用法。 在 Java 中也有反射的相关用法，不过因为运行时反射效率差，而且 java 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 Kotlin 中的反射使用起来十分简单。 反射，我们平常访问对象的属性和函数，是针对对象来说的，总是访问他们的 “值”，比如一个属性的具体值，或者执行某个函数，都是使用对象来调用，这都是访问 “值” 的操作，而反射，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-26T02:00:26.000Z">
+<meta property="og:updated_time" content="2017-09-06T02:57:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-16-反射">
-<meta name="twitter:description" content="本文介绍 Kotlin 反射的用法。 在 Java 中也有反射的相关用法，不过因为运行时反射效率差，而且 java 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 Kotlin 中的反射使用起来十分简单，简单就像访问对象的一个属性一样。 反射，我们平常访问对象的属性和函数，是针对对象来说的，总是访问他们的 “值”，比如一个属性的具体值，或者执行某个函数，都是使用对象来调用，这都">
+<meta name="twitter:description" content="本文介绍 Kotlin 反射的用法。 在 Java 中也有反射的相关用法，不过因为运行时反射效率差，而且 java 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 Kotlin 中的反射使用起来十分简单。 反射，我们平常访问对象的属性和函数，是针对对象来说的，总是访问他们的 “值”，比如一个属性的具体值，或者执行某个函数，都是使用对象来调用，这都是访问 “值” 的操作，而反射，">
 
 
 
@@ -473,11 +473,24 @@ var _hmt = _hmt || [];
 
       
         <p>本文介绍 <code>Kotlin</code> 反射的用法。</p>
-<p>在 <code>Java</code> 中也有反射的相关用法，不过因为运行时反射效率差，而且 <code>java</code> 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 <code>Kotlin</code> 中的反射使用起来十分简单，简单就像访问对象的一个属性一样。</p>
+<p>在 <code>Java</code> 中也有反射的相关用法，不过因为运行时反射效率差，而且 <code>java</code> 中的反射使用起来相对麻烦，在实际开发中反射的使用还是很少的。不过在 <code>Kotlin</code> 中的反射使用起来十分简单。</p>
 <p>反射，我们平常访问对象的属性和函数，是针对对象来说的，总是访问他们的 “值”，比如一个属性的具体值，或者执行某个函数，都是使用对象来调用，这都是访问 “值” 的操作，而反射，是针对类来说的，也就是不必有类实体，而是访问类的属性和函数本身，不再在乎值到底是什么，而是真正的把这个属性或函数拿出来，当我们想要这个属性的值或函数的执行结果，我们就需要用拿到的属性和函数本身去调用一个对象，这个过程就反过来了，不是对象调用属性和函数，而是属性和函数本身调用对象。</p>
 <a id="more"></a>
-<p>反射</p>
-
+<p>在 <code>Kotlin</code> 中使用反射需要借助 <code>::</code> 操作符。</p>
+<h2 id="Class-Reference"><a href="#Class-Reference" class="headerlink" title="Class Reference"></a>Class Reference</h2><p>获取某个类的引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取 kotlin class</span></div><div class="line">var kClass = ReflectTest::<span class="class"><span class="keyword">class</span></span></div><div class="line">// 获取 <span class="title">java</span> <span class="title">class</span></div><div class="line"><span class="title">var</span> <span class="title">clazz</span> = ReflectTest::<span class="class"><span class="keyword">class</span>.<span class="title">java</span></span></div></pre></td></tr></table></figure>
+<p>从 <code>KClass</code> 类型的变量中可以获取类的的属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">kClass.constructors</div><div class="line">kClass.isAbstract</div><div class="line">kClass.isData</div><div class="line">kClass.isFinal</div><div class="line">kClass.isCompanion</div><div class="line">kClass.isInner</div><div class="line">kClass.isOpen</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="Function-Reference"><a href="#Function-Reference" class="headerlink" title="Function Reference"></a>Function Reference</h2><p>反射获取函数引用，非类成员函数时可以直接使用 <code>::funcName</code> 的形式获取函数，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// top level 级别函数</span></div><div class="line"><span class="function">fun <span class="title">funcInTopLevel</span><span class="params">(str: String)</span> </span>= str.<span class="function">length</span></div><div class="line"></div><div class="line">class <span class="title">ReflectFunTest</span><span class="params">()</span> &#123;</div><div class="line"></div><div class="line">    <span class="comment">// 成员函数</span></div><div class="line">    <span class="function">fun <span class="title">funcInClass</span><span class="params">(str: String)</span> </span>= str.<span class="function">length</span></div><div class="line"></div><div class="line">    fun <span class="title">test</span><span class="params">()</span> &#123;</div><div class="line"></div><div class="line">        <span class="comment">// 局部函数</span></div><div class="line">        <span class="function">fun <span class="title">funcInLocal</span><span class="params">(str: String)</span> </span>= str.length</div><div class="line"></div><div class="line">        <span class="comment">// ok</span></div><div class="line">        val f1: (String) -&gt; Int = ::funcInTopLevel</div><div class="line">        <span class="comment">// error</span></div><div class="line">        val f2: (String) -&gt; Int = ::funcInClass</div><div class="line">        <span class="comment">// ok，局部函数</span></div><div class="line">        val f3: (String) -&gt; Int = ::funcInLocal</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于类成员函数反射返回的结果其实是 <code>类名.(参数)-&gt;返回值</code> 类型的函数，因此上面是编译错误的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">val f4: ReflectFunTest.(String) -&gt; Int = ReflectFunTest::funcInClass</div><div class="line">```	</div><div class="line">也可以获取 `String` 类的成员函数</div><div class="line"></div><div class="line">```java</div><div class="line">val f3: String.() -&gt; CharArray = String::toCharArray</div><div class="line">val f4: String.(Int, Int) -&gt; CharSequence = String::subSequence</div></pre></td></tr></table></figure>
+<p>执行函数，对于非类成员函数可以直接执行，而对于类成员函数则需要依赖类的实例来执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">val f1: (String) -&gt; Int = ::funcInTopLevel</div><div class="line">val f4: ReflectFunTest.(String) -&gt; Int = ReflectFunTest::funcInClass</div><div class="line"></div><div class="line">f1.invoke(<span class="string">"test"</span>)</div><div class="line">f4.invoke(ReflectFunTest(), <span class="string">"test"</span>)</div></pre></td></tr></table></figure>
+<h2 id="Property-Reference"><a href="#Property-Reference" class="headerlink" title="Property Reference"></a>Property Reference</h2><p>反射获取属性引用，支持类属性和扩展属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 扩展属性</span></div><div class="line">val ReflectPropertyTest.extensionProperty: <span class="function">Int</span></div><div class="line">    <span class="title">get</span><span class="params">()</span> = <span class="number">200</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReflectPropertyTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 成员属性 </span></div><div class="line">    var myProperty = <span class="number">10</span></div><div class="line"></div><div class="line">    <span class="function">fun <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        val model = ReflectPropertyTest()</div><div class="line"></div><div class="line">        <span class="comment">// 反射属性</span></div><div class="line">        val kPropertyForMyProperty = ReflectPropertyTest::myProperty</div><div class="line">        <span class="comment">// 从 model 中取出该属性的值</span></div><div class="line">        var myPropertyValue = kPropertyForMyProperty.get(model)</div><div class="line">        <span class="comment">// 向 model 中设置该属性的值</span></div><div class="line">        kPropertyForMyProperty.set(model, <span class="number">100</span>)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">// 反射扩展属性</span></div><div class="line">        val kPropertyForExtensionProperty = ReflectPropertyTest::extensionProperty</div><div class="line">        <span class="comment">// 从 model 中取出该属性的值</span></div><div class="line">        var extensionPropertyValue = kPropertyForExtensionProperty.get(model)</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">// 反射其他类属性</span></div><div class="line">        val lengthProperty = String::length</div><div class="line">        lengthProperty.get(<span class="string">"test"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Constructor-Reference"><a href="#Constructor-Reference" class="headerlink" title="Constructor Reference"></a>Constructor Reference</h2><p>反射获取构造器引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReflectConstructorTest</span>() </span>&#123;</div><div class="line">    </div><div class="line">    constructor(age: Int) : <span class="keyword">this</span>()</div><div class="line"></div><div class="line">    constructor(age: Int, name: String) : <span class="keyword">this</span>(age)</div><div class="line"></div><div class="line">    <span class="function">fun <span class="title">test</span><span class="params">()</span> </span>&#123;</div><div class="line">        testConstructor1(::ReflectConstructorTest)</div><div class="line">        testConstructor2(::ReflectConstructorTest)</div><div class="line">        testConstructor3(::ReflectConstructorTest)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">fun <span class="title">testConstructor1</span><span class="params">(factory: ()</span> -&gt; ReflectConstructorTest): ReflectConstructorTest </span>&#123;</div><div class="line">        <span class="keyword">return</span> factory.invoke()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">fun <span class="title">testConstructor2</span><span class="params">(factory: (Int)</span> -&gt; ReflectConstructorTest): ReflectConstructorTest </span>&#123;</div><div class="line">        <span class="keyword">return</span> factory.invoke(<span class="number">12</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">fun <span class="title">testConstructor3</span><span class="params">(factory: (Int, String)</span> -&gt; ReflectConstructorTest): ReflectConstructorTest </span>&#123;</div><div class="line">        <span class="keyword">return</span> factory.invoke(<span class="number">12</span>, <span class="string">"chen"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -599,8 +612,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -613,7 +635,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">104</span>
+                <span class="site-state-item-count">107</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -689,6 +711,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-Reference"><span class="nav-text">Class Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function-Reference"><span class="nav-text">Function Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Property-Reference"><span class="nav-text">Property Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Constructor-Reference"><span class="nav-text">Constructor Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
