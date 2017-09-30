@@ -4,11 +4,53 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/f622e275/</loc>
-    <lastmod>2017-09-22T06:29:37.000Z</lastmod>
+    <loc>http://cdevlab.top/article/65563eb2/</loc>
+    <lastmod>2017-09-30T04:40:33.000Z</lastmod>
     <data>
         <display>
-        <title>为 iPhone 制作手机铃声</title>
+        <title>Java 双重检查加锁创建单例</title>
+        <pubTime>2017-07-06T01:58:05.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cdevlab.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/d318b1f4/</loc>
+    <lastmod>2017-09-25T02:11:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>CSS 选择器</title>
+        <pubTime>2017-07-07T04:48:37.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>CSS</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/f622e275/</loc>
+    <lastmod>2017-09-22T06:33:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>为iPhone制作手机铃声</title>
         <pubTime>2017-09-22T06:15:31.000Z</pubTime>
         
          
@@ -44,28 +86,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/d318b1f4/</loc>
-    <lastmod>2017-09-22T02:06:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>CSS 选择器</title>
-        <pubTime>2017-07-07T04:48:37.000Z</pubTime>
-        
-        <tag>CSS</tag>
-         
-        <tag>前端</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/5b70625a/</loc>
     <lastmod>2017-09-22T02:06:25.000Z</lastmod>
     <data>
@@ -73,9 +93,9 @@
         <title>CSS 基础 1</title>
         <pubTime>2017-07-06T09:01:37.000Z</pubTime>
         
-        <tag>CSS</tag>
-         
         <tag>前端</tag>
+         
+        <tag>CSS</tag>
          
          
            
@@ -1066,26 +1086,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/65563eb2/</loc>
-    <lastmod>2017-07-11T05:02:53.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java 双重检查加锁创建单例</title>
-        <pubTime>2017-07-06T01:58:05.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://cdevlab.top/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/1309915903/</loc>
     <lastmod>2017-07-11T05:02:47.000Z</lastmod>
     <data>
@@ -1113,9 +1113,9 @@
         <title>HashMap源码分析</title>
         <pubTime>2015-11-13T16:00:00.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>SourceCode</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -1155,11 +1155,11 @@
         <title>ArrayList源码分析</title>
         <pubTime>2015-11-14T16:00:00.000Z</pubTime>
         
-        <tag>Java</tag>
-         
         <tag>Android</tag>
          
         <tag>SourceCode</tag>
+         
+        <tag>Java</tag>
          
          
            
@@ -2270,9 +2270,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
@@ -2297,9 +2297,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            

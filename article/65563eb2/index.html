@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例实现 线程安全加锁单例实现 双重检查加锁单例实现。 使用枚举实现单例">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-11T05:02:53.000Z">
+<meta property="og:updated_time" content="2017-09-30T04:40:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 双重检查加锁创建单例">
 <meta name="twitter:description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例实现 线程安全加锁单例实现 双重检查加锁单例实现。 使用枚举实现单例">
@@ -486,12 +486,14 @@ var _hmt = _hmt || [];
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenProvider</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TokenProvider sInst = <span class="keyword">new</span> TokenProvider();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p>体现了一种懒加载的思想，不需要时不创建，需要时才创建。</p>
 <p>懒汉式的特点就是时间换空间，不需要时不创建，需要时才创建，节约了内存空间，缺点就是每次获取都需要判断，增加了运行时间，而且不加锁的懒汉式无法保证线程安全。</p>
-<p>为什么呢？因为多线程访问时，假设 A 线程正在创建实体，此时 B 线程已经开始进行 <code>sInst == null</code> 的判空操作，此时 B 线程便会创建一个新的实体。</p>
-<p>如何解决？请看下面线程安全加锁</p>
+<p>看一个最简单的 饿汉式 创建单例的方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenProvider</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TokenProvider sInst;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TokenProvider <span class="title">getInst</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (sInst == <span class="keyword">null</span>) &#123;</div><div class="line">            sInst = <span class="keyword">new</span> TokenProvider();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sInst;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为什么会有线程安全的问题呢？因为多线程访问时，假设 A 线程正在创建实体，此时 B 线程已经开始进行 <code>sInst == null</code> 的判空操作，此时 B 线程便会创建一个新的实体。</p>
+<p>如何解决？请看下面线程安全加锁</p>
 <h2 id="线程安全加锁"><a href="#线程安全加锁" class="headerlink" title="线程安全加锁"></a>线程安全加锁</h2><p>当使用懒汉式时，如果多线程同时创建单例，不加锁的话就会创建多个实体，无法保证线程安全，此时应在判空操作之前加锁，让其他线程在外面等待已经进入的线程完成操作，创建完成实体，这时第二个线程进入时，<code>sInst</code> 已经不为空可以直接返回，从而保证线程安全。</p>
-<p>缺点也很明显，需要使用该单例时，所有线程都会首先进入同步代码块，在线程同步时会浪费很多时间，我们需要避免这种情况，请看下节双重检查加锁</p>
+<p>加锁保证线程安全</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenProvider</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TokenProvider sInst;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TokenProvider <span class="title">getInst</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span> (TokenProvider.class) &#123;</div><div class="line">            <span class="keyword">if</span> (sInst == <span class="keyword">null</span>) &#123;</div><div class="line">                sInst = <span class="keyword">new</span> TokenProvider();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sInst;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>缺点也很明显，需要使用该单例时，所有线程都会首先进入同步代码块，在线程同步时会浪费很多时间，我们需要避免这种情况，请看下节双重检查加锁</p>
 <h2 id="双重检查加锁"><a href="#双重检查加锁" class="headerlink" title="双重检查加锁"></a>双重检查加锁</h2><p>为了解决上面的问题，我们需要避免每次都进行同步加锁，在最外层先进行判空操作，当实体已经创建时，后面的线程则不需要进入同步代码块等待，节约了时间。</p>
 <blockquote>
 <p>volatile: 被 volatile 修饰的变量的值，将不会被本地线程缓存，所有对该变量的读写都是直接操作共享内存,从而确保多个线程能正确的处理该变量。</p>
@@ -658,7 +660,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
