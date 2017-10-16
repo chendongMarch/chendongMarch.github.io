@@ -4,6 +4,185 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/1753510098/</loc>
+    <lastmod>2017-10-16T09:09:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>HashMap源码分析</title>
+        <pubTime>2015-11-13T16:00:00.000Z</pubTime>
+        
+        <tag>SourceCode</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://cdevlab.top/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/541527599/</loc>
+    <lastmod>2017-10-16T08:51:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>Handler源码分析</title>
+        <pubTime>2015-11-16T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/9852c6f8/</loc>
+    <lastmod>2017-10-16T07:34:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>Thinker 热修复</title>
+        <pubTime>2017-08-16T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidTips</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/317ee1ad/</loc>
+    <lastmod>2017-10-16T07:24:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>Walle 多渠道打包</title>
+        <pubTime>2017-08-15T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidTips</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/d1a02c42/</loc>
+    <lastmod>2017-10-15T16:21:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 系统通知相关</title>
+        <pubTime>2017-10-14T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>AndroidTips</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/ef811326/</loc>
+    <lastmod>2017-10-15T10:13:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>HTML 基础 1</title>
+        <pubTime>2017-09-22T02:08:00.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>HTML</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/2021227864/</loc>
+    <lastmod>2017-10-13T09:22:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>RecyclerView</title>
+        <pubTime>2015-11-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/4229621729/</loc>
+    <lastmod>2017-09-30T05:47:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>在 AS 中使用 Lambda 表达式</title>
+        <pubTime>2016-07-15T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>DevEnvironment</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/65563eb2/</loc>
     <lastmod>2017-09-30T04:40:33.000Z</lastmod>
     <data>
@@ -31,9 +210,9 @@
         <title>CSS 选择器</title>
         <pubTime>2017-07-07T04:48:37.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -64,28 +243,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/ef811326/</loc>
-    <lastmod>2017-09-22T02:18:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>HTML 基础 1</title>
-        <pubTime>2017-09-22T02:08:00.000Z</pubTime>
-        
-        <tag>HTML</tag>
-         
-        <tag>前端</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/5b70625a/</loc>
     <lastmod>2017-09-22T02:06:25.000Z</lastmod>
     <data>
@@ -93,9 +250,9 @@
         <title>CSS 基础 1</title>
         <pubTime>2017-07-06T09:01:37.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -1106,28 +1263,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/1753510098/</loc>
-    <lastmod>2017-07-11T05:02:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>HashMap源码分析</title>
-        <pubTime>2015-11-13T16:00:00.000Z</pubTime>
-        
-        <tag>SourceCode</tag>
-         
-        <tag>Java</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://cdevlab.top/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/2053934834/</loc>
     <lastmod>2017-07-11T05:02:17.000Z</lastmod>
     <data>
@@ -1359,28 +1494,6 @@
         <display>
         <title>Mac + AndroidStudio 快捷操作</title>
         <pubTime>2015-08-04T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>DevEnvironment</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/4229621729/</loc>
-    <lastmod>2017-07-10T06:59:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>在 AS 中使用 Lambda 表达式</title>
-        <pubTime>2016-07-15T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -1761,31 +1874,6 @@
         <display>
         <title>TabLayout</title>
         <pubTime>2015-06-22T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/2021227864/</loc>
-    <lastmod>2017-07-10T06:36:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>RecyclerView</title>
-        <pubTime>2015-11-11T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -2333,28 +2421,6 @@
           
              
               <breadCrumb title="Publish" url="http://cdevlab.top/categories/Android/Publish/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/541527599/</loc>
-    <lastmod>2017-06-30T01:25:36.000Z</lastmod>
-    <data>
-        <display>
-        <title>Handler源码分析</title>
-        <pubTime>2015-11-16T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>

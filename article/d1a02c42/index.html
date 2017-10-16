@@ -1,0 +1,1392 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <meta name="keywords" content="系统通知,通知分组,大图通知">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="系统通知就是出现在手机通知面板上的消息，点击之后可以触发相应的操作，在接入推送、通知用户下载进度等情况下使用较多，但是通常情况下我们使用的也都是最简单的文字类通知，不过随着 Android 新版本的发布，系统通知也变得样式丰富起来。 本文主要记录 Android 发送系统通知的相关内容，如发送纯文本、进度条、自定义视图、添加按钮、多行文字模式、收件箱模式、大图模式等；适配 Android 7.0">
+<meta name="keywords" content="系统通知,通知分组,大图通知">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 系统通知相关">
+<meta property="og:url" content="http://cdevlab.top/article/d1a02c42/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="系统通知就是出现在手机通知面板上的消息，点击之后可以触发相应的操作，在接入推送、通知用户下载进度等情况下使用较多，但是通常情况下我们使用的也都是最简单的文字类通知，不过随着 Android 新版本的发布，系统通知也变得样式丰富起来。 本文主要记录 Android 发送系统通知的相关内容，如发送纯文本、进度条、自定义视图、添加按钮、多行文字模式、收件箱模式、大图模式等；适配 Android 7.0">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-15T16:21:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 系统通知相关">
+<meta name="twitter:description" content="系统通知就是出现在手机通知面板上的消息，点击之后可以触发相应的操作，在接入推送、通知用户下载进度等情况下使用较多，但是通常情况下我们使用的也都是最简单的文字类通知，不过随着 Android 新版本的发布，系统通知也变得样式丰富起来。 本文主要记录 Android 发送系统通知的相关内容，如发送纯文本、进度条、自定义视图、添加按钮、多行文字模式、收件箱模式、大图模式等；适配 Android 7.0">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/d1a02c42/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Android 系统通知相关 | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+    <div class="forkme">
+   <a target="_blank" href="https://github.com/chendongMarch" rel="external nofollow noopener noreferrer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    </div>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/d1a02c42/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Android 系统通知相关</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T00:00:00+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/d1a02c42/" class="leancloud_visitors" data-flag-title="Android 系统通知相关">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>系统通知就是出现在手机通知面板上的消息，点击之后可以触发相应的操作，在接入推送、通知用户下载进度等情况下使用较多，但是通常情况下我们使用的也都是最简单的文字类通知，不过随着 <code>Android</code> 新版本的发布，系统通知也变得样式丰富起来。</p>
+<p>本文主要记录 <code>Android</code> 发送系统通知的相关内容，如发送纯文本、进度条、自定义视图、添加按钮、多行文字模式、收件箱模式、大图模式等；适配 <code>Android 7.0</code> 进行通知的分组，避免大量通知占据通知面板；最后封装一个工具类，简化发送各种类型的通知的过程。</p>
+<p><a href="https://github.com/chendongMarch/DevKitSample/tree/master/devKit/src/main/java/com/march/dev/notify" rel="external nofollow noopener noreferrer" target="_blank">本文相关源码  GitHub</a></p>
+<a id="more"></a>
+<h2 id="系统通知属性配置"><a href="#系统通知属性配置" class="headerlink" title="系统通知属性配置"></a>系统通知属性配置</h2><p>由于系统通知的相关配置很多，因此用一个类来管理所有的配置选项，并给大多数属性常用的默认值，来简化对通知复杂的配置操作。这样就可以不用再面对 <code>SDK</code> 中复杂的 <code>API</code>，只需要按照显示的需求来配置对象即可。</p>
+<p>由于配置类型繁多，都在注释中体现，不再单独一个一个说了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotifyModel</span> </span>&#123;</div><div class="line">    <span class="comment">// 通常使用自动递增的 id 来发送通知</span></div><div class="line">    <span class="comment">// 但是有类似进度条这类通知，需要更新原来的通知，此时需要一个不变的 id</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> notifyId = -<span class="number">1</span>; <span class="comment">// 通常使用</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> String title; <span class="comment">// 标题</span></div><div class="line">    <span class="keyword">private</span> String content; <span class="comment">// 通知的内容</span></div><div class="line">    <span class="keyword">private</span> String ticker; <span class="comment">// 滚动显示的提示信息</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>           smallIcon; <span class="comment">// 通知小图标资源</span></div><div class="line">    <span class="keyword">private</span> Bitmap        largeIcon; <span class="comment">// 设置显示的大图</span></div><div class="line">    <span class="keyword">private</span> PendingIntent activeIntent; <span class="comment">// 点击通知激活的 intent</span></div><div class="line">    <span class="keyword">private</span> PendingIntent deleteIntent; <span class="comment">// 删除通知时激活的 intent</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isOnGoing    = <span class="keyword">false</span>; <span class="comment">// false 表示可以滑动删除</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isAutoCancel = <span class="keyword">true</span>; <span class="comment">// true 表示点击之后自动删除</span></div><div class="line">    <span class="comment">// 设置通知优先级别，使用</span></div><div class="line">    <span class="comment">// NotificationCompat.PRIORITY_MAX</span></div><div class="line">    <span class="comment">// NotificationCompat.PRIORITY_HIGH</span></div><div class="line">    <span class="comment">// NotificationCompat.PRIORITY_DEFAULT</span></div><div class="line">    <span class="comment">// NotificationCompat.PRIORITY_MIN</span></div><div class="line">    <span class="comment">// NotificationCompat.PRIORITY_LOW</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>     priority     = NotificationCompat.PRIORITY_MAX;</div><div class="line">    <span class="comment">// 设置提示的方式，响铃或者震动，使用参数</span></div><div class="line">    <span class="comment">// Notification.DEFAULT_ALL：铃声、闪光、震动均系统默认。</span></div><div class="line">    <span class="comment">// Notification.DEFAULT_SOUND：系统默认铃声。</span></div><div class="line">    <span class="comment">// Notification.DEFAULT_VIBRATE：系统默认震动。</span></div><div class="line">    <span class="comment">// Notification.DEFAULT_LIGHTS：系统默认闪光。</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>     remindMode   = NotificationCompat.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span>[]  vibrate      = <span class="keyword">null</span>;  <span class="comment">// 自定义振动频率</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>     currentProgress; <span class="comment">// 当前进度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>     totalProgress; <span class="comment">// 总共进度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> indeterminate; <span class="comment">// 是否精确进度，false 为精确进度</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> List&lt;NotificationCompat.Action&gt; actions; <span class="comment">// 按钮列表，最多支持 3 个，多了不显示</span></div><div class="line">    <span class="keyword">private</span> RemoteViews                     remoteViews; <span class="comment">// 自定义视图</span></div><div class="line">    <span class="keyword">private</span> NotificationCompat.Style        notifyStyle; <span class="comment">// 通知的风格，收件箱、大图、长文本等</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> String notifyGroup            = DevKit.getContext().getPackageName(); <span class="comment">// 分组标记，唯一即可</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>    summaryIfMoreThanCount = Integer.MAX_VALUE; <span class="comment">// 超多多少条就分组显示</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="发送通知"><a href="#发送通知" class="headerlink" title="发送通知"></a>发送通知</h2><p>发送通知需要首先需要使用 <code>NotificationCompat.Builder</code> 来创建一个 <code>Notification</code>，然后借助 <code>NotificationManager</code> 来发送，根据 <code>NotifyModel</code> 中的对通知的配置来构建 <code>Notification</code>，至于创建哪种类型的通知也是根据 <code>NotifyModel</code> 中的参数来，后面会再详细说每种类型关键代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  根据初始化 NotifyModel 构建通知</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> NotificationCompat.<span class="function">Builder <span class="title">initNotificationBuilder</span><span class="params">(Context context, NotifyModel model)</span> </span>&#123;</div><div class="line">    NotificationCompat.Builder builder = <span class="keyword">new</span> NotificationCompat.Builder(context.getApplicationContext());</div><div class="line">    <span class="comment">// 设置小图标,这是必须的用于在通知栏进行显示，默认使用了软件的图标</span></div><div class="line">    builder.setSmallIcon(model.getSmallIcon());</div><div class="line">    <span class="comment">// 设置显示的标题</span></div><div class="line">    builder.setContentTitle(model.getTitle());</div><div class="line">    <span class="comment">// 设置内容</span></div><div class="line">    builder.setContentText(model.getContent());</div><div class="line">    <span class="comment">// 设置滚动显示的提示信息</span></div><div class="line">    <span class="keyword">if</span> (!TextUtils.isEmpty(model.getTicker()))</div><div class="line">        builder.setTicker(model.getTicker());</div><div class="line">    <span class="comment">// 设置大图</span></div><div class="line">    <span class="keyword">if</span> (model.getLargeIcon() != <span class="keyword">null</span>)</div><div class="line">        builder.setLargeIcon(model.getLargeIcon());</div><div class="line">    <span class="comment">// 设置优先级</span></div><div class="line">    builder.setPriority(model.getPriority());</div><div class="line">    <span class="comment">// 设置通知铃声或者震动</span></div><div class="line">    builder.setDefaults(model.getRemindMode());</div><div class="line">    <span class="comment">// 设置不可滑动删除</span></div><div class="line">    builder.setOngoing(model.isOnGoing());</div><div class="line">    <span class="comment">// 设置自动删除通知</span></div><div class="line">    builder.setAutoCancel(model.isAutoCancel());</div><div class="line">    <span class="comment">// 震动</span></div><div class="line">    <span class="keyword">if</span> (model.getVibrate() != <span class="keyword">null</span>)</div><div class="line">        builder.setVibrate(model.getVibrate());</div><div class="line">    <span class="comment">// 设置自定义视图</span></div><div class="line">    <span class="keyword">if</span> (model.getRemoteViews() != <span class="keyword">null</span>) &#123;</div><div class="line">        builder.setContent(model.getRemoteViews());</div><div class="line">        <span class="comment">// builder.setCustomHeadsUpContentView(model.getRemoteViews());</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 点击后发送事件</span></div><div class="line">    <span class="keyword">if</span> (model.getActiveIntent() != <span class="keyword">null</span>)</div><div class="line">        builder.setContentIntent(model.getActiveIntent());</div><div class="line">    <span class="comment">// 删除后发送事件</span></div><div class="line">    <span class="keyword">if</span> (model.getDeleteIntent() != <span class="keyword">null</span>)</div><div class="line">        builder.setDeleteIntent(model.getDeleteIntent());</div><div class="line">    <span class="comment">// 添加按钮及点击事件</span></div><div class="line">    <span class="keyword">if</span> (model.getActions() != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">for</span> (NotificationCompat.Action action : model.getActions()) &#123;</div><div class="line">            builder.addAction(action);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 设置进度</span></div><div class="line">    <span class="keyword">if</span> (model.getTotalProgress() != <span class="number">0</span>) &#123;</div><div class="line">        builder.setProgress(model.getTotalProgress(), model.getCurrentProgress(), model.isIndeterminate());</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 通知栏风格</span></div><div class="line">    <span class="keyword">if</span> (model.getNotifyStyle() != <span class="keyword">null</span>) &#123;</div><div class="line">        builder.setStyle(model.getNotifyStyle());</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 时间，通知栏会按照这个排序</span></div><div class="line">    builder.setWhen(System.currentTimeMillis());</div><div class="line">    <span class="comment">// 通知分组</span></div><div class="line">    builder.setGroup(model.getNotifyGroup());</div><div class="line">    <span class="keyword">return</span> builder;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>发送通知，每条通知都有一个唯一的 <code>notifyId</code>，不同的 <code>notifyId</code> 的通知将会排列在通知面板上面，相同 <code>notifyId</code> 的通知，后面的会替换前面的， 也就是说面板上面相同 <code>notifyId</code> 的通知只能有一条。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">notifyNow</span><span class="params">(Context context, NotifyModel model)</span> </span>&#123;</div><div class="line">    Notification notification = initNotificationBuilder(context, model).build();</div><div class="line">    <span class="comment">// 获取通知管理者，并获得系统通知 的服务</span></div><div class="line">    NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);</div><div class="line">    <span class="keyword">int</span> notifyId;</div><div class="line">    <span class="keyword">if</span> (model.getNotifyId() != -<span class="number">1</span>)</div><div class="line">        notifyId = model.getNotifyId();</div><div class="line">    <span class="keyword">else</span> notifyId = ++sNotificationId;</div><div class="line">    manager.notify(notifyId, notification);</div><div class="line">    <span class="comment">// 兼容 7.0 通知分组</span></div><div class="line">    updateNotificationSummary(context, model);</div><div class="line">    <span class="keyword">return</span> notifyId;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="简单的文本通知"><a href="#简单的文本通知" class="headerlink" title="简单的文本通知"></a>简单的文本通知</h2><p>这也就是我们最常用的通知类型了，因为大多数的配置都有默认值，如果需要发送一条文本通知只要配置几个关键的属性即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">NotifyModel notifyModel = <span class="keyword">new</span> NotifyModel();</div><div class="line">Intent intent = <span class="keyword">new</span> Intent(mContext, HomeActivity.class);</div><div class="line">PendingIntent activeIntent = PendingIntent.getActivity(mContext, <span class="number">100</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT);</div><div class="line">notifyModel.setActiveIntent(activeIntent);</div><div class="line">notifyModel.setSmallIcon(R.drawable.ic_launcher);</div><div class="line">notifyModel.setTitle(<span class="string">"测试推送标题"</span>);</div><div class="line">notifyModel.setTicker(<span class="string">"测试推送track"</span>);</div><div class="line">notifyModel.setContent(<span class="string">"测试推送内容"</span>);</div><div class="line">NotifySender.notifyNow(mActivity, notifyModel);</div></pre></td></tr></table></figure>
+<h2 id="进度条通知"><a href="#进度条通知" class="headerlink" title="进度条通知"></a>进度条通知</h2><p>进度条的通知同样使用最基本的 <code>API</code> 就能实现，这里为了简化，借助 <code>NotifyModel</code> 来管理相关参数。</p>
+<p>由于进度条类型的通知不能每次更新进度都出现新的通知，因此将 <code>notifyId</code> 单独设置成不变的，不然每次发送新的进度都会有一条。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">NotifyModel notifyModel = <span class="keyword">new</span> NotifyModel();</div><div class="line"><span class="comment">// 初始化类似简单文本通知一些通用基本属性</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">progress += <span class="number">10</span>;</div><div class="line">notifyModel.setProgress(<span class="number">0x123</span>, progress, <span class="number">100</span>, <span class="keyword">false</span>);</div><div class="line"></div><div class="line">NotifySender.notifyNow(mActivity, notifyModel);</div></pre></td></tr></table></figure>
+<p>在构建通知时，需要设置的有当前进度，进度最大值，是不是精确进度等参数，这些都保存在 <code>NotifyModel</code> 中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置进度</span></div><div class="line"><span class="keyword">if</span> (model.getTotalProgress() != <span class="number">0</span>) &#123;</div><div class="line">    builder.setProgress(model.getTotalProgress(), model.getCurrentProgress(), model.isIndeterminate());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="带按钮的通知"><a href="#带按钮的通知" class="headerlink" title="带按钮的通知"></a>带按钮的通知</h2><p>有时候我们需要在进度条上面添加按钮及其相应的触发事件，实现这种效果只需要借助 <code>NotificationCompat.Action</code> 即可，<code>Builder</code> 可以接受一个 <code>Action</code> 的列表，也就代表了多个按钮，测试过程中发现最大支持 3 个按钮。</p>
+<p>下面我添加了 4 个按钮，实际上只能显示 3 个，另外需要注意的是创建按钮点击之后触发的 <code>PendingIntent</code> 时，<code>request code</code> 必须是不同的，否则将失去点击效果。</p>
+<p>按钮点击之后，通知并不能自动消除掉，需要后续自己来处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">NotifyModel notifyModel = <span class="keyword">new</span> NotifyModel();</div><div class="line"><span class="comment">// 初始化类似简单文本通知一些通用基本属性</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">notifyModel.addAction(<span class="keyword">new</span> NotificationCompat.Action(R.drawable.ic_launcher, <span class="string">"1"</span>, </div><div class="line">        PendingIntent.getActivity(mContext, <span class="number">101</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT))));</div><div class="line">notifyModel.addAction(<span class="keyword">new</span> NotificationCompat.Action(R.drawable.ic_launcher, <span class="string">"2"</span>,</div><div class="line">        PendingIntent.getActivity(mContext, <span class="number">102</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT)));</div><div class="line">notifyModel.addAction(<span class="keyword">new</span> NotificationCompat.Action(R.drawable.ic_launcher, <span class="string">"3"</span>,</div><div class="line">        PendingIntent.getActivity(mContext, <span class="number">103</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT)));</div><div class="line">notifyModel.addAction(<span class="keyword">new</span> NotificationCompat.Action(R.drawable.ic_launcher, <span class="string">"4"</span>,</div><div class="line">        PendingIntent.getActivity(mContext, <span class="number">104</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT)));</div><div class="line">        </div><div class="line">NotifySender.notifyNow(mActivity, notifyModel);</div></pre></td></tr></table></figure>
+<p>构建通知时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加按钮及点击事件</span></div><div class="line"><span class="keyword">if</span> (model.getActions() != <span class="keyword">null</span>) &#123;</div><div class="line">    <span class="keyword">for</span> (NotificationCompat.Action action : model.getActions()) &#123;</div><div class="line">        builder.addAction(action);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="自定义视图通知"><a href="#自定义视图通知" class="headerlink" title="自定义视图通知"></a>自定义视图通知</h2><p>有时仅仅添加按钮并不能满足我们的要求，需要自定义通知的 <code>UI</code> 显示，这一功能需要借助 <code>RemoteViews</code> 来实现。</p>
+<p><code>RemoteViews</code> 可以加载一个布局文件，不过里面控件相关的设置，都需要借助 <code>RemoteViews</code> 的 <code>API</code> 来实现，不过好在和控件的属性还是十分类似的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">NotifyModel notifyModel = <span class="keyword">new</span> NotifyModel();</div><div class="line"><span class="comment">// 初始化类似简单文本通知一些通用基本属性</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">RemoteViews remoteViews = <span class="keyword">new</span> RemoteViews(mContext.getPackageName(), R.layout.item);</div><div class="line"><span class="comment">// 设置文字</span></div><div class="line">remoteViews.setTextViewText(R.id.tv, <span class="string">"test"</span>);</div><div class="line"><span class="comment">// 设置图片</span></div><div class="line">remoteViews.setImageViewResource(R.id.iv, R.drawable.ic_launcher);</div><div class="line"><span class="comment">// 点击事件</span></div><div class="line">remoteViews.setOnClickPendingIntent(R.id.iv,</div><div class="line">        PendingIntent.getActivity(mContext, <span class="number">104</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT));</div><div class="line">        </div><div class="line">notifyModel.setRemoteViews(remoteViews);</div><div class="line"></div><div class="line">NotifySender.notifyNow(mActivity, notifyModel);</div></pre></td></tr></table></figure>
+<p>在构建通知时，只需要将 <code>RemoteViews</code> 作为通知的内容设置进去</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置自定义视图</span></div><div class="line"><span class="keyword">if</span> (model.getRemoteViews() != <span class="keyword">null</span>) &#123;</div><div class="line">    builder.setContent(model.getRemoteViews());</div><div class="line">    <span class="comment">// builder.setCustomHeadsUpContentView(model.getRemoteViews());</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>接下来的 3 种展示方式，需要我们关注 <code>NotificationCompat.Style</code> 这个类，它确定了通知的风格，比如多行文字风格、收件箱风格、大图片风格，设置方式也很简单只要</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 通知栏风格</span></div><div class="line"><span class="keyword">if</span> (model.getNotifyStyle() != <span class="keyword">null</span>) &#123;</div><div class="line">    builder.setStyle(model.getNotifyStyle());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="多行文字风格通知"><a href="#多行文字风格通知" class="headerlink" title="多行文字风格通知"></a>多行文字风格通知</h2><p>通常我们的通知只能显示一行，多了以后会隐藏显示，多行文字可以将所有文字显示出来，为了使用的方便，我将设置类型的方法隐藏在了 <code>NotifyModel</code> 类中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// NotifyModel.java</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBigTextStyle</span><span class="params">()</span> </span>&#123;</div><div class="line">    notifyStyle = <span class="keyword">new</span> NotificationCompat.BigTextStyle().bigText(content);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因此当发送通知时只需要 <code>setBigTextStyle()</code> 即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">NotifyModel notifyModel = <span class="keyword">new</span> NotifyModel();</div><div class="line"><span class="comment">// 初始化类似简单文本通知一些通用基本属性</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">notifyModel.setBigTextStyle();</div><div class="line"></div><div class="line">NotifySender.notifyNow(mActivity, notifyModel);</div></pre></td></tr></table></figure>
+<h2 id="收件箱风格通知"><a href="#收件箱风格通知" class="headerlink" title="收件箱风格通知"></a>收件箱风格通知</h2><p>收件箱风格的通知经常出现在即时通讯类的软件中，比如对方发过来几条消息。</p>
+<p>创建 <code>InBoxStyle</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// NotifyModel.java</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInBoxStyle</span><span class="params">(List&lt;String&gt; msgList, String msgDesc)</span> </span>&#123;</div><div class="line">    NotificationCompat.InboxStyle inboxStyle = <span class="keyword">new</span> NotificationCompat.InboxStyle();</div><div class="line">    <span class="keyword">for</span> (String msg : msgList) &#123;</div><div class="line">        inboxStyle.addLine(msg);</div><div class="line">    &#125;</div><div class="line">    inboxStyle.setSummaryText(msgDesc);</div><div class="line">    notifyStyle = inboxStyle;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>发送通知时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">NotifyModel notifyModel = <span class="keyword">new</span> NotifyModel();</div><div class="line"><span class="comment">// 初始化类似简单文本通知一些通用基本属性</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">List&lt;String&gt; msgList = LightConverter.listOf(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>);</div><div class="line">notifyModel.setInBoxStyle(msgList, <span class="string">"测试 inbox 描述"</span>);</div><div class="line"></div><div class="line">NotifySender.notifyNow(mActivity, notifyModel);</div></pre></td></tr></table></figure>
+<h2 id="大图风格通知"><a href="#大图风格通知" class="headerlink" title="大图风格通知"></a>大图风格通知</h2><p>这种风格的通知我们通常会在使用手机系统截图时出现在通知面板上面，通知上面会显示一张大图片。</p>
+<p>创建 <code>BigPictureStyle</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// NotifyModel.java</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBigImageStyle</span><span class="params">(Bitmap bigImage)</span> </span>&#123;</div><div class="line">    notifyStyle = <span class="keyword">new</span> NotificationCompat.BigPictureStyle().bigPicture(bigImage).bigLargeIcon(bigImage);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>发送通知，注意不要放进去很大的图片。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">NotifyModel notifyModel = <span class="keyword">new</span> NotifyModel();</div><div class="line"><span class="comment">// 初始化类似简单文本通知一些通用基本属性</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"></div><div class="line">BitmapFactory.Options options = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">options.inSampleSize = <span class="number">4</span>;</div><div class="line">String path = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"1.jpg"</span>).getAbsolutePath();</div><div class="line">Bitmap bitmap = BitmapFactory.decodeFile(path, options);</div><div class="line">notifyModel.setBigImageStyle(bitmap);</div><div class="line"></div><div class="line">NotifySender.notifyNow(mActivity, notifyModel);</div></pre></td></tr></table></figure>
+<h2 id="对通知进行分组"><a href="#对通知进行分组" class="headerlink" title="对通知进行分组"></a>对通知进行分组</h2><p>当一个软件发送了大量通知，而用户又没有去点击处理，就会堆积在通知面板上，最后被一键清除掉，自 <code>Android N</code> 之后支持对通知进行分组，点击分组才会显示全部的通知。</p>
+<p>在发送通知时，给通知设置一个 <code>Group</code>，这是一个唯一字符串，他用来标记这个通知是属于这个分组的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 通知分组</span></div><div class="line"><span class="keyword">if</span> (model.getNotifyGroup() != <span class="keyword">null</span>)</div><div class="line">    builder.setGroup(model.getNotifyGroup());</div></pre></td></tr></table></figure>
+<p>实际上，所谓的分组，也是一个特殊的通知，只是它在显示在通知面板上面的同时，会将具有相同 <code>Group</code> 的通知给收集到一起，如果这个特殊的通知被 <code>cancel</code> 掉了，原来的通知又会显示出来。因此我们在每次发送通知或者清除通知之后都去需要检测一下当前通知的数量，以及需要不需要再将通知收起。</p>
+<p>检测当前应用通知数量，因为分组通知也是一条通知，因此计算数量时要过滤掉。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNumberOfNotifications</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (AppUtils.isOver(Build.VERSION_CODES.M)) &#123;</div><div class="line">        <span class="comment">// 查询当前展示的所有通知的状态列表</span></div><div class="line">        <span class="keyword">final</span> StatusBarNotification[] activeNotifications = getManager(context).getActiveNotifications();</div><div class="line">        <span class="comment">// 获取当前通知栏里头，NOTIFICATION_GROUP_SUMMARY_ID归类id的组别</span></div><div class="line">        <span class="comment">// 因为发送分组的通知也算一条通知，所以需要-1</span></div><div class="line">        <span class="keyword">for</span> (StatusBarNotification notification : activeNotifications) &#123;</div><div class="line">            <span class="keyword">if</span> (notification.getId() == NOTIFICATION_GROUP_SUMMARY_ID) &#123;</div><div class="line">                <span class="keyword">return</span> activeNotifications.length - <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> activeNotifications.length;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当发现通知数量超出限制时，我们就要额外发送一条通知，将所有通知分组收起。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NOTIFICATION_GROUP_SUMMARY_ID = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateNotificationSummary</span><span class="params">(Context context, NotifyModel model)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!AppUtils.isOver(Build.VERSION_CODES.N)) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> numberOfNotifications = getNumberOfNotifications(context);</div><div class="line">    <span class="keyword">boolean</span> onlyGroup = isOnlyGroup(context);</div><div class="line">    NotificationManager manager = getManager(context);</div><div class="line">    <span class="comment">// 有多条自己的通知，当数量超过要求的限制</span></div><div class="line">    <span class="keyword">if</span> (numberOfNotifications &gt;= model.getSummaryIfMoreThanCount()) &#123;</div><div class="line">        NotificationCompat.Builder builder = <span class="keyword">new</span> NotificationCompat.Builder(context);</div><div class="line">        <span class="comment">// 设置显示的标题</span></div><div class="line">        builder.setContentTitle(context.getString(R.string.app_name));</div><div class="line">        <span class="comment">// 设置内容</span></div><div class="line">        builder.setContentText(<span class="string">"通知已经收起，请查看"</span>);</div><div class="line">        builder</div><div class="line">                .setSmallIcon(model.getSmallIcon())</div><div class="line">                .setGroup(model.getNotifyGroup()) <span class="comment">//设置类组key，说明此条通知归属于哪一个归类</span></div><div class="line">                .setGroupSummary(<span class="keyword">true</span>); <span class="comment">//这句话必须和上面那句一起调用，否则不起作用</span></div><div class="line">        Notification notification = builder.build();</div><div class="line">        manager.notify(NOTIFICATION_GROUP_SUMMARY_ID, notification);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (numberOfNotifications == <span class="number">1</span>) &#123;</div><div class="line">        <span class="comment">// 只有一条自己的通知</span></div><div class="line">        manager.cancel(NOTIFICATION_GROUP_SUMMARY_ID);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="清除通知"><a href="#清除通知" class="headerlink" title="清除通知"></a>清除通知</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> NotificationManager <span class="title">getManager</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 清除指定通知</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clearById</span><span class="params">(Context context, <span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">    NotificationManager manager = getManager(context);</div><div class="line">    <span class="keyword">if</span> (id != -<span class="number">1</span>)</div><div class="line">        manager.cancel(id);</div><div class="line">    <span class="keyword">else</span></div><div class="line">        manager.cancelAll();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="PendingIntent"><a href="#PendingIntent" class="headerlink" title="PendingIntent"></a>PendingIntent</h2><p>这是一个类似 <code>Intent</code> 的组件，也是一种 <strong>意图</strong>，不同的是它可以作为通知事件的触发事件，<code>PendingIntent</code> 可以在通知事件被触发时启动一个 <code>Activity</code>，或者发送一个 <code>Broadcast</code>，又或者启动一个 <code>Service</code>，这取决于如何构造 <code>PendingIntent</code>。</p>
+<p>比较来说，使用开启 <code>Activity</code> 的 <code>PendingIntent</code> 比较简单，点击之后立刻就可以打开界面，缺点就是当通知发送出去时，触发事件已经无法更改，举个例子，比如当用户没有登录时需要打开登录界面，反之进入指定页面；再比如，想在通知被点击时触发网络请求进行数据统计，这些情况都最好选择 <code>Broadcast</code> 的 <code>PendingIntent</code>，它使得通知的事件触发之后，发送广播到指定接受者，我们可以后续再做更多操作，这样更灵活。</p>
+<p>开启 <code>Activity</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(mContext, HomeActivity.class);</div><div class="line">PendingIntent.getActivity(mContext, <span class="number">104</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT)</div></pre></td></tr></table></figure>
+<p>发送 <code>Broadcast</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span></span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Intent intent = <span class="keyword">new</span> Intent(mContext,MyReceiver.class);</div><div class="line">PendingIntent.getBroadcast(mContext, <span class="number">104</span>, intent, PendingIntent.FLAG_CANCEL_CURRENT);</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上，是关于系统通知的内容，关于通知分组在 <code>Android 7.0</code> 上面的具体显示，因为没有手机测试，所以没有真的测试过，在 <code>6.0</code> 手机上可以将通知收起，但是却没办法再展开了，后面还需要更多的测试来慢慢研究这部分。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/d1a02c42/" title="Android 系统通知相关">http://cdevlab.top/article/d1a02c42/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/AndroidTips/" rel="tag"># AndroidTips</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/f622e275/" rel="next" title="为iPhone制作手机铃声">
+                <i class="fa fa-chevron-left"></i> 为iPhone制作手机铃声
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <p class="site-author-name" itemprop="name">chendong</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">115</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统通知属性配置"><span class="nav-text">系统通知属性配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送通知"><span class="nav-text">发送通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的文本通知"><span class="nav-text">简单的文本通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进度条通知"><span class="nav-text">进度条通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带按钮的通知"><span class="nav-text">带按钮的通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义视图通知"><span class="nav-text">自定义视图通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多行文字风格通知"><span class="nav-text">多行文字风格通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#收件箱风格通知"><span class="nav-text">收件箱风格通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大图风格通知"><span class="nav-text">大图风格通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对通知进行分组"><span class="nav-text">对通知进行分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除通知"><span class="nav-text">清除通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PendingIntent"><span class="nav-text">PendingIntent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow noopener noreferrer" target="_blank">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

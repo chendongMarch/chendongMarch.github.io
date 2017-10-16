@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="对HashMap源码的简单分析">
+<meta name="description" content="对 HashMap 源码的简单分析。">
 <meta name="keywords" content="Java,HashMap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HashMap源码分析">
 <meta property="og:url" content="http://cdevlab.top/article/1753510098/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="对HashMap源码的简单分析">
+<meta property="og:description" content="对 HashMap 源码的简单分析。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://7xtjec.com1.z0.glb.clouddn.com/hm.png">
-<meta property="og:updated_time" content="2017-07-11T05:02:22.000Z">
+<meta property="og:updated_time" content="2017-10-16T09:09:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap源码分析">
-<meta name="twitter:description" content="对HashMap源码的简单分析">
+<meta name="twitter:description" content="对 HashMap 源码的简单分析。">
 <meta name="twitter:image" content="http://7xtjec.com1.z0.glb.clouddn.com/hm.png">
 
 
@@ -474,22 +474,12 @@ var _hmt = _hmt || [];
       
 
       
-        <p>对HashMap源码的简单分析</p>
+        <p>对 <code>HashMap</code> 源码的简单分析。</p>
 <a id="more"></a>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ol>
-<li><p>基本的数据结构有，数组，链表，树，图。</p>
-</li>
-<li><p>数组的特点是长度固定，空间连续，占用内存很大，空间复杂度是O(n),但是寻址容易，时间复杂度O(1).<br>总结：寻址容易，插入删除困难。</p>
-</li>
-<li><p>链表的特点是长度可变，存储空间离散，占用内存小，空间复杂度是O(1),但是寻址困难，时间复杂度为O(n).<br>总结：寻址困难，插入删除容易。</p>
-</li>
-<li><p>哈希表基于数组结构，采用键值的方式存储数据，插入删除容易，寻址是根据键值直接查找数据，时间复杂度是O(1)，但是使用哈希值存储数据总会出现哈希冲突，解决哈希冲突的方法主要有，开放定址法（再散列），再哈希法，链地址法（拉链法），建立公共溢出区。</p>
-</li>
-<li><p>缺点：存储空间填满时需要将其复制到另一个更大的数组结构中，并进行再哈希计算，这是哈希表内存占用的暴涨点，这是基于数组结构的一个缺点。</p>
-</li>
-<li><p>哈希表不能以一种特定的顺序遍历数据结构中的所有数据，如果需要按序存储，使用哈希表并不合适</p>
-</li>
-</ol>
+<p>基本的数据结构有数组，链表，树，图。</p>
+<p>数组的特点是长度固定，空间连续，占用内存很大，空间复杂度是O(n),但是寻址容易，时间复杂度O(1).<br>总结：寻址容易，插入删除困难。</p>
+<p>链表的特点是长度可变，存储空间离散，占用内存小，空间复杂度是O(1),但是寻址困难，时间复杂度为O(n).<br>总结：寻址困难，插入删除容易。</p>
+<p>哈希表基于数组结构，采用键值的方式存储数据，插入删除容易，寻址是根据键值直接查找数据，时间复杂度是O(1)，但是使用哈希值存储数据总会出现哈希冲突，解决哈希冲突的方法主要有，开放定址法（再散列），再哈希法，链地址法（拉链法），建立公共溢出区。<br>缺点：<br>存储空间填满时需要将其复制到另一个更大的数组结构中，并进行再哈希计算，这是哈希表内存占用的暴涨点，这是基于数组结构的一个缺点。<br>哈希表不能以一种特定的顺序遍历数据结构中的所有数据，如果需要按序存储，使用哈希表并不合适。</p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ol>
 <li><p>HashMap是线程不安全的HashTable是线程安全的。</p>
 </li>
@@ -505,7 +495,7 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <h2 id="存储的数据结构"><a href="#存储的数据结构" class="headerlink" title="存储的数据结构"></a>存储的数据结构</h2><ul>
-<li>总结来说，HashMap就是数组+内部类（Entry）实现，Entry中具有下一个Entry的引用，由此构成了链表的结构。之前看过有人介绍说是Set+静态内部类，其实并不是。第一行的代码是用来对HashMap进行操作时使用的变量，比如迭代HashMap所有的子项，添加一个EntrySet到HashMap中，删除，修改。。。。</li>
+<li>总结来说，HashMap就是数组+内部类（Entry）实现，Entry中具有下一个Entry的引用，由此构成了链表的结构。第一行的代码是用来对HashMap进行操作时使用的变量，比如迭代HashMap所有的子项，添加一个EntrySet到HashMap中，删除，修改。。。。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">transient</span> Set&lt;Entry&lt;K, V&gt;&gt; entrySet;</div><div class="line"><span class="keyword">transient</span> HashMapEntry&lt;K, V&gt;[] table;</div></pre></td></tr></table></figure>
 <p><img src="http://7xtjec.com1.z0.glb.clouddn.com/hm.png" alt="1"></p>
@@ -638,8 +628,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/1720703307/" rel="prev" title="ListView Adapter 2">
-                ListView Adapter 2 <i class="fa fa-chevron-right"></i>
+              <a href="/article/4287006971/" rel="prev" title="ListView Adapter 1">
+                ListView Adapter 1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -716,7 +706,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">112</span>
+                <span class="site-state-item-count">115</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -802,7 +792,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储的数据结构"><span class="nav-text">存储的数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMapEntry"><span class="nav-text">HashMapEntry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希值的计算"><span class="nav-text">哈希值的计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#put方法"><span class="nav-text">put方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#get方法"><span class="nav-text">get方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java实现"><span class="nav-text">Java实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Android中的实现"><span class="nav-text">在Android中的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多"><span class="nav-text">更多</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储的数据结构"><span class="nav-text">存储的数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMapEntry"><span class="nav-text">HashMapEntry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希值的计算"><span class="nav-text">哈希值的计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#put方法"><span class="nav-text">put方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#get方法"><span class="nav-text">get方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java实现"><span class="nav-text">Java实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Android中的实现"><span class="nav-text">在Android中的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多"><span class="nav-text">更多</span></a></li></ol></div>
             
 
           </div>
