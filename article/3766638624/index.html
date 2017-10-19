@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:  3M">
+<meta name="description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 事件分发事件分发的 U 型结构，事件先从上往下分发，到达最底层后，从下向上处理，当然中间还有截断事件等流程。  几个点：    只有 ViewGroup 具有 onInterceptTOuchEvent() 方法，用来截断事件的传递，当事件">
 <meta name="keywords" content="Android,View">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android事件交互">
 <meta property="og:url" content="http://cdevlab.top/article/3766638624/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:  3M">
+<meta property="og:description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 事件分发事件分发的 U 型结构，事件先从上往下分发，到达最底层后，从下向上处理，当然中间还有截断事件等流程。  几个点：    只有 ViewGroup 具有 onInterceptTOuchEvent() 方法，用来截断事件的传递，当事件">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-10T07:02:01.000Z">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/17-10-17/21765762.jpg">
+<meta property="og:updated_time" content="2017-10-17T07:14:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件交互">
-<meta name="twitter:description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 常用事件1234567MotionEvent.ACTION_DOWN:  0MotionEvent.ACTION_UP:  1MotionEvent.ACTION_MOVE:  2MotionEvent.ACTION_CANCEL:  3M">
+<meta name="twitter:description" content="Android事件交互,当用户手指触碰屏幕时会触发onTouchEvent(MotionEven event)方法。 推荐阅读简书－MotionEvent详解 事件分发事件分发的 U 型结构，事件先从上往下分发，到达最底层后，从下向上处理，当然中间还有截断事件等流程。  几个点：    只有 ViewGroup 具有 onInterceptTOuchEvent() 方法，用来截断事件的传递，当事件">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/17-10-17/21765762.jpg">
 
 
 
@@ -485,6 +487,13 @@ var _hmt = _hmt || [];
       
         <p>Android事件交互,当用户手指触碰屏幕时会触发<code>onTouchEvent(MotionEven event)</code>方法。</p>
 <h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="http://www.jianshu.com/p/0c863bbde8eb" rel="external nofollow noopener noreferrer" target="_blank">简书－MotionEvent详解</a></p>
+<h2 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h2><p>事件分发的 U 型结构，事件先从上往下分发，到达最底层后，从下向上处理，当然中间还有截断事件等流程。</p>
+<p><img src="http://olx4t2q6z.bkt.clouddn.com/17-10-17/21765762.jpg" alt=""></p>
+<p>几个点：   </p>
+<p>只有 <code>ViewGroup</code> 具有 <code>onInterceptTOuchEvent()</code> 方法，用来截断事件的传递，当事件的传递被截断时，当前 <code>ViewGroup</code> 处理事件。</p>
+<p><code>Activity</code> 和 <code>ViewGroup</code> 具有 <code>dispatchTouchEvent()</code> 方法，用来分发事件，如果返回 <code>false</code>，意为不分发，上层将会处理事件。</p>
+<p><code>onTouchEvent()</code> 返回 <code>true</code> 表示当前控件处理事件，事件将不会继续向上传递，否则继续往上走。</p>
+<p>如果当 <code>ACTION_DOWN</code> 时返回 <code>false</code>，就不能接收到其他事件。</p>
 <h2 id="常用事件"><a href="#常用事件" class="headerlink" title="常用事件"></a>常用事件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">MotionEvent.ACTION_DOWN:  <span class="number">0</span></div><div class="line">MotionEvent.ACTION_UP:  <span class="number">1</span></div><div class="line">MotionEvent.ACTION_MOVE:  <span class="number">2</span></div><div class="line">MotionEvent.ACTION_CANCEL:  <span class="number">3</span></div><div class="line">MotionEvent.ACTION_OUTSIDE:  <span class="number">4</span></div><div class="line">MotionEvent.ACTION_POINTER_DOWN:  <span class="number">5</span></div><div class="line">MotionEvent.ACTION_POINTER_UP:  <span class="number">6</span></div></pre></td></tr></table></figure>
 <h2 id="获取事件"><a href="#获取事件" class="headerlink" title="获取事件"></a>获取事件</h2><ul>
 <li><p><code>event.getAction()</code>和<code>event.getActionMasked()</code>和<code>MotionEventCompat.getActionMasked(event)</code>都可以获取事件类型。带有Mask标志的方法是针对多点触控的情况拿到的掩码。多点触控时，获取Action会返回每个触摸点的事件，其中使用pointerIndex区分每个触摸点。</p>
@@ -624,8 +633,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/1655050953/" rel="next" title="NestedScrollingParent分析">
-                <i class="fa fa-chevron-left"></i> NestedScrollingParent分析
+              <a href="/article/308486771/" rel="next" title="分析SwipeRefreshLayout实现自定义刷新">
+                <i class="fa fa-chevron-left"></i> 分析SwipeRefreshLayout实现自定义刷新
               </a>
             
           </div>
@@ -634,8 +643,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/308486771/" rel="prev" title="分析SwipeRefreshLayout实现自定义刷新">
-                分析SwipeRefreshLayout实现自定义刷新 <i class="fa fa-chevron-right"></i>
+              <a href="/article/2940188893/" rel="prev" title="NestedScrolling交互">
+                NestedScrolling交互 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -712,7 +721,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">115</span>
+                <span class="site-state-item-count">117</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -723,7 +732,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -734,7 +743,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -798,7 +807,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用事件"><span class="nav-text">常用事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取事件"><span class="nav-text">获取事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointer"><span class="nav-text">Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MotionEventCompat"><span class="nav-text">MotionEventCompat</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件分发"><span class="nav-text">事件分发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用事件"><span class="nav-text">常用事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取事件"><span class="nav-text">获取事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointer"><span class="nav-text">Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MotionEventCompat"><span class="nav-text">MotionEventCompat</span></a></li></ol></div>
             
 
           </div>

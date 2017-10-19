@@ -4,6 +4,73 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/bbab636a/</loc>
+    <lastmod>2017-10-19T05:40:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin 学习总结</title>
+        <pubTime>2017-10-19T08:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/f546dc07/</loc>
+    <lastmod>2017-10-19T05:08:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用 digitalocean 科学上网</title>
+        <pubTime>2017-10-17T08:50:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+        <tag>digitalocean</tag>
+         
+         
+           
+             
+              <breadCrumb title="digitalocean" url="http://cdevlab.top/categories/digitalocean/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3766638624/</loc>
+    <lastmod>2017-10-17T07:14:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android事件交互</title>
+        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/1753510098/</loc>
     <lastmod>2017-10-16T09:09:14.000Z</lastmod>
     <data>
@@ -1418,31 +1485,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/3766638624/</loc>
-    <lastmod>2017-07-10T07:02:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android事件交互</title>
-        <pubTime>2016-08-24T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/1482489498/</loc>
     <lastmod>2017-07-10T07:01:20.000Z</lastmod>
     <data>
@@ -2358,9 +2400,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
@@ -2385,9 +2427,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
