@@ -4,11 +4,451 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/bbab636a/</loc>
-    <lastmod>2017-10-19T05:40:56.000Z</lastmod>
+    <loc>http://cdevlab.top/article/39fe7888/</loc>
+    <lastmod>2017-10-25T02:50:09.000Z</lastmod>
     <data>
         <display>
-        <title>Kotlin 学习总结</title>
+        <title>weex-1-Start</title>
+        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/794b3d5f/</loc>
+    <lastmod>2017-10-24T15:56:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-18-协程</title>
+        <pubTime>2017-09-09T06:07:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/bc7a3f35/</loc>
+    <lastmod>2017-10-24T15:56:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-17-注解</title>
+        <pubTime>2017-09-06T06:24:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/2650e1c8/</loc>
+    <lastmod>2017-10-24T15:56:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-16-反射</title>
+        <pubTime>2017-08-26T01:59:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/75caba4c/</loc>
+    <lastmod>2017-10-24T15:56:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-15-操作符重载</title>
+        <pubTime>2017-08-26T00:51:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/578c5201/</loc>
+    <lastmod>2017-10-24T15:56:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-14-杂七杂八(解构，类型自动转换，Range，异常)</title>
+        <pubTime>2017-08-10T02:18:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/4c59f5f5/</loc>
+    <lastmod>2017-10-24T15:56:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-13-集合</title>
+        <pubTime>2017-08-08T12:14:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/c5b3d729/</loc>
+    <lastmod>2017-10-24T15:56:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-12-空值安全</title>
+        <pubTime>2017-08-07T10:15:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/acb7c552/</loc>
+    <lastmod>2017-10-24T15:56:07.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-11-函数</title>
+        <pubTime>2017-08-01T10:15:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/cc5968a9/</loc>
+    <lastmod>2017-10-24T15:56:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-10-代理</title>
+        <pubTime>2017-07-29T10:25:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/40486d0b/</loc>
+    <lastmod>2017-10-24T15:55:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-9-object关键字</title>
+        <pubTime>2017-07-29T08:47:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/9e4433d5/</loc>
+    <lastmod>2017-10-24T15:55:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-8-范型</title>
+        <pubTime>2017-07-27T02:14:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/aa2c40d4/</loc>
+    <lastmod>2017-10-24T15:55:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-7-特殊类</title>
+        <pubTime>2017-07-23T00:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/d0378250/</loc>
+    <lastmod>2017-10-24T15:55:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-6-扩展</title>
+        <pubTime>2017-07-20T00:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/2717980190/</loc>
+    <lastmod>2017-10-24T15:55:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-5-类与对象</title>
+        <pubTime>2017-06-08T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/6a146f82/</loc>
+    <lastmod>2017-10-24T15:55:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-4-接口</title>
+        <pubTime>2017-06-07T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/12ba0671/</loc>
+    <lastmod>2017-10-24T15:55:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-3-属性与域</title>
+        <pubTime>2017-06-06T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/70650835/</loc>
+    <lastmod>2017-10-24T15:55:06.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-2-基础-可见度修饰符</title>
+        <pubTime>2017-06-03T17:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/6eea2c65/</loc>
+    <lastmod>2017-10-24T15:54:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-2-基础-数据类型</title>
+        <pubTime>2017-06-03T18:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/57e86c00/</loc>
+    <lastmod>2017-10-24T15:54:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-2-基础-控制流</title>
+        <pubTime>2017-06-03T19:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/811551029/</loc>
+    <lastmod>2017-10-24T15:54:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-2-基础</title>
+        <pubTime>2017-06-03T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3395269050/</loc>
+    <lastmod>2017-10-24T15:54:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-1-新特性篇</title>
+        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/bbab636a/</loc>
+    <lastmod>2017-10-24T15:35:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin 学习汇总</title>
         <pubTime>2017-10-19T08:57:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
@@ -17,6 +457,65 @@
            
              
               <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://cdevlab.top/article/185805107/</loc>
+    <lastmod>2017-10-24T14:55:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/49416638/</loc>
+    <lastmod>2017-10-21T09:33:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-19-Anko</title>
+        <pubTime>2017-09-15T08:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
+    <lastmod>2017-10-21T02:22:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>todo</title>
+        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
           
         </display>
     </data>
@@ -332,166 +831,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/6eea2c65/</loc>
-    <lastmod>2017-09-21T05:58:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-2-基础-数据类型</title>
-        <pubTime>2017-06-03T18:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/57e86c00/</loc>
-    <lastmod>2017-09-21T03:56:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-2-基础-控制流</title>
-        <pubTime>2017-06-03T19:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/70650835/</loc>
-    <lastmod>2017-09-21T03:55:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-2-基础-可见度修饰符</title>
-        <pubTime>2017-06-03T17:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/794b3d5f/</loc>
-    <lastmod>2017-09-15T11:39:47.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-18-协程</title>
-        <pubTime>2017-09-09T06:07:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/49416638/</loc>
-    <lastmod>2017-09-15T11:18:41.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-19-Anko</title>
-        <pubTime>2017-09-15T08:57:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/bc7a3f35/</loc>
-    <lastmod>2017-09-07T02:53:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-17-注解</title>
-        <pubTime>2017-09-06T06:24:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/578c5201/</loc>
-    <lastmod>2017-09-06T03:03:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-14-杂七杂八(解构，类型自动转换，Range，异常)</title>
-        <pubTime>2017-08-10T02:18:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/2650e1c8/</loc>
-    <lastmod>2017-09-06T02:57:47.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-16-反射</title>
-        <pubTime>2017-08-26T01:59:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/83ba57f4/</loc>
     <lastmod>2017-09-05T03:30:51.000Z</lastmod>
     <data>
@@ -536,46 +875,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/75caba4c/</loc>
-    <lastmod>2017-08-26T00:55:47.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-15-操作符重载</title>
-        <pubTime>2017-08-26T00:51:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/acb7c552/</loc>
-    <lastmod>2017-08-17T10:59:04.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-11-函数</title>
-        <pubTime>2017-08-01T10:15:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/3189961703/</loc>
     <lastmod>2017-08-17T09:34:25.000Z</lastmod>
     <data>
@@ -594,46 +893,6 @@
           
              
               <breadCrumb title="Publish" url="http://cdevlab.top/categories/Android/Publish/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/811551029/</loc>
-    <lastmod>2017-08-14T05:03:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-2-基础</title>
-        <pubTime>2017-06-03T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/4c59f5f5/</loc>
-    <lastmod>2017-08-10T02:55:21.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-13-集合</title>
-        <pubTime>2017-08-08T12:14:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
           
         </display>
     </data>
@@ -661,26 +920,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/c5b3d729/</loc>
-    <lastmod>2017-08-07T10:51:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-12-空值安全</title>
-        <pubTime>2017-08-07T10:15:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/cc39cbd0/</loc>
     <lastmod>2017-08-01T07:35:23.000Z</lastmod>
     <data>
@@ -699,166 +938,6 @@
           
              
               <breadCrumb title="Library" url="http://cdevlab.top/categories/Android/Library/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/d0378250/</loc>
-    <lastmod>2017-08-01T03:48:39.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-6-扩展</title>
-        <pubTime>2017-07-20T00:57:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/aa2c40d4/</loc>
-    <lastmod>2017-08-01T03:48:08.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-7-特殊类</title>
-        <pubTime>2017-07-23T00:57:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/40486d0b/</loc>
-    <lastmod>2017-08-01T03:33:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-9-object关键字</title>
-        <pubTime>2017-07-29T08:47:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/cc5968a9/</loc>
-    <lastmod>2017-08-01T03:28:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-10-代理</title>
-        <pubTime>2017-07-29T10:25:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/9e4433d5/</loc>
-    <lastmod>2017-08-01T03:21:31.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-8-范型</title>
-        <pubTime>2017-07-27T02:14:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/6a146f82/</loc>
-    <lastmod>2017-07-23T08:00:53.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-4-接口</title>
-        <pubTime>2017-06-07T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/2717980190/</loc>
-    <lastmod>2017-07-23T08:00:18.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-5-类与对象</title>
-        <pubTime>2017-06-08T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/12ba0671/</loc>
-    <lastmod>2017-07-20T00:29:45.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-3-属性与域</title>
-        <pubTime>2017-06-06T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
           
         </display>
     </data>
@@ -911,7 +990,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://cdevlab.top/article/3518734228/</loc>
@@ -995,26 +1073,6 @@
         
         <tag>Extensions</tag>
          
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/185805107/</loc>
-    <lastmod>2017-07-11T05:08:21.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
         <tag>Hexo</tag>
          
          
@@ -1201,26 +1259,6 @@
            
              
               <breadCrumb title="Node" url="http://cdevlab.top/categories/Node/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3395269050/</loc>
-    <lastmod>2017-07-11T05:05:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-1-新特性篇</title>
-        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
           
         </display>
     </data>
@@ -2151,7 +2189,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/null/</loc>
+    <loc>http://cdevlab.top/article/Infinity/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
@@ -2400,9 +2438,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
@@ -2427,9 +2465,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
