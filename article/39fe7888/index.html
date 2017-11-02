@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="学习 Weex. Weex 官方教程 Mac 重装 Node">
+<meta name="description" content="学习 Weex. Weex 官方教程 Mac 重装 Node Weex Android Dev Tools">
 <meta name="keywords" content="weex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="weex-1-Start">
 <meta property="og:url" content="http://cdevlab.top/article/39fe7888/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="学习 Weex. Weex 官方教程 Mac 重装 Node">
+<meta property="og:description" content="学习 Weex. Weex 官方教程 Mac 重装 Node Weex Android Dev Tools">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-25T02:50:09.000Z">
+<meta property="og:updated_time" content="2017-10-30T09:41:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weex-1-Start">
-<meta name="twitter:description" content="学习 Weex. Weex 官方教程 Mac 重装 Node">
+<meta name="twitter:description" content="学习 Weex. Weex 官方教程 Mac 重装 Node Weex Android Dev Tools">
 
 
 
@@ -475,9 +475,20 @@ var _hmt = _hmt || [];
         <p>学习 <code>Weex</code>.</p>
 <p><a href="https://weex.apache.org/cn/guide/" rel="external nofollow noopener noreferrer" target="_blank">Weex 官方教程</a></p>
 <p><a href="http://linyehui.me/2016/03/03/reinstall-nodejs-on-osx/" rel="external nofollow noopener noreferrer" target="_blank">Mac 重装 Node</a></p>
-<a id="more"></a>
+<p><a href="https://github.com/weexteam/weex-devtools-android/blob/master/README-zh.md" rel="external nofollow noopener noreferrer" target="_blank">Weex Android Dev Tools</a><br><a id="more"></a></p>
 <p>解决 安装  <code>weex-toolkit</code> 出现 <code>npm ERR! code ELIFECYCLE</code> 错误。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod -R 777 ~/.xtoolkit</div><div class="line">sudo chmod -R 777 ~/.xtoolkit</div></pre></td></tr></table></figure>
+<h2 id="Android-端简单集成"><a href="#Android-端简单集成" class="headerlink" title="Android 端简单集成"></a>Android 端简单集成</h2><p>配置 <code>app/build.gralde</code></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">25</span> <span class="comment">// 23 以上</span></div><div class="line">    buildToolsVersion <span class="string">"26.0.2"</span> <span class="comment">// 23.0.1 以上</span></div><div class="line">    defaultConfig &#123;</div><div class="line">        <span class="comment">// ...</span></div><div class="line">        ndk &#123;</div><div class="line">            abiFilters <span class="string">"x86"</span></div><div class="line">            abiFilters <span class="string">"armeabi"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    compileOptions &#123;</div><div class="line">        <span class="keyword">sourceCompatibility</span> JavaVersion.VERSION_1_7</div><div class="line">        <span class="keyword">targetCompatibility</span> JavaVersion.VERSION_1_7</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">	<span class="comment">// ...</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.android.support:appcompat-v7:25.3.1'</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.android.support:recyclerview-v7:25.3.1'</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.alibaba:fastjson:1.1.46.android'</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.taobao.android:weex_sdk:0.10.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 <code>Application</code> 中进行初始化，同时必须在 <code>AndroidManifest.xml</code> 文件中进行声明。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">WXSDKEngine.initialize(<span class="keyword">this</span>, <span class="keyword">new</span> InitConfig.Builder().setImgAdapter(<span class="keyword">new</span> IWXImgLoaderAdapter() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImage</span><span class="params">(String url, ImageView view, WXImageQuality quality, WXImageStrategy strategy)</span> </span></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;).<span class="title">build</span><span class="params">()</span>);</div></pre></td></tr></table></figure>
+<p>将编译完成的 <code>js</code> 文件拷贝到 <code>assets</code> 目录，加载本地 <code>js</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">IWXRenderListener</span> </span>&#123;</div><div class="line"></div><div class="line">    WXSDKInstance mWXSDKInstance;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        mWXSDKInstance = <span class="keyword">new</span> WXSDKInstance(<span class="keyword">this</span>);</div><div class="line">        mWXSDKInstance.registerRenderListener(<span class="keyword">this</span>);</div><div class="line">        <span class="comment">/**</span></div><div class="line">         * WXSample 可以替换成自定义的字符串，针对埋点有效。</div><div class="line">         * template 是.we transform 后的 js文件。</div><div class="line">         * option 可以为空，或者通过option传入 js需要的参数。例如bundle js的地址等。</div><div class="line">         * jsonInitData 可以为空。</div><div class="line">         * width 为-1 默认全屏，可以自己定制。</div><div class="line">         * height =-1 默认全屏，可以自己定制。</div><div class="line">         */</div><div class="line">        mWXSDKInstance.render(<span class="string">"WXSample"</span>, WXFileUtils.loadAsset(<span class="string">"index.js"</span>, <span class="keyword">this</span>), <span class="keyword">null</span>, <span class="keyword">null</span>,  WXRenderStrategy.APPEND_ASYNC);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onViewCreated</span><span class="params">(WXSDKInstance instance, View view)</span> </span>&#123;</div><div class="line">        Log.e(<span class="string">"chendong"</span>,<span class="string">"onViewCreated"</span>);</div><div class="line">        setContentView(view);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRenderSuccess</span><span class="params">(WXSDKInstance instance, <span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">        Log.e(<span class="string">"chendong"</span>,<span class="string">"onRenderSuccess"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefreshSuccess</span><span class="params">(WXSDKInstance instance, <span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">        Log.e(<span class="string">"chendong"</span>,<span class="string">"onRefreshSuccess"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onException</span><span class="params">(WXSDKInstance instance, String errCode, String msg)</span> </span>&#123;</div><div class="line">        Log.e(<span class="string">"chendong"</span>,msg + <span class="string">"  "</span>  +errCode);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onResume();</div><div class="line">        <span class="keyword">if</span>(mWXSDKInstance!=<span class="keyword">null</span>)&#123;</div><div class="line">            mWXSDKInstance.onActivityResume();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onPause();</div><div class="line">        <span class="keyword">if</span>(mWXSDKInstance!=<span class="keyword">null</span>)&#123;</div><div class="line">            mWXSDKInstance.onActivityPause();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onStop</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onStop();</div><div class="line">        <span class="keyword">if</span>(mWXSDKInstance!=<span class="keyword">null</span>)&#123;</div><div class="line">            mWXSDKInstance.onActivityStop();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line">        <span class="keyword">if</span>(mWXSDKInstance!=<span class="keyword">null</span>)&#123;</div><div class="line">            mWXSDKInstance.onActivityDestroy();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行发现如下问题 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">initWXBridge HackAssertionException </div><div class="line">com.taobao.weex.utils.WXHack<span class="variable">$HackDeclaration</span><span class="variable">$HackAssertionException</span>: </div><div class="line">java.lang.ClassNotFoundException: com.taobao.weex.devtools.debug.DebugServerProxy</div></pre></td></tr></table></figure>
+<p>解决上述问题，在 <code>app/build.gradle</code> 中加入 <code>debug</code> 依赖</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">compile</span> <span class="string">'com.taobao.android:weex_inspector:0.0.8.5'</span></div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -599,8 +610,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -613,7 +633,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">119</span>
+                <span class="site-state-item-count">120</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -689,6 +709,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-端简单集成"><span class="nav-text">Android 端简单集成</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

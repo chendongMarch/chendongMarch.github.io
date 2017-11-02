@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/185805107/</loc>
+    <lastmod>2017-10-30T09:49:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/39fe7888/</loc>
-    <lastmod>2017-10-25T02:50:09.000Z</lastmod>
+    <lastmod>2017-10-30T09:41:09.000Z</lastmod>
     <data>
         <display>
         <title>weex-1-Start</title>
@@ -17,6 +37,46 @@
            
              
               <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/963f9cce/</loc>
+    <lastmod>2017-10-28T09:40:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>简历</title>
+        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3067853428/</loc>
+    <lastmod>2017-10-28T09:27:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>快速接入微信微博QQ原生登录分享</title>
+        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Contribute</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -463,26 +523,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://cdevlab.top/article/185805107/</loc>
-    <lastmod>2017-10-24T14:55:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://cdevlab.top/article/49416638/</loc>
@@ -1678,28 +1718,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2017-07-10T06:42:19.000Z</lastmod>
-    <data>
-        <display>
-        <title>快速接入微信微博QQ原生登录分享</title>
-        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Contribute</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/2a4b463b/</loc>
     <lastmod>2017-07-10T06:40:58.000Z</lastmod>
     <data>
@@ -2189,7 +2207,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/Infinity/</loc>
+    <loc>http://cdevlab.top/article/null/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
@@ -2438,9 +2456,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
@@ -2465,9 +2483,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            

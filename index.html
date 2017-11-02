@@ -481,6 +481,7 @@ var _hmt = _hmt || [];
           <p>学习 <code>Weex</code>.</p>
 <p><a href="https://weex.apache.org/cn/guide/" rel="external nofollow noopener noreferrer" target="_blank">Weex 官方教程</a></p>
 <p><a href="http://linyehui.me/2016/03/03/reinstall-nodejs-on-osx/" rel="external nofollow noopener noreferrer" target="_blank">Mac 重装 Node</a></p>
+<p><a href="https://github.com/weexteam/weex-devtools-android/blob/master/README-zh.md" rel="external nofollow noopener noreferrer" target="_blank">Weex Android Dev Tools</a><br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/article/39fe7888/" rel="contents">
@@ -490,7 +491,7 @@ var _hmt = _hmt || [];
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     <div>
       
@@ -672,6 +673,8 @@ var _hmt = _hmt || [];
   </article>
 
 
+	      
+    
 	      
     
 	      
@@ -1143,161 +1146,6 @@ var _hmt = _hmt || [];
 
 	      
     
-	      
-	      	
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/794b3d5f/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/794b3d5f/" itemprop="url">Kotlin开发-18-协程</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T14:07:00+08:00">
-                2017-09-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">Kotlin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/article/794b3d5f/" class="leancloud_visitors" data-flag-title="Kotlin开发-18-协程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          <br>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>协程 <code>Coroutines</code>，指各任务协作运行；</p>
-<p>线程是操作系统层面的，由操作系统调度执行，我们可以开启一个线程，但无法知道线程什么时候执行，什么时候执行完，因此我们通常使用回调的形式在线程执行完之后接受执行的结果，线程的运行是抢占式的，后起的 B 线程可能抢占先起的 A 线程的资源，A 线程会被阻塞，从而造成资源的浪费。</p>
-<p>协程是应用层面的，它由虚拟机进行调度，我们可以随意开启和终止协程的运行，协程是非抢占氏的，如果当前协程在运行，除非当前运行的协程主动 <strong>退让，挂起</strong>，否则其他协程不会抢占运行机会，由于各任务写作运行，就避免了创建大量的线程。</p>
-<p>协程本身并不具备线程切换的功能，耗时操作等仍旧需要我们手动切换到子线程执行，但是协程的 API 设计使得我们可以像编写同步代码一样编写异步代码，避免使用回调，逻辑也更清晰。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/794b3d5f/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-	      
-    
   </section>
 
   
@@ -1345,7 +1193,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">119</span>
+                <span class="site-state-item-count">120</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

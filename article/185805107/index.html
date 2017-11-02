@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文主要介绍如何使用 Hexo+NexT 搭建自己的博客，和在建站期间遇到的一些问题以及优化方式。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-24T14:55:30.000Z">
+<meta property="og:updated_time" content="2017-10-30T09:49:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
 <meta name="twitter:description" content="本文主要介绍如何使用 Hexo+NexT 搭建自己的博客，和在建站期间遇到的一些问题以及优化方式。">
@@ -477,6 +477,8 @@ var _hmt = _hmt || [];
 <h2 id="弄懂-NexT"><a href="#弄懂-NexT" class="headerlink" title="弄懂 NexT"></a>弄懂 NexT</h2><p><code>post.md</code> 中 <code>bool</code> 属性默认值是 <code>false</code></p>
 <h2 id="BugFix"><a href="#BugFix" class="headerlink" title="BugFix"></a>BugFix</h2><p>错误 <code>Cannot set property &#39;lastIndex&#39; of undefined</code>，修改 <code>hexo/config.yml</code> 设置 <code>auto_detect: false</code></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">highlight</span>:</div><div class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span></div><div class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">true</span></div><div class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></div><div class="line">  <span class="selector-tag">tab_replace</span>:</div></pre></td></tr></table></figure>
+<p>异常 <code>Cannot find module &#39;./build/Release/DTraceProviderBindings&#39;</code> 不影响使用，但是看着难受，尝试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install hexo --no-optional</div><div class="line">// 如果上面的命令有效，可以不执行以下两条</div><div class="line">npm uninstall hexo-cli -g</div><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
 <h2 id="SEO优化"><a href="#SEO优化" class="headerlink" title="SEO优化"></a>SEO优化</h2><blockquote>
 <p><a href="https://lancelot_lewis.coding.me/2016/08/16/blog/Hexo-NexT-SEO/" rel="external nofollow noopener noreferrer" target="_blank">Hexo NexT主题SEO优化</a></p>
 <p><a href="http://www.jianshu.com/p/86557c34b671" rel="external nofollow noopener noreferrer" target="_blank">SEO优化，Google收录</a></p>
@@ -587,8 +589,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/684233485/" rel="next" title="Hexo加密文章示例">
-                <i class="fa fa-chevron-left"></i> Hexo加密文章示例
+              <a href="/article/4099568815/" rel="next" title="快速实现Fragment切换功能">
+                <i class="fa fa-chevron-left"></i> 快速实现Fragment切换功能
               </a>
             
           </div>
@@ -597,8 +599,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2799403346/" rel="prev" title="Fragment懒加载">
-                Fragment懒加载 <i class="fa fa-chevron-right"></i>
+              <a href="/article/684233485/" rel="prev" title="Hexo加密文章示例">
+                Hexo加密文章示例 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -675,7 +677,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">119</span>
+                <span class="site-state-item-count">120</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
