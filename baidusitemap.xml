@@ -4,6 +4,75 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/3518734228/</loc>
+    <lastmod>2017-11-07T09:33:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>WebView</title>
+        <pubTime>2017-06-26T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/1dbbedd/</loc>
+    <lastmod>2017-11-05T15:11:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>SourceCode-Android-blots</title>
+        <pubTime>2017-11-04T15:31:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/4229621729/</loc>
+    <lastmod>2017-11-04T14:23:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>在 AS 中使用 Lambda 表达式</title>
+        <pubTime>2016-07-15T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>DevEnvironment</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/185805107/</loc>
     <lastmod>2017-10-30T09:49:59.000Z</lastmod>
     <data>
@@ -767,28 +836,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/4229621729/</loc>
-    <lastmod>2017-09-30T05:47:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>在 AS 中使用 Lambda 表达式</title>
-        <pubTime>2016-07-15T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>DevEnvironment</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/65563eb2/</loc>
     <lastmod>2017-09-30T04:40:33.000Z</lastmod>
     <data>
@@ -1025,31 +1072,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3518734228/</loc>
-    <lastmod>2017-07-15T06:27:22.000Z</lastmod>
-    <data>
-        <display>
-        <title>WebView</title>
-        <pubTime>2017-06-26T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
           
         </display>
     </data>
@@ -2207,7 +2229,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/Infinity/</loc>
+    <loc>http://cdevlab.top/article/null/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
