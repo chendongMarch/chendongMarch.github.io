@@ -4,6 +4,90 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/3067853428/</loc>
+    <lastmod>2017-11-21T02:37:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>快速接入微信微博QQ原生登录分享</title>
+        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Contribute</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/41ed2d2f/</loc>
+    <lastmod>2017-11-21T02:35:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Weex 开发</title>
+        <pubTime>2017-11-16T03:13:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/39fe7888/</loc>
+    <lastmod>2017-11-17T02:03:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>搭建 Weex 开发环境&集成到 Android 平台</title>
+        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/ef811326/</loc>
+    <lastmod>2017-11-16T02:50:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>Learn About HTML</title>
+        <pubTime>2017-09-22T02:08:00.000Z</pubTime>
+        
+        <tag>HTML</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/49416638/</loc>
     <lastmod>2017-11-13T01:22:11.000Z</lastmod>
     <data>
@@ -37,26 +121,6 @@
            
              
               <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/39fe7888/</loc>
-    <lastmod>2017-11-07T09:44:17.000Z</lastmod>
-    <data>
-        <display>
-        <title>weex-1-Start</title>
-        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
-        
-        <tag>weex</tag>
-         
-         
-           
-             
-              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
           
         </display>
     </data>
@@ -164,28 +228,6 @@
            
              
               <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2017-10-28T09:27:41.000Z</lastmod>
-    <data>
-        <display>
-        <title>快速接入微信微博QQ原生登录分享</title>
-        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Contribute</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -789,28 +831,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/ef811326/</loc>
-    <lastmod>2017-10-15T10:13:53.000Z</lastmod>
-    <data>
-        <display>
-        <title>HTML 基础 1</title>
-        <pubTime>2017-09-22T02:08:00.000Z</pubTime>
-        
-        <tag>前端</tag>
-         
-        <tag>HTML</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/2021227864/</loc>
     <lastmod>2017-10-13T09:22:12.000Z</lastmod>
     <data>
@@ -863,9 +883,9 @@
         <title>CSS 选择器</title>
         <pubTime>2017-07-07T04:48:37.000Z</pubTime>
         
-        <tag>CSS</tag>
-         
         <tag>前端</tag>
+         
+        <tag>CSS</tag>
          
          
            
@@ -903,9 +923,9 @@
         <title>CSS 基础 1</title>
         <pubTime>2017-07-06T09:01:37.000Z</pubTime>
         
-        <tag>CSS</tag>
-         
         <tag>前端</tag>
+         
+        <tag>CSS</tag>
          
          
            

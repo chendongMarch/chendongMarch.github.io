@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Android,RxJava,Flowable,backpressure,背压">
+  <meta name="keywords" content="weex">
 
 
 <script>
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要记录总结背压的相关知识。 当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。 背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略">
-<meta name="keywords" content="Android,RxJava,Flowable,backpressure,背压">
+<meta name="description" content="前几天看知乎，Evan You 叫 Weex 作 Vue-Native😊 本文主要学习如何使用 Weex 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。">
+<meta name="keywords" content="weex">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rxjava2.x开发-n-Backpressure-todo">
-<meta property="og:url" content="http://cdevlab.top/article/2a4b463b/index.html">
+<meta property="og:title" content="Weex 开发">
+<meta property="og:url" content="http://cdevlab.top/article/41ed2d2f/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本文主要记录总结背压的相关知识。 当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。 背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略">
+<meta property="og:description" content="前几天看知乎，Evan You 叫 Weex 作 Vue-Native😊 本文主要学习如何使用 Weex 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-10T06:40:58.000Z">
+<meta property="og:updated_time" content="2017-11-21T02:35:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rxjava2.x开发-n-Backpressure-todo">
-<meta name="twitter:description" content="本文主要记录总结背压的相关知识。 当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。 背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略">
+<meta name="twitter:title" content="Weex 开发">
+<meta name="twitter:description" content="前几天看知乎，Evan You 叫 Weex 作 Vue-Native😊 本文主要学习如何使用 Weex 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。">
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="http://cdevlab.top/article/2a4b463b/">
+  <link rel="canonical" href="http://cdevlab.top/article/41ed2d2f/">
 
 
 
@@ -163,7 +163,7 @@
 
 
 
-  <title>Rxjava2.x开发-n-Backpressure-todo | 三月</title>
+  <title>Weex 开发 | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -374,7 +374,7 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2a4b463b/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/41ed2d2f/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -391,7 +391,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">Rxjava2.x开发-n-Backpressure-todo</h2>
+          <h2 class="post-title" itemprop="name headline">Weex 开发</h2>
         
 
         <div class="post-meta">
@@ -403,8 +403,8 @@ var _hmt = _hmt || [];
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T16:38:00+08:00">
-                2018-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T11:13:00+08:00">
+                2017-11-16
               </time>
             
 
@@ -426,19 +426,8 @@ var _hmt = _hmt || [];
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/Library/" itemprop="url" rel="index">
-                    <span itemprop="name">Library</span>
+                  <a href="/categories/weex/" itemprop="url" rel="index">
+                    <span itemprop="name">weex</span>
                   </a>
                 </span>
 
@@ -454,7 +443,7 @@ var _hmt = _hmt || [];
 
           
           
-             <span id="/article/2a4b463b/" class="leancloud_visitors" data-flag-title="Rxjava2.x开发-n-Backpressure-todo">
+             <span id="/article/41ed2d2f/" class="leancloud_visitors" data-flag-title="Weex 开发">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -483,13 +472,108 @@ var _hmt = _hmt || [];
       
 
       
-        <p>本文主要记录总结背压的相关知识。</p>
-<p>当上游发送的事件的速度很快，下游处理事件的速度很慢，就会出现背压，这很好理解，就好比一条水管，上游水流量太大，下游水流量太小，上游送过来的水下游不能及时输出，就会产生压力，这就是背压。</p>
-<p><strong>背压是指在异步场景中，被观察者发送事件速度远快于观察者的处理速度的情况下，一种告诉上游的被观察者降低发送速度的策略</strong></p>
+        <p>前几天看知乎，<code>Evan You</code> 叫 <code>Weex</code> 作 <code>Vue-Native</code>😊</p>
+<p>本文主要学习如何使用 <code>Weex</code> 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。    </p>
 <a id="more"></a>
-<p>本来想写一段程序触发一下 <code>MissingBackpressureException</code> ，结果没成功。</p>
-<p>在 <code>RxJava2.x</code> 中 <code>Observable</code> 是默认不支持背压的，而 <code>Flowable</code> 是支持背压的。</p>
-
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>不支持相对单位 <code>em</code>，<code>rem</code> 等，只能使用 <code>px</code>；</p>
+<p>不支持 <code>css</code> 组合写法，只能设置一个属性值，如 <del> <code>border: 1 solid red;</code> </del></p>
+<p><code>&lt;image&gt;</code> 在 <code>ios</code> 平台 <code>border</code> 不支持设置不同的 <code>radius</code>；</p>
+<p>不支持百分比</p>
+<p>根布局必须是 <code>&lt;div&gt;</code>、<code>&lt;scroller&gt;</code></p>
+<p>事件最好定义成有意义的形式，不然有时会出问题，例如 <code>@change=&quot;change&quot;</code> 监听 <code>change</code> 事件没问题，但是 <code>@scroll=&quot;scroll&quot;</code> 就会出现监听不到的问题。</p>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p><image width="200px;" src="http://olx4t2q6z.bkt.clouddn.com/17-11-16/13369345.jpg"><br></image></p>
+<p><code>Weex</code> 盒模型的 <code>box-sizing</code> 默认为 <code>border-box</code>，即盒子的宽高包含内容、内边距和边框的宽度，不包含外边距的宽度。</p>
+<ul>
+<li><code>width/height</code> 指的是 <code>content + padding + border</code> 部分的尺寸</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>padding</code> 内边距，<code>content</code> 和 <code>border</code> 之间的距离</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">padding</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">padding-top</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">padding-xxxx</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>margin</code> 外边距，元素与元素之间的距离</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">margin-top</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">margin-xxxx</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>border</code> 边框</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/* solid 直线，默认值；dashed 虚线；dotted 点线；*/</span></div><div class="line">  <span class="attribute">border-style</span>: solid | dashed | dotted;</div><div class="line">  <span class="attribute">border-xxxx-style</span>: solid | dashed | dotted;</div><div class="line"></div><div class="line">  <span class="attribute">border-color</span>:<span class="number">#0f0f0f</span>;</div><div class="line">  <span class="attribute">border-xxxx-color</span>:<span class="number">#0f0f0f</span>;</div><div class="line"></div><div class="line">  <span class="comment">/* 先 top/bottom，后 left/right */</span></div><div class="line">  <span class="attribute">border-radius</span>:<span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-xxxx-yyyy-radius</span>:<span class="number">10px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="FlexBox"><a href="#FlexBox" class="headerlink" title="FlexBox"></a>FlexBox</h2><p><code>flexbox</code> 是 <code>CSS3.0</code> 新的布局模式，<code>Weex</code> 对它进行了部分的支持。</p>
+<p><code>flexbox</code> 是唯一的默认的布局模式，不需要指定 <code>display: flex;</code>，默认所有的容器类元素都是 <code>flex</code> 容器。</p>
+<ul>
+<li>布局方向</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/* row,左到右排列；column,上到下排列*/</span></div><div class="line">  <span class="attribute">flex-direction</span>: row | column;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>主轴方向元素的排列。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/*</span></div><div class="line">  flex-start : 元素全部靠左</div><div class="line">  flex-end : 元素全部靠右</div><div class="line">  center : 元素居中</div><div class="line">  space-between : 元素之间间距相同，分散排列，两边不留白</div><div class="line">  space-arround : 元素之间间距相同，分散排列，两边留间距的一半</div><div class="line">  */</div><div class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-arround;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>侧轴方向元素的排列。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/*</span></div><div class="line">  flex-start : 元素靠顶部对齐；</div><div class="line">  flex-end : 元素靠底部对齐；</div><div class="line">  center : 居中 </div><div class="line">  stretch : 拉伸到 flex 容器大小</div><div class="line">  */</div><div class="line">  <span class="attribute">align-items </span>: flex-start | flex-end | center | stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>flex 成员项</li>
+</ul>
+<p><code>flex</code> 属性定义了 <code>flex</code> 成员项可以占用容器中剩余空间的大小。如果所有的成员项设置相同的值 <code>flex: 1</code>，它们将平均分配剩余空间. 如果一个成员项设置的值为 <code>flex: 2</code>，其它的成员项设置的值为 <code>flex: 1</code>，那么这个成员项所占用的剩余空间是其它成员项的 2 倍。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">flex</span>:<span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="slider-indicator-轮播"><a href="#slider-indicator-轮播" class="headerlink" title="slider + indicator 轮播"></a>slider + indicator 轮播</h2><p><code>slider</code> 默认高度会占满屏幕，所以必须为 <code>slider</code> 指定一个高度，而 <code>indicator</code> 也会继承这个高度。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">slider</span> <span class="attr">class</span>=<span class="string">"slider"</span> @<span class="attr">change</span>=<span class="string">"changePage"</span> @<span class="attr">scroll</span>=<span class="string">"scrollSlider	"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(img,index) in imagelist"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">'image'</span> <span class="attr">:src</span>=<span class="string">"img"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">indicator</span> <span class="attr">class</span>=<span class="string">"indicator"</span>&gt;</span><span class="tag">&lt;/<span class="name">indicator</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">slider</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>slider</code> 常用属性</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.slider</span>&#123;</div><div class="line">  <span class="attribute">height</span>:<span class="number">400px</span>; <span class="comment">/* 高度，需要指定 */</span></div><div class="line">  <span class="attribute">interval</span>:<span class="number">3000</span>; <span class="comment">/* 播放时间间隔 */</span></div><div class="line">  <span class="attribute">auto-play</span>:true; <span class="comment">/* 自动播放 */</span></div><div class="line">  <span class="attribute">infinite</span>:true; <span class="comment">/* 无限循环 */</span></div><div class="line">  <span class="attribute">scrollable</span>:false; <span class="comment">/* 可不可以手势滑动 */</span></div><div class="line">  <span class="attribute">offset-x-accuracy</span>:<span class="number">20px</span>; <span class="comment">/* 控制onscroll事件触发的频率，默认值为10,越小的话 onscroll 触发越频繁，可能降低性能 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>indicator</code> 常用属性</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.indicator</span>&#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">750px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">400px</span>;</div><div class="line">  <span class="attribute">position</span>:absolute;</div><div class="line">  <span class="attribute">top</span>:<span class="number">150px</span>;  <span class="comment">/* 绝对定位距离顶部的距离 */</span></div><div class="line">  <span class="attribute">item-color</span>:<span class="number">#eeeeee</span>;  <span class="comment">/* 没有选中的颜色 */</span></div><div class="line">  <span class="attribute">item-selected-color</span>:<span class="number">#ff0000</span>; <span class="comment">/* 选中的颜色 */</span></div><div class="line">  <span class="attribute">item-size</span>:<span class="number">20</span>; <span class="comment">/* 指示标记大小 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>事件</li>
+</ul>
+<p>change 事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@change = <span class="string">'changePage'</span></div><div class="line"></div><div class="line">changePage(event)&#123;&#125;</div><div class="line"></div><div class="line">event =&gt;</div><div class="line">	index &#123;number&#125;   滑动到的索引</div></pre></td></tr></table></figure>
+<p>scroll 事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@scroll = &apos;scrollPage&apos;</div><div class="line"></div><div class="line">scrollPage(event)&#123;&#125;</div><div class="line"></div><div class="line">event =&gt;</div><div class="line">	offsetXRatio &#123;number&#125;  偏移量，[-1,1]，负值表示向左滚动，表示当前有每一页的 offsetXRatio 滚动到了页面外</div></pre></td></tr></table></figure>
+<h2 id="scroller"><a href="#scroller" class="headerlink" title="scroller"></a>scroller</h2><p>滑动方向 <code>scroll-direction = vertical|horizontal</code> 必须用标签属性的形式，如果用作 <code>css</code> 属性，可以达到效果，但是无法滑动。</p>
+<p>加载更多 <code>loadmoreoffset = 20</code> 也必须使用标签属性的形式，不能用作 <code>css</code> 属性，⚠️ 横向滑动时，loadmore 不能触发。</p>
+<ul>
+<li>滑动方向</li>
+</ul>
+<p>可以垂直或者水平滑动，<code>flex</code> 和 <code>scroll</code> 的方向必须一致。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">两者方向必须一致</div><div class="line">flex-direction 默认值 row </div><div class="line">scroll-direction 默认值 vertical</div><div class="line"></div><div class="line">如果是垂直滑动，</div><div class="line">flex-direction:column;</div><div class="line">scroll-direction = vertical</div><div class="line"></div><div class="line">如果水平滑动</div><div class="line">flex-direction:row;</div><div class="line">scroll-direction = horizontal</div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个 <code>scroller</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">scroller</span> <span class="attr">class</span>=<span class="string">"scroller"</span> <span class="attr">scroll-direction</span>=<span class="string">horizontal</span> @<span class="attr">scroll</span>=<span class="string">'scrollerScroll'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-group"</span>  <span class="attr">v-for</span>=<span class="string">"(item,index) in tablist"</span> @<span class="attr">click</span>=<span class="string">"changeTab(index)"</span> <span class="attr">:ref</span>=<span class="string">"'tab'+index"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"tab-item"</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span>&gt;</span> 抢购中 <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-line"</span> <span class="attr">v-if</span>=<span class="string">"index == current_tab"</span>&gt;</span>  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">scroller</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>scroller</code> 常用属性</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 屏幕底部到页面底部的距离，用来触发 loadmore，默认 0</div><div class="line">loadmoreoffset = 20 </div><div class="line">// 滑动方向，默认 vertical</div><div class="line">scroll-direction = vertical|horizontal</div><div class="line"></div><div class="line">.scroller&#123;</div><div class="line">  /* 显示滚动条，默认true，但是发现在 android 默认是不显示的*/</div><div class="line">  show-scrollbar:false;</div><div class="line">  /* 触发 scroll 的频率，默认 10px*/</div><div class="line">  offset-accuracy:20px; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>事件</li>
+</ul>
+<p>scroll 事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@scroll = <span class="string">'scrollScroller'</span></div><div class="line"></div><div class="line">scrollScroller(event)&#123;&#125;</div><div class="line"></div><div class="line">event =&gt; </div><div class="line">	contentSize &#123;<span class="built_in">Object</span>&#125; 列表的尺寸，宽度是总的宽度，如 <span class="number">150</span>px * <span class="number">10</span> = <span class="number">1500</span></div><div class="line">		- width &#123;number&#125;</div><div class="line">		- height &#123;number&#125;</div><div class="line">	contentOffset &#123;<span class="built_in">Object</span>&#125; 列表偏移尺寸，整个列表总共被滑动的 px 数</div><div class="line">		- x &#123;number&#125;</div><div class="line">		- y &#123;number&#125;</div></pre></td></tr></table></figure>
+<p>loadmore 事件，⚠️ 横向滑动时，loadmore 不能触发</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@loadmore=<span class="string">'loadMoreData'</span></div><div class="line"></div><div class="line">loadMoreData()&#123;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>扩展</li>
+</ul>
+<blockquote>
+<p>resetLoadmore(node,options)</p>
+</blockquote>
+<p>重置 loadmore，如果进行过一次 loadmore 之后，列表内容没有发生变更，则再次滑动到末尾时，不会触发 loadmore 事件，需要使用 <code>resetLoadmore()</code> 来重置状态。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">scroller.resetLoadmore(node,options)</div><div class="line"></div><div class="line">node &#123;node&#125; 指的是节点，暂时不知道做什么用的，传任何节点都可以起作用</div><div class="line">options &#123;object&#125;</div><div class="line">	- offset &#123;number&#125; 一个到其可见位置的偏移距离，默认 <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;scroller ref=&apos;sv&apos; @loadmore=&apos;loadmoreScroll&apos; scroll-direction=&apos;vertical&apos; loadmoreoffset=20    &gt;</div><div class="line"> ...</div><div class="line">&lt;/scroller&gt;</div><div class="line"></div><div class="line">// 在加载更多的事件中，重置状态，让他可以一直触发 loadmore 事件</div><div class="line">loadmoreScroll()&#123;</div><div class="line">	const el = this.$refs.sv</div><div class="line">	el.resetLoadmore(el,&#123;offset:20&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>scrollToElement(node,options)</p>
+</blockquote>
+<p>使得列表滑动到指定的 node，需要使用 <code>dom module</code> 来操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">scrollToElement(node,options)</div><div class="line"></div><div class="line">node &#123;node&#125; 列表的子节点，将会滑动到这个节点</div><div class="line">options &#123;object&#125;</div><div class="line">	- offset &#123;number&#125; 指定的子节点滑动后距离左边的距离的负值</div></pre></td></tr></table></figure>
+<p>示例，对一个横向列表进行操作，使得点击的那个子元素自动滑动到居中显示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">scroller</span> <span class="attr">class</span>=<span class="string">"scroller"</span> <span class="attr">scroll-direction</span>=<span class="string">'horizontal'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-group"</span>  <span class="attr">v-for</span>=<span class="string">"(item,index) in tablist"</span> @<span class="attr">click</span>=<span class="string">"changeTab(index)"</span> <span class="attr">:ref</span>=<span class="string">"'tab'+index"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"tab-item"</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">scroller</span>&gt;</span></div></pre></td></tr></table></figure>
       
     </div>
 
@@ -517,7 +601,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/2a4b463b/" title="Rxjava2.x开发-n-Backpressure-todo">http://cdevlab.top/article/2a4b463b/</a>
+      <a href="http://cdevlab.top/article/41ed2d2f/" title="Weex 开发">http://cdevlab.top/article/41ed2d2f/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -533,11 +617,7 @@ var _hmt = _hmt || [];
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
-            <a href="/tags/Library/" rel="tag"># Library</a>
-          
-            <a href="/tags/RxJava2-x/" rel="tag"># RxJava2.x</a>
+            <a href="/tags/weex/" rel="tag"># weex</a>
           
         </div>
       
@@ -550,8 +630,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/41ed2d2f/" rel="next" title="Weex 开发">
-                <i class="fa fa-chevron-left"></i> Weex 开发
+              <a href="/article/1dbbedd/" rel="next" title="SourceCode-Android-blots">
+                <i class="fa fa-chevron-left"></i> SourceCode-Android-blots
               </a>
             
           </div>
@@ -559,6 +639,10 @@ var _hmt = _hmt || [];
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -611,8 +695,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -701,6 +794,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盒模型"><span class="nav-text">盒模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FlexBox"><span class="nav-text">FlexBox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slider-indicator-轮播"><span class="nav-text">slider + indicator 轮播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scroller"><span class="nav-text">scroller</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
