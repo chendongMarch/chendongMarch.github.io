@@ -4,6 +4,66 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/49416638/</loc>
+    <lastmod>2017-11-13T01:22:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-19-Anko</title>
+        <pubTime>2017-09-15T08:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/bbab636a/</loc>
+    <lastmod>2017-11-08T05:39:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin 学习汇总</title>
+        <pubTime>2017-10-19T08:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/39fe7888/</loc>
+    <lastmod>2017-11-07T09:44:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>weex-1-Start</title>
+        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/3518734228/</loc>
     <lastmod>2017-11-07T09:33:47.000Z</lastmod>
     <data>
@@ -86,26 +146,6 @@
            
              
               <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/39fe7888/</loc>
-    <lastmod>2017-10-30T09:41:09.000Z</lastmod>
-    <data>
-        <display>
-        <title>weex-1-Start</title>
-        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
-        
-        <tag>weex</tag>
-         
-         
-           
-             
-              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
           
         </display>
     </data>
@@ -572,46 +612,6 @@
     </url>
 
     
-  <url>
-    <loc>http://cdevlab.top/article/bbab636a/</loc>
-    <lastmod>2017-10-24T15:35:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin 学习汇总</title>
-        <pubTime>2017-10-19T08:57:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://cdevlab.top/article/49416638/</loc>
-    <lastmod>2017-10-21T09:33:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-19-Anko</title>
-        <pubTime>2017-09-15T08:57:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://cdevlab.top/article/5a0eb6a0/</loc>

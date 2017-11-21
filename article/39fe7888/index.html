@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="学习 Weex. Weex 官方教程 Mac 重装 Node Weex Android Dev Tools">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-30T09:41:09.000Z">
+<meta property="og:updated_time" content="2017-11-07T09:44:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weex-1-Start">
 <meta name="twitter:description" content="学习 Weex. Weex 官方教程 Mac 重装 Node Weex Android Dev Tools">
@@ -476,8 +476,10 @@ var _hmt = _hmt || [];
 <p><a href="https://weex.apache.org/cn/guide/" rel="external nofollow noopener noreferrer" target="_blank">Weex 官方教程</a></p>
 <p><a href="http://linyehui.me/2016/03/03/reinstall-nodejs-on-osx/" rel="external nofollow noopener noreferrer" target="_blank">Mac 重装 Node</a></p>
 <p><a href="https://github.com/weexteam/weex-devtools-android/blob/master/README-zh.md" rel="external nofollow noopener noreferrer" target="_blank">Weex Android Dev Tools</a><br><a id="more"></a></p>
-<p>解决 安装  <code>weex-toolkit</code> 出现 <code>npm ERR! code ELIFECYCLE</code> 错误。</p>
+<h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h2><p>解决 安装  <code>weex-toolkit</code> 出现 <code>npm ERR! code ELIFECYCLE</code> 错误。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod -R 777 ~/.xtoolkit</div><div class="line">sudo chmod -R 777 ~/.xtoolkit</div></pre></td></tr></table></figure>
+<p>使用命令开启 <code>watch</code> 模式和静态服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run dev &amp; npm run serve</div></pre></td></tr></table></figure>
 <h2 id="Android-端简单集成"><a href="#Android-端简单集成" class="headerlink" title="Android 端简单集成"></a>Android 端简单集成</h2><p>配置 <code>app/build.gralde</code></p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">25</span> <span class="comment">// 23 以上</span></div><div class="line">    buildToolsVersion <span class="string">"26.0.2"</span> <span class="comment">// 23.0.1 以上</span></div><div class="line">    defaultConfig &#123;</div><div class="line">        <span class="comment">// ...</span></div><div class="line">        ndk &#123;</div><div class="line">            abiFilters <span class="string">"x86"</span></div><div class="line">            abiFilters <span class="string">"armeabi"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    compileOptions &#123;</div><div class="line">        <span class="keyword">sourceCompatibility</span> JavaVersion.VERSION_1_7</div><div class="line">        <span class="keyword">targetCompatibility</span> JavaVersion.VERSION_1_7</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">	<span class="comment">// ...</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.android.support:appcompat-v7:25.3.1'</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.android.support:recyclerview-v7:25.3.1'</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.alibaba:fastjson:1.1.46.android'</span></div><div class="line">	<span class="keyword">compile</span> <span class="string">'com.taobao.android:weex_sdk:0.10.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在 <code>Application</code> 中进行初始化，同时必须在 <code>AndroidManifest.xml</code> 文件中进行声明。</p>
@@ -719,7 +721,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-端简单集成"><span class="nav-text">Android 端简单集成</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境安装"><span class="nav-text">环境安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-端简单集成"><span class="nav-text">Android 端简单集成</span></a></li></ol></div>
             
 
           </div>
