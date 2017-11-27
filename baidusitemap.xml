@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2017-11-21T02:37:11.000Z</lastmod>
+    <lastmod>2017-11-27T02:24:28.000Z</lastmod>
     <data>
         <display>
         <title>快速接入微信微博QQ原生登录分享</title>
@@ -27,7 +27,7 @@
     
   <url>
     <loc>http://cdevlab.top/article/41ed2d2f/</loc>
-    <lastmod>2017-11-21T02:35:19.000Z</lastmod>
+    <lastmod>2017-11-24T10:26:39.000Z</lastmod>
     <data>
         <display>
         <title>Weex 开发</title>
@@ -39,6 +39,46 @@
            
              
               <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/d8c55445/</loc>
+    <lastmod>2017-11-21T14:31:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>我为什么要写博客</title>
+        <pubTime>2017-06-28T16:00:00.000Z</pubTime>
+        
+        <tag>Diary</tag>
+         
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/185805107/</loc>
+    <lastmod>2017-11-21T08:26:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
           
         </display>
     </data>
@@ -73,9 +113,9 @@
         <title>Learn About HTML</title>
         <pubTime>2017-09-22T02:08:00.000Z</pubTime>
         
-        <tag>HTML</tag>
-         
         <tag>前端</tag>
+         
+        <tag>HTML</tag>
          
          
            
@@ -190,26 +230,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/185805107/</loc>
-    <lastmod>2017-10-30T09:49:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
           
         </display>
     </data>
@@ -883,9 +903,9 @@
         <title>CSS 选择器</title>
         <pubTime>2017-07-07T04:48:37.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -923,9 +943,9 @@
         <title>CSS 基础 1</title>
         <pubTime>2017-07-06T09:01:37.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -2222,6 +2242,26 @@
           
              
               <breadCrumb title="todo" url="http://cdevlab.top/categories/Android/todo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3443742407/</loc>
+    <lastmod>2017-07-08T15:30:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>改变</title>
+        <pubTime>2017-06-28T16:00:00.000Z</pubTime>
+        
+        <tag>Diary</tag>
+         
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
           
         </display>
     </data>
