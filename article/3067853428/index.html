@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="「SocialSdk」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中… 由于项目中想要接入的平台因人而异，第三方 SDK 更新也比较频繁，因此没有对类库进行发布操作，下载之后直接依赖 module 即可，这样也方便问题修复。 项目地址 : GitHub - SocialSdkLibrary">
+<meta name="description" content="「SocialSdk」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中… 由于项目中想要接入的平台因人而异，第三方 SDK 更新也比较频繁，因此没有对类库进行发布操作，下载之后直接依赖 module 即可，这样也方便问题修复。 项目地址 : GitHub - SocialSdkLibrary 推荐阅读 ：文章地址 优点写的不好，还在优化中… 🔥">
 <meta name="keywords" content="Android,Contribute">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速接入微信微博QQ原生登录分享">
 <meta property="og:url" content="http://cdevlab.top/article/3067853428/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="「SocialSdk」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中… 由于项目中想要接入的平台因人而异，第三方 SDK 更新也比较频繁，因此没有对类库进行发布操作，下载之后直接依赖 module 即可，这样也方便问题修复。 项目地址 : GitHub - SocialSdkLibrary">
+<meta property="og:description" content="「SocialSdk」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中… 由于项目中想要接入的平台因人而异，第三方 SDK 更新也比较频繁，因此没有对类库进行发布操作，下载之后直接依赖 module 即可，这样也方便问题修复。 项目地址 : GitHub - SocialSdkLibrary 推荐阅读 ：文章地址 优点写的不好，还在优化中… 🔥">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-27T03:29:00.000Z">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-1/62754706.jpg">
+<meta property="og:updated_time" content="2017-12-01T01:51:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速接入微信微博QQ原生登录分享">
-<meta name="twitter:description" content="「SocialSdk」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中… 由于项目中想要接入的平台因人而异，第三方 SDK 更新也比较频繁，因此没有对类库进行发布操作，下载之后直接依赖 module 即可，这样也方便问题修复。 项目地址 : GitHub - SocialSdkLibrary">
+<meta name="twitter:description" content="「SocialSdk」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中… 由于项目中想要接入的平台因人而异，第三方 SDK 更新也比较频繁，因此没有对类库进行发布操作，下载之后直接依赖 module 即可，这样也方便问题修复。 项目地址 : GitHub - SocialSdkLibrary 推荐阅读 ：文章地址 优点写的不好，还在优化中… 🔥">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-1/62754706.jpg">
 
 
 
@@ -472,29 +474,29 @@ var _hmt = _hmt || [];
       
 
       
-        <p>「<code>SocialSdk</code>」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中…</p>
+        <p><img src="http://olx4t2q6z.bkt.clouddn.com/17-12-1/62754706.jpg" alt="登录分享"></p>
+<p>「<code>SocialSdk</code>」 提供微博、微信、QQ的登陆分享功能支持，使用 微博、QQ、微信 原生 SDK 接入，持续优化中…</p>
 <p>由于项目中想要接入的平台因人而异，第三方 SDK 更新也比较频繁，因此没有对类库进行发布操作，下载之后直接依赖 <code>module</code> 即可，这样也方便问题修复。</p>
 <p>项目地址 : <a href="https://github.com/chendongMarch/SocialSdkLibrary" rel="external nofollow noopener noreferrer" target="_blank">GitHub - SocialSdkLibrary</a></p>
-<a id="more"></a>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>简单：只需要关注几个管理类和相关数据的构造，不需要考虑复杂的授权逻辑。</p>
-<p>轻量：除了必须的第三方 sdk 之外，本项目只依赖了一个简单的异步任务的框架-bolts，后续会考虑也剔除掉，不引入无用依赖，保证与宿主项目统一。</p>
-<p>全面：内部存储授权 token，避免多次授权；对qq、微信、微博做了完善的支持，同时兼容了各平台分享数据类型的差异，还对本地视频这种原本不支持分享的类型使用本地分享进行了内部扩展。</p>
-<p>扩展性：项目以功能进行划分，各个平台之间互相独立，如果想仅支持部分平台，只需要删除某个平台的具体实现即可。</p>
-<p>功能性：针对实际项目需求进行扩展，例如在分享前统一对分享数据提供一次重新构造的机会。</p>
-<p>使用 <strong>SocialSdk</strong> 只需要关注以下几个文件：</p>
-<blockquote>
-<p><code>SocialSdk</code> 结合 <code>SocialConfig</code> 用来进行授权信息的配置。</p>
-<p> <code>Target</code> 类是单独分离出来的常量类，指向了登录和分享的具体目标。</p>
-<p><code>LoginManager</code> 用来实现 qq、微信、微博第三方授权登录，内部存储 <code>accessToken</code>，无需多次授权，只要调用 <code>LoginManager.login()</code> 方法。</p>
-<p><code>ShareManager</code> 用来实现 9 种数据类型、3 大平台、7 个渠道的分享，只要调用 <code>ShareManager.share()</code> 方法。</p>
-</blockquote>
+<p>推荐阅读 ：<a href="http://cdevlab.top/article/3067853428/">文章地址</a></p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>写的不好，还在优化中…</p>
+<p>🔥 简单：只需要关注几个管理类和相关数据的构造，不需要考虑复杂的授权逻辑。</p>
+<p>🔥 轻量：除了必须的第三方 sdk 之外，本项目只依赖了一个简单的异步任务的框架-bolts，后续会考虑也剔除掉，不引入无用依赖，保证与宿主项目统一。</p>
+<p>🔥 全面：内部存储授权 token，避免多次授权；对qq、微信、微博做了完善的支持，同时兼容了各平台分享数据类型的差异，还对本地视频这种原本不支持分享的类型使用本地分享进行了内部扩展。</p>
+<p>🔥 扩展性：项目以功能进行划分，各个平台之间互相独立，如果想仅支持部分平台，只需要删除某个平台的具体实现即可。</p>
+<p>🔥 功能性：针对实际项目需求进行扩展，例如在分享前统一对分享数据提供一次重新构造的机会。</p>
+<h2 id="主要类文件"><a href="#主要类文件" class="headerlink" title="主要类文件"></a>主要类文件</h2><p>使用 <strong>SocialSdk</strong> 只需要关注以下几个文件：</p>
+<p>👉️ <code>SocialSdk.java</code> 结合 <code>SocialConfig.java</code> 用来进行授权信息的配置。</p>
+<p>👉️ <code>Target.java</code> 类是单独分离出来的常量类，指向了登录和分享的具体目标。</p>
+<p>👉️ <code>LoginManager.java</code> 用来实现 qq、微信、微博第三方授权登录，内部存储 <code>accessToken</code>，无需多次授权，只要调用 <code>LoginManager.login()</code> 方法。</p>
+<p>👉️️ <code>ShareManager.java</code> 用来实现 9 种数据类型、3 大平台、7 个渠道的分享，只要调用 <code>ShareManager.share()</code> 方法。</p>
 <h2 id="gradle-配置"><a href="#gradle-配置" class="headerlink" title="gradle 配置"></a>gradle 配置</h2><p>针对多方 <code>SDK</code> 的要求，对权限、和必要的界面、服务都已经在类库中进行了配置，当依赖该类库时，会自动合并，不过仍然还需要在项目的 <code>app/build.gradle</code> 中配置对应的 <code>qqId</code> 的 <code>manifestPlaceholders</code>，代码如下：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">defaultConfig &#123;</div><div class="line">	manifestPlaceholders = [qq_id: <span class="string">"11049xxxxx"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>关于 <code>manifestPlaceholders</code> 的使用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">当使用 manifestPlaceholders = [qq_id: <span class="string">"11049xxxxx"</span>] 的方式时，之前声明的所有 manifestPlaceholders 都会被替换掉，只保留最后的。</div><div class="line"></div><div class="line">当使用 manifestPlaceholders.qq_id = <span class="string">"11049xxxxx"</span> 的方式时，会在原来的 manifestPlaceholders 中追加新的，同时也保留以前的。</div><div class="line"></div><div class="line">建议的方式是，在 defaultConfig 中使用直接赋值的方式，而在 buildTypes 和 Favors 中使用追加的方式，避免将之前的覆盖掉。</div></pre></td></tr></table></figure>
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>你需要在使用 SDK 之前进行初始化操作，建议放在 <code>Applicaton</code> 中进行。</p>
 <p>为了减轻类库的体积，兼容不同的 <code>json</code> 解析方案，将 <code>json</code> 解析使用接口的方式注入，你需要实现 <code>IJsonAdapter</code> 接口，<br>根据项目中具体使用的 <code>json</code> 解析库进行数据的解析。提供一个 <code>Gson</code> 的实现作为参考 <a href="https://github.com/chendongMarch/SocialSdkLibrary/blob/master/sample/GsonJsonAdapter.java" rel="external nofollow noopener noreferrer" target="_blank">GsonJsonAdapter.java</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">String qqAppId = getString(R.string.QQ_APPID);</div><div class="line">String wxAppId = getString(R.string.WEICHAT_APPID);</div><div class="line">String wxSecretKey = getString(R.string.WEICHAT_APPKEY);</div><div class="line">String sinaAppId = getString(R.string.SINA_APPKEY);</div><div class="line"></div><div class="line">SocialSdkConfig config = <span class="keyword">new</span> SocialSdkConfig(<span class="keyword">this</span>)</div><div class="line">        <span class="comment">// 配置qq</span></div><div class="line">        .qq(qqAppId)</div><div class="line">        <span class="comment">// 配置wx</span></div><div class="line">        .wechat(wxAppId, wxSecretKey)</div><div class="line">        <span class="comment">// 配置sina</span></div><div class="line">        .sina(sinaAppId)</div><div class="line">        <span class="comment">// 配置Sina的RedirectUrl，有默认值，如果是官网默认的不需要设置</span></div><div class="line">        .sinaRedirectUrl(<span class="string">"http://open.manfenmm.cxxxxxxx"</span>)</div><div class="line">        <span class="comment">// 配置Sina授权scope,有默认值，默认值 all</span></div><div class="line">        .sinaScope(SocialConstants.SCOPE);</div><div class="line"><span class="comment">// 添加自定义的json解析，必须</span></div><div class="line">SocialSdk.addJsonAdapter(<span class="keyword">new</span> GsonJsonAdapter());</div><div class="line"></div><div class="line">SocialSdk.init(config);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">String qqAppId = getString(R.string.QQ_APPID);</div><div class="line">String wxAppId = getString(R.string.WEICHAT_APPID);</div><div class="line">String wxSecretKey = getString(R.string.WEICHAT_APPKEY);</div><div class="line">String sinaAppId = getString(R.string.SINA_APPKEY);</div><div class="line"></div><div class="line">SocialSdkConfig config = <span class="keyword">new</span> SocialSdkConfig(<span class="keyword">this</span>)</div><div class="line">        <span class="comment">// 配置qq</span></div><div class="line">        .qq(qqAppId)</div><div class="line">        <span class="comment">// 配置wx</span></div><div class="line">        .wechat(wxAppId, wxSecretKey)</div><div class="line">        <span class="comment">// 配置sina</span></div><div class="line">        .sina(sinaAppId)</div><div class="line">        <span class="comment">// 配置Sina的RedirectUrl，有默认值，如果是官网默认的不需要设置</span></div><div class="line">        .sinaRedirectUrl(<span class="string">"http://open.manfenmm.cxxxxxxx"</span>)</div><div class="line">        <span class="comment">// 配置Sina授权scope,有默认值，默认值 all</span></div><div class="line">        .sinaScope(SocialConstants.SCOPE);</div><div class="line"></div><div class="line"><span class="comment">// 👮 添加自定义的 json 解析，必须</span></div><div class="line">SocialSdk.addJsonAdapter(<span class="keyword">new</span> GsonJsonAdapter());</div><div class="line"><span class="comment">// 👮 添加 config 数据，必须</span></div><div class="line">SocialSdk.init(config);</div></pre></td></tr></table></figure>
 <h2 id="登录功能"><a href="#登录功能" class="headerlink" title="登录功能"></a>登录功能</h2><p>登陆功能支持三个平台，qq，微信，微博；</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 3个平台</span></div><div class="line">Target.LOGIN_QQ;</div><div class="line">Target.LOGIN_WX;</div><div class="line">Target.LOGIN_WB;</div></pre></td></tr></table></figure>
 <p>使用 <code>OnLoginListener</code> 监听登录返回结果，返回的 <code>LoginResult</code> 中主要包括登录类型，基本用户信息，令牌信息 3 部分。</p>
@@ -766,7 +768,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradle-配置"><span class="nav-text">gradle 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录功能"><span class="nav-text">登录功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分享功能"><span class="nav-text">分享功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展支持"><span class="nav-text">扩展支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-种数据支持"><span class="nav-text">9 种数据支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-个分享渠道"><span class="nav-text">7 个分享渠道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分享数据"><span class="nav-text">创建分享数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分享监听"><span class="nav-text">分享监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发起分享"><span class="nav-text">发起分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写分享对象"><span class="nav-text">重写分享对象</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要类文件"><span class="nav-text">主要类文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradle-配置"><span class="nav-text">gradle 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录功能"><span class="nav-text">登录功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分享功能"><span class="nav-text">分享功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展支持"><span class="nav-text">扩展支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-种数据支持"><span class="nav-text">9 种数据支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-个分享渠道"><span class="nav-text">7 个分享渠道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分享数据"><span class="nav-text">创建分享数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分享监听"><span class="nav-text">分享监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发起分享"><span class="nav-text">发起分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写分享对象"><span class="nav-text">重写分享对象</span></a></li></ol></li></ol></div>
             
 
           </div>
