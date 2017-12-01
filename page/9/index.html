@@ -1801,7 +1801,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3189961703/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2863351425/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1820,7 +1820,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/3189961703/" itemprop="url">将自己写的库发布到 Jcenter</a></h2>
+                <a class="post-title-link" href="/article/2863351425/" itemprop="url">在 Mac 下配置 Gradle 命令</a></h2>
         
 
         <div class="post-meta">
@@ -1862,17 +1862,6 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/Publish/" itemprop="url" rel="index">
-                    <span itemprop="name">Publish</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -1883,7 +1872,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
 
           
           
-             <span id="/article/3189961703/" class="leancloud_visitors" data-flag-title="将自己写的库发布到 Jcenter">
+             <span id="/article/2863351425/" class="leancloud_visitors" data-flag-title="在 Mac 下配置 Gradle 命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1913,13 +1902,19 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
 
       
         
-          <p>本文主要介绍如何最简单的将自己的 <code>Library</code> 发布到 <code>jcenter</code>。</p>
-<p>2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程</p>
-<p>使用 <code>gradle</code> 开发过程中，我们可以使用 <code>compile</code> 命令，依赖 <code>Library</code>，这种做法的好处时，我们不需要再去关注一堆 <code>jar</code> 文件，当我们需要升级 <code>Library</code> 时，只需要改变依赖的版本号，就可以完成升级。</p>
-<p>我们之所以可以使用一句 <code>gradle</code> 脚本完成依赖的下载，升级，是因为这些 <code>Library</code> 都被存储在了一个公共的服务器上，通过 <code>compile</code> 命令可以唯一的映射到服务器存储的 <code>Library</code>。 <code>jcenter</code> 就是一个这样的服务，<code>AndroidStudio</code> 现在新建项目都会默认依赖 <code>repositories {jcenter()}</code>，当执行 <code>compile</code> 脚本时，就会去 <code>jcenter</code> 检查对应的 <code>Library</code> 进行下载和依赖。</p>
+          
+          推荐阅读Mac 下配置 Sdk,Gradle
+相关下载下载gradle http://gradle.org/downloads/
+配置环境变量
+打开.bash-profile
+
+12touch .bash-profileopen -e .bash_profile
+
+打开 bash_profile，配
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/3189961703/" rel="contents">
+            <a class="btn" href="/article/2863351425/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2064,11 +2059,19 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://github.com/chendongMarch" title="GitHub" target="_blank" rel="external nofollow noopener noreferrer">GitHub</a>
+                  <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://blog.csdn.net/chendong_" title="CSDN" target="_blank" rel="external nofollow noopener noreferrer">CSDN</a>
+                  <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
                 </li>
               
             </ul>
