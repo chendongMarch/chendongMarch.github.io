@@ -4,19 +4,19 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/39fe7888/</loc>
-    <lastmod>2017-12-01T02:29:53.000Z</lastmod>
+    <loc>http://cdevlab.top/article/882ae1dd/</loc>
+    <lastmod>2017-12-19T04:01:49.000Z</lastmod>
     <data>
         <display>
-        <title>搭建 Weex 开发环境和集成到 Android 平台</title>
-        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
+        <title>Https 详解</title>
+        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
         
-        <tag>weex</tag>
+        <tag>NetWork</tag>
          
          
            
              
-              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -25,7 +25,7 @@
     
   <url>
     <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2017-12-01T01:51:14.000Z</lastmod>
+    <lastmod>2017-12-15T02:14:17.000Z</lastmod>
     <data>
         <display>
         <title>快速接入微信微博QQ原生登录分享</title>
@@ -46,12 +46,94 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/963f9cce/</loc>
+    <lastmod>2017-12-11T12:08:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>简历</title>
+        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/245d7c3b/</loc>
+    <lastmod>2017-12-06T01:32:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>图片处理-1-马赛克和涂鸦效果</title>
+        <pubTime>2017-12-05T15:48:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/41ed2d2f/</loc>
-    <lastmod>2017-11-30T03:09:57.000Z</lastmod>
+    <lastmod>2017-12-05T16:08:12.000Z</lastmod>
     <data>
         <display>
         <title>Weex 开发</title>
         <pubTime>2017-11-16T03:13:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
+    <lastmod>2017-12-01T15:42:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>My-Todo-List</title>
+        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/39fe7888/</loc>
+    <lastmod>2017-12-01T02:29:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>搭建 Weex 开发环境和集成到 Android 平台</title>
+        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
         
         <tag>weex</tag>
          
@@ -230,24 +312,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/963f9cce/</loc>
-    <lastmod>2017-10-28T09:40:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>简历</title>
-        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
           
         </display>
     </data>
@@ -668,25 +732,6 @@
            
              
               <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
-    <lastmod>2017-10-21T02:22:18.000Z</lastmod>
-    <data>
-        <display>
-        <title>todo</title>
-        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
           
         </display>
     </data>
@@ -2269,7 +2314,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/Infinity/</loc>
+    <loc>http://cdevlab.top/article/null/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
