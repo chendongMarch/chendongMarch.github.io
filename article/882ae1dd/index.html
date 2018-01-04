@@ -88,7 +88,7 @@
 <meta property="og:description" content="超文本传输安全协议（HTTPS，常称为HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。 本文主要介绍  ：  Https 如何保证数据传输的安全  CA 的存在及其安全性 证书验证流程 Https 握手流程 Andro">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-19/94724225.jpg">
-<meta property="og:updated_time" content="2017-12-19T04:01:49.000Z">
+<meta property="og:updated_time" content="2017-12-25T01:47:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Https 详解">
 <meta name="twitter:description" content="超文本传输安全协议（HTTPS，常称为HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。 本文主要介绍  ：  Https 如何保证数据传输的安全  CA 的存在及其安全性 证书验证流程 Https 握手流程 Andro">
@@ -489,7 +489,7 @@ var _hmt = _hmt || [];
 <p>SSL (Secure Socket Layer) 安全套接层</p>
 <p>HTTP(Hypertext Transfer Protocol) 基于 TCP 协议，无连接，每次连接只处理一个请求，结束后断开连接；无状态，无法保持用户状态，使用 cookie 和 session 解决。</p>
 <p>HTTPS(HTTP over TLS/SSL) 安全的 http 协议，HTTP 协议和TCP 协议之间增加了 TLS/SSL 保证数据的安全传输。</p>
-<h3 id="关于-TLS-SSL"><a href="#关于-TLS-SSL" class="headerlink" title="关于 TLS/SSL"></a>关于 TLS/SSL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">1994年，NetScape公司设计了SSL协议（Secure Sockets Layer）的1.0版，但是未发布。</div><div class="line"></div><div class="line">1995年，NetScape公司发布SSL 2.0版，很快发现有严重漏洞。</div><div class="line"></div><div class="line">1996年，SSL 3.0版问世，得到大规模应用。</div><div class="line"></div><div class="line">1999年，互联网标准化组织ISOC接替NetScape公司，发布了SSL的升级版TLS 1.0版。</div><div class="line"></div><div class="line">2006年和2008年，TLS进行了两次升级，分别为TLS 1.1版和TLS 1.2版。最新的变动是2011年TLS </div><div class="line">1.2的修订版。</div><div class="line"></div><div class="line">TLS 1.0通常被标示为SSL 3.1，TLS 1.1为SSL 3.2，TLS 1.2为SSL 3.3。</div><div class="line"></div><div class="line">目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。</div></pre></td></tr></table></figure>
+<h3 id="关于-TLS-SSL"><a href="#关于-TLS-SSL" class="headerlink" title="关于 TLS/SSL"></a>关于 TLS/SSL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  1994年，NetScape公司设计了SSL协议（Secure Sockets Layer）的1.0版，但是未发布。</div><div class="line"></div><div class="line">  1995年，NetScape公司发布SSL 2.0版，很快发现有严重漏洞。</div><div class="line"></div><div class="line">  1996年，SSL 3.0版问世，得到大规模应用。</div><div class="line"></div><div class="line">  1999年，互联网标准化组织ISOC接替NetScape公司，发布了SSL的升级版TLS 1.0版。</div><div class="line"></div><div class="line">  2006年和2008年，TLS进行了两次升级，分别为TLS 1.1版和TLS 1.2版。最新的变动是2011年TLS </div><div class="line">1.2的修订版。</div><div class="line"></div><div class="line">  TLS 1.0通常被标示为SSL 3.1，TLS 1.1为SSL 3.2，TLS 1.2为SSL 3.3。</div><div class="line"></div><div class="line">  目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。</div></pre></td></tr></table></figure>
 <h2 id="Https-安全性"><a href="#Https-安全性" class="headerlink" title="Https 安全性"></a>Https 安全性</h2><p>HTTP 协议的不安全性体现在 3 个方面：</p>
 <table>
 <thead>
@@ -513,7 +513,12 @@ var _hmt = _hmt || [];
 <tr>
 <td style="text-align:left">冒充风险</td>
 <td style="text-align:left">攻击者可以冒充其他人参与通信</td>
-<td style="text-align:left">身份认证</td>
+<td style="text-align:left">CA 身份认证</td>
+</tr>
+<tr>
+<td style="text-align:left">CA 不可信</td>
+<td style="text-align:left">信任的 CA 乱签发证书</td>
+<td style="text-align:left">证书锁  </td>
 </tr>
 </tbody>
 </table>
@@ -531,27 +536,34 @@ var _hmt = _hmt || [];
 <h3 id="消息篡改"><a href="#消息篡改" class="headerlink" title="消息篡改"></a>消息篡改</h3><p>消息加密以后攻击者无法获取消息内容的含义，但是可以篡改消息内容，篡改之后接收方也无法感知。</p>
 <p>解决方案：</p>
 <ul>
-<li>采用 <a href="#消息摘要">消息摘要</a> 算法可以验证数据的完整性，我们将发送的消息进行摘要，连同消息一起发送给接收方，接收方拿到消息之后对消息做同样的摘要处理，对比摘要结果，即可知道消息有没有被篡改。</li>
+<li>采用 <a href="#消息摘要">消息摘要（见文末注脚）</a> 算法可以验证数据的完整性，我们将发送的消息进行摘要，连同消息一起发送给接收方，接收方拿到消息之后对消息做同样的摘要处理，对比摘要结果，即可知道消息有没有被篡改。</li>
 </ul>
-<p><strong>消息摘要</strong>（Message Digest）指的是将长度不固定的参数作为输入参数，运行特定 hash 函数，生成固定长度的输出，这个输出就是消息的摘要，常用算法有 <code>MD5</code> 和 <code>SHA1</code>，摘要算法是单向不可逆的，即无法从摘要重新反向出原消息的内容。</p>
 <p>以上，可以解决消息完整性和真实性的问题。</p>
 <h3 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h3><p><strong>中间人攻击</strong>（Man-in-the-middle Attack，MITM）指的是攻击者在链路上伪装自己，与通讯双方分别建立联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。</p>
 <p>作为 <strong>A</strong> 和 <strong>B</strong> 通信路由上的攻击者 <strong>M</strong>，作为中间人伪造自己的身份。A 向 B 请求用于通信的 <code>PK_A</code>，但是被中间人 M 截获，他伪造生成了假的公钥 <code>PK_M</code>，发送给了 A，同时向 B 请求并获取了 B 的公开密钥 <code>PK_B</code>，原来安全的通信过程 A(使用 <code>PK_B</code> 加密) -&gt; 安全 -&gt; B(使用 <code>SK_B</code> 解密)，现在变成了 A(使用 <code>PK_M</code> 加密) -&gt; M(使用 <code>SK_M</code> 解密获取明文内容，再用 <code>PK_B</code> 加密，可能篡改数据) -&gt; B(使用 <code>SK_B</code> 解密)。</p>
 <p>出现问题的原因在于，密钥在交换的初期是不安全的，网络上的通信双方，无法确定对方的身份，即无法获悉当前的公钥是不是自己想要的公钥。</p>
 <p>解决方案：</p>
 <ul>
-<li>引入第三方公正作<a href="#信用背书">信用背书</a>，第三方公正具有权威性，他和通信双方没有关系，接收方无条件信任公证机构，也就会信任他签名的信息。 </li>
+<li><p>引入第三方公正作<a href="#信用背书">信用背书</a>，第三方公正具有权威性，他和通信双方没有关系，接收方无条件信任公证机构，也就会信任他签名的信息。这种机构被称为 CA（Certificate Authority）机构，即数字证书认证机构。CA 机构与浏览器和操作系统厂商合作，将公钥内置在浏览器和操作系统中，也就是不走网络传输了，这样一定程度上保证了公钥不会被窃取篡改。</p>
+</li>
+<li><p>服务端 B 将自己的消息（消息内容大致包括电子签证机关的信息、公钥用户信息、公钥、权威机构的签字和有效期等）进行摘要之后，发给 CA 机构 S 签发证书，S 使用自己的私钥对消息摘要加密，形成证书，B 将证书和消息内容发送给 A，A 收到后，发现是 S 的证书，同时对 S 是信任的，则会使用 S 的公钥对证书进行解密（这里涉及证书链的验证，其实要更加复杂），获取到消息摘要，同时对收到的消息进行摘要，对比，如果一致则说明内容没有被篡改，是可信的，因为生成加密数据的私钥只有 CA 机构才有，这一过程称为验证数字签名。</p>
+</li>
 </ul>
-<p>这种机构被称为 CA（Certificate Authority）机构，即数字证书认证机构。CA 机构与浏览器和操作系统厂商合作，将公钥内置在浏览器和操作系统中，也就是不走网络传输了，这样一定程度上保证了公钥不会被窃取篡改。</p>
-<p>服务端 B 将自己的消息（消息内容大致包括电子签证机关的信息、公钥用户信息、公钥、权威机构的签字和有效期等）进行摘要之后，发给 CA 机构 S 签发证书，S 使用自己的私钥对消息摘要加密，形成证书，B 将证书和消息内容发送给 A，A 收到后，发现是 S 的证书，同时对 S 是信任的，则会使用 S 的公钥对证书进行解密（这里涉及证书链的验证，其实要更加复杂），获取到消息摘要，同时对收到的消息进行摘要，对比，如果一致则说明内容没有被篡改，是可信的，因为生成加密数据的私钥只有 CA 机构才有，这一过程称为验证数字签名。</p>
-<p>这里涉及到非对称加密的两种用法：</p>
-<ol>
-<li>某用户使用自己的私钥对数据加密，任何人都可以使用公钥对数据进行解密，因为私钥只有该用户持有，则说明该数据一定出自于该用户。公众可以用这一方法验证内容是否完整，是否被篡改，接受者可以认定该内容出自该用户，该用户也无法抵赖，这被称作数字签名。</li>
-<li>某用户使用公开的公钥对数据进行加密，那么可以保证只有发布公钥的一方可以对数据进行解密，别人无法获取数据的内容，保证数据传递的安全。</li>
-</ol>
-<h3 id="CA-错误签发"><a href="#CA-错误签发" class="headerlink" title="CA 错误签发"></a>CA 错误签发</h3><p>受信任的 CA（证书颁发机构）有好几百个，他们成为整个网站身份认证过程中一个较大的攻击面。实际上，目前由于 CA 失误导致错误签发证书，以及个别 CA 出于某些目的（如监控加密流量）故意向第三方随意签发证书这两种情况时有发生。</p>
-<p>针对这种情况，需要使用证书锁来解决，关于证书锁的内容，后面详解。</p>
-<p><strong>综上，对称加密通信 + 非对称加密交换密钥 + CA 认证身份 + 证书锁锁定证书指纹 共同保证了 https 的安全性。</strong></p>
+<p>以上，可以解决中间人攻击的文图，另外涉及到非对称加密的两种应用场景，详细介绍见文末<a href="#非对称加密应用场景">非对称加密应用场景</a>。</p>
+<h3 id="CA-错误签发"><a href="#CA-错误签发" class="headerlink" title="CA 错误签发"></a>CA 错误签发</h3><p>受信任的 CA（证书颁发机构）有好几百个，他们成为整个网站身份认证过程中一个较大的攻击面。实际上，目前由于 CA 失误导致错误签发证书，以及个别 CA 出于某些目的（如监控加密流量）故意向第三方随意签发证书这两种情况时有发生。现有的证书信任链机制最大的问题是，任何一家受信任的 CA 都可以签发任意网站的站点证书，这些证书在客户端看来，都是合法的，是可以通过验证的。</p>
+<p>解决方案：</p>
+<ul>
+<li><p>证书锁（Certificate Pinning），证书锁是为了防范由「伪造或不正当手段获得网站证书」造成的中间人攻击。</p>
+</li>
+<li><p>证书锁类似于 <code>HPKP</code> 技术（下面有简单介绍），给予我们主动选择信任 CA 的权利。它的工作原理就是使用预先设置的证书指纹和服务器传过来的证书链中的证书指纹进行匹配，只要有任何一对指纹匹配成功，则认为是一次合法的连接，否则禁止本次链接。</p>
+</li>
+<li><p>也就是说，使用证书锁之后，不是所有被系统信任的 CA 都可以通过验证，只有我保存了指纹的一些 CA 签发的证书才可以，比如有 100 个 CA 机构，但我就信任其中一个，我可以保证这个 CA 不会乱签发证书，那我就只保存这个 CA 的指纹，即使攻击者从其他的 99 个 CA 签发证书，对我进行攻击，也无法完成连接。</p>
+</li>
+<li><p>证书锁定增加了安全性，但限制了你的服务器团队升级TLS证书的能力。</p>
+</li>
+</ul>
+<p>以上，可以解决 CA 机构签发证书权威性不足的问题，相关解决方案详见文末<a href="#签发证书权威性问题">签发证书权威性问题</a></p>
+<p>🔥  <strong>综上，对称加密通信 + 非对称加密交换密钥 + CA 认证身份 + 证书锁锁定证书指纹 共同保证了 https 的安全性。</strong></p>
 <h2 id="CA-安全性"><a href="#CA-安全性" class="headerlink" title="CA 安全性"></a>CA 安全性</h2><p>作为全网 https 连接的权威公正，CA 的安全性至关重要。</p>
 <h3 id="安全保存-CA及证书验证"><a href="#安全保存-CA及证书验证" class="headerlink" title="安全保存 CA及证书验证"></a>安全保存 CA及证书验证</h3><p>从根 CA 开始到直接给客户发放证书的各层次 CA，都有其自身的密钥对。CA 中心的密钥对一般由硬件加密服务器在机器内直接产生，并存储于加密硬件内，或以一定的加密形式存放于密钥数据库内。加密备份于 IC 卡或其他存储介质中，并以高等级的物理安全措施保护起来。密钥的销毁要以安全的密钥冲写标准，彻底清除原有的密钥痕迹。需要强调的是，根 CA 密钥的安全性至关重要，它的泄露意味着整个公钥信任体系的崩溃，所以 CA 的密钥保护必须按照最高安全级的保护方式来进行设置和管理。CA的私钥是自己靠上述方法保管的，不对外公开。</p>
 <p>CA 的公钥是厂商跟浏览器和操作系统合作，把公钥默认装到浏览器或者操作系统环境里。比如 firefox 就自己维护了一个可信任的 CA 列表，而 chrome 和 IE 使用的是操作系统的 CA 列表。</p>
@@ -576,18 +588,6 @@ var _hmt = _hmt || [];
 <p>自签名证书就是不走 CA 机构，而是自己生成一对密钥对 <code>JKS_C</code>，他的作用就好比 CA 的密钥对 <code>JKS_A</code>，也是为了保证公钥的真实性，握手过程和原来一样，只是我们不需要去 CA 签发证书了，用自己的 <code>JKS_C</code> 签发就可以了；同样因为 <code>JKS_C</code> 是我们自己的密钥对，公钥没有被内置在 os 中，所以此时需要我们自己把 <code>cert</code> 文件（<code>JKS_C</code> 的公钥）放到本地，自己完成原本由 os 完成的 CA 校验任务。</p>
 <h3 id="双向验证"><a href="#双向验证" class="headerlink" title="双向验证"></a>双向验证</h3><p>双向验证指的是，不光客户端要验证来自服务器的连接是不是可靠，服务器也要验证客户端。</p>
 <p>服务端也会内置一套受信任的 CA 证书列表，用于验证客户端证书的真实性。验证过程和客户端验证服务端类似。</p>
-<h3 id="证书锁"><a href="#证书锁" class="headerlink" title="证书锁"></a>证书锁</h3><p>Certificate Pinning，证书锁是为了防范由「伪造或不正当手段获得网站证书」造成的中间人攻击。</p>
-<p>受信任的 CA（证书颁发机构）有好几百个，他们成为整个网站身份认证过程中一个较大的攻击面。现有的证书信任链机制最大的问题是，任何一家受信任的 CA 都可以签发任意网站的站点证书，这些证书在客户端看来，都是合法的，是可以通过验证的。</p>
-<p>为了解决这个问题的一些解决方案：</p>
-<ol>
-<li><p>Google 推动的 Certificate Transparency 技术，它旨在通过开放的审计和监控系统，提高 HTTPS 网站证书安全性。CT 技术能改善这种情况，但 CT 还没有普及，现阶段浏览器不能贸然阻断没有提供 SCT 信息的 HTTPS 网站。<a href="https://imququ.com/post/certificate-transparency.html" rel="external nofollow noopener noreferrer" target="_blank">CT 介绍</a></p>
-</li>
-<li><p>HTTP Public Key Pinning 技术 <a href="https://imququ.com/post/http-public-key-pinning.html" rel="external nofollow noopener noreferrer" target="_blank">HPKP 介绍</a></p>
-</li>
-</ol>
-<p>证书锁类似于 <code>HPKP</code> 技术，给予我们主动选择信任 CA 的权利。它的工作原理就是使用预先设置的证书指纹和服务器传过来的证书链中的证书指纹进行匹配，只要有任何一对指纹匹配成功，则认为是一次合法的连接，否则禁止本次链接。</p>
-<p>也就是说，使用证书锁之后，不是所有被系统信任的 CA 都可以通过验证，只有我保存了指纹的一些 CA 签发的证书才可以，比如有 100 个 CA 机构，但我就信任其中一个，我可以保证这个 CA 不会乱签发证书，那我就只保存这个 CA 的指纹，即使攻击者从其他的 99 个 CA 签发证书，对我进行攻击，也无法完成连接。</p>
-<p>证书锁定增加了安全性，但限制了你的服务器团队升级TLS证书的能力。</p>
 <h2 id="Https-握手"><a href="#Https-握手" class="headerlink" title="Https 握手"></a>Https 握手</h2><p>单向验证握手过程：</p>
 <ul>
 <li>1、Client Hello  ➡️</li>
@@ -664,9 +664,9 @@ var _hmt = _hmt || [];
 <p>再生成客户端密钥对 <code>march_client.jks</code>，然后签发客户端公钥 <code>march_client.cert</code>，为了能在服务端使用，将 <code>march_client.cert</code> 导入到新的密钥对 <code>march_client_for_server.jks</code>。使用的命令都可以在上一节找到，生成这几个密钥，是为了搭建后面的服务作准备。</p>
 <p>更改 <code>conf/server.xml</code> 配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!-- </div><div class="line">  https 测试服务</div><div class="line">  clientAuth 和 truststoreFile 配置服务器验证客户端</div><div class="line">  keystoreFile 和 keystorePass 配置客户端验证服务器</div><div class="line">   --&gt;</div><div class="line">  &lt;Connector </div><div class="line">    </div><div class="line">    clientAuth=&quot;true&quot;</div><div class="line">    truststoreFile=&quot;/Users/march/Documents/march_client_for_server.jks&quot; </div><div class="line">    </div><div class="line">    keystoreFile=&quot;/Users/march/Documents/march_server.jks&quot; </div><div class="line">    keystorePass=&quot;123456&quot; </div><div class="line"></div><div class="line">    disableUploadTimeout=&quot;true&quot; </div><div class="line">    enableLookups=&quot;true&quot; </div><div class="line">    SSLEnabled=&quot;true&quot; </div><div class="line">    acceptCount=&quot;100&quot;  </div><div class="line">    maxSpareThreads=&quot;75&quot; </div><div class="line">    maxThreads=&quot;200&quot; </div><div class="line">    minSpareThreads=&quot;5&quot; </div><div class="line">    protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot; </div><div class="line">    scheme=&quot;https&quot; </div><div class="line">    secure=&quot;true&quot; </div><div class="line">    port=&quot;8443&quot; </div><div class="line">    sslProtocol=&quot;TLS&quot;/&gt;</div></pre></td></tr></table></figure>
-<p>此时浏览器已经不能访问，Android 客户端也不能直接使用 <code>march_client.jks</code> 需要转为 <code>bks</code> 文件，使用下面的工具。</p>
-<p><a href="https://sourceforge.net/projects/portecle/files/latest/download?source=files" rel="external nofollow noopener noreferrer" target="_blank">jks 转 bks</a></p>
+<p>此时浏览器已经不能访问</p>
 <h2 id="Android-进行-Https-访问"><a href="#Android-进行-Https-访问" class="headerlink" title="Android 进行 Https 访问"></a>Android 进行 Https 访问</h2><p>如果你的证书是购买的 CA 签发的证书，是可以直接进行 https 访问的，不需要做什么特殊处理，下面主要介绍使用自签名证书的情况。</p>
+<p>启用双向验证时，Android 客户端也不能直接使用 <code>march_client.jks</code> 需要转为 <code>bks</code> 文件，使用下面的工具。<a href="https://sourceforge.net/projects/portecle/files/latest/download?source=files" rel="external nofollow noopener noreferrer" target="_blank">jks 转 bks 工具</a></p>
 <p>注：这部分不是说如何发请求，只是讨论怎么配置证书和密钥对去发起 Https 访问。</p>
 <p>在 Android 中进行 Https 访问，主要牵扯到以下几个关键类</p>
 <ol>
@@ -696,8 +696,23 @@ var _hmt = _hmt || [];
 <p><a href="http://luojinping.com/2016/04/17/https%E8%AF%A6%E8%A7%A3/" rel="external nofollow noopener noreferrer" target="_blank">个人博客-https详解</a> 概要介绍</p>
 <p><a href="http://blog.csdn.net/lmj623565791/article/details/48129405" rel="external nofollow noopener noreferrer" target="_blank">CSDN-hongyang-Android Https 完全解析</a></p>
 <p><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" rel="external nofollow noopener noreferrer" target="_blank">阮一峰-SSL/TLS协议运行机制的概述</a></p>
-<h2 id="注脚"><a href="#注脚" class="headerlink" title="注脚"></a>注脚</h2><p><span id="消息摘要"><br><strong>消息摘要</strong>（Message Digest）指的是将长度不固定的参数作为输入参数，运行特定 hash 函数，生成固定长度的输出，这个输出就是消息的摘要，常用算法有 <code>MD5</code> 和 <code>SHA1</code>，摘要算法是单向不可逆的，即无法从摘要重新反向出原消息的内容。</span></p>
-<p><span id="信用背书"><br><strong>信用背书</strong>，票据的收款人或持有人在转让票据时，在票据背面签名或书写文句的手续。背书的人就会对这张支票负某种程度、类似担保的偿还责任。</span></p>
+<h2 id="注脚"><a href="#注脚" class="headerlink" title="注脚"></a>注脚</h2><p><span id="消息摘要"><br><strong>消息摘要（Message Digest）</strong></span></p>
+<p>指的是将长度不固定的参数作为输入参数，运行特定 hash 函数，生成固定长度的输出，这个输出就是消息的摘要，常用算法有 <code>MD5</code> 和 <code>SHA1</code>，摘要算法是单向不可逆的，即无法从摘要重新反向出原消息的内容。</p>
+<p><span id="信用背书"><br><strong>信用背书</strong></span></p>
+<p>票据的收款人或持有人在转让票据时，在票据背面签名或书写文句的手续。背书的人就会对这张支票负某种程度、类似担保的偿还责任。</p>
+<p><span id="非对称加密应用场景"><br><strong>非对称加密的两种应用场景</strong></span></p>
+<ol>
+<li>某用户使用自己的私钥对数据加密，任何人都可以使用公钥对数据进行解密，因为私钥只有该用户持有，则说明该数据一定出自于该用户。公众可以用这一方法验证内容是否完整，是否被篡改，接受者可以认定该内容出自该用户，该用户也无法抵赖，这被称作数字签名。</li>
+<li>某用户使用公开的公钥对数据进行加密，那么可以保证只有发布公钥的一方可以对数据进行解密，别人无法获取数据的内容，保证数据传递的安全。</li>
+</ol>
+<p><span id="签发证书权威性问题"></span></p>
+<p><strong>应对 CA 签发证书权威性问题的解决方案</strong></p>
+<ol>
+<li><p>Google 推动的 Certificate Transparency 技术，它旨在通过开放的审计和监控系统，提高 HTTPS 网站证书安全性。CT 技术能改善这种情况，但 CT 还没有普及，现阶段浏览器不能贸然阻断没有提供 SCT 信息的 HTTPS 网站。<a href="https://imququ.com/post/certificate-transparency.html" rel="external nofollow noopener noreferrer" target="_blank">CT 介绍</a></p>
+</li>
+<li><p>HTTP Public Key Pinning 技术 <a href="https://imququ.com/post/http-public-key-pinning.html" rel="external nofollow noopener noreferrer" target="_blank">HPKP 介绍</a></p>
+</li>
+</ol>
 
       
     </div>
@@ -765,8 +780,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
-                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              <a href="/article/e15934a2/" rel="prev" title="达人店 weex 多页面调试">
+                达人店 weex 多页面调试 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -843,7 +858,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">125</span>
+                <span class="site-state-item-count">126</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -937,7 +952,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-TLS-SSL"><span class="nav-text">关于 TLS/SSL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-安全性"><span class="nav-text">Https 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#窃听-嗅探"><span class="nav-text">窃听/嗅探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息篡改"><span class="nav-text">消息篡改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间人攻击"><span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-错误签发"><span class="nav-text">CA 错误签发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CA-安全性"><span class="nav-text">CA 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全保存-CA及证书验证"><span class="nav-text">安全保存 CA及证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书链"><span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书验证"><span class="nav-text">证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自签名证书如何验证"><span class="nav-text">自签名证书如何验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向验证"><span class="nav-text">双向验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书锁"><span class="nav-text">证书锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-握手"><span class="nav-text">Https 握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-text">Q&A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书工具-keytool"><span class="nav-text">证书工具-keytool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-https-服务"><span class="nav-text">搭建 https 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-进行-Https-访问"><span class="nav-text">Android 进行 Https 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSLContext"><span class="nav-text">SSLContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TrustManagerFactory"><span class="nav-text">TrustManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyManagerFactory"><span class="nav-text">KeyManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-Connection"><span class="nav-text">Init Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HostnameVerifier"><span class="nav-text">HostnameVerifier</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巨人的肩膀"><span class="nav-text">巨人的肩膀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注脚"><span class="nav-text">注脚</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-TLS-SSL"><span class="nav-text">关于 TLS/SSL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-安全性"><span class="nav-text">Https 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#窃听-嗅探"><span class="nav-text">窃听/嗅探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息篡改"><span class="nav-text">消息篡改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间人攻击"><span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-错误签发"><span class="nav-text">CA 错误签发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CA-安全性"><span class="nav-text">CA 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全保存-CA及证书验证"><span class="nav-text">安全保存 CA及证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书链"><span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书验证"><span class="nav-text">证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自签名证书如何验证"><span class="nav-text">自签名证书如何验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向验证"><span class="nav-text">双向验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-握手"><span class="nav-text">Https 握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-text">Q&amp;A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书工具-keytool"><span class="nav-text">证书工具-keytool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-https-服务"><span class="nav-text">搭建 https 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-进行-Https-访问"><span class="nav-text">Android 进行 Https 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSLContext"><span class="nav-text">SSLContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TrustManagerFactory"><span class="nav-text">TrustManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyManagerFactory"><span class="nav-text">KeyManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-Connection"><span class="nav-text">Init Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HostnameVerifier"><span class="nav-text">HostnameVerifier</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巨人的肩膀"><span class="nav-text">巨人的肩膀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注脚"><span class="nav-text">注脚</span></a></li></ol></div>
             
 
           </div>
@@ -960,7 +975,7 @@ var _hmt = _hmt || [];
         <div class="copyright">
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
   <i class="fa fa-star"></i>
 </span>

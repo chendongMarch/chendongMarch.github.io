@@ -4,8 +4,69 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/b51d9f8e/</loc>
+    <lastmod>2018-01-04T07:24:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git 命令</title>
+        <pubTime>2017-08-10T08:50:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://cdevlab.top/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/e15934a2/</loc>
+    <lastmod>2018-01-03T05:50:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>达人店 weex 多页面调试</title>
+        <pubTime>2018-01-03T05:13:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/5b70625a/</loc>
+    <lastmod>2017-12-27T01:39:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>CSS 基础 1</title>
+        <pubTime>2017-07-06T09:01:37.000Z</pubTime>
+        
+        <tag>CSS</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/882ae1dd/</loc>
-    <lastmod>2017-12-19T04:01:49.000Z</lastmod>
+    <lastmod>2017-12-25T01:47:58.000Z</lastmod>
     <data>
         <display>
         <title>Https 详解</title>
@@ -129,7 +190,7 @@
     
   <url>
     <loc>http://cdevlab.top/article/39fe7888/</loc>
-    <lastmod>2017-12-01T02:29:53.000Z</lastmod>
+    <lastmod>2017-12-01T05:43:25.000Z</lastmod>
     <data>
         <display>
         <title>搭建 Weex 开发环境和集成到 Android 平台</title>
@@ -981,28 +1042,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/5b70625a/</loc>
-    <lastmod>2017-09-22T02:06:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>CSS 基础 1</title>
-        <pubTime>2017-07-06T09:01:37.000Z</pubTime>
-        
-        <tag>CSS</tag>
-         
-        <tag>前端</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/83ba57f4/</loc>
     <lastmod>2017-09-05T03:30:51.000Z</lastmod>
     <data>
@@ -1018,28 +1057,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/b51d9f8e/</loc>
-    <lastmod>2017-08-31T05:52:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>Git 命令</title>
-        <pubTime>2017-08-10T08:50:00.000Z</pubTime>
-        
-        <tag>Extensions</tag>
-         
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="http://cdevlab.top/categories/Git/"/>
           
         </display>
     </data>

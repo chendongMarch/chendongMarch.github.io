@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+<head>
+
+<!-- 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/> -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>简历</title>
+	<!-- 引入jq -->
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.getJSON('../res/data/resume.json', function(json){
+				console.log(JSON.parse(JSON.stringify(json)));
+			});
+		});
+ 
+	</script>
+	
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/resume.css">
+
+
+</head>
+
+<body>
+	 
+	<div class="root">
+
+		<div class="left-container">
+			<!-- 头像 -->
+			<div class="head-wrap">
+				<image class="head-img" src="../image/head.jpeg" alt="head"> </image>
+			</div>
+
+			<div class="info-list-wrap">
+				<ul>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 出生年月 </span> </br>
+						<span class="my-info"> 1994年3月  </span>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 籍贯 </span> </br>
+						<span class="my-info"> 山东青岛  </span>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 手机 </span> </br>
+						<span class="my-info"> 13611301719  </span>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 博客 </span> </br>
+						<a class="my-info" href="http://cdevlab.top"> cdevlab.top  </a>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 邮箱 </span> </br>
+						<span class="my-info"> marchget</span>@163.com
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> GitHub </span> </br>
+						<a class="my-info" href="https://github.com/chendongMarch"> chendongMarch  </a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="right-container">
+			<div class="detail-name"> 陈栋 </div> 
+			<div class="detail-intent"> Android 开发工程师 </div>
+
+			<div class="detail-sub-title">个人经历</div>
+			<ul class="desc-text">
+				<li>
+					2017年10月 – 至今 </br>
+					杭州云若网络科技有限公司 </br>
+					Android 开发工程师 </br>
+					职责：负责达人店 App 的 Android 端 、Weex 端工程的开发、维护工作。
+				</li> </br>
+				<li>
+					2015年12月 – 2017年10月</br>
+					杭州万核网络科技有限公司 </br>
+					Android 开发工程师 </br>
+					职责：负责宝宝拍拍 App 核心功能的开发迭代工作及性能调优。
+				</li> </br>
+				<li>
+					2015年8月 – 2015年12月 </br>
+					北京跳鼠科技有限公司 </br>
+					Android 开发实习 </br>
+					职责：配合团队完成 MONO App 部分模块的开发和维护工作。
+				</li> </br>
+				<li>
+					2012年9月 – 2016年6月</br>
+					山东科技大学 | 网络工程专业 | 本科
+				</li>
+			</ul>
+
+			<div class="detail-sub-title"> 专业技能 </div>
+			<ul class="desc-text">
+				<li>
+					熟悉项目开发(AS+Git)、测试、加固、多渠道打包、发布的详细流程，具有独立开发的能力。
+					良好的 Android 基础，熟悉 Android 新版本特性、版本和机型的相关兼容方案。
+				</li></br>
+				<li>
+					熟悉 hybird 开发和 weex 开发。	
+				</li></br>
+				<li>
+					熟悉第三方登录、分享、支付、推送、地图、反馈、应用渠道统计、问题分析等常见三方功能的接入。
+				</li></br>
+				<li>
+					熟练使用 RxJava、Retrofit、DataBinding 等主流 Android 框架。熟悉 Kotlin 开发，有 Kotlin 和 Java 混编开发经验。
+				</li></br>
+				<li>
+					熟悉 Android 热修复框架的相关集成，有运用 Android 热修复技术对线上问题修复的经验。
+				</li></br>
+				<li>
+					熟悉多媒体开发，对音视频、图片的采集及后续处理有过研究。熟悉 NDK 的编译，有过 FFmpeg 和 lib-jpeg 等底层库编译经验。
+				</li></br>
+			</ul>
+
+			<div class="detail-sub-title"> 项目经验 </div>
+			<div style="padding:1rem;" class="desc-text">
+				<div class="app-info-wrap">
+					<a href="http://shop.m.showjoy.com"> <image class="app-launcher" src="../image/daren.png" alt="icon"></image></a>
+					<div class="app-detail-wrap">
+						<span class="app-name"> 达人店 </span> </br>
+						<span class="desc-text"> 35210 日活 / 295802 用户总量 </span>  
+					</div>
+				</div>
+				达人店是是基于电商模式下的新型微创业平台，为店主提供美妆、食品、配饰等全类目正品货源，致力于为更多用户提供自主创业的机会。</br>
+				我主要负责
+			</div> 
+		</div>
+	</div>
+</body>
+
+</html>
