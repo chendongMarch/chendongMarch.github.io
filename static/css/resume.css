@@ -52,7 +52,28 @@ a.my-info  {
 .info-list-item {
 	margin-bottom: 5%;
 }
- 
+
+.tag-wrap{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.tag-title {
+	font-size:2rem;
+	font-weight:bold;
+	text-align:center;
+	mar
+	gin-top:3rem;
+}
+.tag-item {
+	margin-bottom: 1.5em;
+	text-align: center;
+	width: 35%;
+	font-size: 1.5rem;
+	border-radius: 2rem;
+	border-style: solid;
+}
 
 /*个人信息 tag*/
 .my-info-tag {
