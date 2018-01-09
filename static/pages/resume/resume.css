@@ -1,7 +1,14 @@
+
+:root {
+	--text-color: rgb(28,54,82);
+}
+
+
 .page-title {
 	text-align: center;
 }
-a.my-info  {
+
+li a {
 	color: white;
 }
 
@@ -23,7 +30,7 @@ a.my-info  {
 .left-container {
 	width: 30%;
 	color: white;
-	background-color: rgb(28,54,82);
+	background-color: var(--text-color);
 }
 
 
@@ -55,26 +62,30 @@ a.my-info  {
 
 .tag-wrap{
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
 }
 
 .tag-title {
 	font-size:2rem;
 	font-weight:bold;
 	text-align:center;
-	mar
-	gin-top:3rem;
+	margin-top:4rem;
 }
+
 .tag-item {
-	margin-bottom: 1.5em;
+	margin-bottom: 1.2em;
 	text-align: center;
-	width: 35%;
+	width: 61.8%;
 	font-size: 1.5rem;
 	border-radius: 2rem;
 	border-style: solid;
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem
 }
-
+.contribute-wrap {
+	font-size: 1.8rem;
+}
 /*个人信息 tag*/
 .my-info-tag {
 	font-size: 1.5rem;
