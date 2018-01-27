@@ -4,6 +4,69 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/fa67563/</loc>
+    <lastmod>2018-01-20T16:44:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于 Docker 环境搭建 Jenkins</title>
+        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+        <tag>Jenkins</tag>
+         
+         
+           
+             
+              <breadCrumb title="Docker" url="http://cdevlab.top/categories/Docker/"/>
+          
+             
+              <breadCrumb title="Jenkins" url="http://cdevlab.top/categories/Docker/Jenkins/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3395269050/</loc>
+    <lastmod>2018-01-16T02:51:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-1-新特性篇</title>
+        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
+    <lastmod>2018-01-16T01:40:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>My-Todo-List</title>
+        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/b51d9f8e/</loc>
     <lastmod>2018-01-04T07:24:30.000Z</lastmod>
     <data>
@@ -169,24 +232,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
-    <lastmod>2017-12-01T15:42:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>My-Todo-List</title>
-        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://cdevlab.top/article/39fe7888/</loc>
@@ -766,26 +811,6 @@
         <display>
         <title>Kotlin开发-2-基础</title>
         <pubTime>2017-06-03T16:00:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3395269050/</loc>
-    <lastmod>2017-10-24T15:54:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-1-新特性篇</title>
-        <pubTime>2017-05-22T16:00:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
          

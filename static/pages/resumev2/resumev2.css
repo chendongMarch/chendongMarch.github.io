@@ -33,6 +33,11 @@ body {
 .hori {
 	display: flex;
 }
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 /* 横向排列，垂直居中 */
 .hori-center {
 	display: flex;
@@ -161,8 +166,9 @@ body {
 	font-weight: bold;
 }
 
-
-
+.error-image {
+	width: 61.8%; 
+}
 
 
 
