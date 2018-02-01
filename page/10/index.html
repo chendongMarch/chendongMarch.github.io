@@ -382,7 +382,7 @@ var _hmt = _hmt || [];
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -535,7 +535,7 @@ var _hmt = _hmt || [];
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -702,7 +702,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -857,7 +857,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1009,174 +1009,12 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3189961703/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/3189961703/" itemprop="url">将自己写的库发布到 Jcenter</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-12T00:00:00+08:00">
-                2016-03-12
-              </time>
-              
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/Publish/" itemprop="url" rel="index">
-                    <span itemprop="name">Publish</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-
-          
-
-
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-
-      
-        
-          <p>本文主要介绍如何最简单的将自己的 <code>Library</code> 发布到 <code>jcenter</code>。</p>
-<p>2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程</p>
-<p>使用 <code>gradle</code> 开发过程中，我们可以使用 <code>compile</code> 命令，依赖 <code>Library</code>，这种做法的好处时，我们不需要再去关注一堆 <code>jar</code> 文件，当我们需要升级 <code>Library</code> 时，只需要改变依赖的版本号，就可以完成升级。</p>
-<p>我们之所以可以使用一句 <code>gradle</code> 脚本完成依赖的下载，升级，是因为这些 <code>Library</code> 都被存储在了一个公共的服务器上，通过 <code>compile</code> 命令可以唯一的映射到服务器存储的 <code>Library</code>。 <code>jcenter</code> 就是一个这样的服务，<code>AndroidStudio</code> 现在新建项目都会默认依赖 <code>repositories {jcenter()}</code>，当执行 <code>compile</code> 脚本时，就会去 <code>jcenter</code> 检查对应的 <code>Library</code> 进行下载和依赖。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/3189961703/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    <div>
-  
-    </div>
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-	      
-    
-	      
-	      	
-
-  
-
-  
-  
-  
-  
-    
-  
-  
-  
-
-  <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2091453987/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1334,12 +1172,12 @@ AndroidStudio创建
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3121499733/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3189961703/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1353,7 +1191,7 @@ AndroidStudio创建
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/3121499733/" itemprop="url">在Android平台下合成Gif</a></h2>
+                <a class="post-title-link" href="/article/3189961703/" itemprop="url">将自己写的库发布到 Jcenter</a></h2>
         
 
         <div class="post-meta">
@@ -1363,8 +1201,8 @@ AndroidStudio创建
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-09T00:00:00+08:00">
-                2016-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-12T00:00:00+08:00">
+                2016-03-12
               </time>
               
             
@@ -1387,6 +1225,17 @@ AndroidStudio创建
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Android/" itemprop="url" rel="index">
                     <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Publish/" itemprop="url" rel="index">
+                    <span itemprop="name">Publish</span>
                   </a>
                 </span>
 
@@ -1422,21 +1271,13 @@ AndroidStudio创建
 
       
         
-          
-          本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。
-
-
-使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。
-
-使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。
-
-
-
-当然二者
-          ...
+          <p>本文主要介绍如何最简单的将自己的 <code>Library</code> 发布到 <code>jcenter</code>。</p>
+<p>2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程</p>
+<p>使用 <code>gradle</code> 开发过程中，我们可以使用 <code>compile</code> 命令，依赖 <code>Library</code>，这种做法的好处时，我们不需要再去关注一堆 <code>jar</code> 文件，当我们需要升级 <code>Library</code> 时，只需要改变依赖的版本号，就可以完成升级。</p>
+<p>我们之所以可以使用一句 <code>gradle</code> 脚本完成依赖的下载，升级，是因为这些 <code>Library</code> 都被存储在了一个公共的服务器上，通过 <code>compile</code> 命令可以唯一的映射到服务器存储的 <code>Library</code>。 <code>jcenter</code> 就是一个这样的服务，<code>AndroidStudio</code> 现在新建项目都会默认依赖 <code>repositories {jcenter()}</code>，当执行 <code>compile</code> 脚本时，就会去 <code>jcenter</code> 检查对应的 <code>Library</code> 进行下载和依赖。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/3121499733/" rel="contents">
+            <a class="btn" href="/article/3189961703/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1498,7 +1339,7 @@ AndroidStudio创建
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1657,12 +1498,171 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3121499733/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/3121499733/" itemprop="url">在Android平台下合成Gif</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-09T00:00:00+08:00">
+                2016-03-09
+              </time>
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+
+      
+        
+          
+          本文介绍在 Android 平台下合成 GIF 的方法，查阅资料的过程中发现大致有两种方案。
+
+
+使用 giflen (一个 C 的合成 gif 的库) 进行 gif 合成。
+
+使用 java 层的 GifEncoder、LZWEncoder、NeuQuant 来进行 gif 合成。
+
+
+
+当然二者
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/3121499733/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+    <div>
+      
+    </div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+	      
+    
+	      
+	      	
+
+  
+
+  
+  
+  
+  
+    
+  
+  
+  
+
+  <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/4013192295/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1810,7 +1810,7 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -1979,7 +1979,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="chendong">
+          <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
