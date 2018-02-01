@@ -4,8 +4,241 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/e73f8f32/</loc>
+    <lastmod>2018-02-01T07:54:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>从 Retrofit 看动态代理 [设计模式]</title>
+        <pubTime>2018-01-29T02:58:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://cdevlab.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/41ed2d2f/</loc>
+    <lastmod>2018-02-01T07:51:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>Weex 开发 [Weex]</title>
+        <pubTime>2017-11-16T03:13:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/1dbbedd/</loc>
+    <lastmod>2018-02-01T07:44:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bolts 更简单任务管理和线程切换 [源码]</title>
+        <pubTime>2017-11-04T15:31:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/882ae1dd/</loc>
+    <lastmod>2018-02-01T05:51:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>Https 详解 [网络]</title>
+        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
+        
+        <tag>NetWork</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/2515477621/</loc>
+    <lastmod>2018-02-01T03:41:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>EditText</title>
+        <pubTime>2016-10-30T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/185805107/</loc>
+    <lastmod>2018-02-01T03:12:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/1632666977/</loc>
+    <lastmod>2018-02-01T03:08:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>RecyclerView Light Adapter [开源]</title>
+        <pubTime>2017-06-18T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/327200/</loc>
+    <lastmod>2018-02-01T03:08:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 超轻量级路由方案 [开源]</title>
+        <pubTime>2017-07-14T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3067853428/</loc>
+    <lastmod>2018-02-01T03:08:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>快速接入微信微博QQ原生登录分享 [开源]</title>
+        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/65563eb2/</loc>
+    <lastmod>2018-02-01T03:02:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用安全的单例模式 [设计模式]</title>
+        <pubTime>2017-07-06T01:58:05.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://cdevlab.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/39fe7888/</loc>
+    <lastmod>2018-01-31T12:33:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>搭建 Weex 开发环境和集成到 Android 平台 [Weex]</title>
+        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/fa67563/</loc>
-    <lastmod>2018-01-20T16:44:03.000Z</lastmod>
+    <lastmod>2018-01-29T02:55:00.000Z</lastmod>
     <data>
         <display>
         <title>基于 Docker 环境搭建 Jenkins</title>
@@ -89,23 +322,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/e15934a2/</loc>
-    <lastmod>2018-01-03T05:50:23.000Z</lastmod>
-    <data>
-        <display>
-        <title>达人店 weex 多页面调试</title>
-        <pubTime>2018-01-03T05:13:00.000Z</pubTime>
-        
-        <tag>Extensions</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/5b70625a/</loc>
     <lastmod>2017-12-27T01:39:25.000Z</lastmod>
     <data>
@@ -121,48 +337,6 @@
            
              
               <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/882ae1dd/</loc>
-    <lastmod>2017-12-25T01:47:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>Https 详解</title>
-        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
-        
-        <tag>NetWork</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2017-12-15T02:14:17.000Z</lastmod>
-    <data>
-        <display>
-        <title>快速接入微信微博QQ原生登录分享</title>
-        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Contribute</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -212,46 +386,6 @@
     </url>
 
     
-  <url>
-    <loc>http://cdevlab.top/article/41ed2d2f/</loc>
-    <lastmod>2017-12-05T16:08:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>Weex 开发</title>
-        <pubTime>2017-11-16T03:13:00.000Z</pubTime>
-        
-        <tag>weex</tag>
-         
-         
-           
-             
-              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://cdevlab.top/article/39fe7888/</loc>
-    <lastmod>2017-12-01T05:43:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>搭建 Weex 开发环境和集成到 Android 平台</title>
-        <pubTime>2017-10-25T02:46:00.000Z</pubTime>
-        
-        <tag>weex</tag>
-         
-         
-           
-             
-              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://cdevlab.top/article/d8c55445/</loc>
@@ -267,26 +401,6 @@
            
              
               <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/185805107/</loc>
-    <lastmod>2017-11-21T08:26:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
           
         </display>
     </data>
@@ -374,28 +488,6 @@
           
              
               <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/1dbbedd/</loc>
-    <lastmod>2017-11-05T15:11:34.000Z</lastmod>
-    <data>
-        <display>
-        <title>SourceCode-Android-blots</title>
-        <pubTime>2017-11-04T15:31:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -879,9 +971,9 @@
         <title>HashMap源码分析</title>
         <pubTime>2015-11-13T16:00:00.000Z</pubTime>
         
-        <tag>SourceCode</tag>
-         
         <tag>Java</tag>
+         
+        <tag>SourceCode</tag>
          
          
            
@@ -1000,26 +1092,6 @@
           
              
               <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/65563eb2/</loc>
-    <lastmod>2017-09-30T04:40:33.000Z</lastmod>
-    <data>
-        <display>
-        <title>Java 双重检查加锁创建单例</title>
-        <pubTime>2017-07-06T01:58:05.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://cdevlab.top/categories/Java/"/>
           
         </display>
     </data>
@@ -1177,28 +1249,6 @@
           
              
               <breadCrumb title="Ndk" url="http://cdevlab.top/categories/Android/Ndk/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/327200/</loc>
-    <lastmod>2017-07-18T03:52:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android 超轻量级路由方案</title>
-        <pubTime>2017-07-14T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Contribute</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -1586,9 +1636,9 @@
         
         <tag>Android</tag>
          
-        <tag>SourceCode</tag>
-         
         <tag>Java</tag>
+         
+        <tag>SourceCode</tag>
          
          
            
@@ -1811,28 +1861,6 @@
         <tag>Android</tag>
          
         <tag>AndroidTips</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/1632666977/</loc>
-    <lastmod>2017-07-10T06:47:33.000Z</lastmod>
-    <data>
-        <display>
-        <title>RecyclerView Adapter</title>
-        <pubTime>2017-06-18T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>Contribute</tag>
          
          
            
@@ -2121,31 +2149,6 @@
         <display>
         <title>TabLayout</title>
         <pubTime>2015-06-22T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/2515477621/</loc>
-    <lastmod>2017-07-10T06:35:54.000Z</lastmod>
-    <data>
-        <display>
-        <title>EditText</title>
-        <pubTime>2016-10-30T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          

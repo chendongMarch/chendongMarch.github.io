@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Android">
+  <meta name="keywords" content="Retrofit,代理模式,动态代理,静态代理">
 
 
 <script>
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="TODO  Book [ ] Js 小红书 [ ] 锋利的 Jq  Blog [ ] 图片处理先整理一篇关于涂鸦的 [ ]   Android Pro [x] 分享登录项目继续优化 [ ] 支付项目 [ ] Kotlin Secure Files 项目 [ ] 图片处理项目推进 [ ] 适配器项目优化 [ ] 敏捷开发库整理 [ ] 二维码项目 [ ] weex 支持库  Knowlege [x">
+<meta name="description" content="本文主要学习代理模式在 Java 下的实现，以及 动态代理 在 Retrofit 中的应用。 代理模式 ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用，它可以在屏蔽对目标对象访问的同时，进行自定义的扩展。">
+<meta name="keywords" content="Retrofit,代理模式,动态代理,静态代理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My-Todo-List">
-<meta property="og:url" content="http://cdevlab.top/article/5a0eb6a0/index.html">
+<meta property="og:title" content="从 Retrofit 看动态代理 [设计模式]">
+<meta property="og:url" content="http://cdevlab.top/article/e73f8f32/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="TODO  Book [ ] Js 小红书 [ ] 锋利的 Jq  Blog [ ] 图片处理先整理一篇关于涂鸦的 [ ]   Android Pro [x] 分享登录项目继续优化 [ ] 支付项目 [ ] Kotlin Secure Files 项目 [ ] 图片处理项目推进 [ ] 适配器项目优化 [ ] 敏捷开发库整理 [ ] 二维码项目 [ ] weex 支持库  Knowlege [x">
+<meta property="og:description" content="本文主要学习代理模式在 Java 下的实现，以及 动态代理 在 Retrofit 中的应用。 代理模式 ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用，它可以在屏蔽对目标对象访问的同时，进行自定义的扩展。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-16T01:40:11.000Z">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/44700615.jpg">
+<meta property="og:updated_time" content="2018-02-01T07:54:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My-Todo-List">
-<meta name="twitter:description" content="TODO  Book [ ] Js 小红书 [ ] 锋利的 Jq  Blog [ ] 图片处理先整理一篇关于涂鸦的 [ ]   Android Pro [x] 分享登录项目继续优化 [ ] 支付项目 [ ] Kotlin Secure Files 项目 [ ] 图片处理项目推进 [ ] 适配器项目优化 [ ] 敏捷开发库整理 [ ] 二维码项目 [ ] weex 支持库  Knowlege [x">
+<meta name="twitter:title" content="从 Retrofit 看动态代理 [设计模式]">
+<meta name="twitter:description" content="本文主要学习代理模式在 Java 下的实现，以及 动态代理 在 Retrofit 中的应用。 代理模式 ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用，它可以在屏蔽对目标对象访问的同时，进行自定义的扩展。">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/44700615.jpg">
 
 
 
@@ -117,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://cdevlab.top/article/5a0eb6a0/">
+  <link rel="canonical" href="http://cdevlab.top/article/e73f8f32/">
 
 
 
@@ -162,7 +165,7 @@
 
 
 
-  <title>My-Todo-List | 三月</title>
+  <title>从 Retrofit 看动态代理 [设计模式] | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -373,7 +376,7 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/5a0eb6a0/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/e73f8f32/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -390,7 +393,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">My-Todo-List</h2>
+          <h2 class="post-title" itemprop="name headline">从 Retrofit 看动态代理 [设计模式]</h2>
         
 
         <div class="post-meta">
@@ -400,9 +403,11 @@ var _hmt = _hmt || [];
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-19T14:15:31+08:00">
-                2017-10-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:58:00+08:00">
+                2018-01-29
               </time>
+              
+                于杭州尚妆
               
             
 
@@ -422,8 +427,8 @@ var _hmt = _hmt || [];
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index">
-                    <span itemprop="name">Life</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -456,61 +461,98 @@ var _hmt = _hmt || [];
     <div class="post-body" itemprop="articleBody">
 
       
+        <div class="gellery-wrap" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+                <img src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/44700615.jpg" itemprop="contentUrl">
+            
+          
+          
+          </div>
+        </div>
+      
 
       
-        <blockquote>
-<p>TODO</p>
-</blockquote>
-<h2 id="Book"><a href="#Book" class="headerlink" title="Book"></a>Book</h2><ul>
-<li>[ ] Js 小红书</li>
-<li>[ ] 锋利的 Jq</li>
+        <p>本文主要学习代理模式在 <code>Java</code> 下的实现，以及 <strong>动态代理</strong> 在 <code>Retrofit</code> 中的应用。</p>
+<p>代理模式 ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用，它可以在屏蔽对目标对象访问的同时，进行自定义的扩展。</p>
+<a id="more"></a>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="http://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html" rel="external nofollow noopener noreferrer" target="_blank">Graphic Design Patterns - 代理模式</a></p>
+<h2 id="优缺"><a href="#优缺" class="headerlink" title="优缺"></a>优缺</h2><p>优点</p>
+<ul>
+<li><p>代理模式能够协调调用者和被调用者，在一定程度上降低了系 统的耦合度。</p>
+</li>
+<li><p>远程代理使得客户端可以访问在远程机器上的对象，远程机器 可能具有更好的计算性能与处理速度，可以快速响应并处理客户端请求。</p>
+</li>
+<li><p>虚拟代理通过使用一个小对象来代表一个大对象，可以减少系 统资源的消耗，对系统进行优化并提高运行速度。</p>
+</li>
+<li><p>保护代理可以控制对真实对象的使用权限。</p>
+</li>
 </ul>
-<h2 id="Blog"><a href="#Blog" class="headerlink" title="Blog"></a>Blog</h2><ul>
-<li>[ ] 图片处理先整理一篇关于涂鸦的</li>
-<li>[ ] </li>
+<p>缺点</p>
+<ul>
+<li>由于在客户端和真实主题之间增加了代理对象，因此 有些类型的代理模式可能会造成请求的处理速度变慢。</li>
+<li>实现代理模式需要额外的工作，有些代理模式的实现 非常复杂。</li>
 </ul>
-<h2 id="Android-Pro"><a href="#Android-Pro" class="headerlink" title="Android Pro"></a>Android Pro</h2><ul>
-<li>[x] 分享登录项目继续优化</li>
-<li>[ ] 支付项目</li>
-<li>[ ] Kotlin Secure Files 项目</li>
-<li>[ ] 图片处理项目推进</li>
-<li>[ ] 适配器项目优化</li>
-<li>[ ] 敏捷开发库整理</li>
-<li>[ ] 二维码项目</li>
-<li>[ ] weex 支持库</li>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>我们模拟一个场景：我们要邀请一个歌手来参加一场演唱会，那么我们是不能直接和歌手联系的，我们需要先联系歌手的经纪人，在这里经纪人扮演了代理的角色，他屏蔽了我们对歌手的访问，我们要联系歌手，必须通过经纪人代理实现。</p>
+<p>首先定义接口实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 歌手接口</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">SingingInterface</span> </span>&#123;</div><div class="line">    <span class="comment">// 开始表演</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">performance</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同时根据接口实现一个真正的歌手类，比如 周董</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JayChou</span> <span class="keyword">implements</span> <span class="title">SingingInterface</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performance</span><span class="params">()</span> </span>&#123;</div><div class="line">        log(<span class="string">"`快快使用双截棍，哼哼哈嘿--`"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义经纪人类，它可以与歌手联系，并且屏蔽外界对歌手的访问，而且他还要做一些额外的工作，比如安排歌手档期及收取报酬等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 经纪人</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">StarBroker</span> <span class="keyword">implements</span> <span class="title">SingingInterface</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> SingingInterface mSingingInterface;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StarBroker</span><span class="params">()</span> </span>&#123;</div><div class="line">        mSingingInterface = <span class="keyword">new</span> JayChou();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">performance</span><span class="params">()</span> </span>&#123;</div><div class="line">        log(<span class="string">"安排歌手档期。"</span>);</div><div class="line">        mSingingInterface.performance();</div><div class="line">        log(<span class="string">"收取报酬。"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后我们可以预约歌手来参加我们的演唱会啦</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StarBroker starBroker = <span class="keyword">new</span> StarBroker();</div><div class="line">starBroker.performance();</div></pre></td></tr></table></figure>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>在静态代理中我们使用代理类来控制对目标对象的访问，实现起来相对麻烦，我们要定义代理类并且让它持有目标对象的引用，而且当需要代理的方法越来越多时，就需要在每个方法中再去调用目标对象的对应方法。</p>
+<p>动态代理是一种在运行期间动态生成代理类的方法，他不需要定义代理类的类结构，而是借助 <code>InvocationHandler</code> 接口，对目标对象所有方法进行代理。</p>
+<p>关于 <code>InvocationHandler</code> 接口，他只有一个方法：</p>
+<ul>
+<li>Object proxy 当前的代理类</li>
+<li>Method method 代理类被调用的方法</li>
+<li>Object[] args 调用方法时传入的参数</li>
 </ul>
-<h2 id="Knowlege"><a href="#Knowlege" class="headerlink" title="Knowlege"></a>Knowlege</h2><ul>
-<li>[x] Https 相关</li>
-<li>[ ] JVM 原理</li>
-<li>[ ] 内存管理</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable</span></div></pre></td></tr></table></figure>
+<p>我们动态生成代理类在执行方法时，会通过这个方法，然后我们就可以在这个方法里面去调用目标对象的对应方法，并做一些自己的扩展，达到代理目标对象访问的目的。</p>
+<p>我们定义 <code>InvocationHandler</code> 的实现类，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingingInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</div><div class="line">    <span class="comment">// 目标对象</span></div><div class="line">    <span class="keyword">private</span> Object singer;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SingingInvocationHandler</span><span class="params">(Object singer)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.singer = singer;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="comment">// 下面实现了类似经纪人的功能</span></div><div class="line">        log(<span class="string">"安排歌手档期。"</span>);</div><div class="line">        <span class="comment">// 调用目标对象的对应方法</span></div><div class="line">        Object invoke = method.invoke(singer, args);</div><div class="line">        log(<span class="string">"收取报酬。"</span>);</div><div class="line">        <span class="keyword">return</span> invoke;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>借助 <code>SingingInvocationHandler</code> 实现运行期的动态代理，这里说一下几个参数的意义</p>
+<ul>
+<li>SingingInterface.class.getClassLoader() =&gt; 是代理类生成需要的的 loader</li>
+<li>new Class[]{SingingInterface.class} =&gt; 代理类需要实现的接口列表，这里可以是多个</li>
+<li>new SingingInvocationHandler(new JayChou()) =&gt; InvocationHandler + 目标对象</li>
 </ul>
-<h2 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h2><ul>
-<li>[ ] Glide 源码</li>
-<li>[ ] OkHttp 源码</li>
-<li>[ ] EventBus 源码</li>
-<li>[ ] AsyncTask 源码</li>
-<li>[ ] Handler,HashMap 重新梳理</li>
-<li>[ ] weex sdk 源码</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SingingInterface proxy = (SingingInterface) Proxy.newProxyInstance(</div><div class="line">        SingingInterface.class.getClassLoader(),</div><div class="line">        <span class="keyword">new</span> Class[]&#123;SingingInterface.class&#125;,</div><div class="line">        <span class="keyword">new</span> SingingInvocationHandler(<span class="keyword">new</span> JayChou()));</div></pre></td></tr></table></figure>
+<p>当我们使用生成的代理类对象 <code>proxy</code> 调用方法时，就会经过 <code>InvocationHandler</code> 里面的实现啦。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 执行 SingingInterface 的方法</span></div><div class="line">proxy.performance();</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">安排歌手档期。</div><div class="line">`快快使用双截棍，哼哼哈嘿--`</div><div class="line">收取报酬。</div></pre></td></tr></table></figure>
+<p>为了体现动态代理和静态代理的相似之处，上面的写法相对简单，其实也是存在很多问题的，我们生成的代理对象 <code>proxy</code> 可以实现多个接口，执行的所有方法甚至是从 <code>Object</code> 中继承的方法都会经过 <code>InvocationHandler</code>，因此在进行代理是我们必须是选择性的代理部分方法。</p>
+<p>声明 <code>TestInterface</code> 用来测试代理类实现多个接口的情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">TestInterface</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testProxyMethod</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以我们生成代理类时就变成了如下，此时的 <code>proxy</code> 既是 <code>SingingInterface</code> 的实现类也实现了 <code>TestInterface</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SingingInterface proxy = (SingingInterface) Proxy.newProxyInstance(</div><div class="line">        SingingInterface.class.getClassLoader(),</div><div class="line">        <span class="keyword">new</span> Class[]&#123;SingingInterface.class, TestInterface.class&#125;,</div><div class="line">        <span class="keyword">new</span> SingingInvocationHandler(<span class="keyword">new</span> JayChou()));</div></pre></td></tr></table></figure>
+<p>对 <code>InvocationHandler</code> 也进行一下完善，让他可以区分不同的方法的来源，然后选择性的进行代理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingingInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</div><div class="line">    <span class="comment">// 目标对象</span></div><div class="line">    <span class="keyword">private</span> Object singer;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SingingInvocationHandler</span><span class="params">(Object singer)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.singer = singer;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="comment">// 全部的方法都会被代理到这边，如果是 Object 的方法，不尽兴代理</span></div><div class="line">        <span class="comment">// 我们可以使用该方法区分，方法来自哪个父类或者接口，选择性的进行代理</span></div><div class="line">        <span class="keyword">if</span> (method.getDeclaringClass() == Object.class) &#123;</div><div class="line">            <span class="keyword">return</span> method.invoke(<span class="keyword">this</span>, args);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (method.getDeclaringClass() == TestInterface.class) &#123;</div><div class="line">            <span class="keyword">return</span> method.invoke(<span class="keyword">new</span> TestInterface() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testProxyMethod</span><span class="params">()</span> </span>&#123;</div><div class="line">                    log(<span class="string">"执行了 TestInterface 的方法哦"</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;, args);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 下面实现了类似经纪人的功能</span></div><div class="line">        <span class="keyword">if</span> (method.getDeclaringClass() == SingingInterface.class) &#123;</div><div class="line">            log(<span class="string">"安排歌手档期。"</span>);</div><div class="line">            Object invoke = method.invoke(singer, args);</div><div class="line">            log(<span class="string">"收取报酬。"</span>);</div><div class="line">            <span class="keyword">return</span> invoke;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们分别执行 <code>Object</code> 、<code>SingingInterface</code> 和 <code>TestInterface</code> 的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 执行 Object 的方法</span></div><div class="line">proxy.hashCode();</div><div class="line"><span class="comment">// 执行 SingingInterface 的方法</span></div><div class="line">((SingingInterface) proxy).performance();</div><div class="line"><span class="comment">// 执行 TestInterface 的方法</span></div><div class="line">((TestInterface) proxy).testProxyMethod();</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">执行了 Object 的方法哦</div><div class="line">安排歌手档期。</div><div class="line">`快快使用双截棍，哼哼哈嘿--`</div><div class="line">收取报酬。</div><div class="line">执行了 TestInterface 的方法哦</div></pre></td></tr></table></figure>
+<h2 id="Retrofit-与-动态代理"><a href="#Retrofit-与-动态代理" class="headerlink" title="Retrofit 与 动态代理"></a>Retrofit 与 动态代理</h2><p>这里不是对 <code>Retrofit</code> 源码进行分析，那需要更大的篇幅，这里只是针对动态代理在 <code>Retrofit</code> 的应用方式进行学习。</p>
+<p>作为现在网络请求框架中最受欢迎的 <code>Retrofit</code>，框架设计上最大的特点就是使用了动态代理将网络请求变成一个使用注解配置的过程。</p>
+<p>在原来的模式中，我们需要借助 <code>OkHttp</code> 做创建请求，配置数据，发起请求，返回数据，解析数据等一系列操作，而借助动态代理，可以把这些操作都对使用者屏蔽掉，使用者只需要做两件事，那就是配置请求和处理解析好的数据，这样更大程度上的专注于业务逻辑。</p>
+<p>整个过程是这样的：</p>
+<ul>
+<li>我们声明包含一系列请求方法的接口类 <code>ApiService</code>，并在方法上使用注解对 <code>Path</code>、<code>Header</code>、<code>Query</code> 等请求必须的参数进行配置。</li>
+<li>借助 <code>Retrofit</code> 的静态方法 <code>create()</code> 动态生成 <code>ApiService</code> 类型的代理对象返回给调用者。</li>
+<li>当调用者调用代理类的方法发起请求时，就会进入 <code>InvocationHandler</code> 中</li>
+<li>从注解中获取到全部的配置，初始化请求，发起请求，等待返回，解析数据</li>
+<li>将解析好的数据返回，调用者就会拿到期望的数据</li>
 </ul>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ul>
-<li>[ ] 小程序</li>
-<li>[x] Weex </li>
-</ul>
-<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><ul>
-<li>[ ] Html 4+5 基础 - imooc,runoob</li>
-<li>[ ] Css 2+3 基础 - imooc,runoob</li>
-<li>[ ] JavaScript 基础 - 看书,imooc</li>
-<li>[ ] JQuery </li>
-<li>[ ] weex + vue - 文档、云盘视频</li>
-</ul>
-<h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><ul>
-<li>[ ] docker</li>
-<li>[ ] node</li>
-<li>[ ] python</li>
-<li>[ ] Angular</li>
-<li>[ ] React</li>
-<li>[ ] sass,less</li>
-</ul>
+<p>声明请求的 <code>ApiService</code>，它只是一个接口，普普通通的接口，每个方法上面的注解用来承载一些请求的配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">interface</span> <span class="title">ApiService</span></span>&#123;</div><div class="line">   </div><div class="line">    <span class="meta">@GET</span>(<span class="string">"/page/list"</span>)</div><div class="line">    <span class="meta">@Headers</span>(<span class="string">"domain:baidu"</span>)</div><div class="line">    Observable&lt;List&lt;String&gt;&gt; getList(<span class="meta">@Query</span>(<span class="string">"type"</span>) <span class="keyword">int</span> type);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 <code>Retrofit</code> 的静态方法创建动态代理对象 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ApiService apiService = mRetrofit.create(ApiService.class);</div><div class="line"></div><div class="line">apiService.getList(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<p>看一下 <code>create()</code> 方法中的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">create</span><span class="params">(<span class="keyword">final</span> Class&lt;T&gt; service)</span> </span>&#123;</div><div class="line">  Utils.validateServiceInterface(service);</div><div class="line">  <span class="keyword">if</span> (validateEagerly) &#123;</div><div class="line">    eagerlyValidateMethods(service);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> (T) Proxy.newProxyInstance(service.getClassLoader(), <span class="keyword">new</span> Class&lt;?&gt;[] &#123; service &#125;,</div><div class="line">      <span class="keyword">new</span> InvocationHandler() &#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">final</span> Platform platform = Platform.get();</div><div class="line">        <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, @Nullable Object[] args</span></span></div><div class="line">            <span class="keyword">throws</span> Throwable &#123;</div><div class="line">          // If the method is a method from Object then defer to normal invocation.</div><div class="line">          <span class="keyword">if</span> (method.getDeclaringClass() == Object.class) &#123;</div><div class="line">            <span class="keyword">return</span> method.invoke(<span class="keyword">this</span>, args);</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">if</span> (platform.isDefaultMethod(method)) &#123;</div><div class="line">            <span class="keyword">return</span> platform.invokeDefaultMethod(method, service, proxy, args);</div><div class="line">          &#125;</div><div class="line">          <span class="comment">// 创建请求、发起请求、解析数据</span></div><div class="line">          ServiceMethod&lt;Object, Object&gt; serviceMethod =</div><div class="line">              (ServiceMethod&lt;Object, Object&gt;) loadServiceMethod(method);</div><div class="line">          OkHttpCall&lt;Object&gt; okHttpCall = <span class="keyword">new</span> OkHttpCall&lt;&gt;(serviceMethod, args);</div><div class="line">          <span class="keyword">return</span> serviceMethod.callAdapter.adapt(okHttpCall);</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们不去关注解析注解配置和请求发起的具体实现，看起来和我们之前介绍的动态代理实现是一样的，所以 <code>Retrofit</code> 选择了一种非常合适的设计模式，让原本很复杂的操作变得很简单很优雅。</p>
 
       
     </div>
@@ -541,7 +583,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/5a0eb6a0/" title="My-Todo-List">http://cdevlab.top/article/5a0eb6a0/</a>
+      <a href="http://cdevlab.top/article/e73f8f32/" title="从 Retrofit 看动态代理 [设计模式]">http://cdevlab.top/article/e73f8f32/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -563,6 +605,12 @@ var _hmt = _hmt || [];
     </div>
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
 
       
       
@@ -572,8 +620,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/963f9cce/" rel="next" title="简历">
-                <i class="fa fa-chevron-left"></i> 简历
+              <a href="/article/882ae1dd/" rel="next" title="Https 详解 [网络]">
+                <i class="fa fa-chevron-left"></i> Https 详解 [网络]
               </a>
             
           </div>
@@ -582,8 +630,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/fa67563/" rel="prev" title="基于 Docker 环境搭建 Jenkins">
-                基于 Docker 环境搭建 Jenkins <i class="fa fa-chevron-right"></i>
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -754,7 +802,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Book"><span class="nav-text">Book</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blog"><span class="nav-text">Blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-Pro"><span class="nav-text">Android Pro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Knowlege"><span class="nav-text">Knowlege</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source-Code"><span class="nav-text">Source Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端"><span class="nav-text">前端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Future"><span class="nav-text">Future</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺"><span class="nav-text">优缺</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态代理"><span class="nav-text">静态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态代理"><span class="nav-text">动态代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit-与-动态代理"><span class="nav-text">Retrofit 与 动态代理</span></a></li></ol></div>
             
 
           </div>

@@ -3,6 +3,12 @@
 $(document).ready(function () {
   NexT.motion = {};
 
+  window.onkeydown=function(){
+　　　　if(123 == event.keyCode){
+　　　　　　NexT.utils.displaySidebar();
+　　　　}
+  };
+
   var sidebarToggleLines = {
     lines: [],
     push: function (line) {
