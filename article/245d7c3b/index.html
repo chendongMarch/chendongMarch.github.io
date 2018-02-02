@@ -83,19 +83,19 @@
 
 
 
-<meta name="description" content="图片处理系列之涂鸦效果 其实马赛克效果是我们最常见的涂鸦效果之一，可以用来局部遮挡图片，但是涂鸦效果不仅仅是只有马赛克一种，另外还有纯色效果（类似微信的涂鸦），poly 效果（类似马赛克），高斯模糊效果等等，它们实现的方法类似，都是对图片的遮挡，所以本文将这种效果称之为 涂鸦效果 ， 本项目实现的涂鸦效果模仿的是美图的实现，主要有以下特点：  支持纯色、马赛克、poly、高斯模糊和图片等效果，并具">
+<meta name="description" content="图片处理系列之涂鸦效果 其实马赛克效果是我们最常见的涂鸦效果之一，可以用来局部遮挡图片，但是涂鸦效果不仅仅是只有马赛克一种，另外还有纯色效果（类似微信的涂鸦），poly 效果（类似马赛克），高斯模糊效果等等，它们实现的方法类似，都是对图片的遮挡，所以本文将这种效果称之为 涂鸦效果 ，">
 <meta name="keywords" content="Android,自定义控件,图片处理,马赛克">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图片处理-1-马赛克和涂鸦效果">
 <meta property="og:url" content="http://cdevlab.top/article/245d7c3b/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="图片处理系列之涂鸦效果 其实马赛克效果是我们最常见的涂鸦效果之一，可以用来局部遮挡图片，但是涂鸦效果不仅仅是只有马赛克一种，另外还有纯色效果（类似微信的涂鸦），poly 效果（类似马赛克），高斯模糊效果等等，它们实现的方法类似，都是对图片的遮挡，所以本文将这种效果称之为 涂鸦效果 ， 本项目实现的涂鸦效果模仿的是美图的实现，主要有以下特点：  支持纯色、马赛克、poly、高斯模糊和图片等效果，并具">
+<meta property="og:description" content="图片处理系列之涂鸦效果 其实马赛克效果是我们最常见的涂鸦效果之一，可以用来局部遮挡图片，但是涂鸦效果不仅仅是只有马赛克一种，另外还有纯色效果（类似微信的涂鸦），poly 效果（类似马赛克），高斯模糊效果等等，它们实现的方法类似，都是对图片的遮挡，所以本文将这种效果称之为 涂鸦效果 ，">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-6/48142374.jpg">
-<meta property="og:updated_time" content="2017-12-06T01:32:53.000Z">
+<meta property="og:updated_time" content="2018-02-01T10:18:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图片处理-1-马赛克和涂鸦效果">
-<meta name="twitter:description" content="图片处理系列之涂鸦效果 其实马赛克效果是我们最常见的涂鸦效果之一，可以用来局部遮挡图片，但是涂鸦效果不仅仅是只有马赛克一种，另外还有纯色效果（类似微信的涂鸦），poly 效果（类似马赛克），高斯模糊效果等等，它们实现的方法类似，都是对图片的遮挡，所以本文将这种效果称之为 涂鸦效果 ， 本项目实现的涂鸦效果模仿的是美图的实现，主要有以下特点：  支持纯色、马赛克、poly、高斯模糊和图片等效果，并具">
+<meta name="twitter:description" content="图片处理系列之涂鸦效果 其实马赛克效果是我们最常见的涂鸦效果之一，可以用来局部遮挡图片，但是涂鸦效果不仅仅是只有马赛克一种，另外还有纯色效果（类似微信的涂鸦），poly 效果（类似马赛克），高斯模糊效果等等，它们实现的方法类似，都是对图片的遮挡，所以本文将这种效果称之为 涂鸦效果 ，">
 <meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-6/48142374.jpg">
 
 
@@ -478,6 +478,7 @@ var _hmt = _hmt || [];
       
         <p>图片处理系列之涂鸦效果</p>
 <p>其实马赛克效果是我们最常见的涂鸦效果之一，可以用来局部遮挡图片，但是涂鸦效果不仅仅是只有马赛克一种，另外还有纯色效果（类似微信的涂鸦），poly 效果（类似马赛克），高斯模糊效果等等，它们实现的方法类似，都是对图片的遮挡，所以本文将这种效果称之为 <strong>涂鸦效果</strong> ，</p>
+<a id="more"></a>
 <p>本项目实现的涂鸦效果模仿的是美图的实现，主要有以下特点：</p>
 <ol>
 <li>支持纯色、马赛克、poly、高斯模糊和图片等效果，并具有扩展性。</li>
@@ -485,7 +486,6 @@ var _hmt = _hmt || [];
 <li>支持绘制和橡皮擦自由切换</li>
 <li>支持多个涂鸦效果累加</li>
 </ol>
-<a id="more"></a>
 <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><img src="http://olx4t2q6z.bkt.clouddn.com/17-12-6/48142374.jpg" alt=""></p>
 
       

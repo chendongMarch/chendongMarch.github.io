@@ -4,8 +4,73 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/bbab636a/</loc>
+    <lastmod>2018-02-01T10:19:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin 学习汇总</title>
+        <pubTime>2017-10-19T08:57:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/245d7c3b/</loc>
+    <lastmod>2018-02-01T10:18:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>图片处理-1-马赛克和涂鸦效果</title>
+        <pubTime>2017-12-05T15:48:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/882ae1dd/</loc>
+    <lastmod>2018-02-01T10:18:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Https 详解 [网络]</title>
+        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
+        
+        <tag>NetWork</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/e73f8f32/</loc>
-    <lastmod>2018-02-01T07:54:02.000Z</lastmod>
+    <lastmod>2018-02-01T09:55:58.000Z</lastmod>
     <data>
         <display>
         <title>从 Retrofit 看动态代理 [设计模式]</title>
@@ -17,6 +82,26 @@
            
              
               <breadCrumb title="设计模式" url="http://cdevlab.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/185805107/</loc>
+    <lastmod>2018-02-01T09:53:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
           
         </display>
     </data>
@@ -66,26 +151,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/882ae1dd/</loc>
-    <lastmod>2018-02-01T05:51:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>Https 详解 [网络]</title>
-        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
-        
-        <tag>NetWork</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/2515477621/</loc>
     <lastmod>2018-02-01T03:41:00.000Z</lastmod>
     <data>
@@ -104,26 +169,6 @@
           
              
               <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/185805107/</loc>
-    <lastmod>2018-02-01T03:12:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
           
         </display>
     </data>
@@ -361,31 +406,6 @@
     </url>
 
     
-  <url>
-    <loc>http://cdevlab.top/article/245d7c3b/</loc>
-    <lastmod>2017-12-06T01:32:53.000Z</lastmod>
-    <data>
-        <display>
-        <title>图片处理-1-马赛克和涂鸦效果</title>
-        <pubTime>2017-12-05T15:48:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>http://cdevlab.top/article/d8c55445/</loc>
@@ -436,26 +456,6 @@
         <display>
         <title>Kotlin开发-19-Anko</title>
         <pubTime>2017-09-15T08:57:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/bbab636a/</loc>
-    <lastmod>2017-11-08T05:39:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin 学习汇总</title>
-        <pubTime>2017-10-19T08:57:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
          
@@ -2359,7 +2359,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/null/</loc>
+    <loc>http://cdevlab.top/article/Infinity/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
@@ -2608,9 +2608,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
@@ -2635,9 +2635,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            

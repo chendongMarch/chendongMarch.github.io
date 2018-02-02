@@ -92,7 +92,7 @@
 <meta property="og:description" content="本文主要学习代理模式在 Java 下的实现，以及 动态代理 在 Retrofit 中的应用。 代理模式 ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用，它可以在屏蔽对目标对象访问的同时，进行自定义的扩展。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/44700615.jpg">
-<meta property="og:updated_time" content="2018-02-01T07:54:02.000Z">
+<meta property="og:updated_time" content="2018-02-01T09:55:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从 Retrofit 看动态代理 [设计模式]">
 <meta name="twitter:description" content="本文主要学习代理模式在 Java 下的实现，以及 动态代理 在 Retrofit 中的应用。 代理模式 ：给某一个对象提供一个代理，并由代理对象控制对原对象的引用，它可以在屏蔽对目标对象访问的同时，进行自定义的扩展。">
@@ -465,7 +465,7 @@ var _hmt = _hmt || [];
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="gellery-wrap" itemscope="" itemtype="http://schema.org/ImageGallery">
+        <div class="post-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
           
           
             <div class="post-gallery-row">
@@ -511,9 +511,9 @@ var _hmt = _hmt || [];
 <p>动态代理是一种在运行期间动态生成代理类的方法，他不需要定义代理类的类结构，而是借助 <code>InvocationHandler</code> 接口，对目标对象所有方法进行代理。</p>
 <p>关于 <code>InvocationHandler</code> 接口，他只有一个方法：</p>
 <ul>
-<li>Object proxy 当前的代理类</li>
-<li>Method method 代理类被调用的方法</li>
-<li>Object[] args 调用方法时传入的参数</li>
+<li><code>Object proxy</code>  当前的代理类</li>
+<li><code>Method method</code>  代理类被调用的方法</li>
+<li><code>Object[] args</code>  调用方法时传入的参数</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable</span></div></pre></td></tr></table></figure>
 <p>我们动态生成代理类在执行方法时，会通过这个方法，然后我们就可以在这个方法里面去调用目标对象的对应方法，并做一些自己的扩展，达到代理目标对象访问的目的。</p>
@@ -521,9 +521,9 @@ var _hmt = _hmt || [];
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingingInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</div><div class="line">    <span class="comment">// 目标对象</span></div><div class="line">    <span class="keyword">private</span> Object singer;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SingingInvocationHandler</span><span class="params">(Object singer)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.singer = singer;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">        <span class="comment">// 下面实现了类似经纪人的功能</span></div><div class="line">        log(<span class="string">"安排歌手档期。"</span>);</div><div class="line">        <span class="comment">// 调用目标对象的对应方法</span></div><div class="line">        Object invoke = method.invoke(singer, args);</div><div class="line">        log(<span class="string">"收取报酬。"</span>);</div><div class="line">        <span class="keyword">return</span> invoke;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>借助 <code>SingingInvocationHandler</code> 实现运行期的动态代理，这里说一下几个参数的意义</p>
 <ul>
-<li>SingingInterface.class.getClassLoader() =&gt; 是代理类生成需要的的 loader</li>
-<li>new Class[]{SingingInterface.class} =&gt; 代理类需要实现的接口列表，这里可以是多个</li>
-<li>new SingingInvocationHandler(new JayChou()) =&gt; InvocationHandler + 目标对象</li>
+<li><code>SingingInterface.class.getClassLoader()</code> =&gt; 是代理类生成需要的的 loader</li>
+<li><code>new Class[]{SingingInterface.class}</code> =&gt; 代理类需要实现的接口列表，这里可以是多个</li>
+<li><code>new SingingInvocationHandler(new JayChou())</code> =&gt; InvocationHandler + 目标对象</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SingingInterface proxy = (SingingInterface) Proxy.newProxyInstance(</div><div class="line">        SingingInterface.class.getClassLoader(),</div><div class="line">        <span class="keyword">new</span> Class[]&#123;SingingInterface.class&#125;,</div><div class="line">        <span class="keyword">new</span> SingingInvocationHandler(<span class="keyword">new</span> JayChou()));</div></pre></td></tr></table></figure>
 <p>当我们使用生成的代理类对象 <code>proxy</code> 调用方法时，就会经过 <code>InvocationHandler</code> 里面的实现啦。</p>
