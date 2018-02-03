@@ -83,18 +83,20 @@
 
 
 
-<meta name="description" content="Git 日常命令收集。">
+<meta name="description" content="Git 日常命令收集。 对平常使用的 git 命令及版本管理中遇到的问题进行梳理。">
 <meta name="keywords" content="Extensions,Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 命令">
 <meta property="og:url" content="http://cdevlab.top/article/b51d9f8e/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="Git 日常命令收集。">
+<meta property="og:description" content="Git 日常命令收集。 对平常使用的 git 命令及版本管理中遇到的问题进行梳理。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-04T07:24:30.000Z">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-2/60301604.jpg">
+<meta property="og:updated_time" content="2018-02-02T08:29:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 命令">
-<meta name="twitter:description" content="Git 日常命令收集。">
+<meta name="twitter:description" content="Git 日常命令收集。 对平常使用的 git 命令及版本管理中遇到的问题进行梳理。">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-2/60301604.jpg">
 
 
 
@@ -409,6 +411,8 @@ var _hmt = _hmt || [];
                 2017-08-10
               </time>
               
+                于杭州
+              
             
 
             
@@ -461,9 +465,21 @@ var _hmt = _hmt || [];
     <div class="post-body" itemprop="articleBody">
 
       
+        <div class="gellery-wrap" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+                <img src="http://olx4t2q6z.bkt.clouddn.com/18-2-2/60301604.jpg" itemprop="contentUrl">
+            
+          
+          
+          </div>
+        </div>
+      
 
       
         <p>Git 日常命令收集。</p>
+<p>对平常使用的 git 命令及版本管理中遇到的问题进行梳理。</p>
 <a id="more"></a>
 <p>更改 <code>.gitignore</code> 后无法生效的问题，原因是 <code>.gitignore</code> 只能忽略那些原来没有被 <code>track</code> 的文件，如果某些文件已经被纳入了版本管理中，则修改 <code>.gitignore</code> 是无效的。那么解决方法就是先把本地缓存删除，改变成未 <code>track</code> 状态，然后再提交</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm -r --cached .</div><div class="line">git add .</div><div class="line">git commit -m <span class="string">'update .gitignore'</span></div></pre></td></tr></table></figure>
@@ -477,6 +493,10 @@ var _hmt = _hmt || [];
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git gc</div><div class="line">git gc --aggressive</div></pre></td></tr></table></figure>
 <p>初始化仓库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add origin git@github.com:chendongMarch/xxxx.git</div><div class="line">git add fileName</div><div class="line">git add -A</div><div class="line">git commit -m <span class="string">"first commit"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<p>用户配置查看及更改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git config user.name</div><div class="line">git config email</div><div class="line"></div><div class="line">git config --global user.name = <span class="string">'test'</span></div><div class="line">git config --global user.email = <span class="string">'test@qq.com'</span></div></pre></td></tr></table></figure>
+<p>git remote</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 查看远程仓库名</div><div class="line">git remote -v</div><div class="line"></div><div class="line"></div><div class="line">// 添加 origin 仓库</div><div class="line">git remote add origin [url]</div><div class="line"></div><div class="line">// 删除 orgin 仓库</div><div class="line">git remote rm origin</div><div class="line"></div><div class="line">// 重置 orign 指向的仓库</div><div class="line">git remote <span class="built_in">set</span>-url origin [url]</div></pre></td></tr></table></figure>
       
     </div>
     <div>
@@ -618,7 +638,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">127</span>
+                <span class="site-state-item-count">126</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
