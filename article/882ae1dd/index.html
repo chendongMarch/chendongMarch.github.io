@@ -83,20 +83,20 @@
 
 
 
-<meta name="description" content="超文本传输安全协议（HTTPS，常称为HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
+<meta name="description" content="超文本传输安全协议（HTTPS，常称为 HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
 <meta name="keywords" content="网络,Https,Http,TLS&#x2F;SSL,加密,网络通信,网络安全">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Https 详解 [网络]">
 <meta property="og:url" content="http://cdevlab.top/article/882ae1dd/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="超文本传输安全协议（HTTPS，常称为HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
+<meta property="og:description" content="超文本传输安全协议（HTTPS，常称为 HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/45157165.jpg">
-<meta property="og:updated_time" content="2018-02-01T10:18:46.000Z">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-15/66994550.jpg">
+<meta property="og:updated_time" content="2018-02-06T02:59:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Https 详解 [网络]">
-<meta name="twitter:description" content="超文本传输安全协议（HTTPS，常称为HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
-<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/45157165.jpg">
+<meta name="twitter:description" content="超文本传输安全协议（HTTPS，常称为 HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-15/66994550.jpg">
 
 
 
@@ -285,16 +285,6 @@ var _hmt = _hmt || [];
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            Categories
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
@@ -469,7 +459,7 @@ var _hmt = _hmt || [];
           
           
             <div class="post-gallery-row">
-                <img src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/45157165.jpg" itemprop="contentUrl">
+                <img src="http://olx4t2q6z.bkt.clouddn.com/17-12-15/66994550.jpg" itemprop="contentUrl">
             
           
           
@@ -478,22 +468,24 @@ var _hmt = _hmt || [];
       
 
       
-        <p>超文本传输安全协议（HTTPS，常称为HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。</p>
+        <p>超文本传输安全协议（<code>HTTPS</code>，常称为 <code>HTTP over TLS/SSL</code>）是一种通过计算机网络进行安全通信的传输协议。<code>HTTPS</code> 经由 <code>HTTP</code> 进行通信，但利用 <code>SSL/TLS</code> 来加密数据包。<code>HTTPS</code> 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。</p>
 <a id="more"></a>
 <p>本文主要介绍  ：</p>
 <ul>
-<li>Https 如何保证数据传输的安全 </li>
-<li>CA 的存在及其安全性</li>
+<li><code>Https</code> 如何保证数据传输的安全 </li>
+<li><code>CA</code> 的存在及其安全性</li>
+<li>证书工具 <code>keytool</code></li>
 <li>证书验证流程</li>
-<li>Https 握手流程</li>
-<li>Android 下进行 Https 访问</li>
+<li><code>Https</code> 握手流程</li>
+<li><code>Android</code> 下进行 <code>Https</code>访问</li>
 </ul>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>TCP (Transmission Control Protoco) 传输层控制协议</p>
-<p>TLS (Transport Layer Security) 传输层安全协定</p>
-<p>SSL (Secure Socket Layer) 安全套接层</p>
-<p>HTTP(Hypertext Transfer Protocol) 基于 TCP 协议，无连接，每次连接只处理一个请求，结束后断开连接；无状态，无法保持用户状态，使用 cookie 和 session 解决。</p>
-<p>HTTPS(HTTP over TLS/SSL) 安全的 http 协议，HTTP 协议和TCP 协议之间增加了 TLS/SSL 保证数据的安全传输。</p>
-<h3 id="关于-TLS-SSL"><a href="#关于-TLS-SSL" class="headerlink" title="关于 TLS/SSL"></a>关于 TLS/SSL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  1994年，NetScape公司设计了SSL协议（Secure Sockets Layer）的1.0版，但是未发布。</div><div class="line"></div><div class="line">  1995年，NetScape公司发布SSL 2.0版，很快发现有严重漏洞。</div><div class="line"></div><div class="line">  1996年，SSL 3.0版问世，得到大规模应用。</div><div class="line"></div><div class="line">  1999年，互联网标准化组织ISOC接替NetScape公司，发布了SSL的升级版TLS 1.0版。</div><div class="line"></div><div class="line">  2006年和2008年，TLS进行了两次升级，分别为TLS 1.1版和TLS 1.2版。最新的变动是2011年TLS </div><div class="line">1.2的修订版。</div><div class="line"></div><div class="line">  TLS 1.0通常被标示为SSL 3.1，TLS 1.1为SSL 3.2，TLS 1.2为SSL 3.3。</div><div class="line"></div><div class="line">  目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。</div></pre></td></tr></table></figure>
+<h2 id="TLS-SSL"><a href="#TLS-SSL" class="headerlink" title="TLS/SSL"></a>TLS/SSL</h2><p><code>TCP (Transmission Control Protoco)</code> 传输层控制协议</p>
+<p><code>TLS (Transport Layer Security)</code> 传输层安全协定</p>
+<p><code>SSL (Secure Socket Layer)</code> 安全套接层</p>
+<p><code>HTTP(Hypertext Transfer Protocol)</code> 基于 <code>TCP</code> 协议，无连接，每次连接只处理一个请求，结束后断开连接；无状态，无法保持用户状态，使用 <code>cookie</code> 和 <code>session</code> 解决。</p>
+<p><code>HTTPS(HTTP over TLS/SSL)</code> 安全的 <code>http</code> 协议，<code>HTTP</code> 协议和 <code>TCP</code> 协议之间增加了 <code>TLS/SSL</code> 保证数据的安全传输。</p>
+<p>历史进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">1994年，NetScape公司设计了SSL协议（Secure Sockets Layer）的1.0版，但是未发布。</div><div class="line"></div><div class="line">1995年，NetScape公司发布SSL 2.0版，很快发现有严重漏洞。</div><div class="line"></div><div class="line">1996年，SSL 3.0版问世，得到大规模应用。</div><div class="line"></div><div class="line">1999年，互联网标准化组织ISOC接替NetScape公司，发布了SSL的升级版TLS 1.0版。</div><div class="line"></div><div class="line">2006年和2008年，TLS进行了两次升级，分别为TLS 1.1版和TLS 1.2版。最新的变动是2011年TLS </div><div class="line">1.2的修订版。</div><div class="line"></div><div class="line">TLS 1.0通常被标示为SSL 3.1，TLS 1.1为SSL 3.2，TLS 1.2为SSL 3.3。</div><div class="line"></div><div class="line">目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。</div></pre></td></tr></table></figure>
 <h2 id="Https-安全性"><a href="#Https-安全性" class="headerlink" title="Https 安全性"></a>Https 安全性</h2><p>HTTP 协议的不安全性体现在 3 个方面：</p>
 <table>
 <thead>
@@ -543,35 +535,38 @@ var _hmt = _hmt || [];
 <li>采用 <a href="#消息摘要">消息摘要（见文末注脚）</a> 算法可以验证数据的完整性，我们将发送的消息进行摘要，连同消息一起发送给接收方，接收方拿到消息之后对消息做同样的摘要处理，对比摘要结果，即可知道消息有没有被篡改。</li>
 </ul>
 <p>以上，可以解决消息完整性和真实性的问题。</p>
-<h3 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h3><p><strong>中间人攻击</strong>（Man-in-the-middle Attack，MITM）指的是攻击者在链路上伪装自己，与通讯双方分别建立联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。</p>
-<p>作为 <strong>A</strong> 和 <strong>B</strong> 通信路由上的攻击者 <strong>M</strong>，作为中间人伪造自己的身份。A 向 B 请求用于通信的 <code>PK_A</code>，但是被中间人 M 截获，他伪造生成了假的公钥 <code>PK_M</code>，发送给了 A，同时向 B 请求并获取了 B 的公开密钥 <code>PK_B</code>，原来安全的通信过程 A(使用 <code>PK_B</code> 加密) -&gt; 安全 -&gt; B(使用 <code>SK_B</code> 解密)，现在变成了 A(使用 <code>PK_M</code> 加密) -&gt; M(使用 <code>SK_M</code> 解密获取明文内容，再用 <code>PK_B</code> 加密，可能篡改数据) -&gt; B(使用 <code>SK_B</code> 解密)。</p>
+<h3 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h3><p><strong>中间人攻击</strong>（<code>Man-in-the-middle Attack，MITM</code>）指的是攻击者在链路上伪装自己，与通讯双方分别建立联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。</p>
+<p>作为 <strong>A</strong> 和 <strong>B</strong> 通信路由上的攻击者 <strong>M</strong>，作为中间人伪造自己的身份。A 向 B 请求用于通信的 <code>PK_A</code>，但是被中间人 M 截获，他伪造生成了假的公钥 <code>PK_M</code>，发送给了 A，同时向 B 请求并获取了 B 的公开密钥 <code>PK_B</code>，原来安全的通信过程 <span class="spec">A(使用 <code>PK_B</code> 加密) -&gt; 安全 -&gt; B(使用 <code>SK_B</code> 解密)</span>，现在变成了 <span class="spec">A(使用 <code>PK_M</code> 加密) -&gt; M(使用 <code>SK_M</code> 解密获取明文内容，再用 <code>PK_B</code> 加密，可能篡改数据) -&gt; B(使用 <code>SK_B</code> 解密)</span>。</p>
 <p>出现问题的原因在于，密钥在交换的初期是不安全的，网络上的通信双方，无法确定对方的身份，即无法获悉当前的公钥是不是自己想要的公钥。</p>
 <p>解决方案：</p>
 <ul>
-<li><p>引入第三方公正作<a href="#信用背书">信用背书</a>，第三方公正具有权威性，他和通信双方没有关系，接收方无条件信任公证机构，也就会信任他签名的信息。这种机构被称为 CA（Certificate Authority）机构，即数字证书认证机构。CA 机构与浏览器和操作系统厂商合作，将公钥内置在浏览器和操作系统中，也就是不走网络传输了，这样一定程度上保证了公钥不会被窃取篡改。</p>
+<li><p>引入第三方公正作<a href="#信用背书">信用背书</a>，第三方公正具有权威性，他和通信双方没有关系，接收方无条件信任公证机构，也就会信任他签名的信息。这种机构被称为 <code>CA（Certificate Authority</code> 机构，即数字证书认证机构。<code>CA</code> 机构与浏览器和操作系统厂商合作，将公钥内置在浏览器和操作系统中，也就是不走网络传输了，这样一定程度上保证了公钥不会被窃取篡改。</p>
 </li>
-<li><p>服务端 B 将自己的消息（消息内容大致包括电子签证机关的信息、公钥用户信息、公钥、权威机构的签字和有效期等）进行摘要之后，发给 CA 机构 S 签发证书，S 使用自己的私钥对消息摘要加密，形成证书，B 将证书和消息内容发送给 A，A 收到后，发现是 S 的证书，同时对 S 是信任的，则会使用 S 的公钥对证书进行解密（这里涉及证书链的验证，其实要更加复杂），获取到消息摘要，同时对收到的消息进行摘要，对比，如果一致则说明内容没有被篡改，是可信的，因为生成加密数据的私钥只有 CA 机构才有，这一过程称为验证数字签名。</p>
+<li><p>服务端 <code>Server</code> 将自己的消息（消息内容大致包括电子签证机关的信息、公钥用户信息、公钥、权威机构的签字和有效期等）进行摘要之后，发给 <code>CA</code> 机构 <code>AUTH</code> 签发证书，<code>Server</code> 使用自己的私钥对消息摘要加密，形成证书，并将证书和消息内容发送给 <code>Client</code>，<code>Client</code> 收到后，发现是 <code>AUTH</code> 的证书，同时对 <code>AUTH</code> 是信任的，则会使用 <code>AUTH</code> 的公钥对证书进行解密（这里涉及证书链的验证，其实要更加复杂），获取到消息摘要，同时对收到的消息进行摘要，对比，如果一致则说明内容没有被篡改，是可信的，因为生成加密数据的私钥只有 <code>CA</code> 机构才有，这一过程称为验证数字签名。</p>
 </li>
 </ul>
 <p>以上，可以解决中间人攻击的文图，另外涉及到非对称加密的两种应用场景，详细介绍见文末<a href="#非对称加密应用场景">非对称加密应用场景</a>。</p>
-<h3 id="CA-错误签发"><a href="#CA-错误签发" class="headerlink" title="CA 错误签发"></a>CA 错误签发</h3><p>受信任的 CA（证书颁发机构）有好几百个，他们成为整个网站身份认证过程中一个较大的攻击面。实际上，目前由于 CA 失误导致错误签发证书，以及个别 CA 出于某些目的（如监控加密流量）故意向第三方随意签发证书这两种情况时有发生。现有的证书信任链机制最大的问题是，任何一家受信任的 CA 都可以签发任意网站的站点证书，这些证书在客户端看来，都是合法的，是可以通过验证的。</p>
+<h3 id="CA-错误签发"><a href="#CA-错误签发" class="headerlink" title="CA 错误签发"></a>CA 错误签发</h3><p>受信任的 <code>CA</code>（证书颁发机构）有好几百个，他们成为整个网站身份认证过程中一个较大的攻击面。实际上，目前由于 <code>CA</code> 失误导致错误签发证书，以及个别 <code>CA</code> 出于某些目的（如监控加密流量）故意向第三方随意签发证书这两种情况时有发生。现有的证书信任链机制最大的问题是，任何一家受信任的 <code>CA</code> 都可以签发任意网站的站点证书，这些证书在客户端看来，都是合法的，是可以通过验证的。</p>
 <p>解决方案：</p>
 <ul>
-<li><p>证书锁（Certificate Pinning），证书锁是为了防范由「伪造或不正当手段获得网站证书」造成的中间人攻击。</p>
+<li><p>证书锁（<code>Certificate Pinning</code>），证书锁是为了防范由 <strong>「伪造或不正当手段获得网站证书」</strong> 造成的中间人攻击。</p>
 </li>
-<li><p>证书锁类似于 <code>HPKP</code> 技术（下面有简单介绍），给予我们主动选择信任 CA 的权利。它的工作原理就是使用预先设置的证书指纹和服务器传过来的证书链中的证书指纹进行匹配，只要有任何一对指纹匹配成功，则认为是一次合法的连接，否则禁止本次链接。</p>
+<li><p>证书锁类似于 <code>HPKP</code> 技术（下面有简单介绍），给予我们主动选择信任 <code>CA</code> 的权利。它的工作原理就是使用预先设置的证书指纹和服务器传过来的证书链中的证书指纹进行匹配，只要有任何一对指纹匹配成功，则认为是一次合法的连接，否则禁止本次链接。</p>
 </li>
-<li><p>也就是说，使用证书锁之后，不是所有被系统信任的 CA 都可以通过验证，只有我保存了指纹的一些 CA 签发的证书才可以，比如有 100 个 CA 机构，但我就信任其中一个，我可以保证这个 CA 不会乱签发证书，那我就只保存这个 CA 的指纹，即使攻击者从其他的 99 个 CA 签发证书，对我进行攻击，也无法完成连接。</p>
+<li><p>也就是说，使用证书锁之后，不是所有被系统信任的 <code>CA</code> 都可以通过验证，只有我保存了指纹的一些 <code>CA</code> 签发的证书才可以，比如有 100 个 <code>CA</code> 机构，但我就信任其中一个，我可以保证这个 <code>CA</code> 不会乱签发证书，那我就只保存这个 <code>CA</code> 的指纹，即使攻击者从其他的 99 个 <code>CA</code> 签发证书，对我进行攻击，也无法完成连接。</p>
 </li>
-<li><p>证书锁定增加了安全性，但限制了你的服务器团队升级TLS证书的能力。</p>
+<li><p>证书锁定增加了安全性，但限制了你的服务器团队升级 <code>TLS</code> 证书的能力。</p>
 </li>
 </ul>
-<p>以上，可以解决 CA 机构签发证书权威性不足的问题，相关解决方案详见文末<a href="#签发证书权威性问题">签发证书权威性问题</a></p>
+<p>以上，可以解决 <code>CA</code> 机构签发证书权威性不足的问题，相关解决方案详见文末 <a href="#签发证书权威性问题">签发证书权威性问题</a></p>
 <p>🔥  <strong>综上，对称加密通信 + 非对称加密交换密钥 + CA 认证身份 + 证书锁锁定证书指纹 共同保证了 https 的安全性。</strong></p>
-<h2 id="CA-安全性"><a href="#CA-安全性" class="headerlink" title="CA 安全性"></a>CA 安全性</h2><p>作为全网 https 连接的权威公正，CA 的安全性至关重要。</p>
-<h3 id="安全保存-CA及证书验证"><a href="#安全保存-CA及证书验证" class="headerlink" title="安全保存 CA及证书验证"></a>安全保存 CA及证书验证</h3><p>从根 CA 开始到直接给客户发放证书的各层次 CA，都有其自身的密钥对。CA 中心的密钥对一般由硬件加密服务器在机器内直接产生，并存储于加密硬件内，或以一定的加密形式存放于密钥数据库内。加密备份于 IC 卡或其他存储介质中，并以高等级的物理安全措施保护起来。密钥的销毁要以安全的密钥冲写标准，彻底清除原有的密钥痕迹。需要强调的是，根 CA 密钥的安全性至关重要，它的泄露意味着整个公钥信任体系的崩溃，所以 CA 的密钥保护必须按照最高安全级的保护方式来进行设置和管理。CA的私钥是自己靠上述方法保管的，不对外公开。</p>
-<p>CA 的公钥是厂商跟浏览器和操作系统合作，把公钥默认装到浏览器或者操作系统环境里。比如 firefox 就自己维护了一个可信任的 CA 列表，而 chrome 和 IE 使用的是操作系统的 CA 列表。</p>
-<h3 id="证书链"><a href="#证书链" class="headerlink" title="证书链"></a>证书链</h3><p>现在大的 CA 都会有证书链，证书链的好处一是安全，保持根 CA 的私钥离线使用。第二个好处是方便部署和撤销，即如果证书出现问题，只需要撤销相应级别的证书，根证书依然安全。<br>根 CA 证书都是自签名，即用自己的公钥和私钥完成了签名的制作和验证。而证书链上的证书签名都是使用上一级证书的密钥对完成签名和验证的。</p>
+<h2 id="CA-安全性"><a href="#CA-安全性" class="headerlink" title="CA 安全性"></a>CA 安全性</h2><p>作为全网 <code>https</code> 连接的权威公正，<code>CA</code> 的安全性至关重要。</p>
+<h3 id="安全保存-CA"><a href="#安全保存-CA" class="headerlink" title="安全保存 CA"></a>安全保存 CA</h3><p>从根 <code>CA</code> 开始到直接给客户发放证书的各层次 <code>CA</code>，都有其自身的密钥对。<code>CA</code> 中心的密钥对一般由硬件加密服务器在机器内直接产生，并存储于加密硬件内，或以一定的加密形式存放于密钥数据库内。加密备份于 <code>IC</code> 卡或其他存储介质中，并以高等级的物理安全措施保护起来。</p>
+<p>密钥的销毁要以安全的密钥冲写标准，彻底清除原有的密钥痕迹。需要强调的是，根 <code>CA</code> 密钥的安全性至关重要，它的泄露意味着整个公钥信任体系的崩溃，所以 <code>CA</code> 的密钥保护必须按照最高安全级的保护方式来进行设置和管理。<code>CA</code> 的私钥是自己靠上述方法保管的，不对外公开。</p>
+<p>所以 <code>CA</code> 密钥的安全性依赖于物理硬件的安全性，不通过网络传输避免了被攻击的可能。</p>
+<p><code>CA</code> 的公钥是厂商跟浏览器和操作系统合作，把公钥默认装到浏览器或者操作系统环境里。比如 <code>firefox</code> 就自己维护了一个可信任的 <code>CA</code> 列表，而 <code>chrome</code> 和 <code>IE</code> 使用的是操作系统的 <code>CA</code> 列表。</p>
+<h3 id="证书链"><a href="#证书链" class="headerlink" title="证书链"></a>证书链</h3><p>现在大的 <code>CA</code> 都会有证书链，证书链的好处一是安全，保持根 <code>CA</code> 的私钥离线使用。第二个好处是方便部署和撤销，即如果证书出现问题，只需要撤销相应级别的证书，根证书依然安全。</p>
+<p>根 <code>CA</code> 证书都是自签名，即用自己的公钥和私钥完成了签名的制作和验证。而证书链上的证书签名都是使用上一级证书的密钥对完成签名和验证的。</p>
 <h3 id="证书验证"><a href="#证书验证" class="headerlink" title="证书验证"></a>证书验证</h3><p>证书是否是信任的有效证书</p>
 <ol>
 <li><p>是否信任 ：接收方内置了信任根证书的公钥，需要证书是不是这些信任根证书签发的或者信任根证书的二级证书机构颁发的。</p>
@@ -580,18 +575,18 @@ var _hmt = _hmt || [];
 </li>
 <li><p>是否合法：对方是不是上述证书的合法持有者，证明对方是否持有证书的对应私钥。验证方法两种，一种是对方签个名，我用证书验证签名；另外一种是用证书做个信封，看对方是否能解开。</p>
 </li>
-<li><p>是否吊销：验证是否吊销可以采用黑名单方式或者OCSP方式。黑名单就是定期从CA下载一个名单列表，里面有吊销的证书序列号，自己在本地比对一下就行。优点是效率高。缺点是不实时。OCSP是实时连接CA去验证，优点是实时，缺点是效率不高。</p>
+<li><p>是否吊销：验证是否吊销可以采用黑名单方式或者 <code>OCSP</code> 方式。黑名单就是定期从 <code>CA</code> 下载一个名单列表，里面有吊销的证书序列号，自己在本地比对一下就行。优点是效率高。缺点是不实时。<code>OCSP</code> 是实时连接 <code>CA</code> 去验证，优点是实时，缺点是效率不高。</p>
 </li>
 </ol>
-<h3 id="自签名证书如何验证"><a href="#自签名证书如何验证" class="headerlink" title="自签名证书如何验证"></a>自签名证书如何验证</h3><p>自签名证书是自己给自己签发的证书，也就是说自己做自己的 CA 机构，为自己担保，因此无法内置在系统当中，因此我们通常会在客户内置一个证书文件，自己进行校验。</p>
+<h3 id="自签名证书如何验证"><a href="#自签名证书如何验证" class="headerlink" title="自签名证书如何验证"></a>自签名证书如何验证</h3><p>自签名证书是自己给自己签发的证书，也就是说自己做自己的 <code>CA</code> 机构，为自己担保，因此无法内置在系统当中，因此我们通常会在客户内置一个证书文件，自己进行校验。</p>
 <p>简单来说，握手流程需要两对密钥对：</p>
 <ol>
-<li>一对 CA 的密钥对 <code>JKS_A</code>，由 CA 机构维护，通常他的公钥内置在 os 中，用来签名服务端信息摘要，保证服务端公钥的真实性，避免中间人攻击。</li>
-<li>一对服务器的密钥对 <code>JKS_B</code>，他是握手过程中随机生成的，然后用「它的公钥及其他内容」的摘要去向 CA 实时签发证书，用来进行对称密钥的加密传输。</li>
+<li>一对 <code>CA</code> 的密钥对 <code>JKS_A</code>，由 <code>CA</code> 机构维护，通常他的公钥内置在 <code>os</code> 中，用来签名服务端信息摘要，保证服务端公钥的真实性，避免中间人攻击。</li>
+<li>一对服务器的密钥对 <code>JKS_B</code>，他是握手过程中随机生成的，然后用「它的公钥及其他内容」的摘要去向 <code>CA</code> 实时签发证书，用来进行对称密钥的加密传输。</li>
 </ol>
-<p>自签名证书就是不走 CA 机构，而是自己生成一对密钥对 <code>JKS_C</code>，他的作用就好比 CA 的密钥对 <code>JKS_A</code>，也是为了保证公钥的真实性，握手过程和原来一样，只是我们不需要去 CA 签发证书了，用自己的 <code>JKS_C</code> 签发就可以了；同样因为 <code>JKS_C</code> 是我们自己的密钥对，公钥没有被内置在 os 中，所以此时需要我们自己把 <code>cert</code> 文件（<code>JKS_C</code> 的公钥）放到本地，自己完成原本由 os 完成的 CA 校验任务。</p>
+<p>自签名证书就是不走 <code>CA</code> 机构，而是自己生成一对密钥对 <code>JKS_C</code>，他的作用就好比 <code>CA</code> 的密钥对 <code>JKS_A</code>，也是为了保证公钥的真实性，握手过程和原来一样，只是我们不需要去 <code>CA</code> 签发证书了，用自己的 <code>JKS_C</code> 签发就可以了；同样因为 <code>JKS_C</code> 是我们自己的密钥对，公钥没有被内置在 <code>os</code> 中，所以此时需要我们自己把 <code>cert</code> 文件（<code>JKS_C</code> 的公钥）放到本地，自己完成原本由 <code>os</code> 完成的 <code>CA</code> 校验任务。</p>
 <h3 id="双向验证"><a href="#双向验证" class="headerlink" title="双向验证"></a>双向验证</h3><p>双向验证指的是，不光客户端要验证来自服务器的连接是不是可靠，服务器也要验证客户端。</p>
-<p>服务端也会内置一套受信任的 CA 证书列表，用于验证客户端证书的真实性。验证过程和客户端验证服务端类似。</p>
+<p>服务端也会内置一套受信任的 <code>CA</code> 证书列表，用于验证客户端证书的真实性。验证过程和客户端验证服务端类似。</p>
 <h2 id="Https-握手"><a href="#Https-握手" class="headerlink" title="Https 握手"></a>Https 握手</h2><p>单向验证握手过程：</p>
 <ul>
 <li>1、Client Hello  ➡️</li>
@@ -635,14 +630,14 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>图解：</p>
 <p><img src="http://olx4t2q6z.bkt.clouddn.com/17-12-19/94724225.jpg" alt="https"></p>
-<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><p>Q：为什么要有 3 个随机数？</p>
+<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><p>Q：为什么要有 3 个随机数？</p>
 <blockquote>
-<p>不管是客户端还是服务器，都需要随机数，这样生成的密钥才不会每次都一样。由于SSL协议中证书是静态的，因此十分有必要引入一种随机因素来保证协商出来的密钥的随机性。对于RSA密钥交换算法来说，Pre-Master-Secret 本身就是一个随机数，再加上hello消息中的随机，三个随机数通过一个密钥导出器最终导出一个对称密钥。</p>
-<p>Pre-Master 的存在在于 SSL 协议不信任每个主机都能产生完全随机的随机数，如果随机数不随机，那么 Pre-Master-Secret 就有可能被猜出来，那么仅适用 Pre-Master-Secret 作为密钥就不合适了，因此必须引入新的随机因素，那么客户端和服务器加上 Pre-Master-Secret 三个随机数一同生成的密钥就不容易被猜出了，一个伪随机可能完全不随机，可是是三个伪随机就十分接近随机了，每增加一个自由度，随机性增加的可不是一。”</p>
+<p>不管是客户端还是服务器，都需要随机数，这样生成的密钥才不会每次都一样。由于 <code>SSL</code> 协议中证书是静态的，因此十分有必要引入一种随机因素来保证协商出来的密钥的随机性。对于RSA密钥交换算法来说，<code>Pre-Master-Secret</code> 本身就是一个随机数，再加上 <code>hello</code> 消息中的随机，三个随机数通过一个密钥导出器最终导出一个对称密钥。</p>
+<p><code>Pre-Master</code> 的存在在于 <code>SSL</code> 协议不信任每个主机都能产生完全随机的随机数，如果随机数不随机，那么 <code>Pre-Master-Secret</code> 就有可能被猜出来，那么仅适用 <code>Pre-Master-Secret</code> 作为密钥就不合适了，因此必须引入新的随机因素，那么客户端和服务器加上 <code>Pre-Master-Secret</code> 三个随机数一同生成的密钥就不容易被猜出了，一个伪随机可能完全不随机，可是是三个伪随机就十分接近随机了，每增加一个自由度，随机性增加的可不是一。”</p>
 </blockquote>
-<p>Q：放在 Android 客户端的 cert 文件是啥？</p>
+<p>Q：放在 <code>Android</code> 客户端的 <code>cert</code> 文件是啥？</p>
 <blockquote>
-<p>是自签名证书的公钥，自签名证书就是自己做自己的 CA 机构，服务端会自己维护一个密钥对 JKS，他就相当于 CA 的签发证书的密钥对，在握手过程中服务器不需要走 CA 申请签名证书了，自己签发就可以，原本 CA 的公钥被内置在 os 中，CA 的验证不需要我们来关注，但是现在是自签名的，自己做自己的 CA，所以 JKS 的公钥我们要内置在客户端中，自己完成验证过程，替代原来 os 的验证。</p>
+<p>是自签名证书的公钥，自签名证书就是自己做自己的 <code>CA</code> 机构，服务端会自己维护一个密钥对 <code>JKS</code>，他就相当于 <code>CA</code> 的签发证书的密钥对，在握手过程中服务器不需要走 <code>CA</code> 申请签名证书了，自己签发就可以，原本 <code>CA</code> 的公钥被内置在 <code>os</code> 中，<code>CA</code> 的验证不需要我们来关注，但是现在是自签名的，自己做自己的 <code>CA</code>，所以 <code>JKS</code> 的公钥我们要内置在客户端中，自己完成验证过程，替代原来 <code>os</code> 的验证。</p>
 </blockquote>
 <h2 id="证书工具-keytool"><a href="#证书工具-keytool" class="headerlink" title="证书工具-keytool"></a>证书工具-keytool</h2><p>提取证书内容为一个字符串</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keytool -printcert -rfc -file [srca.cer]</div></pre></td></tr></table></figure>
@@ -657,35 +652,35 @@ var _hmt = _hmt || [];
 <h2 id="搭建-https-服务"><a href="#搭建-https-服务" class="headerlink" title="搭建 https 服务"></a>搭建 https 服务</h2><p>这部分内容参考了 <a href="http://blog.csdn.net/lmj623565791/article/details/48129405" rel="external nofollow noopener noreferrer" target="_blank">CSDN-hongyang-Android Https 完全解析</a>，这里做一个汇总和整理。</p>
 <p>借助 <code>tomcat</code> 搭建简单的 <code>https</code> 服务，主要是用来测试，之前使用 <code>12306</code> 的证书测试，但是前段时间 <code>12306</code> 证书换掉了，现在已经是正式证书了，所以不得以需要自己搭建一个简单的服务来做访问测试。</p>
 <ul>
-<li>搭建单向验证的 https 服务</li>
+<li>搭建单向验证的 <code>https</code> 服务</li>
 </ul>
 <p>首先我们准备好密钥和证书，使用 <code>keytool</code> 工具生成服务端 <code>march_server.jks</code> 密钥对，然后提取服务端公钥 <code>march_server.cert</code>。</p>
 <p>配置服务，主要是配置 <code>tomcat/conf/server.xml</code> 文件，添加一个如下的 <code>Connector</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;!-- </div><div class="line">  https 测试服务</div><div class="line">  clientAuth 和 truststoreFile 配置服务器验证客户端</div><div class="line">  keystoreFile 和 keystorePass 配置客户端验证服务器</div><div class="line">  --&gt;</div><div class="line">  &lt;Connector</div><div class="line">    </div><div class="line">    clientAuth=&quot;false&quot;</div><div class="line">    </div><div class="line">    keystoreFile=&quot;/Users/march/Documents/march_server.jks&quot; </div><div class="line">    keystorePass=&quot;123456&quot; </div><div class="line"></div><div class="line">    disableUploadTimeout=&quot;true&quot; </div><div class="line">    enableLookups=&quot;true&quot; </div><div class="line">    SSLEnabled=&quot;true&quot; </div><div class="line">    acceptCount=&quot;100&quot;  </div><div class="line">    maxSpareThreads=&quot;75&quot; </div><div class="line">    maxThreads=&quot;200&quot; </div><div class="line">    minSpareThreads=&quot;5&quot; </div><div class="line">    protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot; </div><div class="line">    scheme=&quot;https&quot; </div><div class="line">    secure=&quot;true&quot; </div><div class="line">    port=&quot;8443&quot; </div><div class="line">    sslProtocol=&quot;TLS&quot;/&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- </span></div><div class="line">  https 测试服务</div><div class="line">  clientAuth 和 truststoreFile 配置服务器验证客户端</div><div class="line">  keystoreFile 和 keystorePass 配置客户端验证服务器</div><div class="line">  --&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">Connector</span></span></div><div class="line">    </div><div class="line">    <span class="attr">clientAuth</span>=<span class="string">"false"</span></div><div class="line">    </div><div class="line">    <span class="attr">keystoreFile</span>=<span class="string">"/Users/march/Documents/march_server.jks"</span> </div><div class="line">    <span class="attr">keystorePass</span>=<span class="string">"123456"</span> </div><div class="line"></div><div class="line">    <span class="attr">disableUploadTimeout</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">enableLookups</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">SSLEnabled</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">acceptCount</span>=<span class="string">"100"</span>  </div><div class="line">    <span class="attr">maxSpareThreads</span>=<span class="string">"75"</span> </div><div class="line">    <span class="attr">maxThreads</span>=<span class="string">"200"</span> </div><div class="line">    <span class="attr">minSpareThreads</span>=<span class="string">"5"</span> </div><div class="line">    <span class="attr">protocol</span>=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span> </div><div class="line">    <span class="attr">scheme</span>=<span class="string">"https"</span> </div><div class="line">    <span class="attr">secure</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">port</span>=<span class="string">"8443"</span> </div><div class="line">    <span class="attr">sslProtocol</span>=<span class="string">"TLS"</span>/&gt;</div></pre></td></tr></table></figure>
 <ul>
-<li>搭建双向验证的 https 服务</li>
+<li>搭建双向验证的 <code>https</code> 服务</li>
 </ul>
 <p>再生成客户端密钥对 <code>march_client.jks</code>，然后签发客户端公钥 <code>march_client.cert</code>，为了能在服务端使用，将 <code>march_client.cert</code> 导入到新的密钥对 <code>march_client_for_server.jks</code>。使用的命令都可以在上一节找到，生成这几个密钥，是为了搭建后面的服务作准备。</p>
 <p>更改 <code>conf/server.xml</code> 配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!-- </div><div class="line">  https 测试服务</div><div class="line">  clientAuth 和 truststoreFile 配置服务器验证客户端</div><div class="line">  keystoreFile 和 keystorePass 配置客户端验证服务器</div><div class="line">   --&gt;</div><div class="line">  &lt;Connector </div><div class="line">    </div><div class="line">    clientAuth=&quot;true&quot;</div><div class="line">    truststoreFile=&quot;/Users/march/Documents/march_client_for_server.jks&quot; </div><div class="line">    </div><div class="line">    keystoreFile=&quot;/Users/march/Documents/march_server.jks&quot; </div><div class="line">    keystorePass=&quot;123456&quot; </div><div class="line"></div><div class="line">    disableUploadTimeout=&quot;true&quot; </div><div class="line">    enableLookups=&quot;true&quot; </div><div class="line">    SSLEnabled=&quot;true&quot; </div><div class="line">    acceptCount=&quot;100&quot;  </div><div class="line">    maxSpareThreads=&quot;75&quot; </div><div class="line">    maxThreads=&quot;200&quot; </div><div class="line">    minSpareThreads=&quot;5&quot; </div><div class="line">    protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot; </div><div class="line">    scheme=&quot;https&quot; </div><div class="line">    secure=&quot;true&quot; </div><div class="line">    port=&quot;8443&quot; </div><div class="line">    sslProtocol=&quot;TLS&quot;/&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- </span></div><div class="line">  https 测试服务</div><div class="line">  clientAuth 和 truststoreFile 配置服务器验证客户端</div><div class="line">  keystoreFile 和 keystorePass 配置客户端验证服务器</div><div class="line">   --&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">Connector</span> </span></div><div class="line">    </div><div class="line">    <span class="attr">clientAuth</span>=<span class="string">"true"</span></div><div class="line">    <span class="attr">truststoreFile</span>=<span class="string">"/Users/march/Documents/march_client_for_server.jks"</span> </div><div class="line">    </div><div class="line">    <span class="attr">keystoreFile</span>=<span class="string">"/Users/march/Documents/march_server.jks"</span> </div><div class="line">    <span class="attr">keystorePass</span>=<span class="string">"123456"</span> </div><div class="line"></div><div class="line">    <span class="attr">disableUploadTimeout</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">enableLookups</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">SSLEnabled</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">acceptCount</span>=<span class="string">"100"</span>  </div><div class="line">    <span class="attr">maxSpareThreads</span>=<span class="string">"75"</span> </div><div class="line">    <span class="attr">maxThreads</span>=<span class="string">"200"</span> </div><div class="line">    <span class="attr">minSpareThreads</span>=<span class="string">"5"</span> </div><div class="line">    <span class="attr">protocol</span>=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span> </div><div class="line">    <span class="attr">scheme</span>=<span class="string">"https"</span> </div><div class="line">    <span class="attr">secure</span>=<span class="string">"true"</span> </div><div class="line">    <span class="attr">port</span>=<span class="string">"8443"</span> </div><div class="line">    <span class="attr">sslProtocol</span>=<span class="string">"TLS"</span>/&gt;</div></pre></td></tr></table></figure>
 <p>此时浏览器已经不能访问</p>
-<h2 id="Android-进行-Https-访问"><a href="#Android-进行-Https-访问" class="headerlink" title="Android 进行 Https 访问"></a>Android 进行 Https 访问</h2><p>如果你的证书是购买的 CA 签发的证书，是可以直接进行 https 访问的，不需要做什么特殊处理，下面主要介绍使用自签名证书的情况。</p>
-<p>启用双向验证时，Android 客户端也不能直接使用 <code>march_client.jks</code> 需要转为 <code>bks</code> 文件，使用下面的工具。<a href="https://sourceforge.net/projects/portecle/files/latest/download?source=files" rel="external nofollow noopener noreferrer" target="_blank">jks 转 bks 工具</a></p>
+<h2 id="Android-进行-Https-访问"><a href="#Android-进行-Https-访问" class="headerlink" title="Android 进行 Https 访问"></a>Android 进行 Https 访问</h2><p>如果你的证书是购买的 <code>CA</code> 签发的证书，是可以直接进行 <code>https</code> 访问的，不需要做什么特殊处理，下面主要介绍使用自签名证书的情况。</p>
+<p>启用双向验证时，<code>Android</code> 客户端也不能直接使用 <code>march_client.jks</code> 需要转为 <code>bks</code> 文件，使用下面的工具。<a href="https://sourceforge.net/projects/portecle/files/latest/download?source=files" rel="external nofollow noopener noreferrer" target="_blank">jks 转 bks 工具</a></p>
 <p>注：这部分不是说如何发请求，只是讨论怎么配置证书和密钥对去发起 Https 访问。</p>
-<p>在 Android 中进行 Https 访问，主要牵扯到以下几个关键类</p>
+<p>在 <code>Android</code> 中进行 <code>Https</code> 访问，主要牵扯到以下几个关键类：</p>
 <ol>
-<li>TrustManagerFactory，它主要是用来导入自签名证书，用来验证来自服务器的连接。</li>
-<li>KeyManagerFactory，当开启双向验证时，用来导入客户端的密钥对。</li>
-<li>SSLContext，SSL 上下文，使用上面的两个类进行初始化，就是个上下文环境。</li>
+<li><code>TrustManagerFactory</code>，它主要是用来导入自签名证书，用来验证来自服务器的连接。</li>
+<li><code>KeyManagerFactory</code>，当开启双向验证时，用来导入客户端的密钥对。</li>
+<li><code>SSLContext</code>，<code>SSL</code> 上下文，使用上面的两个类进行初始化，就是个上下文环境。</li>
 </ol>
 <p>😠 都让开，我要贴代码了！</p>
-<h3 id="SSLContext"><a href="#SSLContext" class="headerlink" title="SSLContext"></a>SSLContext</h3><p>为了简单起见，我们先来看看如何生成 SSLContext</p>
+<h3 id="SSLContext"><a href="#SSLContext" class="headerlink" title="SSLContext"></a>SSLContext</h3><p>为了简单起见，我们先来看看如何生成 <code>SSLContext</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 创建 SSLContext </div><div class="line"> * <span class="doctag">@param</span> keyManagerFactory 用于双向验证，不需要可以直接为空</div><div class="line"> * <span class="doctag">@param</span> trustManagerFactory 用于导入证书</div><div class="line"> * <span class="doctag">@return</span> SSLContext</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> SSLContext <span class="title">getSSLContext</span><span class="params">(@Nullable KeyManagerFactory keyManagerFactory,</span></span></div><div class="line">        TrustManagerFactory trustManagerFactory)</div><div class="line">        <span class="keyword">throws</span> NoSuchAlgorithmException, KeyManagementException &#123;</div><div class="line">    <span class="keyword">if</span> (trustManagerFactory == <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    SSLContext sslContext = SSLContext.getInstance(<span class="string">"TLS"</span>);</div><div class="line">    KeyManager[] keyManagers = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span> (keyManagerFactory != <span class="keyword">null</span>) &#123;</div><div class="line">        keyManagers = keyManagerFactory.getKeyManagers();</div><div class="line">    &#125;</div><div class="line">    sslContext.init(keyManagers, trustManagerFactory.getTrustManagers(), <span class="keyword">new</span> SecureRandom());</div><div class="line">    <span class="keyword">return</span> sslContext;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="TrustManagerFactory"><a href="#TrustManagerFactory" class="headerlink" title="TrustManagerFactory"></a>TrustManagerFactory</h3><p>导入客户端证书，生成 TrustManagerFactory</p>
+<h3 id="TrustManagerFactory"><a href="#TrustManagerFactory" class="headerlink" title="TrustManagerFactory"></a>TrustManagerFactory</h3><p>导入客户端证书，生成 <code>TrustManagerFactory</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 导入客户端证书，生成 TrustManagerFactory</div><div class="line"> * <span class="doctag">@param</span> serverCertInputStreams 证书的输入流</div><div class="line"> * <span class="doctag">@return</span> TrustManagerFactory</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> TrustManagerFactory <span class="title">getTrustManagerFactory</span><span class="params">(InputStream... serverCertInputStreams)</span></span></div><div class="line">        <span class="keyword">throws</span> KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException &#123;</div><div class="line">    <span class="keyword">if</span> (serverCertInputStreams == <span class="keyword">null</span> || serverCertInputStreams.length == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    CertificateFactory certificateFactory = CertificateFactory.getInstance(<span class="string">"X.509"</span>);</div><div class="line">    <span class="comment">// 为证书设置一个keyStore，并将证书放入 keyStore 中</span></div><div class="line">    KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());</div><div class="line">    keyStore.load(<span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (InputStream inputStream : serverCertInputStreams) &#123;</div><div class="line">        String alias = Integer.toString(index++);</div><div class="line">        Certificate certificate = certificateFactory.generateCertificate(inputStream);</div><div class="line">        keyStore.setCertificateEntry(alias, certificate);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 创建 TrustManagerFactory</span></div><div class="line">    TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());</div><div class="line">    trustManagerFactory.init(keyStore);</div><div class="line">    TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();</div><div class="line">    <span class="keyword">if</span> (trustManagers.length != <span class="number">1</span> || !(trustManagers[<span class="number">0</span>] <span class="keyword">instanceof</span> X509TrustManager)) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Unexpected default trust managers:"</span></div><div class="line">                + Arrays.toString(trustManagers));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> trustManagerFactory;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="KeyManagerFactory"><a href="#KeyManagerFactory" class="headerlink" title="KeyManagerFactory"></a>KeyManagerFactory</h3><p>双向验证时，配置客户端密钥对，生成 KeyManagerFactory</p>
+<h3 id="KeyManagerFactory"><a href="#KeyManagerFactory" class="headerlink" title="KeyManagerFactory"></a>KeyManagerFactory</h3><p>双向验证时，配置客户端密钥对，生成 <code>KeyManagerFactory</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 双向验证时，配置客户端密钥对，生成 KeyManagerFactory</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> clientCertInputStream 密钥对输入流</div><div class="line"> * <span class="doctag">@param</span> passWd                密钥对密码</div><div class="line"> * <span class="doctag">@return</span> KeyManagerFactory</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> KeyManagerFactory <span class="title">getKeyManagerFactory</span><span class="params">(InputStream clientCertInputStream, String passWd)</span></span></div><div class="line">        <span class="keyword">throws</span> KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, UnrecoverableKeyException &#123;</div><div class="line">    <span class="keyword">if</span> (clientCertInputStream == <span class="keyword">null</span> || passWd == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//本地证书 初始化keystore</span></div><div class="line">    KeyStore clientKeyStore = KeyStore.getInstance(KeyStore.getDefaultType());</div><div class="line">    clientKeyStore.load(clientCertInputStream, passWd.toCharArray());</div><div class="line">    KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());</div><div class="line">    keyManagerFactory.init(clientKeyStore, passWd.toCharArray());</div><div class="line">    <span class="keyword">return</span> keyManagerFactory;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Init-Connection"><a href="#Init-Connection" class="headerlink" title="Init Connection"></a>Init Connection</h3><p>这样我们就拿到了已经生成好的 SSLContext，我们需要的 KeyManagerFactory，TrustManagerFactory 都已经加到 SSLContext 里面了。</p>
+<h3 id="Init-Connection"><a href="#Init-Connection" class="headerlink" title="Init Connection"></a>Init Connection</h3><p>这样我们就拿到了已经生成好的 <code>SSLContext</code>，我们需要的 <code>KeyManagerFactory</code>，<code>TrustManagerFactory</code> 都已经加到 <code>SSLContext</code> 里面了。</p>
 <p>如果是用 <code>HttpsURLConnection</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">connection.setSSLSocketFactory(sslContext.getSocketFactory());</div></pre></td></tr></table></figure>
 <p>如果是用 <code>OkHttp</code></p>
@@ -960,7 +955,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-TLS-SSL"><span class="nav-text">关于 TLS/SSL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-安全性"><span class="nav-text">Https 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#窃听-嗅探"><span class="nav-text">窃听/嗅探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息篡改"><span class="nav-text">消息篡改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间人攻击"><span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-错误签发"><span class="nav-text">CA 错误签发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CA-安全性"><span class="nav-text">CA 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全保存-CA及证书验证"><span class="nav-text">安全保存 CA及证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书链"><span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书验证"><span class="nav-text">证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自签名证书如何验证"><span class="nav-text">自签名证书如何验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向验证"><span class="nav-text">双向验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-握手"><span class="nav-text">Https 握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-text">Q&amp;A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书工具-keytool"><span class="nav-text">证书工具-keytool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-https-服务"><span class="nav-text">搭建 https 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-进行-Https-访问"><span class="nav-text">Android 进行 Https 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSLContext"><span class="nav-text">SSLContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TrustManagerFactory"><span class="nav-text">TrustManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyManagerFactory"><span class="nav-text">KeyManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-Connection"><span class="nav-text">Init Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HostnameVerifier"><span class="nav-text">HostnameVerifier</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巨人的肩膀"><span class="nav-text">巨人的肩膀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注脚"><span class="nav-text">注脚</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TLS-SSL"><span class="nav-text">TLS/SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-安全性"><span class="nav-text">Https 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#窃听-嗅探"><span class="nav-text">窃听/嗅探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息篡改"><span class="nav-text">消息篡改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间人攻击"><span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-错误签发"><span class="nav-text">CA 错误签发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CA-安全性"><span class="nav-text">CA 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全保存-CA"><span class="nav-text">安全保存 CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书链"><span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书验证"><span class="nav-text">证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自签名证书如何验证"><span class="nav-text">自签名证书如何验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向验证"><span class="nav-text">双向验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-握手"><span class="nav-text">Https 握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题记录"><span class="nav-text">问题记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书工具-keytool"><span class="nav-text">证书工具-keytool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-https-服务"><span class="nav-text">搭建 https 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-进行-Https-访问"><span class="nav-text">Android 进行 Https 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSLContext"><span class="nav-text">SSLContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TrustManagerFactory"><span class="nav-text">TrustManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyManagerFactory"><span class="nav-text">KeyManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-Connection"><span class="nav-text">Init Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HostnameVerifier"><span class="nav-text">HostnameVerifier</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巨人的肩膀"><span class="nav-text">巨人的肩膀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注脚"><span class="nav-text">注脚</span></a></li></ol></div>
             
 
           </div>

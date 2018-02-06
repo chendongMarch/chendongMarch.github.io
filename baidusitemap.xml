@@ -4,6 +4,47 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/882ae1dd/</loc>
+    <lastmod>2018-02-06T02:59:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>Https 详解 [网络]</title>
+        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
+        
+        <tag>NetWork</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/e73f8f32/</loc>
+    <lastmod>2018-02-06T01:32:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>从 Retrofit 看动态代理 [设计模式]</title>
+        <pubTime>2018-01-29T02:58:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://cdevlab.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://cdevlab.top/article/d8c55445/</loc>
     <lastmod>2018-02-03T04:18:01.000Z</lastmod>
     <data>
@@ -102,46 +143,6 @@
           
              
               <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/882ae1dd/</loc>
-    <lastmod>2018-02-01T10:18:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>Https 详解 [网络]</title>
-        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
-        
-        <tag>NetWork</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/e73f8f32/</loc>
-    <lastmod>2018-02-01T09:55:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>从 Retrofit 看动态代理 [设计模式]</title>
-        <pubTime>2018-01-29T02:58:00.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://cdevlab.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
           
         </display>
     </data>
@@ -2341,7 +2342,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/null/</loc>
+    <loc>http://cdevlab.top/article/Infinity/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
@@ -2793,7 +2794,6 @@
     </data>
     </url>
 
-    
     
     
     
