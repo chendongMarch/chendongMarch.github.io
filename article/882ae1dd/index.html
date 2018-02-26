@@ -92,7 +92,7 @@
 <meta property="og:description" content="超文本传输安全协议（HTTPS，常称为 HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/17-12-15/66994550.jpg">
-<meta property="og:updated_time" content="2018-02-06T02:59:37.000Z">
+<meta property="og:updated_time" content="2018-02-08T01:45:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Https 详解 [网络]">
 <meta name="twitter:description" content="超文本传输安全协议（HTTPS，常称为 HTTP over TLS/SSL）是一种通过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。">
@@ -304,6 +304,16 @@ var _hmt = _hmt || [];
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -469,6 +479,7 @@ var _hmt = _hmt || [];
 
       
         <p>超文本传输安全协议（<code>HTTPS</code>，常称为 <code>HTTP over TLS/SSL</code>）是一种通过计算机网络进行安全通信的传输协议。<code>HTTPS</code> 经由 <code>HTTP</code> 进行通信，但利用 <code>SSL/TLS</code> 来加密数据包。<code>HTTPS</code> 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。</p>
+<p><a href="https://juejin.im/post/5a79389e6fb9a06358655b37" rel="external nofollow noopener noreferrer" target="_blank"><img src="https://badge.juejin.im/entry/5a793902f265da4e9311611f/likes.svg?style=flat-square" alt=""></a></p>
 <a id="more"></a>
 <p>本文主要介绍  ：</p>
 <ul>
@@ -687,7 +698,9 @@ var _hmt = _hmt || [];
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这个方法已经过时了</span></div><div class="line">okHttpClientBuilder.sslSocketFactory(sslContext.getSocketFactory());</div><div class="line"></div><div class="line"><span class="comment">// 新的方法需要一个 X509TrustManager，那我们就从 TrustManagerFactory 取出来给他</span></div><div class="line">TrustManagerFactory trustManagerFactory = getTrustManagerFactory(serverCertInputStreams);</div><div class="line">KeyManagerFactory keyManagerFactory = getKeyManagerFactory(clientCertInputStream, passWd);</div><div class="line"><span class="keyword">if</span> (trustManagerFactory != <span class="keyword">null</span>) &#123;</div><div class="line">    X509TrustManager x509TrustManager = (X509TrustManager) trustManagerFactory.getTrustManagers()[<span class="number">0</span>];</div><div class="line">    SSLContext sslContext = getSSLContext(keyManagerFactory, trustManagerFactory);</div><div class="line">    <span class="keyword">if</span> (x509TrustManager != <span class="keyword">null</span> &amp;&amp; sslContext != <span class="keyword">null</span>) &#123;</div><div class="line">        okHttpClientBuilder.sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="HostnameVerifier"><a href="#HostnameVerifier" class="headerlink" title="HostnameVerifier"></a>HostnameVerifier</h3><p>另外 <code>HostnameVerifier</code> 也是必要的，这个 <code>HttpsURLConnection</code> 和 <code>OkHttp</code> 没啥差别</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">connection.setHostnameVerifier(<span class="keyword">new</span> HostnameVerifier() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">verify</span><span class="params">(String hostname, SSLSession session)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">okHttpClientBuilder.hostnameVerifier(<span class="keyword">new</span> HostnameVerifier() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">verify</span><span class="params">(String hostname, SSLSession session)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="巨人的肩膀"><a href="#巨人的肩膀" class="headerlink" title="巨人的肩膀"></a>巨人的肩膀</h2><p><a href="http://blog.csdn.net/tennysonsky/article/details/44562435" rel="external nofollow noopener noreferrer" target="_blank">CSDN 如何理解HTTP协议的 “无连接，无状态” 特点？</a></p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="https://cloud.tencent.com/developer/article/1005073" rel="external nofollow noopener noreferrer" target="_blank">腾讯云-HTTPS 原理浅析及其在 Android 中的使用</a></p>
+<p><a href="http://www.cnblogs.com/alisecurity/p/5939336.html" rel="external nofollow noopener noreferrer" target="_blank">阿里移动安全</a></p>
+<p><a href="http://blog.csdn.net/tennysonsky/article/details/44562435" rel="external nofollow noopener noreferrer" target="_blank">CSDN 如何理解HTTP协议的 “无连接，无状态” 特点？</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/31880655" rel="external nofollow noopener noreferrer" target="_blank">知乎 一个故事让你彻底理解 Https</a></p>
 <p><a href="http://www.jianshu.com/p/b894a7e1c779" rel="external nofollow noopener noreferrer" target="_blank">简书 HTTPS 是如何保证安全的？</a></p>
 <p><a href="http://dieyidezui.com/talk-about-android-https/" rel="external nofollow noopener noreferrer" target="_blank">个人博客-饿了么Android-聊聊 Android HTTPS 的使用姿势</a></p>
@@ -712,6 +725,9 @@ var _hmt = _hmt || [];
 <li><p>HTTP Public Key Pinning 技术 <a href="https://imququ.com/post/http-public-key-pinning.html" rel="external nofollow noopener noreferrer" target="_blank">HPKP 介绍</a></p>
 </li>
 </ol>
+<blockquote>
+<p>本文首发于我的博客 <a href="http://cdevlab.top/">cdevlab.top</a></p>
+</blockquote>
 
       
     </div>
@@ -861,7 +877,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">126</span>
+                <span class="site-state-item-count">128</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -883,7 +899,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -955,7 +971,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TLS-SSL"><span class="nav-text">TLS/SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-安全性"><span class="nav-text">Https 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#窃听-嗅探"><span class="nav-text">窃听/嗅探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息篡改"><span class="nav-text">消息篡改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间人攻击"><span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-错误签发"><span class="nav-text">CA 错误签发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CA-安全性"><span class="nav-text">CA 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全保存-CA"><span class="nav-text">安全保存 CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书链"><span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书验证"><span class="nav-text">证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自签名证书如何验证"><span class="nav-text">自签名证书如何验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向验证"><span class="nav-text">双向验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-握手"><span class="nav-text">Https 握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题记录"><span class="nav-text">问题记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书工具-keytool"><span class="nav-text">证书工具-keytool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-https-服务"><span class="nav-text">搭建 https 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-进行-Https-访问"><span class="nav-text">Android 进行 Https 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSLContext"><span class="nav-text">SSLContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TrustManagerFactory"><span class="nav-text">TrustManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyManagerFactory"><span class="nav-text">KeyManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-Connection"><span class="nav-text">Init Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HostnameVerifier"><span class="nav-text">HostnameVerifier</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巨人的肩膀"><span class="nav-text">巨人的肩膀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注脚"><span class="nav-text">注脚</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TLS-SSL"><span class="nav-text">TLS/SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-安全性"><span class="nav-text">Https 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#窃听-嗅探"><span class="nav-text">窃听/嗅探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息篡改"><span class="nav-text">消息篡改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间人攻击"><span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA-错误签发"><span class="nav-text">CA 错误签发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CA-安全性"><span class="nav-text">CA 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全保存-CA"><span class="nav-text">安全保存 CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书链"><span class="nav-text">证书链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书验证"><span class="nav-text">证书验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自签名证书如何验证"><span class="nav-text">自签名证书如何验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向验证"><span class="nav-text">双向验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Https-握手"><span class="nav-text">Https 握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题记录"><span class="nav-text">问题记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书工具-keytool"><span class="nav-text">证书工具-keytool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-https-服务"><span class="nav-text">搭建 https 服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-进行-Https-访问"><span class="nav-text">Android 进行 Https 访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSLContext"><span class="nav-text">SSLContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TrustManagerFactory"><span class="nav-text">TrustManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyManagerFactory"><span class="nav-text">KeyManagerFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Init-Connection"><span class="nav-text">Init Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HostnameVerifier"><span class="nav-text">HostnameVerifier</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注脚"><span class="nav-text">注脚</span></a></li></ol></div>
             
 
           </div>

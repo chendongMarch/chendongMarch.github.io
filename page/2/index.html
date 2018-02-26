@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="生命不息，奋斗不止。">
+<meta name="description" content="Blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="三月">
 <meta property="og:url" content="http://cdevlab.top/page/2/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="生命不息，奋斗不止。">
+<meta property="og:description" content="Blog">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三月">
-<meta name="twitter:description" content="生命不息，奋斗不止。">
+<meta name="twitter:description" content="Blog">
 
 
 
@@ -165,7 +165,7 @@
 
 
 
-  <title> 三月 - 生命不息，奋斗不止。 </title>
+  <title> 三月 - Blog </title>
   <style>
     .forkme{
       display: none;
@@ -302,6 +302,16 @@ var _hmt = _hmt || [];
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -355,6 +365,8 @@ var _hmt = _hmt || [];
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+	      
     
 	      
 	      	
@@ -1410,155 +1422,6 @@ var _hmt = _hmt || [];
 
 	      
     
-	      
-	      	
-
-  
-
-  
-  
-  
-  
-    
-  
-  
-  
-
-  <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/75caba4c/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/75caba4c/" itemprop="url">Kotlin开发-15-操作符重载</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T08:51:00+08:00">
-                2017-08-26
-              </time>
-              
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">Kotlin</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-
-          
-
-
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-
-      
-        
-          <p>在 <code>Kotlin</code> 中允许对操作符进行重载，并提供了简单友好的方式来支持这个特性，这样的好处就是我们可以对一些原本不支持操作符的类型使用操作符，简化代码，举个例子，<code>Kotlin</code> 中的集合类型是支持操作符的，而 <code>Java</code> 中不支持，对比一下使用和不使用操作符对集合增减元素的操作。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用操作符</span></div><div class="line"><span class="keyword">val</span> a = list + <span class="string">"1"</span></div><div class="line"><span class="keyword">val</span> b = list + destList</div><div class="line"><span class="keyword">val</span> c = list - <span class="string">"2"</span></div><div class="line"><span class="keyword">val</span> d = list - destList</div><div class="line"></div><div class="line"><span class="comment">// 不使用操作符</span></div><div class="line"><span class="keyword">val</span> e = list.add(<span class="string">"1"</span>)</div><div class="line"><span class="keyword">val</span> f = list.addAll(destList)</div><div class="line"><span class="keyword">val</span> g = list.remove(<span class="string">"2"</span>)</div><div class="line"><span class="keyword">val</span> h = list.removeAll(destList)</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/75caba4c/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    <div>
-  
-    </div>
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-	      
-    
   </section>
 
   
@@ -1606,7 +1469,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">126</span>
+                <span class="site-state-item-count">128</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1628,7 +1491,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

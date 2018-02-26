@@ -83,18 +83,20 @@
 
 
 
-<meta name="description" content="LightAdapter 希望能够实现一个轻量级的、更容易使用和理解的RecyclerView Adapter 类库，吸取别人的长处，不断完善中。 基本的数据加载与绑定由 LightAdapter 来实现，更多增强功能由多个模块 Module 分工合作完成，现在具有以下模块">
+<meta name="description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter   基于注解实现基本的数据适配功能。 预加载，支持顶部、底部预加载更多数据。 Header &amp;amp; Foote">
 <meta name="keywords" content="Android,RecyclerView,Adapter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RecyclerView Light Adapter [开源]">
 <meta property="og:url" content="http://cdevlab.top/article/1632666977/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="LightAdapter 希望能够实现一个轻量级的、更容易使用和理解的RecyclerView Adapter 类库，吸取别人的长处，不断完善中。 基本的数据加载与绑定由 LightAdapter 来实现，更多增强功能由多个模块 Module 分工合作完成，现在具有以下模块">
+<meta property="og:description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter   基于注解实现基本的数据适配功能。 预加载，支持顶部、底部预加载更多数据。 Header &amp;amp; Foote">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-01T03:08:39.000Z">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-6/27323356.jpg">
+<meta property="og:updated_time" content="2018-02-26T16:42:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RecyclerView Light Adapter [开源]">
-<meta name="twitter:description" content="LightAdapter 希望能够实现一个轻量级的、更容易使用和理解的RecyclerView Adapter 类库，吸取别人的长处，不断完善中。 基本的数据加载与绑定由 LightAdapter 来实现，更多增强功能由多个模块 Module 分工合作完成，现在具有以下模块">
+<meta name="twitter:description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter   基于注解实现基本的数据适配功能。 预加载，支持顶部、底部预加载更多数据。 Header &amp;amp; Foote">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-6/27323356.jpg">
 
 
 
@@ -302,6 +304,16 @@ var _hmt = _hmt || [];
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -399,6 +411,8 @@ var _hmt = _hmt || [];
                 2017-06-19
               </time>
               
+                于杭州
+              
             
 
             
@@ -451,23 +465,137 @@ var _hmt = _hmt || [];
     <div class="post-body" itemprop="articleBody">
 
       
+        <div class="gellery-wrap" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+                <img src="http://olx4t2q6z.bkt.clouddn.com/18-2-6/27323356.jpg" itemprop="contentUrl">
+            
+          
+          
+          </div>
+        </div>
+      
 
       
-        <p><code>LightAdapter</code> 希望能够实现一个轻量级的、更容易使用和理解的<code>RecyclerView Adapter</code> 类库，吸取别人的长处，不断完善中。</p>
-<p>基本的数据加载与绑定由 <code>LightAdapter</code> 来实现，更多增强功能由多个模块 <code>Module</code> 分工合作完成，现在具有以下模块<br><a id="more"></a></p>
-<ol>
-<li><p><code>HFModule</code>，实现为 <code>RecyclerView</code> 添加 <code>Header</code> 和 <code>Footer</code> 的功能，可以动态的显示和移除 <code>Header</code> 和 <code>Footer</code>。</p>
-</li>
-<li><p><code>LoadMoreModule</code>，实现到达列表底部自动触发监听加载更多数据。</p>
-</li>
-<li><p><code>TopLoadMoreModule</code>，实现到达列表顶部自动触发监听加载更多数据。</p>
-</li>
-<li><p><code>SelectorModule</code>，实现选择器功能，辅助简化列表单选和多选操作和数据更新和存储。</p>
-</li>
-<li><p><code>UpdateModule</code>，实现包装数据更新功能，在主线程更新数据，并提供更多更新数据的方法。</p>
-</li>
-</ol>
-<!--more-->
+        <p><code>LightAdapter</code> 的设计初衷是能够快速、简单的完成 <code>RecyclerView</code> 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。</p>
+<p>随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。</p>
+<p><a href="https://github.com/chendongMarch/LightAdapter" rel="external nofollow noopener noreferrer" target="_blank">GitHub - LightAdapter</a></p>
+<blockquote>
+<ul>
+<li>基于注解实现基本的数据适配功能。</li>
+<li>预加载，支持顶部、底部预加载更多数据。</li>
+<li><code>Header &amp; Footer</code>，为列表添加 头部 和 尾部。</li>
+<li>单击、双击、长按事件支持。</li>
+<li>自动 <code>UI</code> 线程更新数据，避免数据更新问题。</li>
+<li>选择器功能扩展，主要针对点击选中这种场景。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="设计分析"><a href="#设计分析" class="headerlink" title="设计分析"></a>设计分析</h2><p>在类库功能变的越来越丰富的同时，涉及的配置也越来越多，也因此造成了大量的功能堆积在 <code>Adaper</code> 里面，不容易维护也不利于扩展，因此对类库进行了重构，按照功能划分了多个模块，每个模块负责完全独立的功能，这样 <code>Adapter</code> 仅完成数据的加载和绑定，各部分扩展的功能由子模块完成，逻辑更清晰，当有新的功能加入时，只需要增加一个模块，更利于扩展。</p>
+<p>目前有以下几个模块：</p>
+<ul>
+<li><code>FullSpanModule</code>，负责处理跨越整行的布局类型。</li>
+<li><code>HFModule</code>，<code>Header&amp;Footer</code> 模块，负责添加 头尾布局。</li>
+<li><code>LoadMoreModule</code>，底部预加载更多模块，负责列表到达底部时触发预加载。</li>
+<li><code>TopLoadMoreModule</code>，顶部加载更多模块，负责列表到达顶部时触发预加载。</li>
+<li><code>UpdateModule</code>，数据更新模块，负责将数据更新操作发布到 <code>UI</code> 线程，同时对数据更新的方法做扩展。</li>
+</ul>
+<p>功能模块化以后，整个类库的架构就更清晰了，不过与此同时也带来了另一个问题，就是模块过多，加大了使用难度，使用者需要关注所有的模块，为了避免这样情况，采用了注解来进行配置操作，类库内部解析注解自动添加适当的模块进去，这样一来使用者就不需要关注这些模块具体的功能，既做到了功能分离也对使用者足够友好。</p>
+<p>目前有以下注解进行配置：</p>
+<ul>
+<li><code>AdapterLayout</code>，负责 <code>Adapter</code> 布局资源文件配置，支持单类型和多类型。</li>
+<li><code>Footer</code>，负责 <code>Footer</code> 布局文件的配置。</li>
+<li><code>Header</code>，负责 <code>Header</code> 布局文件的配置。</li>
+<li><code>PreLoading</code>，负责顶部、底部预加载配置。</li>
+<li><code>FullSpan</code>，跨越整行的累心配置。</li>
+</ul>
+<h2 id="重要"><a href="#重要" class="headerlink" title="重要"></a>重要</h2><p>适配器的配置使用注解来完成，但是由于 <code>Library Module</code> 中资源 ID 无法作为注解的参数，所以为每个注解也在 <code>LightAdapter</code> 提供了具有相同功能的方法对应，当无法使用注解时，可以使用这些方法，建议优先使用注解。</p>
+<p>当声明好 <code>Adapter</code> 后，务必需要调用如下方法，一方面需要触发解析注解中的配置，另一方面也是为了把设置 <code>LayoutManager</code> 变成强制性的，因为总是会忘记:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 务必需要调用该方法 </div><div class="line"> * <span class="doctag">@param</span> targetHost Adapter 对象所在的类</div><div class="line"> * <span class="doctag">@param</span> recyclerView RecyclerView</div><div class="line"> * <span class="doctag">@param</span> layoutManager 对应 LayoutManager</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">(Object targetHost, RecyclerView recyclerView, RecyclerView.LayoutManager layoutManager)</span> </span></div><div class="line"></div><div class="line"><span class="comment">// 🌰:</span></div><div class="line">mAdapter.<span class="title">bind</span><span class="params">(MainActivty.<span class="keyword">this</span>, mRecyclerView, mLayoutManager)</span></div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">注解</th>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Layout</td>
+<td style="text-align:left">@AdapterLayout</td>
+<td style="text-align:left">addType(int type,int layoutId)</td>
+<td style="text-align:left">为适配器添加布局文件资源</td>
+</tr>
+<tr>
+<td style="text-align:left">Header</td>
+<td style="text-align:left">@Header</td>
+<td style="text-align:left">configHeaderFooter(int headerLyId,int footerLyId)</td>
+<td style="text-align:left">添加头部布局资源</td>
+</tr>
+<tr>
+<td style="text-align:left">Footer</td>
+<td style="text-align:left">@Footer</td>
+<td style="text-align:left">configHeaderFooter(int headerLyId,int footerLyId)</td>
+<td style="text-align:left">添加尾部布局资源</td>
+</tr>
+<tr>
+<td style="text-align:left">预加载</td>
+<td style="text-align:left">@PreLoading</td>
+<td style="text-align:left">configPreLoading(int top,int bottom)</td>
+<td style="text-align:left">预加载</td>
+</tr>
+<tr>
+<td style="text-align:left">FullSpan</td>
+<td style="text-align:left">@FullSpan</td>
+<td style="text-align:left">configFullSpan(int… types)</td>
+<td style="text-align:left">跨越整行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据适配"><a href="#数据适配" class="headerlink" title="数据适配"></a>数据适配</h2><p>进行数据适配时，需要一个布局文件的资源文件，使用注解 <code>@AdapterLayout</code> 来配置，如一个简单的单类型适配器需要如下声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AdapterLayout</span>(R.layout.item_layout) </div><div class="line">LightAdapter&lt;GuideData&gt; mAdapter;</div></pre></td></tr></table></figure>
+<p>同样也支持多类型布局，下面类型 <code>TYPE_A</code> 对应布局文件 <code>R.layout.item_ly_a</code>，类型 <code>TYPE_B</code> 对应布局文件 <code>R.layout.item_ly_b</code>，两个数组长度需要相等：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AdapterLayout</span>(itemTypes = &#123;TYPE_A,TYPE_B&#125;,</div><div class="line">        itemLayoutIds = &#123;R.layout.item_ly_a,R.layout.item_ly_b&#125;) </div><div class="line">LightAdapter&lt;GuideData&gt; mAdapter;</div></pre></td></tr></table></figure>
+<p>之后就可以创建 <code>Adapter</code>，进行数据绑定：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mAdapter = <span class="keyword">new</span> LightAdapter&lt;GuideData&gt;(mContext,mGuideDatas) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(LightHolder holder, GuideData data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">    	<span class="comment">// 数据绑定</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>不使用注解的实现方式，建议首选注解进行配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 单类型</span></div><div class="line">mAdapter = <span class="keyword">new</span> LightAdapter&lt;GuideData&gt;(mContext, mGuideDatas, R.layout.item_layout) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(LightHolder holder, GuideData data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">        <span class="comment">// 数据绑定</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 多类型</span></div><div class="line">mAdapter = <span class="keyword">new</span> LightAdapter&lt;GuideData&gt;(mContext, mGuideDatas) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(LightHolder holder, GuideData data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">        <span class="comment">// 数据绑定</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">mAdapter.addType(TYPE_A, R.layout.item_ly_a)</div><div class="line">        .addType(TYPE_B, R.layout.item_ly_b);</div></pre></td></tr></table></figure>
+<h2 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h2><h3 id="Header-amp-Footer"><a href="#Header-amp-Footer" class="headerlink" title="Header &amp; Footer"></a>Header &amp; Footer</h3><p>为布局添加头尾，使用 <code>@Header</code> 和 <code>@Footer</code> 注解来完成</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Header</span>(R.layout.headerly)</div><div class="line"><span class="meta">@Footer</span>(R.layout.footerly)</div><div class="line"><span class="meta">@AdapterLayout</span>(R.layout.item)</div><div class="line"><span class="keyword">private</span> LightAdapter&lt;HFData&gt; mAdapter;</div></pre></td></tr></table></figure>
+<p>对应的不使用注解的方法是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configHeaderFooter</span><span class="params">(<span class="keyword">int</span> headerLayoutId, <span class="keyword">int</span> footerLayoutId)</span></span></div></pre></td></tr></table></figure>
+<p>对头尾数据进行绑定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mAdapter = <span class="keyword">new</span> LightAdapter&lt;GuideData&gt;(mContext, mGuideDatas) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindHeaderView</span><span class="params">(LightHolder holder)</span> </span>&#123;</div><div class="line">    	<span class="comment">// 绑定 header 数据</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindFooterView</span><span class="params">(LightHolder holder)</span> </span>&#123;</div><div class="line">    	<span class="comment">// 绑定 footer 数据</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="PreLoading"><a href="#PreLoading" class="headerlink" title="PreLoading"></a>PreLoading</h3><p>预加载更多功能需要指定提前几项触发预加载，比如当距离到达列表底部还差 <code>3</code> 个 <code>item</code> 时触发预加载。使用 <code>@PreLoading</code> 进行配置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AdapterLayout</span>(R.layout.load_more_item)</div><div class="line"><span class="meta">@PreLoading</span>(top = <span class="number">2</span>, bottom = <span class="number">2</span>)</div><div class="line"><span class="keyword">private</span> LightAdapter&lt;LoadMoreModel&gt; mAdapter;</div></pre></td></tr></table></figure>
+<p>对应的不使用注解的方法是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configPreLoading</span><span class="params">(<span class="keyword">int</span> top, <span class="keyword">int</span> bottom)</span></span></div></pre></td></tr></table></figure>
+<p>预加载更多触发时的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mAdapter = <span class="keyword">new</span> LightAdapter&lt;GuideData&gt;(mContext, mGuideDatas) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTopLoadMore</span><span class="params">()</span> </span>&#123;</div><div class="line">    	<span class="comment">// 顶部加载更多</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBottomLoadMore</span><span class="params">()</span> </span>&#123;</div><div class="line">    	<span class="comment">// 底部加载更多</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="FullSpan"><a href="#FullSpan" class="headerlink" title="FullSpan"></a>FullSpan</h3><p>当使用 <code>GridLayoutManager</code> 布局时，通常会有需求某种类型的数据作为标题内容出现，他需要跨越整行，实现类似隔断的效果，使用 <code>@FullSpan</code> 注解来配置。</p>
+<p>下面的示例中，<code>TYPE_OK</code> 类型回跨越整行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@AdapterLayout</span>(</div><div class="line">        itemTypes = &#123;TypeModel.TYPE_OK, TypeModel.TYPE_NO&#125;,</div><div class="line">        itemLayoutIds = &#123;R.layout.layout_ok, R.layout.layout_no&#125;)</div><div class="line"><span class="meta">@FullSpan</span>(TypeModel.TYPE_OK)</div><div class="line"><span class="keyword">private</span> LightAdapter&lt;TypeModel&gt; mAdapter;</div></pre></td></tr></table></figure>
+<p>对应的不使用注解的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configFullSpan</span><span class="params">(<span class="keyword">int</span>... fullSpanTypes)</span></span></div></pre></td></tr></table></figure>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>用于更新数据，不需要注解支持，特点是对数据更新的方法进行了扩展，同时所有的数据更新都会到 <code>UI</code> 线程执行，不需要再为了更新适配器去切换线程啦。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 支持原来的更新方法，不过被切换到了 UI 线程</span></div><div class="line">mAdapter.update().notifyDataSetChanged();</div><div class="line">mAdapter.update().notifyItemChanged(<span class="number">0</span>);</div><div class="line">mAdapter.update().notifyItemInserted(<span class="number">0</span>);</div><div class="line">mAdapter.update().notifyItemRangeChanged(<span class="number">0</span>,<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="comment">//////////////////////////////  -- 扩展的新方法 --  //////////////////////////////</span></div><div class="line"><span class="comment">// 清空数据</span></div><div class="line">mAdapter.update().clear();</div><div class="line"><span class="comment">// 改变某一个数据</span></div><div class="line">mAdapter.update().set(<span class="number">100</span>,<span class="keyword">new</span> GuideData());</div><div class="line"><span class="comment">// 在头部添加数据，用于分页加载</span></div><div class="line">mAdapter.update().appendHeadList(mGuideDatas,<span class="keyword">true</span>);</div><div class="line"><span class="comment">// 在尾部添加数据，用于分页加载</span></div><div class="line">mAdapter.update().appendTailList(mGuideDatas,<span class="keyword">true</span>);</div></pre></td></tr></table></figure>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>支持  单击、双击、长按事件，设置简单且返回数据丰富。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mAdapter.setOnItemListener(<span class="keyword">new</span> SimpleItemListener&lt;GuideData&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(<span class="keyword">int</span> pos, LightHolder holder, GuideData data)</span> </span>&#123;</div><div class="line">        <span class="comment">// 单击事件</span></div><div class="line">    &#125;  </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLongPress</span><span class="params">(<span class="keyword">int</span> pos, LightHolder holder, GuideData data)</span> </span>&#123;</div><div class="line">        <span class="comment">// 长按事件</span></div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDoubleClick</span><span class="params">(<span class="keyword">int</span> pos, LightHolder holder, GuideData data)</span> </span>&#123;</div><div class="line">        <span class="comment">// 双击事件</span></div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSupportDoubleClick</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// 是否支持双击，默认不支持</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.isSupportDoubleClick();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isClickable</span><span class="params">(GuideData data)</span> </span>&#123;</div><div class="line">        <span class="comment">// 该类型数据是否支持事件，默认支持</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.isClickable(data);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><p>数据绑定主要基于简化过 <code>LightHolder</code>，里面内置了很多绑定数据的简单方法，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">mAdapter = <span class="keyword">new</span> LightAdapter&lt;GuideData&gt;(mContext, mGuideDatas) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindView</span><span class="params">(LightHolder holder, GuideData data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">        holder</div><div class="line">                <span class="comment">// 设置文本</span></div><div class="line">                .setText(R.id.test1, <span class="string">"test"</span>)</div><div class="line">                <span class="comment">// 对多个控件设置相同文字颜色</span></div><div class="line">                .setTextColor(Ids.all(R.id.test1, R.id.test2, R.id.test3), Color.RED)</div><div class="line">                <span class="comment">// 显示</span></div><div class="line">                .setVisible(R.id.test1, R.id.test2, R.id.test3)</div><div class="line">                <span class="comment">// 显示 || 隐藏</span></div><div class="line">                .setVisibleGone(R.id.test1, <span class="keyword">true</span>)</div><div class="line">                <span class="comment">// 点击事件</span></div><div class="line">                .setClick(R.id.test1, <span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                <span class="comment">// 长按事件</span></div><div class="line">                .setLongClick(R.id.test1, <span class="keyword">new</span> View.OnLongClickListener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onLongClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                <span class="comment">// 对最外层 view 设置 layout params</span></div><div class="line">                .setLayoutParams(<span class="number">100</span>, <span class="number">100</span>)</div><div class="line">                <span class="comment">// 对指定 view 设置 layout params</span></div><div class="line">                .setLayoutParams(R.id.test1, <span class="number">100</span>, <span class="number">100</span>)</div><div class="line">                <span class="comment">// 设置 checked</span></div><div class="line">                .setChecked(Ids.all(R.id.test1, R.id.test2),<span class="keyword">false</span>)</div><div class="line">                <span class="comment">// 自定义 callback，可以做任何事，主要为了保持链式代码风格</span></div><div class="line">                .setCallback(R.id.test1, <span class="keyword">new</span> LightHolder.Callback&lt;ImageView&gt;() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bind</span><span class="params">(LightHolder holder, ImageView view, <span class="keyword">int</span> pos)</span> </span>&#123;</div><div class="line">                        Glide.with(holder.getContext()).load(url).into(view);</div><div class="line">                    &#125;</div><div class="line">                &#125;)</div><div class="line">                <span class="comment">// 设置图片</span></div><div class="line">                .setImage(R.id.test1,R.mipmap.ic_launcher);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="SelectManager"><a href="#SelectManager" class="headerlink" title="SelectManager"></a>SelectManager</h2><p>牵扯到列表时通常会有单选、多选的功能，<code>LightAdapter</code> 中的 <code>SelectManager</code> 就是针对这种业务场景进行的简化封装，借助它可以更简单的实现选择器功能，同时还支持局部更新数据。</p>
+<p>支持单选 <code>SelectManager.TYPE_SINGLE</code> 和 多选 <code>SelectManager.TYPE_MULTI</code> 两种模式，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">mSelectManager = <span class="keyword">new</span> SelectManager&lt;&gt;(mAdapter, SelectManager.TYPE_SINGLE, <span class="keyword">new</span> AdapterViewBinder&lt;TypeModel&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(LightHolder holder, TypeModel data, <span class="keyword">int</span> pos, <span class="keyword">int</span> type)</span> </span>&#123;</div><div class="line">        <span class="comment">// 判断该数据是否被选中，然后进行不同的数据渲染</span></div><div class="line">        <span class="keyword">if</span> (!mSelectManager.isSelect(data)) &#123;</div><div class="line">            holder.setText(R.id.item_common_tv, <span class="string">"没选"</span> + data.index);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            holder.setText(R.id.item_common_tv, <span class="string">"选中"</span> + data.index);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>设置初始选中的项：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mSelectManager.initSelect(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</div></pre></td></tr></table></figure>
+<p>切换某一项的选中状态：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mAdapter.setOnItemListener(<span class="keyword">new</span> SimpleItemListener&lt;TypeModel&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(<span class="keyword">int</span> pos, LightHolder holder, TypeModel data)</span> </span>&#123;</div><div class="line">        mSelectManager.select(pos);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>获取选择的数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mSelectManager.getResult();</div><div class="line">mSelectManager.getResults();</div></pre></td></tr></table></figure>
+
       
     </div>
     <div>
@@ -595,8 +723,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -609,7 +746,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">126</span>
+                <span class="site-state-item-count">128</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -631,7 +768,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -693,6 +830,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计分析"><span class="nav-text">设计分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要"><span class="nav-text">重要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据适配"><span class="nav-text">数据适配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能模块"><span class="nav-text">功能模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Header-amp-Footer"><span class="nav-text">Header &amp; Footer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PreLoading"><span class="nav-text">PreLoading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FullSpan"><span class="nav-text">FullSpan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update"><span class="nav-text">Update</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-text">事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据绑定"><span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SelectManager"><span class="nav-text">SelectManager</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

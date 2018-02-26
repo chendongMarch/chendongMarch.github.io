@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="一篇相当全面的文档 docker.com docker 加速官网下载 docker 速度很慢，可以前往 daocloud.io 下载 docker，我下载的是 docker for mac，速度很快，但是版本比较老，安装后再 check for updates 升级到新版本，速度会快一些。 安装好之后，下载镜像速度也很慢，可以使用打开 Preference-&amp;gt;Daemon-&amp;gt;Regis">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-29T02:55:00.000Z">
+<meta property="og:updated_time" content="2018-02-08T08:36:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于 Docker 环境搭建 Jenkins">
 <meta name="twitter:description" content="一篇相当全面的文档 docker.com docker 加速官网下载 docker 速度很慢，可以前往 daocloud.io 下载 docker，我下载的是 docker for mac，速度很快，但是版本比较老，安装后再 check for updates 升级到新版本，速度会快一些。 安装好之后，下载镜像速度也很慢，可以使用打开 Preference-&amp;gt;Daemon-&amp;gt;Regis">
@@ -302,6 +302,16 @@ var _hmt = _hmt || [];
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -470,14 +480,15 @@ var _hmt = _hmt || [];
 <p>安装好之后，下载镜像速度也很慢，可以使用打开 <code>Preference-&gt;Daemon-&gt;Registry Mirrors</code> 添加如下镜像，然后 <code>apply&amp;restart</code> 就可以生效；</p>
 <p>可以使用 <code>docker info</code> 命令查看是否生效</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">http://b5886426.m.daocloud.io/</div><div class="line">https://docker.mirrors.ustc.edu.cn/</div></pre></td></tr></table></figure>
-<h2 id="docker-command"><a href="#docker-command" class="headerlink" title="docker command"></a>docker command</h2><p>docker pull jenkins:latest</p>
+<h2 id="docker-command"><a href="#docker-command" class="headerlink" title="docker command"></a>docker command</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull jenkins:latest</div></pre></td></tr></table></figure>
 <p>以普通用户运行 bash</p>
-<p>docker exec -it mycontainer bash</p>
-<p>以 root 用户运行 bash<br>docker exec -u 0 -it mycontainer bash</p>
-<p>运行 jenkins</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> -it mycontainer bash</div></pre></td></tr></table></figure>
+<p>以 root 用户运行 bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> -u 0 -it mycontainer bash</div></pre></td></tr></table></figure>
+<p>使用镜像创建一个容器</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker run -d --name jenkins-node -p 49002:8080 -v /Users/march/docker/jenkins-node:/var/jenkins_home jenkins-android</div></pre></td></tr></table></figure>
 <p>解释一下这条命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-d =&gt; debug 模式，后台运行，不会占用终端，终端关闭也不会停止服务</div><div class="line"></div><div class="line">--name jenkins_node =&gt; 别名，否则会是一个随机别名，别名可以用来管理该容器</div><div class="line"></div><div class="line">-p 49002:8080 =&gt; 端口映射，将 8080 映射到 49002，后面使用 localhost:49002 访问</div><div class="line"></div><div class="line">-v /Users/march/docker/jenkins_node:/var/jenkins_home =&gt; 文件挂载，将 /var/jenkins_home 挂载到指定目录，如果不挂载，则jenkins所有<span class="built_in">log</span>、用户配置文件都会在docker容器内，如果容器销毁，则jenkins得重新配置一遍。挂载出来方便jenkins迁移以及管理，/Users/march/docker/jenkins_node 是我的一个本地目录，在该目录下可以看到 jenkins 的相关文件，这个目录随意，注意权限问题。</div><div class="line"></div><div class="line">jenkins:latest =&gt; 镜像名称</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-d =&gt; debug 模式，后台运行，不会占用终端，终端关闭也不会停止服务</div><div class="line"></div><div class="line">--name jenkins-node =&gt; 别名，否则会是一个随机别名，别名可以用来管理该容器</div><div class="line"></div><div class="line">-p 49002:8080 =&gt; 端口映射，将 8080 映射到 49002，后面使用 localhost:49002 访问</div><div class="line"></div><div class="line">-v /Users/march/docker/jenkins_node:/var/jenkins_home =&gt; 文件挂载，将 /var/jenkins_home 挂载到指定目录，如果不挂载，则jenkins所有<span class="built_in">log</span>、用户配置文件都会在docker容器内，如果容器销毁，则jenkins得重新配置一遍。挂载出来方便jenkins迁移以及管理，/Users/march/docker/jenkins_node 是我的一个本地目录，在该目录下可以看到 jenkins 的相关文件，这个目录随意，注意权限问题。</div><div class="line"></div><div class="line">jenkins:latest =&gt; 镜像名称</div></pre></td></tr></table></figure>
 <h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><p>安装 sudo</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install sudo</div></pre></td></tr></table></figure>
 <p>安装 nodejs、npm</p>
@@ -637,7 +648,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">126</span>
+                <span class="site-state-item-count">128</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -659,7 +670,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
