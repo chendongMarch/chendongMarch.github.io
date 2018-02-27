@@ -83,19 +83,19 @@
 
 
 
-<meta name="description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter   基于注解实现基本的数据适配功能。 预加载，支持顶部、底部预加载更多数据。 Header &amp;amp; Foote">
+<meta name="description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter">
 <meta name="keywords" content="Android,RecyclerView,Adapter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RecyclerView Light Adapter [开源]">
 <meta property="og:url" content="http://cdevlab.top/article/1632666977/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter   基于注解实现基本的数据适配功能。 预加载，支持顶部、底部预加载更多数据。 Header &amp;amp; Foote">
+<meta property="og:description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-6/27323356.jpg">
-<meta property="og:updated_time" content="2018-02-26T16:42:10.000Z">
+<meta property="og:updated_time" content="2018-02-26T16:49:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RecyclerView Light Adapter [开源]">
-<meta name="twitter:description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter   基于注解实现基本的数据适配功能。 预加载，支持顶部、底部预加载更多数据。 Header &amp;amp; Foote">
+<meta name="twitter:description" content="LightAdapter 的设计初衷是能够快速、简单的完成 RecyclerView 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。 随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。 GitHub - LightAdapter">
 <meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-6/27323356.jpg">
 
 
@@ -481,6 +481,9 @@ var _hmt = _hmt || [];
         <p><code>LightAdapter</code> 的设计初衷是能够快速、简单的完成 <code>RecyclerView</code> 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。</p>
 <p>随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。</p>
 <p><a href="https://github.com/chendongMarch/LightAdapter" rel="external nofollow noopener noreferrer" target="_blank">GitHub - LightAdapter</a></p>
+<div style="width:100%;display: flex;height:30px;"><br><br><!--<img style="margin-right:20px;" src="https://badge.juejin.im/entry/5a793a405188257a82111092/likes.svg?style=flat-square"/>--><br><br><img style="margin-right:20px;" src="https://img.shields.io/github/stars/chendongMarch/LightAdapter.svg"><br><br><img style="margin-right:20px;" src="https://img.shields.io/github/forks/chendongMarch/LightAdapter.svg"><br><br></div>
+
+<a id="more"></a>
 <blockquote>
 <ul>
 <li>基于注解实现基本的数据适配功能。</li>
@@ -491,7 +494,6 @@ var _hmt = _hmt || [];
 <li>选择器功能扩展，主要针对点击选中这种场景。</li>
 </ul>
 </blockquote>
-<a id="more"></a>
 <h2 id="设计分析"><a href="#设计分析" class="headerlink" title="设计分析"></a>设计分析</h2><p>在类库功能变的越来越丰富的同时，涉及的配置也越来越多，也因此造成了大量的功能堆积在 <code>Adaper</code> 里面，不容易维护也不利于扩展，因此对类库进行了重构，按照功能划分了多个模块，每个模块负责完全独立的功能，这样 <code>Adapter</code> 仅完成数据的加载和绑定，各部分扩展的功能由子模块完成，逻辑更清晰，当有新的功能加入时，只需要增加一个模块，更利于扩展。</p>
 <p>目前有以下几个模块：</p>
 <ul>
