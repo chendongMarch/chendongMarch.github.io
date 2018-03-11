@@ -4,6 +4,86 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
+    <lastmod>2018-03-10T02:12:35.000Z</lastmod>
+    <data>
+        <display>
+        <title>My-Todo-List</title>
+        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/d1ceed0f/</loc>
+    <lastmod>2018-03-07T07:26:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 性能优化 - UI [进阶]</title>
+        <pubTime>2018-03-06T16:09:47.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/666476b4/</loc>
+    <lastmod>2018-03-07T05:59:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 性能优化 - 内存 [进阶]</title>
+        <pubTime>2018-03-05T16:09:39.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3067853428/</loc>
+    <lastmod>2018-03-01T05:48:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>快速接入 微信微博QQ钉钉 原生登录分享 [开源]</title>
+        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/1632666977/</loc>
     <lastmod>2018-02-26T16:49:00.000Z</lastmod>
     <data>
@@ -45,28 +125,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2018-02-12T02:23:31.000Z</lastmod>
-    <data>
-        <display>
-        <title>快速接入微信微博QQ钉钉原生登录分享 [开源]</title>
-        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>开源</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://cdevlab.top/article/41ed2d2f/</loc>
@@ -442,24 +500,6 @@
            
              
               <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
-    <lastmod>2018-01-16T01:40:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>My-Todo-List</title>
-        <pubTime>2017-10-19T06:15:31.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
           
         </display>
     </data>
@@ -2630,9 +2670,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
@@ -2657,9 +2697,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
