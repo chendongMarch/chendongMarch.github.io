@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/47636f69/</loc>
+    <lastmod>2018-03-30T07:55:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>Glide-平滑加载的图片框架 [源码]</title>
+        <pubTime>2018-03-21T01:58:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/666476b4/</loc>
+    <lastmod>2018-03-30T07:54:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 性能优化 - 内存 [进阶]</title>
+        <pubTime>2018-03-05T16:09:39.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/39cb08bb/</loc>
+    <lastmod>2018-03-27T01:23:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 开发问题汇总</title>
+        <pubTime>2018-02-02T02:50:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
     <lastmod>2018-03-10T02:12:35.000Z</lastmod>
     <data>
@@ -28,26 +90,6 @@
         <display>
         <title>Android 性能优化 - UI [进阶]</title>
         <pubTime>2018-03-06T16:09:47.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/666476b4/</loc>
-    <lastmod>2018-03-07T05:59:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android 性能优化 - 内存 [进阶]</title>
-        <pubTime>2018-03-05T16:09:39.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -94,26 +136,6 @@
         <tag>Android</tag>
          
         <tag>开源</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/39cb08bb/</loc>
-    <lastmod>2018-02-22T08:06:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android 开发问题汇总</title>
-        <pubTime>2018-02-02T02:50:00.000Z</pubTime>
-        
-        <tag>Android</tag>
          
          
            
@@ -2670,9 +2692,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
@@ -2697,9 +2719,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
