@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/f546dc07/</loc>
+    <lastmod>2018-04-02T01:28:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>借助 Vultr 科学上网</title>
+        <pubTime>2017-10-17T08:50:00.000Z</pubTime>
+        
+        <tag>Extensions</tag>
+         
+         
+           
+             
+              <breadCrumb title="科学上网" url="http://cdevlab.top/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/47636f69/</loc>
-    <lastmod>2018-03-30T07:55:05.000Z</lastmod>
+    <lastmod>2018-03-30T08:57:22.000Z</lastmod>
     <data>
         <display>
         <title>Glide-平滑加载的图片框架 [源码]</title>
@@ -247,28 +267,6 @@
            
              
               <breadCrumb title="bash" url="http://cdevlab.top/categories/bash/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/f546dc07/</loc>
-    <lastmod>2018-02-06T08:32:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用 digitalocean 科学上网</title>
-        <pubTime>2017-10-17T08:50:00.000Z</pubTime>
-        
-        <tag>Extensions</tag>
-         
-        <tag>digitalocean</tag>
-         
-         
-           
-             
-              <breadCrumb title="digitalocean" url="http://cdevlab.top/categories/digitalocean/"/>
           
         </display>
     </data>
@@ -2443,7 +2441,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/Infinity/</loc>
+    <loc>http://cdevlab.top/article/null/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
@@ -2692,9 +2690,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
@@ -2719,9 +2717,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            

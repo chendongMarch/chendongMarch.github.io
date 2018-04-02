@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-  <meta name="keywords" content="Extensions,digitalocean,">
+  <meta name="keywords" content="Extensions,">
 
 
 <script>
@@ -83,18 +83,24 @@
 
 
 
-<meta name="description" content="使用 digitalocean 科学上网">
-<meta name="keywords" content="Extensions,digitalocean">
+<meta name="description" content="作为一个开发人员，用惯了 Google 再回来用百度，特别难受，而且像  Android 的一些官方文档只能出去了才能看，为了能够流畅的访问 Google，一路走来尝试了很多不同的方式，也发现每个平台都各有利弊，最终选择了 Vultr.com，记录一下。  方案选择方案有很多，大致分为两种：  省事儿的，用人家做好的服务，只要交钱就好了，缺点是受制于人（动不动就涨价、还偶尔抽风不能用）。 费事儿的">
+<meta name="keywords" content="Extensions">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 digitalocean 科学上网">
+<meta property="og:title" content="借助 Vultr 科学上网">
 <meta property="og:url" content="http://cdevlab.top/article/f546dc07/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="使用 digitalocean 科学上网">
+<meta property="og:description" content="作为一个开发人员，用惯了 Google 再回来用百度，特别难受，而且像  Android 的一些官方文档只能出去了才能看，为了能够流畅的访问 Google，一路走来尝试了很多不同的方式，也发现每个平台都各有利弊，最终选择了 Vultr.com，记录一下。  方案选择方案有很多，大致分为两种：  省事儿的，用人家做好的服务，只要交钱就好了，缺点是受制于人（动不动就涨价、还偶尔抽风不能用）。 费事儿的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-06T08:32:25.000Z">
+<meta property="og:image" content="https://badge.juejin.im/entry/5ac1871ff265da239b41965e/likes.svg?style=flat-square">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-1/71773190.jpg">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-1/69553185.jpg">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-1/23342516.jpg">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-1/9332692.jpg">
+<meta property="og:updated_time" content="2018-04-02T01:28:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 digitalocean 科学上网">
-<meta name="twitter:description" content="使用 digitalocean 科学上网">
+<meta name="twitter:title" content="借助 Vultr 科学上网">
+<meta name="twitter:description" content="作为一个开发人员，用惯了 Google 再回来用百度，特别难受，而且像  Android 的一些官方文档只能出去了才能看，为了能够流畅的访问 Google，一路走来尝试了很多不同的方式，也发现每个平台都各有利弊，最终选择了 Vultr.com，记录一下。  方案选择方案有很多，大致分为两种：  省事儿的，用人家做好的服务，只要交钱就好了，缺点是受制于人（动不动就涨价、还偶尔抽风不能用）。 费事儿的">
+<meta name="twitter:image" content="https://badge.juejin.im/entry/5ac1871ff265da239b41965e/likes.svg?style=flat-square">
 
 
 
@@ -167,7 +173,7 @@
 
 
 
-  <title>使用 digitalocean 科学上网 | 三月</title>
+  <title>借助 Vultr 科学上网 | 三月</title>
   <style>
     .forkme{
       display: none;
@@ -395,7 +401,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">使用 digitalocean 科学上网</h2>
+          <h2 class="post-title" itemprop="name headline">借助 Vultr 科学上网</h2>
         
 
         <div class="post-meta">
@@ -427,8 +433,8 @@ var _hmt = _hmt || [];
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/digitalocean/" itemprop="url" rel="index">
-                    <span itemprop="name">digitalocean</span>
+                  <a href="/categories/科学上网/" itemprop="url" rel="index">
+                    <span itemprop="name">科学上网</span>
                   </a>
                 </span>
 
@@ -463,21 +469,82 @@ var _hmt = _hmt || [];
       
 
       
-        <p> 使用 digitalocean 科学上网</p>
- <a id="more"></a>
-<p>连接到服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh root@128.199.148.155</div></pre></td></tr></table></figure>
-<p>连接镜像</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -sSL https://agent.digitalocean.com/install.sh | sh</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">yum install python</div><div class="line"></div><div class="line">首先安装epel扩展源：</div><div class="line">yum -y install epel-release</div><div class="line"></div><div class="line">更新完成之后，就可安装pip：</div><div class="line">yum -y install python-pip</div><div class="line"></div><div class="line">安装完成之后清除cache：</div><div class="line">yum clean all</div><div class="line">　　</div><div class="line">升级 pip</div><div class="line">pip install --upgrade pip</div><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure>
-<p>启动／终止服务</p>
+        <p>作为一个开发人员，用惯了 <code>Google</code> 再回来用百度，特别难受，而且像  <code>Android</code> 的一些官方文档只能出去了才能看，为了能够流畅的访问 <code>Google</code>，一路走来尝试了很多不同的方式，也发现每个平台都各有利弊，最终选择了 <a href="https://www.vultr.com/?ref=7379956" rel="external nofollow noopener noreferrer" target="_blank">Vultr.com</a>，记录一下。</p>
+<p><a href="https://juejin.im/post/5ac186b26fb9a028e33b9729" rel="external nofollow noopener noreferrer" target="_blank"><img src="https://badge.juejin.im/entry/5ac1871ff265da239b41965e/likes.svg?style=flat-square" alt=""></a></p>
+<h2 id="方案选择"><a href="#方案选择" class="headerlink" title="方案选择"></a>方案选择</h2><p>方案有很多，大致分为两种：</p>
+<ul>
+<li>省事儿的，用人家做好的服务，只要交钱就好了，缺点是受制于人（动不动就涨价、还偶尔抽风不能用）。</li>
+<li>费事儿的，自己买服务器搭建 ss，适合开发人员，这个服务器还可以用来挂一些自己的小服务，也可以练习部署服务的一些基本操作。</li>
+</ul>
+<h3 id="第三方服务"><a href="#第三方服务" class="headerlink" title="第三方服务"></a>第三方服务</h3><ul>
+<li><code>Lattern</code> 是最开始使用的方法，有 <code>500M</code> 流量可以免费用，但是连接不稳定，网速又慢，好的时候只能浏览个网页。</li>
+<li><code>vpn.so</code> 这是一个三方的 <code>vpn</code> 网站，每年 <code>200RMB</code> 就可以获得一个节点，速度的话一般吧，好的时候可以看看视频，前段时间开会给封了，不知道最近好了没有。</li>
+</ul>
+<h3 id="自建-ss-服务"><a href="#自建-ss-服务" class="headerlink" title="自建 ss 服务"></a>自建 ss 服务</h3><p>通过服务器网站购买国外服务器，自建梯子，转发流量，这种方法相对复杂一些，不过购买后你获得的是一台服务器，你还可以利用这台服务器做很多事情。</p>
+<p>国内有阿里云和腾讯云等服务商，但是服务器的价格实在太贵了，所以我们会选择一些小众的服务器代理商。</p>
+<ul>
+<li><code>digitalocean</code> 是我最先使用的一个平台，它可以允许你透支大约20美元的样子，不过缺点是操作界面太卡，而且仅支持 <code>paypal</code> 支付。</li>
+<li><a href="https://www.vultr.com/?ref=7379956" rel="external nofollow noopener noreferrer" target="_blank">Vultr.com</a> 是我最近刚开始使用的，之前 <code>digitalocean</code> 透支之后就没有再继续使用了。</li>
+</ul>
+<h3 id="vultr-的优势"><a href="#vultr-的优势" class="headerlink" title="vultr 的优势"></a>vultr 的优势</h3><ul>
+<li>操作界面相对清新</li>
+<li>可以支持支付宝支付，不必绑定 paypal，对国内用户更友好</li>
+<li>服务器选择更多一些</li>
+<li>支持支付宝支付，对国内用户友好很多</li>
+<li>按小时计费，你不用了可以暂停掉，不用担心一直计费</li>
+</ul>
+<h2 id="充值"><a href="#充值" class="headerlink" title="充值"></a>充值</h2><p>Vultr.com 按小时计费，但是首先需要充值，最少 10 美元，支持支付宝。</p>
+<p><img src="http://olx4t2q6z.bkt.clouddn.com/18-4-1/71773190.jpg" alt="充值"></p>
+<h2 id="选择合适的服务"><a href="#选择合适的服务" class="headerlink" title="选择合适的服务"></a>选择合适的服务</h2><p>配置服务器共有 7 个选项，按照顺序配置好即可。</p>
+<p><img src="http://olx4t2q6z.bkt.clouddn.com/18-4-1/69553185.jpg" alt=""></p>
+<ul>
+<li><p>Server Location =&gt; 建议选择 Chicago 和 Los Angeles，速度会好一些</p>
+</li>
+<li><p>Server Type =&gt; CentOS 7 * 64</p>
+</li>
+<li><p>Server Size =&gt; $5 / mo</p>
+</li>
+<li><p>Startup Script =&gt; 删除原来的脚本，添加以下脚本进行工具的安装</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">yum install python</div><div class="line">yum -y install epel-release</div><div class="line">yum -y install python-pip</div><div class="line">yum clean all</div><div class="line">pip install --upgrade pip</div><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure>
+<ul>
+<li>SSH Keys =&gt; 配置 SSH</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">'your email'</span></div><div class="line"></div><div class="line"><span class="comment"># 然后获取  ~/.ssh/id_rsa.pub (mac) 里面的内容配置到相应位置</span></div><div class="line">cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
+<ul>
+<li>Server Hostname &amp; Label =&gt; 随便选一个你喜欢的</li>
+</ul>
+<p>点击 <code>Deploy Now</code> 即可创建一个服务。</p>
+<h2 id="管理服务器"><a href="#管理服务器" class="headerlink" title="管理服务器"></a>管理服务器</h2><p><img src="http://olx4t2q6z.bkt.clouddn.com/18-4-1/23342516.jpg" alt=""></p>
+<p>按照图中所示，点击查看 <code>IP</code> 地址和初始密码（随机字符串）</p>
+<p>在本地打开 terminal 执行 ssh 命令连接到远程服务，此时会要求你输入 <code>root</code> 用户的密码，按照上面查看到的输入即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssh root@128.199.148.155</div></pre></td></tr></table></figure>
+<p>连接之后使用下面的命令更改 <code>root</code> 密码，随机密码用起来太麻烦了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">passwd</div></pre></td></tr></table></figure>
+<h2 id="配置-SS"><a href="#配置-SS" class="headerlink" title="配置 SS"></a>配置 SS</h2><p>目前我们已经连接到了远程服务器上，由于开始我们配置服务器时使用了启动脚本，那么目前所有的工具应该都是已经安装好的，检查一下对应的命令，如果没有就重新安装一下。</p>
+<p>主要需要以下工具</p>
+<ul>
+<li>python =&gt; 一般自带，使用 python -V 检查</li>
+<li>pip =&gt; python 包管理工具</li>
+<li>ssserver =&gt; shadowsocks 服务</li>
+<li>vi、vim =&gt; 用于编辑配置文件</li>
+</ul>
+<p>以上命令找不到的话，使用以下命令安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装 python</span></div><div class="line">yum install python</div><div class="line"></div><div class="line"><span class="comment"># 安装 pip</span></div><div class="line"><span class="comment"># 首先安装epel扩展源：</span></div><div class="line">yum -y install epel-release</div><div class="line"><span class="comment"># 更新完成之后，就可安装pip：</span></div><div class="line">yum -y install python-pip</div><div class="line"><span class="comment"># 安装完成之后清除cache：</span></div><div class="line">yum clean all</div><div class="line"><span class="comment"># 升级 pip</span></div><div class="line">pip install --upgrade pip</div><div class="line"></div><div class="line"><span class="comment"># 安装 ssserver</span></div><div class="line">pip install shadowsocks</div><div class="line"></div><div class="line"><span class="comment"># 安装 vim</span></div><div class="line">rpm -qa|grep vim</div><div class="line">yum -y install vim-enhanced</div><div class="line">yum -y install vim-common</div></pre></td></tr></table></figure>
+<p>环境和工具安装好之后，新建并编辑 shadowsocks 配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">vi /etc/shdowsocks.json</div><div class="line"></div><div class="line"><span class="comment"># 输入 i, 进入 insert 模式，粘贴下面的内容</span></div><div class="line"></div><div class="line">&#123;</div><div class="line">	<span class="string">"server"</span>: <span class="string">"0.0.0.0"</span>,</div><div class="line">	<span class="string">"server_port"</span>: 8388,</div><div class="line">	<span class="string">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">	<span class="string">"local_port"</span>: 1080,</div><div class="line">	<span class="string">"password"</span>: <span class="string">"你的密码"</span>,</div><div class="line">	<span class="string">"timeout"</span>: 300,</div><div class="line">	<span class="string">"method"</span>: <span class="string">"aes-256-cfb"</span>,</div><div class="line">	<span class="string">"fast_open"</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>开启 <code>8388</code> 端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">firewall-cmd --zone=public --add-port=8388/tcp --permanent</div><div class="line">firewall-cmd --reload</div></pre></td></tr></table></figure>
+<p>启动／终止服务 ss 服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start</div><div class="line">ssserver -c /etc/shadowsocks.json -d stop</div></pre></td></tr></table></figure>
-<p>shadowsocks.json 配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">        <span class="string">"server"</span>: <span class="string">"0.0.0.0"</span>,</div><div class="line">        <span class="string">"server_port"</span>: 8388,</div><div class="line">        <span class="string">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">        <span class="string">"local_port"</span>: 1080,</div><div class="line">        <span class="string">"password"</span>: <span class="string">"********"</span>,</div><div class="line">        <span class="string">"timeout"</span>: 300,</div><div class="line">        <span class="string">"method"</span>: <span class="string">"aes-256-cfb"</span>,</div><div class="line">        <span class="string">"fast_open"</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>安装 bbr 加速</p>
+<h2 id="ShadowSocks"><a href="#ShadowSocks" class="headerlink" title="ShadowSocks"></a>ShadowSocks</h2><p>小飞机，代理软件，在 <code>Mac</code> 和 <code>Android</code> 都有对应的客户端，这里提供一个<a href="https://pan.baidu.com/s/1eNB2f7xRkgK4F_id44oYqw" rel="external nofollow noopener noreferrer" target="_blank">下载链接</a>，下载安装后，配置服务器</p>
+<p><img src="http://olx4t2q6z.bkt.clouddn.com/18-4-1/9332692.jpg" alt=""></p>
+<p>配置好服务后，访问一下 <a href="www.google.com">www.google.com</a>，尝试一下是否可以正常访问。</p>
+<h2 id="安装-bbr-加速"><a href="#安装-bbr-加速" class="headerlink" title="安装 bbr 加速"></a>安装 bbr 加速</h2><p>安装 <code>bbr</code> 加速，速度可以提升接近一倍左右。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget –no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</div><div class="line">chmod +x bbr.sh</div><div class="line">./bbr.sh</div></pre></td></tr></table></figure>
-<p>vim 找不到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rpm -qa|grep vim</div><div class="line">yum -y install vim-enhanced</div><div class="line">yum -y install vim-common</div></pre></td></tr></table></figure>
+<h2 id="综上"><a href="#综上" class="headerlink" title="综上"></a>综上</h2><p>就目前来看，自建 ss 的方案各个服务商的价格基本一致，大约都在 $5 / mo，不过 <a href="https://www.vultr.com/?ref=7379956" rel="external nofollow noopener noreferrer" target="_blank">Vultr.com</a> 可以按小时计费要相对合理一些。</p>
+<p>快去试试吧 =&gt; <a href="https://www.vultr.com/?ref=7379956" rel="external nofollow noopener noreferrer" target="_blank">Vultr.com</a>    </p>
 
       
     </div>
@@ -508,7 +575,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/f546dc07/" title="使用 digitalocean 科学上网">http://cdevlab.top/article/f546dc07/</a>
+      <a href="http://cdevlab.top/article/f546dc07/" title="借助 Vultr 科学上网">http://cdevlab.top/article/f546dc07/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -534,8 +601,6 @@ var _hmt = _hmt || [];
           
             <a href="/tags/Extensions/" rel="tag"># Extensions</a>
           
-            <a href="/tags/digitalocean/" rel="tag"># digitalocean</a>
-          
         </div>
       
 
@@ -557,8 +622,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/5a0eb6a0/" rel="prev" title="My-Todo-List">
-                My-Todo-List <i class="fa fa-chevron-right"></i>
+              <a href="/article/fa67563/" rel="prev" title="基于 Docker 环境搭建 Jenkins">
+                基于 Docker 环境搭建 Jenkins <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,8 +671,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
           <p class="site-author-name" itemprop="name">chendong</p>
@@ -631,7 +705,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -704,6 +778,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方案选择"><span class="nav-text">方案选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方服务"><span class="nav-text">第三方服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自建-ss-服务"><span class="nav-text">自建 ss 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vultr-的优势"><span class="nav-text">vultr 的优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#充值"><span class="nav-text">充值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择合适的服务"><span class="nav-text">选择合适的服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理服务器"><span class="nav-text">管理服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-SS"><span class="nav-text">配置 SS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ShadowSocks"><span class="nav-text">ShadowSocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-bbr-加速"><span class="nav-text">安装 bbr 加速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综上"><span class="nav-text">综上</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

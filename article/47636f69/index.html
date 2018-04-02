@@ -92,7 +92,7 @@
 <meta property="og:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView); 根据上面的代码，将内容分为以下几个章节：  Glide - 强大的顶层管理类 Glide.with() - 创建及缓存 RequestManager .load(url) - 创建 RequestBuilder .thumbn">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-3-21/70223294.jpg">
-<meta property="og:updated_time" content="2018-03-30T07:55:05.000Z">
+<meta property="og:updated_time" content="2018-03-30T08:57:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glide-平滑加载的图片框架 [源码]">
 <meta name="twitter:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView); 根据上面的代码，将内容分为以下几个章节：  Glide - 强大的顶层管理类 Glide.with() - 创建及缓存 RequestManager .load(url) - 创建 RequestBuilder .thumbn">
@@ -561,7 +561,31 @@ var _hmt = _hmt || [];
 <li>LruCache<key,resource> 缓存，在超出指定内存时，会进行清理</key,resource></li>
 <li>Map<key,weakref<resource>&gt; 虚引用做的缓存，正在使用的照片会被加入该缓存，除非系统内存不够了，尽量避免被回收</key,weakref<resource></li>
 <li>DiskLruCache 做的文件缓存</li>
-<li>Source 源资源，可能是文件，可能是网络图，他是最原始的目标文件</li>
+<li>Source 源，可能是文件，可能是网络图，他是最原始的目标文件</li>
+</ul>
+<p>DecodeCahceResult 从文件缓存中获取</p>
+<ul>
+<li>load(key) </li>
+<li>transcode</li>
+</ul>
+<p>DecodeCahceSource</p>
+<ul>
+<li>laod(key.origin)</li>
+<li>transform</li>
+<li>saveToResultCache</li>
+<li>transcode</li>
+</ul>
+<p>DecodeSource</p>
+<ul>
+<li>fetcher.loadData()</li>
+<li>decodeSource<ul>
+<li>source -&gt; saveData -&gt; put(key.origin)</li>
+<li>result -&gt; sourceDecoder.decode()</li>
+</ul>
+</li>
+<li>transform</li>
+<li>saveToResultCache</li>
+<li>transcode</li>
 </ul>
 <h2 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h2><p>前面提到了几种进行数据转换的类，这里汇总整理介绍，更直观的归纳一下这几种数据转化的作用和使用的时机。</p>
 <ul>
@@ -787,7 +811,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
