@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="汇总一些杂七杂八的点，不值得单独开一篇整理了。 主要内容包括  解构声明 生成数列的 Range 类型转换 异常处理等">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-24T15:56:25.000Z">
+<meta property="og:updated_time" content="2018-04-03T15:01:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin开发-14-杂七杂八(解构，类型自动转换，Range，异常)">
 <meta name="twitter:description" content="汇总一些杂七杂八的点，不值得单独开一篇整理了。 主要内容包括  解构声明 生成数列的 Range 类型转换 异常处理等">
@@ -489,7 +489,8 @@ var _hmt = _hmt || [];
 <p>返回一个 <code>Map.Entry&lt;K, V&gt;</code> 的集合，此时需要将 <code>Map.Entry</code> 的 <code>key</code> 和 <code>value</code> 进行解构声明。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;K, V&gt;</span> Map.Entry<span class="type">&lt;K, V&gt;</span>.<span class="title">component1</span><span class="params">()</span></span> = getKey()</div><div class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;K, V&gt;</span> Map.Entry<span class="type">&lt;K, V&gt;</span>.<span class="title">component2</span><span class="params">()</span></span> = getValue()</div></pre></td></tr></table></figure>
 <h2 id="Range-数列"><a href="#Range-数列" class="headerlink" title="Range 数列"></a>Range 数列</h2><p>可以使用 <code>..</code> 运算符生成一个数列，对于 <code>Char</code>，<code>Int</code>，<code>Long</code> 类型数列由  <code>CharProgression</code>，<code>IntProgression</code>，<code>LongProgression</code> 实现，而 <code>Float</code> 和 <code>Double</code> 类型由 <code>ClosedFloatingPointRange&lt;T&gt;</code> 实现，因此在支持性上有所不同。</p>
-<p>使用简单的 <code>..</code> 运算符生成 <code>IntRange</code> 对象.</p>
+<p>使用简单的 <code>..</code> 运算符生成 <code>IntRange</code> 对象</p>
+<p>使用运算符 <code>a..b</code> 生成的数列的范围是 <code>[a,b]</code></p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> range = <span class="number">1.</span><span class="number">.10</span></div></pre></td></tr></table></figure>
 <p>遍历数列，构造数列时，后面的范围要比前面的大，所以下面 <code>4..1</code> 是不会有任何结果的。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.4</span>) &#123;</div><div class="line">    Log.e(TAG, <span class="string">"test 1..4 i = "</span> + i)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 不打印结果</span></div><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">4.</span><span class="number">.1</span>) &#123;</div><div class="line">    Log.e(TAG, <span class="string">"test 4..1 i = "</span> + i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>

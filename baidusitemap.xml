@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/578c5201/</loc>
+    <lastmod>2018-04-03T15:01:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kotlin开发-14-杂七杂八(解构，类型自动转换，Range，异常)</title>
+        <pubTime>2017-08-10T02:18:00.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+         
+           
+             
+              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/f546dc07/</loc>
     <lastmod>2018-04-02T05:00:25.000Z</lastmod>
     <data>
@@ -705,26 +725,6 @@
         <display>
         <title>Kotlin开发-15-操作符重载</title>
         <pubTime>2017-08-26T00:51:00.000Z</pubTime>
-        
-        <tag>Kotlin</tag>
-         
-         
-           
-             
-              <breadCrumb title="Kotlin" url="http://cdevlab.top/categories/Kotlin/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/578c5201/</loc>
-    <lastmod>2017-10-24T15:56:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kotlin开发-14-杂七杂八(解构，类型自动转换，Range，异常)</title>
-        <pubTime>2017-08-10T02:18:00.000Z</pubTime>
         
         <tag>Kotlin</tag>
          
@@ -2690,9 +2690,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
@@ -2717,9 +2717,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
