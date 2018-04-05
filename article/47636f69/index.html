@@ -83,19 +83,19 @@
 
 
 
-<meta name="description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView); 根据上面的代码，将内容分为以下几个章节：  Glide - 强大的顶层管理类 Glide.with() - 创建及缓存 RequestManager .load(url) - 创建 RequestBuilder .thumbn">
+<meta name="description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView);">
 <meta name="keywords" content="glide,图片加载,android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Glide-平滑加载的图片框架 [源码]">
 <meta property="og:url" content="http://cdevlab.top/article/47636f69/index.html">
 <meta property="og:site_name" content="三月">
-<meta property="og:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView); 根据上面的代码，将内容分为以下几个章节：  Glide - 强大的顶层管理类 Glide.with() - 创建及缓存 RequestManager .load(url) - 创建 RequestBuilder .thumbn">
+<meta property="og:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView);">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-3-21/70223294.jpg">
-<meta property="og:updated_time" content="2018-03-30T08:57:22.000Z">
+<meta property="og:updated_time" content="2018-04-05T15:30:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glide-平滑加载的图片框架 [源码]">
-<meta name="twitter:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView); 根据上面的代码，将内容分为以下几个章节：  Glide - 强大的顶层管理类 Glide.with() - 创建及缓存 RequestManager .load(url) - 创建 RequestBuilder .thumbn">
+<meta name="twitter:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView);">
 <meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-3-21/70223294.jpg">
 
 
@@ -480,7 +480,8 @@ var _hmt = _hmt || [];
       
         <p>本文按照 <code>Glide</code> 常用的如下用法来分析源码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Glide.with(context).load(<span class="string">"url"</span>).thumbnail().into(imageView);</div></pre></td></tr></table></figure>
-<p>根据上面的代码，将内容分为以下几个章节：</p>
+<a id="more"></a>
+<p>s<br>根据上面的代码，将内容分为以下几个章节：</p>
 <ul>
 <li><code>Glide</code> - 强大的顶层管理类</li>
 <li><code>Glide.with()</code> - 创建及缓存 <code>RequestManager</code></li>
@@ -488,7 +489,6 @@ var _hmt = _hmt || [];
 <li><code>.thumbnail()</code> - 配置 <code>RequestBuilder</code></li>
 <li><code>.into(target)</code> - 发起 <code>Request</code></li>
 </ul>
-<a id="more"></a>
 <h2 id="强大的-Glide"><a href="#强大的-Glide" class="headerlink" title="强大的 Glide"></a>强大的 Glide</h2><p><code>Glide</code> 是一个单例对象，在这个框架中功能相对复杂，每个功能都由对应的类实现，但是他们都被 <code>Glide</code> 类统一管理，<code>Glide</code> 的构造方法很长，主要是初始化一些内部持有的管理类，类比来看的 <code>Glide</code> 就类似高级管理阶层，下属还有很多次级管理层。</p>
 <p>简单看一下重要的成员变量：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Glide.java</div><div class="line"></div><div class="line">GenericLoaderFactory loaderFactory;   <span class="comment">// 工厂管理类，负责 ModelLoader 的注册和缓存实现</span></div><div class="line">TranscoderRegistry transcoderRegistry = <span class="keyword">new</span> TranscoderRegistry(); <span class="comment">// 工厂管理类，负责 DataLoadProvider 的管理</span></div><div class="line">DataLoadProviderRegistry dataLoadProviderRegistry; <span class="comment">// DataLoadProvider 注册管理</span></div><div class="line"></div><div class="line">Engine engine;</div><div class="line">BitmapPool bitmapPool;</div><div class="line">MemoryCache memoryCache;</div><div class="line">DecodeFormat decodeFormat;</div><div class="line">ImageViewTargetFactory imageViewTargetFactory = <span class="keyword">new</span> ImageViewTargetFactory()</div><div class="line"></div><div class="line"></div><div class="line">CenterCrop bitmapCenterCrop;</div><div class="line">GifBitmapWrapperTransformation drawableCenterCrop;</div><div class="line">FitCenter bitmapFitCenter;</div><div class="line">GifBitmapWrapperTransformation drawableFitCenter;</div><div class="line">Handler mainHandler;</div><div class="line">BitmapPreFiller bitmapPreFiller;</div></pre></td></tr></table></figure>
