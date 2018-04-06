@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
   <meta name="keywords" content="Android">
@@ -50,6 +51,7 @@
 
 
 
+
   
   
     
@@ -64,19 +66,31 @@
 
   
 
-<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+  <meta name="keywords" content="Android">
+
+
+
+
 
 
 
@@ -101,9 +115,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: 'undefined',
       author: '博主'
@@ -197,12 +213,6 @@
 
 
 
-
-
-
-
-
-
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -222,8 +232,8 @@ var _hmt = _hmt || [];
   
 
   <div class="container sidebar-position-right 
-   page-home 
- ">
+  page-home
+">
     <div class="headband"></div>
 
   <!--- add Fork me on Github  -->
@@ -381,6 +391,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2414640248/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -400,7 +414,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/2414640248/" itemprop="url">ListView Adapter 4</a></h2>
+                <a class="post-title-link" href="/article/2414640248/" itemprop="url">ListView Adapter 4</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -456,9 +474,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/2414640248/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/2414640248/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/2414640248/" class="leancloud_visitors" data-flag-title="ListView Adapter 4">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -467,13 +504,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -501,14 +538,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -525,6 +558,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -545,6 +582,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3121499733/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -564,7 +605,11 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/3121499733/" itemprop="url">在Android平台下合成Gif</a></h2>
+                <a class="post-title-link" href="/article/3121499733/" itemprop="url">在Android平台下合成Gif</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -609,9 +654,28 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/3121499733/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/3121499733/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/3121499733/" class="leancloud_visitors" data-flag-title="在Android平台下合成Gif">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -620,13 +684,13 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -660,14 +724,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -684,6 +744,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -704,6 +768,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/4013192295/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -723,7 +791,11 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/4013192295/" itemprop="url">Android物理按键及物理连接</a></h2>
+                <a class="post-title-link" href="/article/4013192295/" itemprop="url">Android物理按键及物理连接</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -768,9 +840,28 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/4013192295/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/4013192295/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/4013192295/" class="leancloud_visitors" data-flag-title="Android物理按键及物理连接">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -779,13 +870,13 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -808,14 +899,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -832,6 +919,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -852,6 +943,10 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1811789999/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -871,7 +966,11 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/1811789999/" itemprop="url">Python开发-1-基础</a></h2>
+                <a class="post-title-link" href="/article/1811789999/" itemprop="url">Python开发-1-基础</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -916,9 +1015,28 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/1811789999/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/1811789999/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/1811789999/" class="leancloud_visitors" data-flag-title="Python开发-1-基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -927,13 +1045,13 @@ Gradlecompile &#39;com.march.adapterlibs:adapterlibs:1.0.6&#39;
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -961,14 +1079,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -985,6 +1099,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1005,6 +1123,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2699277879/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1024,7 +1146,11 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/2699277879/" itemprop="url">Android图像处理相关</a></h2>
+                <a class="post-title-link" href="/article/2699277879/" itemprop="url">Android图像处理相关</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1069,9 +1195,28 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/2699277879/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/2699277879/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/2699277879/" class="leancloud_visitors" data-flag-title="Android图像处理相关">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1080,13 +1225,13 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1109,14 +1254,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1133,6 +1274,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1153,6 +1298,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/541527599/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1172,7 +1321,11 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/541527599/" itemprop="url">Handler源码分析</a></h2>
+                <a class="post-title-link" href="/article/541527599/" itemprop="url">Handler源码分析</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1217,9 +1370,28 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/541527599/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/541527599/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/541527599/" class="leancloud_visitors" data-flag-title="Handler源码分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1228,13 +1400,13 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1266,14 +1438,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1290,6 +1458,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1310,155 +1482,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1697740661/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/article/1697740661/" itemprop="url">ArrayList源码分析</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-15T00:00:00+08:00">
-                2015-11-15
-              </time>
-              
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-
-          
-
-
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-
-      
-        
-          <p>开始看源代码了才知道android和java的源代码有好多出入，我把java和android源码比较了一下，相似的还是多的。我是以android源码为主，因为感觉android比较繁琐，不同的地方会贴java的代码对比。</p>
-<p>java真的设计的很好，很多类内部实现差别很大，但是在外部看起来是一样的，比如LinkedList和ArrayList,设计良好的API使我们不需要去关注内部的实现，举个例子说，我们需要一个绳子，他可以是真丝制成的，那么它比较坚固，也可以是牛皮制成的，那么它可以不怕水，但是对使用绳子的人来说，他声明自己需要的绳子需要具有什么样的特性，但是他却不知道真丝的需要什么工艺，牛皮的又需要什么工艺。我们程序员就是使用绳子的人，各种各样的List就是绳子，虽然内部实现大相径庭，但是都对外开放了一条绳子的外表，使得我们可以极为方便的使用它，这体现了面向对象的编程思想，也可以使java程序员更加专注的实现功能而不尽量少的关心逻辑和算法。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/article/1697740661/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    <div>
-  
-    </div>
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-	      
-    
-	      
-	      	
-
-  
-
   
   
   
-  
-    
-  
-  
-  
-
-  <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/294185431/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1478,7 +1505,11 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/294185431/" itemprop="url">ListView Adapter 3</a></h2>
+                <a class="post-title-link" href="/article/294185431/" itemprop="url">ListView Adapter 3</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1534,9 +1565,28 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/294185431/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/294185431/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/294185431/" class="leancloud_visitors" data-flag-title="ListView Adapter 3">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1545,13 +1595,13 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1579,14 +1629,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1603,6 +1649,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1623,6 +1673,186 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1697740661/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/article/1697740661/" itemprop="url">ArrayList源码分析</a>
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-15T00:00:00+08:00">
+                2015-11-15
+              </time>
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/1697740661/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/1697740661/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/1697740661/" class="leancloud_visitors" data-flag-title="ArrayList源码分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+
+      
+        
+          <p>开始看源代码了才知道android和java的源代码有好多出入，我把java和android源码比较了一下，相似的还是多的。我是以android源码为主，因为感觉android比较繁琐，不同的地方会贴java的代码对比。</p>
+<p>java真的设计的很好，很多类内部实现差别很大，但是在外部看起来是一样的，比如LinkedList和ArrayList,设计良好的API使我们不需要去关注内部的实现，举个例子说，我们需要一个绳子，他可以是真丝制成的，那么它比较坚固，也可以是牛皮制成的，那么它可以不怕水，但是对使用绳子的人来说，他声明自己需要的绳子需要具有什么样的特性，但是他却不知道真丝的需要什么工艺，牛皮的又需要什么工艺。我们程序员就是使用绳子的人，各种各样的List就是绳子，虽然内部实现大相径庭，但是都对外开放了一条绳子的外表，使得我们可以极为方便的使用它，这体现了面向对象的编程思想，也可以使java程序员更加专注的实现功能而不尽量少的关心逻辑和算法。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/article/1697740661/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+
+    
+
+    
+    </div>
+    <div>
+      
+    </div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	      
+    
+	      
+	      	
+
+  
+
+  
+  
+  
+  
+    
+  
+  
+  
+
+  <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1720703307/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1642,7 +1872,11 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/1720703307/" itemprop="url">ListView Adapter 2</a></h2>
+                <a class="post-title-link" href="/article/1720703307/" itemprop="url">ListView Adapter 2</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1698,9 +1932,28 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/1720703307/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/1720703307/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/1720703307/" class="leancloud_visitors" data-flag-title="ListView Adapter 2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1709,13 +1962,13 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1743,14 +1996,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1767,6 +2016,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1787,7 +2040,11 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1753510098/">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/4287006971/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1806,7 +2063,11 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/1753510098/" itemprop="url">HashMap源码分析</a></h2>
+                <a class="post-title-link" href="/article/4287006971/" itemprop="url">ListView Adapter 1</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1838,8 +2099,19 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Adapter/" itemprop="url" rel="index">
+                    <span itemprop="name">Adapter</span>
                   </a>
                 </span>
 
@@ -1851,9 +2123,28 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/4287006971/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/4287006971/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/4287006971/" class="leancloud_visitors" data-flag-title="ListView Adapter 1">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1862,23 +2153,29 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
 
       
         
-          <p>对 <code>HashMap</code> 源码的简单分析。</p>
+          
+          前言
+介绍一下适配器的抽象，在我们做项目的时候会有很多很多地方使用ListView，也就意味着需要写很多很多的适配器，当我们写的项目很大时就会很烦很烦，每次都要写同样的代码片实现类似的功能，所以我们就有必要对传统的适配器抽象一下。
+
+传统适配器的优化写法
+核心代码就是getVIew()方法，在里面我
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/1753510098/" rel="contents">
+            <a class="btn" href="/article/4287006971/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1891,14 +2188,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1915,6 +2208,10 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1948,107 +2245,109 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
-          <p class="site-author-name" itemprop="name">chendong</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
               <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">131</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
-                </li>
-              
-            </ul>
           </div>
-        
 
-        
+          <nav class="site-state motion-element">
 
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
       </section>
 
       
@@ -2065,10 +2364,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
   <i class="fa fa-star"></i>
 </span>
@@ -2079,19 +2375,13 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
 
 
-<!--<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>-->
-
-
         
+
+
+
+
+
+
 
         
       </div>
@@ -2102,6 +2392,8 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -2136,46 +2428,54 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
 
   
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
   
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
 
   
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2205,10 +2505,33 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 
 
 
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
-
-
-
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
 
 
 
@@ -2538,6 +2861,115 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -2554,6 +2986,7 @@ Python交互12345678910111213141516171819# 使用python交互模式# 在命令�
 </script>
 
 
+  
   
 
   

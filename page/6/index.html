@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
 
 
   <meta name="keywords" content="Android">
@@ -50,6 +51,7 @@
 
 
 
+
   
   
     
@@ -64,19 +66,31 @@
 
   
 
-<link href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+  <meta name="keywords" content="Android">
+
+
+
+
 
 
 
@@ -101,9 +115,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: 'undefined',
       author: '博主'
@@ -197,12 +213,6 @@
 
 
 
-
-
-
-
-
-
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -222,8 +232,8 @@ var _hmt = _hmt || [];
   
 
   <div class="container sidebar-position-right 
-   page-home 
- ">
+  page-home
+">
     <div class="headband"></div>
 
   <!--- add Fork me on Github  -->
@@ -381,6 +391,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/e57450c6/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -400,7 +414,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/e57450c6/" itemprop="url">Retrofit开发-1-基础</a></h2>
+                <a class="post-title-link" href="/article/e57450c6/" itemprop="url">Retrofit开发-1-基础</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -456,9 +474,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/e57450c6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/e57450c6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/e57450c6/" class="leancloud_visitors" data-flag-title="Retrofit开发-1-基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -467,13 +504,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -503,14 +540,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -527,6 +560,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -551,6 +588,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3518734228/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -570,7 +611,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/3518734228/" itemprop="url">WebView</a></h2>
+                <a class="post-title-link" href="/article/3518734228/" itemprop="url">WebView</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -626,9 +671,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/3518734228/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/3518734228/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/3518734228/" class="leancloud_visitors" data-flag-title="WebView">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -637,13 +701,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -677,14 +741,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -701,6 +761,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -721,6 +785,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/1632666977/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -740,7 +808,19 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/1632666977/" itemprop="url">RecyclerView Light Adapter [开源]</a></h2>
+                <a class="post-title-link" href="/article/1632666977/" itemprop="url">RecyclerView Light Adapter [开源]</a>
+        
+          
+            <img src="https://badge.juejin.im/entry/5a793a405188257a82111092/likes.svg?style=flat-square" class="badge-img">
+          
+            <img src="https://img.shields.io/github/forks/chendongMarch/LightAdapter.svg" class="badge-img">
+          
+            <img src="https://img.shields.io/github/stars/chendongMarch/LightAdapter.svg" class="badge-img">
+          
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -787,9 +867,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/1632666977/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/1632666977/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/1632666977/" class="leancloud_visitors" data-flag-title="RecyclerView Light Adapter [开源]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -798,13 +897,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -814,7 +913,6 @@ var _hmt = _hmt || [];
           <p><code>LightAdapter</code> 的设计初衷是能够快速、简单的完成 <code>RecyclerView</code> 的数据适配工作，同时也对使用过程中的一些常用功能进行了扩展和封装。</p>
 <p>随着功能的慢慢丰富，使用起来也变得越来越复杂，最后决定使用注解的方式对适配器进行配置。</p>
 <p><a href="https://github.com/chendongMarch/LightAdapter" rel="external nofollow noopener noreferrer" target="_blank">GitHub - LightAdapter</a></p>
-<div style="width:100%;display: flex;height:30px;"><br><br><!--<img style="margin-right:20px;" src="https://badge.juejin.im/entry/5a793a405188257a82111092/likes.svg?style=flat-square"/>--><br><br><img style="margin-right:20px;" src="https://img.shields.io/github/stars/chendongMarch/LightAdapter.svg"><br><br><img style="margin-right:20px;" src="https://img.shields.io/github/forks/chendongMarch/LightAdapter.svg"><br><br></div>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/article/1632666977/" rel="contents">
@@ -830,14 +928,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -854,6 +948,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -874,6 +972,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/4043209466/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -893,7 +995,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/4043209466/" itemprop="url">Android编译FFmpeg之命令行</a></h2>
+                <a class="post-title-link" href="/article/4043209466/" itemprop="url">Android编译FFmpeg之命令行</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -949,9 +1055,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/4043209466/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/4043209466/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/4043209466/" class="leancloud_visitors" data-flag-title="Android编译FFmpeg之命令行">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -960,13 +1085,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -993,14 +1118,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1017,6 +1138,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1037,6 +1162,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2717980190/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1056,7 +1185,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/2717980190/" itemprop="url">Kotlin开发-5-类与对象</a></h2>
+                <a class="post-title-link" href="/article/2717980190/" itemprop="url">Kotlin开发-5-类与对象</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1101,9 +1234,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/2717980190/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/2717980190/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/2717980190/" class="leancloud_visitors" data-flag-title="Kotlin开发-5-类与对象">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1112,13 +1264,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1142,14 +1294,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1166,6 +1314,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1186,6 +1338,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/6a146f82/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1205,7 +1361,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/6a146f82/" itemprop="url">Kotlin开发-4-接口</a></h2>
+                <a class="post-title-link" href="/article/6a146f82/" itemprop="url">Kotlin开发-4-接口</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1250,9 +1410,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/6a146f82/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/6a146f82/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/6a146f82/" class="leancloud_visitors" data-flag-title="Kotlin开发-4-接口">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1261,13 +1440,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1290,14 +1469,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1314,6 +1489,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1334,6 +1513,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/12ba0671/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1353,7 +1536,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/12ba0671/" itemprop="url">Kotlin开发-3-属性与域</a></h2>
+                <a class="post-title-link" href="/article/12ba0671/" itemprop="url">Kotlin开发-3-属性与域</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1398,9 +1585,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/12ba0671/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/12ba0671/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/12ba0671/" class="leancloud_visitors" data-flag-title="Kotlin开发-3-属性与域">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1409,13 +1615,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1440,14 +1646,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1464,6 +1666,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1484,6 +1690,10 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal  post-index" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/57e86c00/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1503,7 +1713,11 @@ var _hmt = _hmt || [];
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/57e86c00/" itemprop="url">Kotlin开发-2-基础-控制流</a></h2>
+                <a class="post-title-link" href="/article/57e86c00/" itemprop="url">Kotlin开发-2-基础-控制流</a>
+        
+        
+        </h2>
+          
         
 
         <div class="post-meta">
@@ -1548,9 +1762,28 @@ var _hmt = _hmt || [];
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/57e86c00/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/57e86c00/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/article/57e86c00/" class="leancloud_visitors" data-flag-title="Kotlin开发-2-基础-控制流">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1559,13 +1792,13 @@ var _hmt = _hmt || [];
           
 
           
-
-
-
         </div>
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1590,14 +1823,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-    </div>
 
-    <div>
-      
-    </div>
+    
 
-    <div>
-      
+    
     </div>
     <div>
       
@@ -1614,6 +1843,10 @@ var _hmt = _hmt || [];
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1647,107 +1880,109 @@ var _hmt = _hmt || [];
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
-          <p class="site-author-name" itemprop="name">chendong</p>
-           
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
               <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">131</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
-                </li>
-              
-            </ul>
           </div>
-        
 
-        
+          <nav class="site-state motion-element">
 
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
       </section>
 
       
@@ -1764,10 +1999,7 @@ var _hmt = _hmt || [];
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
   <i class="fa fa-star"></i>
 </span>
@@ -1778,19 +2010,13 @@ var _hmt = _hmt || [];
 
 
 
-<!--<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>-->
-
-
         
+
+
+
+
+
+
 
         
       </div>
@@ -1801,6 +2027,8 @@ var _hmt = _hmt || [];
         <i class="fa fa-arrow-up"></i>
         
       </div>
+    
+
     
 
   </div>
@@ -1835,46 +2063,54 @@ var _hmt = _hmt || [];
 
 
   
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
   
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
 
   
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1904,10 +2140,33 @@ var _hmt = _hmt || [];
 
 
 
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
-
-
-
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
 
 
 
@@ -2237,6 +2496,115 @@ var _hmt = _hmt || [];
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -2253,6 +2621,7 @@ var _hmt = _hmt || [];
 </script>
 
 
+  
   
 
   
