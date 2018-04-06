@@ -226,21 +226,14 @@
   </url>
   
   <url>
-    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.physics.json</loc>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/assets/exp/f00.exp.json</loc>
     
     <lastmod>2017-11-26T06:44:33.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.pose.json</loc>
-    
-    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f03.exp.json</loc>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.model.json</loc>
     
     <lastmod>2017-11-26T06:44:33.000Z</lastmod>
     
@@ -261,14 +254,28 @@
   </url>
   
   <url>
-    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/assets/exp/f00.exp.json</loc>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f01.exp.json</loc>
     
     <lastmod>2017-11-26T06:44:33.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/assets/z16.model.json</loc>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.physics.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f03.exp.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.pose.json</loc>
     
     <lastmod>2017-11-26T06:44:33.000Z</lastmod>
     
@@ -282,14 +289,7 @@
   </url>
   
   <url>
-    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f01.exp.json</loc>
-    
-    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.model.json</loc>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/assets/z16.model.json</loc>
     
     <lastmod>2017-11-26T06:44:33.000Z</lastmod>
     
