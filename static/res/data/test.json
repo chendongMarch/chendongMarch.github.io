@@ -1,0 +1,60 @@
+{
+    "offlineApps": [
+        {
+            "type": 0,
+            "qrCode": "http://cdn1.showjoy.com/images/76/76b8d632faf24fa7bbadbdd52d22fa83.png",
+            "link":"https://wx-build.showjoy.net/view/%E8%BE%BE%E4%BA%BA%E5%BA%97Dev/job/ShopAndroid-develop/lastSuccessfulBuild/artifact/outputs/apk/shopandroid-forTest.apk",
+            "desc": "Android 线下包"
+        },
+        {
+            "type": 0,
+            "qrCode": "http://cdn1.showjoy.com/images/d5/d5de1c3172b14b3b840577ae609ddf49.png",
+            "link":"http://www.pgyer.com/iosshop",
+            "desc": "iOS 线下包"
+        },
+        {
+            "type": 0,
+            "qrCode": "http://cdn1.showjoy.com/images/6e/6e7fc2b425a5446f82d163871c89bfa3.png",
+            "link":"https://login.shop.showjoy.net/?service=http%3A%2F%2Fshop.m.showjoy.net%3A80&redirect_uri=%2Fm%2Fshop%2Fseller_home",
+            "desc": "H5 线下登录入口"
+        }
+    ],
+    "onlineApps":[
+        {
+            "type": 1,
+            "qrCode": "http://cdn1.showjoy.com/images/4f/4ff13f417e944882a44478b0867a51b9.png",
+            "link":"http://a.app.qq.com/o/simple.jsp?pkgname=com.showjoy.shop&fromcase=40002",
+            "desc": "Android 线上版本"
+        },
+        {
+            "type": 1,
+            "qrCode": "http://cdn1.showjoy.com/images/4f/4ff13f417e944882a44478b0867a51b9.png",
+            "link":"http://a.app.qq.com/o/simple.jsp?pkgname=com.showjoy.shop&fromcase=40002",
+            "desc": "iOS 线上版本"
+        },
+        {
+            "type": 1,
+            "qrCode": "http://cdn1.showjoy.com/images/98/98d74fd87ea64b3f895a98a40bcd3e67.png",
+            "link":"http://shop.m.showjoy.com/shop/seller_home",
+            "desc": "H5 线上首页"
+        }
+    ],
+    "reminds":[
+        {
+            "q": "这个网页是干嘛用的？",
+            "a": "主要为了解决总是有同学不知道去哪里安装最新的测试客户端及如何打开 H5 测试页面的问题，该页面会持续更新维护，建议加入书签，以备后用。"
+        },
+        {
+            "q": "iOS App 无法安装怎么办？",
+            "a": "可能是没有注册你的设备，需要联系 iOS 开发同学做一下注册。"
+        },
+        {
+            "q": "测试账号在那里获取？",
+            "a": "安装了线下的客户端后，进入 App 右下角会有一个测试按钮，进入点击账号登录，可以使用统一测试账号。"
+        },
+        {
+            "q": "H5 的测试入口如何使用？",
+            "a": "你可以在微信或者 Chrome 直接点击按钮打开链接、或者使用微信扫一扫扫描二维码快速打开链接。"
+        }
+    ]
+}

@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+  <meta name="keywords" content="Android,DataBinding">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,DataBinding">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文记录如何使用 Google 官方库 DataBinding 进行数据绑定。 平时编译使用 Freeline ，但是很遗憾的是 Freeline 在 DataBinding 的支持上还有些问题，希望早些解决。 另外 AndroidStudio 对 DataBinding 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。">
+<meta name="keywords" content="Android,DataBinding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataBinding">
+<meta property="og:url" content="http://cdevlab.top/article/83ba57f4/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文记录如何使用 Google 官方库 DataBinding 进行数据绑定。 平时编译使用 Freeline ，但是很遗憾的是 Freeline 在 DataBinding 的支持上还有些问题，希望早些解决。 另外 AndroidStudio 对 DataBinding 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-05T03:30:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataBinding">
+<meta name="twitter:description" content="本文记录如何使用 Google 官方库 DataBinding 进行数据绑定。 平时编译使用 Freeline ，但是很遗憾的是 Freeline 在 DataBinding 的支持上还有些问题，希望早些解决。 另外 AndroidStudio 对 DataBinding 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/83ba57f4/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>DataBinding | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 800px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+   <a href="https://github.com/chendongMarch?tab=repositories" class="forkme github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/83ba57f4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">DataBinding
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T08:51:00+08:00">
+                2017-08-28
+              </time>
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/83ba57f4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/83ba57f4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/83ba57f4/" class="leancloud_visitors" data-flag-title="DataBinding">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+
+      
+        <p>本文记录如何使用 <code>Google</code> 官方库 <code>DataBinding</code> 进行数据绑定。</p>
+<p>平时编译使用 <code>Freeline</code> ，但是很遗憾的是 <code>Freeline</code> 在 <code>DataBinding</code> 的支持上还有些问题，希望早些解决。</p>
+<p>另外 <code>AndroidStudio</code> 对 <code>DataBinding</code> 的语法支持的不是很好，很多官网文档的语法在项目的编译期都是报错的，后面应该会有改进。</p>
+<a id="more"></a>
+<h2 id="开启-DataBinding"><a href="#开启-DataBinding" class="headerlink" title="开启 DataBinding"></a>开启 DataBinding</h2><p>在 <code>AndroidStudio</code> 开启 <code>DataBinding</code> 十分简单，只需要在 对应的 <code>build.gradle</code> 文件中声明</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">    dataBinding &#123;</div><div class="line">        enabled = <span class="keyword">true</span></div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>开启之后即可使用，这里我遇到了异常如下，<code>clean</code> 项目仍不见效果，解决措施在去除下面提到的警告的前提下，由菜单 <code>File-&gt;Invalidate Caches/ReStart</code>，重启 <code>IDE</code> 即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Generated class list does not exist /Users/march/AndroidPro/DevKitSample/devKit/build/intermediates/data-binding-info/release/_generated.txt</div></pre></td></tr></table></figure>
+<p>由于我使用 <code>ButterKnife</code> 等注解类框架，遇到 <code>Warning</code>，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Warning:Using incompatible plugins <span class="keyword">for</span> the annotation processing: android-apt. This may result <span class="keyword">in</span> an unexpected behavior.</div></pre></td></tr></table></figure>
+<p>这是因为 <code>android-apt</code> 的作者已经不再维护它了，解决方案是使用官方的处理器来代替他，即可去除警告信息。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 删除依赖路径</span></div><div class="line"><span class="keyword">classpath</span> <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.8'</span></div><div class="line"><span class="comment">// 删除插件引用</span></div><div class="line">apply plugin: <span class="string">'com.neenbedankt.android-apt'</span></div><div class="line"></div><div class="line"><span class="comment">// 将 android-apt 替换为 annotationProcessor </span></div><div class="line">annotationProcessor rootProject.ext.support.butterknife840_processor</div></pre></td></tr></table></figure>
+<h2 id="layout-文件结构"><a href="#layout-文件结构" class="headerlink" title="layout 文件结构"></a>layout 文件结构</h2><p>开启的过程还挺麻烦，查到的文章里都只提到了设置 <code>build.gradle</code> 文件，遇到的问题耽误了不少时间。</p>
+<p>使用 <code>DataBinding</code> 时，主要是将数据直接绑定到视图中，对我们来说就是 <code>layout.xml</code> 文件了，样式有所更改，最外层需要使用新的 <code>&lt;layout&gt;</code> 标签，<code>&lt;layout&gt;</code> 标签中分为了 <strong>数据(Model)</strong> 和 <strong>视图(View)</strong> 两部分，<code>View</code> 部分自然还是原来的布局文件，在后面的描述中，我都会称他们为 <code>xml</code> 的 <code>Model</code> 部分和 <code>View</code> 部分。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">layout</span></span></div><div class="line">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!--数据部分--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">import</span></span></div><div class="line">            <span class="attr">alias</span>=<span class="string">"User"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"name"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"String"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"User"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--原来的布局文件--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"@&#123;name&#125;"</span></div><div class="line">            <span class="attr">android:textColor</span>=<span class="string">"@color/black"</span></div><div class="line">            <span class="attr">android:textSize</span>=<span class="string">"18sp"</span>/&gt;</div><div class="line">            </div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="DataBindingUtil"><a href="#DataBindingUtil" class="headerlink" title="DataBindingUtil"></a>DataBindingUtil</h2><p>在使用 <code>DataBinding</code> 时，我们需要一个 <code>ViewDataBinding</code> 对象，他是连接数据和视图的桥梁，<code>DataBindingUtil</code> 作为一个工具类，提供了创建 <code>ViewDataBinding</code> 的静态方法。</p>
+<p><code>setContentView()</code> 方法，用来替代 <code>Activity</code> 的 <code>setContentView()</code>，可以在设置视图的同时返回 <code>ViewDataBinding</code> 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends ViewDataBinding&gt; <span class="function">T <span class="title">setContentView</span><span class="params">(Activity activity, <span class="keyword">int</span> layoutId)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> setContentView(activity, layoutId, sDefaultComponent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>inflate()</code> 方法，用来代替 <code>LayoutInflater</code> 的 <code>inflate()</code> 方法，用来在加载一个布局时返回 <code>ViewDataBinding</code> 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends ViewDataBinding&gt; <span class="function">T <span class="title">inflate</span><span class="params">(LayoutInflater inflater, <span class="keyword">int</span> layoutId,</span></span></div><div class="line">        @Nullable ViewGroup parent, <span class="keyword">boolean</span> attachToParent) &#123;</div><div class="line">    <span class="keyword">return</span> inflate(inflater, layoutId, parent, attachToParent, sDefaultComponent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>关于 <code>ViewDataBinding</code> 对象，它由插件自动编译生成，类的名字取决于你的 <code>layout.xml</code> 文件的名字，例如布局文件名为 <code>R.layout.activity_databinding</code> 那么生成对应类则为 <code>ActivityDatabindingBinding</code>。</p>
+<hr>
+<font color="blue">语法部分⬇️</font>
+
+<hr>
+<p>在 <code>xml</code> 文件中，我们可以在 <code>View</code> 部分使用任何在 <code>Model</code> 部分声明的数据，为此，<code>DataBinding</code> 提供了丰富而简便的语法支持。</p>
+<p>由于 <code>AndroidStudio</code> 对 <code>DataBinding</code> 的语法支持的没有那么好，所以很多语法在编译期都是错误的，但是运行之后就可以使用，相信在不久的以后这些支持会更加全面。</p>
+<h2 id="Model-部分语法"><a href="#Model-部分语法" class="headerlink" title="Model 部分语法"></a>Model 部分语法</h2><p><code>Model</code> 部分被 <code>&lt;data/&gt;</code> 标签包含</p>
+<p>声明一个数据，使用 <code>variable</code> 标签，<code>type</code> 声明的是类名，<code>java.lang</code> 包下面的类，可以不用写完整路径，但是其他的类，需要声明完整路径。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"name"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"String"</span>/&gt;</div><div class="line">    </div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>导包，使用 <code>import</code> 标签， 然后在声明数据时，可以不用使用完整路径。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">import</span></span></div><div class="line">    <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"User"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>别名，使用 <code>import</code> 标签时，可以指定导入类的别名，如果使用了别名，则声明数据时，<code>type</code> 必须指定为别名。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">import</span></span></div><div class="line">    <span class="attr">alias</span>=<span class="string">"Alias_User"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"Alias_User"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>当我们声明 <code>List&lt;T&gt;</code> 和 <code>Map&lt;K,V&gt;</code> 等数据类型时，在 <code>xml</code> 中 <code>&lt;&gt;</code> 是不允许使用的， 因为我们要使用转义字符 <code>&amp;lt;</code> 和 <code>&amp;gt;</code> 来表示，不得不说这种写法，可读性很差，而且在编译期是标红的，但是仍然可以运行，绑定成功。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--List--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"java.util.List"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"list"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"List&amp;lt;User&amp;gt;"</span>/&gt;</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="comment">&lt;!--不导包直接使用也是可以的--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"list"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"java.util.List&amp;lt;User&amp;gt;"</span>/&gt;</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="comment">&lt;!--Map--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"java.util.Map"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">    <span class="attr">name</span>=<span class="string">"map"</span></div><div class="line">    <span class="attr">type</span>=<span class="string">"Map&amp;lt;String,String&amp;gt;"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>自定义绑定生成的类名，编译生成绑定类的名称是根据 <code>layout.xml</code> 文件的名字<br>来生成的，默认放置在 <code>包名.databinding</code> 包下，但是我们通常不希望使用那种很长很没有意义的类名，甚至希望自定义这个绑定类的具体的包名，使用 <code>&lt;data/&gt;</code> 标签的 <code>class</code> 属性来实现。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--指定绑定类的类名，默认放在 应用包名.databinding 包下--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">data</span>  <span class="attr">class</span>=<span class="string">"DiyBinding"</span>&gt;</span><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--指定绑定类的类名，并放置在应用包名根目录下--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">data</span>  <span class="attr">class</span>=<span class="string">".DiyBinding"</span>&gt;</span><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--指定绑定类的类名，并指定包名--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">data</span>  <span class="attr">class</span>=<span class="string">"com.example.DiyBinding"</span>&gt;</span><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="View-部分表达式语法"><a href="#View-部分表达式语法" class="headerlink" title="View 部分表达式语法"></a>View 部分表达式语法</h2><p>数据绑定的本质其实是在 <code>View</code> 部分的 <code>xml</code> 中引用 <code>Model</code> 部分声明的数据，这样我们使用时只需要设置数据即可根据在 <code>xml</code> 中绑定的规则自动完成数据的设置，<code>DataBinding</code> 的优势在于它将这一过程使用自动编译生成的类来完成，而我们需要做的只是说明绑定的规则和设置数据即可。</p>
+<p>在 <code>xml</code> 中绑定数据时使用 <code>@{expression}</code> 的形式，<code>expression</code> 指的是表达式，表达式中支持丰富的语法。</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>一个简单的绑定</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;desc&#125;'</span>/&gt;</div></pre></td></tr></table></figure>
+<p>拼接字符串，在 <code>xml</code> 中可以使用 <code>&quot; &quot;</code> 和 <code>&#39; &#39;</code> 来声明值，如同多数的脚本语言一样，如果字符串中有 <code>&quot; &quot;</code>，那么外面就是用 <code>&#39; &#39;</code>，反之亦然。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;"测试字符串拼接 [ name is " + user.name + "，age is " + user.age + "]"&#125;'</span>/&gt;</div></pre></td></tr></table></figure>
+<p>同时也支持对特殊字符的转义，比如对 <code>&quot; &quot;</code> 和 <code>&#39; &#39;</code> 的转义，来解决多层引号嵌套的问题，比如我们从 <code>Map</code> 中取值。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;"map[\"key\"] = "+map["key"]&#125;'</span></div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<p>使用 <code>default</code> 关键字声明默认值，解决没有绑定数据时的默认显示和 <code>xml</code> 预览显示的问题。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;"带有默认值 - "+user.name,default="默认值"&#125;'</span></div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<p>支持 <code>??</code> 操作符，表达式 <code>a??b</code>，当 <code>a</code> 为 <code>null</code> 时将返回 <code>b</code>，这个操作符是 <code>Java</code> 不支持的，他用来为值为空时提供默认值显示。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;"非空判断 - "+user.nullAble??"空值"&#125;'</span></div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<p>支持简单的表达式计算，下面使用 <code>VU</code> 作为了 <code>View</code> 类的别名。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">import</span></span></div><div class="line">        <span class="attr">alias</span>=<span class="string">"VU"</span></div><div class="line">        <span class="attr">type</span>=<span class="string">"android.view.View"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line">    </div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'表达式计算'</span></div><div class="line">    <span class="attr">android:visibility</span>=<span class="string">"@&#123;user.age &gt; 10?VU.VISIBLE:VU.GONE&#125;"</span></div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<p>使用静态方法</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"android.text.TextUtils"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;TextUtils.isEmpty("")?"empty":"have"&#125;'</span>/&gt;</div></pre></td></tr></table></figure>
+<p>访问 <code>map</code> 和 <code>list</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--List--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"java.util.List"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">      <span class="attr">name</span>=<span class="string">"list"</span></div><div class="line">      <span class="attr">type</span>=<span class="string">"List&amp;lt;User&amp;gt;"</span>/&gt;</div><div class="line">    </div><div class="line">    <span class="comment">&lt;!--map--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"java.util.Map"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">       <span class="attr">name</span>=<span class="string">"map"</span></div><div class="line">       <span class="attr">type</span>=<span class="string">"Map&amp;lt;String,String&amp;gt;"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;"list[0] = " + list[0]&#125;'</span>/&gt;</div><div class="line">    </div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;"map[\"key\"] = "+map["key"]&#125;'</span></div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<p>支持 <code>Java</code> 中大多数的运算符，如 数学计算 <code>+,-,*,/,%</code>，使用 <code>+</code> 进行字符串拼接，逻辑运算 <code>&amp;&amp;，||</code>，位运算 <code>&amp;,|,^</code>，单目运算 <code>+,-,!,~</code>，位移运算 <code>&gt;&gt;,&gt;&gt;&gt;,&lt;&lt;,&lt;&lt;&lt;</code>，比较运算 <code>==,&gt;,&lt;.&gt;=,&lt;=</code>，instanceOf，三目运算 <code>?:</code>，类型转换等。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;"" instanceof String + ""&#125;'</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'判断并使用不同资源'</span></div><div class="line">    <span class="attr">android:textColor</span>=<span class="string">"@&#123;user.age%2==0?@color/black:@color/red&#125;"</span>/&gt;</div></pre></td></tr></table></figure>
+<h3 id="使用-android-资源"><a href="#使用-android-资源" class="headerlink" title="使用 android 资源"></a>使用 android 资源</h3><p>使用资源，在表达式中使用 <code>andorid</code> 资源时，稍有不同</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Type（类型）</th>
+<th style="text-align:left">Normal Reference（普通引用）</th>
+<th style="text-align:left">Expression Reference（表达式引用）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">String[]</td>
+<td style="text-align:left">@array</td>
+<td style="text-align:left">@stringArray</td>
+</tr>
+<tr>
+<td style="text-align:left">int[]</td>
+<td style="text-align:left">@array</td>
+<td style="text-align:left">@intArray</td>
+</tr>
+<tr>
+<td style="text-align:left">TypedArray</td>
+<td style="text-align:left">@array</td>
+<td style="text-align:left">@typedArray</td>
+</tr>
+<tr>
+<td style="text-align:left">Animator</td>
+<td style="text-align:left">@animator</td>
+<td style="text-align:left">@animator</td>
+</tr>
+<tr>
+<td style="text-align:left">StateListAnimator</td>
+<td style="text-align:left">@animator</td>
+<td style="text-align:left">@stateListAnimator</td>
+</tr>
+<tr>
+<td style="text-align:left">color int</td>
+<td style="text-align:left">@color</td>
+<td style="text-align:left">@color</td>
+</tr>
+<tr>
+<td style="text-align:left">ColorStateList</td>
+<td style="text-align:left">@color</td>
+<td style="text-align:left">@colorStateList</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'判断并使用不同资源'</span></div><div class="line">    <span class="attr">android:textColor</span>=<span class="string">"@&#123;user.age%2==0?@color/black:@color/red&#125;"</span>/&gt;</div></pre></td></tr></table></figure>
+<h3 id="支持-Includes"><a href="#支持-Includes" class="headerlink" title="支持 Includes"></a>支持 Includes</h3><p>在 <code>DataBinding</code> 中不支持 <code>merge</code> 节点，但是绑定的数据可以传递到 <code>include</code> 的布局中，在 <code>include</code> 布局文件中也需要声明数据</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">layout</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"50dp"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></div><div class="line">        <span class="attr">android:text</span>=<span class="string">"@&#123;user.name&#125;"</span>/&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>我们需要在宿主文件中将数据传递进去</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">layout</span>=<span class="string">"@layout/tv"</span> <span class="attr">app:user</span>=<span class="string">"@&#123;user&#125;"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="绑定方法和监听"><a href="#绑定方法和监听" class="headerlink" title="绑定方法和监听"></a>绑定方法和监听</h2><p>方法绑定，<code>Method Reference</code>，为控件绑定点击和长按事件，首先我们要先定义这些事件的处理方法，需要注意的是，方法的参数和返回值需要与 <code>View</code> 的事件匹配。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">EventHandler</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clickView</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">        ToastUtils.show(<span class="string">"click view"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">longClickView</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">        ToastUtils.show(<span class="string">"long click view"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 <code>xml</code> 中进行方法的绑定，使用 <code>xxx::methodName</code> 的形式，通常在 <code>xml</code> 中是没有 <code>onLongClick</code> 属性的，但是在 <code>DataBinding</code> 环境下支持，虽然没有高亮显示，点击之后也不能跳转到指定的方法，但是编译可以通过，运行绑定也没有问题。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">        <span class="attr">name</span>=<span class="string">"handler"</span></div><div class="line">        <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.EventHandler"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/myBtn"</span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:onClick</span>=<span class="string">"@&#123;handler::clickView&#125;"</span></div><div class="line">    <span class="attr">android:onLongClick</span>=<span class="string">"@&#123;handler::longClickView&#125;"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">"方法绑定"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>监听绑定，<code>Listener Reference</code>，在控件的被点击后，回调监听，这个和上面方法的绑定有些区别，上面的直接设置控件的事件，现在是控件被点击后回调绑定的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">EventHandler</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123;</div><div class="line">        ToastUtils.show(<span class="string">"func1"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func2</span><span class="params">(View view, String name)</span> </span>&#123;</div><div class="line">        ToastUtils.show(<span class="string">"func2 "</span> + name + <span class="string">" "</span> + ((Button) view).getText());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func3</span><span class="params">(View view, Context context, String name)</span> </span>&#123;</div><div class="line">        ToastUtils.show(<span class="string">"func2 "</span> + name + <span class="string">" "</span> + ((Button) view).getText() + <span class="string">" "</span> + context.getClass().getSimpleName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 <code>xml</code> 中绑定监听，使用 <code>Lambda</code> 表达式的形式</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">        <span class="attr">name</span>=<span class="string">"handler"</span></div><div class="line">        <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.EventHandler"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:onClick</span>=<span class="string">"@&#123;()-&gt;handler.func1()&#125;"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">"监听绑定1"</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">    <span class="attr">android:onClick</span>=<span class="string">"@&#123;(view)-&gt;handler.func2(view,user.name)&#125;"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">"监听绑定2"</span></div><div class="line">    /&gt;</div></pre></td></tr></table></figure>
+<h2 id="绑定数据"><a href="#绑定数据" class="headerlink" title="绑定数据"></a>绑定数据</h2><p>获取到  <code>ViewDataBinding</code> 类之后就可以进行数据的设置和绑定，使用编译生成的 <code>ViewDataBinding</code> 的子类，会对绑定的数据自动生成 <code>getter/setter</code> 方法， 直接调用即可。</p>
+<p>绑定对象时，所有的属性都必须是 <code>public</code> 或者具有 <code>public</code> 的 <code>getter/setter</code> 方法。</p>
+<p>另外 <code>DataBinding</code> 会将所有带有 <code>id</code> 的控件获取到，并转换为驼峰命名法，可以直接使用，不需要再进行 <code>findViewById()</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">DiyBinding binding = getBinding();</div><div class="line"><span class="comment">// 字符串</span></div><div class="line">binding.setDesc(<span class="string">"简单使用"</span>);</div><div class="line"><span class="comment">// 对象</span></div><div class="line">binding.setUser(<span class="keyword">new</span> User(<span class="string">"chendong"</span>, <span class="number">9</span>));</div><div class="line"><span class="comment">// 方法和监听</span></div><div class="line">binding.setHandler(<span class="keyword">new</span> EventHandler());</div><div class="line"><span class="comment">// list</span></div><div class="line">List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">list.add(<span class="keyword">new</span> User(<span class="string">"test"</span>, <span class="number">10</span>));</div><div class="line">binding.setList(list);</div><div class="line"><span class="comment">// map</span></div><div class="line">Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">map.put(<span class="string">"key"</span>, <span class="string">"value"</span>);</div><div class="line">binding.setMap(map);</div><div class="line"><span class="comment">// 获取控件</span></div><div class="line">Button myBtn = binding.myBtn;</div></pre></td></tr></table></figure>
+<h2 id="观察者对象"><a href="#观察者对象" class="headerlink" title="观察者对象"></a>观察者对象</h2><p>当数据发生变动时，我们希望 <code>UI</code> 作同步的更改。</p>
+<h3 id="BaseObservable"><a href="#BaseObservable" class="headerlink" title="BaseObservable"></a>BaseObservable</h3><p>使对象类继承 <code>BaseObservable</code> 类，在对应属性声明处或者 <code>getter/setter</code> 方法处使用 <code>@Bindable</code> 注解，此时，当属性值发生改变时，调用 <code>notifyPropertyChanged(BR.xxx)</code> 即可同步 <code>UI</code> 更改。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span>  <span class="keyword">extends</span> <span class="title">BaseObservable</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="meta">@Bindable</span></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="meta">@Bindable</span></div><div class="line">    <span class="keyword">public</span>  <span class="keyword">int</span>    age;</div><div class="line">    <span class="keyword">public</span>  String nullAble;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        notifyPropertyChanged(BR.name);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在点击事件中更改数据，由于 <code>age</code> 属性没添加 <code>setter</code> 方法，我们可以在外面调用更新方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clickView</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">    mUser.setName(<span class="string">"newName"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">longClickView</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">    mUser.age = <span class="number">1000</span>;</div><div class="line">    mUser.notifyPropertyChanged(BR.age);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>弊端也很明显，我们需要所有的对象都是继承 <code>BaseObservable</code>，需要手动添加注解，需要手动去调用数据更新的通知，使用 <code>ObservableField</code> 可以更方便的完成这个过程。</p>
+<h3 id="ObservableField"><a href="#ObservableField" class="headerlink" title="ObservableField"></a>ObservableField</h3><p>定义对象类，并将每个属性都定义为 <code>ObservableField</code> 类型，则在属性状态发生更改时，视图会做对应更新；</p>
+<p><code>ObservableField</code> 是一个使用范型来包装其他数据类型的类，这样看来我们如果需要一个 <code>int</code> 类型属性时，便不得不使用 <code>ObservableField&lt;Integer&gt;</code>，不过 <code>DataBinding</code> 已经为基本数据类型提供了专门的包装，如 <code>ObservableInt</code> 类型，其他基本数据类型也有对应包装。</p>
+<p>使用这种方式更新数据时确实简化了很多操作，不过所有的属性都变成了 <code>ObservableField</code> 类型，当我们进行数据交互，<code>json</code> 转化等操作时，就变得不方便了，暂时不知道是如何解决这个问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ObUser</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> ObservableField&lt;String&gt; name = <span class="keyword">new</span> ObservableField&lt;&gt;();</div><div class="line">    <span class="keyword">public</span> ObservableInt  age  = <span class="keyword">new</span> ObservableInt();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建 <code>ObUser</code> 类型的数据并将它绑定到视图中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ObUser obUser = <span class="keyword">new</span> ObUser();</div><div class="line">obUser.name.set(<span class="string">"chendong"</span>);</div><div class="line">obUser.age.set(<span class="number">12</span>);</div><div class="line">binding.setObuser(obUser);</div></pre></td></tr></table></figure>
+<p>当我们更改数据的值时，会自动调用 <code>notifyChange();</code> 方法，通知所有数据更新.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clickView</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">    mObUser.name.set(<span class="string">"newName"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="ObservableCollections"><a href="#ObservableCollections" class="headerlink" title="ObservableCollections"></a>ObservableCollections</h3><p>使用 <code>ObservableArrayList</code> 和 <code>ObservableArrayMap</code> 创建客观察的 <code>List</code> 和 <code>Map</code>。</p>
+<p>在 <code>xml</code> 引用数据</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"android.databinding.ObservableArrayList"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"android.databinding.ObservableArrayMap"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">        <span class="attr">name</span>=<span class="string">"obArrayList"</span></div><div class="line">        <span class="attr">type</span>=<span class="string">"ObservableArrayList&amp;lt;String&amp;gt;"</span>/&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">        <span class="attr">name</span>=<span class="string">"obArrayMap"</span></div><div class="line">        <span class="attr">type</span>=<span class="string">"ObservableArrayMap&amp;lt;String,String&amp;gt;"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;obArrayList[0]&#125;'</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:text</span>=<span class="string">'@&#123;obArrayMap.get("myKey")&#125;'</span>/&gt;</div></pre></td></tr></table></figure>
+<p>创建数据并进行绑定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ObservableArrayList&lt;String&gt; obArrayList = <span class="keyword">new</span> ObservableArrayList&lt;&gt;();</div><div class="line">obArrayList.add(<span class="string">"item"</span>);</div><div class="line"></div><div class="line">ObservableArrayMap&lt;String, String&gt; obArrayMap = <span class="keyword">new</span> ObservableArrayMap&lt;&gt;();</div><div class="line">obArrayMap.put(<span class="string">"myKey"</span>, <span class="string">"myValue"</span>);</div><div class="line"></div><div class="line">binding.setObArrayList(obArrayList);</div><div class="line">binding.setObArrayMap(obArrayMap);</div></pre></td></tr></table></figure>
+<p>当更改对应数据时，视图会得到同步更新</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mObArrayList.add(<span class="number">0</span>, <span class="string">"newItem"</span>);</div><div class="line">mObArrayMap.put(<span class="string">"myKey"</span>, <span class="string">"myNewValue"</span>);</div></pre></td></tr></table></figure>
+<h2 id="列表中进行数据绑定"><a href="#列表中进行数据绑定" class="headerlink" title="列表中进行数据绑定"></a>列表中进行数据绑定</h2><p>使用 <code>DataBinding</code> 可以大大简化列表的使用，再也不需要拿出来所有的控件挨个设置，此时需要使用 <code>DataBindingUtil.inflate()</code> 方法获取 <code>Binding</code> 对象。</p>
+<p>定义 <code>ViewHolder</code> 类，持有 <code>Binding</code> 对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">BindHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> ItemBindBinding mItemBindBinding;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BindHolder</span><span class="params">(ItemBindBinding itemBindBinding)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(itemBindBinding.getRoot());</div><div class="line">        mItemBindBinding = itemBindBinding;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义 <code>Adapter</code> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">BindAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">BindHolder</span>&gt; </span>&#123;</div><div class="line">    ...</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> BindHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        ItemBindBinding itemBindBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.item_bind, parent, <span class="keyword">false</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BindHolder(itemBindBinding);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(BindHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        holder.mItemBindBinding.setUser(mUserList.get(position));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="任意属性的-setter"><a href="#任意属性的-setter" class="headerlink" title="任意属性的 setter"></a>任意属性的 setter</h2><p>在 <code>xml</code> 使用 <code>DataBinding</code> 语法进行数据绑定时，会自动查找对应的 <code>setter</code>，这一过程和命名空间没有关系，也就是说 <code>app:text=&quot;xx&quot;</code> 和 <code>android:text=&quot;xx&quot;</code> 是一样的，他们都会去查找这个控件中的 <code>setText(String text)</code> 方法调用，由于这一点的支持，我们可以使用很多 <code>xml</code> 文件中原先不支持的属性。</p>
+<p>比如我们可以如下的语法，设置文字和长按监听事件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/tv"</span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"50dp"</span></div><div class="line">    <span class="attr">app:onLongClickListener</span>=<span class="string">"@&#123;handler::longClickView&#125;"</span></div><div class="line">    <span class="attr">app:text</span>=<span class="string">'@&#123;user.name + "  " + user.age&#125;'</span>/&gt;</div></pre></td></tr></table></figure>
+<h3 id="简化自定义属性"><a href="#简化自定义属性" class="headerlink" title="简化自定义属性"></a>简化自定义属性</h3><p>通常我们自定义控件时，需要写 <code>declare-styleable</code>，这样我们才能在 <code>xml</code> 使用自定义的属性，同时还要在自定义控件来获取这些属性，整个过程很繁琐，使用 <code>DataBinding</code> 自定义属性就变得很简单了，直接写一个 <code>setXXX()</code> 的方法即可，不过缺点就是代码高亮等都不支持了。</p>
+<p>定义一个 <code>TextView</code>，它有 <code>setFormatText(String text)</code> 和 <code>setMySize(int size)</code> 方法，这两个方法没什么意义，只是用来测试。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTv</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">support</span>.<span class="title">v7</span>.<span class="title">widget</span>.<span class="title">AppCompatTextView</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTv</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTv</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTv</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFormatText</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">        setText(String.format(Locale.CHINA, <span class="string">"FormatText = %s"</span>, text));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMySize</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> mySize)</span> </span>&#123;</div><div class="line">        setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                ToastUtils.show(<span class="string">"设置的size= "</span> + mySize);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 <code>xml</code> 中就可以像普通属性一样使用这两个 <code>setter</code> 方法对应的属性。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com.march.commonlib.widget.MyTv</span></span></div><div class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/tv"</span></div><div class="line">    <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"50dp"</span></div><div class="line">    <span class="attr">app:formatText</span>=<span class="string">"@&#123;user.name&#125;"</span></div><div class="line">    <span class="attr">app:mySize</span>=<span class="string">"@&#123;user.age&#125;"</span>/&gt;</div></pre></td></tr></table></figure>
+<h3 id="BindingMethods"><a href="#BindingMethods" class="headerlink" title="BindingMethods"></a>BindingMethods</h3><p>不是所有的方法都能刚好是 <code>setter</code> 方法的格式，又或者把一个 <code>setter</code> 方法转换成 <code>xml</code> 属性变得很长很难看，<code>DataBinding</code> 提供了将 <code>setter</code> 方法和 <code>xml</code> 属性映射的方法，使用注解 <code>BindingMethods</code> 实现。</p>
+<p>还是在自定义控件中，添加方法 <code>testBindingMethod()</code> 方法，这不是一个标准的 <code>setter</code> 方法，自然无法映射到对应的 <code>xml</code> 属性，为了能在 <code>xml</code> 中使用，需要使用 <code>BindingMethods</code> 注解，<code>BindingMethods</code> 是注解在类上的。</p>
+<p>下面的代码意味着，对于 <code>TextView</code> 的 <code>my_bind_method</code> 属性会对应调用 <code>testBindingMethod()</code> 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindingMethods</span>(</div><div class="line">        <span class="meta">@BindingMethod</span>(type = TextView.class,</div><div class="line">                       attribute = <span class="string">"my_bind_method"</span>,</div><div class="line">                       method = <span class="string">"testBindingMethod"</span>)</div><div class="line">)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTv</span> <span class="keyword">extends</span> <span class="title">android</span>.<span class="title">support</span>.<span class="title">v7</span>.<span class="title">widget</span>.<span class="title">AppCompatTextView</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testBindingMethod</span><span class="params">(<span class="keyword">final</span> String text)</span> </span>&#123;</div><div class="line">        setOnLongClickListener(<span class="keyword">new</span> OnLongClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onLongClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                ToastUtils.show(<span class="string">"setTestBindingMethod = "</span> + text);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="BindingAdapter"><a href="#BindingAdapter" class="headerlink" title="BindingAdapter"></a>BindingAdapter</h3><p>有时我们需要给已经存在的控件设置新的 <code>xml</code> 属性， 甚至更改原来属性的运作方式，此时需要使用 <code>@BindingAdapter</code> 注解，这个注解的作用是将属性和方法绑定到一起，当在对应控件中使用对应属性时，会调用该方法。</p>
+<p>方法是静态的，如果是 <code>android</code> 原先的属性，则需要添加 <code>android:xxx</code> 命名空间，其他不需要，可以直接写属性名即可，参数大致分为以下几种类型：</p>
+<ul>
+<li>注解为一个属性时，第一个参数是对应控件，如果另外只有一个参数，第二个参数为值；</li>
+<li>注解为一个属性时，第一个参数是对应控件，如果另外有两个参数，则第二个参数为原来的值，第三个参数为新值；</li>
+<li>注解为多个属性时，第一个参数是对应控件，后面的参数分别为不同属性的值，多个属性时意味着必须当这个控件同时声明了注解中所有的注解属性才会绑定到该方法；</li>
+</ul>
+<p>我们可以更改已存在属性的运作方式，如下，当对 <code>TextView</code> 使用 <code>android:text</code> 属性时，会调用该方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AttrAdapter</span> </span>&#123;</div><div class="line">    <span class="meta">@BindingAdapter</span>(<span class="string">"android:text"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">(TextView tv, String text)</span> </span>&#123;</div><div class="line">        tv.setText(String.format(Locale.CHINA, <span class="string">"test1 - %s"</span>, text));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义一个新的属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindingAdapter</span>(<span class="string">"myTest2"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">(TextView tv, String text)</span> </span>&#123;</div><div class="line">    tv.setText(String.format(Locale.CHINA, <span class="string">"test2 - %s"</span>, text));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同时绑定两个属性，只有当该控件同时声明这两个属性时才会绑定到该方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindingAdapter</span>(&#123;<span class="string">"android:text"</span>, <span class="string">"myTest3"</span>&#125;)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">(TextView tv, String text, String text2)</span> </span>&#123;</div><div class="line">    tv.setText(String.format(Locale.CHINA, <span class="string">"test3 - %s - %s"</span>, text, text2));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@BindingAdapter</span>(&#123;<span class="string">"myTest2"</span>, <span class="string">"myTest3"</span>&#125;)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">(TextView tv, String text, String text2)</span> </span>&#123;</div><div class="line">    tv.setText(String.format(Locale.CHINA, <span class="string">"test4 - %s - %s"</span>, text, text2));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当一个属性，三个参数时，可以获得该属性的旧值和新值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@BindingAdapter</span>(<span class="string">"myTest4"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">(TextView tv, String oldText, String newText)</span> </span>&#123;</div><div class="line">    tv.setText(String.format(Locale.CHINA, <span class="string">"test5 - %s - %s"</span>, oldText, newText));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这些方法都声明在类 <code>AttrAdapter</code> 里面，如果要在 <code>xml</code> 中使用，需要导入该类。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">layout</span></span></div><div class="line">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span>&gt;</div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"user"</span></div><div class="line">            <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.User"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">import</span> <span class="attr">type</span>=<span class="string">"com.march.commonlib.activity.DataBindingActivity.AttrAdapter"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"@&#123;user.name&#125;"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">            <span class="attr">app:myTest2</span>=<span class="string">"@&#123;user.name&#125;"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">            <span class="attr">android:text</span>=<span class="string">"@&#123;user.name&#125;"</span></div><div class="line">            <span class="attr">app:myTest3</span>=<span class="string">"@&#123;user.name&#125;"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">            <span class="attr">app:myTest2</span>=<span class="string">"@&#123;user.name&#125;"</span></div><div class="line">            <span class="attr">app:myTest3</span>=<span class="string">"@&#123;user.name&#125;"</span>/&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line">            <span class="attr">style</span>=<span class="string">"@style/TvStyle"</span></div><div class="line">            <span class="attr">app:myTest4</span>=<span class="string">"@&#123;user.name&#125;"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/83ba57f4/" title="DataBinding">http://cdevlab.top/article/83ba57f4/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      版权所有，转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #aaa;font-size:14px;margin-top:2rem;">------ 本文结束 🎉🎉 谢谢观看  ------</div>
+    
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/DataBinding/" rel="tag"># DataBinding</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/2650e1c8/" rel="next" title="Kotlin开发-16-反射">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-16-反射
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/bc7a3f35/" rel="prev" title="Kotlin开发-17-注解">
+                Kotlin开发-17-注解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启-DataBinding"><span class="nav-text">开启 DataBinding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layout-文件结构"><span class="nav-text">layout 文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataBindingUtil"><span class="nav-text">DataBindingUtil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-部分语法"><span class="nav-text">Model 部分语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-部分表达式语法"><span class="nav-text">View 部分表达式语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法"><span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-android-资源"><span class="nav-text">使用 android 资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持-Includes"><span class="nav-text">支持 Includes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定方法和监听"><span class="nav-text">绑定方法和监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定数据"><span class="nav-text">绑定数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者对象"><span class="nav-text">观察者对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BaseObservable"><span class="nav-text">BaseObservable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ObservableField"><span class="nav-text">ObservableField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ObservableCollections"><span class="nav-text">ObservableCollections</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表中进行数据绑定"><span class="nav-text">列表中进行数据绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任意属性的-setter"><span class="nav-text">任意属性的 setter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简化自定义属性"><span class="nav-text">简化自定义属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BindingMethods"><span class="nav-text">BindingMethods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BindingAdapter"><span class="nav-text">BindingAdapter</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+  <i class="fa fa-star"></i>
+</span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+  <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2d_models/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":1,"vHeadPos":1,"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":3,"width":60,"height":120,"position":"right","hOffset":120,"vOffset":-40},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1}});</script></body>
+</html>

@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+  <meta name="keywords" content="Android,开源,">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,开源,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="使用 微博、QQ、微信、钉钉 原生 SDK 接入，提供这些平台的登录、分享功能支持。针对业务逻辑对各个平台的接口进行封装，对外提供一致的表现，在减轻接入压力的同时，又能获得原生 SDK 最大的灵活性。  考虑到每个平台的 SDK 也在不断的更新，且每个项目的需求差异比较大，如可能只需要支持部分平台，因此没有对类库进行发布，请下载 GitHub 上的 module 自行依赖，在类库设计的过程中，每个">
+<meta name="keywords" content="Android,开源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信微博QQ钉钉登录分享 [开源]">
+<meta property="og:url" content="http://cdevlab.top/article/3067853428/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="使用 微博、QQ、微信、钉钉 原生 SDK 接入，提供这些平台的登录、分享功能支持。针对业务逻辑对各个平台的接口进行封装，对外提供一致的表现，在减轻接入压力的同时，又能获得原生 SDK 最大的灵活性。  考虑到每个平台的 SDK 也在不断的更新，且每个项目的需求差异比较大，如可能只需要支持部分平台，因此没有对类库进行发布，请下载 GitHub 上的 module 自行依赖，在类库设计的过程中，每个">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-6/30515419.jpg">
+<meta property="og:updated_time" content="2018-04-06T07:19:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信微博QQ钉钉登录分享 [开源]">
+<meta name="twitter:description" content="使用 微博、QQ、微信、钉钉 原生 SDK 接入，提供这些平台的登录、分享功能支持。针对业务逻辑对各个平台的接口进行封装，对外提供一致的表现，在减轻接入压力的同时，又能获得原生 SDK 最大的灵活性。  考虑到每个平台的 SDK 也在不断的更新，且每个项目的需求差异比较大，如可能只需要支持部分平台，因此没有对类库进行发布，请下载 GitHub 上的 module 自行依赖，在类库设计的过程中，每个">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-6/30515419.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/3067853428/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>微信微博QQ钉钉登录分享 [开源] | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 800px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+   <a href="https://github.com/chendongMarch?tab=repositories" class="forkme github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3067853428/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">微信微博QQ钉钉登录分享 [开源]
+        
+          
+            <img src="https://badge.juejin.im/entry/5a793a405188257a82111092/likes.svg?style=flat-square" class="badge-img">
+          
+            <img src="https://img.shields.io/github/stars/chendongMarch/SocialSdkLibrary.svg" class="badge-img">
+          
+            <img src="https://img.shields.io/github/forks/chendongMarch/SocialSdkLibrary.svg" class="badge-img">
+          
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-07T00:00:00+08:00">
+                2017-07-07
+              </time>
+              
+                于杭州拱墅-宝拍
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/3067853428/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/3067853428/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/3067853428/" class="leancloud_visitors" data-flag-title="微信微博QQ钉钉登录分享 [开源]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+     
+        <div class="gellery-wrap" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            
+                <img src="http://olx4t2q6z.bkt.clouddn.com/18-2-6/30515419.jpg" itemprop="contentUrl">
+            
+          
+          
+          </div>
+        </div>
+       
+
+      
+        <p>使用 <strong>微博</strong>、<strong>QQ</strong>、<strong>微信</strong>、<strong>钉钉</strong> 原生 <code>SDK</code> 接入，提供这些平台的登录、分享功能支持。针对业务逻辑对各个平台的接口进行封装，对外提供一致的表现，在减轻接入压力的同时，又能获得原生 <code>SDK</code> 最大的灵活性。</p>
+<blockquote>
+<p>考虑到每个平台的 <code>SDK</code> 也在不断的更新，且每个项目的需求差异比较大，如可能只需要支持部分平台，因此没有对类库进行发布，请下载 <code>GitHub</code> 上的 <code>module</code> 自行依赖，在类库设计的过程中，每个平台都是独立的，如果只需要支持部分平台，只需要删除 <code>platform</code> 包下面对应的实现即可，不会对其他平台造成影响。</p>
+</blockquote>
+<p>项目地址 : <a href="https://github.com/chendongMarch/SocialSdkLibrary" rel="external nofollow noopener noreferrer" target="_blank">GitHub - SocialSdkLibrary</a></p>
+<p>本文地址 ：<a href="http://cdevlab.top/article/3067853428/">快速接入微信微博QQ钉钉原生登录分享</a></p>
+<p>🎉  2017.12.12 对代码进行简单重构并测试，发布第一个稳定版本 1.0.0</p>
+<p>🎉  2018.2.12 支持钉钉分享</p>
+<a id="more"></a>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>还在优化中…</p>
+<p>🔥 简单：只需要关注几个管理类和相关数据的构造即可实现所需功能，不需要考虑复杂的授权和分享逻辑。</p>
+<p>🔥 轻量：除了必须的第三方 <code>sdk</code> 之外，本项目只依赖了一个简单的异步任务的框架 <code>bolts (38k)</code>，后续会考虑也剔除掉，不引入无用依赖，保证与宿主项目高度统一。</p>
+<p>🔥 全面：内部存储授权 <code>token</code>，避免多次授权；对 qq、微信、微博 做了完善的支持；</p>
+<p>🔥 扩展性：</p>
+<ul>
+<li>平台独立，项目以平台进行划分，各个平台之间完全独立，如果想仅支持部分平台，只需要删除 <code>platform</code> 包下该平台的具体实现即可。</li>
+<li>请求、JSON 解析等功能可从外部注入代理，对一些功能进行自定义的扩展。</li>
+<li>可以继承 <code>AbsPlatform</code> 接入其他平台分享，自定义扩展。</li>
+</ul>
+<p>🔥 功能性：针对实际项目需求进行扩展，例如在分享前统一对分享数据提供一次重新构造的机会。</p>
+<p>🔥 兼容性：</p>
+<ul>
+<li>为多个平台提供外观一致的分享接口，若不支持，使用 <code>web</code> 分享兼容。</li>
+<li>支持直接使用网络图片分享，内置自动下载功能。</li>
+<li>使用 <code>Intent</code> 兼容不支持的数据模式，如支持本地视频分享，<code>qq</code> 的纯文字分享等等。</li>
+</ul>
+<h2 id="主要类文件"><a href="#主要类文件" class="headerlink" title="主要类文件"></a>主要类文件</h2><p>使用 <strong>SocialSdk</strong> 只需要关注以下几个文件：</p>
+<p>👉️ <code>SocialSdk.java</code> 结合 <code>SocialConfig.java</code> 用来进行授权信息的配置。</p>
+<p>👉️ <code>Target.java</code> 类是单独分离出来的常量类，指向了登录和分享的具体目标。</p>
+<p>👉️ <code>LoginManager.java</code> 用来实现 qq、微信、微博第三方授权登录，内部存储 <code>accessToken</code>，无需多次授权，只要调用 <code>LoginManager.login()</code> 方法。</p>
+<p>👉️️ <code>ShareManager.java</code> 用来实现 <strong>8</strong> 种数据类型、<strong>4</strong> 个平台、<strong>8</strong> 个渠道的分享，只要调用 <code>ShareManager.share()</code> 方法。</p>
+<h2 id="gradle-配置"><a href="#gradle-配置" class="headerlink" title="gradle 配置"></a>gradle 配置</h2><p>针对多方 <code>SDK</code> 的要求，对权限、和必要的界面、服务都已经在类库中进行了配置，当依赖该类库时，会自动合并，不过仍然还需要在项目的 <code>app/build.gradle</code> 中配置对应的 <code>qqId</code> 的 <code>manifestPlaceholders</code>，代码如下：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">defaultConfig &#123;</div><div class="line">	manifestPlaceholders = [qq_id: <span class="string">"11049xxxxx"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>关于 <code>manifestPlaceholders</code> 的使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">当使用 manifestPlaceholders = [qq_id: <span class="string">"11049xxxxx"</span>] 的方式时，之前声明的所有 manifestPlaceholders 都会被替换掉，只保留最后的。</div><div class="line"></div><div class="line">当使用 manifestPlaceholders.qq_id = <span class="string">"11049xxxxx"</span> 的方式时，会在原来的 manifestPlaceholders 中追加新的，同时也保留以前的。</div><div class="line"></div><div class="line">建议的方式是，在 defaultConfig 中使用直接赋值的方式，而在 buildTypes 和 Favors 中使用追加的方式，避免将之前的覆盖掉。</div></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>你需要在使用 SDK 之前进行初始化操作，建议放在 <code>Applicaton</code> 中进行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">String qqAppId = getString(R.string.QQ_APPID);</div><div class="line">String wxAppId = getString(R.string.WEICHAT_APPID);</div><div class="line">String wxSecretKey = getString(R.string.WEICHAT_APPKEY);</div><div class="line">String sinaAppId = getString(R.string.SINA_APPKEY);</div><div class="line">String ddAppId = getString(R.string.DD_APPID);</div><div class="line">SocialSdkConfig config = <span class="keyword">new</span> SocialSdkConfig(<span class="keyword">this</span>)</div><div class="line">        .dd(ddAppId)</div><div class="line">        <span class="comment">// 配置qq</span></div><div class="line">        .qq(qqAppId)</div><div class="line">        <span class="comment">// 配置wx</span></div><div class="line">        .wechat(wxAppId, wxSecretKey)</div><div class="line">        <span class="comment">// 配置sina</span></div><div class="line">        .sina(sinaAppId)</div><div class="line">        <span class="comment">// 配置Sina的RedirectUrl，有默认值，如果是官网默认的不需要设置</span></div><div class="line">        .sinaRedirectUrl(<span class="string">"http://open.manfenmm.com/bbpp/app/weibo/common.php"</span>)</div><div class="line">        <span class="comment">// 配置Sina授权scope,有默认值，默认值 all</span></div><div class="line">        .sinaScope(SocialConstants.SCOPE);</div><div class="line"><span class="comment">// 👮 添加 config 数据，必须</span></div><div class="line">SocialSdk.init(config);</div><div class="line"><span class="comment">// 👮 添加自定义的 json 解析，必须</span></div><div class="line">SocialSdk.setJsonAdapter(<span class="keyword">new</span> GsonJsonAdapter());</div></pre></td></tr></table></figure>
+<h2 id="adapter"><a href="#adapter" class="headerlink" title="adapter"></a>adapter</h2><p>使用 <code>adapter</code> 这种模式主要参照了一些成熟的类库，目的是为了对外提供更好的扩展性，这部分内容可以关注 <code>SocialSdk.java</code>.</p>
+<ul>
+<li><p><code>IJsonAdapter</code>，负责 <code>Json</code> 解析，为了保持和宿主项目 <code>json</code> 解析框架的统一，是必须自定义添加的（没有内置一个实现是因为使用自带的 <code>JsonObject</code> 解析实在麻烦，又不想内置一个三方库进来，采取的这种折衷方案），提供一个 <code>Gson</code> 下的实现仅供参考 - <a href="https://github.com/chendongMarch/SocialSdkLibrary/blob/master/temp/GsonJsonAdapter.java" rel="external nofollow noopener noreferrer" target="_blank">GsonJsonAdapter.java</a></p>
+</li>
+<li><p><code>IRequestAdapter</code>，负责请求数据，目前微信的 <code>OAuth2</code> 授权和图片下载的相关请求都是使用 <code>IRequestAdapter</code> 代理，已经使用 <code>URLConnection</code> 内置了一个实现，如果你有自己的需求可以重写这部分，注意 <code>https</code> 请求的兼容，可以参考 - <a href="https://github.com/chendongMarch/SocialSdkLibrary/blob/master/src/main/java/com/march/socialsdk/adapter/impl/RequestAdapterImpl.java" rel="external nofollow noopener noreferrer" target="_blank">RequestAdapterImpl.java</a></p>
+</li>
+</ul>
+<h2 id="登录功能"><a href="#登录功能" class="headerlink" title="登录功能"></a>登录功能</h2><p>登陆功能支持三个平台，qq，微信，微博；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 3个平台</span></div><div class="line">Target.LOGIN_QQ;</div><div class="line">Target.LOGIN_WX;</div><div class="line">Target.LOGIN_WB;</div></pre></td></tr></table></figure>
+<p>使用 <code>OnLoginListener</code> 监听登录返回结果，返回的 <code>LoginResult</code> 中主要包括登录类型，基本用户信息，令牌信息 3 部分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginResult</span> </span>&#123;</div><div class="line">    <span class="comment">// 登陆的类型，对应 Target.LOGIN_QQ 等。。。</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span>             type;</div><div class="line">    <span class="comment">// 返回的基本用户信息</span></div><div class="line">    <span class="comment">// 针对登录类型可强转为 WbUser,WxUser,QQUser 来获取更加丰富的信息</span></div><div class="line">    <span class="keyword">private</span> BaseUser        mBaseUser;</div><div class="line">    <span class="comment">// 本次登陆的 token 信息，openid,unionid,token,expires_in</span></div><div class="line">    <span class="keyword">private</span> BaseAccessToken mBaseToken;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 登陆结果监听</span></div><div class="line">mOnLoginListener = <span class="keyword">new</span> OnLoginListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoginSucceed</span><span class="params">(LoginResult loginResult)</span> </span>&#123;</div><div class="line">        Log.e(TAG, loginResult.toString());</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">()</span> </span>&#123;</div><div class="line">        toast(<span class="string">"登录取消"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onException</span><span class="params">(PlatformException e)</span> </span>&#123;</div><div class="line">        toast(<span class="string">"登录失败 "</span> + e.toString());</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 3个平台</span></div><div class="line">Target.LOGIN_QQ;</div><div class="line">Target.LOGIN_WX;</div><div class="line">Target.LOGIN_WB;</div><div class="line"></div><div class="line"><span class="comment">// 唤醒登陆</span></div><div class="line">LoginManager.login(mActivity, Target.LOGIN_QQ, mOnLoginListener);</div></pre></td></tr></table></figure>
+<p>清除授权 <code>token</code>，为了避免每次登录都要求用户打开授权界面重新点击授权的不好体验，类库里面对 <code>token</code> 进行了持久化的存储，当本地 <code>token</code> 没有过期时，直接使用这个 <code>token</code> 去请求用户信息，同时提供了清除本地 <code>token</code> 的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">LoginManager.java</div><div class="line"></div><div class="line"><span class="comment">// 清除全部平台的 token</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clearAllToken</span><span class="params">(Context context)</span></span></div><div class="line"><span class="comment">// 清除指定平台的 token</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clearToken</span><span class="params">(Context context, @Target.LoginTarget <span class="keyword">int</span> loginTarget)</span></div></pre></td></tr></table></figure>
+<h2 id="分享功能"><a href="#分享功能" class="headerlink" title="分享功能"></a>分享功能</h2><h3 id="扩展支持"><a href="#扩展支持" class="headerlink" title="扩展支持"></a>扩展支持</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 发短信</span></div><div class="line">ShareManager.sendSms(mActivity,<span class="string">"13612391817"</span>,<span class="string">"msg body"</span>);</div><div class="line"><span class="comment">// 发邮件</span></div><div class="line">ShareManager.sendEmail(mActivity,<span class="string">"1101873740@qq.com"</span>,<span class="string">"subject"</span>,<span class="string">"msg body"</span>);</div><div class="line"><span class="comment">// 打开渠道对应应用</span></div><div class="line">ShareManager.openApp(mActivity,Target.SHARE_QQ_FRIENDS);</div></pre></td></tr></table></figure>
+<h3 id="8-种数据支持"><a href="#8-种数据支持" class="headerlink" title="8 种数据支持"></a>8 种数据支持</h3><p>分享支持 8 种类型的数据；如果某个平台不兼容某种类型的分享，将会使用 <code>web</code> 分享的方式代替；比如微信不支持 <code>app</code> 分享，分享出去之后时 <code>web</code> 分享的模式。支持的 8 种类型分别是：</p>
+<blockquote>
+<ol>
+<li>开启渠道对用的 app。</li>
+<li>分享文字。</li>
+<li>分享图片( jpg , png , gif )。</li>
+<li>分享 app。</li>
+<li>分享 web。</li>
+<li>分享 music。</li>
+<li>分享 video。</li>
+<li>分享本地 video，使用 Intent 方式唤醒。</li>
+</ol>
+</blockquote>
+<h3 id="8-个分享渠道"><a href="#8-个分享渠道" class="headerlink" title="8 个分享渠道"></a>8 个分享渠道</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 支持的分享渠道</span></div><div class="line">Target.SHARE_DD; <span class="comment">// 钉钉好友</span></div><div class="line">Target.SHARE_QQ_FRIENDS; <span class="comment">// qq好友</span></div><div class="line">Target.SHARE_QQ_ZONE; <span class="comment">// qq空间</span></div><div class="line">Target.SHARE_WX_FRIENDS; <span class="comment">// 微信好友</span></div><div class="line">Target.SHARE_WX_ZONE; <span class="comment">// 微信朋友圈</span></div><div class="line">Target.SHARE_WX_FAVORITE; <span class="comment">// 微信收藏</span></div><div class="line">Target.SHARE_WB_NORMAL; <span class="comment">// 新浪微博</span></div><div class="line">Target.SHARE_WB_OPENAPI; <span class="comment">// 新浪微博openApi分享，使用该方法分享图片时微博后面会带一个小尾巴，可以点击进入官微</span></div></pre></td></tr></table></figure>
+<h3 id="创建分享数据"><a href="#创建分享数据" class="headerlink" title="创建分享数据"></a>创建分享数据</h3><p>分享时，我们首先要构造分享用的数据，<code>ShareObj</code> 对象提供了多种静态方法用来快速创建对应分享的类型的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 测试用的路径</span></div><div class="line">localImagePath = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"1.jpg"</span>).getAbsolutePath();</div><div class="line">localVideoPath = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"video.mp4"</span>).getAbsolutePath();</div><div class="line">localGifPath = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"3.gif"</span>).getAbsolutePath();</div><div class="line">netVideoPath = <span class="string">"http://7xtjec.com1.z0.glb.clouddn.com/export.mp4"</span>;</div><div class="line">netImagePath = <span class="string">"http://7xtjec.com1.z0.glb.clouddn.com/token.png"</span>;</div><div class="line">netMusicPath = <span class="string">"http://7xtjec.com1.z0.glb.clouddn.com/test_music.mp3"</span>;</div><div class="line">netMusicPath = <span class="string">"http://mp3.haoduoge.com/sSocialSdkConfig/2017-05-19/1495207225.mp3"</span>;</div><div class="line">targetUrl = <span class="string">"http://bbs.csdn.net/topics/391545021"</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 打开渠道对应app</span></div><div class="line">ShareObj shareMediaObj = ShareObj.buildOpenAppObj();</div><div class="line"><span class="comment">// 分享文字</span></div><div class="line">ShareObj textObj = ShareObj.buildTextObj(<span class="string">"分享文字"</span>, <span class="string">"summary"</span>);</div><div class="line"><span class="comment">// 分享图片</span></div><div class="line">ShareObj imageObj = ShareObj.buildImageObj(<span class="string">"分享图片"</span>, <span class="string">"summary"</span>, localImagePath);</div><div class="line"><span class="comment">// 分享gif</span></div><div class="line">ShareObj imageGifObj = ShareObj.buildImageObj(<span class="string">"分享图片"</span>, <span class="string">"summary"</span>, localGifPath);</div><div class="line"><span class="comment">// 分享app</span></div><div class="line">ShareObj appObj = ShareObj.buildAppObj(<span class="string">"分享app"</span>, <span class="string">"summary"</span>, localImagePath, targetUrl);</div><div class="line"><span class="comment">// 分享web</span></div><div class="line">ShareObj webObj = ShareObj.buildWebObj(<span class="string">"分享web"</span>, <span class="string">"summary"</span>, localImagePath, targetUrl);</div><div class="line"><span class="comment">// 分享视频</span></div><div class="line">ShareObj videoObj = ShareObj.buildVideoObj(<span class="string">"分享视频"</span>, <span class="string">"summary"</span>, localImagePath, targetUrl, localVideoPath, <span class="number">10</span>);</div><div class="line"><span class="comment">// 分享本地视频，使用 Intent 方式唤醒，支持 qq、微信 好友分享</span></div><div class="line">ShareObj videoLocalObj = ShareObj.buildVideoObjByLocalPath(localVideoPath);</div><div class="line"><span class="comment">// 分享音乐</span></div><div class="line">ShareObj musicObj = ShareObj.buildMusicObj(<span class="string">"分享音乐"</span>, <span class="string">"summary"</span>, localImagePath, targetUrl, netMusicPath, <span class="number">10</span>);</div></pre></td></tr></table></figure>
+<h3 id="分享监听"><a href="#分享监听" class="headerlink" title="分享监听"></a>分享监听</h3><p>分享结果，使用 <code>OnShareListener</code> 进行检测。<code>OnShareListener</code> 提供了丰富的方法来支持分享的各个阶段，关于分享对象重构的操作，在下一部分说明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class SimpleShareListener implements OnShareListener&#123;</div><div class="line">    @Override</div><div class="line">    public void onStart(int shareTarget, ShareObj obj) &#123;</div><div class="line">        // 分享开始</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public ShareObj onPrepareInBackground(int shareTarget, ShareObj obj) &#123;</div><div class="line">        // 重构分享对象，不需要时返回 null 即可</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onSuccess() &#123;</div><div class="line">        // 分享成功</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onFailure(SocialException e) &#123;</div><div class="line">        // 分享失败</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onCancel() &#123;</div><div class="line">        // 分享取消</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="发起分享"><a href="#发起分享" class="headerlink" title="发起分享"></a>发起分享</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 唤醒分享</span></div><div class="line">ShareManager.share(mActivity, Target.SHARE_QQ_FRIENDS, imageObj, mOnShareListener);</div></pre></td></tr></table></figure>
+<h3 id="重写分享对象"><a href="#重写分享对象" class="headerlink" title="重写分享对象"></a>重写分享对象</h3><p>关于重写分享对象，其实提供一种能在分享之前对需要分享的 <code>ShareObj</code> 进行统一处理的机会，类似中间插一道自定义工序，比如可以用来解决网络图片无法分享，我们需要将它下载到本地，在进行分享，又比如图片分享出去之前加上 app 水印等操作。</p>
+<p>主要是重写 <code>OnShareListener</code> 的 <code>onPrepareInBackground</code> 方法，这个方法会在分享之前首先执行，如果返回不是 null，将会使用新创建的 <code>ShareObj</code> 进行分享，另外由于考虑到可能进行耗时操作，这个方法是在子线程执行的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> ShareObj <span class="title">onPrepareInBackground</span><span class="params">(<span class="keyword">int</span> shareTarget,ShareObj obj)</span> </span>&#123;</div><div class="line">    <span class="comment">// 重构分享对象，不需要时返回 null 即可</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看一个基本的实例，主要功能是在分享之前用来将网络图下载到本地然后更新 <code>ShareObj</code> 指向的图片地址，这样就可以支持网络图片的直接分享，当然，这个功能已经内置在类库中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyShareListener</span> <span class="keyword">extends</span> <span class="title">SimpleShareListener</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = MyShareListener.class.getSimpleName();</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Context       mContext;</div><div class="line">    <span class="keyword">private</span> LoadingDialog mLoadingDialog;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyShareListener</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        mContext = context;</div><div class="line">        mLoadingDialog = <span class="keyword">new</span> LoadingDialog(mContext);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStart</span><span class="params">(<span class="keyword">int</span> shareTarget, ShareObj obj)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mLoadingDialog != <span class="keyword">null</span>)</div><div class="line">            mLoadingDialog.show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ShareObj <span class="title">onPrepareInBackground</span><span class="params">(<span class="keyword">int</span> shareTarget, ShareObj obj)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">        <span class="comment">// 网络路径，先进行文件下载进行文件下载</span></div><div class="line">        ShareObjHelper.prepareThumbImagePath(obj);</div><div class="line">        <span class="comment">// 分享照片且不是gif时加水印</span></div><div class="line">        <span class="keyword">if</span> (obj.getShareObjType() == ShareObj.SHARE_TYPE_IMAGE</div><div class="line">                &amp;&amp; !FileHelper.isGifFile(obj.getThumbImagePath())) &#123;</div><div class="line">            File thumbImageFile = <span class="keyword">new</span> File(obj.getThumbImagePath());</div><div class="line">            File saveFile = <span class="keyword">new</span> File(Constants.THUMB_IMAGE_PATH, thumbImageFile.getName());</div><div class="line">            <span class="keyword">if</span> (!FileUtil.fileIsExist(saveFile.getAbsolutePath())) &#123;</div><div class="line">                ImageUtils.drawWaterMarkSync(mContext, obj.getThumbImagePath(), saveFile.getAbsolutePath(), <span class="keyword">false</span>, <span class="keyword">false</span>);</div><div class="line">            &#125;</div><div class="line">            obj.setThumbImagePath(saveFile.getAbsolutePath());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> obj;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;</div><div class="line">        ToastUtil.show(<span class="string">"分享成功"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(SocialException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (e.getErrorCode()) &#123;</div><div class="line">            <span class="keyword">case</span> SocialException.CODE_NOT_INSTALL:</div><div class="line">                ToastUtil.show(<span class="string">"应用未安装"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        L.e(TAG, <span class="string">"分享失败"</span> + e.toString());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">()</span> </span>&#123;</div><div class="line">        ToastUtil.show(<span class="string">"分享取消"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/3067853428/" title="微信微博QQ钉钉登录分享 [开源]">http://cdevlab.top/article/3067853428/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      版权所有，转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #aaa;font-size:14px;margin-top:2rem;">------ 本文结束 🎉🎉 谢谢观看  ------</div>
+    
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/开源/" rel="tag"># 开源</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/5b70625a/" rel="next" title="CSS 基础 1">
+                <i class="fa fa-chevron-left"></i> CSS 基础 1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/d318b1f4/" rel="prev" title="CSS 选择器">
+                CSS 选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article></div>
+  
+  
+  
+  
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要类文件"><span class="nav-text">主要类文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradle-配置"><span class="nav-text">gradle 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adapter"><span class="nav-text">adapter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录功能"><span class="nav-text">登录功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分享功能"><span class="nav-text">分享功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展支持"><span class="nav-text">扩展支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-种数据支持"><span class="nav-text">8 种数据支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-个分享渠道"><span class="nav-text">8 个分享渠道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建分享数据"><span class="nav-text">创建分享数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分享监听"><span class="nav-text">分享监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发起分享"><span class="nav-text">发起分享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写分享对象"><span class="nav-text">重写分享对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </main></div>
+      
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+  <i class="fa fa-star"></i>
+</span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+  <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2d_models/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":1,"vHeadPos":1,"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":3,"width":60,"height":120,"position":"right","hOffset":120,"vOffset":-40},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1}});</script></body>
+</html>

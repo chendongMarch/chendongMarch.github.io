@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+  <meta name="keywords" content="weex">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="weex">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前几天看知乎，Evan You 叫 Weex 作 Vue-Native😊 本文主要学习如何使用 Weex 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。">
+<meta name="keywords" content="weex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Weex 开发 [Weex]">
+<meta property="og:url" content="http://cdevlab.top/article/41ed2d2f/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="前几天看知乎，Evan You 叫 Weex 作 Vue-Native😊 本文主要学习如何使用 Weex 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/83676814.jpg">
+<meta property="og:updated_time" content="2018-02-11T03:03:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Weex 开发 [Weex]">
+<meta name="twitter:description" content="前几天看知乎，Evan You 叫 Weex 作 Vue-Native😊 本文主要学习如何使用 Weex 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/83676814.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/41ed2d2f/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Weex 开发 [Weex] | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 800px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+   <a href="https://github.com/chendongMarch?tab=repositories" class="forkme github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/41ed2d2f/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Weex 开发 [Weex]
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T11:13:00+08:00">
+                2017-11-16
+              </time>
+              
+                于杭州上装
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/weex/" itemprop="url" rel="index">
+                    <span itemprop="name">weex</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/41ed2d2f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/41ed2d2f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/41ed2d2f/" class="leancloud_visitors" data-flag-title="Weex 开发 [Weex]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+     
+        <div class="gellery-wrap" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            
+                <img src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/83676814.jpg" itemprop="contentUrl">
+            
+          
+          
+          </div>
+        </div>
+       
+
+      
+        <p>前几天看知乎，<code>Evan You</code> 叫 <code>Weex</code> 作 <code>Vue-Native</code>😊</p>
+<p>本文主要学习如何使用 <code>Weex</code> 常用组件进行开发工作，再根据开发过程中遇到的问题，完善补充。    </p>
+<a id="more"></a>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li><p>不支持相对单位 <code>em</code>，<code>rem</code> 等，只能使用 <code>px</code>；</p>
+</li>
+<li><p>不支持 <code>css</code> 组合写法，只能设置一个属性值，如 <del> <code>border: 1 solid red;</code> </del></p>
+</li>
+<li><p><code>&lt;image&gt;</code> 在 <code>ios</code> 平台 <code>border</code> 不支持设置不同的 <code>radius</code>；</p>
+</li>
+<li><p>不支持百分比</p>
+</li>
+<li><p>根布局必须是 <code>&lt;div&gt;</code>、<code>&lt;scroller&gt;</code></p>
+</li>
+<li><p>事件最好定义成有意义的形式，不然有时会出问题，例如 <code>@change=&quot;change&quot;</code> 监听 <code>change</code> 事件没问题，但是 <code>@scroll=&quot;scroll&quot;</code> 就会出现监听不到的问题。</p>
+</li>
+<li><p>标签属性一定要写成标签属性的形式 <code>porperty=value</code>，不能用 <code>css</code> 属性代替，有些属性在 <code>Android</code> 上面支持，但是在 <code>ios</code> 那边不支持。</p>
+</li>
+<li><p>当不是根元素的 <code>div</code> 嵌套列表时，比如 <code>list</code>，列表在 <code>ios</code> 上无法显示出来，要显式的指定 <code>div</code> 的高度，有点类似两个可滑动的组件套在一起，无法测量高度的情况。</p>
+</li>
+<li><p>使用 <code>:style</code> 支持动态设置多个属性时，如果值带有单位，则一定要使用 <code>&#39;&#39;</code> 包含，中间以逗号分隔，如 <code>:style=&quot;{width:&#39;750px&#39;,color:red,height:height+&#39;px&#39;}&quot;</code></p>
+</li>
+</ul>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p><image width="200px;" src="http://olx4t2q6z.bkt.clouddn.com/17-11-16/13369345.jpg"><br></image></p>
+<p><code>Weex</code> 盒模型的 <code>box-sizing</code> 默认为 <code>border-box</code>，即盒子的宽高包含内容、内边距和边框的宽度，不包含外边距的宽度。</p>
+<p>width/height - 指的是 <code>content + padding + border</code> 部分的尺寸</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>padding - 内边距，<code>content</code> 和 <code>border</code> 之间的距离</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">padding</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">padding-top</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">padding-xxxx</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>margin - 外边距，元素与元素之间的距离</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">margin-top</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">margin-xxxx</span>:<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>border - 边框</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/* solid 直线，默认值；dashed 虚线；dotted 点线；*/</span></div><div class="line">  <span class="attribute">border-style</span>: solid | dashed | dotted;</div><div class="line">  <span class="attribute">border-xxxx-style</span>: solid | dashed | dotted;</div><div class="line"></div><div class="line">  <span class="attribute">border-color</span>:<span class="number">#0f0f0f</span>;</div><div class="line">  <span class="attribute">border-xxxx-color</span>:<span class="number">#0f0f0f</span>;</div><div class="line"></div><div class="line">  <span class="comment">/* 先 top/bottom，后 left/right */</span></div><div class="line">  <span class="attribute">border-radius</span>:<span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-xxxx-yyyy-radius</span>:<span class="number">10px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="FlexBox"><a href="#FlexBox" class="headerlink" title="FlexBox"></a>FlexBox</h2><p><code>flexbox</code> 是 <code>CSS3.0</code> 新的布局模式，<code>Weex</code> 对它进行了部分的支持。</p>
+<p><code>flexbox</code> 是唯一的默认的布局模式，不需要指定 <code>display: flex;</code>，默认所有的容器类元素都是 <code>flex</code> 容器。</p>
+<p>布局方向</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/* row,左到右排列；column,上到下排列*/</span></div><div class="line">  <span class="attribute">flex-direction</span>: row | column;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>主轴方向元素的排列</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/*</span></div><div class="line">  flex-start : 元素全部靠左</div><div class="line">  flex-end : 元素全部靠右</div><div class="line">  center : 元素居中</div><div class="line">  space-between : 元素之间间距相同，分散排列，两边不留白</div><div class="line">  space-arround : 元素之间间距相同，分散排列，两边留间距的一半</div><div class="line">  */</div><div class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-arround;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>侧轴方向元素的排列。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="comment">/*</span></div><div class="line">  flex-start : 元素靠顶部对齐；</div><div class="line">  flex-end : 元素靠底部对齐；</div><div class="line">  center : 居中 </div><div class="line">  stretch : 拉伸到 flex 容器大小</div><div class="line">  */</div><div class="line">  <span class="attribute">align-items </span>: flex-start | flex-end | center | stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>flex 成员项</p>
+<p><code>flex</code> 属性定义了 <code>flex</code> 成员项可以占用容器中剩余空间的大小。如果所有的成员项设置相同的值 <code>flex: 1</code>，它们将平均分配剩余空间. 如果一个成员项设置的值为 <code>flex: 2</code>，其它的成员项设置的值为 <code>flex: 1</code>，那么这个成员项所占用的剩余空间是其它成员项的 2 倍。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.frame</span>&#123;</div><div class="line">  <span class="attribute">flex</span>:<span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="pseudo"><a href="#pseudo" class="headerlink" title="pseudo"></a>pseudo</h2><p>主要支持 <code>active</code>，<code>focus</code>，<code>enabled</code>，<code>disabled</code>。所有组件支持 <code>active</code>，只有 <code>input</code> 和 <code>textarea</code> 支持 <code>focus</code>。</p>
+<p>在客户端中，<code>active</code> 表示组件被按压时的状态，<code>focus</code> 表示组件获取到焦点时的状态，<code>enabled</code> 表示可用时的状态，<code>disable</code> 表示不可用时的状态。</p>
+<p>在 <code>ios</code> 上，<code>enable</code> 没有效果。</p>
+<p>优先级：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">active &gt; focus &gt; enable</div><div class="line">active &gt; disabled </div><div class="line"></div><div class="line">disabled 是一种消极状态，disabled 和 focus、enable 这类积极的状态不会冲突。</div></pre></td></tr></table></figure>
+<h2 id="div"><a href="#div" class="headerlink" title="div"></a>div</h2><p>不可嵌套层级过深，控制在 10 层以内，避免性能问题；</p>
+<p>不能在 <code>div</code> 中直接写文字，需要使用 <code>&lt;text&gt;</code> 组件；</p>
+<p>即使高度超出范围 <code>div</code> 也不能滑动；</p>
+<h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><p>不支持 <code>click</code> 和 <code>longpress</code> 事件</p>
+<p>标签属性 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 加载的地址</span></div><div class="line">src = <span class="string">"https://m.alibaba.com"</span></div></pre></td></tr></table></figure>
+<p>事件，<code>event</code> 里面内容很多</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 页面开始加载</span></div><div class="line">@pagestart</div><div class="line"></div><div class="line"><span class="comment">// 页面加载完成</span></div><div class="line">@pagefinish</div><div class="line"></div><div class="line"><span class="comment">// 加载出现错误</span></div><div class="line">@error</div></pre></td></tr></table></figure>
+<h2 id="video"><a href="#video" class="headerlink" title="video"></a>video</h2><p>内部只能包含 <code>&lt;text&gt;</code> 标签</p>
+<p>标签属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 播放地址</span></div><div class="line">src=<span class="string">"url"</span></div><div class="line"></div><div class="line"><span class="comment">// 播放状态，控制这个值可以控制播放和暂停</span></div><div class="line">play-status=<span class="string">"play|pause"</span></div><div class="line"></div><div class="line"><span class="comment">// 加载完成后自动播放</span></div><div class="line">auto-play = <span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 每次开始播放，自动播放或者暂停后播放都会触发</span></div><div class="line">@start</div><div class="line"></div><div class="line"><span class="comment">// 暂停时触发</span></div><div class="line">@pause</div><div class="line"></div><div class="line"><span class="comment">// 播放完成时触发</span></div><div class="line">@finish</div><div class="line"></div><div class="line"><span class="comment">// 播放失败时触发</span></div><div class="line">@fail</div></pre></td></tr></table></figure>
+<h2 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h2><p>标签属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">checked = <span class="literal">true</span> <span class="comment">// 是否选中</span></div><div class="line">disabled = <span class="literal">false</span> <span class="comment">// 是否不可用</span></div></pre></td></tr></table></figure>
+<p>文档中提到，下面的样式不能使用，测试发现，<code>width／height</code>、<code>margin</code>、<code>border</code> 这些属性都是可以使用的，不过确实有部分属性在 <code>ios</code> 上面没有效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">width</span></div><div class="line"><span class="selector-tag">height</span></div><div class="line"><span class="selector-tag">min-width</span></div><div class="line"><span class="selector-tag">min-height</span></div><div class="line"><span class="selector-tag">margin</span></div><div class="line"><span class="selector-tag">padding</span></div><div class="line"><span class="selector-tag">border</span></div></pre></td></tr></table></figure>
+<p>事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 状态切换时触发</span></div><div class="line">@change</div><div class="line"></div><div class="line">event =&gt; </div><div class="line">	value &#123;boolean&#125; : 选中否</div><div class="line">	timestamp : 时间戳</div></pre></td></tr></table></figure>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>它是一个容器类的标签，看 <code>Android</code> 这边的源码，是继承自 <code>div</code> 标签，<code>a</code> 和 <code>html</code> 里面的 a 标签差不多，但是不能包含文本，如果要有文本需要使用 <code>&lt;text&gt;</code> 标签。</p>
+<p>点击之后会调用一个名为 <code>event</code> 的 <code>module</code> 的 <code>openURL</code> 方法，这个 <code>module</code> 需要我们来注入到 <code>sdk</code> 中，参数就是 <code>href</code>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button"</span> <span class="attr">href</span>=<span class="string">"http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>Jump<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="image"><a href="#image" class="headerlink" title="image"></a>image</h2><p>「<code>image</code>」标签用来显示图片，必须指定 <code>width</code> 和 <code>height</code>，否则无法显示，不能包含子组件，</p>
+<p>标签属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 显示的图片地址</span></div><div class="line">src = <span class="string">"http://www.abc.com/xxx.jpg"</span> </div><div class="line"></div><div class="line"><span class="comment">// 图片下载时的默认图，没有找到方法测试 </span></div><div class="line">placeholder = <span class="string">".."</span></div><div class="line"></div><div class="line"><span class="comment">// 显示模式</span></div><div class="line"><span class="comment">// stretch 是默认值，拉伸图片填充，fitXY</span></div><div class="line"><span class="comment">// cover 将会放大图片然后裁剪，centerCrop</span></div><div class="line"><span class="comment">// contain 长边填充满，短边按比例，保证图片比例不被破坏，fitCenter</span></div><div class="line">resize = stretch | cover | contain</div></pre></td></tr></table></figure>
+<p>事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 图片加载成功监听</span></div><div class="line">@load = <span class="string">"loadImageOver"</span></div><div class="line">result =&gt;</div><div class="line">	success &#123;boolean&#125;: 是否加载成功</div><div class="line">	size =&gt; 图片原始宽高</div><div class="line">		naturalWidth &#123;number&#125;</div><div class="line">		naturalHeight &#123;number&#125;</div></pre></td></tr></table></figure>
+<p>方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将图片保存到本地</span></div><div class="line">save(callback(result))</div><div class="line"></div><div class="line">result =&gt;</div><div class="line">	success &#123;boolean&#125;: 是否保存成功</div><div class="line">	errorDesc &#123;string&#125;: 错误信息，success为<span class="literal">false</span>时返回</div><div class="line"></div><div class="line">eg:</div><div class="line"><span class="keyword">var</span> el = <span class="keyword">this</span>.$refs.image_ref;</div><div class="line">el.save(<span class="function"><span class="params">result</span> =&gt;</span> <span class="keyword">this</span>.logt(<span class="string">"save image "</span> + result.success));</div></pre></td></tr></table></figure>
+<h2 id="text-input-textarea"><a href="#text-input-textarea" class="headerlink" title="text + input + textarea"></a>text + input + textarea</h2><p>文本样式汇总</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.mytext</span> &#123;</div><div class="line">  <span class="attribute">lines</span>: <span class="number">2</span>; <span class="comment">/* 文本行数，默认0不限制 */</span></div><div class="line">  <span class="attribute">color</span>: red; <span class="comment">/* 文本颜色*/</span></div><div class="line">  <span class="attribute">font-size</span>: <span class="number">40px</span>; <span class="comment">/* 文字大小 ios,h5默认32,android分设备不同*/</span></div><div class="line">  <span class="attribute">font-style</span>: italic; <span class="comment">/* normal正常，italic斜体 */</span></div><div class="line">  <span class="attribute">font-weight</span>: bold; <span class="comment">/* 值必须为整百的数字,normal(400)bold(700),ios支持100-900,android支持normal和bold，也就是400，700，lighter和bolder不支持 */</span></div><div class="line">  <span class="attribute">text-decoration</span>: underline; <span class="comment">/* underline(下划线) line-through(横划线) none(无，默认) */</span></div><div class="line">  <span class="attribute">text-align</span>: center; <span class="comment">/* left center right 默认值为 left，目前暂不支持 justify, justify-all */</span></div><div class="line">  <span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/* 文字超出后截断样式，clip 直接截断，ellipsis 显示省略号 */</span></div><div class="line">  <span class="attribute">font-family</span>: <span class="string">"iconfont2"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>「<code>text-decoration</code>」，已经支持前后带有空格显示，当带有空格时，如果加了 <code>decoration</code>，在 <code>android</code> 上面空格的地方也会有装饰，<code>ios</code> 只会在文字的地方有。</p>
+<p>「<code>font-family</code>」，在生命周期方法 <code>beforeCreate</code> 为页面加载一套字体</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">beforeCreate() &#123;</div><div class="line">    <span class="keyword">var</span> domModule = weex.requireModule(<span class="string">"dom"</span>);</div><div class="line">    <span class="comment">// 目前支持ttf、woff文件，不支持svg、eot类型,moreItem at http://www.iconfont.cn/</span></div><div class="line">    domModule.addRule(<span class="string">"fontFace"</span>, &#123;</div><div class="line">    <span class="attr">fontFamily</span>: <span class="string">"iconfont2"</span>,</div><div class="line">        <span class="attr">src</span>: <span class="string">"url('http://at.alicdn.com/t/font_1469606063_76593.ttf')"</span></div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="text"><a href="#text" class="headerlink" title="text"></a>text</h3><p>组件 <code>text</code> 具有 <code>value</code> 属性，用来表示显示的值，当 <code>value</code> 和内容都指定时，将会显示内容的值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">'mytext'</span> <span class="attr">value</span>=<span class="string">"test1"</span>&gt;</span> test2 <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="input"><a href="#input" class="headerlink" title="input"></a>input</h3><p>组件 <code>input</code> 标签属性，需要注意的是如果标签中间写了文案，会显示在组件下方。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">maxlength = <span class="number">10</span> <span class="comment">// 可以输入的最长长度</span></div><div class="line"><span class="keyword">return</span>-key-type = <span class="string">'done'</span> <span class="comment">// default,done,search,send,go,next 回车键的样式</span></div><div class="line">disabled = <span class="literal">false</span> <span class="comment">// 是否可以输入，默认false,为true时不可以输入</span></div><div class="line">autofocus = <span class="literal">true</span> <span class="comment">// 自动获得焦点，弹出键盘</span></div><div class="line">placeholder = <span class="string">'请输入'</span> <span class="comment">// 输入提示文案</span></div><div class="line">type = <span class="string">"number"</span> <span class="comment">// 输入类型，text,password,url,email,tel,number 约束不是强约束，用户一样可以切换键盘样式。</span></div><div class="line">value = <span class="string">"默认文案"</span> <span class="comment">// 默认填充的文字</span></div><div class="line"></div><div class="line">&lt;input <span class="class"><span class="keyword">class</span></span>=<span class="string">'myinput'</span></div><div class="line">       maxlength=<span class="number">10</span></div><div class="line">       <span class="keyword">return</span>-key-type=<span class="string">'done'</span></div><div class="line">       disabled=<span class="literal">false</span></div><div class="line">       autofocus=<span class="literal">true</span></div><div class="line">       placeholder=<span class="string">'hint'</span></div><div class="line">       type=<span class="string">"number"</span></div><div class="line">       value=<span class="string">"11"</span>&gt; 这里的文案会显示在组件下面 &lt;<span class="regexp">/input&gt;</span></div></pre></td></tr></table></figure>
+<p>伪类</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.myinput</span><span class="selector-pseudo">:active</span> &#123;</div><div class="line">  <span class="attribute">color</span>: purple; <span class="comment">/* press时的状态，*/</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.myinput</span><span class="selector-pseudo">:focus</span> &#123;</div><div class="line">  <span class="attribute">color</span>: green; <span class="comment">/* 获得焦点的状态*/</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.myinput</span><span class="selector-pseudo">:enabled</span> &#123;</div><div class="line">  <span class="attribute">color</span>: orange; <span class="comment">/* 可用时的状态，ios 无效果*/</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.myinput</span><span class="selector-pseudo">:disabled</span> &#123;</div><div class="line">  <span class="attribute">color</span>: sienna; <span class="comment">/* 不可用时的状态*/</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>支持的 <code>css</code> 属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">同样支持 <span class="selector-tag">color</span>,<span class="selector-tag">font-size</span>,<span class="selector-tag">fone-weight</span>,<span class="selector-tag">font-style</span>,<span class="selector-tag">text-align</span> 属性</div><div class="line"></div><div class="line"><span class="selector-class">.myinput</span> &#123;</div><div class="line">  <span class="comment">/*提示文案的颜色*/</span></div><div class="line">  <span class="attribute">placeholder-color</span>: blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">@input 输入监听，每次输入内容变化，会调</div><div class="line">event =&gt; </div><div class="line">	value &#123;string&#125; : 文本内容</div><div class="line">	timestamp : 时间戳</div><div class="line"></div><div class="line"></div><div class="line">@focus 获得焦点监听</div><div class="line">event =&gt;</div><div class="line">	timestamp : 时间戳</div><div class="line">	</div><div class="line">	</div><div class="line">@blur 失去焦点监听</div><div class="line">event =&gt; </div><div class="line">	timestamp : 时间戳</div><div class="line">	</div><div class="line">	</div><div class="line">@change 输入完成且内容发生改变监听，发生在 blur 之后</div><div class="line">event =&gt; </div><div class="line">	value &#123;string&#125; : 文本内容</div><div class="line">	timestamp : 时间戳</div><div class="line"></div><div class="line"></div><div class="line">@<span class="keyword">return</span> 键盘回车键监听</div><div class="line">event=&gt;</div><div class="line">	returnKeyType &#123;string&#125; : 设置的<span class="keyword">return</span>-key-type</div><div class="line">	value &#123;string&#125; : 文本内容</div></pre></td></tr></table></figure>
+<p>方法，为 <code>input</code> 组件设置 <code>ref=&quot;input_ref&quot;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> el = <span class="keyword">this</span>.$refs[<span class="string">"input_ref"</span>];</div><div class="line"></div><div class="line">使 input 获取焦点，弹出键盘</div><div class="line">focus() </div><div class="line">eg:</div><div class="line">el.focus();</div><div class="line"></div><div class="line"></div><div class="line">使 input 失去焦点，隐藏键盘</div><div class="line">blur() </div><div class="line">eg:</div><div class="line">el.blur();</div><div class="line"></div><div class="line"></div><div class="line">设置选中区域</div><div class="line">setSelectionRange(start,end)</div><div class="line">eg:</div><div class="line">el.setSelectionRange(<span class="number">0</span>,el.attr.value.length);</div><div class="line"></div><div class="line"></div><div class="line">获取选中区域， ios 不支持</div><div class="line">getSelectionRange(event&#123;selectionStart,selectionEnd&#125;)</div><div class="line">eg:</div><div class="line">el.getSelectionRange(<span class="function"><span class="params">event</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.logt(event.selectionStart + <span class="string">" | "</span> + event.selectionEnd);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p>多行文本输入 <code>textarea</code> 和 <code>input</code> 基本类似，</p>
+<p>他们俩的差别：</p>
+<p>事件上，<code>textarea</code> 不支持 <code>@return</code> 事件</p>
+<p>方法上， 均支持</p>
+<p>标签属性上，增加了 <code>rows</code> 属性，不支持 <code>return-key-type</code>，<code>max-length</code>，<code>type</code>，支持的属性汇总如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rows = <span class="number">3</span> <span class="comment">// 指定组件的高度，默认2</span></div><div class="line">disabled = <span class="literal">false</span> <span class="comment">// 是否可以输入，默认false,为true时不可以输入</span></div><div class="line">autofocus = <span class="literal">true</span> <span class="comment">// 自动获得焦点，弹出键盘</span></div><div class="line">placeholder = <span class="string">'请输入'</span> <span class="comment">// 输入提示文案</span></div><div class="line">value = <span class="string">"默认文案"</span> <span class="comment">// 默认填充的文字</span></div></pre></td></tr></table></figure>
+<h2 id="slider-indicator"><a href="#slider-indicator" class="headerlink" title="slider + indicator"></a>slider + indicator</h2><p><code>slider</code> 默认高度会占满屏幕，所以必须为 <code>slider</code> 指定一个高度，而 <code>indicator</code> 也会继承这个高度。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">slider</span> <span class="attr">class</span>=<span class="string">"slider"</span> <span class="attr">interval</span>=<span class="string">3000</span> <span class="attr">auto-play</span>=<span class="string">true</span> <span class="attr">infinite</span>=<span class="string">true</span>  @<span class="attr">change</span>=<span class="string">"changePage"</span> @<span class="attr">scroll</span>=<span class="string">"scrollSlider	"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(img,index) in imagelist"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">'image'</span> <span class="attr">:src</span>=<span class="string">"img"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">indicator</span> <span class="attr">class</span>=<span class="string">"indicator"</span>&gt;</span><span class="tag">&lt;/<span class="name">indicator</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">slider</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>slider 标签属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interval = <span class="number">3000</span>; <span class="comment">// 播放时间间隔 </span></div><div class="line">auto-play = <span class="literal">true</span>; <span class="comment">// 自动播放</span></div><div class="line">infinite = <span class="literal">true</span>; <span class="comment">// 无限循环</span></div><div class="line">offset-x-accuracy = <span class="number">20</span>px; <span class="comment">// 控制onscroll事件触发的频率，默认值为10,越小的话 onscroll 触发越频繁，可能降低性能</span></div></pre></td></tr></table></figure>
+<p>slider css 属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.slider</span>&#123;</div><div class="line">  <span class="attribute">height</span>:<span class="number">400px</span>; <span class="comment">/* 高度，需要指定 */</span></div><div class="line">  <span class="attribute">scrollable</span>:false; <span class="comment">/* 可不可以手势滑动 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>indicator 常用属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.indicator</span>&#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">750px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">400px</span>;</div><div class="line">  <span class="attribute">position</span>:absolute;</div><div class="line">  <span class="attribute">top</span>:<span class="number">150px</span>;  <span class="comment">/* 绝对定位距离顶部的距离 */</span></div><div class="line">  <span class="attribute">item-color</span>:<span class="number">#eeeeee</span>;  <span class="comment">/* 没有选中的颜色 */</span></div><div class="line">  <span class="attribute">item-selected-color</span>:<span class="number">#ff0000</span>; <span class="comment">/* 选中的颜色 */</span></div><div class="line">  <span class="attribute">item-size</span>:<span class="number">20</span>; <span class="comment">/* 指示标记大小 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// change 事件，当页面滑动到下一页时触发</span></div><div class="line">@change = <span class="string">'changePage'</span></div><div class="line">event =&gt;</div><div class="line">	index &#123;number&#125;   滑动到的索引</div><div class="line"></div><div class="line"><span class="comment">// scroll 事件，每一页的移动都会触发，触发频率取决于 offset-x-accuracy</span></div><div class="line">@scroll 滑动监听</div><div class="line">event =&gt;</div><div class="line">	offsetXRatio &#123;number&#125;  偏移量，[<span class="number">-1</span>,<span class="number">1</span>]，负值表示向左滚动，表示当前有每一页的 offsetXRatio 滚动到了页面外</div></pre></td></tr></table></figure>
+<h2 id="scroller"><a href="#scroller" class="headerlink" title="scroller"></a>scroller</h2><p>对客户端来说是不可复用元素的列表</p>
+<p>滑动方向 - 可以垂直或者水平滑动，<code>flex</code> 和 <code>scroll</code> 的方向必须一致。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">两者方向必须一致</div><div class="line">flex-direction 默认值 row </div><div class="line">scroll-direction 默认值 vertical</div><div class="line"></div><div class="line">如果是垂直滑动，</div><div class="line">flex-direction:column;</div><div class="line">scroll-direction = vertical</div><div class="line"></div><div class="line">如果水平滑动</div><div class="line">flex-direction:row;</div><div class="line">scroll-direction = horizontal</div></pre></td></tr></table></figure>
+<p>实现一个 tab 导航</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">scroller</span> <span class="attr">class</span>=<span class="string">"scroller"</span> <span class="attr">scroll-direction</span>=<span class="string">horizontal</span> @<span class="attr">scroll</span>=<span class="string">'scrollerScroll'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-group"</span>  <span class="attr">v-for</span>=<span class="string">"(item,index) in tablist"</span> @<span class="attr">click</span>=<span class="string">"changeTab(index)"</span> <span class="attr">:ref</span>=<span class="string">"'tab'+index"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"tab-item"</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span>&gt;</span> 抢购中 <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-line"</span> <span class="attr">v-if</span>=<span class="string">"index == current_tab"</span>&gt;</span>  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">scroller</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>常用标签属性，同样支持一些列表统一的标签属性 <a href="#列表标签属性">列表标签属性</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 滑动方向，默认 vertical</span></div><div class="line">scroll-direction = vertical|horizontal</div></pre></td></tr></table></figure>
+<p>支持 <code>loadmore</code> 事件，见 <a href="#列表事件">列表 loadmore</a></p>
+<p>支持 <code>scroll</code> 事件，见 <a href="#列表事件">列表 scroll</a></p>
+<p>支持 <code>resetLoadmore</code>，见 <a href="#扩展-API">列表 resetLoadmore</a></p>
+<p>支持 <code>scrollToElement</code>，见 <a href="#扩展-API">列表 scrollToElement</a></p>
+<h2 id="list-waterfall-cell-header"><a href="#list-waterfall-cell-header" class="headerlink" title="list + waterfall + cell + header"></a>list + waterfall + cell + header</h2><p>把他们放在一起是因为他们一起完成了一个列表的显示，其实 <code>waterfall</code> 和 <code>list</code> 是一样的， 类似 <code>Android</code> 上面当年的 <code>ListView</code> 和 <code>GridView</code>，当然现在都已经被 <code>RecyclerView</code> 代替了，他们表现的都是一个 <strong>垂直列表</strong>，而 <code>waterfall</code> 支持多列的显示，</p>
+<p>使用 <code>cell</code> 生成列表的每一项，<code>header</code> 其实是 <code>cell</code> 的子类，它可以在滑动出屏幕时，固定在屏幕顶端，实现悬挂的效果。</p>
+<p>列表中只支持 <code>cell</code> 、<code>header</code>、<code>refresh</code>、<code>loading</code> 和 使用 <code>fix</code> 定位的组件，其他组件不能正确渲染。</p>
+<p>实现一个简单的列表显示，需要格外注意的是，<code>v-for</code> 的语句要写在 <code>cell</code> 上面，这样才能保证生成多个 <code>cell</code>，开始的时候我写在了 <code>div</code> 上面，其实是在一个 <code>cell</code> 里面生成了多个 <code>div</code>，这样就无法实现回收和复用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">list</span> <span class="attr">style</span>=<span class="string">"height:500px;"</span> @<span class="attr">loadmore</span>=<span class="string">"loadmorelist"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">cell</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in product_list"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span>  <span class="attr">class</span>=<span class="string">"product-group"</span> @<span class="attr">click</span>=<span class="string">"clickProduct(item,index)"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"origin-price"</span>&gt;</span> ¥ &#123;&#123;item.origin_price&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">cell</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">list</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p>这个 <code>header</code> 用起来坑比较多，汇总一下：</p>
+<ol>
+<li>在 <code>list</code> 里面用 <code>header</code>，默认是一样悬挂效果，就是当 <code>header</code> 向上将要被滑出屏幕时会固定在屏幕顶端，但是向下滑出时不会固定在底端。</li>
+<li><code>list</code> 里面 <code>header</code> 上面的 <code>cell</code> 不能全部使用 <code>v-for</code> 生成，如果是的话，对 <code>header</code> 没有挤压效果，<code>header</code> 会一直在顶部，就好像 <code>v-for</code> 生成的那些 <code>cell</code> 没有压在 <code>header</code> 上面，但是一旦有一个不是 <code>v-for</code> 生成的，就好了，这应该是个bug;</li>
+<li><code>waterfall</code> 里面使用 <code>header</code> 时，默认是没有悬挂效果的，会像普通的 <code>cell</code> 一样跟着整个列表一起走，这样可以实现单列和多列并存的效果。</li>
+<li>如果希望 <code>waterfall</code> 里面有悬挂效果，要对 <code>header</code> 设置 <code>position:sticky;</code>，使用这个属性，他不会滑出屏幕，不管上面还是下面都会挂住。</li>
+<li>在 <code>list</code> 中使用 <code>sticky</code> 没什么效果，在 <code>waterfall</code> 中一方面可以使用 <code>sticky</code> 对 <code>header</code> 做悬挂效果，另一方面 <code>cell</code> 如果设置了 <code>sticky</code> 会变成跨越正行，类似 <code>header</code></li>
+</ol>
+<p>使用 <code>header</code> 标签实现悬挂效果</p>
+<p><code>&lt;header/&gt;</code> 标签是 <code>list</code> 可以渲染的标签之一，当 <code>header</code> 到达顶部时，会吸附在屏幕顶部，<code>&lt;header/&gt;</code> 不一定要在顶部，可以在列表的任何位置，当这一项，被滑动到顶端时，会吸附在顶部，不会划出屏幕。</p>
+<p>ps：同样的效果，如果在 <code>cell</code> 上面使用 <code>position:fixed;</code> 在 <code>Android</code> 可以正确显示，但是在 <code>ios</code> 没有任何效果 </p>
+<p>使用方法很简单，只需要将某一项使用  <code>&lt;header&gt;</code> 包含即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">cell</span>&gt;</span><span class="tag">&lt;/<span class="name">cell</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">cell</span>&gt;</span><span class="tag">&lt;/<span class="name">cell</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">header</span>&gt;</span><span class="tag">&lt;/<span class="name">header</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">cell</span>&gt;</span><span class="tag">&lt;/<span class="name">cell</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">list</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="waterfall"><a href="#waterfall" class="headerlink" title="waterfall"></a>waterfall</h3><p>👮如果是一个 <code>list</code> 套在 <code>div</code> 里面显示没问题，但是如果是 <code>waterfall</code> 就不行，看到有报错说无法解析 <code>auto</code>，当然设置成固定值也不行，解决方案是给  <code>waterfall</code> 一个固定的宽度，让他可以计算，就没问题了。</p>
+<p>瀑布流 <code>waterfall</code> 支持多列显示，因此相比 <code>list</code> 多了一些属性，但是 <code>list</code> 的属性和事件他也是支持的。</p>
+<p>「<code>waterfall</code>」 特有属性，<code>column-width</code> 和 <code>column-count</code> 不能同时指定为 <code>auto</code> 无法计算将无法显示。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">当某个属性指定为 auto 时，会使用下面的约束来计算 auto 对应的值。</div><div class="line">totalWidth = column-width * column-count + (column-count<span class="number">-1</span>) * column-gap</div><div class="line"></div><div class="line">column-width: 列宽，可以使用指定宽度，也可以使用 auto 表示根据其他属性来决定</div><div class="line"></div><div class="line">column-count: 列数，可以使用指定数字，也可以使用 auto 表示根据其他属性决定。</div><div class="line"></div><div class="line">column-gap: 间隔，可以使用指定宽度，也可以使用 normal 表示 <span class="number">32</span>。</div></pre></td></tr></table></figure>
+<h3 id="common"><a href="#common" class="headerlink" title="common"></a>common</h3><p>「<code>waterfall</code> 和 <code>list</code>」 常用属性 - 支持列表统一的标签属性 <a href="#列表标签属性">列表标签属性</a></p>
+<p>「<code>waterfall</code> 和 <code>list</code>」 支持 <code>loadmore</code> 事件，见 <a href="#列表事件">列表 loadmore</a></p>
+<p>「<code>waterfall</code> 和 <code>list</code>」 支持 <code>scroll</code> 事件，见 <a href="#列表事件">列表 scroll</a></p>
+<p>「<code>waterfall</code> 和 <code>list</code>」 支持 <code>resetLoadmore</code>，见 <a href="#扩展-API">列表 resetLoadmore</a></p>
+<p>「<code>waterfall</code> 和 <code>list</code>」 支持 <code>scrollToElement</code>，见 <a href="#扩展-API">列表 scrollToElement</a></p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><blockquote>
+<p>在 weex 指的就是 scroller 和 list 了，这里汇总一些公共的属性和方法，方便管理和对比。</p>
+</blockquote>
+<p>类似 <code>scroller</code> 和 <code>list</code> 都属于列表，他们有一些通用的属性和方法，提取出来统一介绍，⚠️ 不允许相同方向的列表互相嵌套</p>
+<h3 id="列表标签属性"><a href="#列表标签属性" class="headerlink" title="列表标签属性"></a>列表标签属性</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 屏幕底部到页面底部的距离，用来触发 loadmore，默认 0</span></div><div class="line">loadmoreoffset = <span class="number">20</span> </div><div class="line"><span class="comment">// 触发 scroll 的频率，默认 10px</span></div><div class="line">offset-accuracy = <span class="number">20</span>px</div><div class="line"><span class="comment">// 显示滚动条，默认true，但是发现在 android 默认是不显示的，但是 ios 显示</span></div><div class="line">show-scrollbar = <span class="literal">false</span></div></pre></td></tr></table></figure>
+<h3 id="列表事件"><a href="#列表事件" class="headerlink" title="列表事件"></a>列表事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@loadmore 加载更多事件，横向滑动时，<span class="string">`loadmore`</span> 不能触发</div><div class="line">没有参数</div><div class="line"></div><div class="line"></div><div class="line">@scroll  滑动监听</div><div class="line">event =&gt; </div><div class="line">	contentSize &#123;<span class="built_in">Object</span>&#125; 列表的尺寸，宽度和高度是总的长度，如 <span class="number">150</span>px * <span class="number">10</span> = <span class="number">1500</span>px</div><div class="line">		- width &#123;number&#125;</div><div class="line">		- height &#123;number&#125;</div><div class="line">	contentOffset &#123;<span class="built_in">Object</span>&#125; 列表偏移尺寸，整个列表总共被滑动的 px 数，是一个负值，越往右|下滑动，绝对值越大</div><div class="line">		- x &#123;number&#125;</div><div class="line">		- y &#123;number&#125;</div></pre></td></tr></table></figure>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><blockquote>
+<p>resetLoadmore(node,options)</p>
+</blockquote>
+<p>重置 <code>loadmore</code>，如果进行过一次 <code>loadmore</code> 之后，列表内容没有发生变更，则再次滑动到末尾时，不会触发 <code>loadmore</code> 事件，需要使用 <code>resetLoadmore()</code> 来重置状态。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">scroller.resetLoadmore(node,options)</div><div class="line"></div><div class="line">node &#123;node&#125; 指的是节点，暂时不知道做什么用的，传任何节点都可以起作用</div><div class="line">options &#123;object&#125;</div><div class="line">	- offset &#123;number&#125; 一个到其可见位置的偏移距离，默认 <span class="number">0</span></div><div class="line"></div><div class="line">eg:</div><div class="line"><span class="comment">// 设置 scroller 的 ref 为 sv</span></div><div class="line"><span class="comment">// 在加载更多的事件中，重置状态，让他可以一直触发 loadmore 事件</span></div><div class="line">loadmoreScroll()&#123;</div><div class="line">	<span class="keyword">const</span> el = <span class="keyword">this</span>.$refs.sv</div><div class="line">	el.resetLoadmore(el,&#123;<span class="attr">offset</span>:<span class="number">20</span>&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>scrollToElement(node,options)</p>
+</blockquote>
+<p>使得列表滑动到指定的 node，需要使用 <code>dom module</code> 来操作</p>
+<p>ps：使用过程中发现 <code>waterfall</code> 组件的 <code>scrollToElement</code> 在 <code>andorid</code> 上是将指定项滚动到屏幕底部，<code>ios</code> 是滚动到顶部，<code>list</code> 和 <code>scroller</code> 正常，都是到顶部。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">scrollToElement(node,options)</div><div class="line"></div><div class="line">node &#123;node&#125; 列表的子节点，将会滑动到这个节点</div><div class="line">options &#123;object&#125;</div><div class="line">	- offset &#123;number&#125; 指定的子节点滑动后距离左边的距离的负值</div><div class="line">	- animated &#123;boolean&#125; 动画效果，默认 <span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>示例，对一个横向列表进行操作，使得点击的那个子元素自动滑动到居中显示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">scroller</span> <span class="attr">class</span>=<span class="string">"scroller"</span> <span class="attr">scroll-direction</span>=<span class="string">'horizontal'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tab-group"</span>  <span class="attr">v-for</span>=<span class="string">"(item,index) in tablist"</span> @<span class="attr">click</span>=<span class="string">"changeTab(index)"</span> <span class="attr">:ref</span>=<span class="string">"'tab'+index"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"tab-item"</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">scroller</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在 <code>click</code> 事件中，滑动 <code>scroller</code></p>
+<p>由于我每一个子项的宽度设置为了 <code>150px</code>，而 <code>weex</code> 默认屏幕是 <code>750px</code>，一次屏幕内正好可以放置 5 个子项，距离左边 <code>300px</code> 即可居中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">changeTab(index)&#123;</div><div class="line">    <span class="keyword">const</span> dom = weex.requireModule(<span class="string">'dom'</span>)</div><div class="line">    <span class="keyword">this</span>.current_tab = index;</div><div class="line">    <span class="keyword">const</span> el = <span class="keyword">this</span>.$refs[<span class="string">'tab'</span>+index][<span class="number">0</span>];</div><div class="line">    dom.scrollToElement(el,&#123;<span class="attr">offset</span>:<span class="number">-300</span>&#125;);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h2 id="refresh-loading"><a href="#refresh-loading" class="headerlink" title="refresh + loading"></a>refresh + loading</h2><p>使用 <code>refresh</code> 和 <code>loading</code> 实现加载数据的效果，<code>refresh</code> 是下拉刷新数据，<code>loading</code> 是上拉加载更多数据，他们只有在被 <code>list</code> 和 <code>scroller</code> 包含时才能正确渲染，接下来将会以 <code>list</code> 为例简单学习一下使用方法，在 <code>scroller</code> 是一样的。在用法上，<code>refresh</code> 和 <code>loading</code> 也基本相同，只是显示的位置不同和一些事件名字不同。</p>
+<p>「<code>diaplay</code>」属性来决定组件的展示和隐藏，<code>display</code> 值为 <code>show</code> 或 <code>hide</code>。仅隐藏 <code>&lt;indicator&gt;</code>，<code>&lt;loading&gt;</code> 其他子组件依然可见，<code>loading</code> 事件仍会被触发，因此我们要实现刷新的效果需要动态的修改 <code>display</code> 的值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">refresh</span> <span class="attr">:display</span>=<span class="string">"isRefreshing?'show':'hide'"</span>&gt;</span><span class="tag">&lt;/<span class="name">refresh</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>「<code>&lt;loading-indicator&gt;</code>」 是内置一个组件，显示是一个带动画效果的圆形进度条，就是系统默认的加载动画，需要注意的是宽高必须指定，不然默认是0无法显示，可以使用 <code>color</code> 属性来更改进度条的颜色。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">loading-indicator</span> <span class="attr">style</span>=<span class="string">'color:red;width:40px;height:40px;'</span>&gt;</span><span class="tag">&lt;/<span class="name">loading-indicator</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>事件，<code>&lt;refresh&gt;</code> 有 <code>@refresh</code> 事件，<code>&lt;loading&gt;</code> 有 <code>@loading</code> 事件，他们都会在滑动距离超过整个组件的高度时被触发，可以在这里面做加载数据的操作。</p>
+<p>另外 <code>&lt;refresh&gt;</code> 还有一个自己的事件，<code>@pullingdown</code> 事件会返回组件滑动过程中的一些数据，不过这个监听在 <code>andorid</code> 和 <code>ios</code> 上面的数据差别比较大。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">event =&gt;</div><div class="line">	dy : 每次移动的变化量，表达的是单位时间内滑动的距离，每次开始动值比较大，快停止时值变小。</div><div class="line">	</div><div class="line">	pullingDistance : 总共滑动的距离；</div><div class="line">	当刷新头露出时，android 返回的值为正数，ios 返回的值为负数；</div><div class="line">	当刷新头隐藏时，列表滑动时，android 不会触发这个监听，但是 ios 会一直触发，并且 pullingDistance 变为正数，并且一直会变大。</div><div class="line">	</div><div class="line">	viewHeight : 刷新组件的高度，滑动超过这个高度会触发刷新</div><div class="line">	</div><div class="line">	event.type : 不变的字符串 pullingdown</div></pre></td></tr></table></figure>
+<p>完整的带有刷新和加载功能的代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">refresh</span> <span class="attr">class</span>=<span class="string">'load_part'</span> <span class="attr">:display</span>=<span class="string">"isRefreshing?'show':'hide'"</span> @<span class="attr">refresh</span>=<span class="string">'refreshList'</span> @<span class="attr">pullingdown</span>=<span class="string">'pullList'</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">loading-indicator</span> <span class="attr">style</span>=<span class="string">'color:red;width:40px;height:40px;'</span>&gt;</span><span class="tag">&lt;/<span class="name">loading-indicator</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">style</span>=<span class="string">'text-align:center'</span>&gt;</span> 下拉开始刷新 <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">refresh</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">cell</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in product_list"</span>&gt;</span></div><div class="line">        ...</div><div class="line">    <span class="tag">&lt;/<span class="name">cell</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">loading</span> <span class="attr">class</span>=<span class="string">'load_part'</span> <span class="attr">:display</span>=<span class="string">"isLoading?'show':'hide'"</span> @<span class="attr">loading</span>=<span class="string">'loadingList'</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">loading-indicator</span> <span class="attr">style</span>=<span class="string">'color:red;width:40px;height:40px;'</span>&gt;</span><span class="tag">&lt;/<span class="name">loading-indicator</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">style</span>=<span class="string">'text-align:center'</span>&gt;</span> 上拉开始加载 <span class="tag">&lt;/<span class="name">text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">loading</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">list</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>默认 <code>isFreshing</code> 和 <code>isLoading</code> 自然都是 <code>false</code>，当刷新时，更改组件的状态为显示，开始加载数据,并且延时 1s 后将组件隐藏。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">refreshList()&#123;</div><div class="line">    modal.toast(&#123;<span class="attr">message</span>:<span class="string">"refresh"</span>&#125;)</div><div class="line">    <span class="keyword">this</span>.isRefreshing=<span class="literal">true</span></div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">this</span>.isRefreshing=<span class="literal">false</span></div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">&#125;,</div><div class="line">loadingList()&#123;</div><div class="line">    modal.toast(&#123;<span class="attr">message</span>:<span class="string">"loading"</span>&#125;)</div><div class="line">    <span class="keyword">this</span>.isLoading  =<span class="literal">true</span></div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">this</span>.isLoading=<span class="literal">false</span></div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>文档说明使用 <code>weex.config</code> 获取，但是测试发现不行，需要使用 <code>this.$getConfig()</code> 获取到，调查发现 <code>weex.config</code> 需要 <code>weex</code> 版本 <code>&gt;=0.9.5</code> 才可以，而我使用官方的 <code>playground</code> 版本是 <code>0.9.4</code>。</p>
+<p>默认以宽度为 <code>750px</code> 做适配渲染，要获得 <code>750px</code> 下的屏幕高度，可以通过 <code>height = 750/deviceWidth*deviceHeight</code> 公式获得，可以使用到 <code>CSS</code> 中，用来设置全屏尺寸。</p>
+<p>数据结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">config</div><div class="line">	bundleUrl &#123;string&#125; :js bundle 的 url</div><div class="line">	env &#123;obj&#125;</div><div class="line">		weexVersion &#123;string&#125; :Weex sdk 版本</div><div class="line">		appName &#123;string&#125; :应用名字</div><div class="line">		appVersion &#123;string&#125; :应用版本。</div><div class="line">		platform &#123;string&#125; :平台信息，是 iOS、Android 还是 Web</div><div class="line">		osName &#123;string&#125; :iOS或者android，表示操作系统的名称</div><div class="line">		osVersion &#123;string&#125; :系统版本</div><div class="line">		deviceModel &#123;string&#125; :设备型号 (仅原生应用)</div><div class="line">		deviceWidth &#123;number&#125; :设备宽度		</div><div class="line">		deviceHeight &#123;number&#125; :设备高度</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/41ed2d2f/" title="Weex 开发 [Weex]">http://cdevlab.top/article/41ed2d2f/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      版权所有，转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #aaa;font-size:14px;margin-top:2rem;">------ 本文结束 🎉🎉 谢谢观看  ------</div>
+    
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/weex/" rel="tag"># weex</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/1dbbedd/" rel="next" title="Bolts 更简单任务管理和线程切换 [源码]">
+                <i class="fa fa-chevron-left"></i> Bolts 更简单任务管理和线程切换 [源码]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/245d7c3b/" rel="prev" title="图片处理-1-马赛克和涂鸦效果">
+                图片处理-1-马赛克和涂鸦效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article></div>
+  
+  
+  
+  
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-text">Tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盒模型"><span class="nav-text">盒模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FlexBox"><span class="nav-text">FlexBox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pseudo"><span class="nav-text">pseudo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#div"><span class="nav-text">div</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web"><span class="nav-text">web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#video"><span class="nav-text">video</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch"><span class="nav-text">switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A"><span class="nav-text">A</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#image"><span class="nav-text">image</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text-input-textarea"><span class="nav-text">text + input + textarea</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#text"><span class="nav-text">text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#input"><span class="nav-text">input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#textarea"><span class="nav-text">textarea</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slider-indicator"><span class="nav-text">slider + indicator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scroller"><span class="nav-text">scroller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list-waterfall-cell-header"><span class="nav-text">list + waterfall + cell + header</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#header"><span class="nav-text">header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waterfall"><span class="nav-text">waterfall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#common"><span class="nav-text">common</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表标签属性"><span class="nav-text">列表标签属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表事件"><span class="nav-text">列表事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#refresh-loading"><span class="nav-text">refresh + loading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#config"><span class="nav-text">config</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </main></div>
+      
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+  <i class="fa fa-star"></i>
+</span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+  <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2d_models/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":1,"vHeadPos":1,"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":3,"width":60,"height":120,"position":"right","hOffset":120,"vOffset":-40},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1}});</script></body>
+</html>

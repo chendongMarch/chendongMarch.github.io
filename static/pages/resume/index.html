@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+
+<head>
+
+<!-- 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/> -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>简历</title>
+	<!-- 引入jq -->
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.getJSON('../../res/data/resume.json', function(json){
+				console.log(JSON.parse(JSON.stringify(json)));
+			});
+		});
+ 
+	</script>
+	
+	<link rel="stylesheet" type="text/css" href="../../css/common.css">
+	<link rel="stylesheet" type="text/css" href="resume.css">
+
+</head>
+
+<body>
+	 
+	<div class="root">
+
+		<div class="left-container">
+			<!-- 头像 -->
+			<div class="head-wrap">
+				<image class="head-img" src="../../image/head.jpg" alt="head"> </image>
+			</div>
+
+			<div class="info-list-wrap">
+				<ul>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 出生年月 </span> </br>
+						<span class="my-info"> 1994年3月  </span>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 籍贯 </span> </br>
+						<span class="my-info"> 山东青岛  </span>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 手机 </span> </br>
+						<span class="my-info"> 13611301719  </span>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 博客 </span> </br>
+						<a class="my-info" href="http://cdevlab.top"> cdevlab.top  </a>
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> 邮箱 </span> </br>
+						<span class="my-info"> marchget</span>@163.com
+					</li></br>
+					<li class="info-list-item">
+						<span class="my-info-tag"> GitHub </span> </br>
+						<a class="my-info" href="https://github.com/chendongMarch"> chendongMarch  </a>
+					</li>
+				</ul>
+			</div>
+			<p class="tag-title"> 标签 </p>
+			<div class="tag-wrap">
+				<span class="tag-item"> 分享 </span> 
+				<span class="tag-item"> Weex </span>  
+				<span class="tag-item"> Kotlin </span>
+				<span class="tag-item"> 独立开发 </span>  
+				<span class="tag-item"> Hybird </span>	 
+				<span class="tag-item"> 图片处理 </span>  
+				<span class="tag-item"> Camera </span> 
+			</div>
+
+			<p class="tag-title"> 我的开源项目 </p>
+			<ul class="contribute-wrap">
+				<li> <a href="https://github.com/chendongMarch/LightAdapter"> LightAdapter </a> </li>  <br/>
+				<li> <a href="https://github.com/chendongMarch/SocialSdkLibrary">SocialSdk  </a></li>  <br/>
+				<li> <a href="https://github.com/chendongMarch/PictureEditor">PictureEditor  </a></li>  <br/>
+				<li> <a href="https://github.com/chendongMarch/GifMaker">GifMaker </a> </li>  <br/>
+				<li> <a href="https://github.com/chendongMarch/EasyCamera">EasyCamera  </a></li>  <br/>
+				<li> <a href="https://github.com/chendongMarch/VideoRecorder">VideoRecorder </a> </li> <br/> 
+			</ul>
+
+		</div>
+
+		<div class="right-container">
+			<div class="detail-name"> 陈栋 </div> 
+			<div class="detail-intent"> Android 开发工程师 | 薪资面议</div>
+
+			<div class="detail-sub-title">个人经历</div>
+			<ul class="desc-text">
+				<li>
+					2017年10月 – 至今 </br>
+					杭州云若网络科技有限公司 </br>
+					Android 开发工程师 </br>
+					职责：负责达人店 App 的 Android 端 、Weex 端工程的开发、维护工作。
+				</li> </br>
+				<li>
+					2015年12月 – 2017年10月</br>
+					杭州万核网络科技有限公司 </br>
+					Android 开发工程师 </br>
+					职责：负责宝宝拍拍 App 核心功能的开发迭代工作及性能调优。
+				</li> </br>
+				<li>
+					2015年8月 – 2015年12月 </br>
+					北京跳鼠科技有限公司 </br>
+					Android 开发实习 </br>
+					职责：配合团队完成 MONO App 部分模块的开发和维护工作。
+				</li> </br>
+				<li>
+					2012年9月 – 2016年6月</br>
+					山东科技大学 | 网络工程专业 | 本科
+				</li>
+			</ul>
+
+			<div class="detail-sub-title"> 专业技能 </div>
+			<ul class="desc-text">
+				<li>
+					熟悉项目开发(AS+Git)、测试、加固、多渠道打包、发布的详细流程，具有独立开发的能力。
+					良好的 Android 基础，熟悉 Android 新版本特性、版本和机型的相关兼容方案。
+				</li></br>
+				<li>
+					熟悉 hybird 开发和 weex 开发。	
+				</li></br>
+				<li>
+					熟悉第三方登录、分享、支付、推送、地图、反馈、应用渠道统计、问题分析等常见三方功能的接入。
+				</li></br>
+				<li>
+					熟练使用 RxJava、Retrofit、DataBinding 等主流 Android 框架。熟悉 Kotlin 开发，有 Kotlin 和 Java 混编开发经验。
+				</li></br>
+				<li>
+					熟悉 Android 热修复框架的相关集成，有运用 Android 热修复技术对线上问题修复的经验。
+				</li></br>
+				<li>
+					熟悉多媒体开发，对音视频、图片的采集及后续处理有过研究。熟悉 NDK 的编译，有过 FFmpeg 和 lib-jpeg 等底层库编译经验。
+				</li></br>
+			</ul>
+
+			<div class="detail-sub-title"> 项目经验 </div>
+			<div style="padding:1rem;" class="desc-text">
+				<div>
+					<div class="app-info-wrap">	
+						<a href="http://www.showjoy.com"> 
+							<image class="app-launcher" src="../../image/daren-icon.png" alt="icon">
+							</image>
+						</a>
+						<div class="app-detail-wrap">
+							<span class="app-name"> 达人店 </span> </br>
+							<span class="desc-text"> 35210 日活 / 295802 用户总量 </span>  
+						</div>
+					</div>
+					<p>
+						达人店是是基于电商模式下的新型微创业平台，为店主提供美妆、食品、配饰等全类目正品货源，致力于为更多用户提供自主创业的机会。
+					</p>
+					主要职责：</br>
+					<ol>
+						<li>负责产品 Android 客户端常规迭代开发和维护。</li>
+						<li>负责产品 Android 客户端内存、UI、性能等方面的优化工作。</li>
+						<li>参与前端部门技术架构的搭建和完善。</li>
+						<li>参与产品 weex 端常规迭代开发和项目维护。</li>
+					</ol>
+				</div>
+				 
+				<hr/>
+				<div>
+					<div class="app-info-wrap">
+						<a href="http://www.ibbpp.com"> 
+							<image class="app-launcher" src="../../image/bp-icon.png" alt="icon">
+							</image>
+						</a>
+						<div class="app-detail-wrap">
+							<span class="app-name"> 宝宝拍拍 </span> <br/>
+							<span class="desc-text"> 1200 日活 / 586000 用户总量 </span>  
+						</div>
+					</div>
+					<p>
+						宝宝拍拍是一款集家庭数据管理、多媒体采集及后续处理、云端存储、打印电商和育婴工具等于一体的母婴产品。
+					</p>
+					主要职责：</br>
+					<ol>
+						 <li>负责项目基础架构的搭建，包括框架的选型、网络框架底层设计等。</li>
+ 						 <li>负责对接阿里云图片、视频批量上传及云处理。</li>
+	                     <li>负责首页、家庭共享、打印电商等主要模块的开发。</li>
+						 <li>负责相机功能的开发和调研，主要包括照片和视频的拍摄存储、人脸识别和视频特效等。</li>
+						 <li>负责照片后期处理功能的开发，主要包括照片的滤镜、裁剪、旋转、贴纸、美化等。 </li>
+						 <li>负责三方登录、分享、推送、反馈等功能的接入和维护。</li>
+						 <li>负责版本的迭代更新，测试跟进，多渠道版本发布等。</li>
+					</ol>
+				</div>
+				<hr/>
+				<div>
+					<div class="app-info-wrap">
+						<a href="http://mmmono.com/"> 
+							<image class="app-launcher" src="../../image/mono-icon.png" alt="icon">
+							</image>
+						</a>
+						<div class="app-detail-wrap">
+							<span class="app-name"> MONO </span> </br>
+							<span class="desc-text"> -- 日活 / -- 用户总量 </span>  
+						</div>
+					</div>
+					<p>
+						MONO 是一款旨在改变人们生活方式，更加专注于阅读的资讯社交类软件，在为用户 供 类型丰富的资讯动态的同时，也在不断完善用户阅读习惯的采集和个性化推荐。
+					</p>
+					主要职责：</br>
+					<ol>
+						 <li>负责推荐模块的开发以及用户习惯的采集。</li>
+						 <li>负责专题模块开发。</li>
+						 <li>负责用户体系的搭建、登录注册功能的开发工作。</li>
+					</ol>
+				</div>
+			</div> 
+		</div>
+	</div>
+</body>
+
+</html>

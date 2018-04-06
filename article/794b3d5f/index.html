@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+  <meta name="keywords" content="Kotlin,协程,Coroutine">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Kotlin,协程,Coroutine">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="协程 Coroutines，指各任务协作运行； 线程是操作系统层面的，由操作系统调度执行，我们可以开启一个线程，但无法知道线程什么时候执行，什么时候执行完，因此我们通常使用回调的形式在线程执行完之后接受执行的结果，线程的运行是抢占式的，后起的 B 线程可能抢占先起的 A 线程的资源，A 线程会被阻塞，从而造成资源的浪费。 协程是应用层面的，它由虚拟机进行调度，我们可以随意开启和终止协程的运行，协程">
+<meta name="keywords" content="Kotlin,协程,Coroutine">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin开发-18-协程">
+<meta property="og:url" content="http://cdevlab.top/article/794b3d5f/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="协程 Coroutines，指各任务协作运行； 线程是操作系统层面的，由操作系统调度执行，我们可以开启一个线程，但无法知道线程什么时候执行，什么时候执行完，因此我们通常使用回调的形式在线程执行完之后接受执行的结果，线程的运行是抢占式的，后起的 B 线程可能抢占先起的 A 线程的资源，A 线程会被阻塞，从而造成资源的浪费。 协程是应用层面的，它由虚拟机进行调度，我们可以随意开启和终止协程的运行，协程">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-24T15:56:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin开发-18-协程">
+<meta name="twitter:description" content="协程 Coroutines，指各任务协作运行； 线程是操作系统层面的，由操作系统调度执行，我们可以开启一个线程，但无法知道线程什么时候执行，什么时候执行完，因此我们通常使用回调的形式在线程执行完之后接受执行的结果，线程的运行是抢占式的，后起的 B 线程可能抢占先起的 A 线程的资源，A 线程会被阻塞，从而造成资源的浪费。 协程是应用层面的，它由虚拟机进行调度，我们可以随意开启和终止协程的运行，协程">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/794b3d5f/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Kotlin开发-18-协程 | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 800px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+   <a href="https://github.com/chendongMarch?tab=repositories" class="forkme github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/794b3d5f/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Kotlin开发-18-协程
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T14:07:00+08:00">
+                2017-09-09
+              </time>
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/794b3d5f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/794b3d5f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/794b3d5f/" class="leancloud_visitors" data-flag-title="Kotlin开发-18-协程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+
+      
+        <p>协程 <code>Coroutines</code>，指各任务协作运行；</p>
+<p>线程是操作系统层面的，由操作系统调度执行，我们可以开启一个线程，但无法知道线程什么时候执行，什么时候执行完，因此我们通常使用回调的形式在线程执行完之后接受执行的结果，线程的运行是抢占式的，后起的 B 线程可能抢占先起的 A 线程的资源，A 线程会被阻塞，从而造成资源的浪费。</p>
+<p>协程是应用层面的，它由虚拟机进行调度，我们可以随意开启和终止协程的运行，协程是非抢占氏的，如果当前协程在运行，除非当前运行的协程主动 <strong>退让，挂起</strong>，否则其他协程不会抢占运行机会，由于各任务写作运行，就避免了创建大量的线程。</p>
+<p>协程本身并不具备线程切换的功能，耗时操作等仍旧需要我们手动切换到子线程执行，但是协程的 API 设计使得我们可以像编写同步代码一样编写异步代码，避免使用回调，逻辑也更清晰。</p>
+<a id="more"></a>
+<p>本文中的代码没有真正的进行操作，使用输出 <code>log</code> 来代替</p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="https://zhuanlan.zhihu.com/p/25126223" rel="external nofollow noopener noreferrer" target="_blank">深入理解 Kotlin Coroutine 1 - 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/25130621" rel="external nofollow noopener noreferrer" target="_blank">深入理解 Kotlin Coroutine 2 - 知乎</a></p>
+<p><a href="https://blog.dreamtobe.cn/kotlin-coroutines/" rel="external nofollow noopener noreferrer" target="_blank">Kotlin Coroutines</a></p>
+<h2 id="使用回调进行异步"><a href="#使用回调进行异步" class="headerlink" title="使用回调进行异步"></a>使用回调进行异步</h2><p>使用回调接口获取异步结果，是在 <code>Java</code> 中常用的方法，在主线程进行 <code>UI</code> 操作，切换到子线程进行耗时操作，操作的结果返回到主线程更新 <code>UI</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 线程池</span></div><div class="line"><span class="keyword">val</span> pool: ExecutorService <span class="keyword">by</span> lazy &#123;</div><div class="line">    Executors.newCachedThreadPool()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个很忙的方法，回调返回值</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">doLotsOfThingsWithCallBack</span><span class="params">(callback: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</div><div class="line">    pool.execute &#123;</div><div class="line">        log(<span class="string">"开始耗时"</span>)</div><div class="line">        Thread.sleep(<span class="number">100</span>)</div><div class="line">        Handler(Looper.getMainLooper()).post &#123;</div><div class="line">            callback.invoke(<span class="string">"result"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testCallback</span><span class="params">()</span></span> &#123;</div><div class="line">    log(<span class="string">"开始先来个UI操作"</span>)</div><div class="line">    doLotsOfThingsWithCallBack &#123;</div><div class="line">        log(<span class="string">"回调拿到结果了 -&gt; <span class="variable">$it</span>"</span>)</div><div class="line">        log(<span class="string">"再来个UI操作"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为我们只有一层回调，加上 <code>Kotlin</code> 对 <code>Lambda</code> 表达式的支持，看起来代码还不是那么难看，这也是在 <code>Java</code> 中常用的方法，相对好理解一些，看一下输出结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">E/Coroutine: main  开始先来个UI操作</div><div class="line">E/Coroutine: pool-1-thread-1  开始耗时</div><div class="line">E/Coroutine: main  回调拿到结果了 -&gt; result</div><div class="line">E/Coroutine: main  再来个UI操作</div></pre></td></tr></table></figure>
+<h2 id="使用协程实现"><a href="#使用协程实现" class="headerlink" title="使用协程实现"></a>使用协程实现</h2><p>协程借助 <code>suspend</code> 关键字实现，使用 <code>suspend</code> 关键字描述的函数，表示此函数可以被挂起。</p>
+<p>介绍几个概念</p>
+<p><code>CoroutineContext</code>，协程上下文，很多框架都会有一个上下文对象，支持 <code>+</code> 操作符，因此它可以是多个上下文的累加结果，<code>Kotlin</code> 中实现了一个空的实现 <code>EmptyCoroutineContext</code>，用来占位。</p>
+<p><code>Continuation</code>，协程中的任务执行后的操作，它可以返回任务的结果或者异常。</p>
+<p>同样使用协程来实现一个和上面类似的功能：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testCoroutine</span><span class="params">()</span></span> &#123;</div><div class="line">    log(<span class="string">"开始先来个UI操作"</span>)</div><div class="line">    callCoroutine &#123;</div><div class="line">        <span class="comment">// 执行耗时操作，执行完之后会继续往下走</span></div><div class="line">        <span class="keyword">val</span> result = doLotsOfThingsCanSuspend(<span class="string">"test"</span>)</div><div class="line">        log(<span class="string">"拿到结果了 -&gt; <span class="variable">$result</span>"</span>)</div><div class="line">        log(<span class="string">"再来个UI操作"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 一个耗时的方法，可能被挂起</span></div><div class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="title">doLotsOfThingsCanSuspend</span><span class="params">(p: <span class="type">String</span>)</span></span>: String = suspendCoroutine &#123;</div><div class="line">    pool.execute &#123;</div><div class="line">        log(<span class="string">"开始耗时"</span>)</div><div class="line">        Thread.sleep(<span class="number">100</span>)</div><div class="line">        log(<span class="string">"耗时结束"</span>)</div><div class="line">        <span class="keyword">if</span> (p.isNotEmpty())</div><div class="line">            it.resume(<span class="string">"succeed result"</span>)</div><div class="line">        <span class="keyword">else</span></div><div class="line">            it.resumeWithException(IllegalStateException(<span class="string">"len &lt; 0"</span>))</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 开始协程</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">callCoroutine</span><span class="params">(block: <span class="type">suspend</span> ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</div><div class="line">    block.startCoroutine(<span class="keyword">object</span> : Continuation&lt;<span class="built_in">Unit</span>&gt; &#123;</div><div class="line">        <span class="keyword">override</span> <span class="keyword">val</span> context: CoroutineContext</div><div class="line">            <span class="keyword">get</span>() = EmptyCoroutineContext</div><div class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">Unit</span>)</span></span> &#123;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span> &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">E/Coroutine: main  开始先来个UI操作</div><div class="line">E/Coroutine: pool-2-thread-1  开始耗时</div><div class="line">E/Coroutine: pool-2-thread-1  耗时结束</div><div class="line">E/Coroutine: pool-2-thread-1  拿到结果了 -&gt; succeed result</div><div class="line">E/Coroutine: pool-2-thread-1  再来个UI操作</div></pre></td></tr></table></figure>
+<p>我们看到，最后结果的 <code>UI</code> 操作，还是在子线程跑的，这个是不允许的，但是从代码上面，最后打印结果的代码明明是在主线程，其实 <code>var resule = xx</code> 之后的代码就如同回调中的代码，它的运行环境取决于 <code>Continuation</code> 的 <code>resume()</code> 方法执行的环境，在这段协程的代码中，最关键的一句是 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> result = doLotsOfThingsCanSuspend(<span class="string">"test"</span>)</div></pre></td></tr></table></figure>
+<p>它替代了原先的回调方法，也实现了类似原来回调的功能，当运行到这边时，函数会被挂起，等结果返回之后才会赋值并且进行后面的操作，避免了层层回调嵌套，另外虽然最后拿到结果的代码看起来是写在主线程，其实最后运行在了子线程，因此我们可以如下，修改代码，保证最后的结果被传递回主线程。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 一个耗时的方法，可能被挂起</span></div><div class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="title">doLotsOfThingsCanSuspend</span><span class="params">(p: <span class="type">String</span>)</span></span>: String = suspendCoroutine &#123;</div><div class="line">    pool.execute &#123;</div><div class="line">        log(<span class="string">"开始耗时"</span>)</div><div class="line">        Thread.sleep(<span class="number">100</span>)</div><div class="line">        log(<span class="string">"耗时结束"</span>)</div><div class="line">        Handler(Looper.getMainLooper()).post &#123;</div><div class="line">            <span class="keyword">if</span> (p.isNotEmpty())</div><div class="line">                it.resume(<span class="string">"succeed result"</span>)</div><div class="line">            <span class="keyword">else</span></div><div class="line">                it.resumeWithException(IllegalStateException(<span class="string">"len &lt; 0"</span>))</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是对于这个操作，借助 <code>Continuation</code> 和 <code>CoroutineContext</code> 可以有更优雅的实现。</p>
+<h2 id="将结果返回切换到主线程"><a href="#将结果返回切换到主线程" class="headerlink" title="将结果返回切换到主线程"></a>将结果返回切换到主线程</h2><p>写一个  <code>Continuation</code> 的包装类 <code>UIContinuation</code>，这个很好理解，一个典型的包装者模式，他包装其他的 <code>Continuation</code> 在调用 <code>resume()</code> 方法时将结果返回主线程。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UIContinuation</span>&lt;<span class="type">in T</span>&gt;</span>(<span class="keyword">val</span> delegate: Continuation&lt;T&gt;) : Continuation&lt;T&gt; &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">val</span> handler <span class="keyword">by</span> lazy &#123; Handler(Looper.getMainLooper()) &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="keyword">val</span> context: CoroutineContext</div><div class="line">        <span class="keyword">get</span>() = delegate.context</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">T</span>)</span></span> &#123;</div><div class="line">        handler.post &#123; delegate.resume(value) &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span> &#123;</div><div class="line">        handler.post &#123; delegate.resumeWithException(exception) &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>重写 <code>CoroutineContext</code> 自动完成 <code>Continuation</code> 的包装，需要一个接收外界设置的 <code>CoroutineContext</code> 的 <code>Continuation</code>，他其实什么也不需要做。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ContextContinuation</span></span>(<span class="keyword">override</span> <span class="keyword">val</span> context: CoroutineContext = EmptyCoroutineContext) : Continuation&lt;<span class="built_in">Unit</span>&gt; &#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">Unit</span>)</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span> &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>重写 <code>CoroutineContext</code> 使用插值器的方式包装，这里使用了 <code>ContinuationInterceptor</code>，他也是 <code>CoroutineContext</code> 的子类，类似 <code>okHttp</code> 的 <code>interceptor</code>，他的作用就是，拦截旧的 <code>Continuation</code> 如果需要的话生成新的 <code>Continuation</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class AsyncCoroutineContext : </div><div class="line">        AbstractCoroutineContextElement(ContinuationInterceptor.Key), </div><div class="line">        ContinuationInterceptor &#123;</div><div class="line">    override fun &lt;T&gt; interceptContinuation(continuation: Continuation&lt;T&gt;): Continuation&lt;T&gt; &#123;</div><div class="line">        // 这里使用 fold 函数是为了兼容会有其他插值器想更改 Continuation 的操作，因此不能草率的直接返回</div><div class="line">        // 如果不好理解，也可以直接理解为 return UIContinuation()</div><div class="line">        return UIContinuation(continuation.context.fold(continuation) &#123;</div><div class="line">            con, element -&gt;</div><div class="line">            if (element != this &amp;&amp; element is ContinuationInterceptor) &#123;</div><div class="line">                element.interceptContinuation(con)</div><div class="line">            &#125; else con</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时，调用如下方法启动协程，配置可以将结果返回主线程的上下文，当结果返回时会自动返回主线程。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">callCoroutine</span><span class="params">(block: <span class="type">suspend</span> ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</div><div class="line">    block.startCoroutine(ContextContinuation(AsyncCoroutineContext()))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用-CoroutineContext-传参"><a href="#使用-CoroutineContext-传参" class="headerlink" title="使用 CoroutineContext 传参"></a>使用 CoroutineContext 传参</h2><p>首先，<code>CoroutineContext</code> 有一个不错的特性，就是重载了 <code>+</code> 操作符，因为我们可以对 <code>CoroutineContext</code> 进行加法操作返回新的 <code>CoroutineContext</code></p>
+<p>为了方便使用，我们将基础的方法进行提取，他们实现一个通用的功能，即切换后台线程执行耗时操作，然后在主线程接收结果更改UI。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 开始协程，可以从外界接受上下文变量</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">callCoroutine</span><span class="params">(context: <span class="type">CoroutineContext</span> = EmptyCoroutineContext, block: <span class="type">suspend</span> ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</div><div class="line">    <span class="comment">// 自动具备了将结果切换回主线程的功能</span></div><div class="line">    block.startCoroutine(ContextContinuation(AsyncCoroutineContext() + context))</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个通用的执行耗时操作的方法，可能被挂起</span></div><div class="line"><span class="comment">// 接受的参数是 CoroutineContext 的扩展函数，这样的写法好处在于可以在函数内使用 this 访问</span></div><div class="line"><span class="comment">// 在参数 block 指向的函数中，是一个任意的耗时操作</span></div><div class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">doLotsOfThingsCanSuspend</span><span class="params">(block: <span class="type">CoroutineContext</span>.()</span></span> -&gt; T): T = suspendCoroutine &#123;</div><div class="line">    pool.execute &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            it.resume(block(it.context))</div><div class="line">        &#125; <span class="keyword">catch</span> (e: Exception) &#123;</div><div class="line">            e.printStackTrace()</div><div class="line">            it.resumeWithException(e)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>借助上面的抽象出来的两个方法可以开启协程，执行任意耗时操作，并将结果返回到主线程，接下来使用 <code>ConroutineContext</code> 进行参数的传递，从上面我们发现 <code>block</code> 函数是一个无参的函数，而各种耗时操作参数不一，怎么兼容这个问题，就需要使用 <code>ConroutineContext</code> ，他是一个上下文，是整个运行环境，借助它我们可以传递参数，定义一个携带参数的上下文，它仍旧是 <code>AbstractCoroutineContextElement</code> 的子类，并标记一个 <code>Key</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 携带上下文的 context</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParamContext</span></span>(<span class="keyword">val</span> url: String) : AbstractCoroutineContextElement(Key) &#123;</div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> Key : CoroutineContext.Key&lt;ParamContext&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上下文中获取参数，重点在于 <code>this[ParamContext.Key]</code>，也可以写作 <code>this[ParamContext]</code>，因为那个 <code>Key</code> 是一个伴生对象，能用下标访问是因为 <code>CoroutineContext</code> 重载了 <code>[]</code> 操作符，从而可以取出之前传递的 <code>ParamContext</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">testCoroutine</span><span class="params">()</span></span> &#123;</div><div class="line">    log(<span class="string">"开始先来个UI操作"</span>)</div><div class="line">    callCoroutine(ParamContext(<span class="string">"test"</span>)) &#123;</div><div class="line">        <span class="comment">// 执行耗时操作，执行完之后会继续往下走</span></div><div class="line">        <span class="keyword">val</span> result = doLotsOfThingsCanSuspend &#123;</div><div class="line">            log(<span class="string">"开始耗时"</span>)</div><div class="line">            Thread.sleep(<span class="number">100</span>)</div><div class="line">            log(<span class="string">"耗时结束"</span>)</div><div class="line">            <span class="keyword">this</span>[ParamContext.Key]?.url?.length.toString()</div><div class="line">        &#125;</div><div class="line">        log(<span class="string">"拿到结果了 -&gt; <span class="variable">$result</span>"</span>)</div><div class="line">        log(<span class="string">"再来个UI操作"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Sequence"><a href="#Sequence" class="headerlink" title="Sequence"></a>Sequence</h2><p>官方的一个例子</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">val</span> fibonacci = buildSequence &#123;</div><div class="line">    yield(<span class="number">1</span>) <span class="comment">// 此处返回 1 并挂起</span></div><div class="line">    <span class="keyword">var</span> cur = <span class="number">1</span></div><div class="line">    <span class="keyword">var</span> next = <span class="number">1</span></div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">        yield(next) <span class="comment">// 返回下一个值并挂起</span></div><div class="line">        <span class="keyword">val</span> temp = cur + next</div><div class="line">        cur = next</div><div class="line">        next = temp</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> fibonacci) &#123;</div><div class="line">    log(<span class="string">"<span class="variable">$i</span>"</span>)</div><div class="line">    <span class="keyword">if</span> (i &gt; <span class="number">100</span>) <span class="keyword">break</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每次对 <code>Sequence</code> 迭代遍历下一个时，会执行协程到 <code>yield</code> 的位置返回值，并挂起，等待下一次迭代，这样就构造了一个懒序列，只有在需要的时候才会计算生成，而不是一次生成大量数据，除了第一次，他的每次被调起，都是从这次 <code>yield</code> 到下次 <code>yield</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用 <code>suspendCoroutine</code> 构造一个可挂起的函数，在内部执行操作，通过 <code>Continuation</code> 的 <code>resume()</code> 方法将结果或者异常返回，你可以决定返回之前是不是要进行自己的处理，比如发到主线程。</p>
+<p><code>Continuation</code> 是一个接口，他是一个结果的接受处理者，这也是 <code>Continuation</code> 的含义，他将在任务完成之后被调用。</p>
+<p><code>CoroutineContext</code> 是一个上下文，表示一个运行时环境，它可以做很多事，比如传递参数等。</p>
+<p><code>ContinuationInterceptor</code> 是 <code>Continuation</code> 的插值器，提供一个更改原来的 <code>Continuation</code> 的机会，用来创建返回新的 <code>Continuation</code>。</p>
+<p>从代码层面上面，可以跟回调的方法稍作比较，下面代码中，其实 <code>var result = xxx</code> 这里就相当于一个回调，但是并不是回调的形式，在这里执行 <code>doLotsOfThingsCanSuspend()</code> 时，函数会被挂起，等待结果返回，这不是一个阻塞的过程，异步线程的切换在挂起函数内进行，因此我们可以像写同步代码一样，书写异步代码，结果返回之后，后面的代码其实相当于回调里面的代码，此时才会继续执行，和回调一样，它的运行环境取决于挂起函数中调用 <code>resume()</code> 方法时的环境。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">callCoroutine &#123;</div><div class="line">    <span class="comment">// 执行耗时操作，执行完之后会继续往下走</span></div><div class="line">    <span class="keyword">val</span> result = doLotsOfThingsCanSuspend(<span class="string">"test"</span>)</div><div class="line">    log(<span class="string">"拿到结果了 -&gt; <span class="variable">$result</span>"</span>)</div><div class="line">    log(<span class="string">"再来个UI操作"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Kotlinx-官方协程扩展框架"><a href="#Kotlinx-官方协程扩展框架" class="headerlink" title="Kotlinx 官方协程扩展框架"></a>Kotlinx 官方协程扩展框架</h2><p>添加依赖</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">compile</span> <span class="string">'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18'</span></div></pre></td></tr></table></figure>
+<p>借助 <code>launch()</code> 函数来开启一个协程，<code>CommonPool</code> 是内置的一个上下文，他将会在子线程执行任务。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test1</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">var</span> result = <span class="number">0</span></div><div class="line">    <span class="comment">// 开启协程</span></div><div class="line">    log(TAG, <span class="string">"开始协程"</span>)</div><div class="line">    launch(CommonPool) &#123;</div><div class="line">        log(TAG, <span class="string">"协程内开始"</span>)</div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.1000</span>) &#123;</div><div class="line">            result += i</div><div class="line">        &#125;</div><div class="line">        log(TAG, <span class="string">"协程内结束"</span>)</div><div class="line">    &#125;</div><div class="line">    log(TAG, <span class="string">"结束协程"</span>)</div><div class="line">    log(TAG, result.toString())</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">E/tag: main  开始协程</div><div class="line">E/tag: main  结束协程</div><div class="line">E/tag: main  0</div><div class="line">E/tag: ForkJoinPool.commonPool-worker-2  协程内开始</div><div class="line">E/tag: ForkJoinPool.commonPool-worker-2  协程内结束</div></pre></td></tr></table></figure>
+<p>结果就好像我们在子线程执行了一个任务，他并没有干预外面的代码运行，也没有获得预期的值，我们希望后面的任务在子线程的代码计算完成之后在执行，需要使用 <code>join()</code> 函数。</p>
+<hr>
+<p><code>launch()</code> 函数返回一个 <code>Job</code> 对象，同时 <code>join()</code> 函数需要在一个可挂起的函数内执行，使用 <code>runBlocking()</code> 函数使用 <code>EmptyCoroutineContext</code> 可以在当前位置开启协程；</p>
+<p>这样就得到了预期的结果，同样我们可以调用 <code>job.cancel()</code> 来结束这个任务</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test2</span><span class="params">()</span></span> &#123;</div><div class="line">    runBlocking &#123;</div><div class="line">        <span class="keyword">var</span> result = <span class="number">0</span></div><div class="line">        log(TAG, <span class="string">"开始协程"</span>)</div><div class="line">        <span class="keyword">val</span> job = launch(CommonPool) &#123;</div><div class="line">            log(TAG, <span class="string">"协程内开始"</span>)</div><div class="line">            <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.1000</span>) &#123;</div><div class="line">                delay(<span class="number">1</span>)</div><div class="line">                result += i</div><div class="line">            &#125;</div><div class="line">            log(TAG, <span class="string">"协程内结束"</span>)</div><div class="line">        &#125;</div><div class="line">        job.join() <span class="comment">// 要求当前协程，等待该协程执行完再执行</span></div><div class="line">        log(TAG, <span class="string">"结束协程"</span>)</div><div class="line">        log(TAG, result.toString())</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">E/tag: main  开始协程</div><div class="line">E/tag: ForkJoinPool.commonPool-worker-2  协程内开始</div><div class="line">E/tag: ForkJoinPool.commonPool-worker-2  协程内结束</div><div class="line">E/tag: main  结束协程</div><div class="line">E/tag: main  500500</div></pre></td></tr></table></figure>
+<hr>
+<p>获取返回值，上面我们使用了变量的形式来存储计算的值，当我们需要一个任务的返回值时，最好还是让任务能够返回执行完的结果，使用 <code>async()</code> 函数可以返回一个 <code>Deferred</code> 对象，从里面可以取到执行结果</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">launch(CommonPool) &#123;</div><div class="line">    <span class="keyword">val</span> deferred1 = async(CommonPool) &#123;</div><div class="line">        delay(<span class="number">1000</span>)</div><div class="line">        <span class="string">"result"</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">val</span> deferred2 = async(CommonPool) &#123;</div><div class="line">        delay(<span class="number">2000</span>)</div><div class="line">        <span class="number">100</span></div><div class="line">    &#125;</div><div class="line">    log(TAG, <span class="string">"<span class="subst">$&#123;deferred1.await()&#125;</span>,<span class="subst">$&#123;deferred2.await()&#125;</span>"</span>)</div><div class="line">    log(TAG, <span class="string">"<span class="subst">$&#123;deferred1.getCompleted()&#125;</span>,<span class="subst">$&#123;deferred2.getCompleted()&#125;</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">E/tag: ForkJoinPool.commonPool-worker-1  result,100</div><div class="line">E/tag: ForkJoinPool.commonPool-worker-1  result,100</div></pre></td></tr></table></figure>
+<hr>
+<p>在子线程计算，在主线程更新，<code>UI</code> 是一个协程上下文，他使用 <code>Handler</code> 将结果分发到主线程。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">launch(UI) &#123;</div><div class="line">    <span class="keyword">val</span> deferred = async(CommonPool) &#123;</div><div class="line">        <span class="keyword">var</span> index = <span class="number">1</span></div><div class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span>) &#123;</div><div class="line">            delay(<span class="number">10</span>)</div><div class="line">            Thread.sleep(<span class="number">10</span>)</div><div class="line">            index += i</div><div class="line">        &#125;</div><div class="line">        index</div><div class="line">    &#125;</div><div class="line">    mTestTv.text = deferred.await().toString()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/794b3d5f/" title="Kotlin开发-18-协程">http://cdevlab.top/article/794b3d5f/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      版权所有，转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #aaa;font-size:14px;margin-top:2rem;">------ 本文结束 🎉🎉 谢谢观看  ------</div>
+    
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/bc7a3f35/" rel="next" title="Kotlin开发-17-注解">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-17-注解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/49416638/" rel="prev" title="Kotlin开发-19-Anko">
+                Kotlin开发-19-Anko <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用回调进行异步"><span class="nav-text">使用回调进行异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用协程实现"><span class="nav-text">使用协程实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将结果返回切换到主线程"><span class="nav-text">将结果返回切换到主线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-CoroutineContext-传参"><span class="nav-text">使用 CoroutineContext 传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sequence"><span class="nav-text">Sequence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kotlinx-官方协程扩展框架"><span class="nav-text">Kotlinx 官方协程扩展框架</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+  <i class="fa fa-star"></i>
+</span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+  <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2d_models/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":1,"vHeadPos":1,"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":3,"width":60,"height":120,"position":"right","hOffset":120,"vOffset":-40},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1}});</script></body>
+</html>

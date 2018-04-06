@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+  <meta name="keywords" content="Kotlin,Anko">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Kotlin,Anko">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="下面是我抄的 Anko - GitHub 上面的描述  Anko is a Kotlin library which makes Android application development faster and easier. It makes your code clean and easy to read, and lets you forget about rough edges of">
+<meta name="keywords" content="Kotlin,Anko">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin开发-19-Anko">
+<meta property="og:url" content="http://cdevlab.top/article/49416638/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="下面是我抄的 Anko - GitHub 上面的描述  Anko is a Kotlin library which makes Android application development faster and easier. It makes your code clean and easy to read, and lets you forget about rough edges of">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-13T01:22:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin开发-19-Anko">
+<meta name="twitter:description" content="下面是我抄的 Anko - GitHub 上面的描述  Anko is a Kotlin library which makes Android application development faster and easier. It makes your code clean and easy to read, and lets you forget about rough edges of">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/49416638/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>Kotlin开发-19-Anko | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 800px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+   <a href="https://github.com/chendongMarch?tab=repositories" class="forkme github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/49416638/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Kotlin开发-19-Anko
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T16:57:00+08:00">
+                2017-09-15
+              </time>
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/49416638/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/49416638/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/49416638/" class="leancloud_visitors" data-flag-title="Kotlin开发-19-Anko">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+
+      
+        <p>下面是我抄的 <a href="https://github.com/Kotlin/anko" rel="external nofollow noopener noreferrer" target="_blank">Anko - GitHub</a> 上面的描述</p>
+<blockquote>
+<p>Anko is a Kotlin library which makes Android application development faster and easier. It makes your code clean and easy to read, and lets you forget about rough edges of the Android SDK for Java.</p>
+</blockquote>
+<p>Anko consists of several parts:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Anko Commons: a lightweight library full of helpers <span class="keyword">for</span> intents, dialogs, logging and so on;</div><div class="line"></div><div class="line">Anko Layouts: a fast and <span class="built_in">type</span>-safe way to write dynamic Android layouts;</div><div class="line"></div><div class="line">Anko SQLite: a query DSL and parser collection <span class="keyword">for</span> Android SQLite;</div><div class="line"></div><div class="line">Anko Coroutines: utilities based on the kotlinx.coroutines library.</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Commons"><a href="#Commons" class="headerlink" title="Commons"></a>Commons</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &quot;org.jetbrains.anko:anko-commons:$anko_version&quot;</div></pre></td></tr></table></figure>
+<p><code>Commons</code> 库就类似于我们的快速开发框架，在一些基础 <code>API</code> 的基础上进一步封装，达到更加简化的目的。</p>
+<h3 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h3><p>对 <code>Intent</code> 的扩展，大大简化构造 <code>Intent</code> 的过程</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 打开 Activity</span></div><div class="line">startActivity(intentFor&lt;HomeActivity&gt;())</div><div class="line"></div><div class="line">intentFor&lt;HomeActivity&gt;(</div><div class="line">        <span class="string">"id"</span> to <span class="number">5</span>,</div><div class="line">        <span class="string">"name"</span> to <span class="string">"chendong"</span>)</div><div class="line">        </div><div class="line">intentFor&lt;HomeActivity&gt;(</div><div class="line">        <span class="string">"id"</span> to <span class="number">5</span>,</div><div class="line">        <span class="string">"name"</span> to <span class="string">"chendong"</span>).singleTop()</div><div class="line">        </div><div class="line">intentFor&lt;HomeActivity&gt;(</div><div class="line">        <span class="string">"id"</span> to <span class="number">5</span>,</div><div class="line">        <span class="string">"name"</span> to <span class="string">"chendong"</span>)</div><div class="line">        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)</div></pre></td></tr></table></figure>
+<p>针对一些 <code>Intent</code> 的常用操作，也做了封装</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 打电话-需要申请权限</span></div><div class="line">makeCall(<span class="string">"13611301718"</span>)</div><div class="line"><span class="comment">// 发邮件</span></div><div class="line">email(<span class="string">"helloworld@gmail.com"</span>, <span class="string">"subject"</span>, <span class="string">"email-body"</span>)</div><div class="line"><span class="comment">// 发短信</span></div><div class="line">sendSMS(<span class="string">"13611301718"</span>, <span class="string">"msg-body"</span>)</div><div class="line"><span class="comment">// 分享文字</span></div><div class="line">share(<span class="string">"title"</span>, <span class="string">"msg-body"</span>)</div><div class="line"><span class="comment">// 开启浏览器</span></div><div class="line">browse(<span class="string">"http://www.baidu.com"</span>, <span class="literal">true</span>)</div></pre></td></tr></table></figure>
+<h3 id="UI-Extension"><a href="#UI-Extension" class="headerlink" title="UI Extension"></a>UI Extension</h3><p>显示 <code>Toast</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">toast(<span class="string">"toast msg"</span>)</div><div class="line">toast(R.string.msg)</div><div class="line">longToast(<span class="string">"long toast msg"</span>)</div></pre></td></tr></table></figure>
+<p>显示 <code>AlertDialog</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">alert(Appcompat, <span class="string">"message"</span>, <span class="string">"title"</span>) &#123;</div><div class="line">    okButton &#123;</div><div class="line">        it.dismiss()</div><div class="line">    &#125;</div><div class="line">    cancelButton &#123;</div><div class="line">        it.dismiss()</div><div class="line">    &#125;</div><div class="line">&#125;.show()</div><div class="line"></div><div class="line"></div><div class="line">alert &#123;</div><div class="line">    customView &#123; editText() &#125;</div><div class="line">&#125;.show()</div></pre></td></tr></table></figure>
+<p>显示选择列表的 <code>Dialog</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">selector(<span class="string">"selector"</span>, listOf(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>)) &#123; dialog, index -&gt;</div><div class="line">    dialog.dismiss()</div><div class="line">    toast(<span class="string">"click <span class="variable">$index</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>显示 <code>ProgressDialog</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">progressDialog(<span class="string">"message"</span>, <span class="string">"title"</span>) &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">indeterminateProgressDialog(<span class="string">"message"</span>, <span class="string">"title"</span>) &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h3><p>创建 <code>log</code> 打印</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// tag 为 TestCommonsActivity</span></div><div class="line"><span class="keyword">val</span> logger = AnkoLogger&lt;TestCommonsActivity&gt;()</div><div class="line"><span class="comment">// tag 为 CustomTag</span></div><div class="line"><span class="keyword">val</span> logger2 = AnkoLogger(<span class="string">"CustomTag"</span>)</div><div class="line"><span class="comment">// tag 为 Test</span></div><div class="line"><span class="keyword">val</span> logger3 = AnkoLogger(Test::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></div></pre></td></tr></table></figure>
+<p>输出日志，支持函数计算，这样可以在输出的再计算相关的值</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">logger.verbose &#123; <span class="string">"lazy calculate verbose msg"</span> &#125;</div><div class="line">logger.verbose(<span class="string">"verbose msg"</span>)</div><div class="line"></div><div class="line">logger.debug &#123; <span class="string">"lazy calculate debug msg"</span> &#125;</div><div class="line">logger.debug(<span class="string">"debug msg"</span>)</div><div class="line"></div><div class="line">logger.info &#123; <span class="string">"lazy calculate info msg"</span> &#125;</div><div class="line">logger.info(<span class="string">"info msg"</span>)</div><div class="line"></div><div class="line">logger.warn &#123; <span class="string">"lazy calculate warn msg"</span> &#125;</div><div class="line">logger.warn(<span class="string">"warn msg"</span>)</div><div class="line"></div><div class="line">logger.error &#123; <span class="string">"lazy calculate error msg"</span> &#125;</div><div class="line">logger.error(<span class="string">"error msg"</span>)</div><div class="line"></div><div class="line">logger.wtf(<span class="string">"error"</span>, IllegalStateException(<span class="string">"error"</span>))</div></pre></td></tr></table></figure>
+<h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><p>将颜色转化为非透明色，<code>alpha</code> 部分会被转换为 <code>ff</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">0x00ff0000</span>.opaque</div></pre></td></tr></table></figure>
+<p>灰化，将给的颜色单一色值进行灰化，红绿蓝三部分会变成相同的色值，但是最好使用一个色值的两位，它使用了移位运算，不然结果会有点混乱</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将会返回 0xff999999</span></div><div class="line"><span class="number">0x99</span>.gray.opaque </div><div class="line"><span class="comment">// 将会返回 0xffffff99</span></div><div class="line"><span class="number">0xff99</span>.gray.opaque</div></pre></td></tr></table></figure>
+<p>尺寸转换</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// sp 转 px</span></div><div class="line">sp(<span class="number">10</span>)</div><div class="line"><span class="comment">// dp 转 px</span></div><div class="line">dip(<span class="number">10</span>)</div><div class="line"><span class="comment">// px 转 dp</span></div><div class="line">px2dip(<span class="number">10</span>)</div><div class="line"><span class="comment">// px 转 sp</span></div><div class="line">px2sp(<span class="number">10</span>)</div></pre></td></tr></table></figure>
+<p>递归遍历所有 <code>child view</code>，这边需要结合一点 <code>Layouts</code> 框架的内容，用于最后对 <code>View</code> 进行设置</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">verticalLayout &#123;</div><div class="line">    button(<span class="string">"log"</span>) &#123;&#125;</div><div class="line">    button(<span class="string">"color"</span>) &#123;&#125;</div><div class="line">&#125;.applyRecursively &#123;</div><div class="line">    <span class="keyword">when</span> (it) &#123;</div><div class="line">        <span class="keyword">is</span> Button -&gt; it.text = <span class="string">"<span class="subst">$&#123;it.text&#125;</span> add"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简化版本的 <code>findViewById()</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">textView(R.string.app_name)&#123;</div><div class="line">    textResource = R.string.app_name</div><div class="line">    backgroundResource = R.mipmap.ic_launcher</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 <code>Activity</code> 和 <code>Fragment</code> 中可以直接使用 <code>ctx</code> 和 <code>act</code> 来访问上下文。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// context </span></div><div class="line">ctx</div><div class="line"><span class="comment">// Activity</span></div><div class="line">act</div></pre></td></tr></table></figure>
+<h2 id="Layouts"><a href="#Layouts" class="headerlink" title="Layouts"></a>Layouts</h2><p><code>Layouts</code> 框架最大的亮点就是 <code>DSL(Domain Specific Language)</code>，领域专用语言，它提供了一种新的构建 <code>UI</code> 的方式，为什么要使用 <code>DSL</code>，下文摘自 <code>GitHub</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">By default, UI <span class="keyword">in</span> Android is written using XML. That is inconvenient <span class="keyword">in</span> the following ways:</div><div class="line"></div><div class="line">It is not typesafe;</div><div class="line">It is not null-safe;</div><div class="line">It forces you to write almost the same code <span class="keyword">for</span> every layout you make;</div><div class="line">XML is parsed on the device wasting CPU time and battery;</div><div class="line">Most of all, it allows no code reuse.</div></pre></td></tr></table></figure>
+<p>使用传统的 <code>xml</code> 构建方式，使用起来真的很简单，还有实时预览，但是同样有很多缺点，比如类型安全，空安全，不能进行声明数据访问数据，<code>xml</code> 的解析浪费了大量性能等，而如果使用代码编写 <code>UI</code>，简直痛苦死，但是使用 <code>DSL</code> 可以避免这些问题，而且还有插件支持实时预览，还有什么理由拒绝呢？</p>
+<p>添加依赖，发现 <code>com.google.android</code> 无法下载，因此过滤掉，另外需要注意的是如果依赖了 <code>kotlin</code> 协程官方的扩展库，需要删除掉，否则版本不同可能会出问题。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不需要重复依赖</span></div><div class="line"><span class="keyword">compile</span> <span class="string">'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18'</span></div></pre></td></tr></table></figure>
+<p>使用 <code>Layouts</code> 需要以下依赖</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Anko Layouts  // sdk15, sdk19, sdk21, sdk23 are also available</span></div><div class="line"><span class="keyword">compile</span>(<span class="string">"org.jetbrains.anko:anko-sdk25:$anko_version"</span>) &#123;</div><div class="line">    <span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'com.google.android'</span>, module: <span class="string">'android'</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">compile</span>(<span class="string">"org.jetbrains.anko:anko-appcompat-v7:$anko_version"</span>) &#123;</div><div class="line">    <span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'com.google.android'</span>, module: <span class="string">'android'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Coroutine listeners for Anko Layouts</span></div><div class="line"><span class="keyword">compile</span>(<span class="string">"org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"</span>) &#123;</div><div class="line">    <span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'com.google.android'</span>, module: <span class="string">'android'</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">compile</span>(<span class="string">"org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"</span>) &#123;</div><div class="line">    <span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'com.google.android'</span>, module: <span class="string">'android'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h3><p>不再需要 <code>setContentView()</code> </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState)</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> view1 = find&lt;TextView&gt;(R.id.mTestTv)</div><div class="line">    <span class="keyword">var</span> view2 = findOptional&lt;TextView&gt;(R.id.mTestTv)</div><div class="line">    </div><div class="line">    <span class="comment">// 直接声明布局</span></div><div class="line">    verticalLayout &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 <code>DSL</code> 布局，用起来和 <code>xml</code> 相差不大，借助代码的缩进可以清晰的想象出布局的样式，支持 <code>Android</code> 所有的控件。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">verticalLayout &#123;</div><div class="line">    <span class="comment">// 垂直的 LinearLayout</span></div><div class="line">    verticalLayout &#123; </div><div class="line">        button &#123;  &#125;</div><div class="line">        progressBar &#123;  &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 水平的 LinearLayout</span></div><div class="line">    linearLayout &#123;&#125;</div><div class="line">    <span class="comment">// RelativeLayout</span></div><div class="line">    relativeLayout &#123;&#125;</div><div class="line">    <span class="comment">// FrameLayout</span></div><div class="line">    frameLayout &#123;&#125;</div><div class="line">    <span class="comment">// AbsoluteLayout</span></div><div class="line">    absoluteLayout &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="控件属性和-LayoutParams"><a href="#控件属性和-LayoutParams" class="headerlink" title="控件属性和 LayoutParams"></a>控件属性和 LayoutParams</h3><p>声明控件的属性，控制控件的绘制显示，在创建控件时会传入一个初始化函数，在该函数中可以进行控件属性的初始化，写过 <code>xml</code> 这些属性用起来其实没什么太大差别，学习成本不高，同样每个属性都会对应一个使用 <code>resource</code> 的方法，用来兼容使用 <code>xml</code> 声明的 <code>string</code>,<code>color</code> 等，来避免硬编码。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">verticalLayout &#123;</div><div class="line">    backgroundColor = <span class="number">0xff</span>.gray.opaque</div><div class="line">    textView(<span class="string">"textview"</span>) &#123;</div><div class="line">        text = <span class="string">"i am tv"</span></div><div class="line">        textColor = <span class="number">0x00</span>.gray.opaque</div><div class="line">        textSize = <span class="number">18</span>f</div><div class="line">        backgroundColor = Color.YELLOW</div><div class="line">        gravity = Gravity.CENTER</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>设置 <code>LayoutParams</code>，他用来表示该控件在父布局中绘制显示</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">textView(<span class="string">"textview"</span>) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="comment">// 文字在控件内居中</span></div><div class="line">    gravity = Gravity.CENTER</div><div class="line">&#125;.lparams &#123;</div><div class="line">    <span class="comment">// 整个控件在父布局中靠右</span></div><div class="line">    gravity = Gravity.RIGHT</div><div class="line">    width = matchParent</div><div class="line">    height = dip(<span class="number">200</span>)</div><div class="line">    <span class="comment">// margin</span></div><div class="line">    margin = dip(<span class="number">10</span>)</div><div class="line">    horizontalMargin = dip(<span class="number">10</span>)</div><div class="line">    verticalMargin = dip(<span class="number">10</span>)</div><div class="line">    leftMargin = dip(<span class="number">10</span>)</div><div class="line">    <span class="comment">// padding</span></div><div class="line">    padding = dip(<span class="number">10</span>)</div><div class="line">    verticalPadding = dip(<span class="number">10</span>)</div><div class="line">    horizontalPadding = dip(<span class="number">10</span>)</div><div class="line">    leftPadding = dip(<span class="number">10</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="RelativeLayout"><a href="#RelativeLayout" class="headerlink" title="RelativeLayout"></a>RelativeLayout</h3><p>别的布局不用多说，控件之间的依赖相对简单，针对 <code>RelativeLayout</code> 要复杂一些，在 <code>Anko</code> 中可以类似 <code>xml</code> 中一样，使用相似的语法依赖其他控件的 <code>id</code>，也可以直接依赖控件引用，当然里面的原理还是根据 <code>id</code> 依赖。</p>
+<p>关于 <code>id</code>，无法像 <code>xml</code> 中可以自动生成，所以要么使用 <code>val ID_VIEW = 100</code> 这样的形式声明，要么使用 <code>resources</code> 的方式，推荐后面一种，如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;resources&gt;</div><div class="line">    &lt;item name=<span class="string">"test_tv"</span> type=<span class="string">"id"</span>/&gt;</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>ps：就算是依赖控件的引用，也必须为控件声明 <code>id</code>，因为内部原理还是使用 <code>id</code> 依赖，没有 <code>id</code> 会异常。</p>
+</blockquote>
+<p>使用 <code>RelativeLayout</code> 布局</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">relativeLayout &#123;</div><div class="line">    <span class="keyword">val</span> tv = textView &#123;</div><div class="line">        id = R.id.test_tv</div><div class="line">        textColor = <span class="number">0x00</span>.gray.opaque</div><div class="line">        text = <span class="string">"i am textview in relative layout"</span></div><div class="line">    &#125;</div><div class="line">    button &#123;</div><div class="line">        text = <span class="string">"i am button below textview"</span></div><div class="line">    &#125;.lparams &#123;</div><div class="line">        <span class="comment">// 支持 id</span></div><div class="line">        rightOf(R.id.test_tv)</div><div class="line">        <span class="comment">// 支持 控件</span></div><div class="line">        rightOf(tv)</div><div class="line">        </div><div class="line">        rightOf(R.id.test_tv)</div><div class="line">        leftOf(R.id.test_tv)</div><div class="line">        above(R.id.test_tv)</div><div class="line">        below(R.id.test_tv)</div><div class="line">        </div><div class="line">        centerInParent()</div><div class="line">        centerVertically()</div><div class="line">        centerHorizontally()</div><div class="line">        </div><div class="line">        alignParentTop()</div><div class="line">        alignParentBottom()</div><div class="line">        alignParentRight()</div><div class="line">        alignParentLeft()</div><div class="line">        </div><div class="line">        sameLeft(R.id.test_tv)</div><div class="line">        sameRight(R.id.test_tv)</div><div class="line">        sameTop(R.id.test_tv)</div><div class="line">        sameBottom(R.id.test_tv)</div><div class="line">        </div><div class="line">        alignStart(R.id.test_tv)</div><div class="line">        alignEnd(R.id.test_tv)</div><div class="line">        baselineOf(R.id.test_tv)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h3><p>对每个控件都有一个 <code>themedXXXX</code> 的实现，支持使用  <code>R.style.xxx</code> 来初始化</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"MyTv"</span>&gt;</span><span class="xml"></span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:text"</span>&gt;</span>来自style的text<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textColor"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用 <code>theme</code> 创建</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">verticalLayout &#123;</div><div class="line">   themedTextView(R.style.MyTv)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Listeners"><a href="#Listeners" class="headerlink" title="Listeners"></a>Listeners</h3><p>为控件设置监听，所有监听默认支持协程，这意味着你可以在监听中直接执行异步任务，还有一个优势就是实现一个监听时不再要实现所有方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在监听之中直接执行耗时操作</span></div><div class="line">button(<span class="string">"test"</span>) &#123;</div><div class="line">    onClick &#123;</div><div class="line">        <span class="comment">// 耗时</span></div><div class="line">        <span class="keyword">val</span> result = bg &#123;</div><div class="line">            Thread.sleep(<span class="number">1000</span>)</div><div class="line">            System.currentTimeMillis().toString()</div><div class="line">        &#125;</div><div class="line">        textView.text = result.await()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 实现需要的监听</span></div><div class="line">editText &#123;</div><div class="line">    textChangedListener &#123;</div><div class="line">        afterTextChanged &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Extends"><a href="#Extends" class="headerlink" title="Extends"></a>Extends</h3><p>在 <code>DSL</code> 中支持扩展使用自定义控件</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyView</span></span>(context: Context?) : TextView(context)</div><div class="line"></div><div class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> ViewManager.<span class="title">myView</span><span class="params">(init: <span class="type">MyView</span>.()</span></span> -&gt; <span class="built_in">Unit</span>): MyView &#123;</div><div class="line">    <span class="keyword">return</span> ankoView(&#123; MyView(it) &#125;, theme = <span class="number">0</span>, init = init)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样在 <code>DSL</code> 中就可以使用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">verticalLayout &#123;</div><div class="line">    myView &#123;</div><div class="line">        text = <span class="string">"自定义控件"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Include"><a href="#Include" class="headerlink" title="Include"></a>Include</h3><p>包含 <code>layout.xml</code> 文件，使用 <code>include</code>，范型决定了在函数中你可以使用的类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">verticalLayout&#123;</div><div class="line">	include&lt;TextView&gt;(R.layout.main_activity)&#123;</div><div class="line">    	text = <span class="string">"text"</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Convert"><a href="#Convert" class="headerlink" title="Convert"></a>Convert</h3><p>转换 <code>xml</code> -&gt; <code>DSL</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Code -&gt; Covert to Anko Layouts DSL</div></pre></td></tr></table></figure>
+<h3 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h3><p>使用 <code>AnkoComponent</code> 可以让我们将 <code>UI</code> 部分单独的独立出来，而不是挂在 <code>Activity</code> 生命周期方法中国，可以让代码更清晰</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SplashActivityUI</span> : <span class="type">AnkoComponent</span>&lt;<span class="type">SplashActivity</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">createView</span><span class="params">(ui: <span class="type">AnkoContext</span>&lt;<span class="type">SplashActivity</span>&gt;)</span></span>: View = with(ui)</div><div class="line">        frameLayout &#123;</div><div class="line">            backgroundResource = R.drawable.splash_bg_bitmap</div><div class="line">            textView(<span class="string">"Security Files"</span>) &#123;</div><div class="line">                gravity = Gravity.CENTER</div><div class="line">                backgroundColor = white</div><div class="line">                textColor = black</div><div class="line">                verticalPadding = dip(<span class="number">15</span>)</div><div class="line">                textSize = sp(<span class="number">16</span>f).toFloat()</div><div class="line">            &#125;.lparams(width = matchParent, height = wrapContent) &#123;</div><div class="line">                gravity = Gravity.CENTER</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后在 <code>Activity</code> 的 <code>onCreate()</code> 方法中添加布局</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SplashActivityUI().setContentView(<span class="keyword">this</span>)</div></pre></td></tr></table></figure>
+<p>使用 <code>AnkoComponent</code> 不止可以将 <code>Activity</code> 中的布局分离出来，他其实是一种对布局代码进行解耦复用的方法，我们也可以用它来加载 <code>RecyclerView</code> 的 <code>item</code></p>
+<h2 id="Coroutines"><a href="#Coroutines" class="headerlink" title="Coroutines"></a>Coroutines</h2><p><code>Coroutines</code> 框架是基于 <code>kotlinx-coroutine</code> 框架的扩展，在此基础上针对 <code>Android</code> 做了简化。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">compile</span> <span class="string">"org.jetbrains.anko:anko-coroutines:$anko_version"</span></div></pre></td></tr></table></figure>
+<h3 id="asReference"><a href="#asReference" class="headerlink" title="asReference"></a>asReference</h3><p>这个主要用来避免如果你在一个不能取消的协程之中引用了上下文，由于协程可能被挂起，这一操作有可能导致内存泄漏，因此 <code>anko</code> 提供了 <code>asReference</code> 方法来获取当前上下文的弱引用，避免内存泄漏。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">val</span> ref: Ref&lt;TestAnkoCoroutineActivity&gt; = asReference()</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">val</span> tv: TextView <span class="keyword">by</span> lazy &#123;</div><div class="line">    find&lt;TextView&gt;(R.id.test_tv)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</div><div class="line">    launch(UI) &#123;</div><div class="line">        ref().tv.hide()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="bg"><a href="#bg" class="headerlink" title="bg"></a>bg</h3><p>用来快速的创建一个需要耗时的异步任务，并返回结果</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">tv.setOnClickListener &#123;</div><div class="line">    launch(UI) &#123;</div><div class="line">        pb.show()</div><div class="line">        <span class="keyword">val</span> rst = bg &#123;</div><div class="line">            Thread.sleep(<span class="number">1000</span>)</div><div class="line">            <span class="keyword">val</span> index = time + (<span class="number">1.</span><span class="number">.1000</span>).sum()</div><div class="line">            index</div><div class="line">        &#125;</div><div class="line">        tv.text = rst.await().toString()</div><div class="line">        pb.hide()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><p>暂不研究</p>
+
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/49416638/" title="Kotlin开发-19-Anko">http://cdevlab.top/article/49416638/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      版权所有，转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #aaa;font-size:14px;margin-top:2rem;">------ 本文结束 🎉🎉 谢谢观看  ------</div>
+    
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/794b3d5f/" rel="next" title="Kotlin开发-18-协程">
+                <i class="fa fa-chevron-left"></i> Kotlin开发-18-协程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/ef811326/" rel="prev" title="Learn About HTML">
+                Learn About HTML <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Commons"><span class="nav-text">Commons</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intent"><span class="nav-text">Intent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI-Extension"><span class="nav-text">UI Extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log"><span class="nav-text">Log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Misc"><span class="nav-text">Misc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layouts"><span class="nav-text">Layouts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basics"><span class="nav-text">Basics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控件属性和-LayoutParams"><span class="nav-text">控件属性和 LayoutParams</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RelativeLayout"><span class="nav-text">RelativeLayout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theme"><span class="nav-text">Theme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Listeners"><span class="nav-text">Listeners</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extends"><span class="nav-text">Extends</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Include"><span class="nav-text">Include</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convert"><span class="nav-text">Convert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component"><span class="nav-text">Component</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coroutines"><span class="nav-text">Coroutines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#asReference"><span class="nav-text">asReference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bg"><span class="nav-text">bg</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLite"><span class="nav-text">SQLite</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+  <i class="fa fa-star"></i>
+</span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+  <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2d_models/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":1,"vHeadPos":1,"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":3,"width":60,"height":120,"position":"right","hOffset":120,"vOffset":-40},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1}});</script></body>
+</html>

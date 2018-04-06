@@ -1,0 +1,176 @@
+:root {
+	--main-color: #82D2D2;
+	--bg-color:#efefef;
+}
+
+body {
+	font-size: 16px;
+}
+ 
+.icon {
+	width: 3rem;
+	height: 3rem;
+	vertical-align: -0.15em;
+	fill: var(--main-color);
+	overflow: hidden;
+}
+/* 左右padding 的内容区 */
+.content-wrap {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+/* 细间隔 */
+.division-thin {
+ 	height: 0.15rem;
+ 	background: #eee;
+}
+/* 宽间隔 */
+.division-huge {
+	height: 1.3rem;
+	background: var(--bg-color);
+}
+/* 横向 */
+.hori {
+	display: flex;
+}
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/* 横向排列，垂直居中 */
+.hori-center {
+	display: flex;
+	align-items: center;
+}
+/* 垂直排列，水品居中 */
+.vertical-center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.content-top {
+	margin-bottom: 2rem;
+}
+/* 头像 */
+.my-head {
+	width: 13rem;
+	height: 13rem;
+	border-radius: 10rem;
+}
+/* 名字 */
+.my-name {
+	font-size: 3.5rem;
+	font-weight: bold;
+}
+/* 职位 */
+.my-position {
+	font-size: 2.5rem;
+}
+/* 出生 */
+.my-birth {
+	font-size: 2.5rem;
+	margin-left: 3rem;
+	color: #555;
+}
+/* 个人信息 */
+.info-wrap-msg {
+	display: flex;
+	flex-direction: column;
+	padding: 1.5rem;
+	justify-content: space-between;
+}
+/* 账号div */
+.account-wrap {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.5rem;
+	flex-wrap: wrap;
+}
+/* account 每一项 */
+.account-item-wrap {
+	padding-top: 1.2rem;
+	display: flex;
+	text-align: left;
+	align-items: center;
+}
+/* 我的账号 */
+.my-account {
+	margin-left: 1rem;
+	font-size: 2.5rem;
+}
+/* tag div */
+.tag-wrap{
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 1rem;
+}
+/* 每一项 tag */
+.tag-item {
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	text-align: center;
+	font-size: 2rem;
+	color: var(--main-color);
+	border-color: var(--main-color);
+	border-radius: 2rem;
+	border-style: solid;
+	padding-left:1.2rem;
+	padding-right: 1.2rem;
+	padding-top: 0.3rem;
+	padding-bottom: 0.3rem
+}
+/* 描述文字 */
+.desc-text {
+	font-size: 2rem;
+	line-height: 3rem;
+}
+
+/*个人信息 tag*/
+.my-info-tag {
+	font-size: 1.5rem;
+	padding-bottom: 10px;
+}   
+/*详情-二级标题*/
+.detail-sub-title {
+	padding-top: 1.2rem;
+	padding-bottom: 1.2rem;
+	font-weight: bold;
+	font-size: 2.5rem;
+}
+.app-item-wrap {
+	padding-top: 2rem;
+}
+
+/* 应用信息*/
+.app-info-wrap {
+	display: flex;
+}
+.app-detail-wrap {
+	padding-left: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+/*项目icon*/
+.app-launcher {
+	width: 8rem;
+	height: 8rem;
+}
+.app-name {
+	font-size: 2.2rem;
+	font-weight: bold;
+}
+
+.error-image {
+	width: 61.8%; 
+}
+
+
+
+
+

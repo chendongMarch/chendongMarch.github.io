@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/package.json</loc>
+    
+    <lastmod>2018-04-06T07:54:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/package.json</loc>
+    
+    <lastmod>2018-04-06T07:54:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://cdevlab.top/article/1632666977/</loc>
     
     <lastmod>2018-04-06T07:22:44.000Z</lastmod>
@@ -208,6 +222,76 @@
     <loc>http://cdevlab.top/about/index.html</loc>
     
     <lastmod>2017-12-05T08:33:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.physics.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.pose.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f03.exp.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/assets/z16.physics.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f04.exp.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/assets/exp/f00.exp.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-z16/assets/z16.model.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f02.exp.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/exp/f01.exp.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://cdevlab.top/live2d_models/live2d-widget-model-shizuku/assets/shizuku.model.json</loc>
+    
+    <lastmod>2017-11-26T06:44:33.000Z</lastmod>
     
   </url>
   
@@ -807,7 +891,7 @@
   </url>
   
   <url>
-    <loc>http://cdevlab.top/article/Infinity/</loc>
+    <loc>http://cdevlab.top/article/null/</loc>
     
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     

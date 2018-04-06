@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+  <meta name="keywords" content="Android,RxJava,线程调度,Schedulers">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,RxJava,线程调度,Schedulers">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍 RxJava2.x 强大的线程调度。 在 Android 开发中因为不允许阻塞主线程，所以所有的耗时请求都必须全部放在子线程来做，然后再去主线程更新UI，关于主线程和子线程的通信其实异常复杂，好在Android 给我们提供了 AsyncTask，Handler 等方式来简化这一过程。使用 RxJava 会让切换线程变得更简单。 文中部分描述可能有些混乱，为了更好的看出在哪个线程调用，">
+<meta name="keywords" content="Android,RxJava,线程调度,Schedulers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava2.x开发-2-Schedulers">
+<meta property="og:url" content="http://cdevlab.top/article/8de84f35/index.html">
+<meta property="og:site_name" content="三月">
+<meta property="og:description" content="本文主要介绍 RxJava2.x 强大的线程调度。 在 Android 开发中因为不允许阻塞主线程，所以所有的耗时请求都必须全部放在子线程来做，然后再去主线程更新UI，关于主线程和子线程的通信其实异常复杂，好在Android 给我们提供了 AsyncTask，Handler 等方式来简化这一过程。使用 RxJava 会让切换线程变得更简单。 文中部分描述可能有些混乱，为了更好的看出在哪个线程调用，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-07-10T06:40:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJava2.x开发-2-Schedulers">
+<meta name="twitter:description" content="本文主要介绍 RxJava2.x 强大的线程调度。 在 Android 开发中因为不允许阻塞主线程，所以所有的耗时请求都必须全部放在子线程来做，然后再去主线程更新UI，关于主线程和子线程的通信其实异常复杂，好在Android 给我们提供了 AsyncTask，Handler 等方式来简化这一过程。使用 RxJava 会让切换线程变得更简单。 文中部分描述可能有些混乱，为了更好的看出在哪个线程调用，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/8de84f35/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>RxJava2.x开发-2-Schedulers | 三月</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 800px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+   <a href="https://github.com/chendongMarch?tab=repositories" class="forkme github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三月</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/8de84f35/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chendong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三月">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">RxJava2.x开发-2-Schedulers
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T17:54:28+08:00">
+                2017-07-03
+              </time>
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/Library/" itemprop="url" rel="index">
+                    <span itemprop="name">Library</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/article/8de84f35/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/8de84f35/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/article/8de84f35/" class="leancloud_visitors" data-flag-title="RxJava2.x开发-2-Schedulers">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+
+      
+        <p>本文主要介绍 <code>RxJava2.x</code> 强大的线程调度。</p>
+<p>在 <code>Android</code> 开发中因为不允许阻塞主线程，所以所有的耗时请求都必须全部放在子线程来做，然后再去主线程更新UI，关于主线程和子线程的通信其实异常复杂，好在<code>Android</code> 给我们提供了 <code>AsyncTask</code>，<code>Handler</code> 等方式来简化这一过程。使用 <code>RxJava</code> 会让切换线程变得更简单。</p>
+<p>文中部分描述可能有些混乱，为了更好的看出在哪个线程调用，我会在子线程中执行我的代码，我就称它为 <code>MyThread</code>，也就是调用代码所在的线程。io线程，计算线程，newThread线程就是我对 <code>RxJava</code> 几种内置线程的简称。上游线程就是被观察者所在的线程，下游线程是观察者所在线程，调用线程就是我调用代码的线程 <code>MyThread</code>。这里简单理一下，虽然还是有点乱。</p>
+<a id="more"></a>
+<h2 id="Schedulers-种类"><a href="#Schedulers-种类" class="headerlink" title="Schedulers 种类"></a>Schedulers 种类</h2><p><code>RxJava</code> 根据不同应用场景内置了多种线程调度器，可以大多数场景的后台操作需求。</p>
+<table>
+<thead>
+<tr>
+<th>Schedulers</th>
+<th>Desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Schedulers.computation()</td>
+<td>用于计算任务，如事件循环或和回调处理，不要用于IO操作，默认线程数等于处理器的数量</td>
+</tr>
+<tr>
+<td>Schedulers.io()</td>
+<td>用于IO密集型任务，如异步阻塞IO操作，这个调度器的线程池会根据需要增长；对于普通的计算任务，请使用Schedulers.computation() </td>
+</tr>
+<tr>
+<td>Schedulers.newThread()</td>
+<td>为每个任务创建一个新线程</td>
+</tr>
+<tr>
+<td>Schedulers.trampoline()</td>
+<td>当其它排队的任务完成后，在当前线程排队开始执行</td>
+</tr>
+<tr>
+<td>Schedulers.from(executor)</td>
+<td>使用指定的 Executor 作为调度器</td>
+</tr>
+<tr>
+<td>AndroidSchedulers.mainThread()</td>
+<td>Android 主线程</td>
+</tr>
+<tr>
+<td>AndroidSchedulers.from(looper)</td>
+<td>从 Looper 创建</td>
+</tr>
+</tbody>
+</table>
+<h2 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h2><p>最为关键的就是两个方法 <code>subscribeOn()</code> 和 <code>observeOn()</code>，从代码的链式调用可以简单的总结为：</p>
+<blockquote>
+<p>上游 <code>Observable</code> 总是默认运行在被调用的线程当中，即你在哪个线程调用就会运行在哪个线程。</p>
+<p>下游 <code>Onserver</code> 总是默认运行在上游所在线程中<em>(当然如果你没有切换上游的线程，那么下游也会运行在调用的线程中)</em>，除非使用 <code>observeOn()</code> 进行线程的切换。</p>
+<p><code>subscribeOn()</code> 用来声明上游事件发送时的所在线程，当调用多次 <code>subscribeOn()</code> 时，上游会运行在最早的一次调用声明的线程中。当然也不是说多次的调用是完全没效果的，后面会细说。</p>
+<p><code>observeOn()</code> 用来声明下游观察者所在线程，每次调用 <code>observeOn()</code> 都会发生线程切换，此次调用直到下次切换线程中间的过程中的操作运行在此次调用指定的线程中。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">log(<span class="string">"start"</span>);</div><div class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull ObservableEmitter&lt;Integer&gt; e)</span> <span class="keyword">throws</span> Exceptio</span></div><div class="line">        <span class="title">log</span><span class="params">(<span class="string">"Observable"</span>)</span>;</div><div class="line">        e.onNext(<span class="number">10</span>);</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">        <span class="comment">// 第1次调用subscribeOn， Observable 将运行在io线程</span></div><div class="line">        .subscribeOn(Schedulers.io())</div><div class="line">        <span class="comment">// io 线程，下游总是会默认运行在上游所在线程中</span></div><div class="line">        .filter(<span class="keyword">new</span> Predicate&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"filter1"</span>);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="comment">// 第2次调用subscribeOn，不会生效</span></div><div class="line">        .subscribeOn(Schedulers.newThread())</div><div class="line">        <span class="comment">// 第1次调用observeOn，切换线程，filter操作运行在主线程</span></div><div class="line">        .observeOn(AndroidSchedulers.mainThread())</div><div class="line">        .filter(<span class="keyword">new</span> Predicate&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"filter2"</span>);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="comment">// 第2次调用observeOn，切换线程到子线程</span></div><div class="line">        .observeOn(Schedulers.newThread())</div><div class="line">        .subscribe(<span class="keyword">new</span> Consumer&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"subscribe = "</span> + integer);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>输出结果,我整个代码运行在一个我自己的子线程中，我就叫他 MyThread 好了，方便描述</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[ThreadName:pool-<span class="number">13</span>-thread-<span class="number">1</span>] start <span class="comment">// 因为在 MyThread 子线程调用</span></div><div class="line">[ThreadName:RxCachedThreadScheduler-<span class="number">1</span>] Observable <span class="comment">// io</span></div><div class="line">[ThreadName:RxCachedThreadScheduler-<span class="number">1</span>] filter1 <span class="comment">// io.由于没有切换线程，默认运行在上游线程中。</span></div><div class="line">[ThreadName:main] filter2 <span class="comment">// 切换到主线程</span></div><div class="line">[ThreadName:RxNewThreadScheduler-<span class="number">2</span>] subscribe = <span class="number">10</span> <span class="comment">// 切换到 newThread 线程</span></div></pre></td></tr></table></figure>
+<h2 id="doOnSubscribe"><a href="#doOnSubscribe" class="headerlink" title="doOnSubscribe()"></a>doOnSubscribe()</h2><p>当调用多次 <code>subscribeOn()</code> 方法时，上游将运行在最早调用指定的线程中，这个没什么问题，对于下游的 <code>doOnNext()</code>，<code>doOnComplete()</code> 来说，遵循上面说的规则，除非你使用 <code>observerOn()</code> 切换线程，不然运行在上游线程中。</p>
+<p>但是 <code>doOnSubscribe()</code> 有点不一样，除非他后面有调用 <code>subscribeOn()</code> 切换线程，否则他默认运行在执行 <code>Observable.subcribe()</code> 语句的线程中。</p>
+<p>其实这里的 <code>doXXX()</code> 方法和上一篇文章中观察者中的几个方法是一一对应的，在观察者的中 <code>onSubscribe()</code> 方法也有同样的属性，他在订阅发生的一瞬间首先执行，并且它运行在订阅发生的线程。其他几个方法也是一样，除非你使用 <code>observerOn()</code> 切换线程，不然运行在上游线程中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">log(<span class="string">"start"</span>);</div><div class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull ObservableEmitter&lt;Integer&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        log(<span class="string">"Observable"</span>);</div><div class="line">        e.onNext(<span class="number">10</span>);</div><div class="line">        e.onComplete();</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">        <span class="comment">// 计算线程，因此 Observable 将会运行在计算线程</span></div><div class="line">        .subscribeOn(Schedulers.computation())</div><div class="line">        .observeOn(Schedulers.newThread())</div><div class="line">        .doOnNext(<span class="keyword">new</span> Consumer&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"doOnNext"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .doOnSubscribe(<span class="keyword">new</span> Consumer&lt;Disposable&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Disposable disposable)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                <span class="comment">// 后面没有调用 subscribeOn() 因此将运行在 Observable.subscribe() 执行的线程</span></div><div class="line">                log(<span class="string">"doOnSubscribe"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .doOnComplete(<span class="keyword">new</span> Action() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"doOnComplete"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .observeOn(Schedulers.newThread())</div><div class="line">        <span class="comment">// doOnSubscribe() 运行的线程取决于在哪里执行订阅</span></div><div class="line">        <span class="comment">// 除非后面有调用 subscribeOn() 进行线程的切换</span></div><div class="line">        .subscribe(<span class="keyword">new</span> Consumer&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"subscribe = "</span> + integer);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>输出结果，我整个代码运行在一个我自己的子线程中，我就叫他 MyThread 好了，方便描述</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MyThread 子线程运行</span></div><div class="line">[ThreadName:pool-<span class="number">16</span>-thread-<span class="number">1</span>] start </div><div class="line"><span class="comment">// 因为 subscribe() 方法也同样运行在 MyThread 子线程，所以 doSunscribe() 页运行在 MyThread 子线程</span></div><div class="line">[ThreadName:pool-<span class="number">16</span>-thread-<span class="number">1</span>] doOnSubscribe </div><div class="line"><span class="comment">// 由于调用 subscribeOn(Schedulers.computation()) 所以上游运行在计算线程</span></div><div class="line">[ThreadName:RxComputationThreadPool-<span class="number">1</span>] Observable </div><div class="line"><span class="comment">// 遵循上面说的规则，运行在 observerOn() 指定的 newThread 中。</span></div><div class="line">[ThreadName:RxNewThreadScheduler-<span class="number">1</span>] doOnNext</div><div class="line"><span class="comment">// 同上 </span></div><div class="line">[ThreadName:RxNewThreadScheduler-<span class="number">1</span>] doOnComplete    </div><div class="line">[ThreadName:RxNewThreadScheduler-<span class="number">2</span>] subscribe = <span class="number">10</span></div></pre></td></tr></table></figure>
+<h3 id="切换-doOnSubscribe-所在线程"><a href="#切换-doOnSubscribe-所在线程" class="headerlink" title="切换 doOnSubscribe() 所在线程"></a>切换 doOnSubscribe() 所在线程</h3><p>再换一个更改 <code>doOnSubscribe()</code> 运行线程的例子，跟上面不同的是在 <code>doOnSubscribe()</code> 之后我们使用 <code>subscribeOn(Schedulers.io())</code> 切换了线程，因此 <code>doOnSubscribe()</code> 将运行在 <code>io</code> 线程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">log(<span class="string">"start"</span>);</div><div class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull ObservableEmitter&lt;Integer&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        log(<span class="string">"Observable"</span>);</div><div class="line">        e.onNext(<span class="number">10</span>);</div><div class="line">        e.onComplete();</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">        <span class="comment">// 计算线程，因此 Observable 将会运行在计算线程</span></div><div class="line">        .subscribeOn(Schedulers.computation())</div><div class="line">        .observeOn(Schedulers.newThread())</div><div class="line">        .doOnSubscribe(<span class="keyword">new</span> Consumer&lt;Disposable&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Disposable disposable)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                <span class="comment">// doOnSubscribe 之后第一次调用 subscribeOn(Schedulers.io()) 切换到了io线程</span></div><div class="line">                <span class="comment">// 因此 doOnSubscribe 运行在 io 线程。</span></div><div class="line">                log(<span class="string">"doOnSubscribe"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        .subscribeOn(Schedulers.io())</div><div class="line">        .observeOn(Schedulers.newThread())</div><div class="line">        <span class="comment">// doOnSubscribe() 运行的线程取决于在哪里执行订阅</span></div><div class="line">        <span class="comment">// 除非后面有调用 subscribeOn() 进行线程的切换</span></div><div class="line">        .subscribe(<span class="keyword">new</span> Consumer&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"subscribe = "</span> + integer);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MyThread</span></div><div class="line">[ThreadName:pool-<span class="number">16</span>-thread-<span class="number">1</span>] start</div><div class="line"><span class="comment">// 由于后面调用了 subscribeOn(io) 因此运行在 io 线程</span></div><div class="line">[ThreadName:RxCachedThreadScheduler-<span class="number">1</span>] doOnSubscribe</div><div class="line"><span class="comment">// 运行在上游线程中</span></div><div class="line">[ThreadName:RxComputationThreadPool-<span class="number">1</span>] Observable</div><div class="line"><span class="comment">// 使用 observeOn(Schedulers.newThread()) 切换到了 newThread</span></div><div class="line">[ThreadName:RxNewThreadScheduler-<span class="number">2</span>] subscribe = <span class="number">10</span></div></pre></td></tr></table></figure>
+<h3 id="举个🌰"><a href="#举个🌰" class="headerlink" title="举个🌰"></a>举个🌰</h3><p>有啥用呢？模拟一个场景，1⃣️上游发送网络请求，要求在子线程执行，2⃣️ 但是请求刚开始的时候我们要显示 <code>dialog</code> 提示用户等待，需要在主线程执行，3⃣️ 完成之后又要在子线程处理数据，4⃣️ 然后去主线程更新UI。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">log(<span class="string">"开始操作，为了搞复杂点，我在我自己创建子线程操作"</span>);</div><div class="line">Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Integer&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(@NonNull ObservableEmitter&lt;Integer&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        log(<span class="string">"子线程发起网络请求"</span>);</div><div class="line">        e.onNext(<span class="number">10</span>);</div><div class="line">        e.onComplete();</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">        <span class="comment">// 在子线程发起请求</span></div><div class="line">        .subscribeOn(Schedulers.newThread())</div><div class="line">        .doOnSubscribe(<span class="keyword">new</span> Consumer&lt;Disposable&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Disposable disposable)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"请求之前，主线程弹起dialog"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="comment">// 切换到主线程弹 dialog</span></div><div class="line">        .subscribeOn(AndroidSchedulers.mainThread())</div><div class="line">        <span class="comment">// 切换到计算线程 处理数据</span></div><div class="line">        .observeOn(Schedulers.computation())</div><div class="line">        .filter(<span class="keyword">new</span> Predicate&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"计算线程处理数据"</span>);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="comment">// 切换到主线程更新UI</span></div><div class="line">        .observeOn(AndroidSchedulers.mainThread())</div><div class="line">        .subscribe(<span class="keyword">new</span> Consumer&lt;Integer&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(@NonNull Integer integer)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">                log(<span class="string">"主线程更新UI"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[ThreadName:pool-<span class="number">13</span>-thread-<span class="number">1</span>] 开始操作，为了搞复杂点，我在我自己创建子线程操作</div><div class="line">[ThreadName:main] 请求之前，主线程弹起dialog</div><div class="line">[ThreadName:RxNewThreadScheduler-<span class="number">1</span>] 子线程发起网络请求</div><div class="line">[ThreadName:RxComputationThreadPool-<span class="number">1</span>] 计算线程处理数据</div><div class="line">[ThreadName:main] 主线程更新UI</div></pre></td></tr></table></figure>
+<h2 id="总之，如何判断到底在什么线程运行"><a href="#总之，如何判断到底在什么线程运行" class="headerlink" title="总之，如何判断到底在什么线程运行"></a>总之，如何判断到底在什么线程运行</h2><p>综上所述，总结几条公式，其实就是把上面说的再说一遍：</p>
+<p>几个概念 ：</p>
+<blockquote>
+<p><strong>上游</strong>，上游指的是 数据发射源，<code>Observable</code> 中的代码。</p>
+<p><strong>下游</strong>，下游指的是 操作符方法，<code>Observable</code> 调用方法，观察者中的方法 </p>
+<p><strong>调用线程</strong>，我在哪个线程运行该代码，这个线程就是调用线程。</p>
+</blockquote>
+<p>1⃣️、上游总是默认运行在被 <code>调用线程</code> 当中，即你在哪个线程调用就会运行在哪个线程。</p>
+<p>2⃣️、 下游总是默认运行在上游所在线程中 <em>(当然如果你没有切换上游的线程，那么下游也会运行在 <code>调用线程</code> 中)</em> ，除非使用 <code>observeOn()</code> 进行线程的切换。</p>
+<p>3⃣️、 <code>subscribeOn()</code> 用来声明上游事件发送时的所在线程，当调用多次 <code>subscribeOn()</code> 时，上游会运行在 <strong>最早</strong> 的一次调用声明的线程中。</p>
+<p>4⃣️、 <code>observeOn()</code> 用来声明下游观察者所在线程，每次调用 <code>observeOn()</code> 都会发生线程切换，此次切换 到 下次切换 之间运行在 此次切换 的线程中。 </p>
+<p>5⃣️、 对于 <code>doOnNext()/onNext()</code>，<code>doOnComplete()/onComplete()</code>，<code>doOnError()/onError()</code> 几个方法 <em>(前者是 <strong>被观察者</strong> 调用的方法，后者是 <strong>观察者</strong> 接口里面的对应方法)</em> ，他们都和操作符一样，遵循 2⃣️ 中的规则。</p>
+<p>6⃣️、对于 <code>doOnSubscribe()/onSubscribe()</code> 方法 <em>(前者是 <strong>被观察者</strong> 调用的方法，后者是 <strong>观察者</strong> 接口里面的对应方法)</em> 来说，如果他后面有调用 <code>subscribeOn()</code> 切换线程，那么它运行在切换的线程，否则他默认运行在执行 <code>Observable.subcribe()</code> 语句的线程中。</p>
+<h2 id="为什么是这样"><a href="#为什么是这样" class="headerlink" title="为什么是这样"></a>为什么是这样</h2><p>上面只是总结一些规则，一个方法是运行在什么线程，使用上面的规则可以更简单判断出来，我们其实是在通过一些表象来总结如何判断，那为什么会是这样的规则呢？我现在也还没研究明白，，，，，，所以，待办 ～</p>
+<p>ok了～关于 <code>RxJava2.x</code> 的一些源码分析见<a href="../7ae7177b">RxJava2.x开发 (源码解析)</a></p>
+
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      chendong
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/8de84f35/" title="RxJava2.x开发-2-Schedulers">http://cdevlab.top/article/8de84f35/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      版权所有，转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #aaa;font-size:14px;margin-top:2rem;">------ 本文结束 🎉🎉 谢谢观看  ------</div>
+    
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/RxJava2-x/" rel="tag"># RxJava2.x</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/null/" rel="next" title="坚持">
+                <i class="fa fa-chevron-left"></i> 坚持
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/7ae7177b/" rel="prev" title="RxJava2.x开发-3-源码分析">
+                RxJava2.x开发-3-源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+            
+              <p class="site-author-name" itemprop="name">chendong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Schedulers-种类"><span class="nav-text">Schedulers 种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程调度"><span class="nav-text">线程调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#doOnSubscribe"><span class="nav-text">doOnSubscribe()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#切换-doOnSubscribe-所在线程"><span class="nav-text">切换 doOnSubscribe() 所在线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举个🌰"><span class="nav-text">举个🌰</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总之，如何判断到底在什么线程运行"><span class="nav-text">总之，如何判断到底在什么线程运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么是这样"><span class="nav-text">为什么是这样</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+  <i class="fa fa-star"></i>
+</span>
+  <span class="author" itemprop="copyrightHolder">chendong</span>
+  <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.3.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
+        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
+        placeholder: '请输入邮箱，我将及时联系您～',
+        avatar:'retro',
+        guest_info: guest,
+        pageSize:'10' || 10,
+        lang:'en'
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2d_models/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":1,"vHeadPos":1,"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":3,"width":60,"height":120,"position":"right","hOffset":120,"vOffset":-40},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":1}});</script></body>
+</html>
