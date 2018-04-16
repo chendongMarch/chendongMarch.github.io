@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/47636f69/</loc>
+    <lastmod>2018-04-16T14:09:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Glide-平滑加载的图片框架 [源码]</title>
+        <pubTime>2018-03-21T01:58:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/666476b4/</loc>
+    <lastmod>2018-04-07T05:04:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 性能优化 - 内存 [进阶]</title>
+        <pubTime>2018-03-05T16:09:39.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/185805107/</loc>
+    <lastmod>2018-04-06T08:49:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo</title>
+        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/1632666977/</loc>
     <lastmod>2018-04-06T07:22:44.000Z</lastmod>
     <data>
@@ -68,28 +130,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/47636f69/</loc>
-    <lastmod>2018-04-05T15:30:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>Glide-平滑加载的图片框架 [源码]</title>
-        <pubTime>2018-03-21T01:58:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/578c5201/</loc>
     <lastmod>2018-04-03T15:01:03.000Z</lastmod>
     <data>
@@ -123,46 +163,6 @@
            
              
               <breadCrumb title="科学上网" url="http://cdevlab.top/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/185805107/</loc>
-    <lastmod>2018-04-02T04:56:23.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo</title>
-        <pubTime>2017-03-01T16:00:00.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/666476b4/</loc>
-    <lastmod>2018-03-30T07:54:24.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android 性能优化 - 内存 [进阶]</title>
-        <pubTime>2018-03-05T16:09:39.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -2441,7 +2441,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/null/</loc>
+    <loc>http://cdevlab.top/article/Infinity/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>

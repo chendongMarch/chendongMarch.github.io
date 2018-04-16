@@ -106,7 +106,7 @@
 <meta property="og:description" content="本文主要总结 Android 开发过程中对内存使用上的优化，通过及时有效的管理内存空间可以避免内存泄漏和 OOM 的发生。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-3-7/74347621.jpg">
-<meta property="og:updated_time" content="2018-03-30T07:54:24.000Z">
+<meta property="og:updated_time" content="2018-04-07T05:04:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 性能优化 - 内存 [进阶]">
 <meta name="twitter:description" content="本文主要总结 Android 开发过程中对内存使用上的优化，通过及时有效的管理内存空间可以避免内存泄漏和 OOM 的发生。">
@@ -399,7 +399,7 @@ var _hmt = _hmt || [];
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -528,7 +528,14 @@ var _hmt = _hmt || [];
 <ul>
 <li>内存泄漏：指的是当一个对象不再被使用时，由于其他对象仍然持有该对象的强引用，导致该对象无法被释放，造成内存空间的浪费，大量占据内存空间可能引发 <code>OOM</code>;</li>
 <li>内存溢出：即 <code>OOM</code>，当向系统申请内存时，没有足够的内存空间时会引发 <code>OOM</code>，<code>OOM</code> 发生的情况很多，而且最后 <code>Crash</code> 的地方并不一定是问题的根源，可能是其他的操作占用了大量内存。</li>
-<li>内存抖动：指的是频繁的有大量的对象创建和销毁，引发高频的系统 <code>GC</code>，当 <code>GC</code> 线程启动时其他线程都会暂停，会造成页面的卡顿等。这种情况虽然不会直接的造成内存不足，但是来不及回收的内存会占据很多内存，如果有频繁创建对象的场景，则应避免或使用 <code>pool</code> 来管理和复用已经开辟的内存。</li>
+<li>内存抖动：指的是频繁的有大量的对象创建和销毁，引发高频的系统 <code>GC</code>，当 <code>GC</code> 线程启动时其他线程都会暂停，会造成页面的卡顿等。</li>
+</ul>
+<p>解决内存问题的原则：</p>
+<ul>
+<li>避免创建大对象，如不使用 <code>inSampleSize</code> 的 <code>Bitmap</code> 等</li>
+<li>避免大量创建重复对象，如在循环中创建对象</li>
+<li>避免生命周期不可控的对象引用，如在子线程中引用上下文</li>
+<li>避免少的开辟新的内存空间，建议尽量复用可复用的内存空间，如后文介绍的 <code>ByteArrayPool</code> 以及 <code>Bitmap</code> 的 <code>inBitmap</code> 属性</li>
 </ul>
 <h2 id="内存分析和监控"><a href="#内存分析和监控" class="headerlink" title="内存分析和监控"></a>内存分析和监控</h2><ul>
 <li>获取分配的内存和可用内存大小</li>
@@ -662,7 +669,7 @@ var _hmt = _hmt || [];
 <li>方法名的定义导致使用的不当，在 <code>getXXX()</code> 方法中不应该进行创建对象的操作，如果有要加入仅创建一次的判断，因为当别人和自己在使用该方法可能会直接调用，因为对使用者来说，这只是一个获取操作，就会频繁的使用它，并不知道内部返回了一个全新的对象。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ViewModel mViewModel;</div><div class="line"></div><div class="line"><span class="comment">// 不应该在 get 方法中不加判断的创建对象</span></div><div class="line"><span class="function"><span class="keyword">public</span> ViewModel <span class="title">getViewModel</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ViewModel();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 如果仅执行创建新对象的操作应该命名为 newXXX()</span></div><div class="line"><span class="function"><span class="keyword">public</span> ViewModel <span class="title">newViewModel</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ViewModel();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 如果一定要使用 get() 方法，需要增加创建一次的判读</span></div><div class="line"><span class="function"><span class="keyword">public</span> ViewModel <span class="title">getViewModel</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">if</span>(mViewModel == <span class="keyword">null</span>)&#123;</div><div class="line">       mViewModel = <span class="keyword">new</span> ViewModel();</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> mViewModel;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="大量使用-byte-内存问题"><a href="#大量使用-byte-内存问题" class="headerlink" title="大量使用 byte 内存问题"></a>大量使用 byte 内存问题</h2><p>通常我们不会大量使用 <code>byte[]</code> ，一般用来处理 <code>IO</code> 流，但是当我们有需求频繁进行 <code>IO</code> 时，比如图片加载，需要从文件中频繁的读取图片解析，每次创建新的 此时就会造成大量的 <code>byte[]</code> 占据在内存中，虽然不至于造成内存问题，但是针对这种场景我们可以使用 <code>ByteArrayPool</code> 来管理和复用已经存在的内存空间，避免内存占用过多和内存抖动的发生。</p>
+<h2 id="大量使用-byte-内存问题"><a href="#大量使用-byte-内存问题" class="headerlink" title="大量使用 byte 内存问题"></a>大量使用 byte 内存问题</h2><p>通常我们不会大量使用 <code>byte[]</code> ，一般用他来处理 <code>IO</code> 流，但是当我们有需求频繁进行 <code>IO</code> 时，比如文件读取、网络请求等需求，每次创建新的 <code>byte[]</code> 会占据大量的内存空间，原则上我们应该尽量减少内存空间的开辟，针对这种场景我们可以使用 <code>ByteArrayPool</code> 来管理和复用已经存在的内存空间，避免内存占用过多和内存抖动的发生。</p>
 <p>下面是参考 <code>Glide</code> 源码中的一个设计，<code>ByteArrayPool</code> 是一个单例，里面维护一个 <code>Queue</code>，每次使用 <code>byte[]</code> 时，从 <code>Queue</code> 中取出并删除，使用完了再放回去，以便其他人可以继续使用已经开辟的内存空间。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteArrayPool</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"ByteArrayPool"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TEMP_BYTES_SIZE = <span class="number">64</span> * <span class="number">1024</span>; <span class="comment">// 64 KB. </span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_SIZE = <span class="number">2</span> * <span class="number">1048</span> * <span class="number">1024</span>; <span class="comment">// 512 KB.</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_BYTE_ARRAY_COUNT = MAX_SIZE / TEMP_BYTES_SIZE;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Queue&lt;<span class="keyword">byte</span>[]&gt; tempQueue = Util.createQueue(<span class="number">0</span>);</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ByteArrayPool BYTE_ARRAY_POOL = <span class="keyword">new</span> ByteArrayPool();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ByteArrayPool <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> BYTE_ARRAY_POOL;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ByteArrayPool</span><span class="params">()</span> </span>&#123;  &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span> (tempQueue) &#123;</div><div class="line">            tempQueue.clear();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 从队列中取出一个 byte[],没有就创建新的返回</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">byte</span>[] getBytes() &#123;</div><div class="line">        <span class="keyword">byte</span>[] result;</div><div class="line">        <span class="keyword">synchronized</span> (tempQueue) &#123;</div><div class="line">            result = tempQueue.poll();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</div><div class="line">            result = <span class="keyword">new</span> <span class="keyword">byte</span>[TEMP_BYTES_SIZE];</div><div class="line">            <span class="keyword">if</span> (Log.isLoggable(TAG, Log.DEBUG)) &#123;</div><div class="line">                Log.d(TAG, <span class="string">"Created temp bytes"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 使用完了放回队列，但是要维持总内存不超过 max</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">releaseBytes</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (bytes.length != TEMP_BYTES_SIZE) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">boolean</span> accepted = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">synchronized</span> (tempQueue) &#123;</div><div class="line">            <span class="keyword">if</span> (tempQueue.size() &lt; MAX_BYTE_ARRAY_COUNT) &#123;</div><div class="line">                accepted = <span class="keyword">true</span>;</div><div class="line">                tempQueue.offer(bytes);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> accepted;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
@@ -673,10 +680,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+        <!--<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;"/>
     <div></div>
-</div>
+</div>-->
 
       </div>
     
@@ -811,7 +818,7 @@ var _hmt = _hmt || [];
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg" alt="chendong">
             
               <p class="site-author-name" itemprop="name">chendong</p>
               <p class="site-description motion-element" itemprop="description"></p>

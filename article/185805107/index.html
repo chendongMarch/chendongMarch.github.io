@@ -105,7 +105,7 @@
 <meta property="og:site_name" content="三月">
 <meta property="og:description" content="本文主要介绍如何使用 Hexo+NexT 搭建自己的博客之后，和在建站期间遇到的一些问题以及优化方式。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-02T04:56:23.000Z">
+<meta property="og:updated_time" content="2018-04-06T08:49:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
 <meta name="twitter:description" content="本文主要介绍如何使用 Hexo+NexT 搭建自己的博客之后，和在建站期间遇到的一些问题以及优化方式。">
@@ -397,7 +397,7 @@ var _hmt = _hmt || [];
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -588,6 +588,12 @@ var _hmt = _hmt || [];
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 文章末尾添加“本文结束”标记</div><div class="line">passage_end_tag:</div><div class="line">enabled: true</div></pre></td></tr></table></figure>
 <h2 id="键盘触发侧栏"><a href="#键盘触发侧栏" class="headerlink" title="键盘触发侧栏"></a>键盘触发侧栏</h2><p>/Users/march/Documents/hexoBlog/themes/next/source/js/src/motion.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  NexT.motion = &#123;&#125;;</div><div class="line"></div><div class="line">  <span class="built_in">window</span>.onkeydown=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　<span class="keyword">if</span>(<span class="number">13</span> == event.keyCode)&#123;</div><div class="line">　　　　　　NexT.utils.displaySidebar();</div><div class="line">　　　　&#125;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="添加-live2d-看板娘"><a href="#添加-live2d-看板娘" class="headerlink" title="添加 live2d 看板娘"></a>添加 live2d 看板娘</h2><p>添加一个小姐姐</p>
+<p><a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save hexo-helper-live2d</div></pre></td></tr></table></figure>
+<p>hexo/_config.yml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">live2d:</div><div class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></div><div class="line">  scriptFrom: <span class="built_in">local</span></div><div class="line">  pluginRootPath: live2dw/</div><div class="line">  pluginJsPath: lib/</div><div class="line">  pluginModelPath: assets/</div><div class="line">  model:</div><div class="line">    use: live2d-widget-model-z16</div><div class="line">    scale: 1</div><div class="line">    hHeadPos: 1</div><div class="line">    vHeadPos: 1</div><div class="line">  display:</div><div class="line">    superSample: 3</div><div class="line">    width: 60</div><div class="line">    height: 120</div><div class="line">    position: right</div><div class="line">    hOffset: 120</div><div class="line">    vOffset: -40</div><div class="line">  mobile:</div><div class="line">    show: <span class="literal">false</span></div><div class="line">  react:</div><div class="line">    opacityDefault: 1</div><div class="line">    opacityOnHover: 1</div></pre></td></tr></table></figure>
+
       
     </div>
     <div>
@@ -595,10 +601,10 @@ var _hmt = _hmt || [];
     </div>
     <div>
       
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;">
+        <!--<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;"/>
     <div></div>
-</div>
+</div>-->
 
       </div>
     
@@ -652,8 +658,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/684233485/" rel="next" title="Hexo加密文章示例">
-                <i class="fa fa-chevron-left"></i> Hexo加密文章示例
+              <a href="/article/f225b262/" rel="next" title="SSH 命令">
+                <i class="fa fa-chevron-left"></i> SSH 命令
               </a>
             
           </div>
@@ -662,8 +668,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2799403346/" rel="prev" title="Fragment懒加载">
-                Fragment懒加载 <i class="fa fa-chevron-right"></i>
+              <a href="/article/684233485/" rel="prev" title="Hexo加密文章示例">
+                Hexo加密文章示例 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -733,7 +739,7 @@ var _hmt = _hmt || [];
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-2-1/42862847.jpg" alt="chendong">
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg" alt="chendong">
             
               <p class="site-author-name" itemprop="name">chendong</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -837,7 +843,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弄懂-NexT"><span class="nav-text">弄懂 NexT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BugFix"><span class="nav-text">BugFix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO优化"><span class="nav-text">SEO优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加快访问速度"><span class="nav-text">加快访问速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面简单加密访问"><span class="nav-text">页面简单加密访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加留言界面"><span class="nav-text">添加留言界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤文件不进行渲染"><span class="nav-text">过滤文件不进行渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#category-分级"><span class="nav-text">category 分级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接唯一化"><span class="nav-text">链接唯一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章压缩"><span class="nav-text">文章压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-fork-me-on-github"><span class="nav-text">添加 fork me on github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码风格处理"><span class="nav-text">代码风格处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加本地搜索"><span class="nav-text">添加本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加加载进度"><span class="nav-text">添加加载进度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决表格被等分"><span class="nav-text">解决表格被等分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-Leancloud-统计"><span class="nav-text">添加 Leancloud 统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定文章不在首页显示"><span class="nav-text">指定文章不在首页显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站背景"><span class="nav-text">网站背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头部显示"><span class="nav-text">头部显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改全局字体"><span class="nav-text">更改全局字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章中加图片，首页不显示图片"><span class="nav-text">文章中加图片，首页不显示图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头像为圆形，可移动"><span class="nav-text">头像为圆形，可移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主页文章添加卡片背景"><span class="nav-text">主页文章添加卡片背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#copyright"><span class="nav-text">copyright</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章内链接"><span class="nav-text">文章内链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统一添加“本文结束”标记"><span class="nav-text">统一添加“本文结束”标记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘触发侧栏"><span class="nav-text">键盘触发侧栏</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐阅读"><span class="nav-text">推荐阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弄懂-NexT"><span class="nav-text">弄懂 NexT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BugFix"><span class="nav-text">BugFix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO优化"><span class="nav-text">SEO优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加快访问速度"><span class="nav-text">加快访问速度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面简单加密访问"><span class="nav-text">页面简单加密访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加留言界面"><span class="nav-text">添加留言界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤文件不进行渲染"><span class="nav-text">过滤文件不进行渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#category-分级"><span class="nav-text">category 分级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接唯一化"><span class="nav-text">链接唯一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章压缩"><span class="nav-text">文章压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-fork-me-on-github"><span class="nav-text">添加 fork me on github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码风格处理"><span class="nav-text">代码风格处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加本地搜索"><span class="nav-text">添加本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加加载进度"><span class="nav-text">添加加载进度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决表格被等分"><span class="nav-text">解决表格被等分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-Leancloud-统计"><span class="nav-text">添加 Leancloud 统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定文章不在首页显示"><span class="nav-text">指定文章不在首页显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站背景"><span class="nav-text">网站背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头部显示"><span class="nav-text">头部显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改全局字体"><span class="nav-text">更改全局字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章中加图片，首页不显示图片"><span class="nav-text">文章中加图片，首页不显示图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头像为圆形，可移动"><span class="nav-text">头像为圆形，可移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主页文章添加卡片背景"><span class="nav-text">主页文章添加卡片背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#copyright"><span class="nav-text">copyright</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章内链接"><span class="nav-text">文章内链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统一添加“本文结束”标记"><span class="nav-text">统一添加“本文结束”标记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘触发侧栏"><span class="nav-text">键盘触发侧栏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加-live2d-看板娘"><span class="nav-text">添加 live2d 看板娘</span></a></li></ol></div>
             
 
           </div>
