@@ -1674,7 +1674,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2091453987/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3189961703/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -1693,7 +1693,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/2091453987/" itemprop="url">将自己写的库发布到 JitPack</a>
+                <a class="post-title-link" href="/article/3189961703/" itemprop="url">将自己写的库发布到 Jcenter</a>
         
         
         </h2>
@@ -1758,8 +1758,8 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/article/2091453987/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/article/2091453987/" itemprop="commentCount"></span>
+                <a href="/article/3189961703/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/3189961703/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1767,7 +1767,7 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
 
           
           
-             <span id="/article/2091453987/" class="leancloud_visitors" data-flag-title="将自己写的库发布到 JitPack">
+             <span id="/article/3189961703/" class="leancloud_visitors" data-flag-title="将自己写的库发布到 Jcenter">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1796,14 +1796,13 @@ xml 里面使用12345678910111213xml 里面使用&lt;com.march.billboardv
 
       
         
-          
-          JitPack优缺
-在使用Jcenter发布库代码时，需要先上传到Bintray网站，比较麻烦，不过我之前已经给出了简化的方案,根据这篇文章发布自己的库到JCenter可以很快的配置好项目。本文介绍另外一种发布自己的库代码的方式，使用JitPack发布代码更简单一些。
-AndroidStudio创建
-          ...
+          <p>本文主要介绍如何最简单的将自己的 <code>Library</code> 发布到 <code>jcenter</code>。</p>
+<p>2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程</p>
+<p>使用 <code>gradle</code> 开发过程中，我们可以使用 <code>compile</code> 命令，依赖 <code>Library</code>，这种做法的好处时，我们不需要再去关注一堆 <code>jar</code> 文件，当我们需要升级 <code>Library</code> 时，只需要改变依赖的版本号，就可以完成升级。</p>
+<p>我们之所以可以使用一句 <code>gradle</code> 脚本完成依赖的下载，升级，是因为这些 <code>Library</code> 都被存储在了一个公共的服务器上，通过 <code>compile</code> 命令可以唯一的映射到服务器存储的 <code>Library</code>。 <code>jcenter</code> 就是一个这样的服务，<code>AndroidStudio</code> 现在新建项目都会默认依赖 <code>repositories {jcenter()}</code>，当执行 <code>compile</code> 脚本时，就会去 <code>jcenter</code> 检查对应的 <code>Library</code> 进行下载和依赖。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/2091453987/" rel="contents">
+            <a class="btn" href="/article/3189961703/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2048,7 +2047,7 @@ AndroidStudio创建
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/3189961703/">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/2091453987/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chendong">
@@ -2067,7 +2066,7 @@ AndroidStudio创建
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/article/3189961703/" itemprop="url">将自己写的库发布到 Jcenter</a>
+                <a class="post-title-link" href="/article/2091453987/" itemprop="url">将自己写的库发布到 JitPack</a>
         
         
         </h2>
@@ -2132,8 +2131,8 @@ AndroidStudio创建
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/article/3189961703/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/article/3189961703/" itemprop="commentCount"></span>
+                <a href="/article/2091453987/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/article/2091453987/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2141,7 +2140,7 @@ AndroidStudio创建
 
           
           
-             <span id="/article/3189961703/" class="leancloud_visitors" data-flag-title="将自己写的库发布到 Jcenter">
+             <span id="/article/2091453987/" class="leancloud_visitors" data-flag-title="将自己写的库发布到 JitPack">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2170,13 +2169,14 @@ AndroidStudio创建
 
       
         
-          <p>本文主要介绍如何最简单的将自己的 <code>Library</code> 发布到 <code>jcenter</code>。</p>
-<p>2017.6.16 更新为使用远程上传脚本打包上传，简化操作流程</p>
-<p>使用 <code>gradle</code> 开发过程中，我们可以使用 <code>compile</code> 命令，依赖 <code>Library</code>，这种做法的好处时，我们不需要再去关注一堆 <code>jar</code> 文件，当我们需要升级 <code>Library</code> 时，只需要改变依赖的版本号，就可以完成升级。</p>
-<p>我们之所以可以使用一句 <code>gradle</code> 脚本完成依赖的下载，升级，是因为这些 <code>Library</code> 都被存储在了一个公共的服务器上，通过 <code>compile</code> 命令可以唯一的映射到服务器存储的 <code>Library</code>。 <code>jcenter</code> 就是一个这样的服务，<code>AndroidStudio</code> 现在新建项目都会默认依赖 <code>repositories {jcenter()}</code>，当执行 <code>compile</code> 脚本时，就会去 <code>jcenter</code> 检查对应的 <code>Library</code> 进行下载和依赖。</p>
+          
+          JitPack优缺
+在使用Jcenter发布库代码时，需要先上传到Bintray网站，比较麻烦，不过我之前已经给出了简化的方案,根据这篇文章发布自己的库到JCenter可以很快的配置好项目。本文介绍另外一种发布自己的库代码的方式，使用JitPack发布代码更简单一些。
+AndroidStudio创建
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/article/3189961703/" rel="contents">
+            <a class="btn" href="/article/2091453987/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
