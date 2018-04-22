@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/1632666977/</loc>
+    <lastmod>2018-04-22T15:55:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>RecyclerView Light Adapter [开源]</title>
+        <pubTime>2017-06-18T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/47636f69/</loc>
     <lastmod>2018-04-16T14:09:10.000Z</lastmod>
     <data>
@@ -59,28 +81,6 @@
            
              
               <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/1632666977/</loc>
-    <lastmod>2018-04-06T07:22:44.000Z</lastmod>
-    <data>
-        <display>
-        <title>RecyclerView Light Adapter [开源]</title>
-        <pubTime>2017-06-18T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>开源</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
