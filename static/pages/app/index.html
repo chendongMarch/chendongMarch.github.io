@@ -7,8 +7,10 @@
 	<!-- <script src="https://unpkg.com/vue"></script> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script> -->
 	<script src="./vue.js"></script>
+	<script>
+	
+	</script>
 	<style type="text/css">
-		 
 		body {
 			padding: 10px;
 			background-image: url('http://olx4t2q6z.bkt.clouddn.com/18-2-5/27721714.jpg');
@@ -174,7 +176,7 @@
 		</div>
 
  
-		<div class="cross-line"> 
+		<div class="cross-line" @click="getCookie"> 
 		----------    线上线下分割线    ----------
 		</div>
 
@@ -281,6 +283,9 @@
 					if (this.showQa) {
 						this.showQa = false;
 					}
+				},
+				getCookie() {
+					alert(document.cookie);
 				},
 			},
 			created(){
