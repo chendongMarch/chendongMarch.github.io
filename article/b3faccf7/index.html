@@ -101,10 +101,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Weex 问题处理">
 <meta property="og:url" content="http://cdevlab.top/article/b3faccf7/index.html">
-<meta property="og:site_name" content="三月">
+<meta property="og:site_name" content="子非鱼">
 <meta property="og:description" content="需要多端一起解决的问题客户端配置统一 问题描述：  Android 和 iOS 版本控制不统一，但是其实大多数界面都是统一的，在 weex 里面做了基本的兼容，可以使用一套配置  解决方案：  老版本 weex 保留，方案定下之后，在客户端（3.9.0），不管需不需要客户端支持，weex 页面最小支持版本全部升级到 3.9.0 ，兼容性测试后上线，此后都只配一套，一段时间后 3.9.0 用户比例上">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-23T06:24:53.000Z">
+<meta property="og:updated_time" content="2018-04-26T03:10:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Weex 问题处理">
 <meta name="twitter:description" content="需要多端一起解决的问题客户端配置统一 问题描述：  Android 和 iOS 版本控制不统一，但是其实大多数界面都是统一的，在 weex 里面做了基本的兼容，可以使用一套配置  解决方案：  老版本 weex 保留，方案定下之后，在客户端（3.9.0），不管需不需要客户端支持，weex 页面最小支持版本全部升级到 3.9.0 ，兼容性测试后上线，此后都只配一套，一段时间后 3.9.0 用户比例上">
@@ -182,7 +182,7 @@
 
 
 
-  <title>Weex 问题处理 | 三月</title>
+  <title>Weex 问题处理 | 子非鱼</title>
   <style>
     .forkme{
       display: none;
@@ -247,7 +247,7 @@ var _hmt = _hmt || [];
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">三月</span>
+        <span class="site-title">子非鱼</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -394,13 +394,13 @@ var _hmt = _hmt || [];
     <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/b3faccf7/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chendong">
+      <meta itemprop="name" content="陈栋">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三月">
+      <meta itemprop="name" content="子非鱼">
     </span>
 
     
@@ -456,16 +456,6 @@ var _hmt = _hmt || [];
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/article/b3faccf7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/article/b3faccf7/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -539,7 +529,7 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>触发构建后自动推送到后台数据，但是默认上线按钮不打开，人工确认开启</p>
 <hr>
-<h3 id="Weex-配置文件越来愈大"><a href="#Weex-配置文件越来愈大" class="headerlink" title="Weex 配置文件越来愈大"></a>Weex 配置文件越来愈大</h3><blockquote>
+<h3 id="Weex-配置文件越来愈大（-嘉文）"><a href="#Weex-配置文件越来愈大（-嘉文）" class="headerlink" title="Weex 配置文件越来愈大（@嘉文）"></a>Weex 配置文件越来愈大（@嘉文）</h3><blockquote>
 <p>问题描述：</p>
 </blockquote>
 <p>由于页面增多，客户端拿到的 weex 配置的 json 相当庞大，目前有80多个页面，且大部分并不使用, 而且客户端会对所有的js作文件缓存，即使以后不可能用到</p>
@@ -561,6 +551,22 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>本地文件缓存控制不好协调，还有就是打成包下载的话，可能比下载单文件更耗时，导致首页等资源无法准备好，暂时想到的解决方案是，新用户准备个启动准备页，类似qq数据库迁移那种。</p>
 <hr>
+<h3 id="Js-更新问题（暂时还没想明白）"><a href="#Js-更新问题（暂时还没想明白）" class="headerlink" title="Js 更新问题（暂时还没想明白）"></a>Js 更新问题（暂时还没想明白）</h3><blockquote>
+<p>问题描述：<br>由于JsBundle在构建完成后就已经完全独立了，当涉及到修改组件、适配等涉及页面较多的需求时非常难以解决，比如如下几个场景：</p>
+</blockquote>
+<ul>
+<li>适配 IPhoneX, 解决全面屏显示问题</li>
+<li>修改 spon-field 字体大小，原本不支持设置字体大小，需要发布组件，然后重新构建相关页面</li>
+<li>request.js 修改了文案，不构建的页面无法生效，只能等其他人发布慢慢跟上去</li>
+<li>img-upload 组件开发初期功能不完善， 改动频繁，已经用了该组件的的页面没法一起跟着生效</li>
+</ul>
+<blockquote>
+<p>解决方案：<br>参考 H5 的升级方法，可以批量发布，每次指定一个 js 版本和一个 app 版本就可以发布，app 版本采用这次发布的 js 中最小需要支持的版本，举个例子：</p>
+</blockquote>
+<ul>
+<li>适配 IPhoneX，更改了 20 个页面，页面中最小支持的 app 版本在 3.8.0。。。。。。</li>
+<li>现在要发布一个优化项目，改动 7 个页面，其中 4 个页面需要 app 在 3.6.0 ，3 个页面需要客户端在 3.9.0 ，构建完成 js 版本为 0.16.4，则使用 0.16.4 + 3.9.0 发布</li>
+</ul>
 <h3 id="增量更新"><a href="#增量更新" class="headerlink" title="增量更新"></a>增量更新</h3><p>效果没那么大，且容易出错，暂时不研究</p>
 <hr>
 <h2 id="客户端容器需要优化的问题"><a href="#客户端容器需要优化的问题" class="headerlink" title="客户端容器需要优化的问题"></a>客户端容器需要优化的问题</h2><h3 id="检索升级"><a href="#检索升级" class="headerlink" title="检索升级"></a>检索升级</h3><blockquote>
@@ -619,7 +625,7 @@ var _hmt = _hmt || [];
     <div>
       
         <!--<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="" alt="chendong wechat" style="width: 200px; max-width: 100%;"/>
+    <img id="wechat_subscriber_qcode" src="" alt="陈栋 wechat" style="width: 200px; max-width: 100%;"/>
     <div></div>
 </div>-->
 
@@ -634,7 +640,7 @@ var _hmt = _hmt || [];
   <ul class="post-copyright">
     <li class="post-copyright-author">
       <strong>本文作者：</strong>
-      chendong
+      陈栋
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
@@ -750,9 +756,9 @@ var _hmt = _hmt || [];
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg" alt="chendong">
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg" alt="陈栋">
             
-              <p class="site-author-name" itemprop="name">chendong</p>
+              <p class="site-author-name" itemprop="name">陈栋</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -858,7 +864,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需要多端一起解决的问题"><span class="nav-text">需要多端一起解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端配置统一"><span class="nav-text">客户端配置统一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#历史版本记录和随时上下页面"><span class="nav-text">历史版本记录和随时上下页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MD5-问题"><span class="nav-text">MD5 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建自动推送"><span class="nav-text">构建自动推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weex-配置文件越来愈大"><span class="nav-text">Weex 配置文件越来愈大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新用户第一次触发下载量过大"><span class="nav-text">新用户第一次触发下载量过大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增量更新"><span class="nav-text">增量更新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端容器需要优化的问题"><span class="nav-text">客户端容器需要优化的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检索升级"><span class="nav-text">检索升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件机制升级"><span class="nav-text">事件机制升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传输升级"><span class="nav-text">数据传输升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存策略升级"><span class="nav-text">缓存策略升级</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需要多端一起解决的问题"><span class="nav-text">需要多端一起解决的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端配置统一"><span class="nav-text">客户端配置统一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#历史版本记录和随时上下页面"><span class="nav-text">历史版本记录和随时上下页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MD5-问题"><span class="nav-text">MD5 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建自动推送"><span class="nav-text">构建自动推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weex-配置文件越来愈大（-嘉文）"><span class="nav-text">Weex 配置文件越来愈大（@嘉文）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新用户第一次触发下载量过大"><span class="nav-text">新用户第一次触发下载量过大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Js-更新问题（暂时还没想明白）"><span class="nav-text">Js 更新问题（暂时还没想明白）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增量更新"><span class="nav-text">增量更新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端容器需要优化的问题"><span class="nav-text">客户端容器需要优化的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检索升级"><span class="nav-text">检索升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件机制升级"><span class="nav-text">事件机制升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传输升级"><span class="nav-text">数据传输升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存策略升级"><span class="nav-text">缓存策略升级</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -883,7 +889,7 @@ var _hmt = _hmt || [];
   <span class="with-love">
   <i class="fa fa-star"></i>
 </span>
-  <span class="author" itemprop="copyrightHolder">chendong</span>
+  <span class="author" itemprop="copyrightHolder">陈栋</span>
   <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
 </div>
 
@@ -1028,29 +1034,6 @@ var _hmt = _hmt || [];
 
 
 
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: true,
-        appId: 'qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz',
-        appKey: 'PNgsnT6iK7aYrODrgNBA79Gc',
-        placeholder: '请输入邮箱，我将及时联系您～',
-        avatar:'retro',
-        guest_info: guest,
-        pageSize:'10' || 10,
-        lang:'en'
-    });
-  </script>
 
 
 
