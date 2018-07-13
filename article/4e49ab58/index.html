@@ -93,19 +93,19 @@
 
 
 
-<meta name="description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单和容易管理。">
+<meta name="description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单，也更容易管理。">
 <meta name="keywords" content="Android,EventBus">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分析EventBus源码扩展Weex事件机制[源码]">
+<meta property="og:title" content="EventBus 源码分析 [源码]">
 <meta property="og:url" content="http://cdevlab.top/article/4e49ab58/index.html">
 <meta property="og:site_name" content="子非鱼">
-<meta property="og:description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单和容易管理。">
+<meta property="og:description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单，也更容易管理。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-5-25/35272473.jpg">
-<meta property="og:updated_time" content="2018-05-27T14:31:15.981Z">
+<meta property="og:updated_time" content="2018-06-08T01:20:22.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分析EventBus源码扩展Weex事件机制[源码]">
-<meta name="twitter:description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单和容易管理。">
+<meta name="twitter:title" content="EventBus 源码分析 [源码]">
+<meta name="twitter:description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单，也更容易管理。">
 <meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-5-25/35272473.jpg">
 
 
@@ -181,7 +181,7 @@
 
 
 
-  <title>分析EventBus源码扩展Weex事件机制[源码] | 子非鱼</title>
+  <title>EventBus 源码分析 [源码] | 子非鱼</title>
   <style>
     .forkme{
       display: none;
@@ -407,7 +407,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">分析EventBus源码扩展Weex事件机制[源码]
+          <h2 class="post-title" itemprop="name headline">EventBus 源码分析 [源码]
         
         
         </h2>
@@ -462,7 +462,7 @@ var _hmt = _hmt || [];
 
           
           
-             <span id="/article/4e49ab58/" class="leancloud_visitors" data-flag-title="分析EventBus源码扩展Weex事件机制[源码]">
+             <span id="/article/4e49ab58/" class="leancloud_visitors" data-flag-title="EventBus 源码分析 [源码]">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -501,9 +501,9 @@ var _hmt = _hmt || [];
        
 
       
-        <p><a href="https://github.com/greenrobot/EventBus" rel="external nofollow noopener noreferrer" target="_blank"><code>EventBus</code></a> 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 <code>EventBus</code>  所有的订阅和发送都是在内存层面的，使用起来远比广播简单和容易管理。</p>
-<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt=""></p>
+        <p><a href="https://github.com/greenrobot/EventBus" rel="external nofollow noopener noreferrer" target="_blank"><code>EventBus</code></a> 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 <code>EventBus</code>  所有的订阅和发送都是在内存层面的，使用起来远比广播简单，也更容易管理。</p>
 <a id="more"></a>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/27/163a200cd9fd0892?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
 <p>先说明在事件总线中的几个关键词：</p>
 <ul>
 <li>事件发送者，发出事件的人</li>
@@ -629,7 +629,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/4e49ab58/" title="分析EventBus源码扩展Weex事件机制[源码]">http://cdevlab.top/article/4e49ab58/</a>
+      <a href="http://cdevlab.top/article/4e49ab58/" title="EventBus 源码分析 [源码]">http://cdevlab.top/article/4e49ab58/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -678,8 +678,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
-                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              <a href="/article/d5d0a5d2/" rel="prev" title="微信32Kb图片压缩方案[微信]">
+                微信32Kb图片压缩方案[微信] <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -762,7 +762,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">132</span>
+                  <span class="site-state-item-count">133</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

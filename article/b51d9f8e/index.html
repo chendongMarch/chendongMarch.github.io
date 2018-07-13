@@ -102,7 +102,7 @@
 <meta property="og:description" content="Git 日常命令收集，对平常使用的 git 命令及版本管理中遇到的问题进行梳理。 文中 { } 包含的部分表示变量参数，如 {git-url} 指的是远程 git 地址，[ ] 包含的部分指的是这部分命令是可以省略的。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-2-2/60301604.jpg">
-<meta property="og:updated_time" content="2018-02-08T03:02:31.000Z">
+<meta property="og:updated_time" content="2018-06-30T18:35:11.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 命令">
 <meta name="twitter:description" content="Git 日常命令收集，对平常使用的 git 命令及版本管理中遇到的问题进行梳理。 文中 { } 包含的部分表示变量参数，如 {git-url} 指的是远程 git 地址，[ ] 包含的部分指的是这部分命令是可以省略的。">
@@ -501,44 +501,24 @@ var _hmt = _hmt || [];
        
 
       
-        <p>Git 日常命令收集，对平常使用的 git 命令及版本管理中遇到的问题进行梳理。</p>
+        <p>Git 日常命令收集，对平常使用的 <code>git</code> 命令及版本管理中遇到的问题进行梳理。</p>
 <p>文中 <code>{ }</code> 包含的部分表示变量参数，如 <code>{git-url}</code> 指的是远程 <code>git</code> 地址，<code>[ ]</code> 包含的部分指的是这部分命令是可以省略的。</p>
 <a id="more"></a>
-<h2 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h2><ul>
-<li>用户配置查看及更改</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看</span></div><div class="line">git config user.name</div><div class="line">git config email</div><div class="line"></div><div class="line"><span class="comment"># 配置</span></div><div class="line">git config --global user.name = <span class="string">'test'</span></div><div class="line">git config --global user.email = <span class="string">'test@qq.com'</span></div></pre></td></tr></table></figure>
-<ul>
-<li>初始化仓库</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add origin git@github.com:chendongMarch/xxxx.git</div><div class="line">git add fileName</div><div class="line">git add -A</div><div class="line">git commit -m <span class="string">"first commit"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
-<ul>
-<li>删除远程文件夹</li>
-</ul>
+<h2 id="git-config-用户配置查看及更改"><a href="#git-config-用户配置查看及更改" class="headerlink" title="git config 用户配置查看及更改"></a>git config 用户配置查看及更改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看</span></div><div class="line">git config user.name</div><div class="line">git config email</div><div class="line"></div><div class="line"><span class="comment"># 配置</span></div><div class="line">git config --global user.name = <span class="string">'test'</span></div><div class="line">git config --global user.email = <span class="string">'test@qq.com'</span></div></pre></td></tr></table></figure>
+<h2 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add origin git@github.com:chendongMarch/xxxx.git</div><div class="line">git add fileName</div><div class="line">git add -A</div><div class="line">git commit -m <span class="string">"first commit"</span></div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> [-b &#123;branch-name&#125;] &#123;git-url&#125; [&#123;dest-dir&#125;] [--depth 1]</div><div class="line"></div><div class="line"><span class="comment"># 只 clone 最近一次 commit，防止提交太多 clone 很慢</span></div><div class="line">git <span class="built_in">clone</span> &#123;git-url&#125; --depth 1</div></pre></td></tr></table></figure>
+<h2 id="git-remote-查看和更改远程"><a href="#git-remote-查看和更改远程" class="headerlink" title="git remote 查看和更改远程"></a>git remote 查看和更改远程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看远程仓库名</span></div><div class="line">git remote -v</div><div class="line"></div><div class="line"><span class="comment"># 添加 origin 仓库</span></div><div class="line">git remote add origin &#123;git-url&#125;</div><div class="line"></div><div class="line"><span class="comment"># 删除 orgin 仓库</span></div><div class="line">git remote rm origin</div><div class="line"></div><div class="line"><span class="comment"># 重置 orign 指向的仓库</span></div><div class="line">git remote <span class="built_in">set</span>-url origin &#123;git-url&#125;</div></pre></td></tr></table></figure>
+<h2 id="git-branch-分支"><a href="#git-branch-分支" class="headerlink" title="git branch 分支"></a>git branch 分支</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 删除分支</span></div><div class="line">git branch -d &#123;branch-name&#125;</div><div class="line"></div><div class="line"><span class="comment"># 新建分支</span></div><div class="line">git branch &#123;branch-name&#125;</div><div class="line"></div><div class="line"><span class="comment"># 切换分支</span></div><div class="line">git checkout &#123;branch-name&#125;</div></pre></td></tr></table></figure>
+<h2 id="git-stash-暂存"><a href="#git-stash-暂存" class="headerlink" title="git stash 暂存"></a>git stash 暂存</h2><p>暂存已经 <code>add</code> 的修改，可以选择在其他合适的时机，将暂存提取应用到当前分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">git add -A <span class="comment"># 首先应该执行 add 命令，才能执行 stash</span></div><div class="line"></div><div class="line">git stash <span class="comment"># 暂存当前的修改</span></div><div class="line"></div><div class="line">git stash list <span class="comment"># 查看已经存在的暂存 </span></div><div class="line"><span class="comment"># 展示结果如下</span></div><div class="line"><span class="comment"># stash@&#123;1&#125;: WIP on master: 8d983f6 ...</span></div><div class="line"></div><div class="line">git stash apply stash@\&#123;0\&#125; <span class="comment"># 应用暂存</span></div></pre></td></tr></table></figure>
+<h2 id="git-log-查看日志"><a href="#git-log-查看日志" class="headerlink" title="git log 查看日志"></a>git log 查看日志</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git reflog <span class="comment"># 查看命令历史</span></div><div class="line"></div><div class="line">git <span class="built_in">log</span> test.file <span class="comment"># 查看单个文件的日志</span></div></pre></td></tr></table></figure>
+<h2 id="git-reset-重置"><a href="#git-reset-重置" class="headerlink" title="git reset 重置"></a>git reset 重置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD^ <span class="comment"># 重置到上一次提交</span></div><div class="line"></div><div class="line">git reset --hard HEAD~10 <span class="comment"># 重置到之前的10次提交</span></div><div class="line"></div><div class="line">git reset --hard &#123;commitId&#125; <span class="comment"># 重置到这次 commit</span></div></pre></td></tr></table></figure>
+<h2 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h2><p>删除远程文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm -r --cached &#123;dirname&#125;</div><div class="line">git commit -m &#123;msg&#125;</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
-<ul>
-<li>仓库清理</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git gc</div><div class="line">git gc --aggressive</div></pre></td></tr></table></figure>
-<ul>
-<li>git clone</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> [-b &#123;branch-name&#125;] &#123;git-url&#125; [&#123;dest-dir&#125;] [--depth 1]</div><div class="line"></div><div class="line">// 只 <span class="built_in">clone</span> 最近一次 commit，防止提交太多 <span class="built_in">clone</span> 很慢</div><div class="line">git <span class="built_in">clone</span> &#123;git-url&#125; --depth 1</div></pre></td></tr></table></figure>
-<ul>
-<li>git remote</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 查看远程仓库名</div><div class="line">git remote -v</div><div class="line"></div><div class="line">// 添加 origin 仓库</div><div class="line">git remote add origin &#123;git-url&#125;</div><div class="line"></div><div class="line">// 删除 orgin 仓库</div><div class="line">git remote rm origin</div><div class="line"></div><div class="line">// 重置 orign 指向的仓库</div><div class="line">git remote <span class="built_in">set</span>-url origin &#123;git-url&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>暂存本地文件，强制拉取远程</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git stash</div><div class="line">git pull</div><div class="line">git pop stash</div></pre></td></tr></table></figure>
-<ul>
-<li>git branch</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 删除分支</div><div class="line">git branch -d &#123;branch-name&#125;</div><div class="line"></div><div class="line">// 新建分支</div><div class="line">git branch &#123;branch-name&#125;</div><div class="line"></div><div class="line">// 切换分支</div><div class="line">git checkout &#123;branch-name&#125;</div></pre></td></tr></table></figure>
-<h2 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h2><p>更改 <code>.gitignore</code> 后无法生效的问题，原因是 <code>.gitignore</code> 只能忽略那些原来没有被 <code>track</code> 的文件，如果某些文件已经被纳入了版本管理中，则修改 <code>.gitignore</code> 是无效的。那么解决方法就是先把本地缓存删除，改变成未 <code>track</code> 状态，然后再提交</p>
+<p>更改 <code>.gitignore</code> 后无法生效的问题，原因是 <code>.gitignore</code> 只能忽略那些原来没有被 <code>track</code> 的文件，如果某些文件已经被纳入了版本管理中，则修改 <code>.gitignore</code> 是无效的。那么解决方法就是先把本地缓存删除，改变成未 <code>track</code> 状态，然后再提交</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git rm -r --cached .</div><div class="line">git add .</div><div class="line">git commit -m <span class="string">'update .gitignore'</span></div></pre></td></tr></table></figure>
-<p>解决 <code>fix fatal: cannot do a partial commit during a merge.</code> 的问题，这个问题是出现在合并代码时出现问题，分支一直处于 <code>merging</code> 状态无法提交的问题。</p>
+<h2 id="git-gc-仓库清理"><a href="#git-gc-仓库清理" class="headerlink" title="git gc 仓库清理"></a>git gc 仓库清理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git gc</div><div class="line">git gc --aggressive</div></pre></td></tr></table></figure>
+<h2 id="Fix"><a href="#Fix" class="headerlink" title="Fix"></a>Fix</h2><p>解决 <code>fix fatal: cannot do a partial commit during a merge.</code> 的问题，这个问题是出现在合并代码时出现问题，分支一直处于 <code>merging</code> 状态无法提交的问题。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -i * -m <span class="string">"message"</span></div></pre></td></tr></table></figure>
 <p>解决 <code>Unable to create &#39;.git/index.lock&#39;: File exists</code> 问题，删除 <code>lock</code> 文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -f ./.git/index.lock</div></pre></td></tr></table></figure>
@@ -701,7 +681,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">132</span>
+                  <span class="site-state-item-count">133</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -796,7 +776,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash"><span class="nav-text">Bash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fix"><span class="nav-text">Fix</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-config-用户配置查看及更改"><span class="nav-text">git config 用户配置查看及更改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-init"><span class="nav-text">git init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone"><span class="nav-text">git clone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-remote-查看和更改远程"><span class="nav-text">git remote 查看和更改远程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-branch-分支"><span class="nav-text">git branch 分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-stash-暂存"><span class="nav-text">git stash 暂存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-log-查看日志"><span class="nav-text">git log 查看日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reset-重置"><span class="nav-text">git reset 重置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rm"><span class="nav-text">git rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-gc-仓库清理"><span class="nav-text">git gc 仓库清理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fix"><span class="nav-text">Fix</span></a></li></ol></div>
             
 
           </div>

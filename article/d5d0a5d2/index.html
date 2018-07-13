@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+  <meta name="keywords" content="Android">
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="网络上关于如何针对图片进行有效合理的压缩其实已经有很多成熟的解决方案了，我这里要说的是针对微信 32KB 限制的压缩方案，这也是在 SocialSdkLibrary 中采用的，经过了很多细节的测试，当然这可能不是最好的方法，欢迎一起讨论。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信32Kb图片压缩方案[微信]">
+<meta property="og:url" content="http://cdevlab.top/article/d5d0a5d2/index.html">
+<meta property="og:site_name" content="子非鱼">
+<meta property="og:description" content="网络上关于如何针对图片进行有效合理的压缩其实已经有很多成熟的解决方案了，我这里要说的是针对微信 32KB 限制的压缩方案，这也是在 SocialSdkLibrary 中采用的，经过了很多细节的测试，当然这可能不是最好的方法，欢迎一起讨论。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-6-8/47111070.jpg">
+<meta property="og:updated_time" content="2018-06-08T14:35:29.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信32Kb图片压缩方案[微信]">
+<meta name="twitter:description" content="网络上关于如何针对图片进行有效合理的压缩其实已经有很多成熟的解决方案了，我这里要说的是针对微信 32KB 限制的压缩方案，这也是在 SocialSdkLibrary 中采用的，经过了很多细节的测试，当然这可能不是最好的方法，欢迎一起讨论。">
+<meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-6-8/47111070.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cdevlab.top/article/d5d0a5d2/">
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+      .pace .pace-progress {
+        background: #0000; /*进度条颜色*/
+        height: 0px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 0px #0000, 0 0 0px     #0000; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        display: none;
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+
+    @media screen and (min-width: 800px) {
+      .pace .pace-progress {
+        background: #00d9cf; /*进度条颜色*/
+        height: 2px;
+      }
+      .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #00d9cf, 0 0 5px #00d9cf; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+        border-top-color: #00d9cf;    /*上边框颜色*/
+        border-left-color: #00d9cf;    /*左边框颜色*/
+      }
+    }
+ 
+</style>
+
+
+
+  <title>微信32Kb图片压缩方案[微信] | 子非鱼</title>
+  <style>
+    .forkme{
+      display: none;
+    }
+    @media (min-width: 800px) {
+      .forkme{
+        display: inline;
+      }
+    }
+    </style>
+    
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f8f6a04af9dbc90a9b452c6884c718f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?59588130c0c528acb1a243d03844a7d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+  <!--- add Fork me on Github  -->
+   <a href="https://github.com/chendongMarch?tab=repositories" class="forkme github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <!--- add Fork me on Github -->   
+    
+    <header id="header" class="header" itemscope="" itemtype="//schema.org/WPHeader">
+    <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子非鱼</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About Me
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommend">
+          <a href="/static/pages/recommend/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            推荐
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+
+
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cdevlab.top/article/d5d0a5d2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈栋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子非鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">微信32Kb图片压缩方案[微信]
+        
+        
+        </h2>
+          
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T16:22:00+08:00">
+                2018-06-08
+              </time>
+              
+                于杭州尚妆
+              
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/article/d5d0a5d2/" class="leancloud_visitors" data-flag-title="微信32Kb图片压缩方案[微信]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          <br>
+          
+
+          
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+     
+        <div class="gellery-wrap" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            
+                <img src="http://olx4t2q6z.bkt.clouddn.com/18-6-8/47111070.jpg" itemprop="contentUrl">
+            
+          
+          
+          </div>
+        </div>
+       
+
+      
+        <p>网络上关于如何针对图片进行有效合理的压缩其实已经有很多成熟的解决方案了，我这里要说的是针对微信 <code>32KB</code> 限制的压缩方案，这也是在 <a href="https://github.com/chendongMarch/SocialSdkLibrary" rel="external nofollow noopener noreferrer" target="_blank">SocialSdkLibrary</a> 中采用的，经过了很多细节的测试，当然这可能不是最好的方法，欢迎一起讨论。</p>
+<a id="more"></a>
+<p>假如希望得到一个大小为 <code>maxSize</code> 大小的图片，整个压缩过程分为如下几个步骤：</p>
+<ul>
+<li>获取图片的宽高，这个很简单使用 <code>options.inJustDecodeBounds</code> 可以实现。</li>
+<li>利用 <code>bitmap</code> 的宽高，通过 <code>w*h &lt; maxSize</code> 为标准大致计算目标图片宽高，这里的计算是不精确的</li>
+<li>使用近似的目标宽高 <code>decode</code> 目标图片，经过此步之后拿到的 <code>bitmap</code> 会稍微大于 <code>maxSize</code>。</li>
+<li>细节调整，利用 <code>matrix.scale</code> 每次缩小为原来的 <code>0.9</code>，循环逼近目标大小。</li>
+</ul>
+<h2 id="计算原始宽高"><a href="#计算原始宽高" class="headerlink" title="计算原始宽高"></a>计算原始宽高</h2><p>这里就是最基本的方法，但是因为流程的完整，还是记录下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Size <span class="title">getBitmapSize</span><span class="params">(String filePath)</span> </span>&#123;</div><div class="line">    <span class="comment">// 仅获取宽高</span></div><div class="line">    BitmapFactory.Options options = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">    <span class="comment">// 该属性设置为 true 只会加载图片的边框进来，并不会加载图片具体的像素点</span></div><div class="line">    options.inJustDecodeBounds = <span class="keyword">true</span>;</div><div class="line">    BitmapFactory.decodeFile(filePath, options);</div><div class="line">    <span class="comment">// 获得原图的宽和高</span></div><div class="line">    <span class="keyword">int</span> outWidth = options.outWidth;</div><div class="line">    <span class="keyword">int</span> outHeight = options.outHeight;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Size(outWidth, outHeight);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="计算近似宽高"><a href="#计算近似宽高" class="headerlink" title="计算近似宽高"></a>计算近似宽高</h2><p>首先说一下为什么要有这一步：</p>
+<ul>
+<li>为了尽量少的占用内存，我们获取的图片只是用来在打开微信时展现一个缩略图，而实际的图片大小是无法预估的，不能盲目拿到内存中，因此我们要先计算一个大致的尺寸；</li>
+<li>最后一步中，我们将会采用循环压缩的方式逼近目标大小，先进行这步压缩，也是为了减少最后循环的次数；</li>
+</ul>
+<p>这一步骤的目标就是获取到一个稍微大于 <code>32KB</code> 的图片，后面再进行细节微调。</p>
+<p>那么接下来如何计算一个合适的宽高，我们简单的这样约束 <code>32kb = w * h</code>，虽然这样并不完全合理，因为最终 <code>byte[]</code> 的长度和宽高并没有绝对的关系，不过之前也说过了，这步是不精确的，目标是一个大于稍微 <code>32KB</code> 的 <code>bitmap</code>;</p>
+<p>于是可以得到如下关系，为了好理解，就用汉字标识：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">比例(&gt;1) = 较长边 / 较短边</div><div class="line">32KB = 较短边 * 较长边</div><div class="line">32KB = 较短边 * 较短边 * 比例(&gt;1)</div><div class="line">较短边 = sqrt(maxSize/比例(&gt;1))</div><div class="line">较长边 = 较短边 * 比例(&gt;1)</div></pre></td></tr></table></figure>
+<p>经过上面的关系，可以按照比例计算出 <code>较短边</code> 和 <code>较长边</code>，代码如下，简单看下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 根据kb计算缩放后的大约宽高</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> originSize  图片原始宽高</div><div class="line"> * <span class="doctag">@param</span> maxSize byte length </div><div class="line"> * <span class="doctag">@return</span> 大小</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Size <span class="title">calculateSize</span><span class="params">(Size originSize, <span class="keyword">int</span> maxSize)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> bw = originSize.width;</div><div class="line">    <span class="keyword">int</span> bh = originSize.height;</div><div class="line">    Size size = <span class="keyword">new</span> Size();</div><div class="line">    <span class="comment">// 如果本身已经小于，就直接返回</span></div><div class="line">    <span class="keyword">if</span> (bw * bh &lt;= maxSize) &#123;</div><div class="line">        size.width = bw;</div><div class="line">        size.height = bh;</div><div class="line">        <span class="keyword">return</span> size;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 拿到大于1的宽高比</span></div><div class="line">    <span class="keyword">boolean</span> isHeightLong = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">float</span> bitRatio = bh * <span class="number">1f</span> / bw;</div><div class="line">    <span class="keyword">if</span> (bitRatio &lt; <span class="number">1</span>) &#123;</div><div class="line">        bitRatio = bw * <span class="number">1f</span> / bh;</div><div class="line">        isHeightLong = <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 较长边 = 较短边 * 比例(&gt;1)</span></div><div class="line">    <span class="comment">// maxSize = 较短边 * 较长边 = 较短边 * 较短边 * 比例(&gt;1)</span></div><div class="line">    <span class="comment">// 由此计算短边应该为 较短边 = sqrt(maxSize/比例(&gt;1))</span></div><div class="line">    <span class="keyword">int</span> thumbShort = (<span class="keyword">int</span>) Math.sqrt(maxSize / bitRatio);</div><div class="line">    <span class="comment">// 较长边 = 较短边 * 比例(&gt;1)</span></div><div class="line">    <span class="keyword">int</span> thumbLong = (<span class="keyword">int</span>) (thumbShort * bitRatio);</div><div class="line">    <span class="keyword">if</span> (isHeightLong) &#123;</div><div class="line">        size.height = thumbLong;</div><div class="line">        size.width = thumbShort;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        size.width = thumbLong;</div><div class="line">        size.height = thumbShort;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> size;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="第一次采样获取目标图片"><a href="#第一次采样获取目标图片" class="headerlink" title="第一次采样获取目标图片"></a>第一次采样获取目标图片</h2><p>拿到目标尺寸之后，根据目标尺寸和原始图片尺寸，计算对应的 <code>inSimpleSize</code>，对图片进行第一次的 <code>decode</code>。</p>
+<p>同样因为这一步不是一个那么精确的操作，因此对于大小比较小的图片（这里定的是 <code>400*400</code>）就不进行压缩了，怕压的太厉害，其他的就是按照常规的采样获取到一个 <code>bitmap</code>;</p>
+<p>需要注意的是由于图片大小和图片尺寸没有绝对的关系，所以要给一个更高的上限，我们在调用 <code>calculateSize()</code> 使用的不是 <code>32KB</code>，而是用了他的 5 倍，这样可以保证图片最终稍微大于 <code>32KB</code>;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 使用 path decode 出来一个差不多大小的，此时因为图片质量的关系，可能大于kbNum</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> filePath path</div><div class="line"> * <span class="doctag">@param</span> maxSize  byte</div><div class="line"> * <span class="doctag">@return</span> bitmap</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">getMaxSizeBitmap</span><span class="params">(String filePath, <span class="keyword">int</span> maxSize)</span> </span>&#123;</div><div class="line">    Size originSize = getBitmapSize(filePath);</div><div class="line">    <span class="keyword">int</span> sampleSize = <span class="number">0</span>;</div><div class="line">    <span class="comment">// 我们对较小的图片不进行采样，因为采样只是尽量接近 32k 和避免占用大量内存</span></div><div class="line">    <span class="comment">// 对较小图片进行采样会导致图片更模糊，所以对不大的图片，直接走后面的细节调整</span></div><div class="line">    <span class="keyword">if</span> (originSize.height * originSize.width &lt; <span class="number">400</span> * <span class="number">400</span>) &#123;</div><div class="line">        sampleSize = <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        Size size = calculateSize(originSize, maxSize * <span class="number">5</span>);</div><div class="line">        <span class="keyword">while</span> (sampleSize == <span class="number">0</span> </div><div class="line">                || originSize.height / sampleSize &gt; size.height </div><div class="line">                || originSize.width / sampleSize &gt; size.width) &#123;</div><div class="line">            sampleSize += <span class="number">2</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    BitmapFactory.Options options = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">    options.inJustDecodeBounds = <span class="keyword">false</span>;</div><div class="line">    options.inSampleSize = sampleSize;</div><div class="line">    options.inMutable = <span class="keyword">true</span>;</div><div class="line">    Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);</div><div class="line">    LogUtils.e(TAG, <span class="string">"sample size = "</span> + sampleSize + <span class="string">"  bitmap大小 = "</span> + bitmap.getByteCount());</div><div class="line">    <span class="keyword">return</span> bitmap;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="循环逼近目标大小"><a href="#循环逼近目标大小" class="headerlink" title="循环逼近目标大小"></a>循环逼近目标大小</h2><p>此时我们拿到了一个大小稍微大于 <code>32KB</code> 的 <code>bitmap</code>，接下来需要循环压缩该 <code>bitmap</code> 使最终得到 <code>byte[]</code> 小于 <code>32KB</code>;</p>
+<p>这里使用 <code>Matrix</code> 的 <code>setScale()</code> 方法，每次将图片缩小为原来的 <code>0.9</code>，并且不断检测大小，直到达到标准。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getStaticSizeBitmapByteByBitmap(Bitmap srcBitmap, <span class="keyword">int</span> maxSize, Bitmap.CompressFormat</div><div class="line">    <span class="comment">// 首先进行一次大范围的压缩</span></div><div class="line">    Bitmap tempBitmap;</div><div class="line">    ByteArrayOutputStream output = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">    <span class="comment">// 设置矩阵数据</span></div><div class="line">    Matrix matrix = <span class="keyword">new</span> Matrix();</div><div class="line">    srcBitmap.compress(format, <span class="number">100</span>, output);</div><div class="line">    <span class="comment">// 如果进行了上面的压缩后，依旧大于32K，就进行小范围的微调压缩</span></div><div class="line">    <span class="keyword">byte</span>[] bytes = output.toByteArray();</div><div class="line">    LogUtils.e(TAG, <span class="string">"压缩之前 = "</span> + bytes.length);</div><div class="line">    <span class="keyword">while</span> (bytes.length &gt; maxSize) &#123;</div><div class="line">        matrix.setScale(<span class="number">0.9f</span>, <span class="number">0.9f</span>);<span class="comment">//每次缩小 1/10</span></div><div class="line">        tempBitmap = srcBitmap;</div><div class="line">        srcBitmap = Bitmap.createBitmap(</div><div class="line">                tempBitmap, <span class="number">0</span>, <span class="number">0</span>,</div><div class="line">                tempBitmap.getWidth(), tempBitmap.getHeight(), matrix, <span class="keyword">true</span>);</div><div class="line">        recyclerBitmaps(tempBitmap);</div><div class="line">        output.reset();</div><div class="line">        srcBitmap.compress(format, <span class="number">100</span>, output);</div><div class="line">        bytes = output.toByteArray();</div><div class="line">        LogUtils.e(TAG, <span class="string">"压缩一次 = "</span> + bytes.length);</div><div class="line">    &#125;</div><div class="line">    LogUtils.e(TAG, <span class="string">"压缩后的图片输出大小 = "</span> + bytes.length);</div><div class="line">    recyclerBitmaps(srcBitmap);</div><div class="line">    <span class="keyword">return</span> bytes;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>测试图片压缩的结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">测试图片大小 <span class="number">14.58</span>M</div><div class="line">	原始图片大小 = <span class="number">8000</span> * <span class="number">4160</span></div><div class="line">	目标图片大小 = <span class="number">559</span> * <span class="number">291</span></div><div class="line">	sample size = <span class="number">16</span> 采样后 bitmap大小 = <span class="number">520000</span></div><div class="line">	开始循环压缩之前 bytes = <span class="number">143255</span></div><div class="line">	压缩一次 bytes = <span class="number">110424</span></div><div class="line">	压缩一次 bytes = <span class="number">86231</span></div><div class="line">	压缩一次 bytes = <span class="number">66464</span></div><div class="line">	压缩一次 bytes = <span class="number">53433</span></div><div class="line">	压缩一次 bytes = <span class="number">42418</span></div><div class="line">	压缩一次 bytes = <span class="number">34061</span></div><div class="line">	压缩一次 bytes = <span class="number">26745</span></div><div class="line">	压缩后的图片输出大小 bytes = <span class="number">26745</span></div><div class="line"></div><div class="line">测试图片大小 <span class="number">388.16</span>KB</div><div class="line">	原始图片大小 = <span class="number">479</span> * <span class="number">850</span></div><div class="line">	目标图片大小 = <span class="number">303</span> * <span class="number">537</span></div><div class="line">	sample size = <span class="number">2</span> 采样后 bitmap大小 = <span class="number">406300</span></div><div class="line">	开始循环压缩之前 bytes = <span class="number">56926</span></div><div class="line">	压缩一次 bytes = <span class="number">47832</span></div><div class="line">	压缩一次 bytes = <span class="number">39200</span></div><div class="line">	压缩一次 bytes = <span class="number">31752</span></div><div class="line">	压缩后的图片输出大小 bytes = <span class="number">31752</span></div><div class="line"></div><div class="line">测试图片为 <span class="number">2.39</span>M</div><div class="line">	原始图片大小 = <span class="number">2160</span> * <span class="number">3840</span></div><div class="line">	目标图片大小 = <span class="number">303</span> * <span class="number">538</span></div><div class="line">	sample size = <span class="number">8</span> 采样后 bitmap大小 = <span class="number">518400</span></div><div class="line">	开始循环压缩之前 bytes = <span class="number">92282</span></div><div class="line">	压缩一次 bytes = <span class="number">73441</span></div><div class="line">	压缩一次 bytes = <span class="number">58790</span></div><div class="line">	压缩一次 bytes = <span class="number">47730</span></div><div class="line">	压缩一次 bytes = <span class="number">39083</span></div><div class="line">	压缩一次 bytes = <span class="number">31457</span></div><div class="line">	压缩后的图片输出大小 bytes = <span class="number">31457</span></div></pre></td></tr></table></figure>
+<p>可以看到当图片很大时，会造成压缩次数过多，而且出来的图片被压缩的更厉害，而平常更常见的网络图（通常几百K）拍摄图（通常2-4M）可以达到不错的压缩效果。</p>
+<hr>
+<blockquote>
+<p>目前维护的几个项目，求 ✨✨✨✨</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/chendongMarch/SocialSdkLibrary" rel="external nofollow noopener noreferrer" target="_blank">SocialSdk 登录分享功能原生接入</a></li>
+<li><a href="https://github.com/chendongMarch/LightAdapter" rel="external nofollow noopener noreferrer" target="_blank">LightAdapter 轻量级适配器</a></li>
+<li><a href="https://github.com/chendongMarch/ImageEditor" rel="external nofollow noopener noreferrer" target="_blank">ImageEditor 图片处理，裁剪旋转，贴纸涂鸦，滤镜等</a></li>
+<li><a href="https://github.com/chendongMarch/Weex-Cube" rel="external nofollow noopener noreferrer" target="_blank">WeexCube Weex 容器方案</a></li>
+<li><a href="http://cdevlab.top/article/bbab636a/">Kotlin 学习系列总结,共计 22 篇</a>        </li>
+</ul>
+
+      
+    </div>
+    <div>
+  
+    </div>
+    <div>
+      
+        <!--<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="" alt="陈栋 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>-->
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      陈栋
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cdevlab.top/article/d5d0a5d2/" title="微信32Kb图片压缩方案[微信]">http://cdevlab.top/article/d5d0a5d2/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      版权所有，转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #aaa;font-size:14px;margin-top:2rem;">------ 本文结束 🎉🎉 谢谢观看  ------</div>
+    
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/article/4e49ab58/" rel="next" title="EventBus 源码分析 [源码]">
+                <i class="fa fa-chevron-left"></i> EventBus 源码分析 [源码]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/2a4b463b/" rel="prev" title="Rxjava2.x开发-n-Backpressure-todo">
+                Rxjava2.x开发-n-Backpressure-todo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article></div>
+  
+  
+  
+  
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://olx4t2q6z.bkt.clouddn.com/18-4-7/11323316.jpg" alt="陈栋">
+            
+              <p class="site-author-name" itemprop="name">陈栋</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">133</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chendongMarch" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/chendongMarch" title="我的GitHub" target="_blank" rel="external nofollow noopener noreferrer">我的GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/chendong_" title="我的CSDN" target="_blank" rel="external nofollow noopener noreferrer">我的CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jianshu.com/u/d01a240b73c7" title="我的简书" target="_blank" rel="external nofollow noopener noreferrer">我的简书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="WanAndroid" target="_blank" rel="external nofollow noopener noreferrer">WanAndroid</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lebens.top/" title="Lebens" target="_blank" rel="external nofollow noopener noreferrer">Lebens</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算原始宽高"><span class="nav-text">计算原始宽高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算近似宽高"><span class="nav-text">计算近似宽高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次采样获取目标图片"><span class="nav-text">第一次采样获取目标图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环逼近目标大小"><span class="nav-text">循环逼近目标大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </main></div>
+      
+    
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+  <i class="fa fa-star"></i>
+</span>
+  <span class="author" itemprop="copyrightHolder">陈栋</span>
+  <span style="margin-left:50px;">Hosted by <a href="https://pages.coding.me" style="font-weight: bold" rel="external nofollow noopener noreferrer" target="_blank">Coding Pages</a></span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("qRLDbg4qm6ih0WcFdjXykQFW-gzGzoHsz", "PNgsnT6iK7aYrODrgNBA79Gc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
