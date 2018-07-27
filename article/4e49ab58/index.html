@@ -96,15 +96,15 @@
 <meta name="description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单，也更容易管理。">
 <meta name="keywords" content="Android,EventBus">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EventBus 源码分析 [源码]">
+<meta property="og:title" content="「源码」看看 EventBus">
 <meta property="og:url" content="http://cdevlab.top/article/4e49ab58/index.html">
 <meta property="og:site_name" content="子非鱼">
 <meta property="og:description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单，也更容易管理。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://olx4t2q6z.bkt.clouddn.com/18-5-25/35272473.jpg">
-<meta property="og:updated_time" content="2018-06-08T01:20:22.460Z">
+<meta property="og:updated_time" content="2018-07-24T14:30:42.778Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EventBus 源码分析 [源码]">
+<meta name="twitter:title" content="「源码」看看 EventBus">
 <meta name="twitter:description" content="EventBus 是基于观察者模式的发布/订阅事件总线，它让组件间的通信变得更加简单。类似广播系统，不过 EventBus  所有的订阅和发送都是在内存层面的，使用起来远比广播简单，也更容易管理。">
 <meta name="twitter:image" content="http://olx4t2q6z.bkt.clouddn.com/18-5-25/35272473.jpg">
 
@@ -181,7 +181,7 @@
 
 
 
-  <title>EventBus 源码分析 [源码] | 子非鱼</title>
+  <title>「源码」看看 EventBus | 子非鱼</title>
   <style>
     .forkme{
       display: none;
@@ -407,7 +407,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">EventBus 源码分析 [源码]
+          <h2 class="post-title" itemprop="name headline">「源码」看看 EventBus
         
         
         </h2>
@@ -462,7 +462,7 @@ var _hmt = _hmt || [];
 
           
           
-             <span id="/article/4e49ab58/" class="leancloud_visitors" data-flag-title="EventBus 源码分析 [源码]">
+             <span id="/article/4e49ab58/" class="leancloud_visitors" data-flag-title="「源码」看看 EventBus">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -509,9 +509,9 @@ var _hmt = _hmt || [];
 <li>事件发送者，发出事件的人</li>
 <li>订阅者，处理事件的人</li>
 <li>订阅者中处理事件的方法，因为每个订阅者感兴趣的事件有多种，因此会有多个处理事件的方法</li>
-<li>订阅，一个订阅指的是某个订阅者中的处理某个事件的方法，由订阅者和事件类型唯一确定。</li>
+<li>订阅，是一个名词，指的是一种关系，一个订阅指的是某个订阅者中的处理某个事件的方法，由订阅者和事件类型唯一确定。</li>
 </ul>
-<h2 id="订阅事件注册"><a href="#订阅事件注册" class="headerlink" title="订阅事件注册"></a>订阅事件注册</h2><p>当希望接受到事件时，需要在 <code>onCreate()</code> 执行 <code>register()</code> 方法，在注册方法中会检索当前类中声明的接受事件的方法，并将他们注册到对应的映射中。</p>
+<h2 id="订阅事件注册"><a href="#订阅事件注册" class="headerlink" title="订阅事件注册"></a>订阅事件注册</h2><p>当希望接受到事件时，需要在 <code>onCreate()</code> 执行 <code>register()</code> 方法，这里的 <code>subscriber</code> 通常是我们的 <code>activity</code>，在注册方法中会检索当前类的 <code>Class</code> 中声明的接受事件的方法，并将他们注册到对应的映射中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">register</span><span class="params">(Object subscriber)</span> </span>&#123;</div><div class="line">    Class&lt;?&gt; subscriberClass = subscriber.getClass();</div><div class="line">    List&lt;SubscriberMethod&gt; subscriberMethods = subscriberMethodFinder.findSubscriberMethods(subscriberClass);</div><div class="line">    <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">        <span class="keyword">for</span> (SubscriberMethod subscriberMethod : subscriberMethods) &#123;</div><div class="line">            subscribe(subscriber, subscriberMethod);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>内存中存储的数据结构有如下几个：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 事件 - List&lt;订阅(Subscription)&gt; 每个订阅由订阅者、事件类型唯一确定</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Class&lt;?&gt;, CopyOnWriteArrayList&lt;Subscription&gt;&gt; subscriptionsByEventType;</div><div class="line"><span class="comment">// 订阅者 - List&lt;关注的事件&gt; 每个订阅者可能关注多个事件</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Object, List&lt;Class&lt;?&gt;&gt;&gt; typesBySubscriber;</div><div class="line"><span class="comment">// 事件对应下的粘滞事件</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Class&lt;?&gt;, Object&gt; stickyEvents;</div></pre></td></tr></table></figure>
@@ -590,17 +590,6 @@ var _hmt = _hmt || [];
 <p>当页面销毁时，同时自动取消注册，释放内存和避免不必要的事件触发</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onWxInstRelease</span><span class="params">(weexPage: <span class="type">WeexPage</span>?, instance: <span class="type">WXSDKInstance</span>?)</span></span> &#123;</div><div class="line">    <span class="keyword">val</span> nonNullId = instance?.instanceId ?: <span class="keyword">return</span></div><div class="line">    <span class="keyword">for</span> (mutableEntry <span class="keyword">in</span> mEventInstanceIdMap) &#123;</div><div class="line">        <span class="keyword">if</span> (mutableEntry.value.isNotEmpty()) &#123;</div><div class="line">            mutableEntry.value.remove(nonNullId)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>最后，目前只是一个简单的实现，能够基本实现页面间通信的需求，不过还需要更多地调研和其他端同学的配合，相信会越来越完善。</p>
-<hr>
-<blockquote>
-<p>目前维护的几个项目，求 ✨✨✨✨</p>
-</blockquote>
-<ul>
-<li><a href="https://github.com/chendongMarch/SocialSdkLibrary" rel="external nofollow noopener noreferrer" target="_blank">SocialSdk 登录分享功能原生接入</a></li>
-<li><a href="https://github.com/chendongMarch/LightAdapter" rel="external nofollow noopener noreferrer" target="_blank">LightAdapter 轻量级适配器</a></li>
-<li><a href="https://github.com/chendongMarch/ImageEditor" rel="external nofollow noopener noreferrer" target="_blank">ImageEditor 图片处理，裁剪旋转，贴纸涂鸦，滤镜等</a></li>
-<li><a href="https://github.com/chendongMarch/Weex-Cube" rel="external nofollow noopener noreferrer" target="_blank">WeexCube Weex 容器方案</a></li>
-<li><a href="http://cdevlab.top/article/bbab636a/">Kotlin 学习系列总结,共计 22 篇</a>        </li>
-</ul>
 
       
     </div>
@@ -622,6 +611,19 @@ var _hmt = _hmt || [];
     
       <div>
         
+<hr>
+<blockquote>
+  <p>目前维护的几个项目，求 ✨✨✨✨</p>
+</blockquote>
+<ul>
+  <li><a href="https://github.com/chendongMarch/SocialSdkLibrary" rel="external nofollow noopener noreferrer" target="_blank">SocialSdk 登录分享功能原生接入</a></li>
+  <li><a href="https://github.com/chendongMarch/LightAdapter" rel="external nofollow noopener noreferrer" target="_blank">LightAdapter 轻量级适配器</a></li>
+  <li><a href="https://github.com/chendongMarch/ImageEditor" rel="external nofollow noopener noreferrer" target="_blank">ImageEditor 图片处理，裁剪旋转，贴纸涂鸦，滤镜等</a></li>
+  <li><a href="https://github.com/chendongMarch/Weex-Cube" rel="external nofollow noopener noreferrer" target="_blank">WeexCube Weex 容器方案</a></li>
+  <li><a href="http://devlab.top/article/bbab636a/" rel="external nofollow noopener noreferrer" target="_blank">Kotlin 学习系列总结,共计 22 篇</a>        </li>
+</ul>
+
+
   <ul class="post-copyright">
     <li class="post-copyright-author">
       <strong>本文作者：</strong>
@@ -629,7 +631,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/4e49ab58/" title="EventBus 源码分析 [源码]">http://cdevlab.top/article/4e49ab58/</a>
+      <a href="http://cdevlab.top/article/4e49ab58/" title="「源码」看看 EventBus">http://cdevlab.top/article/4e49ab58/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -762,7 +764,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">133</span>
+                  <span class="site-state-item-count">135</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/3c4d21f6/</loc>
+    <lastmod>2018-07-26T15:00:27.189Z</lastmod>
+    <data>
+        <display>
+        <title>Gradle 日常</title>
+        <pubTime>2018-07-25T08:12:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/93c948f2/</loc>
+    <lastmod>2018-07-24T15:22:03.074Z</lastmod>
+    <data>
+        <display>
+        <title>「Weex」Better Weex - 多页面事件交互</title>
+        <pubTime>2018-07-24T02:46:00.000Z</pubTime>
+        
+        <tag>weex</tag>
+         
+         
+           
+             
+              <breadCrumb title="weex" url="http://cdevlab.top/categories/weex/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/4e49ab58/</loc>
+    <lastmod>2018-07-24T14:30:42.778Z</lastmod>
+    <data>
+        <display>
+        <title>「源码」看看 EventBus</title>
+        <pubTime>2018-05-25T06:11:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/b51d9f8e/</loc>
     <lastmod>2018-06-30T18:35:11.937Z</lastmod>
     <data>
@@ -32,28 +94,6 @@
         <pubTime>2018-06-08T08:22:00.000Z</pubTime>
         
         <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/4e49ab58/</loc>
-    <lastmod>2018-06-08T01:20:22.460Z</lastmod>
-    <data>
-        <display>
-        <title>EventBus 源码分析 [源码]</title>
-        <pubTime>2018-05-25T06:11:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
          
          
            
@@ -2483,7 +2523,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/Infinity/</loc>
+    <loc>http://cdevlab.top/article/null/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
@@ -2732,9 +2772,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
@@ -2759,9 +2799,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
