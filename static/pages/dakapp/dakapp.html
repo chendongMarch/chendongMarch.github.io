@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="dns-prefetch" href="http://cdn1.showjoy.com">
+    <meta name="apple-mobile-web-app-title" content="达卡">
+    <title>达卡App</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+      body {
+        background-image: url('http://cdn1.showjoy.com/images/df/dffde01d02634f08a0f0dbcbe6b6ee51.jpg');
+        background-repeat: repeat;
+        background-size: 187px;
+      }
+      .page-content {
+        height: 100%; 
+        padding: 0; 
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .qr-img {
+        width: 250px;
+        height: 250px;
+      }
+      .download-btn-wrap {
+        background-color: #f1c87a;
+        border-radius: 200px;
+        height: 45px;
+        width: 250px;   
+        display: flex;
+        margin-top: 60px;
+        justify-content: center;
+        align-items: center;
+      }
+      .download-btn {
+        color: #333333;
+        text-decoration: none;
+        font-size: 16px;
+        -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+      }
+    </style>
+    <script type="text/javascript">
+      function openUrl() {
+        const u = navigator.userAgent;
+        const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        // const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        const url = isAndroid ? 'http://mobile.baidu.com/item?docid=24365626' : 'https://www.pgyer.com/dakacard';
+        window.location.href = url;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-content">
+      <image src="http://cdn1.showjoy.com/shop/images/20180728/QZHNPZTY1EDQP4WO4KT41532745447433.png" class="qr-img"></image>
+      <div class="download-btn-wrap" onclick="openUrl()">
+        <p class="download-btn">去下载</p>
+      </div>
+    </div>
+  </body>
+</html>
