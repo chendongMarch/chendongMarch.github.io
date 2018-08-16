@@ -32,39 +32,53 @@
         width: 250px;
         height: 250px;
       }
+      .logo-img {
+        width: 60px;
+        height: 40px;
+        margin-bottom: 50px;
+      }
       .download-btn-wrap {
         background-color: #f1c87a;
         border-radius: 200px;
         height: 45px;
         width: 250px;   
         display: flex;
-        margin-top: 60px;
+        margin-top: 75px;
         justify-content: center;
         align-items: center;
       }
       .download-btn {
         color: #333333;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: bold;
+        -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+      }
+      .qusetion-btn {
+        color: #f1c87a;
+        font-size: 12px;
+        margin-top: 20px;
+        text-decoration: none;
         -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
       }
     </style>
     <script type="text/javascript">
       function openUrl() {
-        const u = navigator.userAgent;
-        const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        // const u = navigator.userAgent;
+        // const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
         // const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-        const url = isAndroid ? 'http://mobile.baidu.com/item?docid=24365626' : 'https://www.pgyer.com/dakacard';
+        const url = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.showjoy.card';
         window.location.href = url;
       }
     </script>
   </head>
   <body>
     <div class="page-content">
-      <image src="http://cdn1.showjoy.com/shop/images/20180728/QZHNPZTY1EDQP4WO4KT41532745447433.png" class="qr-img"></image>
+      <image src="http://cdn1.showjoy.com/shop/images/20180728/NJRY5ZMN1PPXUVEORHNW1532756156609.png" class="qr-img"></image>
       <div class="download-btn-wrap" onclick="openUrl()">
-        <p class="download-btn">去下载</p>
+        <p class="download-btn">点击下载达卡APP</p>
       </div>
+      <a class="qusetion-btn" href="http://cdn1.showjoy.com/shop/images/20180728/JJ4YN811Z3RIQU2AB6941532756418605.jpg">APP安装出现问题？</p>
     </div>
   </body>
 </html>

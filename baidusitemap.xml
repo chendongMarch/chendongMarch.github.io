@@ -4,6 +4,115 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/882ae1dd/</loc>
+    <lastmod>2018-08-16T13:56:53.955Z</lastmod>
+    <data>
+        <display>
+        <title>Https 详解 [网络]</title>
+        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
+        
+        <tag>NetWork</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/d5d0a5d2/</loc>
+    <lastmod>2018-08-16T13:54:52.654Z</lastmod>
+    <data>
+        <display>
+        <title>微信32Kb图片压缩方案[微信]</title>
+        <pubTime>2018-06-08T08:22:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/2021227864/</loc>
+    <lastmod>2018-08-16T13:54:52.654Z</lastmod>
+    <data>
+        <display>
+        <title>RecyclerView</title>
+        <pubTime>2015-11-11T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>View</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+             
+              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/3067853428/</loc>
+    <lastmod>2018-08-16T13:54:52.653Z</lastmod>
+    <data>
+        <display>
+        <title>微信微博QQ钉钉登录分享 [开源]</title>
+        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/f69b558f/</loc>
+    <lastmod>2018-08-13T07:34:16.529Z</lastmod>
+    <data>
+        <display>
+        <title>「源码」ThreadLocal 存储线程本地变量</title>
+        <pubTime>2018-08-13T07:31:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/b51d9f8e/</loc>
     <lastmod>2018-07-31T15:42:09.607Z</lastmod>
     <data>
@@ -74,48 +183,6 @@
         <tag>Android</tag>
          
         <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/d5d0a5d2/</loc>
-    <lastmod>2018-06-08T14:35:29.353Z</lastmod>
-    <data>
-        <display>
-        <title>微信32Kb图片压缩方案[微信]</title>
-        <pubTime>2018-06-08T08:22:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2018-06-01T01:49:34.900Z</lastmod>
-    <data>
-        <display>
-        <title>微信微博QQ钉钉登录分享 [开源]</title>
-        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>开源</tag>
          
          
            
@@ -223,26 +290,6 @@
            
              
               <breadCrumb title="Hexo" url="http://cdevlab.top/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/882ae1dd/</loc>
-    <lastmod>2018-04-06T07:16:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Https 详解 [网络]</title>
-        <pubTime>2017-12-13T14:56:00.000Z</pubTime>
-        
-        <tag>NetWork</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -1249,31 +1296,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/2021227864/</loc>
-    <lastmod>2017-10-13T09:22:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>RecyclerView</title>
-        <pubTime>2015-11-11T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>View</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-             
-              <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
           
         </display>
     </data>
@@ -2772,9 +2794,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
@@ -2799,9 +2821,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            

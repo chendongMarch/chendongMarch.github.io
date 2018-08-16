@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html >
 
 <head>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.4" />
@@ -19,7 +19,7 @@
       <image class="error-image" src="http://www.runoob.com/wp-content/themes/runoob/assets/img/404.jpg"></image>
     </div>
 
-    <div  v-if="resumeInfo" class="content">
+    <div v-if="resumeInfo" class="content">
       <div class="content-wrap">
         <div class="content-top">
           <div class="hori">
@@ -74,8 +74,7 @@
         <div class="division-thin"></div>
         <ul class="desc-text">
           <li v-for="(item,index) in resumeInfo.skills" v-bind:key="index">
-            {{item}}</br>
-            <span v-if="index !== resumeInfo.skills.length-1"></br></span>
+            <p>{{item}}</p>
           </li>
         </ul>
       </div>
@@ -120,6 +119,23 @@
       data: {
         resumeInfo: null,
         requestOver: false,
+      },
+      methods: {
+       detectmob() {
+			    if( navigator.userAgent.match(/Android/i)
+			    || navigator.userAgent.match(/webOS/i)
+			    || navigator.userAgent.match(/iPhone/i)
+			    || navigator.userAgent.match(/iPad/i)
+			    || navigator.userAgent.match(/iPod/i)
+			    || navigator.userAgent.match(/BlackBerry/i)
+			    || navigator.userAgent.match(/Windows Phone/i)
+			    ){
+			    	return true;
+			    }
+			    else {
+			    	return false;
+			    }
+        },
       },
       created() {
         const self = this;
