@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/f4fca129/</loc>
+    <lastmod>2018-09-14T07:54:34.403Z</lastmod>
+    <data>
+        <display>
+        <title>海尔兄弟星球分享之规范篇</title>
+        <pubTime>2018-09-13T16:00:00.000Z</pubTime>
+        
+        <tag>Diary</tag>
+         
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/3067853428/</loc>
     <lastmod>2018-08-28T05:06:15.094Z</lastmod>
     <data>
@@ -683,9 +703,9 @@
         <title>CSS 基础 1</title>
         <pubTime>2017-07-06T09:01:37.000Z</pubTime>
         
-        <tag>CSS</tag>
-         
         <tag>前端</tag>
+         
+        <tag>CSS</tag>
          
          
            
@@ -706,9 +726,9 @@
         <title>Learn About HTML</title>
         <pubTime>2017-09-22T02:08:00.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>HTML</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -1310,9 +1330,9 @@
         <title>CSS 选择器</title>
         <pubTime>2017-07-07T04:48:37.000Z</pubTime>
         
-        <tag>CSS</tag>
-         
         <tag>前端</tag>
+         
+        <tag>CSS</tag>
          
          
            

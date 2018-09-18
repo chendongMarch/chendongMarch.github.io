@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.4" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>音频</title>
+  <!-- <script src="https://unpkg.com/vue"></script> -->
+  <script src="https://vuejs.org/js/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/babel-polyfill/6.23.0/polyfill.min.js"></script>
+  <style>
+    body {
+      /* width:100%;
+      height: 100%;
+      background: url("http://cdn1.showjoy.com/shop/images/20180917/YFS3OUIUHHB6YED921UR1537175717298.jpg.810x4723.jpg") ; */
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    #app {
+      background-color: rgb(235, 249, 254);
+      width: 100%;
+      /* display: flex;
+      flex-direction: column;
+      background-color: rgb(136, 189, 249);
+      justify-content: center;
+      align-items: center; */
+    }
+    .bg-image {
+      width: 100%;
+      height: auto;
+      z-index: -1;
+      display: block;
+    }
+    .content-wrap {
+      flex-direction: column; 
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .text-wrap {
+      flex-direction: column; 
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .content {
+      justify-content: flex-start;  
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      /* border-color: rgb(50, 181, 244); */
+      /* border-width: 0 10px 10px 10px; */
+      /* border-style: solid; */
+      flex-wrap: wrap;
+      width: 75%;
+    }
+    .item-content {
+      position: relative;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 45%;
+      margin: 2%;
+      background-color: rgb(209, 229 , 252);
+      align-items: center;
+      border-color: rgb(148 , 186, 236);
+      padding-top: 30px;
+      border-width: 2px;
+      border-style: solid;
+      padding-bottom: 30px;
+      /* background-image: url('http://cdn1.showjoy.com/shop/images/20180918/SLIQP1OLKDE2VZ9FLXS41537233246725.png'); */
+    }
+    .index-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      top: -20px;
+      left: -20px;
+      padding: 0;
+      margin: 0;
+      color: white;
+      border-radius: 2rem;
+      background-color: #D17472;
+      font-size: 2rem;
+    }
+    .avatar-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 200px;
+      border-width: 10px;
+      border-color: #fff;
+      border-style: solid;
+    }
+    .icon-img {
+      display: block;
+      width: 70%;
+    }
+    .item-name {
+      font-size: 1.5rem;
+    }
+    .item-desc {
+      width:  80%;
+      font-size: 1.1rem;
+    }
+    .top-image {
+      width: 100%;
+    }
+    .name-play-wrap {
+
+    }
+    .horizontal-wrap {
+      display: flex;
+      flex-direction: row;
+    }
+    .vertical-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .item-top-hori-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <div style="width:100%;">
+      <image class="bg-image"  src="http://cdn1.showjoy.com/shop/images/20180917/RVPTYXYJDKNLWMVXPODI1537180392184.png"></image>
+    </div>
+    <div style="width:100%;padding:0;margin:0;">
+        <image class="bg-image"  src="http://cdn1.showjoy.com/shop/images/20180917/7GFVOHPOZKJ8AVT4D3RD1537180535721.png"></image>
+    </div>
+    <div style="width:100%;padding:0;margin:0;">
+        <image class="bg-image"  src="http://cdn1.showjoy.com/shop/images/20180917/3DU4DTFEP1R9SMWNGGVB1537180940222.png"></image>
+    </div>
+    <div style="content-bg">
+      <image class="bg-image"  src="http://cdn1.showjoy.com/shop/images/20180917/BJL2HZU5EEUV7DMMHRSG1537181004357.png"></image>
+      <div class="content-wrap">
+          <div class="content" v-if="false">
+            <div class="item vertical-wrap" v-for="(item,index) in audioItems" :key="index" v-on:click="startPlay(index)">
+              <div class="item-top-hori-wrap">
+                  <image class="avatar-img" :src="item.src"></image>
+                  <div class="vertical-wrap" style="flex:1;align-items: center;justify-content: center;">
+                    <p class="item-name">{{item.name}}</p>
+                    <image class="icon-img" src="http://cdn1.showjoy.com/shop/images/20180917/XP91TFGMP9ONLXW45XNA1537176881737.png"></image>
+                  </div>
+              </div>
+              <p class="item-desc">{{item.desc}}</p>
+              <audio controls :id="'audio'+index" hidden>
+                <source src="http://7xtjec.com1.z0.glb.clouddn.com/test_music.mp3" type="audio/mpeg">
+                您的浏览器不支持 audio 元素。
+              </audio>
+            </div>
+          </div>
+        </div>
+    </div> -->
+    
+    <image class="bg-image" src="http://cdn1.showjoy.com/shop/images/20180917/YFS3OUIUHHB6YED921UR1537175717298.jpg"/>
+    <!-- <image class="top-image" src="http://cdn1.showjoy.com/shop/images/20180917/45VDZRJR8YOD1QVA755V1537174603841.png"></image> -->
+    <!-- :style={top:`${document.body.clientWidth}px`} -->
+    <div class="text-wrap" :style={top:`${screenWidth*0.93}px`}>
+        <p style="width: 65%;font-size: 1.7rem;font-weight: bold;">
+          本活动巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉：
+        </p>
+        <p style="width: 65%;font-size: 1.7rem;font-weight: bold;">
+          1.本活动巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉；
+        </p>
+        <p style="width: 65%;font-size: 1.7rem;font-weight: bold;">
+          2.本活动巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉；
+        </p>
+        <p style="width: 65%;font-size: 1.7rem;font-weight: bold;">
+          3.本活动巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉。
+        </p>
+    </div>
+    <div class="content-wrap" :style={top:`${screenWidth*1.78}px`}>
+        <div class="content">
+          <div class="item-content vertical-wrap" v-for="(item,index) in audioItems" :key="index" v-on:click="startPlay(index)">
+              <!--  :style="{top:`${293*Math.floor(index/2)}px`,left:`${index%2===0?screenWidth*0.13+'px':'50%'}`}" -->
+              <div class="index-wrap">{{index+1}}</div>
+              <div class="item-top-hori-wrap">
+                  <image class="avatar-img" :src="item.src"></image>
+                  <div class="vertical-wrap" style="flex:1;align-items: center;justify-content: center;">
+                    <p class="item-name">{{item.name}}</p>
+                    <image class="icon-img" src="http://cdn1.showjoy.com/shop/images/20180917/XP91TFGMP9ONLXW45XNA1537176881737.png"></image>
+                  </div>
+              </div>
+              <p class="item-desc">{{item.desc}}</p>
+              <audio controls :id="'audio'+index" hidden>
+                <source src="http://7xtjec.com1.z0.glb.clouddn.com/test_music.mp3" type="audio/mpeg">
+                您的浏览器不支持 audio 元素。
+              </audio>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        audioItems: [],
+        screenWidth: 0,
+      },
+      methods: {
+        startPlay(index) {
+          const audio = document.getElementById(`audio${index}`);
+          if (audio.paused) {
+            audio.play();
+          } else {
+            audio.pause();
+          }
+          // stop others
+          for (let i = 0; i < this.audioItems.length; i++) {
+            if (i !== index) {
+              const audio = document.getElementById(`audio${i}`);
+              if (!audio.paused) {
+                audio.pause();
+              }
+            }
+          }
+        },
+      },
+      created() {
+        this.screenWidth = document.body.clientWidth;
+        for(let i = 0; i<20; i++) {
+          this.audioItems.push({
+            name: `姓名姓`,
+            src: `http://olx4t2q6z.bkt.clouddn.com/18-7-13/85483123.jpg`,
+            desc: `一句话简介一句话简介一句话简介一句话简介一句话简介`,
+            mp3Path: ``,
+            wavPath: ``,
+          });
+        }
+      },
+    });
+  </script>
+</body>
+</html>
