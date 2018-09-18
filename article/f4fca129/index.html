@@ -102,7 +102,7 @@
 <meta property="og:description" content="目前已知的建议 应用包名应为类似 com.haier.planet，并且 Android 和 iOS 应保持包名一致，对以后 App 推广会有很大的好处。  关于分支管理git flow 图解   主分支   master 稳定分支，用于生产环境，与线上版本同步  dev 开发分支，用于测试环境，用于构建测试版本，来源于 master     流程分支   feature/xxx 功能分支，用于功">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1123206-870557d4a3191bd7.png">
-<meta property="og:updated_time" content="2018-09-14T07:54:34.403Z">
+<meta property="og:updated_time" content="2018-09-18T06:05:15.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="海尔兄弟星球分享之规范篇">
 <meta name="twitter:description" content="目前已知的建议 应用包名应为类似 com.haier.planet，并且 Android 和 iOS 应保持包名一致，对以后 App 推广会有很大的好处。  关于分支管理git flow 图解   主分支   master 稳定分支，用于生产环境，与线上版本同步  dev 开发分支，用于测试环境，用于构建测试版本，来源于 master     流程分支   feature/xxx 功能分支，用于功">
@@ -633,7 +633,21 @@ var _hmt = _hmt || [];
 </ul>
 <p>在任何传递 <code>Context</code> 都要非常慎重，尤其是单例等伪静态实现的情况。</p>
 <p>如果不保证持有 <code>Context</code> 的对象可以被及时销毁，则应该使用 <code>WeakRef</code> 来持有上下文的引用。</p>
-
+<h2 id="海尔星球项目相关"><a href="#海尔星球项目相关" class="headerlink" title="海尔星球项目相关"></a>海尔星球项目相关</h2><ul>
+<li>DTO</li>
+</ul>
+<p><code>DTO</code> 类根据使用场景不同继承 <code>BaseXXXDTO</code>，不要声明多余的 <code>DTO</code> 类，后期不好维护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Flowable&lt;BaseDTO&lt;VideoEntity&gt;&gt; testBaseDTO();</div><div class="line">Flowable&lt;BaseListDTO&lt;VideoEntity&gt;&gt; testBaseListDTO();</div><div class="line">Flowable&lt;BasePagedDTO&lt;VideoEntity&gt;&gt; testBasePagedDTO();</div></pre></td></tr></table></figure>
+<ul>
+<li>通信</li>
+</ul>
+<p>通信建议依赖 <code>EventBus</code> 实现，所有事件继承 <code>BaseEvent</code>，事件要合理分类，不要声明过多的 <code>Event，所有的</code>Event` 类应该在各自业务逻辑包下面。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LikeTagChooseEvent</span> <span class="keyword">extends</span> <span class="title">BaseEvent</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CHOOSE_TAG = <span class="string">"CHOOSE_TAG"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LikeTagChooseEvent</span><span class="params">(String msg)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>数据类</li>
+</ul>
+<p>数据类放在指定业务文件夹下面的 <code>entities</code> 包下面，并以 <code>XXXEntity</code> 命名，统一路径和命名规则，可以简化混淆成本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- home</div><div class="line">	- entities</div><div class="line">		- TestEntity</div><div class="line">- ui</div><div class="line">- event</div></pre></td></tr></table></figure>
       
     </div>
     <div>
@@ -721,6 +735,10 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/article/c0b3765/" rel="prev" title="「Android」ConstraintLayout">
+                「Android」ConstraintLayout <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -801,7 +819,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">137</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -896,7 +914,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目前已知的建议"><span class="nav-text">目前已知的建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于分支管理"><span class="nav-text">关于分支管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规范"><span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码规范"><span class="nav-text">编码规范</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目前已知的建议"><span class="nav-text">目前已知的建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于分支管理"><span class="nav-text">关于分支管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规范"><span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码规范"><span class="nav-text">编码规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#海尔星球项目相关"><span class="nav-text">海尔星球项目相关</span></a></li></ol></div>
             
 
           </div>
