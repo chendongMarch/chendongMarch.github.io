@@ -663,10 +663,7 @@ var _hmt = _hmt || [];
       
         
           
-          目前已知的建议
-应用包名应为类似 com.haier.planet，并且 Android 和 iOS 应保持包名一致，对以后 App 推广会有很大的好处。
-
-关于分支管理git flow 图解
+          关于分支管理git flow 图解
 
 
 主分支
@@ -674,7 +671,14 @@ var _hmt = _hmt || [];
 
 master 稳定分支，用于生产环境，与线上版本同步
 
-dev 开发分支，用于测试环境，用
+dev 开发分支，用于测试环境，用于构建测试版本，来源于 master 
+
+
+
+流程分支
+
+
+feature/xxx 功能分支，用于功能开发，来源于 dev，开发完成并自测通过后合并到 dev
           ...
           <!--noindex-->
           <div class="post-button text-center">
