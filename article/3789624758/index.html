@@ -489,8 +489,8 @@ var _hmt = _hmt || [];
         <h2 id="单例装饰器"><a href="#单例装饰器" class="headerlink" title="单例装饰器"></a>单例装饰器</h2><ul>
 <li>在网上查到很多方式，选择一种比较pythonic的方式</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleton</span><span class="params">(cls, *args, **kwargs)</span>:</span></div><div class="line">    instances = &#123;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_singleton</span><span class="params">()</span>:</span></div><div class="line">        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> instances:</div><div class="line">            instances[cls] = cls(*args, **kwargs)</div><div class="line">        <span class="keyword">return</span> instances[cls]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> _singleton</div></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@singleton</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpHelper</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line">    name = <span class="string">'http helper'</span></div><div class="line">    ......</div><div class="line">    ....</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleton</span><span class="params">(cls, *args, **kwargs)</span>:</span></span><br><span class="line">    instances = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_singleton</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> instances:</span><br><span class="line">            instances[cls] = cls(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> instances[cls]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> _singleton</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@singleton</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpHelper</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    name = <span class="string">'http helper'</span></span><br><span class="line">    ......</span><br><span class="line">    ....</span><br></pre></td></tr></table></figure>
       
     </div>
     <div>
@@ -568,8 +568,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/3591670187/" rel="next" title="Android添加快捷方式">
-                <i class="fa fa-chevron-left"></i> Android添加快捷方式
+              <a href="/article/2150468451/" rel="next" title="Python Json">
+                <i class="fa fa-chevron-left"></i> Python Json
               </a>
             
           </div>
@@ -578,8 +578,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/2150468451/" rel="prev" title="Python Json">
-                Python Json <i class="fa fa-chevron-right"></i>
+              <a href="/article/1727896955/" rel="prev" title="Python普通方法、静态方法、类方法">
+                Python普通方法、静态方法、类方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

@@ -491,15 +491,15 @@ var _hmt = _hmt || [];
 <ul>
 <li>本地生成 <code>ssh</code> 密钥对，使用时本机存放 <code>id_rsa</code>，远端存放 <code>id_rsa.pub</code> 公钥</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">'email'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">'email'</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>本地命令行信任 ssh，不用每次都输入密码</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ssh-agent bash</div><div class="line"></div><div class="line">ssh-add id_rsa</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br><span class="line"></span><br><span class="line">ssh-add id_rsa</span><br></pre></td></tr></table></figure>
 <ul>
 <li>连接远程服务</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh root@ip</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@ip</span><br></pre></td></tr></table></figure>
       
     </div>
     <div>

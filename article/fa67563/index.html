@@ -502,20 +502,20 @@ var _hmt = _hmt || [];
 <h2 id="docker-加速"><a href="#docker-加速" class="headerlink" title="docker 加速"></a>docker 加速</h2><p>官网下载 <code>docker</code> 速度很慢，可以前往 <a href="https://get.daocloud.io/" rel="external nofollow noopener noreferrer" target="_blank">daocloud.io</a> 下载 docker，我下载的是 <code>docker for mac</code>，速度很快，但是版本比较老，安装后再 <code>check for updates</code> 升级到新版本，速度会快一些。</p>
 <p>安装好之后，下载镜像速度也很慢，可以使用打开 <code>Preference-&gt;Daemon-&gt;Registry Mirrors</code> 添加如下镜像，然后 <code>apply&amp;restart</code> 就可以生效；</p>
 <p>可以使用 <code>docker info</code> 命令查看是否生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">http://b5886426.m.daocloud.io/</div><div class="line">https://docker.mirrors.ustc.edu.cn/</div></pre></td></tr></table></figure>
-<h2 id="docker-command"><a href="#docker-command" class="headerlink" title="docker command"></a>docker command</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull jenkins:latest</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://b5886426.m.daocloud.io/</span><br><span class="line">https://docker.mirrors.ustc.edu.cn/</span><br></pre></td></tr></table></figure>
+<h2 id="docker-command"><a href="#docker-command" class="headerlink" title="docker command"></a>docker command</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull jenkins:latest</span><br></pre></td></tr></table></figure>
 <p>以普通用户运行 bash</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> -it mycontainer bash</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it mycontainer bash</span><br></pre></td></tr></table></figure>
 <p>以 root 用户运行 bash</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> -u 0 -it mycontainer bash</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -u 0 -it mycontainer bash</span><br></pre></td></tr></table></figure>
 <p>使用镜像创建一个容器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker run -d --name jenkins-node -p 49002:8080 -v /Users/march/docker/jenkins-node:/var/jenkins_home jenkins-android</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run -d --name jenkins-node -p 49002:8080 -v /Users/march/docker/jenkins-node:/var/jenkins_home jenkins-android</span><br></pre></td></tr></table></figure>
 <p>解释一下这条命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-d =&gt; debug 模式，后台运行，不会占用终端，终端关闭也不会停止服务</div><div class="line"></div><div class="line">--name jenkins-node =&gt; 别名，否则会是一个随机别名，别名可以用来管理该容器</div><div class="line"></div><div class="line">-p 49002:8080 =&gt; 端口映射，将 8080 映射到 49002，后面使用 localhost:49002 访问</div><div class="line"></div><div class="line">-v /Users/march/docker/jenkins_node:/var/jenkins_home =&gt; 文件挂载，将 /var/jenkins_home 挂载到指定目录，如果不挂载，则jenkins所有<span class="built_in">log</span>、用户配置文件都会在docker容器内，如果容器销毁，则jenkins得重新配置一遍。挂载出来方便jenkins迁移以及管理，/Users/march/docker/jenkins_node 是我的一个本地目录，在该目录下可以看到 jenkins 的相关文件，这个目录随意，注意权限问题。</div><div class="line"></div><div class="line">jenkins:latest =&gt; 镜像名称</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-d =&gt; debug 模式，后台运行，不会占用终端，终端关闭也不会停止服务</span><br><span class="line"></span><br><span class="line">--name jenkins-node =&gt; 别名，否则会是一个随机别名，别名可以用来管理该容器</span><br><span class="line"></span><br><span class="line">-p 49002:8080 =&gt; 端口映射，将 8080 映射到 49002，后面使用 localhost:49002 访问</span><br><span class="line"></span><br><span class="line">-v /Users/march/docker/jenkins_node:/var/jenkins_home =&gt; 文件挂载，将 /var/jenkins_home 挂载到指定目录，如果不挂载，则jenkins所有<span class="built_in">log</span>、用户配置文件都会在docker容器内，如果容器销毁，则jenkins得重新配置一遍。挂载出来方便jenkins迁移以及管理，/Users/march/docker/jenkins_node 是我的一个本地目录，在该目录下可以看到 jenkins 的相关文件，这个目录随意，注意权限问题。</span><br><span class="line"></span><br><span class="line">jenkins:latest =&gt; 镜像名称</span><br></pre></td></tr></table></figure>
 <h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><p>安装 sudo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install sudo</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install sudo</span><br></pre></td></tr></table></figure>
 <p>安装 nodejs、npm</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -</div><div class="line">sudo apt-get install -y nodejs</div><div class="line">sudo apt-get install -y npm</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line">sudo apt-get install -y npm</span><br></pre></td></tr></table></figure>
 <h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><p>ssh-keygen -t rsa -b 4096 -C ‘email’</p>
 <p>本机存放 id_rsa，远端存放 id_rsa.pub 公钥</p>
 <p>ssh-agent bash</p>
@@ -600,8 +600,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/5a0eb6a0/" rel="next" title="My-Todo-List">
-                <i class="fa fa-chevron-left"></i> My-Todo-List
+              <a href="/article/f546dc07/" rel="next" title="借助 Vultr 科学上网">
+                <i class="fa fa-chevron-left"></i> 借助 Vultr 科学上网
               </a>
             
           </div>
@@ -610,8 +610,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/article/bbab636a/" rel="prev" title="Kotlin 学习汇总">
-                Kotlin 学习汇总 <i class="fa fa-chevron-right"></i>
+              <a href="/article/5a0eb6a0/" rel="prev" title="My-Todo-List">
+                My-Todo-List <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
