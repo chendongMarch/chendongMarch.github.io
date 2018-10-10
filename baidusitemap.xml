@@ -3,9 +3,30 @@
 
 
     
+    
+  <url>
+    <loc>http://cdevlab.top/article/f4fca129/</loc>
+    <lastmod>2018-10-09T01:21:27.244Z</lastmod>
+    <data>
+        <display>
+        <title>海尔兄弟星球分享之规范篇</title>
+        <pubTime>2018-09-13T16:00:00.000Z</pubTime>
+        
+        <tag>Diary</tag>
+         
+         
+           
+             
+              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://cdevlab.top/article/c0b3765/</loc>
-    <lastmod>2018-10-08T16:06:30.060Z</lastmod>
+    <lastmod>2018-10-09T01:04:29.426Z</lastmod>
     <data>
         <display>
         <title>「Android」ConstraintLayout</title>
@@ -19,26 +40,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/f4fca129/</loc>
-    <lastmod>2018-09-28T10:04:32.908Z</lastmod>
-    <data>
-        <display>
-        <title>海尔兄弟星球分享之规范篇</title>
-        <pubTime>2018-09-13T16:00:00.000Z</pubTime>
-        
-        <tag>Diary</tag>
-         
-         
-           
-             
-              <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
           
         </display>
     </data>
@@ -88,26 +89,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/d5d0a5d2/</loc>
-    <lastmod>2018-08-16T13:54:52.654Z</lastmod>
-    <data>
-        <display>
-        <title>微信32Kb图片压缩方案[微信]</title>
-        <pubTime>2018-06-08T08:22:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/2021227864/</loc>
     <lastmod>2018-08-16T13:54:52.654Z</lastmod>
     <data>
@@ -126,6 +107,26 @@
           
              
               <breadCrumb title="View" url="http://cdevlab.top/categories/Android/View/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/d5d0a5d2/</loc>
+    <lastmod>2018-08-16T13:54:52.654Z</lastmod>
+    <data>
+        <display>
+        <title>微信32Kb图片压缩方案[微信]</title>
+        <pubTime>2018-06-08T08:22:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -738,7 +739,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://cdevlab.top/article/ef811326/</loc>
@@ -2587,7 +2587,7 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/Infinity/</loc>
+    <loc>http://cdevlab.top/article/null/</loc>
     <lastmod>2017-07-08T11:24:02.000Z</lastmod>
     <data>
         <display>
@@ -2836,9 +2836,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
@@ -2863,9 +2863,9 @@
         
         <tag>Android</tag>
          
-        <tag>Ndk</tag>
-         
         <tag>FFmpeg</tag>
+         
+        <tag>Ndk</tag>
          
          
            
