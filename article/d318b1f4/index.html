@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="子非鱼">
 <meta property="og:description" content="使用 CSS 可以声明元素的样式规则，而这些规则到底匹配什么类型的元素，则由选择器来决定，选择器就是用来为声明的样式指定一个或者一组匹配的元素的一种规则。 为了能满足匹配的多种要求，选择器的种类也是多种多样的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-25T02:11:18.000Z">
+<meta property="og:updated_time" content="2018-10-23T04:37:51.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 选择器">
 <meta name="twitter:description" content="使用 CSS 可以声明元素的样式规则，而这些规则到底匹配什么类型的元素，则由选择器来决定，选择器就是用来为声明的样式指定一个或者一组匹配的元素的一种规则。 为了能满足匹配的多种要求，选择器的种类也是多种多样的。">
@@ -489,6 +489,34 @@ var _hmt = _hmt || [];
         <p>使用 <code>CSS</code> 可以声明元素的样式规则，而这些规则到底匹配什么类型的元素，则由选择器来决定，选择器就是用来为声明的样式指定一个或者一组匹配的元素的一种规则。</p>
 <p>为了能满足匹配的多种要求，选择器的种类也是多种多样的。</p>
 <a id="more"></a>
+<p>本文主要分为两部分，一个是借助选择器实现的一些特殊的效果做一下记录，另一个是系统的介绍各种选择器的使用和特性，做需要时查找使用。</p>
+<blockquote>
+<p>效果</p>
+</blockquote>
+<ul>
+<li>hover A 元素，B 元素作出反应 </li>
+</ul>
+<blockquote>
+<p>选择器</p>
+</blockquote>
+<ul>
+<li>基本选择器</li>
+<li>多元素选择器</li>
+<li>属性选择器 (css2.1)</li>
+<li>伪类(css2.1)</li>
+<li>伪元素(css2.1)</li>
+<li>同级元素通用选择器(css3)</li>
+<li>属性选择器(css3)</li>
+<li>与用户界面有关的伪类(css3)</li>
+<li>结构性伪类(css3)</li>
+<li>反选伪类(css3)</li>
+<li>:target 伪类(css3)</li>
+</ul>
+<h2 id="记录一些效果"><a href="#记录一些效果" class="headerlink" title="记录一些效果"></a>记录一些效果</h2><ul>
+<li>hover A 元素，B 元素作出反应 </li>
+</ul>
+<p>如果是当前元素的 <code>hover</code> 很好实现，使用 <code>hover</code> 伪类实现即可，目前的场景是 <code>hover</code> A 元素，B 元素作出反应，可以结合伪类选择器和后代选择器来实现，当 父元素 <code>hover</code> 时也改变子元素的状态。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"> </span></span><br><span class="line"><span class="css"><span class="selector-class">.child</span> &#123;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">position</span><span class="selector-pseudo">:absolute</span>;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">height</span><span class="selector-pseudo">:100px</span>;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">background</span><span class="selector-pseudo">:blue</span>;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">transition</span><span class="selector-pseudo">:all</span> 0<span class="selector-class">.5s</span>;</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="css">	<span class="selector-tag">left</span><span class="selector-pseudo">:-50</span>%;</span></span><br><span class="line"><span class="undefined">	opacity: 0;</span></span><br><span class="line"><span class="undefined">	width: 300px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.father</span> &#123;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">background-color</span><span class="selector-pseudo">:red</span>;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">width</span><span class="selector-pseudo">:500px</span>;</span></span><br><span class="line"><span class="undefined">	height: 300px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.father</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.child</span> &#123;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">left</span><span class="selector-pseudo">:0</span>;</span></span><br><span class="line"><span class="undefined">	opacity: 1;</span></span><br><span class="line"><span class="undefined">	width: 100px;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><table>
 <thead>
 <tr>
@@ -981,7 +1009,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">138</span>
+                  <span class="site-state-item-count">139</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1003,7 +1031,7 @@ var _hmt = _hmt || [];
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1076,7 +1104,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本选择器"><span class="nav-text">基本选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多元素选择器"><span class="nav-text">多元素选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器-css2-1"><span class="nav-text">属性选择器 (css2.1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类-css2-1"><span class="nav-text">伪类(css2.1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素-css2-1"><span class="nav-text">伪元素(css2.1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同级元素通用选择器-css3"><span class="nav-text">同级元素通用选择器(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器-css3"><span class="nav-text">属性选择器(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与用户界面有关的伪类-css3"><span class="nav-text">与用户界面有关的伪类(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构性伪类-css3"><span class="nav-text">结构性伪类(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反选伪类-css3"><span class="nav-text">反选伪类(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#target-伪类-css3"><span class="nav-text">:target 伪类(css3)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#记录一些效果"><span class="nav-text">记录一些效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本选择器"><span class="nav-text">基本选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多元素选择器"><span class="nav-text">多元素选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器-css2-1"><span class="nav-text">属性选择器 (css2.1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类-css2-1"><span class="nav-text">伪类(css2.1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素-css2-1"><span class="nav-text">伪元素(css2.1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同级元素通用选择器-css3"><span class="nav-text">同级元素通用选择器(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器-css3"><span class="nav-text">属性选择器(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与用户界面有关的伪类-css3"><span class="nav-text">与用户界面有关的伪类(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构性伪类-css3"><span class="nav-text">结构性伪类(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反选伪类-css3"><span class="nav-text">反选伪类(css3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#target-伪类-css3"><span class="nav-text">:target 伪类(css3)</span></a></li></ol></div>
             
 
           </div>
