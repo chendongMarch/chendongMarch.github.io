@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="子非鱼">
 <meta property="og:description" content="CSS 指层叠样式表 (Cascading Style Sheets) 解决内容与表现分离的问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-27T01:39:25.000Z">
+<meta property="og:updated_time" content="2018-11-21T14:13:06.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 基础 1">
 <meta name="twitter:description" content="CSS 指层叠样式表 (Cascading Style Sheets) 解决内容与表现分离的问题。">
@@ -625,6 +625,20 @@ var _hmt = _hmt || [];
 </tbody>
 </table>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 字体系列(<span class="selector-tag">font-family</span>) </span><br><span class="line"><span class="selector-tag">font-family</span> 属性应该设置几个字体名称作为一种"后备"机制，如果浏览器不支持第一种字体，他将尝试下一种字体。</span><br><span class="line">注意: 如果字体系列的名称超过一个字,多个汉字或多个单词，它必须用引号</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.serif</span>&#123;<span class="attribute">font-family</span>:<span class="string">"Times New Roman"</span>,Times,serif;&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">---</span></span><br><span class="line">2. 字体样式(<span class="selector-tag">font-style</span>)</span><br><span class="line"><span class="selector-tag">normal</span> <span class="selector-tag">italic</span>斜体 <span class="selector-tag">oblique</span>斜体</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-class">.oblique</span> &#123;<span class="attribute">font-style</span>:oblique;&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">---</span></span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p>盒模型是一个种布局方式，每个元素都被表示一个矩形的盒子，有尺寸大小、属性、颜色、边框和位置（渲染）目标。</p>
+<p>盒模型默认的值是content-box，CSS3中新增了一种盒模型计算方式：padding-box，还有常用的 border-box，几种盒模型计算元素宽高的区别如下：</p>
+<ul>
+<li>content-box（默认）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">width = width + padding-left + padding-right + border-left + border-right</span><br><span class="line"></span><br><span class="line">height = height + padding-top + padding-bottom + border-top + border-bottom</span><br></pre></td></tr></table></figure>
+<ul>
+<li>padding-box（Css 3）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">width = width(包含padding-left + padding-right) + border-top + border-bottom</span><br><span class="line"></span><br><span class="line">height = height(包含padding-top + padding-bottom) + border-top + border-bottom</span><br></pre></td></tr></table></figure>
+<ul>
+<li>border-box</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">width = width(包含padding-left + padding-right + border-left + border-right)</span><br><span class="line"></span><br><span class="line">height = height(包含padding-top + padding-bottom + border-top + border-bottom)</span><br></pre></td></tr></table></figure>
       
     </div>
     <div>
@@ -798,7 +812,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-count">139</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -893,7 +907,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入样式表"><span class="nav-text">插入样式表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外部样式表"><span class="nav-text">外部样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部样式表"><span class="nav-text">内部样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联样式"><span class="nav-text">内联样式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-背景"><span class="nav-text">CSS 背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-文本"><span class="nav-text">CSS 文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-字体"><span class="nav-text">CSS 字体</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入样式表"><span class="nav-text">插入样式表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外部样式表"><span class="nav-text">外部样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部样式表"><span class="nav-text">内部样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联样式"><span class="nav-text">内联样式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-背景"><span class="nav-text">CSS 背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-文本"><span class="nav-text">CSS 文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-字体"><span class="nav-text">CSS 字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盒模型"><span class="nav-text">盒模型</span></a></li></ol></div>
             
 
           </div>
