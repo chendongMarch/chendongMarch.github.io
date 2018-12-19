@@ -4,6 +4,154 @@
 
     
   <url>
+    <loc>http://cdevlab.top/article/c5576490/</loc>
+    <lastmod>2018-12-18T06:23:10.658Z</lastmod>
+    <data>
+        <display>
+        <title>面试准备</title>
+        <pubTime>2018-12-13T08:34:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/b51d9f8e/</loc>
+    <lastmod>2018-12-18T06:22:45.944Z</lastmod>
+    <data>
+        <display>
+        <title>Git 命令</title>
+        <pubTime>2017-08-10T08:50:00.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="bash" url="http://cdevlab.top/categories/bash/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/1632666977/</loc>
+    <lastmod>2018-12-18T02:01:03.810Z</lastmod>
+    <data>
+        <display>
+        <title>RecyclerView Light Adapter [开源]</title>
+        <pubTime>2018-10-31T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/f69b558f/</loc>
+    <lastmod>2018-12-13T08:37:00.025Z</lastmod>
+    <data>
+        <display>
+        <title>「源码」ThreadLocal 存储线程本地变量</title>
+        <pubTime>2018-08-13T07:31:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/65563eb2/</loc>
+    <lastmod>2018-12-11T02:35:03.210Z</lastmod>
+    <data>
+        <display>
+        <title>「设计模式」使用更安全的单例模式</title>
+        <pubTime>2017-07-06T01:58:05.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://cdevlab.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/47636f69/</loc>
+    <lastmod>2018-11-24T03:09:05.175Z</lastmod>
+    <data>
+        <display>
+        <title>Glide-平滑加载的图片框架 [源码]</title>
+        <pubTime>2018-03-21T01:58:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/4e49ab58/</loc>
+    <lastmod>2018-11-24T03:00:52.026Z</lastmod>
+    <data>
+        <display>
+        <title>「源码」看看 EventBus</title>
+        <pubTime>2018-05-25T06:11:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>SourceCode</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cdevlab.top/article/5b70625a/</loc>
     <lastmod>2018-11-21T14:13:06.485Z</lastmod>
     <data>
@@ -19,28 +167,6 @@
            
              
               <breadCrumb title="前端" url="http://cdevlab.top/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/1632666977/</loc>
-    <lastmod>2018-11-07T15:35:13.145Z</lastmod>
-    <data>
-        <display>
-        <title>RecyclerView Light Adapter [开源]</title>
-        <pubTime>2018-10-31T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>开源</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -222,48 +348,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/f69b558f/</loc>
-    <lastmod>2018-08-13T07:34:16.529Z</lastmod>
-    <data>
-        <display>
-        <title>「源码」ThreadLocal 存储线程本地变量</title>
-        <pubTime>2018-08-13T07:31:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/b51d9f8e/</loc>
-    <lastmod>2018-07-31T15:42:09.607Z</lastmod>
-    <data>
-        <display>
-        <title>Git 命令</title>
-        <pubTime>2017-08-10T08:50:00.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="bash" url="http://cdevlab.top/categories/bash/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/3c4d21f6/</loc>
     <lastmod>2018-07-26T15:00:27.189Z</lastmod>
     <data>
@@ -304,28 +388,6 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/4e49ab58/</loc>
-    <lastmod>2018-07-24T14:30:42.778Z</lastmod>
-    <data>
-        <display>
-        <title>「源码」看看 EventBus</title>
-        <pubTime>2018-05-25T06:11:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://cdevlab.top/article/5a0eb6a0/</loc>
     <lastmod>2018-05-13T04:44:47.000Z</lastmod>
     <data>
@@ -337,28 +399,6 @@
            
              
               <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/47636f69/</loc>
-    <lastmod>2018-04-16T14:09:10.000Z</lastmod>
-    <data>
-        <display>
-        <title>Glide-平滑加载的图片框架 [源码]</title>
-        <pubTime>2018-03-21T01:58:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>SourceCode</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -718,26 +758,6 @@
            
              
               <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/65563eb2/</loc>
-    <lastmod>2018-02-01T03:02:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用安全的单例模式 [设计模式]</title>
-        <pubTime>2017-07-06T01:58:05.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://cdevlab.top/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
           
         </display>
     </data>

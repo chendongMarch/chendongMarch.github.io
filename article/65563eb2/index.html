@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例实现 线程安全加锁单例实现 双重检查加锁单例实现。 使用枚举实现单例">
+<meta name="description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例简单实现 懒汉式线程安全加锁单例实现 懒汉式双重检查加锁单例实现。 使用枚举实现单例">
 <meta name="keywords" content="Singleton,单例模式,双重检查加锁,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用安全的单例模式 [设计模式]">
+<meta property="og:title" content="「设计模式」使用更安全的单例模式">
 <meta property="og:url" content="http://cdevlab.top/article/65563eb2/index.html">
 <meta property="og:site_name" content="子非鱼">
-<meta property="og:description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例实现 线程安全加锁单例实现 双重检查加锁单例实现。 使用枚举实现单例">
+<meta property="og:description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例简单实现 懒汉式线程安全加锁单例实现 懒汉式双重检查加锁单例实现。 使用枚举实现单例">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-01T03:02:15.000Z">
+<meta property="og:updated_time" content="2018-12-11T02:35:03.210Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用安全的单例模式 [设计模式]">
-<meta name="twitter:description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例实现 线程安全加锁单例实现 双重检查加锁单例实现。 使用枚举实现单例">
+<meta name="twitter:title" content="「设计模式」使用更安全的单例模式">
+<meta name="twitter:description" content="本文介绍 Java 单例模式，主要包括：  饿汉式单例实现 懒汉式单例简单实现 懒汉式线程安全加锁单例实现 懒汉式双重检查加锁单例实现。 使用枚举实现单例">
 
 
 
@@ -179,7 +179,7 @@
 
 
 
-  <title>使用安全的单例模式 [设计模式] | 子非鱼</title>
+  <title>「设计模式」使用更安全的单例模式 | 子非鱼</title>
   <style>
     .forkme{
       display: none;
@@ -405,7 +405,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">使用安全的单例模式 [设计模式]
+          <h2 class="post-title" itemprop="name headline">「设计模式」使用更安全的单例模式
         
         
         </h2>
@@ -480,18 +480,16 @@ var _hmt = _hmt || [];
         <p>本文介绍 <code>Java</code> 单例模式，主要包括：</p>
 <blockquote>
 <p>饿汉式单例实现</p>
-<p>懒汉式单例实现</p>
-<p>线程安全加锁单例实现</p>
-<p>双重检查加锁单例实现。</p>
+<p>懒汉式单例简单实现</p>
+<p>懒汉式线程安全加锁单例实现</p>
+<p>懒汉式双重检查加锁单例实现。</p>
 <p>使用枚举实现单例</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><p>顾名思义，就是很饿了，必须立刻创建。</p>
-<p>饿汉式的特点就是空间换时间，在开始时就创建，而且只创建一次，节约了运行时间，保证了线程安全，缺点就是当你不需要用的时候也同样占用内存空间。</p>
+<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><p>饿汉式的特点就是空间换时间，在开始时就创建，而且只创建一次，节约了运行时间，保证了线程安全，缺点就是当你不需要用的时候也同样占用内存空间。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenProvider</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TokenProvider sInst = <span class="keyword">new</span> TokenProvider();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p>体现了一种懒加载的思想，不需要时不创建，需要时才创建。</p>
-<p>懒汉式的特点就是时间换空间，不需要时不创建，需要时才创建，节约了内存空间，缺点就是每次获取都需要判断，增加了运行时间，而且不加锁的懒汉式无法保证线程安全。</p>
-<p>看一个最简单的 饿汉式 创建单例的方法</p>
+<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p>懒汉式的特点就是时间换空间，不需要时不创建，需要时才创建，节约了内存空间，缺点就是每次获取都需要判断，增加了运行时间，而且不加锁的懒汉式无法保证线程安全。</p>
+<p>看一个最简单的 <strong>饿汉式</strong> 创建单例的方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenProvider</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> TokenProvider sInst;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TokenProvider <span class="title">getInst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (sInst == <span class="keyword">null</span>) &#123;</span><br><span class="line">            sInst = <span class="keyword">new</span> TokenProvider();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sInst;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>为什么会有线程安全的问题呢？因为多线程访问时，假设 A 线程正在创建实体，此时 B 线程已经开始进行 <code>sInst == null</code> 的判空操作，此时 B 线程便会创建一个新的实体。</p>
 <p>如何解决？请看下面线程安全加锁</p>
@@ -501,9 +499,10 @@ var _hmt = _hmt || [];
 <p>缺点也很明显，需要使用该单例时，所有线程都会首先进入同步代码块，在线程同步时会浪费很多时间，我们需要避免这种情况，请看下节双重检查加锁</p>
 <h2 id="双重检查加锁"><a href="#双重检查加锁" class="headerlink" title="双重检查加锁"></a>双重检查加锁</h2><p>为了解决上面的问题，我们需要避免每次都进行同步加锁，在最外层先进行判空操作，当实体已经创建时，后面的线程则不需要进入同步代码块等待，节约了时间。</p>
 <blockquote>
-<p>volatile: 被 volatile 修饰的变量的值，将不会被本地线程缓存，所有对该变量的读写都是直接操作共享内存,从而确保多个线程能正确的处理该变量。</p>
+<p><code>volatile</code>: 被 <code>volatile</code> 修饰的变量的值，将不会被本地线程缓存，所有对该变量的读写都是直接操作共享内存,从而确保多个线程能正确的处理该变量。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenProvider</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TokenProvider sInst;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TokenProvider <span class="title">getInst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (sInst == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (TokenProvider.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (sInst == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    sInst = <span class="keyword">new</span> TokenProvider();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sInst;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们必须使用 <code>volatile</code> 来避免指令重排的问题，简单的来说在 <code>2</code> 处创建对象时，为 <code>sInst</code> 分配内存空间 和 初始化 <code>sInst</code> 两条指令可能发生重排序，这会导致在 <code>1</code> 处获取到一个没有被初始化的对象导致问题发生。<a href="https://www.infoq.cn/article/double-checked-locking-with-delay-initialization" rel="external nofollow noopener noreferrer" target="_blank">Double-Check-Locking 指令重排问题</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenProvider</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TokenProvider sInst;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TokenProvider <span class="title">getInst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (sInst == <span class="keyword">null</span>) &#123; <span class="comment">// 1</span></span><br><span class="line">            <span class="keyword">synchronized</span> (TokenProvider.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (sInst == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    sInst = <span class="keyword">new</span> TokenProvider(); <span class="comment">// 2</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sInst;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="使用枚举实现单例"><a href="#使用枚举实现单例" class="headerlink" title="使用枚举实现单例"></a>使用枚举实现单例</h2><p>简单说一下枚举，枚举类似类，一个枚举可以拥有成员变量，成员方法，构造方法。创建<code>enum</code> 时，编译器会自动为我们生成一个继承自 <code>Java.lang.Enum</code> 的类，构建实例的过程不是我们做的，一个 <code>enum</code> 的构造方法限制是 <code>private</code> 的，也就是不允许我们调用。单例中的每一个都是 <code>static final</code> 类型，下面代码的对比应该更清楚一些</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Type&#123;</span><br><span class="line">    A,B,C,D;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>等同于</p>
@@ -550,7 +549,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/65563eb2/" title="使用安全的单例模式 [设计模式]">http://cdevlab.top/article/65563eb2/</a>
+      <a href="http://cdevlab.top/article/65563eb2/" title="「设计模式」使用更安全的单例模式">http://cdevlab.top/article/65563eb2/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -681,7 +680,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
