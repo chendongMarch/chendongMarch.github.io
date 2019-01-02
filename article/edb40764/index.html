@@ -93,19 +93,19 @@
 
 
 
-<meta name="description" content="ProgressBar 是比较常见的用来显示进度的的控件，但是自定义和扩展都不是很方便，特此记录一下，本文主要介绍：  圆形、无进度、自定义颜色； 水平、带进度、自定义背景/进度颜色； 圆形、带进度、自定义背景/进度颜色；">
+<meta name="description" content="ProgressBar 是比较常见的用来显示进度的的控件，支持圆形和水平进度显示，通过扩展它可以实现大多数情况下的需求，不需要自己自定义控件，特此记录一下，本文主要介绍：  圆形、无进度、自定义颜色； 水平、带进度、自定义背景/进度颜色； 圆形、带进度、自定义背景/进度颜色；">
 <meta name="keywords" content="Android,View">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ProgressBar">
+<meta property="og:title" content="「View」ProgressBar">
 <meta property="og:url" content="http://cdevlab.top/article/edb40764/index.html">
 <meta property="og:site_name" content="子非鱼">
-<meta property="og:description" content="ProgressBar 是比较常见的用来显示进度的的控件，但是自定义和扩展都不是很方便，特此记录一下，本文主要介绍：  圆形、无进度、自定义颜色； 水平、带进度、自定义背景/进度颜色； 圆形、带进度、自定义背景/进度颜色；">
+<meta property="og:description" content="ProgressBar 是比较常见的用来显示进度的的控件，支持圆形和水平进度显示，通过扩展它可以实现大多数情况下的需求，不需要自己自定义控件，特此记录一下，本文主要介绍：  圆形、无进度、自定义颜色； 水平、带进度、自定义背景/进度颜色； 圆形、带进度、自定义背景/进度颜色；">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://images.pexels.com/photos/825904/pexels-photo-825904.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
-<meta property="og:updated_time" content="2018-12-26T05:55:03.891Z">
+<meta property="og:updated_time" content="2018-12-27T05:30:41.384Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ProgressBar">
-<meta name="twitter:description" content="ProgressBar 是比较常见的用来显示进度的的控件，但是自定义和扩展都不是很方便，特此记录一下，本文主要介绍：  圆形、无进度、自定义颜色； 水平、带进度、自定义背景/进度颜色； 圆形、带进度、自定义背景/进度颜色；">
+<meta name="twitter:title" content="「View」ProgressBar">
+<meta name="twitter:description" content="ProgressBar 是比较常见的用来显示进度的的控件，支持圆形和水平进度显示，通过扩展它可以实现大多数情况下的需求，不需要自己自定义控件，特此记录一下，本文主要介绍：  圆形、无进度、自定义颜色； 水平、带进度、自定义背景/进度颜色； 圆形、带进度、自定义背景/进度颜色；">
 <meta name="twitter:image" content="https://images.pexels.com/photos/825904/pexels-photo-825904.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500">
 
 
@@ -181,7 +181,7 @@
 
 
 
-  <title>ProgressBar | 子非鱼</title>
+  <title>「View」ProgressBar | 子非鱼</title>
   <style>
     .forkme{
       display: none;
@@ -407,7 +407,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">ProgressBar
+          <h2 class="post-title" itemprop="name headline">「View」ProgressBar
         
         
         </h2>
@@ -492,17 +492,17 @@ var _hmt = _hmt || [];
        
 
       
-        <p><code>ProgressBar</code> 是比较常见的用来显示进度的的控件，但是自定义和扩展都不是很方便，特此记录一下，本文主要介绍：</p>
+        <p><code>ProgressBar</code> 是比较常见的用来显示进度的的控件，支持圆形和水平进度显示，通过扩展它可以实现大多数情况下的需求，不需要自己自定义控件，特此记录一下，本文主要介绍：</p>
 <ol>
 <li>圆形、无进度、自定义颜色；</li>
 <li>水平、带进度、自定义背景/进度颜色；</li>
 <li>圆形、带进度、自定义背景/进度颜色；<a id="more"></a>
-<h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2></li>
+</li>
 </ol>
-<p>用到了几个不常用的 <code>shape</code> 属性，当我们使用 <code>ring</code> 类型时：</p>
+<h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><p>用到了几个不常用的 <code>shape</code> 属性，当我们使用 <code>ring</code> 类型时：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">android:innerRadius  尺寸，内环的半径，单位 dp。</span><br><span class="line">android:innerRadiusRatio  大于1浮点型，以环的宽度比率来表示内环的半径。</span><br><span class="line">android:thickness  尺寸，环的厚度</span><br><span class="line">android:thicknessRatio  大于1浮点型，以环的宽度比率来表示环的厚度    </span><br><span class="line">android:useLevel boolean 值，如果当做是LevelListDrawable使用时值为true，否则为false.</span><br></pre></td></tr></table></figure>
 <p>举个例子，假设我们有个 <code>ProgressBar</code> 宽度和高度都是 <code>100dp</code>，想给他一个宽度为 <code>2dp</code> 的环形进度，那么：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">先设置环半径</span><br><span class="line"></span><br><span class="line">如果使用 innerRadius，因为宽度时 100dp，去掉两边 2dp 的环，还有 96dp，半径为 96/2 = 48dp</span><br><span class="line">	android:innerRadius=&quot;48dp&quot;</span><br><span class="line">如果使用 innerRadiusRatio，半径为 48dp 比例就应该是 100/48 = 2.08</span><br><span class="line">	android:innerRadiusRatio=&quot;2.08&quot;</span><br><span class="line">	</span><br><span class="line">再设置环的宽度</span><br><span class="line"></span><br><span class="line">如果使用 thickness，很简单，他应该是 2dp</span><br><span class="line">	android:thickness=&quot;2dp&quot;</span><br><span class="line">如果使用 thicknessRatio，那么就应该是 105/2 = 50</span><br><span class="line">	android:thicknessRatio=&quot;50&quot;</span><br><span class="line">	</span><br><span class="line">使用 Ratio 时，填写是一个大于 0 的比例数字。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">先设置环半径</span><br><span class="line"></span><br><span class="line">如果使用 innerRadius，因为宽度是 100dp，去掉两边 2dp 的环，还有 96dp，半径为 96/2 = 48dp</span><br><span class="line">	android:innerRadius=&quot;48dp&quot;</span><br><span class="line">如果使用 innerRadiusRatio，半径为 48dp 比例就应该是 100/48 = 2.08</span><br><span class="line">	android:innerRadiusRatio=&quot;2.08&quot;</span><br><span class="line">	</span><br><span class="line">再设置环的宽度</span><br><span class="line"></span><br><span class="line">如果使用 thickness，很简单，他应该是 2dp</span><br><span class="line">	android:thickness=&quot;2dp&quot;</span><br><span class="line">如果使用 thicknessRatio，那么就应该是 105/2 = 50</span><br><span class="line">	android:thicknessRatio=&quot;50&quot;</span><br><span class="line">	</span><br><span class="line">使用 Ratio 时，填写是一个大于 0 的比例数字。</span><br></pre></td></tr></table></figure>
 <h2 id="圆形、无进度、自定义颜色"><a href="#圆形、无进度、自定义颜色" class="headerlink" title="圆形、无进度、自定义颜色"></a>圆形、无进度、自定义颜色</h2><p>圆形 <code>ProgressBar</code> 无进度，并自带了旋转效果，那怎么更改圆形进度的颜色，下面使用了一个渐变色作为进度条颜色，同样也可以使用更简单的纯色表示。</p>
 <blockquote>
 <p>progress_circle.xml</p>
@@ -530,7 +530,7 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>progress_bg.xml</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:innerRadius=&quot;48dp&quot;</span><br><span class="line">    android:shape=&quot;oval&quot;</span><br><span class="line">    android:thickness=&quot;2dp&quot;</span><br><span class="line">    android:useLevel=&quot;true&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;stroke</span><br><span class="line">        android:width=&quot;2dp&quot;</span><br><span class="line">        android:color=&quot;@color/color999&quot; /&gt;</span><br><span class="line">&lt;/shape&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">shape</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:innerRadius</span>=<span class="string">"48dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:shape</span>=<span class="string">"oval"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:thickness</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:useLevel</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">stroke</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:width</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:color</span>=<span class="string">"@color/color999"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在 <code>xml</code> 中使用它：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ProgressBar</span></span></span><br><span class="line"><span class="tag">    <span class="attr">style</span>=<span class="string">"?android:attr/progressBarStyleHorizontal"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"100dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"100dp"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"@drawable/progress_bg"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:max</span>=<span class="string">"100"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:progress</span>=<span class="string">"60"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:progressDrawable</span>=<span class="string">"@drawable/progress_horizontal"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>效果展示：</p>
@@ -582,7 +582,7 @@ var _hmt = _hmt || [];
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://cdevlab.top/article/edb40764/" title="ProgressBar">http://cdevlab.top/article/edb40764/</a>
+      <a href="http://cdevlab.top/article/edb40764/" title="「View」ProgressBar">http://cdevlab.top/article/edb40764/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -628,6 +628,10 @@ var _hmt = _hmt || [];
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/article/3067853428/" rel="prev" title="「开源」SocialSdk">
+                「开源」SocialSdk <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -825,7 +829,7 @@ var _hmt = _hmt || [];
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
   <i class="fa fa-star"></i>
 </span>

@@ -4,11 +4,33 @@
 
     
   <url>
-    <loc>http://cdevlab.top/article/edb40764/</loc>
-    <lastmod>2018-12-26T05:55:03.891Z</lastmod>
+    <loc>http://cdevlab.top/article/3067853428/</loc>
+    <lastmod>2019-01-02T02:43:12.258Z</lastmod>
     <data>
         <display>
-        <title>ProgressBar</title>
+        <title>「开源」SocialSdk</title>
+        <pubTime>2018-12-26T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>开源</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://cdevlab.top/article/edb40764/</loc>
+    <lastmod>2018-12-27T05:30:41.384Z</lastmod>
+    <data>
+        <display>
+        <title>「View」ProgressBar</title>
         <pubTime>2018-12-26T03:36:00.000Z</pubTime>
         
         <tag>Android</tag>
@@ -314,28 +336,6 @@
            
              
               <breadCrumb title="Life" url="http://cdevlab.top/categories/Life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://cdevlab.top/article/3067853428/</loc>
-    <lastmod>2018-08-28T05:06:15.094Z</lastmod>
-    <data>
-        <display>
-        <title>微信微博QQ钉钉登录分享 [开源]</title>
-        <pubTime>2017-07-06T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>开源</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="http://cdevlab.top/categories/Android/"/>
           
         </display>
     </data>
@@ -2918,9 +2918,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
@@ -2945,9 +2945,9 @@
         
         <tag>Android</tag>
          
-        <tag>FFmpeg</tag>
-         
         <tag>Ndk</tag>
+         
+        <tag>FFmpeg</tag>
          
          
            
