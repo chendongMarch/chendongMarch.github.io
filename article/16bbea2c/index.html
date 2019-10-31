@@ -102,7 +102,7 @@
 <meta property="og:description" content="本文主要解决微信前端开发中遇到的奇葩问题和解决方案；">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://images.pexels.com/photos/567952/pexels-photo-567952.jpeg">
-<meta property="og:updated_time" content="2018-12-24T07:07:48.713Z">
+<meta property="og:updated_time" content="2019-01-02T09:13:20.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「前端&amp;微信」微信前端开发指坑">
 <meta name="twitter:description" content="本文主要解决微信前端开发中遇到的奇葩问题和解决方案；">
@@ -505,6 +505,8 @@ var _hmt = _hmt || [];
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">window</span>.document.title = <span class="string">'标题'</span>;</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
 <h2 id="微信长按复制"><a href="#微信长按复制" class="headerlink" title="微信长按复制"></a>微信长按复制</h2><p>默认不允许长按复制文本，使用下面的属性支持。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.copy-contnet</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-user-select</span>: text;</span><br><span class="line">    <span class="attribute">user-select</span>: text;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="长按保存图片"><a href="#长按保存图片" class="headerlink" title="长按保存图片"></a>长按保存图片</h2><p><code>canvas</code> 转 <code>base64</code> 图片无法长按保存，使用下面的属性支持；</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.press-img</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-touch-callout</span>: none;</span><br><span class="line">    <span class="attribute">user-select</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div>
@@ -676,7 +678,7 @@ var _hmt = _hmt || [];
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">142</span>
+                  <span class="site-state-item-count">146</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -698,7 +700,7 @@ var _hmt = _hmt || [];
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -771,7 +773,7 @@ var _hmt = _hmt || [];
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-键盘问题被顶起"><span class="nav-text">iOS 键盘问题被顶起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信页面设置标题不生效"><span class="nav-text">微信页面设置标题不生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信长按复制"><span class="nav-text">微信长按复制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-键盘问题被顶起"><span class="nav-text">iOS 键盘问题被顶起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信页面设置标题不生效"><span class="nav-text">微信页面设置标题不生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信长按复制"><span class="nav-text">微信长按复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长按保存图片"><span class="nav-text">长按保存图片</span></a></li></ol></div>
             
 
           </div>
