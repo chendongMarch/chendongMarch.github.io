@@ -102,7 +102,7 @@
 <meta property="og:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView);">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://images.pexels.com/photos/789433/pexels-photo-789433.jpeg">
-<meta property="og:updated_time" content="2018-11-24T03:09:05.175Z">
+<meta property="og:updated_time" content="2020-05-09T04:30:40.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glide-平滑加载的图片框架 [源码]">
 <meta name="twitter:description" content="本文按照 Glide 常用的如下用法来分析源码： 1Glide.with(context).load(&quot;url&quot;).thumbnail().into(imageView);">
@@ -421,8 +421,8 @@ var _hmt = _hmt || [];
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T09:58:00+08:00">
-                2018-03-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-21T09:58:00+08:00">
+                2020-05-21
               </time>
               
                 于杭州尚妆
@@ -594,12 +594,12 @@ var _hmt = _hmt || [];
 <h3 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h3><p>内存缓存方案的选择，考虑如下几个方面：</p>
 <ul>
 <li><code>LruCache</code> 的优点是可以有效的将内存控制在一个范围内，并优先保留最后使用的图片，缺点是当内存到达界限时就会开始回收，长列表时有可能会将正在显示的图片回收掉。</li>
-<li><code>WeakRef</code> 的优点是在不造成内存溢出的前提下，上限较高，资源的回收由系统管理，只有在内存不足时才会回收资源，缺点是可能造成占用大量的内存，触发系统 <code>gc</code> 造成断崖式的内存回收。</li>
+<li><code>WeakRef</code> 的优点是在发生gc时，会回收只有弱引用的资源，并且通过 <code>cleanReferenceQueue</code>  我们可以观察到被回收的动作。</li>
 <li>当产生大量加载事件时，会不停的开辟和回收资源占用的内存空间，造成显著的内存抖动。</li>
 </ul>
 <p>更优化的内存缓存方案应该满足 3 个条件:</p>
 <ul>
-<li>对最近使用资源更宽容，给予这部分资源更充足的内存空间，保证正在使用的图片不会被回收</li>
+<li>保证正在使用的图片不会被回收，如果图片不被使用了要及时缓存到别的缓存中</li>
 <li>对没有使用的资源有一个上限管控，既能保证缓存的优势，又不会对内存空间造成压力</li>
 <li>减少内存空间的开辟操作，能够尽量复用已经开辟好的内存空间</li>
 </ul>
@@ -612,6 +612,8 @@ var _hmt = _hmt || [];
 <p><strong>资源的存储</strong>：当从文件缓存或 <code>Source</code> 中获取到目标资源时，存储到 <code>activeResouces</code> 中，因为该资源处于被获取使用的状态，当然除了 <code>activeResouces</code> 的 <code>WeakRef</code> 它还被展示它的 <code>View</code> 持有，具有一个强引用，这保证了即使发生 <code>gc</code> 也只会回收掉 <code>activeResouces</code> 中那些不被 <code>View</code> 引用的资源。</p>
 <p><strong>资源的获取</strong>：先从 <code>lruCache</code> 中获取，拿到资源后从 <code>lruCache</code> 删除，加入 <code>activeResouces</code> 中，保证该资源不会因为达到 <code>lruCache</code> 的内存上限而被回收。</p>
 <p><strong>资源的回收</strong>：当资源被触发回收时，计算引用数，没有引用就从 <code>activeResouces</code> 移除，存储到 <code>lruCache</code> 中，方便下次可以从内存中读取到。</p>
+<p>如何判断资源没有引用了？</p>
+<p>启动一个后台线程不停的遍历 <code>ReferenceQueue</code> 一旦发现被系统回收的资源，立刻重新构建（引用数变为0）并且通知资源被 release 了，加入到 LRU 缓存中</p>
 <h3 id="文件缓存"><a href="#文件缓存" class="headerlink" title="文件缓存"></a>文件缓存</h3><p>文件缓存选择的是 <code>DiskLruCache</code> ，是一个基于 <code>Lru</code> 算法的文件缓存方案，在 Android 上有比较广泛的应用，原理这里不展开说了。</p>
 <p>文件缓存的查找在 <code>EngineRunnable</code> 的 <code>run()</code> 方法中：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">EngineRunnable.java</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    resource = decode();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Resource&lt;?&gt; decode() <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">if</span> (isDecodingFromCache()) &#123;</span><br><span class="line">        <span class="keyword">return</span> decodeFromCache();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> decodeFromSource();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -811,8 +813,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/article/d1ceed0f/" rel="next" title="Android 性能优化 - UI [进阶]">
-                <i class="fa fa-chevron-left"></i> Android 性能优化 - UI [进阶]
+              <a href="/article/d5d0a5d2/" rel="next" title="微信32Kb图片压缩方案[微信]">
+                <i class="fa fa-chevron-left"></i> 微信32Kb图片压缩方案[微信]
               </a>
             
           </div>
@@ -820,10 +822,6 @@ var _hmt = _hmt || [];
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/article/4e49ab58/" rel="prev" title="「源码」看看 EventBus">
-                「源码」看看 EventBus <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1021,7 +1019,7 @@ var _hmt = _hmt || [];
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
   <i class="fa fa-star"></i>
 </span>
